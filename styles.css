@@ -436,6 +436,29 @@ h3 {
   padding: clamp(20px, 3vw, 28px);
 }
 
+.publication-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(43, 52, 43, 0.14);
+  border-radius: 8px;
+  background: #f6f2ea;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.publication-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.publication-image:hover img {
+  transform: scale(1.025);
+}
+
 .publication-title {
   display: flex;
   align-items: baseline;

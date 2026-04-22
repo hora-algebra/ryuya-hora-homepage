@@ -82,6 +82,7 @@ const siteData = {
         venue: "Theory and Applications of Categories 42(11), 263-313",
         year: "2024",
         link: "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html",
+        image: "assets/papers/internal-parameterizations.jpg",
         tags: ["topos theory", "local state classifier", "hyperconnected quotient"],
         links: [
           ["TAC", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
@@ -96,6 +97,7 @@ const siteData = {
         venue: "Journal of Pure and Applied Algebra 228(8), 107657",
         year: "2024",
         link: "https://doi.org/10.1016/j.jpaa.2024.107657",
+        image: "assets/papers/quotient-toposes.jpg",
         tags: ["discrete dynamical systems", "quotient toposes", "Lawvere problems"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.jpaa.2024.107657"],
@@ -110,6 +112,7 @@ const siteData = {
         venue: "Proceedings of the American Mathematical Society 154, 567-584",
         year: "2026",
         link: "https://doi.org/10.1090/proc/17479",
+        image: "assets/papers/completely-connected.jpg",
         tags: ["completely connected topoi", "Grothendieck topoi"],
         links: [["DOI", "https://doi.org/10.1090/proc/17479"]],
         summary:
@@ -121,6 +124,7 @@ const siteData = {
         venue: "Advances in Mathematics 487, 110751",
         year: "2026",
         link: "https://doi.org/10.1016/j.aim.2025.110751",
+        image: "assets/papers/lawvere-first.jpg",
         tags: ["Lawvere problems", "quotient topoi", "Grothendieck topoi"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.aim.2025.110751"],
@@ -137,6 +141,7 @@ const siteData = {
         venue: "arXiv:2503.03439",
         year: "2025",
         link: "https://arxiv.org/abs/2503.03439",
+        image: "assets/papers/lawvere-fourth.jpg",
         tags: ["Lawvere problems", "symmetric simplicial sets", "species"],
         links: [["arXiv", "https://arxiv.org/abs/2503.03439"]],
         summary:
@@ -147,6 +152,7 @@ const siteData = {
         venue: "arXiv:2411.06358",
         year: "2024",
         link: "https://arxiv.org/abs/2411.06358",
+        image: "assets/papers/topoi-automata.jpg",
         tags: ["automata", "regular languages", "topos theory"],
         links: [["arXiv", "https://arxiv.org/abs/2411.06358"]],
         summary: "Introduces a topos-theoretic point of view on formal language theory."
@@ -156,6 +162,7 @@ const siteData = {
         venue: "arXiv:2510.22886",
         year: "2025",
         link: "https://arxiv.org/abs/2510.22886",
+        image: "assets/papers/games-coalgebras.jpg",
         tags: ["coalgebras", "combinatorial games", "Nim"],
         links: [["arXiv", "https://arxiv.org/abs/2510.22886"]],
         summary:
@@ -166,6 +173,7 @@ const siteData = {
         venue: "arXiv:2511.05012",
         year: "2025",
         link: "https://arxiv.org/abs/2511.05012",
+        image: "assets/papers/normalization.jpg",
         tags: ["normalization", "local state classifier", "algebraic language theory"],
         links: [["arXiv", "https://arxiv.org/abs/2511.05012"]],
         summary:
@@ -551,7 +559,18 @@ function renderExplore() {
 }
 
 function renderPaperRecord(paper) {
-  const item = el("article", "publication-item");
+  const item = el("article", paper.image ? "publication-item has-image" : "publication-item");
+  if (paper.image) {
+    const imageLink = link("", paper.link, "publication-image");
+    const image = document.createElement("img");
+    image.src = localHref(paper.image);
+    image.alt = `Figure from ${paper.title}`;
+    image.loading = "lazy";
+    image.decoding = "async";
+    imageLink.append(image);
+    item.append(imageLink);
+  }
+
   const titleRow = el("div", "publication-title");
   const title = el("h3");
   title.append(link(paper.title, paper.link));

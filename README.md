@@ -12,6 +12,7 @@ This is a static first draft for migrating the current Google Sites homepage to 
 - `cv/index.html`: CV, awards, positions, and education/outreach
 - `problems/index.html`: open problem reference trails
 - `links/index.html`: external links
+- `assets/papers/`: paper card thumbnails generated from public arXiv PDFs
 - `styles.css`: visual design and responsive layout
 - `scripts/site.js`: structured content and rendering logic
 
