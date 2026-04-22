@@ -82,7 +82,7 @@ const siteData = {
         venue: "Theory and Applications of Categories 42(11), 263-313",
         year: "2024",
         link: "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html",
-        image: "assets/papers/internal-parameterizations.jpg",
+        figure: "internal-parameterizations",
         tags: ["topos theory", "local state classifier", "hyperconnected quotient"],
         links: [
           ["TAC", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
@@ -97,7 +97,7 @@ const siteData = {
         venue: "Journal of Pure and Applied Algebra 228(8), 107657",
         year: "2024",
         link: "https://doi.org/10.1016/j.jpaa.2024.107657",
-        image: "assets/papers/quotient-toposes.jpg",
+        figure: "quotient-toposes",
         tags: ["discrete dynamical systems", "quotient toposes", "Lawvere problems"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.jpaa.2024.107657"],
@@ -112,7 +112,7 @@ const siteData = {
         venue: "Proceedings of the American Mathematical Society 154, 567-584",
         year: "2026",
         link: "https://doi.org/10.1090/proc/17479",
-        image: "assets/papers/completely-connected.jpg",
+        figure: "completely-connected",
         tags: ["completely connected topoi", "Grothendieck topoi"],
         links: [["DOI", "https://doi.org/10.1090/proc/17479"]],
         summary:
@@ -124,7 +124,7 @@ const siteData = {
         venue: "Advances in Mathematics 487, 110751",
         year: "2026",
         link: "https://doi.org/10.1016/j.aim.2025.110751",
-        image: "assets/papers/lawvere-first.jpg",
+        figure: "lawvere-first",
         tags: ["Lawvere problems", "quotient topoi", "Grothendieck topoi"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.aim.2025.110751"],
@@ -141,7 +141,7 @@ const siteData = {
         venue: "arXiv:2503.03439",
         year: "2025",
         link: "https://arxiv.org/abs/2503.03439",
-        image: "assets/papers/lawvere-fourth.jpg",
+        figure: "lawvere-fourth",
         tags: ["Lawvere problems", "symmetric simplicial sets", "species"],
         links: [["arXiv", "https://arxiv.org/abs/2503.03439"]],
         summary:
@@ -152,7 +152,7 @@ const siteData = {
         venue: "arXiv:2411.06358",
         year: "2024",
         link: "https://arxiv.org/abs/2411.06358",
-        image: "assets/papers/topoi-automata.jpg",
+        figure: "topoi-automata",
         tags: ["automata", "regular languages", "topos theory"],
         links: [["arXiv", "https://arxiv.org/abs/2411.06358"]],
         summary: "Introduces a topos-theoretic point of view on formal language theory."
@@ -162,7 +162,7 @@ const siteData = {
         venue: "arXiv:2510.22886",
         year: "2025",
         link: "https://arxiv.org/abs/2510.22886",
-        image: "assets/papers/games-coalgebras.jpg",
+        figure: "games-coalgebras",
         tags: ["coalgebras", "combinatorial games", "Nim"],
         links: [["arXiv", "https://arxiv.org/abs/2510.22886"]],
         summary:
@@ -173,7 +173,7 @@ const siteData = {
         venue: "arXiv:2511.05012",
         year: "2025",
         link: "https://arxiv.org/abs/2511.05012",
-        image: "assets/papers/normalization.jpg",
+        figure: "normalization",
         tags: ["normalization", "local state classifier", "algebraic language theory"],
         links: [["arXiv", "https://arxiv.org/abs/2511.05012"]],
         summary:
@@ -511,6 +511,190 @@ function localHref(href) {
   return `${getPathPrefix()}${href}`;
 }
 
+const paperFigureTemplates = {
+  "internal-parameterizations": `
+    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-internal-title fig-internal-desc">
+      <title id="fig-internal-title">Locally determined cocones</title>
+      <desc id="fig-internal-desc">A local subobject U maps into X, and both determine a value in the local state classifier Psi.</desc>
+      <defs><marker id="arrow-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <text class="figure-label" x="132" y="70">U</text>
+      <circle class="figure-node" cx="132" cy="125" r="36"></circle>
+      <circle class="figure-dot" cx="132" cy="125" r="4"></circle>
+      <text class="figure-small" x="132" y="153">x</text>
+      <text class="figure-label" x="470" y="54">X</text>
+      <ellipse class="figure-node" cx="470" cy="125" rx="150" ry="72"></ellipse>
+      <circle class="figure-dot ghost" cx="438" cy="126" r="21"></circle>
+      <circle class="figure-dot" cx="438" cy="126" r="4"></circle>
+      <text class="figure-small" x="438" y="153">x</text>
+      <rect class="figure-node" x="284" y="283" width="230" height="56" rx="4"></rect>
+      <text class="figure-label" x="399" y="318">Psi_U(x) = Psi_X(x)</text>
+      <path class="figure-arrow" d="M168 125 H318"></path>
+      <text class="figure-small" x="238" y="111">i</text>
+      <path class="figure-arrow" d="M138 162 L318 278"></path>
+      <text class="figure-small" x="197" y="229">Psi_U</text>
+      <path class="figure-arrow" d="M438 197 L425 278"></path>
+      <text class="figure-small" x="454" y="236">Psi_X</text>
+    </svg>`,
+  "quotient-toposes": `
+    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
+      <title id="fig-quotient-title">Period, height, and core</title>
+      <desc id="fig-quotient-desc">Three discrete dynamical systems showing finite height with period, a core of fixed points, and an infinite tail.</desc>
+      <defs><marker id="arrow-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <g transform="translate(74 34)">
+        <path class="figure-arrow" d="M0 68 H55 H110"></path>
+        <circle class="figure-dot" cx="0" cy="68" r="5"></circle><circle class="figure-dot" cx="55" cy="68" r="5"></circle>
+        <circle class="figure-dot" cx="110" cy="68" r="5"></circle>
+        <circle class="figure-cycle" cx="170" cy="68" r="38"></circle>
+        <path class="figure-arrow" d="M110 68 H132"></path>
+        <circle class="figure-dot" cx="170" cy="30" r="5"></circle><circle class="figure-dot" cx="208" cy="68" r="5"></circle><circle class="figure-dot" cx="170" cy="106" r="5"></circle><circle class="figure-dot" cx="132" cy="68" r="5"></circle>
+        <text class="figure-small" x="101" y="130">(height, period) = (3, 4)</text>
+      </g>
+      <g transform="translate(365 48)">
+        <path class="figure-line" d="M0 116 H270"></path>
+        <g class="figure-stem"><path d="M30 20 V116"></path><path d="M90 45 V116"></path><path d="M150 20 V116"></path><path d="M210 45 V116"></path></g>
+        <g><circle class="figure-dot" cx="30" cy="20" r="5"></circle><circle class="figure-dot" cx="30" cy="68" r="5"></circle><circle class="figure-dot" cx="90" cy="45" r="5"></circle><circle class="figure-dot" cx="150" cy="20" r="5"></circle><circle class="figure-dot" cx="150" cy="68" r="5"></circle><circle class="figure-dot" cx="210" cy="45" r="5"></circle></g>
+        <text class="figure-small" x="58" y="152">(height, period) = (3, 0)</text>
+      </g>
+      <g transform="translate(110 265)">
+        <path class="figure-line dashed" d="M0 0 H540"></path>
+        <path class="figure-line" d="M115 0 H255 L312 45 H455"></path>
+        <g><circle class="figure-dot ghost-fill" cx="115" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="185" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="255" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="312" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="385" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="455" cy="45" r="5"></circle></g>
+        <text class="figure-small" x="220" y="88">(height, period) = (infinity, 0)</text>
+      </g>
+    </svg>`,
+  "completely-connected": `
+    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-connected-title fig-connected-desc">
+      <title id="fig-connected-title">Rooted trees and rooted forests</title>
+      <desc id="fig-connected-desc">A rooted tree corresponds to a rooted forest, separated by a dashed divider.</desc>
+      <g transform="translate(74 56)">
+        <path class="figure-line" d="M128 0 L58 56 L26 118 M58 56 L96 118 M128 0 L128 56 L128 118 M128 0 L214 56 L184 118 M214 56 L250 118"></path>
+        <g><circle class="figure-node pale" cx="128" cy="0" r="12"></circle><circle class="figure-node" cx="58" cy="56" r="12"></circle><circle class="figure-node" cx="214" cy="56" r="12"></circle><circle class="figure-node" cx="128" cy="56" r="12"></circle><circle class="figure-node" cx="26" cy="118" r="12"></circle><circle class="figure-node" cx="96" cy="118" r="12"></circle><circle class="figure-node" cx="128" cy="118" r="12"></circle><circle class="figure-node" cx="184" cy="118" r="12"></circle><circle class="figure-node" cx="250" cy="118" r="12"></circle></g>
+        <text class="figure-label" x="132" y="188">rooted tree</text>
+      </g>
+      <path class="figure-line dashed" d="M380 38 V330"></path>
+      <g transform="translate(455 56)">
+        <path class="figure-line" d="M52 0 L22 56 L0 118 M52 0 L82 56 L104 118"></path>
+        <path class="figure-line" d="M196 0 L196 56 L196 118"></path>
+        <g><circle class="figure-node pale" cx="52" cy="0" r="12"></circle><circle class="figure-node" cx="22" cy="56" r="12"></circle><circle class="figure-node" cx="82" cy="56" r="12"></circle><circle class="figure-node" cx="0" cy="118" r="12"></circle><circle class="figure-node" cx="104" cy="118" r="12"></circle><circle class="figure-node pale" cx="196" cy="0" r="12"></circle><circle class="figure-node" cx="196" cy="56" r="12"></circle><circle class="figure-node" cx="196" cy="118" r="12"></circle></g>
+        <text class="figure-label" x="98" y="188">rooted forest</text>
+      </g>
+    </svg>`,
+  "lawvere-first": `
+    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
+      <title id="fig-lawvere-first-title">Proper class many quotient topoi</title>
+      <desc id="fig-lawvere-first-desc">Rigid relational structures feed a classifying topos and yield a proper class of quotient topoi.</desc>
+      <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <g transform="translate(64 52)">
+        <rect class="figure-node soft" x="0" y="32" width="190" height="78" rx="8"></rect>
+        <text class="figure-label" x="95" y="66">rigid relational</text>
+        <text class="figure-label" x="95" y="92">structures</text>
+        <g transform="translate(42 154)">
+          <circle class="figure-dot" cx="0" cy="0" r="5"></circle><circle class="figure-dot" cx="50" cy="-30" r="5"></circle><circle class="figure-dot" cx="102" cy="6" r="5"></circle><circle class="figure-dot" cx="36" cy="54" r="5"></circle>
+          <path class="figure-line" d="M0 0 L50 -30 L102 6 L36 54 L0 0 M50 -30 L36 54"></path>
+        </g>
+      </g>
+      <path class="figure-arrow" d="M280 125 H380"></path>
+      <g transform="translate(384 74)">
+        <ellipse class="figure-node soft-2" cx="92" cy="72" rx="98" ry="72"></ellipse>
+        <text class="figure-label" x="92" y="62">classifying</text>
+        <text class="figure-label" x="92" y="91">topos</text>
+      </g>
+      <path class="figure-arrow" d="M570 125 H666"></path>
+      <g transform="translate(610 70)">
+        <circle class="figure-node pale" cx="70" cy="8" r="18"></circle>
+        <circle class="figure-node pale" cx="28" cy="72" r="18"></circle>
+        <circle class="figure-node pale" cx="112" cy="72" r="18"></circle>
+        <circle class="figure-node pale" cx="70" cy="137" r="18"></circle>
+        <path class="figure-line" d="M70 26 L28 54 M70 26 L112 54 M28 90 L70 119 M112 90 L70 119"></path>
+        <text class="figure-small" x="70" y="192">proper class of quotients</text>
+      </g>
+    </svg>`,
+  "lawvere-fourth": `
+    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-fourth-title fig-lawvere-fourth-desc">
+      <title id="fig-lawvere-fourth-title">EZ-congruence and EZ-decomposition</title>
+      <desc id="fig-lawvere-fourth-desc">A colored seven-vertex graph maps to a smaller quotient graph by alpha.</desc>
+      <defs><marker id="arrow-d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <g transform="translate(70 64)">
+        <circle class="figure-cycle" cx="150" cy="114" r="110"></circle>
+        <g class="figure-line"><path d="M150 15 L70 74 L55 155 L118 205 L210 190 L245 114 L150 15 M70 74 L210 190 M55 155 L245 114 M118 205 L150 15 M70 74 L245 114"></path></g>
+        <circle class="c-red" cx="150" cy="15" r="9"></circle><circle class="c-blue" cx="70" cy="74" r="9"></circle><circle class="c-blue" cx="55" cy="155" r="9"></circle><circle class="c-green" cx="118" cy="205" r="9"></circle><circle class="c-orange" cx="210" cy="190" r="9"></circle><circle class="c-red" cx="245" cy="114" r="9"></circle><circle class="c-green" cx="238" cy="58" r="9"></circle>
+        <text class="figure-small" x="150" y="265">x = y alpha</text>
+      </g>
+      <path class="figure-arrow" d="M368 178 H474"></path>
+      <text class="figure-label" x="421" y="160">alpha</text>
+      <g transform="translate(500 84)">
+        <circle class="figure-cycle" cx="96" cy="96" r="88"></circle>
+        <path class="figure-line" d="M52 55 H142 V138 H52 V55 M52 55 L142 138"></path>
+        <circle class="c-red" cx="52" cy="55" r="9"></circle><circle class="c-green" cx="142" cy="55" r="9"></circle><circle class="c-blue" cx="52" cy="138" r="9"></circle><circle class="c-orange" cx="142" cy="138" r="9"></circle>
+        <text class="figure-small" x="96" y="232">y</text>
+      </g>
+    </svg>`,
+  "topoi-automata": `
+    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
+      <title id="fig-automata-title">Four characterizations of regular languages</title>
+      <desc id="fig-automata-desc">DFA, finite monoids, Myhill-Nerode, and profinite words surround a ringed topos.</desc>
+      <g transform="translate(48 40)">
+        <circle class="figure-node" cx="128" cy="84" r="52"></circle><text class="figure-label" x="128" y="90">DFA</text>
+        <circle class="figure-node" cx="600" cy="84" r="62"></circle><text class="figure-label" x="600" y="90">finite monoids</text>
+        <circle class="figure-node" cx="128" cy="270" r="62"></circle><text class="figure-label" x="128" y="264">Myhill-</text><text class="figure-label" x="128" y="291">Nerode</text>
+        <circle class="figure-node" cx="600" cy="270" r="62"></circle><text class="figure-label" x="600" y="264">profinite</text><text class="figure-label" x="600" y="291">words</text>
+        <ellipse class="figure-node soft-2" cx="364" cy="178" rx="122" ry="82"></ellipse>
+        <text class="figure-label" x="364" y="169">ringed topos</text>
+        <text class="figure-small" x="364" y="198">(Sigma-Set, R)</text>
+        <path class="figure-line" d="M170 116 L257 154 M554 116 L471 154 M170 238 L257 202 M554 238 L471 202"></path>
+      </g>
+    </svg>`,
+  "games-coalgebras": `
+    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-title fig-games-desc">
+      <title id="fig-games-title">Games as graphs</title>
+      <desc id="fig-games-desc">A finite game graph, an infinite line game, and a non-game with an infinite path.</desc>
+      <defs><marker id="arrow-e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <g transform="translate(160 36)">
+        <circle class="figure-dot" cx="90" cy="0" r="7"></circle><circle class="figure-dot" cx="210" cy="0" r="7"></circle><circle class="figure-dot" cx="42" cy="66" r="7"></circle><circle class="figure-dot" cx="150" cy="66" r="7"></circle><circle class="figure-dot" cx="270" cy="66" r="7"></circle><circle class="figure-dot" cx="90" cy="142" r="7"></circle><circle class="figure-dot" cx="210" cy="142" r="7"></circle>
+        <path class="figure-arrow" d="M90 8 L52 56 M90 8 L143 58 M210 8 L158 58 M210 8 L263 58 M42 74 L84 132 M150 74 L98 132 M150 74 L202 132 M270 74 L218 132"></path>
+        <text class="figure-small" x="150" y="178">finite game</text>
+      </g>
+      <g transform="translate(150 250)">
+        <path class="figure-arrow" d="M0 0 H116 H232 H348 H464"></path>
+        <circle class="figure-dot" cx="0" cy="0" r="7"></circle><circle class="figure-dot" cx="116" cy="0" r="7"></circle><circle class="figure-dot" cx="232" cy="0" r="7"></circle><circle class="figure-dot" cx="348" cy="0" r="7"></circle><circle class="figure-dot" cx="464" cy="0" r="7"></circle>
+        <text class="figure-small" x="232" y="42">infinite game</text>
+      </g>
+      <g transform="translate(548 140)">
+        <path class="figure-arrow" d="M30 0 C82 -8, 82 72, 30 64 C-15 55, -15 10, 30 0"></path>
+        <circle class="figure-dot" cx="30" cy="0" r="7"></circle>
+        <text class="figure-small" x="30" y="102">infinite path</text>
+      </g>
+    </svg>`,
+  "normalization": `
+    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
+      <title id="fig-normalization-title">Normalizer-style lifting diagram</title>
+      <desc id="fig-normalization-desc">A filter F lifts along a local state classifier Xi through commuting triangles.</desc>
+      <defs><marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <g transform="translate(120 62)">
+        <text class="figure-label" x="0" y="44">F</text>
+        <text class="figure-label" x="278" y="44">F</text>
+        <text class="figure-label" x="148" y="12">Xi</text>
+        <text class="figure-label" x="148" y="118">Xi</text>
+        <path class="figure-arrow" d="M24 38 H248"></path>
+        <path class="figure-arrow" d="M248 48 L172 102"></path>
+        <path class="figure-arrow" d="M24 48 L126 102"></path>
+        <text class="figure-small" x="132" y="32">exists lift</text>
+        <text class="figure-small" x="84" y="88">xi_F</text>
+        <text class="figure-small" x="218" y="88">i_F</text>
+      </g>
+      <g transform="translate(150 222)">
+        <text class="figure-label" x="0" y="10">Z</text>
+        <text class="figure-label" x="290" y="10">Z'</text>
+        <text class="figure-label" x="142" y="126">F</text>
+        <path class="figure-arrow" d="M25 0 H265"></path>
+        <path class="figure-arrow" d="M40 22 L132 102"></path>
+        <path class="figure-arrow" d="M265 22 L168 102"></path>
+        <path class="figure-line dashed" d="M72 76 H232"></path>
+        <text class="figure-small" x="142" y="50">commuting family</text>
+      </g>
+    </svg>`
+};
+
 function appendActionLinks(parent, records) {
   if (!records || !records.length) return;
   const actions = el("div", "action-links");
@@ -559,16 +743,22 @@ function renderExplore() {
 }
 
 function renderPaperRecord(paper) {
-  const item = el("article", paper.image ? "publication-item has-image" : "publication-item");
-  if (paper.image) {
-    const imageLink = link("", paper.link, "publication-image");
-    const image = document.createElement("img");
-    image.src = localHref(paper.image);
-    image.alt = `Figure from ${paper.title}`;
-    image.loading = "lazy";
-    image.decoding = "async";
-    imageLink.append(image);
-    item.append(imageLink);
+  const item = el("article", paper.figure ? "publication-item has-figure" : "publication-item");
+  const template = paperFigureTemplates[paper.figure];
+  if (template) {
+    const figureLink = link("", paper.link, "publication-figure");
+    figureLink.setAttribute("aria-label", `Open ${paper.title}`);
+    figureLink.innerHTML = template;
+    const svg = figureLink.querySelector("svg");
+    const marker = svg?.querySelector("marker");
+    if (svg && marker) {
+      const markerId = `paper-arrow-${paper.figure}`;
+      marker.id = markerId;
+      svg.querySelectorAll(".figure-arrow").forEach((path) => {
+        path.setAttribute("marker-end", `url(#${markerId})`);
+      });
+    }
+    item.append(figureLink);
   }
 
   const titleRow = el("div", "publication-title");

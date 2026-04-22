@@ -12,13 +12,12 @@ This is a static first draft for migrating the current Google Sites homepage to 
 - `cv/index.html`: CV, awards, positions, and education/outreach
 - `problems/index.html`: open problem reference trails
 - `links/index.html`: external links
-- `assets/papers/`: paper card thumbnails generated from public arXiv PDFs
 - `styles.css`: visual design and responsive layout
 - `scripts/site.js`: structured content and rendering logic
 
 The site has no build step. It can be opened directly in a browser, hosted by GitHub Pages, or imported into Vercel as a static project.
 
-Most links that were present on Google Sites have been added to the structured data. Note and slide cards currently point back to the old public Google Sites Notes page because the embedded Google Drive file URLs are not exposed as ordinary direct links in the public page HTML. Once the PDF files are copied into this repository, update each note record to point to its local file.
+Most links that were present on Google Sites have been added to the structured data. Paper cards use inline SVG diagrams rather than bitmap thumbnails. Note and slide cards currently point back to the old public Google Sites Notes page because the embedded Google Drive file URLs are not exposed as ordinary direct links in the public page HTML. Once the PDF files are copied into this repository, update each note record to point to its local file.
 
 ## Suggested next step
 
