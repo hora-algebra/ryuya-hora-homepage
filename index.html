@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ryuya Hora</title>
+    <meta
+      name="description"
+      content="Ryuya Hora's homepage: category theory, topos theory, automata, combinatorics, papers, talks, notes, and activities."
+    >
+    <meta name="theme-color" content="#f6f2ea">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Ryuya Hora home">
+        <span class="brand-mark">RH</span>
+        <span>
+          <strong>Ryuya Hora</strong>
+          <small>洞 龍弥</small>
+        </span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="is-active" href="index.html">Profile</a>
+        <a href="papers/index.html">Papers</a>
+        <a href="talks/index.html">Talks</a>
+        <a href="notes/index.html">Notes</a>
+        <a href="activities/index.html">Activities</a>
+        <a href="cv/index.html">CV/Awards</a>
+        <a href="problems/index.html">Problems</a>
+        <a href="links/index.html">Links</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section" id="profile">
+        <div class="hero-copy">
+          <p class="eyebrow">Assistant Professor · ZEN University</p>
+          <h1>Ryuya Hora studies category theory, topos theory, and the geometry of computation.</h1>
+          <p class="lead">
+            I am an assistant professor at ZEN University and a researcher at the Humai Center.
+            My recent work explores how topos theory transfers ideas among algebra, geometry,
+            logic, computation, and combinatorics.
+          </p>
+          <div class="hero-actions" aria-label="Profile links" data-profile-links></div>
+        </div>
+        <figure class="research-figure" aria-label="A schematic of the research area">
+          <svg viewBox="0 0 640 460" role="img" aria-labelledby="diagram-title diagram-desc">
+            <title id="diagram-title">Topos theory as a bridge</title>
+            <desc id="diagram-desc">A schematic diagram connecting algebra, logic, geometry, computation, and combinatorics.</desc>
+            <defs>
+              <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#f9f6ef"></stop>
+                <stop offset="1" stop-color="#e8f0ea"></stop>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="460" fill="url(#paper)"></rect>
+            <path class="diagram-line" d="M128 110 C230 48, 402 47, 512 116"></path>
+            <path class="diagram-line" d="M112 334 C224 404, 406 405, 526 330"></path>
+            <path class="diagram-line" d="M148 124 C108 210, 104 262, 148 336"></path>
+            <path class="diagram-line" d="M496 126 C540 205, 542 261, 500 336"></path>
+            <path class="diagram-line thin" d="M160 128 L494 330"></path>
+            <path class="diagram-line thin" d="M498 130 L148 332"></path>
+            <g class="diagram-node center">
+              <circle cx="320" cy="230" r="76"></circle>
+              <text x="320" y="224">Topos</text>
+              <text x="320" y="254">Theory</text>
+            </g>
+            <g class="diagram-node">
+              <circle cx="132" cy="108" r="55"></circle>
+              <text x="132" y="114">Algebra</text>
+            </g>
+            <g class="diagram-node">
+              <circle cx="508" cy="112" r="58"></circle>
+              <text x="508" y="118">Logic</text>
+            </g>
+            <g class="diagram-node">
+              <circle cx="126" cy="348" r="62"></circle>
+              <text x="126" y="344">Regular</text>
+              <text x="126" y="371">Languages</text>
+            </g>
+            <g class="diagram-node">
+              <circle cx="512" cy="348" r="62"></circle>
+              <text x="512" y="344">Games</text>
+              <text x="512" y="371">Coalgebras</text>
+            </g>
+            <g class="diagram-dot">
+              <circle cx="320" cy="77" r="8"></circle>
+              <circle cx="320" cy="383" r="8"></circle>
+              <circle cx="75" cy="230" r="8"></circle>
+              <circle cx="565" cy="230" r="8"></circle>
+            </g>
+          </svg>
+        </figure>
+      </section>
+
+      <section class="section profile-grid" aria-labelledby="profile-details">
+        <div>
+          <p class="section-kicker">Profile</p>
+          <h2 id="profile-details">Current Positions</h2>
+          <ul class="plain-list" id="current-position-list"></ul>
+        </div>
+        <div>
+          <p class="section-kicker">Interests</p>
+          <h2>Topics</h2>
+          <div class="tag-cloud" data-topics></div>
+        </div>
+        <div>
+          <p class="section-kicker">Contact</p>
+          <h2>Email</h2>
+          <ul class="plain-list compact">
+            <li><a href="mailto:ryuya_hora@zen.ac.jp">ryuya_hora@zen.ac.jp</a></li>
+            <li><a href="mailto:horaryuya38@gmail.com">horaryuya38@gmail.com</a></li>
+            <li><a href="https://www.ms.u-tokyo.ac.jp/">Tokyo, Japan</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Site Map</p>
+            <h2>Explore</h2>
+          </div>
+        </div>
+        <div id="explore-grid" class="explore-grid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Research</p>
+            <h2>Recent Papers</h2>
+          </div>
+          <a class="section-link" href="papers/index.html">All papers</a>
+        </div>
+        <div id="home-paper-list" class="publication-list"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Talks</p>
+            <h2>Recent Talks</h2>
+          </div>
+          <a class="section-link" href="talks/index.html">All talks</a>
+        </div>
+        <div id="home-talk-list" class="timeline-list" data-limit="5"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Last migrated from Google Sites: April 2026.</p>
+      <a href="#profile">Back to top</a>
+    </footer>
+
+    <script src="scripts/site.js"></script>
+  </body>
+</html>
