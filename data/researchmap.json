@@ -292,11 +292,13 @@
   ],
   "presentations": [
     {
+      "id": "53286857",
       "title": "A Rota-Baxter equation for winning games",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Symposium on Differentiation in category theory and program semantics",
+      "location": "",
       "date": "2026-04-06",
       "dateRange": "2026-04-06 - 2026-04-08",
       "year": "2026",
@@ -311,11 +313,13 @@
       ]
     },
     {
+      "id": "53075156",
       "title": "A space⋊︎time for Conway's game of life",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "CSCAT 2026 Computer Science and Category Theory",
+      "location": "",
       "date": "2026-03-16",
       "dateRange": "2026-03-16 - 2026-03-17",
       "year": "2026",
@@ -330,12 +334,14 @@
       ]
     },
     {
+      "id": "53075079",
       "title": "Measure-theoretic closure operators on formal languages",
       "presenters": [
         "Ryuya Hora",
         "Ryoma Sin'ya"
       ],
       "event": "第28回プログラミングおよびプログラミング言語ワークショップ",
+      "location": "",
       "date": "2026-03-11",
       "dateRange": "2026-03-09 - 2026-03-12",
       "year": "2026",
@@ -350,11 +356,13 @@
       ]
     },
     {
+      "id": "53075058",
       "title": "Turning lights out with the Snake Lemma",
       "presenters": [
         "Kyosuke Higashida"
       ],
       "event": "組合せゲーム・パズル(CGP) プロジェクト 第２０回研究集会",
+      "location": "",
       "date": "2026-02-22",
       "dateRange": "2026-02-22 - 2026-02-23",
       "year": "2026",
@@ -369,11 +377,13 @@
       ]
     },
     {
+      "id": "52954313",
       "title": "Connecteness and full subcategories of topoi",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "博士論文発表会",
+      "location": "",
       "date": "2026-01-23",
       "dateRange": "",
       "year": "2026",
@@ -388,11 +398,13 @@
       ]
     },
     {
+      "id": "51817824",
       "title": "Local state classifier, The axiom of choice, and permutation model",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "",
+      "location": "",
       "date": "2025-12-05",
       "dateRange": "",
       "year": "2025",
@@ -407,11 +419,13 @@
       ]
     },
     {
+      "id": "51758582",
       "title": "Connectedness and full subcategories of topoi",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "UTokyo Logic Seminar",
+      "location": "",
       "date": "2025-11-28",
       "dateRange": "",
       "year": "2025",
@@ -426,11 +440,13 @@
       ]
     },
     {
+      "id": "51735028",
       "title": "Topoi of automata,",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "SLACS 2025",
+      "location": "",
       "date": "2025-10-31",
       "dateRange": "",
       "year": "2025",
@@ -445,11 +461,13 @@
       ]
     },
     {
+      "id": "51735025",
       "title": "Topoi of automata",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Category Theory 2025",
+      "location": "",
       "date": "2025-07-17",
       "dateRange": "",
       "year": "2025",
@@ -464,11 +482,13 @@
       ]
     },
     {
+      "id": "51735022",
       "title": "A topos for regular language theory",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Theoretical Cosynus Seminar",
+      "location": "Laboratoire d'informatique de l'École polytechnique",
       "date": "2025-06-10",
       "dateRange": "",
       "year": "2025",
@@ -483,11 +503,13 @@
       ]
     },
     {
+      "id": "51735020",
       "title": "Local state classifier for automata theory",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Séminaires du LIPN",
+      "location": "",
       "date": "2025-06-05",
       "dateRange": "",
       "year": "2025",
@@ -502,11 +524,13 @@
       ]
     },
     {
+      "id": "51735017",
       "title": "Local state classifier for automata theory",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "IRIF Sémantique seminar",
+      "location": "",
       "date": "2025-05-27",
       "dateRange": "",
       "year": "2025",
@@ -521,11 +545,13 @@
       ]
     },
     {
+      "id": "51735010",
       "title": "Local state classifier for algebraic language theory",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "CTTA Groupe de travail topossique",
+      "location": "",
       "date": "2025-05-16",
       "dateRange": "",
       "year": "2025",
@@ -540,11 +566,13 @@
       ]
     },
     {
+      "id": "51735007",
       "title": "Topoi of automata",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Categories for Automata and Language Theory",
+      "location": "",
       "date": "2025-05-06",
       "dateRange": "",
       "year": "2025",
@@ -559,11 +587,13 @@
       ]
     },
     {
+      "id": "51735006",
       "title": "Topoi of automata",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "CTTA Groupe de travail topossique",
+      "location": "",
       "date": "2025-04-30",
       "dateRange": "",
       "year": "2025",
@@ -578,11 +608,13 @@
       ]
     },
     {
+      "id": "51735003",
       "title": "Topoi of automata",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "CSCAT2025",
+      "location": "",
       "date": "2025-03-12",
       "dateRange": "",
       "year": "2025",
@@ -597,11 +629,13 @@
       ]
     },
     {
+      "id": "51735000",
       "title": "Topoi of automata",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "CMUP Semigroups, Automata and Languages seminar",
+      "location": "",
       "date": "2025-02-28",
       "dateRange": "",
       "year": "2025",
@@ -616,11 +650,13 @@
       ]
     },
     {
+      "id": "51734994",
       "title": "Quotient topoi and geometry of computation",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "AFSA 領域集会",
+      "location": "",
       "date": "2024-11-30",
       "dateRange": "",
       "year": "2024",
@@ -635,11 +671,13 @@
       ]
     },
     {
+      "id": "51734992",
       "title": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Toposes in Mondovi",
+      "location": "",
       "date": "2024-09-10",
       "dateRange": "",
       "year": "2024",
@@ -654,11 +692,13 @@
       ]
     },
     {
+      "id": "51734990",
       "title": "Topos theory as a tool of automata theory",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Young Automata Theorists Gathering in Japan",
+      "location": "",
       "date": "2024-08-29",
       "dateRange": "",
       "year": "2024",
@@ -673,11 +713,13 @@
       ]
     },
     {
+      "id": "51734986",
       "title": "Quotient toposes of discrete dynamical systems",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Category Theory 2024",
+      "location": "",
       "date": "2024-06-28",
       "dateRange": "",
       "year": "2024",
@@ -692,11 +734,13 @@
       ]
     },
     {
+      "id": "51734985",
       "title": "圏論の利用と濫用",
       "presenters": [
         "洞龍弥"
       ],
       "event": "第18回AFSAコロキウム",
+      "location": "",
       "date": "2024-04-25",
       "dateRange": "",
       "year": "2024",
@@ -711,11 +755,13 @@
       ]
     },
     {
+      "id": "51734982",
       "title": "Introduction to topos theory",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "代数トポロジー若手の会",
+      "location": "",
       "date": "2024-03-16",
       "dateRange": "",
       "year": "2024",
@@ -730,11 +776,13 @@
       ]
     },
     {
+      "id": "51734980",
       "title": "Combinatorial games as recursive coalgebras",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "CSCAT2024",
+      "location": "",
       "date": "2024-03-15",
       "dateRange": "",
       "year": "2024",
@@ -749,11 +797,13 @@
       ]
     },
     {
+      "id": "51734978",
       "title": "Category Theory and Combinatorial Game Theory",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "7th Japan Combinatorial Game Theory Conference,",
+      "location": "",
       "date": "2023-08-21",
       "dateRange": "",
       "year": "2023",
@@ -768,11 +818,13 @@
       ]
     },
     {
+      "id": "51734954",
       "title": "Internal parameterization of Hyperconnected quotients",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Category Theory 2023",
+      "location": "",
       "date": "2023-07-06",
       "dateRange": "",
       "year": "2023",
@@ -787,11 +839,13 @@
       ]
     },
     {
+      "id": "51734936",
       "title": "Grundy Numbers and Categories",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Japan Combinatorial Game Theory Mini-Workshops with Urban Larsson,",
+      "location": "",
       "date": "2023-05-12",
       "dateRange": "",
       "year": "2023",
@@ -806,11 +860,13 @@
       ]
     },
     {
+      "id": "51734931",
       "title": "Internal parameterization of Hyperconnected quotients",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "Australia Category Seminar",
+      "location": "",
       "date": "2023-04-19",
       "dateRange": "",
       "year": "2023",
@@ -825,11 +881,13 @@
       ]
     },
     {
+      "id": "51734925",
       "title": "Internal parameterization of Hyperconnected quotients",
       "presenters": [
         "Ryuya Hora"
       ],
       "event": "CSCAT2023",
+      "location": "",
       "date": "2023-03-09",
       "dateRange": "",
       "year": "2023",
