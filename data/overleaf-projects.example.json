@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "id": "topoi-automata-slides",
+      "title": "Topoi of automata",
+      "kind": "slide",
+      "publish": false,
+      "repo": "github:hora-algebra/topoi-automata-slides",
+      "branch": "main",
+      "tex": "main.tex",
+      "output": "assets/overleaf/slides/topoi-automata.pdf",
+      "description": "Slides synced from an Overleaf-backed GitHub repository.",
+      "language": "English",
+      "match": ["Topoi of automata", "CSCAT 2025"]
+    },
+    {
+      "id": "sample-paper",
+      "title": "Sample paper title",
+      "kind": "paper",
+      "publish": false,
+      "repo": "github:hora-algebra/sample-paper",
+      "branch": "main",
+      "tex": "main.tex",
+      "output": "assets/overleaf/papers/sample-paper.pdf",
+      "match": ["Sample paper title"]
+    }
+  ]
+}

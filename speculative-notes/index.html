@@ -1,16 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ryuya Hora</title>
-    <meta name="description" content="Links.">
+    <meta name="description" content="Speculative notes.">
     <meta name="robots" content="noindex,nofollow,noarchive">
     <link rel="icon" type="image/png" href="../assets/icons/site-icon.png">
     <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <link rel="stylesheet" href="../styles.css">
   </head>
-  <body data-page="links" data-depth="child">
+  <body data-page="speculative-notes" data-depth="child">
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="Ryuya Hora home">
         <span class="brand-mark">RH</span>
@@ -25,11 +26,11 @@
             <a href="../cv/index.html#awards">Awards</a>
           </div>
         </div>
-        <div class="nav-group">
+        <div class="nav-group is-active">
           <button class="nav-group-label" type="button">Documents</button>
           <div class="nav-submenu">
             <a href="../papers/index.html">Papers</a>
-            <a href="../notes/index.html">Notes</a>
+            <a class="is-active" href="../notes/index.html">Notes</a>
           </div>
         </div>
         <div class="nav-group">
@@ -38,11 +39,11 @@
             <a href="../talks/index.html">Talks</a>
           </div>
         </div>
-        <div class="nav-group is-active">
+        <div class="nav-group">
           <button class="nav-group-label" type="button">Others</button>
           <div class="nav-submenu">
             <a href="../web-apps/index.html">Web Apps</a>
-            <a class="is-active" href="../links/index.html">Links</a>
+            <a href="../links/index.html">Links</a>
             <a href="../problems/index.html">Problems</a>
           </div>
         </div>
@@ -55,24 +56,35 @@
 
     <main>
       <section class="page-hero section">
-        <p class="eyebrow">Links</p>
-        <h1>Links</h1>
-        <p class="lead">Profiles and references.</p>
+        <p class="eyebrow">☁︎ Log</p>
+        <h1>思弁的なノート</h1>
+        <p class="lead">Draft fragments.</p>
       </section>
 
-      <section class="section">
-        <div id="link-list" class="link-columns"></div>
+      <section class="section speculative-layout" aria-labelledby="speculative-title">
+        <aside class="speculative-sidebar">
+          <p class="section-kicker">Archive</p>
+          <h2 id="speculative-title">Entries</h2>
+          <label class="search-label speculative-search">
+            <span>Search notes</span>
+            <input id="speculative-filter" type="search" autocomplete="off" placeholder="topos, games, cloud...">
+          </label>
+          <div id="speculative-index"></div>
+        </aside>
+        <div id="speculative-posts" class="speculative-post-list"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>External links and reference pages. Last updated: 22 April 2026.</p>
+      <p>Speculative notes. Last updated: 22 April 2026.</p>
       <div class="site-footer-links">
         <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
-        <a href="../index.html">Home</a>
+        <a href="../notes/index.html">Notes</a>
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
     <script src="../scripts/site.js"></script>
   </body>
 </html>

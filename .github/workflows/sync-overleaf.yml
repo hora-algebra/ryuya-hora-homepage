@@ -1,0 +1,49 @@
+name: Sync Overleaf artifacts
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [overleaf-updated]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install LaTeX tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-science
+
+      - name: Build and sync Overleaf artifacts
+        env:
+          OVERLEAF_SYNC_TOKEN: ${{ secrets.OVERLEAF_SYNC_TOKEN }}
+        run: node scripts/sync-overleaf-artifacts.mjs
+
+      - name: Check JavaScript
+        run: |
+          node --check scripts/site.js
+          node --check scripts/sync-overleaf-artifacts.mjs
+
+      - name: Commit changes
+        run: |
+          if [ -z "$(git status --porcelain data/overleaf.json data/overleaf.generated.js assets/overleaf)" ]; then
+            echo "No Overleaf artifact changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/overleaf.json data/overleaf.generated.js
+          if [ -d assets/overleaf ]; then
+            git add assets/overleaf
+          fi
+          git commit -m "Sync Overleaf artifacts"
+          git push

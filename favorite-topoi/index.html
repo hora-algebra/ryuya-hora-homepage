@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ryuya Hora</title>
-    <meta name="description" content="Links.">
+    <meta name="description" content="Favorite topoi.">
     <meta name="robots" content="noindex,nofollow,noarchive">
     <link rel="icon" type="image/png" href="../assets/icons/site-icon.png">
     <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <link rel="stylesheet" href="../styles.css">
   </head>
-  <body data-page="links" data-depth="child">
+  <body data-page="favorite-topoi" data-depth="child">
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="Ryuya Hora home">
         <span class="brand-mark">RH</span>
@@ -38,11 +39,11 @@
             <a href="../talks/index.html">Talks</a>
           </div>
         </div>
-        <div class="nav-group is-active">
+        <div class="nav-group">
           <button class="nav-group-label" type="button">Others</button>
           <div class="nav-submenu">
             <a href="../web-apps/index.html">Web Apps</a>
-            <a class="is-active" href="../links/index.html">Links</a>
+            <a href="../links/index.html">Links</a>
             <a href="../problems/index.html">Problems</a>
           </div>
         </div>
@@ -55,24 +56,45 @@
 
     <main>
       <section class="page-hero section">
-        <p class="eyebrow">Links</p>
-        <h1>Links</h1>
-        <p class="lead">Profiles and references.</p>
+        <p class="eyebrow">Topos Cabinet</p>
+        <h1>Favorite Topoi</h1>
+        <p class="lead">Favorite topoi.</p>
       </section>
 
-      <section class="section">
-        <div id="link-list" class="link-columns"></div>
+      <section class="section favorite-topoi-layout" aria-labelledby="favorite-topoi-title">
+        <div>
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Collection</p>
+              <h2 id="favorite-topoi-title">Topoi to Keep Around</h2>
+            </div>
+          </div>
+          <div id="favorite-topoi-list" class="favorite-topoi-list"></div>
+        </div>
+        <aside id="favorite-topoi-focus" class="topos-focus" aria-live="polite"></aside>
+      </section>
+
+      <section class="section topos-comparison-section" aria-labelledby="topos-comparison-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Map</p>
+            <h2 id="topos-comparison-title">Quick Comparison</h2>
+          </div>
+        </div>
+        <div id="favorite-topoi-comparison" class="topos-comparison"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>External links and reference pages. Last updated: 22 April 2026.</p>
+      <p>Favorite topoi. Last updated: 22 April 2026.</p>
       <div class="site-footer-links">
         <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
         <a href="../index.html">Home</a>
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
     <script src="../scripts/site.js"></script>
   </body>
 </html>

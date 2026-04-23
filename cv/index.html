@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CV/Awards · Ryuya Hora</title>
-    <meta name="description" content="CV, awards, positions, and teaching by Ryuya Hora.">
+    <title>Ryuya Hora</title>
+    <meta name="description" content="CV by Ryuya Hora.">
     <meta name="robots" content="noindex,nofollow,noarchive">
+    <link rel="icon" type="image/png" href="../assets/icons/site-icon.png">
+    <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body data-page="cv" data-depth="child">
@@ -16,22 +18,46 @@
       </a>
       <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="../index.html">Profile</a>
-        <a href="../papers/index.html">Papers</a>
-        <a href="../talks/index.html">Talks</a>
-        <a href="../notes/index.html">Notes</a>
-        <a href="../activities/index.html">Activities</a>
-        <a class="is-active" href="../cv/index.html">CV/Awards</a>
-        <a href="../problems/index.html">Problems</a>
-        <a href="../links/index.html">Links</a>
+        <div class="nav-group is-active">
+          <a class="nav-group-label" href="../index.html">Profile</a>
+          <div class="nav-submenu">
+            <a class="is-active" href="../cv/index.html">CV</a>
+            <a href="../cv/index.html#awards">Awards</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-group-label" type="button">Documents</button>
+          <div class="nav-submenu">
+            <a href="../papers/index.html">Papers</a>
+            <a href="../notes/index.html">Notes</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../activities/index.html">Activities</a>
+          <div class="nav-submenu">
+            <a href="../talks/index.html">Talks</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-group-label" type="button">Others</button>
+          <div class="nav-submenu">
+            <a href="../web-apps/index.html">Web Apps</a>
+            <a href="../links/index.html">Links</a>
+            <a href="../problems/index.html">Problems</a>
+          </div>
+        </div>
+        <a class="nav-search" href="../search/index.html" data-site-search-link aria-label="Search">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="sr-only">Search</span>
+        </a>
       </nav>
     </header>
 
     <main>
       <section class="page-hero section">
         <p class="eyebrow">CV/Awards</p>
-        <h1>Profile Details</h1>
-        <p class="lead">Awards, education and outreach, teaching, current positions, and past positions.</p>
+        <h1>CV</h1>
+        <p class="lead">CV and awards.</p>
         <div class="hero-actions" data-profile-links></div>
       </section>
 
@@ -53,7 +79,7 @@
         </div>
       </section>
 
-      <section class="section profile-grid">
+      <section id="awards" class="section profile-grid">
         <div>
           <p class="section-kicker">Awards</p>
           <h2>Awards</h2>
@@ -65,13 +91,37 @@
           <ul class="plain-list" id="education-list"></ul>
         </div>
       </section>
+
+      <section class="section profile-grid">
+        <div>
+          <p class="section-kicker">researchmap</p>
+          <h2>Synced Awards</h2>
+          <ul class="plain-list" id="researchmap-award-list"></ul>
+        </div>
+        <div>
+          <p class="section-kicker">researchmap</p>
+          <h2>Synced Education</h2>
+          <ul class="plain-list" id="researchmap-education-list"></ul>
+        </div>
+        <div>
+          <p class="section-kicker">Source</p>
+          <h2>Credit</h2>
+          <ul class="plain-list">
+            <li><a href="https://researchmap.jp/ryuyahora">Powered by researchmap</a></li>
+          </ul>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
-      <p>Sources migrated from the public Google Sites CV/Awards page.</p>
-      <a href="../index.html">Home</a>
+      <p>CV, awards, positions, and education. Last updated: 22 April 2026.</p>
+      <div class="site-footer-links">
+        <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
+        <a href="../index.html">Home</a>
+      </div>
     </footer>
 
+    <script src="../data/researchmap.generated.js"></script>
     <script src="../scripts/site.js"></script>
   </body>
 </html>

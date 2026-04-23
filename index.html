@@ -6,10 +6,13 @@
     <title>Ryuya Hora</title>
     <meta
       name="description"
-      content="Ryuya Hora's homepage: category theory, topos theory, automata, combinatorics, papers, talks, notes, and activities."
+      content="Ryuya Hora."
     >
     <meta name="robots" content="noindex,nofollow,noarchive">
     <meta name="theme-color" content="#f6f2ea">
+    <link rel="icon" type="image/png" href="assets/icons/site-icon.png">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body data-page="home">
@@ -27,14 +30,38 @@
         <span></span>
       </button>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a class="is-active" href="index.html">Profile</a>
-        <a href="papers/index.html">Papers</a>
-        <a href="talks/index.html">Talks</a>
-        <a href="notes/index.html">Notes</a>
-        <a href="activities/index.html">Activities</a>
-        <a href="cv/index.html">CV/Awards</a>
-        <a href="problems/index.html">Problems</a>
-        <a href="links/index.html">Links</a>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="index.html">Profile</a>
+          <div class="nav-submenu">
+            <a href="cv/index.html">CV</a>
+            <a href="cv/index.html#awards">Awards</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-group-label" type="button">Documents</button>
+          <div class="nav-submenu">
+            <a href="papers/index.html">Papers</a>
+            <a href="notes/index.html">Notes</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <a class="nav-group-label" href="activities/index.html">Activities</a>
+          <div class="nav-submenu">
+            <a href="talks/index.html">Talks</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-group-label" type="button">Others</button>
+          <div class="nav-submenu">
+            <a href="web-apps/index.html">Web Apps</a>
+            <a href="links/index.html">Links</a>
+            <a href="problems/index.html">Problems</a>
+          </div>
+        </div>
+        <a class="nav-search" href="search/index.html" data-site-search-link aria-label="Search">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="sr-only">Search</span>
+        </a>
       </nav>
     </header>
 
@@ -42,62 +69,42 @@
       <section class="hero section" id="profile">
         <div class="hero-copy">
           <p class="eyebrow">Assistant Professor · ZEN University</p>
-          <h1>Ryuya Hora studies category theory, topos theory, and the geometry of computation.</h1>
-          <p class="lead">
-            I am an assistant professor at ZEN University and a researcher at the Humai Center.
-            My recent work explores how topos theory transfers ideas among algebra, geometry,
-            logic, computation, and combinatorics.
-          </p>
+          <h1>Ryuya Hora</h1>
+          <p class="lead">Category theory, topos theory, computation.</p>
           <div class="hero-actions" aria-label="Profile links" data-profile-links></div>
         </div>
-        <figure class="research-figure" aria-label="A schematic of the research area">
-          <svg viewBox="0 0 640 460" role="img" aria-labelledby="diagram-title diagram-desc">
-            <title id="diagram-title">Topos theory as a bridge</title>
-            <desc id="diagram-desc">A schematic diagram connecting algebra, logic, geometry, computation, and combinatorics.</desc>
-            <defs>
-              <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#f9f6ef"></stop>
-                <stop offset="1" stop-color="#e8f0ea"></stop>
-              </linearGradient>
-            </defs>
-            <rect width="640" height="460" fill="url(#paper)"></rect>
-            <path class="diagram-line" d="M128 110 C230 48, 402 47, 512 116"></path>
-            <path class="diagram-line" d="M112 334 C224 404, 406 405, 526 330"></path>
-            <path class="diagram-line" d="M148 124 C108 210, 104 262, 148 336"></path>
-            <path class="diagram-line" d="M496 126 C540 205, 542 261, 500 336"></path>
-            <path class="diagram-line thin" d="M160 128 L494 330"></path>
-            <path class="diagram-line thin" d="M498 130 L148 332"></path>
-            <g class="diagram-node center">
-              <circle cx="320" cy="230" r="76"></circle>
-              <text x="320" y="224">Topos</text>
-              <text x="320" y="254">Theory</text>
-            </g>
-            <g class="diagram-node">
-              <circle cx="132" cy="108" r="55"></circle>
-              <text x="132" y="114">Algebra</text>
-            </g>
-            <g class="diagram-node">
-              <circle cx="508" cy="112" r="58"></circle>
-              <text x="508" y="118">Logic</text>
-            </g>
-            <g class="diagram-node">
-              <circle cx="126" cy="348" r="62"></circle>
-              <text x="126" y="344">Regular</text>
-              <text x="126" y="371">Languages</text>
-            </g>
-            <g class="diagram-node">
-              <circle cx="512" cy="348" r="62"></circle>
-              <text x="512" y="344">Games</text>
-              <text x="512" y="371">Coalgebras</text>
-            </g>
-            <g class="diagram-dot">
-              <circle cx="320" cy="77" r="8"></circle>
-              <circle cx="320" cy="383" r="8"></circle>
-              <circle cx="75" cy="230" r="8"></circle>
-              <circle cx="565" cy="230" r="8"></circle>
-            </g>
-          </svg>
-        </figure>
+        <div class="hero-media">
+          <figure class="profile-photo">
+            <img src="assets/profile/ryuya-hora-sea.jpg" alt="Ryuya Hora by the sea" width="1600" height="1067">
+          </figure>
+          <div class="hero-photo-strip" aria-label="Selected photos">
+            <img class="photo-talk" src="assets/profile/ryuya-hora-talk.jpg" alt="Ryuya Hora giving a talk" width="1800" height="1200">
+            <img class="photo-mondovi" src="assets/profile/ryuya-hora-mondovi.jpg" alt="Ryuya Hora in Mondovi" width="1800" height="1350">
+            <img class="photo-fractal" src="assets/profile/green-fractal-branch.png" alt="Green fractal drawing" width="891" height="1200">
+            <img class="photo-fractal" src="assets/profile/green-fractal-cloud.png" alt="Green fractal drawing" width="1200" height="931">
+          </div>
+        </div>
+      </section>
+
+      <section class="section research-map-section" aria-labelledby="research-map-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Research</p>
+            <h2 id="research-map-title">Research Interests</h2>
+          </div>
+          <button class="tab-button" type="button" data-theme-reset>All themes</button>
+        </div>
+        <div id="research-map" class="research-map" aria-live="polite"></div>
+      </section>
+
+      <section class="section" aria-labelledby="home-timeline-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Timeline</p>
+            <h2 id="home-timeline-title">Research Timeline</h2>
+          </div>
+        </div>
+        <div id="home-timeline" class="home-timeline" aria-live="polite"></div>
       </section>
 
       <section class="section profile-grid" aria-labelledby="profile-details">
@@ -117,8 +124,28 @@
           <ul class="plain-list compact">
             <li><a href="mailto:ryuya_hora@zen.ac.jp">ryuya_hora@zen.ac.jp</a></li>
             <li><a href="mailto:horaryuya38@gmail.com">horaryuya38@gmail.com</a></li>
-            <li><a href="https://www.ms.u-tokyo.ac.jp/">Tokyo, Japan</a></li>
           </ul>
+        </div>
+      </section>
+
+      <section class="section categories-tokyo-section" aria-labelledby="categories-tokyo-title">
+        <div class="categories-tokyo-feature">
+          <div class="categories-tokyo-copy">
+            <p class="section-kicker">Community</p>
+            <h2 id="categories-tokyo-title">
+              <a href="https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0">Categories in Tokyo</a>
+            </h2>
+            <p class="categories-tokyo-lead">
+              A category theory workshop in Tokyo that I founded and organize.
+            </p>
+            <div class="action-links">
+              <a class="action-link" href="https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0">Open Categories in Tokyo</a>
+              <a class="action-link" href="activities/index.html">Related activities</a>
+            </div>
+          </div>
+          <figure class="categories-tokyo-map" data-categories-tokyo-map aria-label="Map of Japan and Tokyo">
+            <p class="empty-state">Map loading...</p>
+          </figure>
         </div>
       </section>
 
@@ -130,6 +157,17 @@
           </div>
         </div>
         <div id="explore-grid" class="explore-grid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Plans</p>
+            <h2>Upcoming</h2>
+          </div>
+          <a class="section-link" href="activities/index.html">All activities</a>
+        </div>
+        <div id="home-plan-list" class="plan-list"></div>
       </section>
 
       <section class="section">
@@ -156,10 +194,18 @@
     </main>
 
     <footer class="site-footer">
-      <p>Last migrated from Google Sites: April 2026.</p>
-      <a href="#profile">Back to top</a>
+      <p>Last updated: 22 April 2026.</p>
+      <div class="site-footer-links">
+        <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
+        <a href="#profile">Back to top</a>
+      </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+    <script src="data/researchmap.generated.js"></script>
+    <script src="data/overleaf.generated.js"></script>
+    <script src="data/categories-map.generated.js"></script>
     <script src="scripts/site.js"></script>
   </body>
 </html>

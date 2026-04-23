@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Activities · Ryuya Hora</title>
-    <meta name="description" content="Academic activities and plans of Ryuya Hora.">
+    <title>Ryuya Hora</title>
+    <meta name="description" content="Activities by Ryuya Hora.">
     <meta name="robots" content="noindex,nofollow,noarchive">
+    <link rel="icon" type="image/png" href="../assets/icons/site-icon.png">
+    <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body data-page="activities" data-depth="child">
@@ -16,22 +18,63 @@
       </a>
       <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="../index.html">Profile</a>
-        <a href="../papers/index.html">Papers</a>
-        <a href="../talks/index.html">Talks</a>
-        <a href="../notes/index.html">Notes</a>
-        <a class="is-active" href="../activities/index.html">Activities</a>
-        <a href="../cv/index.html">CV/Awards</a>
-        <a href="../problems/index.html">Problems</a>
-        <a href="../links/index.html">Links</a>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../index.html">Profile</a>
+          <div class="nav-submenu">
+            <a href="../cv/index.html">CV</a>
+            <a href="../cv/index.html#awards">Awards</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-group-label" type="button">Documents</button>
+          <div class="nav-submenu">
+            <a href="../papers/index.html">Papers</a>
+            <a href="../notes/index.html">Notes</a>
+          </div>
+        </div>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="../activities/index.html">Activities</a>
+          <div class="nav-submenu">
+            <a href="../talks/index.html">Talks</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-group-label" type="button">Others</button>
+          <div class="nav-submenu">
+            <a href="../web-apps/index.html">Web Apps</a>
+            <a href="../links/index.html">Links</a>
+            <a href="../problems/index.html">Problems</a>
+          </div>
+        </div>
+        <a class="nav-search" href="../search/index.html" data-site-search-link aria-label="Search">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="sr-only">Search</span>
+        </a>
       </nav>
     </header>
 
     <main>
       <section class="page-hero section">
         <p class="eyebrow">Activities</p>
-        <h1>Academic Activity</h1>
-        <p class="lead">Research visits, organizing work, seminars, public writing, and academic events.</p>
+        <h1>Activities</h1>
+        <p class="lead">Activities and plans.</p>
+      </section>
+
+      <section class="section page-photo-section">
+        <figure class="page-photo-feature page-photo-feature-activity">
+          <img src="../assets/profile/ryuya-hora-mondovi.jpg" alt="Ryuya Hora in Mondovi" width="1800" height="1350">
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Visits</p>
+            <h2>Visit Map</h2>
+          </div>
+          <p class="muted">Visits by place.</p>
+        </div>
+        <div id="talk-map" class="talk-map" aria-live="polite"></div>
       </section>
 
       <section class="section">
@@ -40,10 +83,15 @@
     </main>
 
     <footer class="site-footer">
-      <p>Sources migrated from the public Google Sites activities page.</p>
-      <a href="../index.html">Home</a>
+      <p>Academic activities, visits, and organizing work. Last updated: 22 April 2026.</p>
+      <div class="site-footer-links">
+        <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
+        <a href="../index.html">Home</a>
+      </div>
     </footer>
 
+    <script src="../data/researchmap.generated.js"></script>
+    <script src="../data/talk-map.generated.js"></script>
     <script src="../scripts/site.js"></script>
   </body>
 </html>
