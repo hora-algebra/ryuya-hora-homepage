@@ -4558,8 +4558,8 @@ const categoriesTokyoVenues = [
     name: "第0回 The University of Tokyo",
     lon: 139.6847,
     lat: 35.6606,
-    dx: -23.4,
-    dy: 7.1,
+    dx: -22.7,
+    dy: -9.9,
     labelAnchor: "start",
     meetings: [
       {
@@ -6880,9 +6880,6 @@ const grundyNodeStepMap = new Map(grundyAlgebraOrder.map((nodeId, index) => [nod
 const grundyFinalStep = grundyAlgebraOrder.length + 1;
 const grundyNumberLineValues = [0, 1, 2, 3, 4];
 const grundyNumberLineMax = Math.max(...grundyNumberLineValues);
-const grundyReferenceTargetX = 570;
-const grundyReferenceBottomY = 396;
-const grundyReferenceStepY = 78;
 
 const grundyStepCopy = {
   0: {
@@ -6971,35 +6968,6 @@ function grundyEdgePath(from, to) {
   return `M${from.x} ${startY} C${c1x} ${c1y} ${c2x} ${c2y} ${to.x} ${endY}`;
 }
 
-function grundyReferenceTarget(value) {
-  return {
-    x: grundyReferenceTargetX,
-    y: grundyReferenceBottomY - value * grundyReferenceStepY
-  };
-}
-
-function grundyReferencePath(source, value, index = 0, count = 1) {
-  const target = grundyReferenceTarget(value);
-  const startX = source.x + 20;
-  const spread = index - (count - 1) / 2;
-  const arc = 48 + Math.abs(spread) * 20;
-  const controlX = Math.max(startX + 72, target.x - 150);
-  const c1Y = source.y - arc - spread * 10;
-  const c2Y = target.y + arc + spread * 12;
-  const endY = target.y + spread * 10;
-  return `M${startX} ${source.y} C${controlX} ${c1Y}, ${target.x - 88} ${c2Y}, ${target.x} ${endY}`;
-}
-
-function grundyReferenceLineData(node) {
-  if (!node.options.length) return [{ source: node, value: 0 }];
-  return node.options
-    .map((targetId) => {
-      const source = grundyGameNodeMap.get(targetId);
-      return source ? { source, value: source.value } : null;
-    })
-    .filter(Boolean);
-}
-
 function grundyFigureTemplate() {
   const edges = grundyGameNodes
     .flatMap((from) =>
@@ -7021,15 +6989,6 @@ function grundyFigureTemplate() {
   const naturalNumbers = grundyNumberLineValues
     .map((value) => `<span class="grundy-natural-number" data-grundy-natural="${value}">${value}</span>`)
     .join("");
-  const referenceLines = grundyGameNodes
-    .flatMap((node) => {
-      const lineData = grundyReferenceLineData(node);
-      return lineData.map(
-        ({ source, value }, index) =>
-          `<path class="grundy-reference-line" data-grundy-reference-node="${node.id}" data-grundy-reference-source="${source.id}" data-grundy-reference-value="${value}" data-grundy-reference-index="${index}" d="${grundyReferencePath(source, value, index, lineData.length)}"></path>`
-      );
-    })
-    .join("");
   return `
     <div class="grundy-figure" data-grundy-figure data-grundy-max="${grundyFinalStep}">
       <svg viewBox="0 0 760 456" role="img" aria-labelledby="fig-games-title fig-games-desc">
@@ -7044,7 +7003,6 @@ function grundyFigureTemplate() {
         <text class="grundy-title" x="498" y="37">mex algebra</text>
         <rect class="grundy-game-frame" x="28" y="76" width="330" height="340" rx="12"></rect>
         <g class="grundy-edges">${edges}</g>
-        <g class="grundy-reference-lines">${referenceLines}</g>
         <g class="grundy-nodes">${nodes}</g>
       </svg>
       <div class="grundy-algebra-panel" data-grundy-algebra-panel>
@@ -7355,9 +7313,9 @@ function completelyConnectedFigureTemplate() {
 
 function normalizationFigureTemplate() {
   return `
-    <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 760 390" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
+    <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 760 430" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
       <title id="fig-normalization-title">Subgroups and D4-actions</title>
-      <desc id="fig-normalization-desc">A subgroup lattice for D4 on the left and examples of D4-actions on the right. Selecting a subgroup filters the actions by stabilizer containment.</desc>
+      <desc id="fig-normalization-desc">A subgroup lattice for D4 on the left and examples of D4-actions on the right. Selecting a subgroup filters the actions by stabilizer containment; selecting a D4 element highlights the places fixed by that element.</desc>
       <defs>
         <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
       </defs>
@@ -7428,67 +7386,78 @@ function normalizationFigureTemplate() {
         <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
         <g class="normalization-vertex-orbit" transform="translate(71 8)">
           <path class="normalization-action-line" d="M0 4 H42 V46 H0 Z"></path>
-          <circle class="normalization-action-dot" cx="0" cy="4" r="3"></circle><circle class="normalization-action-dot" cx="42" cy="4" r="3"></circle>
-          <circle class="normalization-action-dot" cx="42" cy="46" r="3"></circle><circle class="normalization-action-dot" cx="0" cy="46" r="3"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref0" cx="0" cy="4" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref2" cx="42" cy="4" r="3"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref0" cx="42" cy="46" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref2" cx="0" cy="46" r="3"></circle>
         </g>
       </g>
       <g class="normalization-action" data-normalization-stabilizers="ref1 ref3" transform="translate(535 64)">
         <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
         <g class="normalization-edge-orbit" transform="translate(71 8)">
           <path class="normalization-action-line" d="M0 4 H42 V46 H0 Z"></path>
-          <circle class="normalization-action-dot" cx="21" cy="4" r="3"></circle><circle class="normalization-action-dot" cx="42" cy="25" r="3"></circle>
-          <circle class="normalization-action-dot" cx="21" cy="46" r="3"></circle><circle class="normalization-action-dot" cx="0" cy="25" r="3"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref1" cx="21" cy="4" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref3" cx="42" cy="25" r="3"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref1" cx="21" cy="46" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref3" cx="0" cy="25" r="3"></circle>
         </g>
       </g>
       <g class="normalization-action" data-normalization-stabilizers="v0" transform="translate(330 138)">
         <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
         <g class="normalization-diagonal-orbit" transform="translate(70 9)">
           <path class="normalization-action-line faint" d="M0 4 H44 V48 H0 Z"></path>
-          <path class="normalization-action-line" d="M0 4 L44 48 M44 4 L0 48"></path>
+          <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v0" d="M0 4 L44 48 M44 4 L0 48"></path>
         </g>
       </g>
       <g class="normalization-action" data-normalization-stabilizers="v1" transform="translate(535 138)">
         <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
         <g class="normalization-axis-orbit" transform="translate(70 9)">
           <path class="normalization-action-line faint" d="M0 4 H44 V48 H0 Z"></path>
-          <path class="normalization-action-line" d="M22 4 V48 M0 26 H44"></path>
+          <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v1" d="M22 4 V48 M0 26 H44"></path>
         </g>
       </g>
       <g class="normalization-action" data-normalization-stabilizers="rot" transform="translate(330 212)">
         <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
         <g class="normalization-orientation-orbit" transform="translate(63 10)">
-          <circle class="normalization-action-dot ghost" cx="21" cy="23" r="14"></circle>
-          <circle class="normalization-action-dot ghost" cx="45" cy="23" r="14"></circle>
-          <path class="figure-arrow normalization-cycle-arrow" d="M8 23 C8 8, 27 4, 35 16" marker-end="url(#arrow-f)"></path>
-          <path class="figure-arrow normalization-cycle-arrow" d="M58 23 C58 38, 39 42, 31 30" marker-end="url(#arrow-f)"></path>
+          <circle class="normalization-action-dot ghost normalization-action-place" data-normalization-place-stabilizer="rot" cx="21" cy="23" r="14"></circle>
+          <circle class="normalization-action-dot ghost normalization-action-place" data-normalization-place-stabilizer="rot" cx="45" cy="23" r="14"></circle>
+          <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="rot" d="M8 23 C8 8, 27 4, 35 16" marker-end="url(#arrow-f)"></path>
+          <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="rot" d="M58 23 C58 38, 39 42, 31 30" marker-end="url(#arrow-f)"></path>
         </g>
       </g>
       <g class="normalization-action" data-normalization-stabilizers="r2" transform="translate(535 212)">
         <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
         <g class="normalization-halfturn-orbit" transform="translate(66 9)">
           <path class="normalization-action-line" d="M8 13 H48 M8 37 H48 M8 13 V37 M48 13 V37"></path>
-          <path class="figure-arrow normalization-cycle-arrow" d="M23 19 C29 13, 39 16, 40 25" marker-end="url(#arrow-f)"></path>
-          <path class="figure-arrow normalization-cycle-arrow" d="M33 31 C27 37, 17 34, 16 25" marker-end="url(#arrow-f)"></path>
-          <circle class="normalization-action-dot" cx="8" cy="13" r="3"></circle><circle class="normalization-action-dot" cx="48" cy="13" r="3"></circle>
-          <circle class="normalization-action-dot" cx="8" cy="37" r="3"></circle><circle class="normalization-action-dot" cx="48" cy="37" r="3"></circle>
+          <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="r2" d="M23 19 C29 13, 39 16, 40 25" marker-end="url(#arrow-f)"></path>
+          <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="r2" d="M33 31 C27 37, 17 34, 16 25" marker-end="url(#arrow-f)"></path>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" cx="8" cy="13" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" cx="48" cy="13" r="3"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" cx="8" cy="37" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" cx="48" cy="37" r="3"></circle>
         </g>
       </g>
       <g class="normalization-action" data-normalization-stabilizers="one" transform="translate(330 286)">
         <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
         <g class="normalization-free-orbit" transform="translate(72 10)">
           <circle class="normalization-action-dot ghost" cx="21" cy="21" r="22"></circle>
-          <circle class="normalization-action-dot" cx="21" cy="-1" r="2.7"></circle><circle class="normalization-action-dot" cx="37" cy="5" r="2.7"></circle>
-          <circle class="normalization-action-dot" cx="43" cy="21" r="2.7"></circle><circle class="normalization-action-dot" cx="37" cy="37" r="2.7"></circle>
-          <circle class="normalization-action-dot" cx="21" cy="43" r="2.7"></circle><circle class="normalization-action-dot" cx="5" cy="37" r="2.7"></circle>
-          <circle class="normalization-action-dot" cx="-1" cy="21" r="2.7"></circle><circle class="normalization-action-dot" cx="5" cy="5" r="2.7"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="21" cy="-1" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="37" cy="5" r="2.7"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="43" cy="21" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="37" cy="37" r="2.7"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="21" cy="43" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="5" cy="37" r="2.7"></circle>
+          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="-1" cy="21" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="5" cy="5" r="2.7"></circle>
         </g>
       </g>
       <g class="normalization-action" data-normalization-stabilizers="d4" transform="translate(535 286)">
         <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
         <g class="normalization-fixed-orbit" transform="translate(76 15)">
           <circle class="normalization-action-dot ghost" cx="17" cy="16" r="14"></circle>
-          <circle class="normalization-action-dot filled" cx="17" cy="16" r="4"></circle>
+          <circle class="normalization-action-dot filled normalization-action-place" data-normalization-place-stabilizer="d4" cx="17" cy="16" r="4"></circle>
         </g>
+      </g>
+      <g class="normalization-element-controls" transform="translate(330 360)">
+        <text class="normalization-element-status" data-normalization-element-status x="0" y="9">act by a D4 element</text>
+        <g class="normalization-element-control" data-normalization-element-control="e" transform="translate(0 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">1</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s" transform="translate(45 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s2" transform="translate(90 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan></text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s3" transform="translate(135 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan></text></g>
+        <g class="normalization-element-control" data-normalization-element-control="t" transform="translate(180 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="st" transform="translate(225 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s2t" transform="translate(270 17)"><rect class="normalization-element-button" width="43" height="24" rx="7"></rect><text x="21.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan>&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s3t" transform="translate(319 17)"><rect class="normalization-element-button" width="43" height="24" rx="7"></rect><text x="21.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan>&tau;</text></g>
       </g>
     </svg>`;
 }
@@ -7512,9 +7481,17 @@ function internalAnimatedPath(path, finalPath, className, keyTimes, duration) {
   return `<path class="figure-arrow internal-piece-arrow ${className}" d="${path}">${pathAnimation}</path>`;
 }
 
-function internalParameterizationPiece({ type, start, decomposed, classified, target, from, to, loopPath, finalPath, finalScale }) {
+function internalStaggeredKeyTimes(staggerIndex, staggerTotal) {
+  const order = staggerIndex / Math.max(staggerTotal - 1, 1);
+  const startTime = 0.05 + order * 0.58;
+  return [0, startTime, startTime + 0.06, startTime + 0.14, startTime + 0.24, 0.93, 1]
+    .map((time) => Number(time.toFixed(3)))
+    .join(";");
+}
+
+function internalParameterizationPiece({ type, start, decomposed, classified, target, from, to, loopPath, finalPath, finalScale, staggerIndex = 0, staggerTotal = 1 }) {
   const duration = "4s";
-  const keyTimes = "0;0.12;0.34;0.58;0.82;0.88;1";
+  const keyTimes = internalStaggeredKeyTimes(staggerIndex, staggerTotal);
   const compactScale = 0.42;
   const arrivalScale = finalScale ?? compactScale;
   let content = "";
@@ -7654,15 +7631,38 @@ function createInternalParameterizationPieces() {
       finalScale: 1,
     },
   ];
-  return [...vertices, ...nonLoopEdges, ...loops]
+  const pieces = [...vertices, ...nonLoopEdges, ...loops].sort((first, second) => {
+    const firstOrder = first.start[0] + first.start[1] * 2;
+    const secondOrder = second.start[0] + second.start[1] * 2;
+    return firstOrder - secondOrder;
+  });
+  return pieces
     .map((piece, index) => {
       const jitter = [(index % 3 - 1) * 4, (index % 4 - 1.5) * 4];
       return internalParameterizationPiece({
         ...piece,
         decomposed: internalOffsetPoint(piece.start, graphCenter, 0.18, jitter),
+        staggerIndex: index,
+        staggerTotal: pieces.length,
       });
     })
     .join("\n");
+}
+
+function quotientStepLight(path, color = "green") {
+  const colorClass = color === "orange" ? " quotient-light-core-orange" : color === "blue" ? " quotient-light-core-blue" : "";
+  const filterClass = color === "orange" ? " quotient-moving-light-period" : color === "blue" ? " quotient-moving-light-blue" : "";
+  return `
+        <g class="quotient-moving-light quotient-step-light${filterClass}">
+          <animateMotion dur="2.7s" repeatCount="indefinite" path="${path}"></animateMotion>
+          <animate attributeName="opacity" dur="2.7s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.08;0.62;0.78;1"></animate>
+          <circle class="quotient-light-halo" cx="0" cy="0" r="11"></circle>
+          <circle class="quotient-light-core${colorClass}" cx="0" cy="0" r="5.2"></circle>
+        </g>`;
+}
+
+function quotientStepLights(paths, color = "green") {
+  return paths.map((path) => quotientStepLight(path, color)).join("\n");
 }
 
 const paperFigureTemplates = {
@@ -7715,7 +7715,7 @@ const paperFigureTemplates = {
   "quotient-toposes": `
     <svg class="quotient-toposes-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
       <title id="fig-quotient-title">Period, height, and core</title>
-      <desc id="fig-quotient-desc">Three discrete dynamical systems with moving lights: one follows a finite tail into a cycle, one falls through finite height to an acyclic core, and one keeps traveling along an infinite tail.</desc>
+      <desc id="fig-quotient-desc">Three discrete dynamical systems with simultaneous moving lights: each visible point moves at once to its next state, showing finite height, period, and infinite height.</desc>
       <defs><marker id="arrow-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
       <g class="quotient-system quotient-system-period" transform="translate(74 34)">
         <path class="figure-arrow" d="M0 68 H55 H110"></path>
@@ -7726,13 +7726,8 @@ const paperFigureTemplates = {
         <circle class="figure-dot" cx="170" cy="30" r="5"></circle><circle class="figure-dot" cx="208" cy="68" r="5"></circle><circle class="figure-dot" cx="170" cy="106" r="5"></circle><circle class="figure-dot" cx="132" cy="68" r="5"></circle>
         <path class="quotient-guide quotient-height-guide" d="M0 68 H55 H110 H132"></path>
         <path class="quotient-guide quotient-period-guide" d="M132 68 A38 38 0 1 1 208 68 A38 38 0 1 1 132 68"></path>
-        <g class="quotient-moving-light">
-          <animateMotion dur="6.4s" repeatCount="indefinite" path="M0 68 H55 H110 H132 A38 38 0 1 1 208 68 A38 38 0 1 1 132 68 A38 38 0 1 1 208 68 A38 38 0 1 1 132 68"></animateMotion>
-          <circle class="quotient-light-halo" cx="0" cy="0" r="13"></circle>
-          <circle class="quotient-light-core" cx="0" cy="0" r="5.8">
-            <animate attributeName="fill" dur="6.4s" repeatCount="indefinite" values="#2c6f63;#2c6f63;#b66737;#b66737;#2c6f63" keyTimes="0;0.24;0.28;0.98;1"></animate>
-          </circle>
-        </g>
+        ${quotientStepLights(["M0 68 H55", "M55 68 H110", "M110 68 H132"], "green")}
+        ${quotientStepLights(["M132 68 A38 38 0 0 1 170 30", "M170 30 A38 38 0 0 1 208 68", "M208 68 A38 38 0 0 1 170 106", "M170 106 A38 38 0 0 1 132 68"], "orange")}
         <text class="figure-small quotient-label quotient-height-label" x="34" y="50">height</text>
         <text class="figure-small quotient-label quotient-period-label" x="153" y="18">period</text>
       </g>
@@ -7742,18 +7737,7 @@ const paperFigureTemplates = {
         <g><circle class="figure-dot" cx="30" cy="20" r="5"></circle><circle class="figure-dot" cx="30" cy="68" r="5"></circle><circle class="figure-dot" cx="90" cy="45" r="5"></circle><circle class="figure-dot" cx="150" cy="20" r="5"></circle><circle class="figure-dot" cx="150" cy="68" r="5"></circle><circle class="figure-dot" cx="210" cy="45" r="5"></circle></g>
         <path class="quotient-guide quotient-height-guide" d="M150 20 V68 V116"></path>
         <path class="quotient-guide quotient-core-guide" d="M0 116 H270"></path>
-        <g class="quotient-moving-light quotient-moving-light-fall">
-          <animateMotion dur="4.8s" repeatCount="indefinite" path="M150 20 V68 V116"></animateMotion>
-          <animate attributeName="opacity" dur="4.8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.08;0.58;0.74;1"></animate>
-          <circle class="quotient-light-halo" cx="0" cy="0" r="12"></circle>
-          <circle class="quotient-light-core" cx="0" cy="0" r="5.4"></circle>
-        </g>
-        <g class="quotient-moving-light quotient-moving-light-core">
-          <animateMotion dur="4.8s" repeatCount="indefinite" path="M150 116 H270"></animateMotion>
-          <animate attributeName="opacity" dur="4.8s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.52;0.64;0.9;1"></animate>
-          <circle class="quotient-light-halo" cx="0" cy="0" r="11"></circle>
-          <circle class="quotient-light-core quotient-light-core-blue" cx="0" cy="0" r="5.2"></circle>
-        </g>
+        ${quotientStepLights(["M30 20 V68", "M30 68 V116", "M90 45 V116", "M150 20 V68", "M150 68 V116", "M210 45 V116"], "green")}
         <text class="figure-small quotient-label quotient-height-label" x="156" y="55">height</text>
         <text class="figure-small quotient-label quotient-core-label" x="166" y="142">period 0</text>
       </g>
@@ -7762,12 +7746,7 @@ const paperFigureTemplates = {
         <path class="figure-line" d="M115 0 H255 L312 45 H455"></path>
         <g><circle class="figure-dot ghost-fill" cx="115" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="185" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="255" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="312" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="385" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="455" cy="45" r="5"></circle></g>
         <path class="quotient-guide quotient-infinite-guide" d="M115 0 H185 H255 L312 45 H385 H455"></path>
-        <g class="quotient-moving-light quotient-moving-light-infinite">
-          <animateMotion dur="5.4s" repeatCount="indefinite" path="M115 0 H185 H255 L312 45 H385 H455"></animateMotion>
-          <animate attributeName="opacity" dur="5.4s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.08;0.88;1"></animate>
-          <circle class="quotient-light-halo" cx="0" cy="0" r="12"></circle>
-          <circle class="quotient-light-core quotient-light-core-blue" cx="0" cy="0" r="5.4"></circle>
-        </g>
+        ${quotientStepLights(["M115 0 H185", "M185 0 H255", "M255 0 L312 45", "M312 45 H385", "M385 45 H455", "M455 45 H515"], "blue")}
         <text class="figure-small quotient-label quotient-infinite-label" x="34" y="82">infinite height</text>
       </g>
     </svg>
@@ -7776,47 +7755,61 @@ const paperFigureTemplates = {
     <span class="figure-math small" style="left: 43.5%; top: 91%;">\\((h,p)=(\\infty,0)\\)</span>`,
   "completely-connected": completelyConnectedFigureTemplate(),
   "lawvere-first": `
-    <svg class="tensor-animation-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
-      <title id="fig-lawvere-first-title">Power set tensor calculation</title>
-      <desc id="fig-lawvere-first-desc">A concrete calculation for the covariant power set functor: selected elements on the right are grouped into colored unit regions and connected by strings to landing points on the left.</desc>
+    <svg class="tensor-animation-figure tensor-factorization-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
+      <title id="fig-lawvere-first-title">Power set tensor calculation through image factorization</title>
+      <desc id="fig-lawvere-first-desc">A concrete calculation for the covariant power set functor: the restricted map from S factors as an epimorphism onto f(S) followed by the inclusion into X, giving the minimal expression.</desc>
       <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <text class="figure-small lawvere-caption" x="380" y="34">power set tensor: choose strings and collapse landings</text>
+      <text class="figure-small lawvere-caption" x="380" y="30">power set tensor: image factorization gives the minimal expression</text>
 
-      <g transform="translate(52 64)">
-        <rect class="tensor-string-card" x="0" y="0" width="656" height="300" rx="14"></rect>
-        <g class="tensor-unit-cells" aria-hidden="true">
-          <path class="tensor-unit-cell warm" d="M112 62 C234 32, 420 38, 648 78 L648 141 C424 106, 262 118, 112 134 Z"></path>
-          <path class="tensor-unit-cell green" d="M112 158 C266 178, 430 180, 648 168 L648 235 C426 246, 260 226, 112 218 Z"></path>
-          <path class="tensor-unit-cell muted" d="M228 82 C360 94, 470 94, 590 78 L590 142 C464 136, 352 144, 228 136 Z"></path>
-          <path class="tensor-unit-cell muted" d="M228 174 C358 210, 466 208, 590 176 L590 238 C466 242, 356 246, 228 222 Z"></path>
-        </g>
-        <text class="tensor-side-label" x="82" y="52">X</text>
-        <text class="tensor-side-label" x="540" y="52">A</text>
-        <text class="tensor-side-label tensor-s-label" x="626" y="52">S</text>
-        <text class="tensor-map-symbol" x="328" y="152">f</text>
+      <g transform="translate(42 56)">
+        <rect class="tensor-string-card" x="0" y="0" width="676" height="270" rx="14"></rect>
+        <text class="tensor-side-label" x="76" y="48">X</text>
+        <text class="tensor-side-label tensor-image-label" x="332" y="48">f(S)</text>
+        <text class="tensor-side-label" x="546" y="48">A</text>
+        <text class="tensor-side-label tensor-s-label" x="628" y="48">S</text>
 
-        <path class="tensor-cord selected" pathLength="1" d="M490 108 C412 82, 272 76, 156 96"></path>
-        <path class="tensor-cord muted" pathLength="1" d="M562 108 C484 122, 386 122, 268 116"></path>
-        <path class="tensor-cord selected" pathLength="1" d="M634 108 C506 58, 304 58, 156 96"></path>
-        <path class="tensor-cord selected green" pathLength="1" d="M490 204 C390 204, 270 188, 156 188"></path>
-        <path class="tensor-cord muted" pathLength="1" d="M562 204 C480 222, 380 224, 268 198"></path>
-        <path class="tensor-cord selected green" pathLength="1" d="M634 204 C508 242, 304 234, 156 188"></path>
+        <rect class="tensor-s-envelope" x="510" y="68" width="140" height="156" rx="42"></rect>
 
-        <g class="tensor-x-node selected" transform="translate(156 96)"><circle cx="0" cy="0" r="29"></circle><text x="0" y="8">x</text></g>
-        <g class="tensor-x-node selected green" transform="translate(156 188)"><circle cx="0" cy="0" r="29"></circle><text x="0" y="8">y</text></g>
-        <g class="tensor-x-node muted" transform="translate(268 116)"><circle cx="0" cy="0" r="23"></circle><text x="0" y="7">z</text></g>
-        <g class="tensor-x-node muted" transform="translate(268 198)"><circle cx="0" cy="0" r="23"></circle><text x="0" y="7">w</text></g>
+        <path class="tensor-cord selected" pathLength="1" d="M500 104 C396 74, 232 74, 144 92"></path>
+        <path class="tensor-cord muted" pathLength="1" d="M570 104 C482 112, 344 118, 236 112"></path>
+        <path class="tensor-cord selected" pathLength="1" d="M640 104 C492 52, 290 58, 144 92"></path>
+        <path class="tensor-cord selected green" pathLength="1" d="M500 196 C402 190, 258 178, 144 178"></path>
+        <path class="tensor-cord muted" pathLength="1" d="M570 196 C470 214, 340 214, 236 194"></path>
+        <path class="tensor-cord selected green" pathLength="1" d="M640 196 C500 238, 290 222, 144 178"></path>
 
-        <g class="tensor-a-node selected" transform="translate(490 108)"><circle cx="0" cy="0" r="22"></circle><text x="0" y="7">a</text></g>
-        <g class="tensor-a-node muted" transform="translate(562 108)"><circle cx="0" cy="0" r="20"></circle><text x="0" y="7">b</text></g>
-        <g class="tensor-a-node selected" transform="translate(634 108)"><circle cx="0" cy="0" r="22"></circle><text x="0" y="7">c</text></g>
-        <g class="tensor-a-node selected green" transform="translate(490 204)"><circle cx="0" cy="0" r="22"></circle><text x="0" y="7">d</text></g>
-        <g class="tensor-a-node muted" transform="translate(562 204)"><circle cx="0" cy="0" r="20"></circle><text x="0" y="7">e</text></g>
-        <g class="tensor-a-node selected green" transform="translate(634 204)"><circle cx="0" cy="0" r="22"></circle><text x="0" y="7">r</text></g>
+        <path class="tensor-factor-cord tensor-epi-cord warm" pathLength="1" d="M500 104 C452 82, 386 78, 332 96"></path>
+        <path class="tensor-factor-cord tensor-epi-cord warm" pathLength="1" d="M640 104 C520 54, 410 58, 332 96"></path>
+        <path class="tensor-factor-cord tensor-epi-cord green" pathLength="1" d="M500 196 C450 194, 390 180, 332 184"></path>
+        <path class="tensor-factor-cord tensor-epi-cord green" pathLength="1" d="M640 196 C522 230, 408 218, 332 184"></path>
+        <path class="tensor-factor-cord tensor-mono-cord warm" pathLength="1" d="M332 96 C270 88, 204 86, 144 92"></path>
+        <path class="tensor-factor-cord tensor-mono-cord green" pathLength="1" d="M332 184 C264 184, 204 180, 144 178"></path>
 
-        <text class="tensor-length" x="328" y="268">four colored strings land on two points</text>
+        <text class="tensor-map-symbol tensor-f-label" x="352" y="148">f</text>
+        <text class="tensor-factor-label tensor-e-label" x="430" y="70">epi</text>
+        <text class="tensor-factor-label tensor-i-label" x="232" y="70">mono</text>
+
+        <g class="tensor-x-node selected" transform="translate(144 92)"><circle cx="0" cy="0" r="28"></circle><text x="0" y="8">x</text></g>
+        <g class="tensor-x-node selected green" transform="translate(144 178)"><circle cx="0" cy="0" r="28"></circle><text x="0" y="8">y</text></g>
+        <g class="tensor-x-node muted" transform="translate(236 112)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">z</text></g>
+        <g class="tensor-x-node muted" transform="translate(236 194)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">w</text></g>
+
+        <g class="tensor-image-node factor warm" transform="translate(332 96)"><circle cx="0" cy="0" r="24"></circle><text x="0" y="7">x</text></g>
+        <g class="tensor-image-node factor green" transform="translate(332 184)"><circle cx="0" cy="0" r="24"></circle><text x="0" y="7">y</text></g>
+
+        <g class="tensor-a-node selected" transform="translate(500 104)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">a</text></g>
+        <g class="tensor-a-node muted" transform="translate(570 104)"><circle cx="0" cy="0" r="19"></circle><text x="0" y="7">b</text></g>
+        <g class="tensor-a-node selected" transform="translate(640 104)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">c</text></g>
+        <g class="tensor-a-node selected green" transform="translate(500 196)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">d</text></g>
+        <g class="tensor-a-node muted" transform="translate(570 196)"><circle cx="0" cy="0" r="19"></circle><text x="0" y="7">e</text></g>
+        <g class="tensor-a-node selected green" transform="translate(640 196)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">r</text></g>
+
+        <text class="tensor-length" x="338" y="246">epi-mono factorization removes degeneracy</text>
       </g>
-    </svg>`,
+    </svg>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-1">\\(t=(X\\xleftarrow{f}A)\\otimes(S\\subset A)\\)</span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-2">\\(t=(X\\xleftarrow{f|_S}S)\\otimes(S\\subset S)\\)</span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-3">\\(f|_S=i\\circ e,\\quad S\\twoheadrightarrow f(S)\\hookrightarrow X\\)</span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-4">\\(t=(X\\xleftarrow{i}f(S))\\otimes(f(S)\\subset f(S)),\\quad \\mathrm{Le}(t)=\\#f(S)\\)</span>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
     <svg class="automata-cover-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
@@ -7966,14 +7959,14 @@ const paperDiagramNotes = {
     results: ["The paper gives a site-theoretic way to build a Grothendieck topos with a long adjoint pattern."]
   },
   "lawvere-first": {
-    heading: "Power Set Tensor Calculation",
-    keywords: ["Lawvere problem", "coend", "tensor notation", "minimal expression"],
+    heading: "Image Factorization And Minimal Expression",
+    keywords: ["Lawvere problem", "coend", "tensor notation", "epi-mono factorization", "minimal expression"],
     concepts: [
-      ["Concrete input", "Put the target set X on the left and the source set A on the right."],
-      ["Selected part", "The colored points in A form S, and only the colored strings are kept."],
-      ["Minimal expression", "Four selected strings land on two points, so the picture visibly compresses."]
+      ["Model case", "For the covariant power set functor, an expression is a pair of a map f from A to X and a subset S of A."],
+      ["Epi-mono factorization", "The restricted map f|S factors as S onto f(S), followed by the inclusion of f(S) into X."],
+      ["Minimal expression", "The paper's Section 3 calculation replaces the original expression by the image expression, whose length is the size of f(S)."]
     ],
-    results: ["This is the model-case calculation from Section 3, drawn without the formula band."]
+    results: ["This is the model-case calculation from Section 3: (X <- f A) tensor (S subset A) reduces to (X <- f(S)) tensor (f(S) subset f(S))."]
   },
   "lawvere-fourth": {
     heading: "Pullback And Levels",
@@ -8073,6 +8066,41 @@ const normalizationSubgroupLabels = {
   one: "<1>"
 };
 
+const normalizationElementLabels = {
+  e: "1",
+  s: "sigma",
+  s2: "sigma^2",
+  s3: "sigma^3",
+  t: "tau",
+  st: "sigma tau",
+  s2t: "sigma^2 tau",
+  s3t: "sigma^3 tau"
+};
+
+const normalizationElementDisplayLabels = {
+  e: "1",
+  s: "σ",
+  s2: "σ²",
+  s3: "σ³",
+  t: "τ",
+  st: "στ",
+  s2t: "σ²τ",
+  s3t: "σ³τ"
+};
+
+const normalizationSubgroupElements = {
+  d4: ["e", "s", "s2", "s3", "t", "st", "s2t", "s3t"],
+  v0: ["e", "s2", "t", "s2t"],
+  v1: ["e", "s2", "st", "s3t"],
+  rot: ["e", "s", "s2", "s3"],
+  r2: ["e", "s2"],
+  ref0: ["e", "t"],
+  ref1: ["e", "st"],
+  ref2: ["e", "s2t"],
+  ref3: ["e", "s3t"],
+  one: ["e"]
+};
+
 function setNormalizationSelection(root, subgroupId = "d4") {
   const selected = normalizationContainment[subgroupId] ? subgroupId : "d4";
   const allowed = new Set(normalizationContainment[selected]);
@@ -8103,10 +8131,43 @@ function setNormalizationSelection(root, subgroupId = "d4") {
   if (status) status.textContent = `H = ${normalizationSubgroupLabels[selected] || "D4"}`;
 }
 
+function normalizationPlaceStabilizers(place) {
+  return (place.dataset.normalizationPlaceStabilizer || "")
+    .split(/\s+/)
+    .filter((stabilizer) => Boolean(normalizationSubgroupElements[stabilizer]));
+}
+
 function normalizationStabilizerList(action) {
   return (action.dataset.normalizationStabilizers || "")
     .split(/\s+/)
     .filter((stabilizer) => Boolean(normalizationContainment[stabilizer]));
+}
+
+function setNormalizationElementSelection(root, elementId) {
+  const selectedElement = normalizationElementLabels[elementId] ? elementId : "e";
+  root.dataset.normalizationElementSelected = selectedElement;
+
+  root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
+    const isSelected = control.dataset.normalizationElementControl === selectedElement;
+    control.classList.toggle("is-selected", isSelected);
+    control.setAttribute("aria-pressed", isSelected ? "true" : "false");
+  });
+
+  root.querySelectorAll("[data-normalization-place-stabilizer]").forEach((place) => {
+    const isFixed = normalizationPlaceStabilizers(place).some((stabilizer) =>
+      normalizationSubgroupElements[stabilizer].includes(selectedElement)
+    );
+    place.classList.toggle("is-fixed", isFixed);
+    place.classList.toggle("is-moving", !isFixed);
+  });
+
+  root.querySelectorAll("[data-normalization-stabilizers]").forEach((action) => {
+    const hasFixedPlace = Boolean(action.querySelector("[data-normalization-place-stabilizer].is-fixed"));
+    action.classList.toggle("has-fixed-place", hasFixedPlace);
+  });
+
+  const status = root.querySelector("[data-normalization-element-status]");
+  if (status) status.textContent = `act by ${normalizationElementDisplayLabels[selectedElement] || selectedElement}: fixed places stay`;
 }
 
 function setNormalizationActionSelection(root, selectedAction) {
@@ -8177,6 +8238,25 @@ function initializeNormalizationFigure(root, options = {}) {
       event.preventDefault();
       event.stopPropagation();
       setNormalizationActionSelection(root, action);
+    });
+  });
+
+  root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
+    const elementId = control.dataset.normalizationElementControl || "e";
+    const label = normalizationElementLabels[elementId] || elementId;
+    control.setAttribute("role", "button");
+    control.setAttribute("tabindex", "0");
+    control.setAttribute("aria-label", `Act by ${label}`);
+    control.setAttribute("aria-pressed", "false");
+    control.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setNormalizationElementSelection(root, elementId);
+    });
+    control.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      event.stopPropagation();
+      setNormalizationElementSelection(root, elementId);
     });
   });
 }
@@ -8275,6 +8355,27 @@ function clearGrundyTransfer(root, state) {
   root.querySelectorAll(".grundy-node.is-receiving").forEach((node) => node.classList.remove("is-receiving"));
 }
 
+function grundySmoothStep(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - ((-2 * t + 2) ** 3) / 2;
+}
+
+function grundyTransferKeyframes(fromX, fromY, midX, midY, toX, toY) {
+  return Array.from({ length: 43 }, (_, index) => {
+    const offset = index / 42;
+    const t = grundySmoothStep(offset);
+    const inverse = 1 - t;
+    const x = inverse * inverse * fromX + 2 * inverse * t * midX + t * t * toX;
+    const y = inverse * inverse * fromY + 2 * inverse * t * midY + t * t * toY;
+    const opacity = offset < 0.08 ? offset / 0.08 : offset > 0.9 ? (1 - offset) / 0.1 : 1;
+    const scale = 0.76 + Math.sin(Math.PI * offset) * 0.2 - offset * 0.06;
+    return {
+      offset,
+      opacity: Math.max(0, Math.min(1, opacity)),
+      transform: `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${scale})`
+    };
+  });
+}
+
 function animateGrundyMexTransfer(root, state, activeIds) {
   const activeNodeId = [...activeIds][0] || "";
   const focusedNode = state.focusId ? grundyGameNodeMap.get(state.focusId) : grundyGameNodeMap.get(activeNodeId);
@@ -8316,12 +8417,34 @@ function animateGrundyMexTransfer(root, state, activeIds) {
     ball.style.setProperty("--to-x", `${toX}px`);
     ball.style.setProperty("--to-y", `${toY}px`);
     ball.style.setProperty("--grundy-transfer-size", `${size}px`);
-    targetNode.classList.add("is-receiving");
     root.append(ball);
-    ball.addEventListener("animationend", () => {
+
+    const receiveTimer = window.setTimeout(() => {
+      if (root.isConnected && state.lastTransferKey === transferKey) targetNode.classList.add("is-receiving");
+    }, 360);
+
+    let cleanedUp = false;
+    const cleanup = () => {
+      if (cleanedUp) return;
+      cleanedUp = true;
+      window.clearTimeout(receiveTimer);
       ball.remove();
-      targetNode.classList.remove("is-receiving");
-    }, { once: true });
+      window.setTimeout(() => targetNode.classList.remove("is-receiving"), 160);
+    };
+
+    if (typeof ball.animate !== "function") {
+      targetNode.classList.add("is-receiving");
+      ball.classList.add("is-css-flight");
+      ball.addEventListener("animationend", cleanup, { once: true });
+      return;
+    }
+
+    const flight = ball.animate(
+      grundyTransferKeyframes(fromX, fromY, (fromX + toX) / 2, Math.min(fromY, toY) - arc, toX, toY),
+      { duration: 820, easing: "linear", fill: "both" }
+    );
+    flight.addEventListener("finish", cleanup, { once: true });
+    flight.addEventListener("cancel", cleanup, { once: true });
   }, 330);
 }
 
@@ -8371,11 +8494,6 @@ function renderGrundyStep(root) {
     const known = grundyNodeIsKnown(from, step);
     edge.classList.toggle("is-active", active);
     edge.classList.toggle("is-computed", known && !active);
-  });
-
-  const referenceNodeId = [...activeIds][0] || "";
-  root.querySelectorAll("[data-grundy-reference-node]").forEach((line) => {
-    line.classList.toggle("is-active", Boolean(referenceNodeId) && line.dataset.grundyReferenceNode === referenceNodeId);
   });
 
   const slider = root.querySelector("[data-grundy-slider]");
