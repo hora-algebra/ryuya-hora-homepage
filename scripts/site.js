@@ -264,6 +264,7 @@ const siteData = {
         publicationDate: "2026-02",
         link: "https://doi.org/10.1090/proc/17479",
         figure: "completely-connected",
+        themes: ["topos", "geometry", "combinatorics"],
         tags: ["completely connected topoi", "Grothendieck topoi"],
         links: [
           ["DOI", "https://doi.org/10.1090/proc/17479"],
@@ -281,6 +282,7 @@ const siteData = {
         publicationDate: "2026-03",
         link: "https://doi.org/10.1016/j.aim.2025.110751",
         figure: "lawvere-first",
+        themes: ["topos", "combinatorics"],
         tags: ["Lawvere problems", "quotient topoi", "Grothendieck topoi"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.aim.2025.110751"],
@@ -1091,8 +1093,11 @@ const siteData = {
   ]
 };
 
+const initialUrlParams = new URLSearchParams(globalThis.location?.search || "");
+
 const state = {
-  paperQuery: "",
+  paperQuery: initialUrlParams.get("paper") || "",
+  paperTheme: initialUrlParams.get("theme") || "",
   paperView: "diagram",
   talkQuery: "",
   talkTimelineKey: "",
@@ -1109,7 +1114,7 @@ const state = {
   problemQuery: "",
   problemStatus: "all",
   selectedProblemId: "",
-  siteSearchQuery: new URLSearchParams(globalThis.location?.search || "").get("q") || "",
+  siteSearchQuery: initialUrlParams.get("q") || "",
   noteQuery: "",
   noteLanguage: "all",
   noteYear: "all",
@@ -1773,7 +1778,6 @@ const researchThemes = [
     r: 66,
     keywords: [
       "combinatorics",
-      "combinatorial",
       "enumerative",
       "profinite",
       "species",
@@ -3477,7 +3481,7 @@ function siteSearchRecords() {
       href: localHref(`papers/index.html#${paperAnchor(paper)}`),
       summary: paper.summary,
       meta: compactText([paperPeopleText(paper, researchmapPaper), paper.year, paper.venue]).join(" / "),
-      keywords: paper.tags || [],
+      keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
       icon: "paper",
       thumbnail: paperThumbnailSrc(paper)
     });
@@ -3490,6 +3494,7 @@ function siteSearchRecords() {
       href: paper.link,
       summary: paper.venue,
       meta: compactText([paperPeopleText(paper), paper.year]).join(" / "),
+      keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
       icon: "paper",
       thumbnail: paperThumbnailSrc(paper)
     });
@@ -3822,7 +3827,6 @@ const contentThemeKeywords = {
   ],
   combinatorics: [
     "combinatorics",
-    "combinatorial",
     "enumerative",
     "species",
     "generating function",
@@ -4571,20 +4575,16 @@ const categoriesTokyoVenues = [
   },
   {
     id: "nii",
-    label: "第1回 / 第2回 National Institute of Informatics",
-    labelRows: [
-      [
-        { text: "第1回", meetingIndex: 0 },
-        " / ",
-        { text: "第2回", meetingIndex: 1 }
-      ],
-      ["National Institute"],
-      ["of Informatics"]
+    label: "第1回・第2回 National Institute of Informatics",
+    labelBlocks: [
+      { meetingIndex: 0, lines: ["第1回", "National Institute", "of Informatics"] },
+      { meetingIndex: 1, lines: ["第2回", "National Institute", "of Informatics"] }
     ],
+    labelLineGap: 1.04,
     name: "第1回・第2回 National Institute of Informatics",
     lon: 139.7585,
     lat: 35.6933,
-    dx: 20,
+    dx: 19.3,
     dy: -0.5,
     labelAnchor: "end",
     meetings: [
@@ -4607,7 +4607,7 @@ const categoriesTokyoVenues = [
     lon: 139.7671,
     lat: 35.6695,
     dx: -3.2,
-    dy: 3.2,
+    dy: 7,
     meetings: [
       {
         label: "3",
@@ -4647,42 +4647,79 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
       "text-anchor": venue.labelAnchor || (venue.dx < 0 ? "end" : "start"),
       "dominant-baseline": "middle"
     });
-    const labelRows = Array.isArray(venue.labelRows) && venue.labelRows.length
-      ? venue.labelRows
-      : (Array.isArray(venue.labelLines) && venue.labelLines.length ? venue.labelLines : [venue.label]).map((line) => [line]);
-    const hasLinkedLabelSegments = labelRows.some((row) => (
-      Array.isArray(row) && row.some((segment) => typeof segment === "object" && Number.isInteger(segment.meetingIndex))
-    ));
-    const lineGap = 1.16;
-    const firstLineOffset = -((labelRows.length - 1) * lineGap) / 2;
-    labelRows.forEach((row, index) => {
-      const rowSegments = Array.isArray(row) ? row : [row];
-      rowSegments.forEach((segment, segmentIndex) => {
-        const segmentText = typeof segment === "string" ? segment : segment.text;
-        const segmentAttrs = segmentIndex === 0 ? {
-          x: labelX,
-          dy: labelRows.length === 1 ? 0 : index === 0 ? `${firstLineOffset.toFixed(2)}em` : `${lineGap}em`
-        } : {};
-        const segmentMeeting = typeof segment === "object" && Number.isInteger(segment.meetingIndex)
-          ? meetings[segment.meetingIndex]
-          : null;
-        const segmentNode = svgEl("tspan", {
-          ...segmentAttrs,
-          ...(segmentMeeting ? { class: "categories-map-venue-label-segment" } : {})
-        }, segmentText);
-        if (!segmentMeeting) {
-          labelText.append(segmentNode);
-          return;
-        }
-        const segmentLink = svgEl("a", {
+    const lineGap = venue.labelLineGap || 1.16;
+    const labelBlocks = Array.isArray(venue.labelBlocks) && venue.labelBlocks.length
+      ? venue.labelBlocks
+      : null;
+    let hasLinkedLabelSegments = false;
+    if (labelBlocks) {
+      const blockLines = labelBlocks.flatMap((block) => Array.isArray(block.lines) ? block.lines : [block.text]);
+      const firstLineOffset = -((blockLines.length - 1) * lineGap) / 2;
+      let lineIndex = 0;
+      labelBlocks.forEach((block) => {
+        const blockMeeting = Number.isInteger(block.meetingIndex) ? meetings[block.meetingIndex] : null;
+        const blockLink = blockMeeting ? svgEl("a", {
           class: "categories-map-venue-label-link",
-          href: segmentMeeting.href,
-          "aria-label": `${segmentMeeting.title} page`
+          href: blockMeeting.href,
+          "aria-label": `${blockMeeting.title} page`
+        }) : null;
+        if (blockLink) {
+          hasLinkedLabelSegments = true;
+          blockLink.append(svgEl("title", {}, blockMeeting.title));
+        }
+        (Array.isArray(block.lines) ? block.lines : [block.text]).forEach((line, blockLineIndex) => {
+          const segmentClasses = compactText([
+            blockMeeting ? "categories-map-venue-label-segment" : "",
+            blockMeeting && blockLineIndex === 0 ? "categories-map-venue-label-meeting" : ""
+          ]).join(" ");
+          const segmentNode = svgEl("tspan", {
+            x: labelX,
+            dy: blockLines.length === 1 ? 0 : lineIndex === 0 ? `${firstLineOffset.toFixed(2)}em` : `${lineGap}em`,
+            ...(segmentClasses ? { class: segmentClasses } : {})
+          }, line);
+          if (blockLink) blockLink.append(segmentNode);
+          else labelText.append(segmentNode);
+          lineIndex += 1;
         });
-        segmentLink.append(svgEl("title", {}, segmentMeeting.title), segmentNode);
-        labelText.append(segmentLink);
+        if (blockLink) labelText.append(blockLink);
       });
-    });
+    } else {
+      const labelRows = Array.isArray(venue.labelRows) && venue.labelRows.length
+        ? venue.labelRows
+        : (Array.isArray(venue.labelLines) && venue.labelLines.length ? venue.labelLines : [venue.label]).map((line) => [line]);
+      hasLinkedLabelSegments = labelRows.some((row) => (
+        Array.isArray(row) && row.some((segment) => typeof segment === "object" && Number.isInteger(segment.meetingIndex))
+      ));
+      const firstLineOffset = -((labelRows.length - 1) * lineGap) / 2;
+      labelRows.forEach((row, index) => {
+        const rowSegments = Array.isArray(row) ? row : [row];
+        rowSegments.forEach((segment, segmentIndex) => {
+          const segmentText = typeof segment === "string" ? segment : segment.text;
+          const segmentAttrs = segmentIndex === 0 ? {
+            x: labelX,
+            dy: labelRows.length === 1 ? 0 : index === 0 ? `${firstLineOffset.toFixed(2)}em` : `${lineGap}em`
+          } : {};
+          const segmentMeeting = typeof segment === "object" && Number.isInteger(segment.meetingIndex)
+            ? meetings[segment.meetingIndex]
+            : null;
+          const segmentNode = svgEl("tspan", {
+            ...segmentAttrs,
+            ...(segmentMeeting ? { class: "categories-map-venue-label-segment" } : {})
+          }, segmentText);
+          if (!segmentMeeting) {
+            labelText.append(segmentNode);
+            return;
+          }
+          const segmentLink = svgEl("a", {
+            class: "categories-map-venue-label-link",
+            href: segmentMeeting.href,
+            "aria-label": `${segmentMeeting.title} page`
+          });
+          segmentLink.append(svgEl("title", {}, segmentMeeting.title), segmentNode);
+          labelText.append(segmentLink);
+        });
+      });
+    }
     const labelNode = !hasLinkedLabelSegments && meeting ? svgEl("a", {
       class: "categories-map-venue-label-link",
       href: meeting.href,
@@ -4792,7 +4829,7 @@ function renderCategoriesTokyoMap() {
   kantoMap.append(svgEl("rect", { class: "categories-map-water", x: 0, y: 0, width: 260, height: 220, rx: 8 }));
   appendCategoriesPrefectures(kantoMap, kanto.prefectures);
   appendCategoriesWardBoundaries(kantoMap, kanto.wards);
-  appendCategoriesVenueDots(kantoMap, kanto.projection, { dotRadius: 1.3, haloRadius: 3.2 });
+  appendCategoriesVenueDots(kantoMap, kanto.projection, { dotRadius: 1.05, haloRadius: 2.6 });
 
   svg.append(
     svgEl("title", { id: "categories-map-title" }, "Categories in Tokyo map"),
@@ -4961,7 +4998,7 @@ function homeTimelinePaperRecords() {
     const anchor = paperAnchor(paper);
     return {
       kind: "paper",
-      theme: contentTheme(compactText([paper.title, paper.venue, paper.tags?.join(" "), paper.summary]).join(" ")),
+      theme: contentTheme(compactText([paper.title, paper.venue, paperThemeIds(paper).join(" "), paper.tags?.join(" "), paper.summary]).join(" ")),
       title: paper.title,
       dateLabel: `${startLabel} -> ${endLabel}`,
       meta: compactText([people, status === "published" ? "published" : "preprint", paper.venue]).join(" / "),
@@ -6350,10 +6387,73 @@ function themeScore(text, theme) {
   }, 0);
 }
 
-function scoreThemeRecord(text) {
+function scoreThemeRecord(text, themeHints = []) {
   const scores = Object.fromEntries(researchThemes.map((theme) => [theme.id, themeScore(text, theme)]));
+  normalizeThemeSelection(themeHints).forEach((themeId) => {
+    scores[themeId] = Math.max(scores[themeId] || 0, 8);
+  });
   const themes = researchThemes.filter((theme) => scores[theme.id] > 0).map((theme) => theme.id);
   return { scores, themes, bestScore: Math.max(0, ...Object.values(scores)) };
+}
+
+function paperThemeText(paper) {
+  return compactText([
+    paper.title,
+    paper.authors,
+    paper.tags?.join(" "),
+    paper.summary
+  ]).join(" ");
+}
+
+function paperThemeScore(paper) {
+  return scoreThemeRecord(paperThemeText(paper), paper.themes || []);
+}
+
+function paperThemeIds(paper) {
+  return paperThemeScore(paper).themes;
+}
+
+function preparationPaperRecord(title) {
+  return {
+    title,
+    publicationStatus: "In preparation"
+  };
+}
+
+function themeTagLabel(themeId) {
+  return themeById(themeId)?.label || themeId;
+}
+
+function isThemeEquivalentTag(tag, themeIds) {
+  const normalizedTag = simplified(tag);
+  return normalizeThemeSelection(themeIds).some((themeId) => {
+    const label = themeTagLabel(themeId);
+    return [
+      themeId,
+      label,
+      `${themeId} theory`,
+      `${label} theory`
+    ].map(simplified).includes(normalizedTag);
+  });
+}
+
+function paperDisplayTagRecords(paper, extraTags = []) {
+  const themeIds = paperThemeIds(paper);
+  const records = themeIds.map((themeId) => ({
+    label: themeTagLabel(themeId),
+    themeId,
+    kind: "theme"
+  }));
+  const seen = new Set(records.map((record) => `theme:${record.themeId}`));
+  compactText([...(paper.tags || []), ...(extraTags || [])]).forEach((tag) => {
+    const label = String(tag || "").trim();
+    if (!label || isThemeEquivalentTag(label, themeIds)) return;
+    const key = `tag:${simplified(label)}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    records.push({ label, query: label, kind: "tag" });
+  });
+  return records;
 }
 
 function dedupeThemeRecords(records) {
@@ -6379,18 +6479,12 @@ function dedupeThemeRecordsByTitle(records) {
 function themedPaperRecords() {
   const records = [
     ...[...siteData.papers.published, ...siteData.papers.preprints].map((paper) => {
-      const text = compactText([
-        paper.title,
-        paper.authors,
-        paper.tags?.join(" "),
-        paper.summary
-      ]).join(" ");
       return {
         type: "paper",
         title: paper.title,
         href: localHref(`papers/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper, findResearchmapPaper(paper)), paper.year, paper.venue]).join(" / "),
-        ...scoreThemeRecord(text)
+        ...paperThemeScore(paper)
       };
     }),
     ...siteData.papers.misc.map((paper) => {
@@ -6880,6 +6974,10 @@ const grundyNodeStepMap = new Map(grundyAlgebraOrder.map((nodeId, index) => [nod
 const grundyFinalStep = grundyAlgebraOrder.length + 1;
 const grundyNumberLineValues = [0, 1, 2, 3, 4];
 const grundyNumberLineMax = Math.max(...grundyNumberLineValues);
+const grundyTransferDelayMs = 330;
+const grundyTransferDurationMs = 820;
+const grundyAutoplayIntervalMs = 1550;
+const grundyFinalHoldMs = 6200;
 
 const grundyStepCopy = {
   0: {
@@ -6939,6 +7037,14 @@ function grundyNodeForStep(step) {
   return grundyGameNodeMap.get(grundyAlgebraOrder[step - 1] || "");
 }
 
+function grundyStepHasActiveComputation(step) {
+  return step > 0 && step <= grundyAlgebraOrder.length;
+}
+
+function grundyRevealStepBeforeTransfer(step) {
+  return grundyStepHasActiveComputation(step) ? Math.max(0, step - 1) : step;
+}
+
 function grundyNodeIsKnown(node, step) {
   return grundyNodeStep(node.id) <= Math.min(step, grundyAlgebraOrder.length);
 }
@@ -6987,7 +7093,7 @@ function grundyFigureTemplate() {
     )
     .join("");
   const naturalNumbers = grundyNumberLineValues
-    .map((value) => `<span class="grundy-natural-number" data-grundy-natural="${value}">${value}</span>`)
+    .map((value) => `<span class="grundy-natural-number" data-grundy-natural="${value}"><span class="grundy-natural-core">${value}</span></span>`)
     .join("");
   return `
     <div class="grundy-figure" data-grundy-figure data-grundy-max="${grundyFinalStep}">
@@ -6995,7 +7101,7 @@ function grundyFigureTemplate() {
         <title id="fig-games-title">Recursive calculation of Grundy numbers</title>
         <desc id="fig-games-desc">A finite impartial game is drawn on the left, and the corresponding mex algebra is shown on the right.</desc>
         <defs>
-          <marker id="arrow-grundy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <marker id="arrow-grundy" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7.4" markerHeight="7.4" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z"></path>
           </marker>
         </defs>
@@ -7315,7 +7421,7 @@ function normalizationFigureTemplate() {
   return `
     <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 760 430" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
       <title id="fig-normalization-title">Subgroups and D4-actions</title>
-      <desc id="fig-normalization-desc">A subgroup lattice for D4 on the left and examples of D4-actions on the right. Selecting a subgroup filters the actions by stabilizer containment; selecting a D4 element highlights the places fixed by that element.</desc>
+      <desc id="fig-normalization-desc">A subgroup lattice for D4 on the left and examples of D4-actions on the right. Selecting a subgroup filters the actions by stabilizer containment; selecting a D4 element moves each action and highlights the places fixed by that element.</desc>
       <defs>
         <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
       </defs>
@@ -7382,70 +7488,64 @@ function normalizationFigureTemplate() {
         </g>
       </g>
 
-      <g class="normalization-action" data-normalization-stabilizers="ref0 ref2" transform="translate(330 64)">
-        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
-        <g class="normalization-vertex-orbit" transform="translate(71 8)">
-          <path class="normalization-action-line" d="M0 4 H42 V46 H0 Z"></path>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref0" cx="0" cy="4" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref2" cx="42" cy="4" r="3"></circle>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref0" cx="42" cy="46" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref2" cx="0" cy="46" r="3"></circle>
+      <g class="normalization-action-atlas" transform="translate(330 64)">
+        <rect class="normalization-action-stage-bg" width="390" height="282" rx="10"></rect>
+        <g class="normalization-square-stage" transform="translate(30 23) scale(3.36)">
+          <path class="normalization-square-shadow" d="M0 4 H42 V46 H0 Z"></path>
+          <path class="normalization-action-line normalization-square-frame" d="M0 4 H42 V46 H0 Z"></path>
+          <g class="normalization-action" data-normalization-stabilizers="v0">
+            <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v0" data-normalization-orbit="diagonal" data-normalization-point="d0" data-normalization-token="a" d="M0 4 L42 46"></path>
+            <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v0" data-normalization-orbit="diagonal" data-normalization-point="d1" data-normalization-token="b" d="M42 4 L0 46"></path>
+          </g>
+          <g class="normalization-action" data-normalization-stabilizers="v1">
+            <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v1" data-normalization-orbit="axis" data-normalization-point="a0" data-normalization-token="c" d="M21 4 V46"></path>
+            <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v1" data-normalization-orbit="axis" data-normalization-point="a1" data-normalization-token="d" d="M0 25 H42"></path>
+          </g>
+          <g class="normalization-action" data-normalization-stabilizers="ref1 ref3">
+            <circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref1" data-normalization-orbit="edge" data-normalization-point="e0" data-normalization-token="a" cx="21" cy="4" r="2.25"></circle><circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref3" data-normalization-orbit="edge" data-normalization-point="e1" data-normalization-token="b" cx="42" cy="25" r="2.25"></circle>
+            <circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref1" data-normalization-orbit="edge" data-normalization-point="e2" data-normalization-token="c" cx="21" cy="46" r="2.25"></circle><circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref3" data-normalization-orbit="edge" data-normalization-point="e3" data-normalization-token="d" cx="0" cy="25" r="2.25"></circle>
+          </g>
+          <g class="normalization-action" data-normalization-stabilizers="ref0 ref2">
+            <circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref0" data-normalization-orbit="vertex" data-normalization-point="v0" data-normalization-token="a" cx="0" cy="4" r="3.2"></circle><circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref2" data-normalization-orbit="vertex" data-normalization-point="v1" data-normalization-token="b" cx="42" cy="4" r="3.2"></circle>
+            <circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref0" data-normalization-orbit="vertex" data-normalization-point="v2" data-normalization-token="c" cx="42" cy="46" r="3.2"></circle><circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref2" data-normalization-orbit="vertex" data-normalization-point="v3" data-normalization-token="d" cx="0" cy="46" r="3.2"></circle>
+          </g>
+          <g class="normalization-action" data-normalization-stabilizers="d4">
+            <circle class="normalization-action-dot ghost" cx="21" cy="25" r="5.4"></circle>
+            <circle class="normalization-action-dot filled normalization-action-place" data-normalization-place-stabilizer="d4" data-normalization-orbit="fixed" data-normalization-point="p0" data-normalization-token="a" cx="21" cy="25" r="2.55"></circle>
+          </g>
         </g>
-      </g>
-      <g class="normalization-action" data-normalization-stabilizers="ref1 ref3" transform="translate(535 64)">
-        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
-        <g class="normalization-edge-orbit" transform="translate(71 8)">
-          <path class="normalization-action-line" d="M0 4 H42 V46 H0 Z"></path>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref1" cx="21" cy="4" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref3" cx="42" cy="25" r="3"></circle>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref1" cx="21" cy="46" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="ref3" cx="0" cy="25" r="3"></circle>
-        </g>
-      </g>
-      <g class="normalization-action" data-normalization-stabilizers="v0" transform="translate(330 138)">
-        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
-        <g class="normalization-diagonal-orbit" transform="translate(70 9)">
-          <path class="normalization-action-line faint" d="M0 4 H44 V48 H0 Z"></path>
-          <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v0" d="M0 4 L44 48 M44 4 L0 48"></path>
-        </g>
-      </g>
-      <g class="normalization-action" data-normalization-stabilizers="v1" transform="translate(535 138)">
-        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
-        <g class="normalization-axis-orbit" transform="translate(70 9)">
-          <path class="normalization-action-line faint" d="M0 4 H44 V48 H0 Z"></path>
-          <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v1" d="M22 4 V48 M0 26 H44"></path>
-        </g>
-      </g>
-      <g class="normalization-action" data-normalization-stabilizers="rot" transform="translate(330 212)">
-        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
-        <g class="normalization-orientation-orbit" transform="translate(63 10)">
-          <circle class="normalization-action-dot ghost normalization-action-place" data-normalization-place-stabilizer="rot" cx="21" cy="23" r="14"></circle>
-          <circle class="normalization-action-dot ghost normalization-action-place" data-normalization-place-stabilizer="rot" cx="45" cy="23" r="14"></circle>
-          <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="rot" d="M8 23 C8 8, 27 4, 35 16" marker-end="url(#arrow-f)"></path>
-          <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="rot" d="M58 23 C58 38, 39 42, 31 30" marker-end="url(#arrow-f)"></path>
-        </g>
-      </g>
-      <g class="normalization-action" data-normalization-stabilizers="r2" transform="translate(535 212)">
-        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
-        <g class="normalization-halfturn-orbit" transform="translate(66 9)">
-          <path class="normalization-action-line" d="M8 13 H48 M8 37 H48 M8 13 V37 M48 13 V37"></path>
-          <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="r2" d="M23 19 C29 13, 39 16, 40 25" marker-end="url(#arrow-f)"></path>
-          <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="r2" d="M33 31 C27 37, 17 34, 16 25" marker-end="url(#arrow-f)"></path>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" cx="8" cy="13" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" cx="48" cy="13" r="3"></circle>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" cx="8" cy="37" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" cx="48" cy="37" r="3"></circle>
-        </g>
-      </g>
-      <g class="normalization-action" data-normalization-stabilizers="one" transform="translate(330 286)">
-        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
-        <g class="normalization-free-orbit" transform="translate(72 10)">
-          <circle class="normalization-action-dot ghost" cx="21" cy="21" r="22"></circle>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="21" cy="-1" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="37" cy="5" r="2.7"></circle>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="43" cy="21" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="37" cy="37" r="2.7"></circle>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="21" cy="43" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="5" cy="37" r="2.7"></circle>
-          <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="-1" cy="21" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" cx="5" cy="5" r="2.7"></circle>
-        </g>
-      </g>
-      <g class="normalization-action" data-normalization-stabilizers="d4" transform="translate(535 286)">
-        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
-        <g class="normalization-fixed-orbit" transform="translate(76 15)">
-          <circle class="normalization-action-dot ghost" cx="17" cy="16" r="14"></circle>
-          <circle class="normalization-action-dot filled normalization-action-place" data-normalization-place-stabilizer="d4" cx="17" cy="16" r="4"></circle>
+        <g class="normalization-action-strip" transform="translate(212 18)">
+          <g class="normalization-action" data-normalization-stabilizers="rot">
+            <rect class="normalization-action-hit" x="-10" y="-8" width="132" height="58" rx="9"></rect>
+            <g class="normalization-orientation-orbit" transform="translate(15 1)">
+              <circle class="normalization-action-dot ghost normalization-action-place" data-normalization-place-stabilizer="rot" data-normalization-orbit="orientation" data-normalization-point="o0" data-normalization-token="a" cx="21" cy="23" r="14"></circle>
+              <circle class="normalization-action-dot ghost normalization-action-place" data-normalization-place-stabilizer="rot" data-normalization-orbit="orientation" data-normalization-point="o1" data-normalization-token="b" cx="45" cy="23" r="14"></circle>
+              <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="rot" data-normalization-orbit="orientation" data-normalization-point="o0" data-normalization-token="a" d="M8 23 C8 8, 27 4, 35 16" marker-end="url(#arrow-f)"></path>
+              <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="rot" data-normalization-orbit="orientation" data-normalization-point="o1" data-normalization-token="b" d="M58 23 C58 38, 39 42, 31 30" marker-end="url(#arrow-f)"></path>
+            </g>
+          </g>
+          <g class="normalization-action" data-normalization-stabilizers="r2" transform="translate(0 72)">
+            <rect class="normalization-action-hit" x="-10" y="-8" width="132" height="58" rx="9"></rect>
+            <g class="normalization-halfturn-orbit" transform="translate(19 1)">
+              <path class="normalization-action-line normalization-halfturn-frame" d="M8 13 H48 M8 37 H48 M8 13 V37 M48 13 V37"></path>
+              <path class="figure-arrow normalization-cycle-arrow" d="M23 19 C29 13, 39 16, 40 25" marker-end="url(#arrow-f)"></path>
+              <path class="figure-arrow normalization-cycle-arrow" d="M33 31 C27 37, 17 34, 16 25" marker-end="url(#arrow-f)"></path>
+              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" data-normalization-orbit="halfturn" data-normalization-point="h0" data-normalization-token="a" cx="8" cy="13" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" data-normalization-orbit="halfturn" data-normalization-point="h1" data-normalization-token="b" cx="48" cy="13" r="3"></circle>
+              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" data-normalization-orbit="halfturn" data-normalization-point="h3" data-normalization-token="d" cx="8" cy="37" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" data-normalization-orbit="halfturn" data-normalization-point="h2" data-normalization-token="c" cx="48" cy="37" r="3"></circle>
+            </g>
+          </g>
+          <g class="normalization-action" data-normalization-stabilizers="one" transform="translate(0 145)">
+            <rect class="normalization-action-hit" x="-10" y="-8" width="132" height="84" rx="9"></rect>
+            <g class="normalization-free-orbit" transform="translate(26 13) scale(1.18)">
+              <circle class="normalization-action-dot ghost" cx="21" cy="21" r="22"></circle>
+              <path class="normalization-cayley-edge rotation" d="M21 -1 L37 5 L43 21 L37 37 L21 43 L5 37 L-1 21 L5 5 Z"></path>
+              <path class="normalization-cayley-edge reflection" d="M21 -1 L21 43 M37 5 L5 37 M43 21 L-1 21 M37 37 L5 5"></path>
+              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="e" data-normalization-token="a" cx="21" cy="-1" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s" data-normalization-token="b" cx="37" cy="5" r="2.7"></circle>
+              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s2" data-normalization-token="c" cx="43" cy="21" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s3" data-normalization-token="d" cx="37" cy="37" r="2.7"></circle>
+              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="t" data-normalization-token="e" cx="21" cy="43" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="st" data-normalization-token="f" cx="5" cy="37" r="2.7"></circle>
+              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s2t" data-normalization-token="g" cx="-1" cy="21" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s3t" data-normalization-token="h" cx="5" cy="5" r="2.7"></circle>
+            </g>
+          </g>
         </g>
       </g>
       <g class="normalization-element-controls" transform="translate(330 360)">
@@ -7474,42 +7574,88 @@ function internalLineAsCubicPath(from, to) {
   return `M${from[0]} ${from[1]} C${from[0]} ${from[1]}, ${to[0]} ${to[1]}, ${to[0]} ${to[1]}`;
 }
 
-function internalAnimatedPath(path, finalPath, className, keyTimes, duration) {
+const internalParameterizationDuration = "16s";
+const internalPieceBaseStroke = "#2c312d";
+const internalPieceVertexStroke = "#2f5f91";
+const internalPieceNonLoopStroke = "#2c6f63";
+const internalPieceLoopStroke = "#8a4d34";
+const internalSmoothTiming = `calcMode="spline" keySplines="${[
+  "0.42 0 0.58 1",
+  "0.33 0 0.2 1",
+  "0.33 0 0.2 1",
+  "0.42 0 0.58 1",
+  "0.42 0 0.58 1",
+  "0.33 0 0.2 1",
+  "0.42 0 0.58 1",
+  "0.42 0 0.58 1"
+].join("; ")}"`;
+
+function internalPieceColorValues(baseColor, activeColor) {
+  return `${baseColor}; ${baseColor}; ${baseColor}; ${activeColor}; ${activeColor}; ${activeColor}; ${activeColor}; ${activeColor}; ${baseColor}`;
+}
+
+function internalPieceMarker(markerKey, className, color, keyTimes, duration) {
+  return `<defs><marker id="arrow-a-${markerKey}" class="${className}" data-internal-piece-marker="${markerKey}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"><animate attributeName="fill" attributeType="CSS" values="${internalPieceColorValues(internalPieceBaseStroke, color)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate></path></marker></defs>`;
+}
+
+function internalAnimatedPath(path, finalPath, className, keyTimes, duration, color, markerKey) {
+  const markerDefinition = markerKey ? internalPieceMarker(markerKey, className.includes("-l") ? "internal-marker-piece-l" : "internal-marker-piece-n", color, keyTimes, duration) : "";
+  const markerAttribute = markerKey ? ` data-internal-piece-marker="${markerKey}"` : "";
   const pathAnimation = finalPath
-    ? `<animate attributeName="d" values="${path}; ${path}; ${path}; ${path}; ${finalPath}; ${finalPath}; ${path}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate>`
+    ? `<animate attributeName="d" values="${path}; ${path}; ${path}; ${path}; ${path}; ${path}; ${finalPath}; ${finalPath}; ${path}" keyTimes="${keyTimes}" ${internalSmoothTiming} dur="${duration}" repeatCount="indefinite"></animate>`
     : "";
-  return `<path class="figure-arrow internal-piece-arrow ${className}" d="${path}">${pathAnimation}</path>`;
+  const colorAnimation = `<animate attributeName="stroke" attributeType="CSS" values="${internalPieceColorValues(internalPieceBaseStroke, color)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate>`;
+  return `${markerDefinition}<path class="figure-arrow internal-piece-arrow ${className}"${markerAttribute} d="${path}">${pathAnimation}${colorAnimation}</path>`;
 }
 
 function internalStaggeredKeyTimes(staggerIndex, staggerTotal) {
-  const order = staggerIndex / Math.max(staggerTotal - 1, 1);
-  const startTime = 0.05 + order * 0.58;
-  return [0, startTime, startTime + 0.06, startTime + 0.14, startTime + 0.24, 0.93, 1]
+  const classifyStart = 0.05;
+  const decomposedTime = 0.13;
+  const colorDoneTime = 0.21;
+  const classifiedTime = 0.3;
+  const flightWindowStart = 0.34;
+  const flightWindowEnd = 0.92;
+  const slot = (flightWindowEnd - flightWindowStart) / Math.max(staggerTotal, 1);
+  const flightStart = flightWindowStart + staggerIndex * slot;
+  const flightEnd = flightStart + slot * 0.84;
+  return [0, classifyStart, decomposedTime, colorDoneTime, classifiedTime, flightStart, flightEnd, 0.94, 1]
     .map((time) => Number(time.toFixed(3)))
     .join(";");
 }
 
 function internalParameterizationPiece({ type, start, decomposed, classified, target, from, to, loopPath, finalPath, finalScale, staggerIndex = 0, staggerTotal = 1 }) {
-  const duration = "4s";
+  const duration = internalParameterizationDuration;
   const keyTimes = internalStaggeredKeyTimes(staggerIndex, staggerTotal);
   const compactScale = 0.42;
   const arrivalScale = finalScale ?? compactScale;
   let content = "";
   if (type === "vertex") {
-    content = `<circle class="internal-piece-dot internal-piece-dot-vertex" cx="0" cy="0" r="15"></circle>`;
+    content = `<circle class="internal-piece-dot internal-piece-dot-vertex" cx="0" cy="0" r="15"><animate attributeName="stroke" attributeType="CSS" values="${internalPieceColorValues("#1f2721", internalPieceVertexStroke)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate><animate attributeName="fill" attributeType="CSS" values="#fffdf8; #fffdf8; #fffdf8; #eef5fb; #eef5fb; #eef5fb; #eef5fb; #eef5fb; #fffdf8" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate></circle>`;
   } else if (type === "loop") {
-    content = internalAnimatedPath(loopPath, finalPath, "internal-piece-arrow-l", keyTimes, duration);
+    content = internalAnimatedPath(loopPath, finalPath, "internal-piece-arrow-l", keyTimes, duration, internalPieceLoopStroke, `piece-l-${staggerIndex}`);
   } else {
-    content = internalAnimatedPath(internalLineAsCubicPath(from, to), finalPath, "internal-piece-arrow-n", keyTimes, duration);
+    content = internalAnimatedPath(internalLineAsCubicPath(from, to), finalPath, "internal-piece-arrow-n", keyTimes, duration, internalPieceNonLoopStroke, `piece-n-${staggerIndex}`);
   }
   return `<g class="internal-piece internal-piece-${type}" opacity="1" transform="translate(${internalPoint(start)})">
-        <animate attributeName="opacity" values="1;1;1;1;1;0;0" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate>
-        <animateTransform attributeName="transform" type="translate" values="${internalPoint(start)}; ${internalPoint(start)}; ${internalPoint(decomposed)}; ${internalPoint(classified)}; ${internalPoint(target)}; ${internalPoint(target)}; ${internalPoint(start)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animateTransform>
+        <animate attributeName="opacity" values="1;1;1;1;1;1;1;0;0" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate>
+        <animateTransform attributeName="transform" type="translate" values="${internalPoint(start)}; ${internalPoint(start)}; ${internalPoint(decomposed)}; ${internalPoint(decomposed)}; ${internalPoint(classified)}; ${internalPoint(classified)}; ${internalPoint(target)}; ${internalPoint(target)}; ${internalPoint(start)}" keyTimes="${keyTimes}" ${internalSmoothTiming} dur="${duration}" repeatCount="indefinite"></animateTransform>
         <g class="internal-piece-shape" transform="scale(1)">
-          <animateTransform attributeName="transform" type="scale" values="1;1;1;${compactScale};${arrivalScale};${arrivalScale};1" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="scale" values="1;1;1;${compactScale};${compactScale};${compactScale};${arrivalScale};${arrivalScale};1" keyTimes="${keyTimes}" ${internalSmoothTiming} dur="${duration}" repeatCount="indefinite"></animateTransform>
           ${content}
         </g>
       </g>`;
+}
+
+function internalTargetHighlight(type, keyTimes) {
+  const activeOpacity = type === "vertex" ? "0.9" : "0.82";
+  const opacityAnimation = `<animate attributeName="opacity" values="0;0;0;0;0;${activeOpacity};0;0;0" keyTimes="${keyTimes}" calcMode="discrete" dur="${internalParameterizationDuration}" repeatCount="indefinite"></animate>`;
+  if (type === "vertex") {
+    return `<circle class="internal-target-highlight internal-target-highlight-vertex" cx="73" cy="118" r="24" opacity="0">${opacityAnimation}</circle>`;
+  }
+  if (type === "loop") {
+    return `<path class="internal-target-highlight internal-target-highlight-l" d="M60 129 C22 144, 22 92, 60 107" opacity="0">${opacityAnimation}</path>`;
+  }
+  return `<path class="internal-target-highlight internal-target-highlight-n" d="M86 107 C124 92, 124 144, 86 129" opacity="0">${opacityAnimation}</path>`;
 }
 
 function createInternalParameterizationPieces() {
@@ -7636,7 +7782,10 @@ function createInternalParameterizationPieces() {
     const secondOrder = second.start[0] + second.start[1] * 2;
     return firstOrder - secondOrder;
   });
-  return pieces
+  const highlights = pieces
+    .map((piece, index) => internalTargetHighlight(piece.type, internalStaggeredKeyTimes(index, pieces.length)))
+    .join("\n");
+  const animatedPieces = pieces
     .map((piece, index) => {
       const jitter = [(index % 3 - 1) * 4, (index % 4 - 1.5) * 4];
       return internalParameterizationPiece({
@@ -7647,22 +7796,52 @@ function createInternalParameterizationPieces() {
       });
     })
     .join("\n");
+  return `<g class="internal-target-highlights" transform="translate(${internalPoint(classifierOrigin)})">
+        ${highlights}
+      </g>
+      ${animatedPieces}`;
 }
 
-function quotientStepLight(path, color = "green") {
+const quotientLightColorValues = {
+  green: "#2c6f63",
+  orange: "#b66737",
+  blue: "#2f5f91"
+};
+
+function quotientLightClasses(color = "green") {
   const colorClass = color === "orange" ? " quotient-light-core-orange" : color === "blue" ? " quotient-light-core-blue" : "";
   const filterClass = color === "orange" ? " quotient-moving-light-period" : color === "blue" ? " quotient-moving-light-blue" : "";
+  return { colorClass, filterClass };
+}
+
+function quotientMovingLight(path, {
+  color = "green",
+  dur = "2.7s",
+  begin = "0s",
+  transitionTo = "",
+  className = ""
+} = {}) {
+  const { colorClass, filterClass } = quotientLightClasses(color);
+  const fromColor = quotientLightColorValues[color] || quotientLightColorValues.green;
+  const toColor = quotientLightColorValues[transitionTo] || "";
+  const fillTransition = toColor ? `<animate attributeName="fill" dur="${dur}" begin="${begin}" repeatCount="indefinite" values="${fromColor};${toColor}" keyTimes="0;1"></animate>` : "";
   return `
-        <g class="quotient-moving-light quotient-step-light${filterClass}">
-          <animateMotion dur="2.7s" repeatCount="indefinite" path="${path}"></animateMotion>
-          <animate attributeName="opacity" dur="2.7s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.08;0.62;0.78;1"></animate>
+        <g class="quotient-moving-light quotient-flow-light${filterClass}${className}">
+          <animateMotion dur="${dur}" begin="${begin}" repeatCount="indefinite" path="${path}" calcMode="paced"></animateMotion>
           <circle class="quotient-light-halo" cx="0" cy="0" r="11"></circle>
-          <circle class="quotient-light-core${colorClass}" cx="0" cy="0" r="5.2"></circle>
+          <circle class="quotient-light-core${colorClass}" cx="0" cy="0" r="5.2">${fillTransition}</circle>
         </g>`;
 }
 
-function quotientStepLights(paths, color = "green") {
-  return paths.map((path) => quotientStepLight(path, color)).join("\n");
+function quotientTurnLights(paths, color = "green") {
+  return paths.map((entry) => {
+    const record = typeof entry === "string" ? { path: entry, color } : { color, ...entry };
+    return quotientMovingLight(record.path, {
+    color: record.color || color,
+    transitionTo: record.transitionTo || "",
+    className: " quotient-turn-light"
+    });
+  }).join("\n");
 }
 
 const paperFigureTemplates = {
@@ -7670,7 +7849,13 @@ const paperFigureTemplates = {
     <svg class="internal-parameterization-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-internal-title fig-internal-desc">
       <title id="fig-internal-title">Directed graph local states</title>
       <desc id="fig-internal-desc">In the directed graph example, non-loop edges are classified as N, while self-loops are classified as L in the local state classifier.</desc>
-      <defs><marker id="arrow-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <defs>
+        <marker id="arrow-a" data-internal-marker="default" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-a-piece-n" class="internal-marker-piece-n" data-internal-marker="piece-n" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-a-piece-l" class="internal-marker-piece-l" data-internal-marker="piece-l" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-a-n" class="internal-marker-n" data-internal-marker="n" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-a-l" class="internal-marker-l" data-internal-marker="l" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+      </defs>
       <g transform="translate(34 58)">
         <rect class="internal-panel-bg" x="0" y="0" width="472" height="274" rx="8"></rect>
         <text class="figure-small internal-panel-label" x="24" y="28">X</text>
@@ -7713,57 +7898,149 @@ const paperFigureTemplates = {
       ${createInternalParameterizationPieces()}
     </svg>`,
   "quotient-toposes": `
-    <svg class="quotient-toposes-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
-      <title id="fig-quotient-title">Period, height, and core</title>
-      <desc id="fig-quotient-desc">Three discrete dynamical systems with simultaneous moving lights: each visible point moves at once to its next state, showing finite height, period, and infinite height.</desc>
-      <defs><marker id="arrow-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <g class="quotient-system quotient-system-period" transform="translate(74 34)">
-        <path class="figure-arrow" d="M0 68 H55 H110"></path>
-        <circle class="figure-dot" cx="0" cy="68" r="5"></circle><circle class="figure-dot" cx="55" cy="68" r="5"></circle>
-        <circle class="figure-dot" cx="110" cy="68" r="5"></circle>
-        <circle class="figure-cycle" cx="170" cy="68" r="38"></circle>
-        <path class="figure-arrow" d="M110 68 H132"></path>
-        <circle class="figure-dot" cx="170" cy="30" r="5"></circle><circle class="figure-dot" cx="208" cy="68" r="5"></circle><circle class="figure-dot" cx="170" cy="106" r="5"></circle><circle class="figure-dot" cx="132" cy="68" r="5"></circle>
-        <path class="quotient-guide quotient-height-guide" d="M0 68 H55 H110 H132"></path>
-        <path class="quotient-guide quotient-period-guide" d="M132 68 A38 38 0 1 1 208 68 A38 38 0 1 1 132 68"></path>
-        ${quotientStepLights(["M0 68 H55", "M55 68 H110", "M110 68 H132"], "green")}
-        ${quotientStepLights(["M132 68 A38 38 0 0 1 170 30", "M170 30 A38 38 0 0 1 208 68", "M208 68 A38 38 0 0 1 170 106", "M170 106 A38 38 0 0 1 132 68"], "orange")}
-        <text class="figure-small quotient-label quotient-height-label" x="34" y="50">height</text>
-        <text class="figure-small quotient-label quotient-period-label" x="153" y="18">period</text>
+    <svg class="quotient-toposes-figure" viewBox="0 0 760 430" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
+      <title id="fig-quotient-title">Discrete dynamical systems with finite height and infinite orbit</title>
+      <desc id="fig-quotient-desc">A reconstruction of the paper TikZ picture with an added infinite-height example. The first system has a finite height-three tail followed by a four-cycle. The second system has a finite height-three branch entering a two-sided infinite non-periodic orbit. The third has an infinite-height branch entering a five-cycle. In each turn, every visible point moves along exactly one outgoing arrow.</desc>
+      <defs>
+        <marker id="arrow-b-height" class="quotient-marker-height" data-quotient-marker="height" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-b-period" class="quotient-marker-period" data-quotient-marker="period" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-b-infinite" class="quotient-marker-infinite" data-quotient-marker="infinite" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+      </defs>
+
+      <g class="quotient-legend" transform="translate(506 24)">
+        <circle class="figure-dot quotient-state-height" cx="0" cy="0" r="4.5"></circle>
+        <text class="figure-small quotient-label quotient-height-label" x="13" y="4">finite height</text>
+        <circle class="figure-dot quotient-state-period" cx="0" cy="24" r="4.5"></circle>
+        <text class="figure-small quotient-label quotient-period-label" x="13" y="28">positive period</text>
+        <circle class="figure-dot quotient-state-infinite" cx="0" cy="48" r="4.5"></circle>
+        <text class="figure-small quotient-label quotient-infinite-label" x="13" y="52">infinite orbit</text>
       </g>
-      <g class="quotient-system quotient-system-core" transform="translate(365 48)">
-        <path class="figure-line" d="M0 116 H270"></path>
-        <g class="figure-stem"><path d="M30 20 V116"></path><path d="M90 45 V116"></path><path d="M150 20 V116"></path><path d="M210 45 V116"></path></g>
-        <g><circle class="figure-dot" cx="30" cy="20" r="5"></circle><circle class="figure-dot" cx="30" cy="68" r="5"></circle><circle class="figure-dot" cx="90" cy="45" r="5"></circle><circle class="figure-dot" cx="150" cy="20" r="5"></circle><circle class="figure-dot" cx="150" cy="68" r="5"></circle><circle class="figure-dot" cx="210" cy="45" r="5"></circle></g>
-        <path class="quotient-guide quotient-height-guide" d="M150 20 V68 V116"></path>
-        <path class="quotient-guide quotient-core-guide" d="M0 116 H270"></path>
-        ${quotientStepLights(["M30 20 V68", "M30 68 V116", "M90 45 V116", "M150 20 V68", "M150 68 V116", "M210 45 V116"], "green")}
-        <text class="figure-small quotient-label quotient-height-label" x="156" y="55">height</text>
-        <text class="figure-small quotient-label quotient-core-label" x="166" y="142">period 0</text>
+
+      <g class="quotient-system quotient-system-t34" transform="translate(82 18)">
+
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M0 76 H58"></path>
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M58 76 H116"></path>
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M116 76 H174"></path>
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M174 76 A45 45 0 0 1 219 121"></path>
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M219 121 A45 45 0 0 1 174 166"></path>
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M174 166 A45 45 0 0 1 129 121"></path>
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M129 121 A45 45 0 0 1 174 76"></path>
+
+        <path class="quotient-guide quotient-height-guide" d="M0 76 H58 H116 H174"></path>
+        <path class="quotient-guide quotient-period-guide" d="M174 76 A45 45 0 0 1 219 121 A45 45 0 0 1 174 166 A45 45 0 0 1 129 121 A45 45 0 0 1 174 76"></path>
+        ${quotientTurnLights(["M0 76 H58", "M58 76 H116", "M116 76 H174"], "green")}
+        ${quotientTurnLights(["M174 76 A45 45 0 0 1 219 121", "M219 121 A45 45 0 0 1 174 166", "M174 166 A45 45 0 0 1 129 121", "M129 121 A45 45 0 0 1 174 76"], "orange")}
+
+        <circle class="figure-dot quotient-state-height" cx="0" cy="76" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-height" cx="58" cy="76" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-height" cx="116" cy="76" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="174" cy="76" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="219" cy="121" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="174" cy="166" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="129" cy="121" r="5.4"></circle>
+        <text class="figure-small quotient-label quotient-height-label" x="42" y="58">height 3</text>
+        <text class="figure-small quotient-label quotient-period-label" x="206" y="87">period 4</text>
       </g>
-      <g class="quotient-system quotient-system-infinite" transform="translate(110 265)">
-        <path class="figure-line dashed" d="M0 0 H540"></path>
-        <path class="figure-line dashed" d="M0 45 H228"></path>
-        <path class="figure-line" d="M35 45 H110 H178 H228 L285 0 H425"></path>
-        <g><circle class="figure-dot ghost-fill" cx="35" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="110" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="178" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="228" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="285" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="355" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="425" cy="0" r="5"></circle></g>
-        <path class="quotient-guide quotient-infinite-guide" d="M35 45 H110 H178 H228 L285 0 H355 H425"></path>
-        ${quotientStepLights(["M-35 45 H35", "M35 45 H110", "M110 45 H178", "M178 45 H228", "M228 45 L285 0", "M285 0 H355", "M355 0 H425", "M425 0 H515"], "blue")}
-        <text class="figure-small quotient-label quotient-infinite-label" x="34" y="82">infinite height</text>
+
+      <g class="quotient-system quotient-system-t30" transform="translate(68 177)">
+
+        <text class="quotient-ellipsis quotient-ellipsis-left" x="20" y="102">...</text>
+        <text class="quotient-ellipsis quotient-ellipsis-right" x="638" y="102">...</text>
+        <path class="figure-line quotient-infinite-continuation" d="M44 96 H614"></path>
+
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M244 32 H304"></path>
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M304 32 H364"></path>
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M364 32 L424 96"></path>
+
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M52 96 H72"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M72 96 H132"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M132 96 H192"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M192 96 H252"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M252 96 H312"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M312 96 H372"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M372 96 H424"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M424 96 H484"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M484 96 H544"></path>
+        <path class="figure-arrow quotient-edge-infinite" data-quotient-arrow="infinite" d="M544 96 H606"></path>
+
+        <path class="quotient-guide quotient-height-guide" d="M244 32 H304 H364 L424 96"></path>
+        <path class="quotient-guide quotient-infinite-guide" d="M52 96 H72 H132 H192 H252 H312 H372 H424 H484 H544 H606"></path>
+        ${quotientTurnLights(["M244 32 H304", "M304 32 H364", "M364 32 L424 96"], "green")}
+        ${quotientTurnLights(["M52 96 H72", "M72 96 H132", "M132 96 H192", "M192 96 H252", "M252 96 H312", "M312 96 H372", "M372 96 H424", "M424 96 H484", "M484 96 H544", "M544 96 H606"], "orange")}
+
+        <circle class="figure-dot quotient-state-height" cx="244" cy="32" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-height" cx="304" cy="32" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-height" cx="364" cy="32" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="72" cy="96" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="132" cy="96" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="192" cy="96" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="252" cy="96" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="312" cy="96" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="372" cy="96" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="424" cy="96" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="484" cy="96" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-infinite" cx="544" cy="96" r="5.4"></circle>
+        <text class="figure-small quotient-label quotient-height-label" x="246" y="58">height 3</text>
+        <text class="figure-small quotient-label quotient-infinite-label" x="424" y="122">non-periodic infinite orbit</text>
       </g>
-    </svg>
-    <span class="figure-math small" style="left: 23%; top: 39.5%;">\\((h,p)=(3,4)\\)</span>
-    <span class="figure-math small" style="left: 54.6%; top: 45.5%;">\\((h,p)=(3,0)\\)</span>
-    <span class="figure-math small" style="left: 43.5%; top: 91%;">\\((h,p)=(\\infty,0)\\)</span>`,
+
+      <g class="quotient-system quotient-system-infinite-period" transform="translate(72 300)">
+        <text class="quotient-ellipsis quotient-ellipsis-left" x="16" y="58">...</text>
+        <path class="figure-line quotient-infinite-height-continuation" d="M44 52 H350"></path>
+
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M72 52 H132"></path>
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M132 52 H192"></path>
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M192 52 H252"></path>
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M252 52 H312"></path>
+        <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M312 52 H370"></path>
+
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M370 52 L410 23"></path>
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M410 23 L450 52"></path>
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M450 52 L435 99"></path>
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M435 99 L385 99"></path>
+        <path class="figure-arrow quotient-edge-period" data-quotient-arrow="period" d="M385 99 L370 52"></path>
+
+        <path class="quotient-guide quotient-height-guide" d="M72 52 H132 H192 H252 H312 H370"></path>
+        <path class="quotient-guide quotient-period-guide" d="M370 52 L410 23 L450 52 L435 99 L385 99 L370 52"></path>
+        ${quotientTurnLights(["M72 52 H132", "M132 52 H192", "M192 52 H252", "M252 52 H312", "M312 52 H370"], "green")}
+        ${quotientTurnLights(["M370 52 L410 23", "M410 23 L450 52", "M450 52 L435 99", "M435 99 L385 99", "M385 99 L370 52"], "orange")}
+
+        <circle class="figure-dot quotient-state-height" cx="72" cy="52" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-height" cx="132" cy="52" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-height" cx="192" cy="52" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-height" cx="252" cy="52" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-height" cx="312" cy="52" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="370" cy="52" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="410" cy="23" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="450" cy="52" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="435" cy="99" r="5.4"></circle>
+        <circle class="figure-dot quotient-state-period" cx="385" cy="99" r="5.4"></circle>
+        <text class="figure-small quotient-label quotient-height-label" x="150" y="34">infinite height</text>
+        <text class="figure-small quotient-label quotient-period-label" x="463" y="56">period 5</text>
+      </g>
+    </svg>`,
   "completely-connected": completelyConnectedFigureTemplate(),
   "lawvere-first": `
     <svg class="tensor-animation-figure tensor-factorization-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
       <title id="fig-lawvere-first-title">Power set tensor calculation through image factorization</title>
       <desc id="fig-lawvere-first-desc">A concrete calculation for the covariant power set functor: the restricted map from S factors as an epimorphism onto f(S) followed by the inclusion into X, giving the minimal expression.</desc>
-      <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <defs>
+        <marker id="tensor-f-arrow-warm" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4.4" markerHeight="4.4" orient="auto">
+          <path class="tensor-f-arrow-head tensor-f-arrow-head-warm" d="M 1 1 L 9 5 L 1 9 z"></path>
+        </marker>
+        <marker id="tensor-f-arrow-green" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4.4" markerHeight="4.4" orient="auto">
+          <path class="tensor-f-arrow-head tensor-f-arrow-head-green" d="M 1 1 L 9 5 L 1 9 z"></path>
+        </marker>
+        <marker id="tensor-f-arrow-muted" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="3.6" markerHeight="3.6" orient="auto">
+          <path class="tensor-f-arrow-head tensor-f-arrow-head-muted" d="M 1 1 L 9 5 L 1 9 z"></path>
+        </marker>
+      </defs>
       <text class="figure-small lawvere-caption" x="380" y="30">power set tensor: image factorization gives the minimal expression</text>
 
       <g transform="translate(42 56)">
         <rect class="tensor-string-card" x="0" y="0" width="676" height="270" rx="14"></rect>
+        <rect class="tensor-set-envelope tensor-x-envelope" x="48" y="34" width="238" height="206" rx="54"></rect>
+        <rect class="tensor-set-envelope tensor-a-envelope" x="452" y="34" width="218" height="206" rx="54"></rect>
         <text class="tensor-side-label" x="76" y="48">X</text>
         <text class="tensor-side-label tensor-image-label" x="332" y="48">f(S)</text>
         <text class="tensor-side-label" x="546" y="48">A</text>
@@ -7771,19 +8048,19 @@ const paperFigureTemplates = {
 
         <rect class="tensor-s-envelope" x="510" y="68" width="140" height="156" rx="42"></rect>
 
-        <path class="tensor-cord selected" pathLength="1" d="M500 104 C396 74, 232 74, 144 92"></path>
-        <path class="tensor-cord muted" pathLength="1" d="M570 104 C482 112, 344 118, 236 112"></path>
-        <path class="tensor-cord selected" pathLength="1" d="M640 104 C492 52, 290 58, 144 92"></path>
-        <path class="tensor-cord selected green" pathLength="1" d="M500 196 C402 190, 258 178, 144 178"></path>
-        <path class="tensor-cord muted" pathLength="1" d="M570 196 C470 214, 340 214, 236 194"></path>
-        <path class="tensor-cord selected green" pathLength="1" d="M640 196 C500 238, 290 222, 144 178"></path>
+        <path class="tensor-cord selected" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M500 104 C396 74, 232 74, 182 92"></path>
+        <path class="tensor-cord muted" marker-end="url(#tensor-f-arrow-muted)" pathLength="1" d="M570 104 C482 112, 344 118, 268 112"></path>
+        <path class="tensor-cord selected" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M640 104 C492 52, 290 58, 182 92"></path>
+        <path class="tensor-cord selected green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M500 196 C402 190, 258 178, 182 178"></path>
+        <path class="tensor-cord muted" marker-end="url(#tensor-f-arrow-muted)" pathLength="1" d="M570 196 C470 214, 340 214, 268 194"></path>
+        <path class="tensor-cord selected green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M640 196 C500 238, 290 222, 182 178"></path>
 
-        <path class="tensor-factor-cord tensor-epi-cord warm" pathLength="1" d="M500 104 C452 82, 386 78, 332 96"></path>
-        <path class="tensor-factor-cord tensor-epi-cord warm" pathLength="1" d="M640 104 C520 54, 410 58, 332 96"></path>
-        <path class="tensor-factor-cord tensor-epi-cord green" pathLength="1" d="M500 196 C450 194, 390 180, 332 184"></path>
-        <path class="tensor-factor-cord tensor-epi-cord green" pathLength="1" d="M640 196 C522 230, 408 218, 332 184"></path>
-        <path class="tensor-factor-cord tensor-mono-cord warm" pathLength="1" d="M332 96 C270 88, 204 86, 144 92"></path>
-        <path class="tensor-factor-cord tensor-mono-cord green" pathLength="1" d="M332 184 C264 184, 204 180, 144 178"></path>
+        <path class="tensor-factor-cord tensor-epi-cord warm" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M500 104 C452 82, 390 78, 366 96"></path>
+        <path class="tensor-factor-cord tensor-epi-cord warm" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M640 104 C520 54, 414 58, 366 96"></path>
+        <path class="tensor-factor-cord tensor-epi-cord green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M500 196 C450 194, 390 180, 366 184"></path>
+        <path class="tensor-factor-cord tensor-epi-cord green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M640 196 C522 230, 412 218, 366 184"></path>
+        <path class="tensor-factor-cord tensor-mono-cord warm" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M308 96 C270 88, 214 86, 182 92"></path>
+        <path class="tensor-factor-cord tensor-mono-cord green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M308 184 C264 184, 210 180, 182 178"></path>
 
         <text class="tensor-map-symbol tensor-f-label" x="352" y="148">f</text>
         <text class="tensor-factor-label tensor-e-label" x="430" y="70">epi</text>
@@ -7807,17 +8084,19 @@ const paperFigureTemplates = {
         <text class="tensor-length" x="338" y="246">epi-mono factorization removes degeneracy</text>
       </g>
     </svg>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-1">\\(t=(X\\xleftarrow{f}A)\\otimes(S\\subset A)\\)</span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-2">\\(t=(X\\xleftarrow{f|_S}S)\\otimes(S\\subset S)\\)</span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-3">\\(f|_S=i\\circ e,\\quad S\\twoheadrightarrow f(S)\\hookrightarrow X\\)</span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-4">\\(t=(X\\xleftarrow{i}f(S))\\otimes(f(S)\\subset f(S)),\\quad \\mathrm{Le}(t)=\\#f(S)\\)</span>`,
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-1">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f}A})\\otimes(\\textcolor{#b66737}{S\\subset A})\\)</span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-2">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f|_S}S})\\otimes(\\textcolor{#b66737}{S\\subset S})\\)</span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-3">\\(\\textcolor{#2c6f63}{f|_S=i\\circ e},\\quad \\textcolor{#b66737}{S}\\textcolor{#2c6f63}{\\twoheadrightarrow f(S)\\hookrightarrow X}\\)</span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-4">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{i}f(S)})\\otimes(\\textcolor{#b66737}{f(S)\\subset f(S)}),\\quad \\mathrm{Le}(t)=\\#\\textcolor{#2c6f63}{f(S)}\\)</span>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
     <svg class="automata-cover-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
       <title id="fig-automata-title">Automaton as a directed covering over a bouquet</title>
       <desc id="fig-automata-desc">A finite automaton is drawn as a directed graph over the one-vertex bouquet B Sigma. A moving point on the bouquet is lifted to a moving point in the automaton.</desc>
       <defs>
-        <marker id="arrow-automata-cover" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z"></path></marker>
+        <marker id="arrow-automata-cover-a" class="automata-marker-a" data-automata-marker="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z"></path></marker>
+        <marker id="arrow-automata-cover-b" class="automata-marker-b" data-automata-marker="b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z"></path></marker>
+        <marker id="arrow-automata-cover-neutral" class="automata-marker-neutral" data-automata-marker="neutral" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z"></path></marker>
       </defs>
       <g transform="translate(22 18)">
         <g class="automata-input-tape" transform="translate(54 248) scale(1.06)">
@@ -7825,42 +8104,41 @@ const paperFigureTemplates = {
           <text class="figure-small automata-input-label" x="28" y="34">w =</text>
           <g transform="translate(62 34)">
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
-              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.24;0.25;0.99;1"></animate>
+              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1;1" keyTimes="0;0.065;0.12;0.495;0.5;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">a</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(34 0)">
-              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.49;0.5;0.99;1"></animate>
+              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1;1" keyTimes="0;0.19;0.245;0.495;0.5;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">a</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-b" transform="translate(68 0)">
-              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.74;0.75;0.99;1"></animate>
+              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1;1" keyTimes="0;0.315;0.37;0.495;0.5;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">b</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-b" transform="translate(102 0)">
-              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.94;0.95;0.99;1"></animate>
+              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1;1" keyTimes="0;0.42;0.47;0.495;0.5;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">b</text>
             </g>
             <text class="figure-small automata-language-mark automata-language-accept" x="144" y="5">accept</text>
-            <g class="automata-input-head" transform="translate(0 24)">
-              <animateTransform attributeName="transform" type="translate" dur="8s" repeatCount="indefinite" values="0 24;0 24;34 24;34 24;68 24;68 24;102 24;102 24;136 24;136 24;0 24" keyTimes="0;0.24;0.25;0.49;0.5;0.74;0.75;0.94;0.95;0.99;1"></animateTransform>
-              <path d="M-7 0 H7 M0 0 V11"></path>
-            </g>
           </g>
           <text class="figure-small automata-input-label" x="28" y="77">u =</text>
           <g transform="translate(62 77)">
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
+              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.565;0.62;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">a</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-b" transform="translate(34 0)">
+              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.69;0.745;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">b</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(68 0)">
+              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.815;0.87;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">a</text>
             </g>
@@ -7869,9 +8147,6 @@ const paperFigureTemplates = {
         </g>
 
         <g transform="translate(18 4) scale(1.08)">
-          <rect class="automata-panel automata-panel-total" x="0" y="0" width="434" height="224" rx="12"></rect>
-          <text class="figure-small automata-panel-title" x="24" y="30">A</text>
-
           <path class="figure-arrow automata-edge automata-edge-a" d="M91 125 C114 74, 134 74, 157 125"></path>
           <path class="figure-arrow automata-edge automata-edge-a" d="M164 116 C118 50, 234 50, 188 116"></path>
           <path class="figure-arrow automata-edge automata-edge-a" d="M302 123 C328 74, 344 74, 365 125"></path>
@@ -7882,60 +8157,93 @@ const paperFigureTemplates = {
           <path class="figure-arrow automata-edge automata-edge-b" d="M266 151 C226 214, 334 214, 294 151"></path>
           <path class="figure-arrow automata-edge automata-edge-b" d="M365 139 C344 184, 326 184, 302 141"></path>
 
-          <path class="figure-arrow automata-start-arrow" d="M25 132 H52"></path>
-
           <g class="automata-state" transform="translate(72 132)">
-            <circle class="figure-node soft" cx="0" cy="0" r="20"></circle>
-            <text class="figure-small" x="0" y="6">q0</text>
+            <circle class="figure-node" cx="0" cy="0" r="20"></circle>
           </g>
           <g class="automata-state" transform="translate(176 132)">
             <circle class="figure-node" cx="0" cy="0" r="20"></circle>
-            <text class="figure-small" x="0" y="6">q1</text>
           </g>
           <g class="automata-state automata-state-accepting" transform="translate(280 132)">
-            <circle class="figure-node warm" cx="0" cy="0" r="24"></circle>
+            <circle class="figure-node" cx="0" cy="0" r="24"></circle>
             <circle class="automata-accept-ring" cx="0" cy="0" r="17"></circle>
-            <text class="figure-small" x="0" y="6">q2</text>
           </g>
           <g class="automata-state" transform="translate(384 132)">
             <circle class="figure-node" cx="0" cy="0" r="20"></circle>
-            <text class="figure-small" x="0" y="6">q3</text>
           </g>
 
           <g class="automata-moving-dot automata-moving-dot-cover">
-            <animateMotion dur="8s" repeatCount="indefinite" path="M72 132 L91 125 C114 74, 134 74, 157 125 L176 132 L164 116 C118 50, 234 50, 188 116 L176 132 L195 139 C218 184, 236 184, 258 141 L280 132 L266 151 C226 214, 334 214, 294 151 L280 132"></animateMotion>
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M72 132 L91 125 C114 74, 134 74, 157 125 L176 132 L164 116 C118 50, 234 50, 188 116 L176 132 L195 139 C218 184, 236 184, 258 141 L280 132 L266 151 C226 214, 334 214, 294 151 L280 132" keyTimes="0;0.49;0.5;1" keyPoints="0;1;0;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0;0;1" keyTimes="0;0.49;0.5;0.99;1"></animate>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="12"></circle>
             <circle class="automata-moving-dot-core" cx="0" cy="0" r="6">
-              <animate attributeName="fill" dur="8s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c" keyTimes="0;0.5;0.5001;0.99;1"></animate>
+              <animate attributeName="fill" dur="16s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c" keyTimes="0;0.25;0.2501;0.49;0.5;1"></animate>
+            </circle>
+          </g>
+          <g class="automata-moving-dot automata-moving-dot-reject">
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M72 132 L91 125 C114 74, 134 74, 157 125 L176 132 L195 139 C218 184, 236 184, 258 141 L280 132 L302 123 C328 74, 344 74, 365 125 L384 132" keyTimes="0;0.5;0.99;1" keyPoints="0;0;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.5;0.51;0.99;1"></animate>
+            <circle class="automata-moving-dot-halo" cx="0" cy="0" r="10"></circle>
+            <circle class="automata-moving-dot-core" cx="0" cy="0" r="4.8">
+              <animate attributeName="fill" dur="16s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c" keyTimes="0;0.665;0.6651;0.83;0.8301;1"></animate>
             </circle>
           </g>
 
-          <text class="figure-small automata-edge-label automata-edge-label-a" x="224" y="46">a</text>
-          <text class="figure-small automata-edge-label automata-edge-label-b" x="224" y="205">b</text>
         </g>
 
         <g transform="translate(506 76) scale(0.98)">
-          <rect class="automata-panel automata-panel-base" x="0" y="0" width="226" height="112" rx="12"></rect>
-          <text class="figure-small automata-panel-title" x="36" y="31">B&#931;</text>
           <g transform="translate(113 72)">
             <path class="figure-arrow automata-edge automata-edge-a" d="M-12 -11 C-58 -58, 58 -58, 12 -11"></path>
             <path class="figure-arrow automata-edge automata-edge-b" d="M12 11 C58 58, -58 58, -12 11"></path>
-            <circle class="figure-node soft-2" cx="0" cy="0" r="17"></circle>
-            <text class="figure-small" x="0" y="6">*</text>
+            <circle class="figure-node" cx="0" cy="0" r="17"></circle>
             <g class="automata-moving-dot automata-moving-dot-base">
-              <animateMotion dur="8s" repeatCount="indefinite" path="M0 0 C-58 -58, 58 -58, 0 0 C-58 -58, 58 -58, 0 0 C58 58, -58 58, 0 0 C58 58, -58 58, 0 0"></animateMotion>
+              <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M0 0 C-58 -58, 58 -58, 0 0 C-58 -58, 58 -58, 0 0 C58 58, -58 58, 0 0 C58 58, -58 58, 0 0 C-58 -58, 58 -58, 0 0 C58 58, -58 58, 0 0 C-58 -58, 58 -58, 0 0" keyTimes="0;0.5;1" keyPoints="0;0.5714;1"></animateMotion>
               <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
               <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.6">
-                <animate attributeName="fill" dur="8s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c" keyTimes="0;0.5;0.5001;0.99;1"></animate>
+                <animate attributeName="fill" dur="16s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c" keyTimes="0;0.25;0.2501;0.5;0.5001;0.6666;0.6667;0.8333;0.8334;1"></animate>
               </circle>
             </g>
-            <text class="figure-small automata-edge-label automata-edge-label-a" x="0" y="-43">a</text>
-            <text class="figure-small automata-edge-label automata-edge-label-b" x="0" y="58">b</text>
           </g>
         </g>
 
-        <path class="figure-arrow dashed automata-projection" d="M488 148 H506"></path>
-        <text class="figure-small automata-projection-label" x="497" y="133">p</text>
+        <path class="figure-arrow dashed automata-projection" d="M456 148 H600"></path>
+        <text class="figure-small automata-projection-label" x="528" y="133">p</text>
+        <g class="automata-consuming-letters">
+          <g class="automata-consumed-letter automata-consumed-letter-a">
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M120 284 C122 232, 126 148, 156 102" keyTimes="0;0.06;0.115;0.125;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.06;0.08;0.115;0.125;0.99;1"></animate>
+            <text x="0" y="5">a</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-a">
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M156 284 C170 222, 178 124, 208 84" keyTimes="0;0.18;0.24;0.25;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.18;0.2;0.24;0.25;0.99;1"></animate>
+            <text x="0" y="5">a</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-b">
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M192 284 C210 254, 232 198, 264 186" keyTimes="0;0.305;0.365;0.375;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.305;0.325;0.365;0.375;0.99;1"></animate>
+            <text x="0" y="5">b</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-b">
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M228 284 C260 272, 292 214, 320 198" keyTimes="0;0.41;0.465;0.475;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.41;0.43;0.465;0.475;0.99;1"></animate>
+            <text x="0" y="5">b</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-a">
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M120 330 C118 268, 126 148, 156 102" keyTimes="0;0.56;0.615;0.625;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.56;0.58;0.615;0.625;0.99;1"></animate>
+            <text x="0" y="5">a</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-b">
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M156 330 C174 284, 218 208, 264 186" keyTimes="0;0.68;0.74;0.75;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.68;0.7;0.74;0.75;0.99;1"></animate>
+            <text x="0" y="5">b</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-a">
+            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M192 330 C246 278, 326 150, 382 102" keyTimes="0;0.805;0.865;0.875;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.805;0.825;0.865;0.875;0.99;1"></animate>
+            <text x="0" y="5">a</text>
+          </g>
+        </g>
       </g>
     </svg>`,
   "games-coalgebras": grundyFigureTemplate(),
@@ -8035,6 +8343,83 @@ function applyFigureMarkerIds(container, figureId, prefix) {
     });
     return;
   }
+  if (figureId === "internal-parameterizations") {
+    if (!svg) return;
+    const markers = new Map();
+    svg.querySelectorAll("marker[data-internal-marker]").forEach((marker) => {
+      const group = marker.dataset.internalMarker || "default";
+      const markerId = `${prefix}-${figureId}-${group}`;
+      marker.id = markerId;
+      markers.set(group, markerId);
+    });
+    svg.querySelectorAll("marker[data-internal-piece-marker]").forEach((marker) => {
+      const group = marker.dataset.internalPieceMarker || "";
+      const markerId = `${prefix}-${figureId}-${group}`;
+      marker.id = markerId;
+      markers.set(`piece:${group}`, markerId);
+    });
+    const setMarker = (selector, group) => {
+      const markerId = markers.get(group);
+      if (!markerId) return;
+      svg.querySelectorAll(selector).forEach((path) => {
+        path.setAttribute("marker-end", `url(#${markerId})`);
+      });
+    };
+    svg.querySelectorAll(".internal-piece-arrow[data-internal-piece-marker]").forEach((path) => {
+      const markerId = markers.get(`piece:${path.dataset.internalPieceMarker || ""}`);
+      if (markerId) path.setAttribute("marker-end", `url(#${markerId})`);
+    });
+    setMarker(".internal-loop-n", "n");
+    setMarker(".internal-loop-l", "l");
+
+    const defaultMarker = markers.get("default");
+    if (defaultMarker) {
+      svg.querySelectorAll(".figure-arrow").forEach((path) => {
+        if (!path.hasAttribute("marker-end")) {
+          path.setAttribute("marker-end", `url(#${defaultMarker})`);
+        }
+      });
+    }
+    return;
+  }
+  if (figureId === "quotient-toposes") {
+    if (!svg) return;
+    const markers = new Map();
+    svg.querySelectorAll("marker[data-quotient-marker]").forEach((marker) => {
+      const group = marker.dataset.quotientMarker || "height";
+      const markerId = `${prefix}-${figureId}-${group}`;
+      marker.id = markerId;
+      markers.set(group, markerId);
+    });
+    svg.querySelectorAll("[data-quotient-arrow]").forEach((path) => {
+      const markerId = markers.get(path.dataset.quotientArrow);
+      if (markerId) {
+        path.setAttribute("marker-end", `url(#${markerId})`);
+      }
+    });
+    return;
+  }
+  if (figureId === "topoi-automata") {
+    if (!svg) return;
+    const markers = new Map();
+    svg.querySelectorAll("marker[data-automata-marker]").forEach((marker) => {
+      const group = marker.dataset.automataMarker || "neutral";
+      const markerId = `${prefix}-${figureId}-${group}`;
+      marker.id = markerId;
+      markers.set(group, markerId);
+    });
+    const setMarker = (selector, group) => {
+      const markerId = markers.get(group);
+      if (!markerId) return;
+      svg.querySelectorAll(selector).forEach((path) => {
+        path.setAttribute("marker-end", `url(#${markerId})`);
+      });
+    };
+    setMarker(".automata-edge-a", "a");
+    setMarker(".automata-edge-b", "b");
+    setMarker(".automata-projection", "neutral");
+    return;
+  }
   const marker = svg?.querySelector("marker");
   if (!svg || !marker) return;
   const markerId = `${prefix}-${figureId}`;
@@ -8113,6 +8498,252 @@ const normalizationSubgroupElements = {
   one: ["e"]
 };
 
+const normalizationElementCoordinates = {
+  orientation: {
+    o0: [21, 23],
+    o1: [45, 23]
+  },
+  halfturn: {
+    h0: [8, 13],
+    h1: [48, 13],
+    h2: [48, 37],
+    h3: [8, 37]
+  },
+  free: {
+    e: [21, -1],
+    s: [37, 5],
+    s2: [43, 21],
+    s3: [37, 37],
+    t: [21, 43],
+    st: [5, 37],
+    s2t: [-1, 21],
+    s3t: [5, 5]
+  },
+  fixed: {
+    p0: [17, 16]
+  }
+};
+
+const normalizationElementTuples = {
+  e: [0, 0],
+  s: [1, 0],
+  s2: [2, 0],
+  s3: [3, 0],
+  t: [0, 1],
+  st: [1, 1],
+  s2t: [2, 1],
+  s3t: [3, 1]
+};
+
+const normalizationTupleElements = Object.fromEntries(
+  Object.entries(normalizationElementTuples).map(([element, tuple]) => [tuple.join(","), element])
+);
+
+const normalizationD4Matrices = {
+  e: [1, 0, 0, 1],
+  s: [0, 1, -1, 0],
+  s2: [-1, 0, 0, -1],
+  s3: [0, -1, 1, 0],
+  t: [0, 1, 1, 0],
+  st: [-1, 0, 0, 1],
+  s2t: [0, -1, -1, 0],
+  s3t: [1, 0, 0, -1]
+};
+
+const normalizationGeometricMotion = {
+  vertex: [21, 25],
+  edge: [21, 25],
+  diagonal: [21, 25],
+  axis: [21, 25]
+};
+
+const normalizationOrbitCoordinates = {
+  vertex: {
+    v0: [-1, -1],
+    v1: [1, -1],
+    v2: [1, 1],
+    v3: [-1, 1]
+  },
+  edge: {
+    e0: [0, -1],
+    e1: [1, 0],
+    e2: [0, 1],
+    e3: [-1, 0]
+  }
+};
+
+const normalizationMotionState = new WeakMap();
+
+function normalizationMultiplyElements(left, right) {
+  const leftTuple = normalizationElementTuples[left] || normalizationElementTuples.e;
+  const rightTuple = normalizationElementTuples[right] || normalizationElementTuples.e;
+  const rotationSign = leftTuple[1] ? -1 : 1;
+  const rotation = (leftTuple[0] + rotationSign * rightTuple[0] + 4) % 4;
+  const reflection = (leftTuple[1] + rightTuple[1]) % 2;
+  return normalizationTupleElements[[rotation, reflection].join(",")] || "e";
+}
+
+function normalizationPointByCoordinate(orbit, coordinate) {
+  const [targetX, targetY] = coordinate;
+  const coordinates = normalizationOrbitCoordinates[orbit] || {};
+  return Object.entries(coordinates).find(([, [x, y]]) => x === targetX && y === targetY)?.[0] || "";
+}
+
+function normalizationTargetCoordinate(elementId, coordinate) {
+  const [x, y] = coordinate;
+  const [a, b, c, d] = normalizationD4Matrices[elementId] || normalizationD4Matrices.e;
+  return [a * x + c * y, b * x + d * y];
+}
+
+function normalizationLineTargetPoint(orbit, elementId, pointId) {
+  const lineVectors = orbit === "diagonal"
+    ? { d0: [1, 1], d1: [1, -1] }
+    : { a0: [0, 1], a1: [1, 0] };
+  const vector = lineVectors[pointId];
+  if (!vector) return pointId;
+  const [x, y] = normalizationTargetCoordinate(elementId, vector);
+  if (orbit === "diagonal") return x * y > 0 ? "d0" : "d1";
+  return x === 0 ? "a0" : "a1";
+}
+
+function normalizationHalfturnTargetPoint(elementId, pointId) {
+  const representatives = {
+    h0: "e",
+    h1: "s",
+    h2: "st",
+    h3: "t"
+  };
+  const product = normalizationMultiplyElements(elementId, representatives[pointId] || "e");
+  const tuple = normalizationElementTuples[product] || normalizationElementTuples.e;
+  if (!tuple[1]) return tuple[0] % 2 === 0 ? "h0" : "h1";
+  return tuple[0] % 2 === 0 ? "h3" : "h2";
+}
+
+function normalizationTargetPoint(orbit, elementId, pointId) {
+  if (orbit === "vertex" || orbit === "edge") {
+    const coordinate = normalizationOrbitCoordinates[orbit]?.[pointId];
+    if (!coordinate) return pointId;
+    return normalizationPointByCoordinate(orbit, normalizationTargetCoordinate(elementId, coordinate)) || pointId;
+  }
+  if (orbit === "diagonal" || orbit === "axis") return normalizationLineTargetPoint(orbit, elementId, pointId);
+  if (orbit === "free") return normalizationMultiplyElements(elementId, pointId);
+  if (orbit === "halfturn") return normalizationHalfturnTargetPoint(elementId, pointId);
+  if (orbit === "orientation") {
+    const tuple = normalizationElementTuples[elementId] || normalizationElementTuples.e;
+    if (!tuple[1]) return pointId;
+    return pointId === "o0" ? "o1" : "o0";
+  }
+  return pointId;
+}
+
+function normalizationMatrixAround(center, linear) {
+  const [cx, cy] = center;
+  const [a, b, c, d] = linear;
+  return [a, b, c, d, cx - a * cx - c * cy, cy - b * cx - d * cy];
+}
+
+function normalizationTranslateMatrix(dx, dy) {
+  return [1, 0, 0, 1, dx, dy];
+}
+
+function normalizationMatrixString(matrix) {
+  return `matrix(${matrix.map((value) => Number(value.toFixed(3))).join(" ")})`;
+}
+
+function normalizationEase(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function animateNormalizationTransform(element, targetMatrix) {
+  const currentState = normalizationMotionState.get(element);
+  const fromMatrix = currentState?.matrix || [1, 0, 0, 1, 0, 0];
+  if (currentState?.frame) cancelAnimationFrame(currentState.frame);
+
+  const prefersReducedMotion =
+    typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const canAnimate =
+    typeof requestAnimationFrame === "function" &&
+    typeof performance !== "undefined" &&
+    !prefersReducedMotion;
+
+  if (!canAnimate) {
+    element.setAttribute("transform", normalizationMatrixString(targetMatrix));
+    normalizationMotionState.set(element, { matrix: targetMatrix, frame: null });
+    return;
+  }
+
+  const startedAt = performance.now();
+  const duration = 360;
+  const state = { matrix: fromMatrix, frame: null };
+  normalizationMotionState.set(element, state);
+
+  const step = (now) => {
+    const progress = Math.min(1, (now - startedAt) / duration);
+    const eased = normalizationEase(progress);
+    const matrix = targetMatrix.map((targetValue, index) => fromMatrix[index] + (targetValue - fromMatrix[index]) * eased);
+    state.matrix = matrix;
+    element.setAttribute("transform", normalizationMatrixString(matrix));
+    if (progress < 1) {
+      state.frame = requestAnimationFrame(step);
+      return;
+    }
+    state.frame = null;
+    state.matrix = targetMatrix;
+    element.setAttribute("transform", normalizationMatrixString(targetMatrix));
+  };
+
+  state.frame = requestAnimationFrame(step);
+}
+
+function normalizationCurrentActionState(root) {
+  const current = root.dataset.normalizationActionState || "e";
+  return normalizationElementLabels[current] ? current : "e";
+}
+
+function setNormalizationActionMotion(root, elementId) {
+  const actedElement = normalizationElementLabels[elementId] ? elementId : "e";
+  const fromState = normalizationCurrentActionState(root);
+  const toState = normalizationMultiplyElements(actedElement, fromState);
+  const d4Matrix = normalizationD4Matrices[toState] || normalizationD4Matrices.e;
+  root.dataset.normalizationActionState = toState;
+
+  root.querySelectorAll("[data-normalization-orbit][data-normalization-point]").forEach((place) => {
+    const orbit = place.dataset.normalizationOrbit || "";
+    const pointId = place.dataset.normalizationPoint || "";
+    const center = normalizationGeometricMotion[orbit];
+    if (center) {
+      animateNormalizationTransform(place, normalizationMatrixAround(center, d4Matrix));
+      return;
+    }
+
+    const points = normalizationElementCoordinates[orbit];
+    const source = points?.[pointId];
+    const target = points?.[normalizationTargetPoint(orbit, toState, pointId)];
+    if (!source || !target) return;
+    animateNormalizationTransform(place, normalizationTranslateMatrix(target[0] - source[0], target[1] - source[1]));
+  });
+
+  return { actedElement, fromState, toState };
+}
+
+function normalizationPlaceStayedPut(place, fromState, toState) {
+  const orbit = place.dataset.normalizationOrbit || "";
+  const pointId = place.dataset.normalizationPoint || "";
+  if (!orbit || !pointId) return false;
+  return normalizationTargetPoint(orbit, fromState, pointId) === normalizationTargetPoint(orbit, toState, pointId);
+}
+
+function pulseNormalizationElementControl(root, elementId) {
+  root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
+    const isActed = control.dataset.normalizationElementControl === elementId;
+    control.classList.remove("is-acted");
+    if (!isActed) return;
+    control.getBoundingClientRect();
+    control.classList.add("is-acted");
+    window.setTimeout(() => control.classList.remove("is-acted"), 260);
+  });
+}
+
 function setNormalizationSelection(root, subgroupId = "d4") {
   const selected = normalizationContainment[subgroupId] ? subgroupId : "d4";
   const allowed = new Set(normalizationContainment[selected]);
@@ -8157,18 +8788,12 @@ function normalizationStabilizerList(action) {
 
 function setNormalizationElementSelection(root, elementId) {
   const selectedElement = normalizationElementLabels[elementId] ? elementId : "e";
+  const { fromState, toState } = setNormalizationActionMotion(root, selectedElement);
   root.dataset.normalizationElementSelected = selectedElement;
-
-  root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
-    const isSelected = control.dataset.normalizationElementControl === selectedElement;
-    control.classList.toggle("is-selected", isSelected);
-    control.setAttribute("aria-pressed", isSelected ? "true" : "false");
-  });
+  pulseNormalizationElementControl(root, selectedElement);
 
   root.querySelectorAll("[data-normalization-place-stabilizer]").forEach((place) => {
-    const isFixed = normalizationPlaceStabilizers(place).some((stabilizer) =>
-      normalizationSubgroupElements[stabilizer].includes(selectedElement)
-    );
+    const isFixed = normalizationPlaceStayedPut(place, fromState, toState);
     place.classList.toggle("is-fixed", isFixed);
     place.classList.toggle("is-moving", !isFixed);
   });
@@ -8179,7 +8804,7 @@ function setNormalizationElementSelection(root, elementId) {
   });
 
   const status = root.querySelector("[data-normalization-element-status]");
-  if (status) status.textContent = `act by ${normalizationElementDisplayLabels[selectedElement] || selectedElement}: fixed places stay`;
+  if (status) status.textContent = `acted by ${normalizationElementDisplayLabels[selectedElement] || selectedElement}: one step`;
 }
 
 function setNormalizationActionSelection(root, selectedAction) {
@@ -8258,8 +8883,7 @@ function initializeNormalizationFigure(root, options = {}) {
     const label = normalizationElementLabels[elementId] || elementId;
     control.setAttribute("role", "button");
     control.setAttribute("tabindex", "0");
-    control.setAttribute("aria-label", `Act by ${label}`);
-    control.setAttribute("aria-pressed", "false");
+    control.setAttribute("aria-label", `Act once by ${label}`);
     control.addEventListener("click", (event) => {
       event.stopPropagation();
       setNormalizationElementSelection(root, elementId);
@@ -8388,17 +9012,20 @@ function grundyTransferKeyframes(fromX, fromY, midX, midY, toX, toY) {
   });
 }
 
-function animateGrundyMexTransfer(root, state, activeIds) {
+function animateGrundyMexTransfer(root, state, activeIds, onComplete = () => {}) {
   const activeNodeId = [...activeIds][0] || "";
   const focusedNode = state.focusId ? grundyGameNodeMap.get(state.focusId) : grundyGameNodeMap.get(activeNodeId);
   if (!focusedNode || typeof window === "undefined") {
     clearGrundyTransfer(root, state);
-    return;
+    return false;
   }
-  if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+  if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
+    clearGrundyTransfer(root, state);
+    return false;
+  }
 
   const transferKey = `${state.step}:${state.focusId || ""}:${focusedNode.id}:${focusedNode.value}`;
-  if (state.lastTransferKey === transferKey) return;
+  if (state.lastTransferKey === transferKey) return true;
   clearGrundyTransfer(root, state);
   state.lastTransferKey = transferKey;
 
@@ -8408,7 +9035,10 @@ function animateGrundyMexTransfer(root, state, activeIds) {
     const source = root.querySelector(`[data-grundy-natural="${focusedNode.value}"]`);
     const targetNode = root.querySelector(`[data-grundy-node="${focusedNode.id}"]`);
     const target = targetNode?.querySelector(".grundy-node-shell");
-    if (!source || !target) return;
+    if (!source || !target) {
+      onComplete();
+      return;
+    }
 
     const rootRect = root.getBoundingClientRect();
     const sourceRect = source.getBoundingClientRect();
@@ -8436,28 +9066,30 @@ function animateGrundyMexTransfer(root, state, activeIds) {
     }, 360);
 
     let cleanedUp = false;
-    const cleanup = () => {
+    const cleanup = (didComplete = false) => {
       if (cleanedUp) return;
       cleanedUp = true;
       window.clearTimeout(receiveTimer);
       ball.remove();
+      if (didComplete && root.isConnected && state.lastTransferKey === transferKey) onComplete();
       window.setTimeout(() => targetNode.classList.remove("is-receiving"), 160);
     };
 
     if (typeof ball.animate !== "function") {
       targetNode.classList.add("is-receiving");
       ball.classList.add("is-css-flight");
-      ball.addEventListener("animationend", cleanup, { once: true });
+      ball.addEventListener("animationend", () => cleanup(true), { once: true });
       return;
     }
 
     const flight = ball.animate(
       grundyTransferKeyframes(fromX, fromY, (fromX + toX) / 2, Math.min(fromY, toY) - arc, toX, toY),
-      { duration: 820, easing: "linear", fill: "both" }
+      { duration: grundyTransferDurationMs, easing: "linear", fill: "both" }
     );
-    flight.addEventListener("finish", cleanup, { once: true });
-    flight.addEventListener("cancel", cleanup, { once: true });
-  }, 330);
+    flight.addEventListener("finish", () => cleanup(true), { once: true });
+    flight.addEventListener("cancel", () => cleanup(false), { once: true });
+  }, grundyTransferDelayMs);
+  return true;
 }
 
 function updateGrundyPlayControl(root) {
@@ -8467,19 +9099,13 @@ function updateGrundyPlayControl(root) {
   root.dataset.grundyPlaying = state?.playing ? "true" : "false";
 }
 
-function renderGrundyStep(root) {
-  const state = grundyFigureStates.get(root);
-  if (!state) return;
-  const step = state.step;
-  const activeIds = grundyActiveNodeIds(state);
+function updateGrundyGameGraph(root, step, activeIds) {
   const referencedIds = new Set();
   activeIds.forEach((nodeId) => {
     const record = grundyGameNodeMap.get(nodeId);
     if (!record) return;
     record.options.forEach((optionId) => referencedIds.add(optionId));
   });
-  root.dataset.grundyStep = String(step);
-  root.classList.toggle("is-final", step >= state.max);
 
   root.querySelectorAll("[data-grundy-node]").forEach((node) => {
     const nodeId = node.dataset.grundyNode || "";
@@ -8487,7 +9113,7 @@ function renderGrundyStep(root) {
     if (!record) return;
     const value = node.querySelector("[data-grundy-value]");
     const known = grundyNodeIsKnown(record, step);
-    const active = activeIds.has(record.id);
+    const active = known && activeIds.has(record.id);
     node.classList.toggle("is-known", known);
     node.classList.toggle("is-computed", known && !active);
     node.classList.toggle("is-active", active);
@@ -8507,11 +9133,32 @@ function renderGrundyStep(root) {
     edge.classList.toggle("is-active", active);
     edge.classList.toggle("is-computed", known && !active);
   });
+}
+
+function renderGrundyStep(root) {
+  const state = grundyFigureStates.get(root);
+  if (!state) return;
+  const step = state.step;
+  const activeIds = grundyActiveNodeIds(state);
+  root.dataset.grundyStep = String(step);
+  root.classList.toggle("is-final", step >= state.max);
+  const gameStep = Math.max(0, Math.min(step, state.gameRevealStep ?? grundyRevealStepBeforeTransfer(step)));
+  updateGrundyGameGraph(root, gameStep, activeIds);
 
   const slider = root.querySelector("[data-grundy-slider]");
   if (slider) slider.value = String(step);
   updateGrundyAlgebraPanel(root, state, activeIds);
-  animateGrundyMexTransfer(root, state, activeIds);
+  const revealGameStep = () => {
+    if (!root.isConnected || state.step !== step) return;
+    state.gameRevealStep = step;
+    updateGrundyGameGraph(root, step, grundyActiveNodeIds(state));
+  };
+  if (gameStep < step && activeIds.size) {
+    const transferStarted = animateGrundyMexTransfer(root, state, activeIds, revealGameStep);
+    if (!transferStarted) revealGameStep();
+  } else {
+    clearGrundyTransfer(root, state);
+  }
   updateGrundyPanel(root, state, activeIds);
 }
 
@@ -8520,13 +9167,14 @@ function setGrundyStep(root, step, focusId = "") {
   if (!state) return;
   state.step = Math.max(0, Math.min(state.max, Number(step) || 0));
   state.focusId = focusId;
+  state.gameRevealStep = grundyRevealStepBeforeTransfer(state.step);
   renderGrundyStep(root);
 }
 
 function stopGrundyFigure(root) {
   const state = grundyFigureStates.get(root);
   if (!state) return;
-  if (state.timer) window.clearInterval(state.timer);
+  if (state.timer) window.clearTimeout(state.timer);
   state.timer = null;
   state.playing = false;
   updateGrundyPlayControl(root);
@@ -8538,9 +9186,12 @@ function startGrundyFigure(root) {
   if (state.step >= state.max) setGrundyStep(root, 0);
   state.playing = true;
   updateGrundyPlayControl(root);
-  state.timer = window.setInterval(() => {
+  const advance = () => {
+    if (!state.playing) return;
     setGrundyStep(root, state.step >= state.max ? 0 : state.step + 1);
-  }, state.intervalMs);
+    state.timer = window.setTimeout(advance, state.step >= state.max ? state.finalHoldMs : state.intervalMs);
+  };
+  state.timer = window.setTimeout(advance, state.intervalMs);
 }
 
 function ensureGrundyControls(root) {
@@ -8577,19 +9228,22 @@ function ensureGrundyControls(root) {
 
 function initializeGrundyFigure(root, options = {}) {
   const previous = grundyFigureStates.get(root);
-  if (previous?.timer) window.clearInterval(previous.timer);
+  if (previous?.timer) window.clearTimeout(previous.timer);
   if (previous?.transferTimer) window.clearTimeout(previous.transferTimer);
 
   const max = Number(root.dataset.grundyMax || grundyFinalStep);
+  const initialStep = Math.max(0, Math.min(max, Number(options.initialStep ?? root.dataset.grundyStep ?? 0)));
   const state = {
     max,
-    step: Math.max(0, Math.min(max, Number(options.initialStep ?? root.dataset.grundyStep ?? 0))),
+    step: initialStep,
+    gameRevealStep: grundyRevealStepBeforeTransfer(initialStep),
     focusId: "",
     timer: null,
     transferTimer: null,
     lastTransferKey: "",
     playing: false,
-    intervalMs: options.intervalMs || 1000
+    intervalMs: options.intervalMs || grundyAutoplayIntervalMs,
+    finalHoldMs: options.finalHoldMs || grundyFinalHoldMs
   };
   grundyFigureStates.set(root, state);
 
@@ -8934,7 +9588,7 @@ function renderDiagramNotes(panel, paper) {
   if (people) panel.append(el("p", "diagram-paper-people", people));
 
   const keywordList = el("div", "diagram-keywords");
-  (notes.keywords || paper.tags || []).forEach((keyword) => keywordList.append(el("span", null, keyword)));
+  paperDisplayTagRecords(paper, notes.keywords || []).forEach((tag) => keywordList.append(el("span", null, tag.label)));
   if (keywordList.children.length) panel.append(keywordList);
 
   if (notes.concepts?.length) {
@@ -9323,6 +9977,33 @@ function renderWebApps() {
   applyLanguage(root);
 }
 
+function publicationDetail(label, value) {
+  if (!value) return null;
+  const item = el("div", "publication-detail");
+  item.append(el("span", "publication-detail-label", label), el("span", "publication-detail-value", value));
+  return item;
+}
+
+function paperPeopleDetail(paper, fallbackRecord = null) {
+  const text = paperPeopleText(paper, fallbackRecord);
+  if (!text) return null;
+  const match = text.match(/^([^:]+):\s*(.+)$/);
+  return match ? publicationDetail(match[1], match[2]) : publicationDetail("Authors", text);
+}
+
+function renderPublicationDetails(paper, fallbackRecord = null) {
+  const details = compactText([
+    paperPeopleDetail(paper, fallbackRecord),
+    publicationDetail("Status", paper.publicationStatus),
+    publicationDetail("Year", paper.year),
+    publicationDetail("Venue", paper.venue || paper.type)
+  ]);
+  if (!details.length) return null;
+  const root = el("div", "publication-details");
+  details.forEach((detail) => root.append(detail));
+  return root;
+}
+
 function renderPaperRecord(paper, options = {}) {
   const showFigure = options.showFigure ?? true;
   const item = el("article", showFigure && paper.figure ? "publication-item has-figure" : "publication-item");
@@ -9330,10 +10011,11 @@ function renderPaperRecord(paper, options = {}) {
   const template = paperFigureTemplates[paper.figure];
   if (showFigure && template) {
     const figure = el("div", "publication-figure");
+    figure.classList.add(`publication-figure-${paper.figure}`);
     figure.setAttribute("aria-label", `${paper.title} diagram`);
     figure.innerHTML = template;
     applyFigureMarkerIds(figure, paper.figure, "paper-arrow");
-    initializeGrundyFigures(figure, { autoplay: true, intervalMs: 1100 });
+    initializeGrundyFigures(figure, { autoplay: true, intervalMs: grundyAutoplayIntervalMs });
     initializeLawverePullbackFigures(figure, { autoplay: true, controls: true });
     initializeConnectedCorrespondenceFigures(figure, { autoplay: true, controls: true });
     initializeNormalizationFigures(figure, { controls: true });
@@ -9344,15 +10026,13 @@ function renderPaperRecord(paper, options = {}) {
   const title = el("h3");
   title.append(link(paper.title, paper.link));
   titleRow.append(title);
-  if (paper.year) titleRow.append(el("span", "publication-venue", paper.year));
   item.append(titleRow);
 
+  const details = renderPublicationDetails(paper);
+  if (details) item.append(details);
+
   const meta = el("div", "publication-meta");
-  if (paper.publicationStatus) meta.append(el("span", "publication-status", paper.publicationStatus));
-  const people = paperPeopleText(paper);
-  if (people) meta.append(el("span", null, people));
-  if (paper.venue) meta.append(el("span", null, paper.venue));
-  paper.tags?.forEach((tag) => meta.append(el("span", null, tag)));
+  paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
   if (meta.children.length) item.append(meta);
   if (paper.summary) item.append(el("p", "publication-summary", paper.summary));
   appendActionLinks(item, [...(paper.links || []), ...overleafActionLinks(paper, ["paper", "preprint"])]);
@@ -9378,19 +10058,156 @@ function paperListingRecords() {
   });
 }
 
+function paperSearchText(paper) {
+  return compactText([
+    paper.title,
+    paper.authors,
+    paper.venue,
+    paper.year,
+    paper.tags?.join(" "),
+    paper.summary,
+    ...paperDisplayTagRecords(paper).map((tag) => tag.label)
+  ]).join(" ");
+}
+
+function paperMatchesActiveFilters(paper) {
+  const themeId = activePaperThemeId();
+  if (themeId && !paperThemeIds(paper).includes(themeId)) return false;
+  return matchesQuery(paperSearchText(paper), state.paperQuery);
+}
+
+function preparationPaperMatchesActiveFilters(title) {
+  const paper = preparationPaperRecord(title);
+  const themeId = activePaperThemeId();
+  if (themeId && !paperThemeIds(paper).includes(themeId)) return false;
+  return matchesQuery(paperSearchText(paper), state.paperQuery);
+}
+
+function syncPaperFilterInputs() {
+  document.querySelectorAll("#paper-filter").forEach((input) => {
+    if (input.value !== state.paperQuery) input.value = state.paperQuery;
+  });
+}
+
+function syncPaperFilterUrl() {
+  const page = document.body?.dataset.page || "";
+  if (!["documents", "papers"].includes(page) || !globalThis.history?.replaceState || !globalThis.location?.href) return;
+  const url = new URL(globalThis.location.href);
+  const themeId = activePaperThemeId();
+  if (themeId) url.searchParams.set("theme", themeId);
+  else url.searchParams.delete("theme");
+  if (state.paperQuery) url.searchParams.set("paper", state.paperQuery);
+  else url.searchParams.delete("paper");
+  globalThis.history.replaceState(null, "", url);
+}
+
+function setPaperFilters({ query = "", theme = "" } = {}) {
+  state.paperQuery = query;
+  state.paperTheme = normalizeThemeSelection(theme)[0] || "";
+  syncPaperFilterInputs();
+  syncPaperFilterUrl();
+  renderPapers();
+  renderPreparationPapers();
+  renderResearchmapPapers();
+  renderMiscPapers();
+}
+
+function setPaperTheme(themeId = "") {
+  setPaperFilters({ query: "", theme: themeId });
+}
+
+function setPaperQuery(query = "") {
+  setPaperFilters({ query, theme: "" });
+}
+
+function activePaperThemeId() {
+  return normalizeThemeSelection(state.paperTheme)[0] || "";
+}
+
+function paperTagTargetHref(tag) {
+  const params = new URLSearchParams();
+  if (tag.themeId) params.set("theme", tag.themeId);
+  else params.set("paper", tag.query || tag.label);
+  return localHref(`papers/index.html?${params.toString()}`);
+}
+
+function activatePublicationTag(tag) {
+  if (!document.querySelector("#paper-list")) {
+    globalThis.location.href = paperTagTargetHref(tag);
+    return;
+  }
+  if (tag.themeId) setPaperTheme(tag.themeId);
+  else setPaperQuery(tag.query || tag.label);
+  document.querySelector("#paper-list")?.scrollIntoView({ block: "start", behavior: "smooth" });
+}
+
+function renderPublicationTag(tag) {
+  const button = el("button", `publication-tag publication-tag-${tag.kind || "tag"}`, tag.label);
+  button.type = "button";
+  if (tag.themeId) button.dataset.paperTheme = tag.themeId;
+  else button.dataset.paperTag = tag.query || tag.label;
+  button.setAttribute("aria-label", `Show ${tag.label}`);
+  button.addEventListener("click", () => activatePublicationTag(tag));
+  return button;
+}
+
+function renderPaperTagButton(label, themeId, count) {
+  const button = el("button", "paper-tag-button");
+  const activeThemeId = activePaperThemeId();
+  const isActive = themeId ? activeThemeId === themeId : !activeThemeId && !state.paperQuery;
+  button.type = "button";
+  button.dataset.paperTheme = themeId;
+  button.classList.toggle("is-active", isActive);
+  button.setAttribute("aria-pressed", String(isActive));
+  button.disabled = Boolean(themeId && !count);
+  button.append(el("span", "paper-tag-label", label), el("span", "paper-tag-count", String(count)));
+  button.addEventListener("click", () => setPaperTheme(themeId));
+  return button;
+}
+
+function renderPaperTagIndex(records = paperListingRecords()) {
+  const root = document.querySelector("#paper-tag-index");
+  if (!root) return;
+  const counts = Object.fromEntries(researchThemes.map((theme) => [theme.id, 0]));
+  const preparationRecords = siteData.papers.preparation.map(preparationPaperRecord);
+  const countRecords = [...records, ...preparationRecords];
+  countRecords.forEach((paper) => {
+    new Set(paperThemeIds(paper)).forEach((themeId) => {
+      counts[themeId] = (counts[themeId] || 0) + 1;
+    });
+  });
+  const activeThemeId = activePaperThemeId();
+  const activeTheme = themeById(activeThemeId);
+  const statusText = activeThemeId
+    ? `${activeTheme?.label || activeThemeId}: ${counts[activeThemeId] || 0} items`
+    : state.paperQuery
+      ? `${state.paperQuery} papers`
+      : `${records.length} papers / ${preparationRecords.length} in preparation`;
+  root.replaceChildren();
+  const head = el("div", "paper-tag-index-head");
+  head.append(
+    el("h3", null, "Tags"),
+    el("span", "paper-tag-index-status", statusText)
+  );
+  const list = el("div", "paper-tag-list");
+  list.append(renderPaperTagButton("All", "", countRecords.length));
+  researchThemes.forEach((theme) => list.append(renderPaperTagButton(theme.label, theme.id, counts[theme.id] || 0)));
+  root.append(head, list);
+}
+
 function renderPapers() {
   const root = document.querySelector("#paper-list");
   if (!root) return;
+  syncPaperFilterInputs();
   updatePaperViewButtons();
   stopGrundyFigures(root);
   stopLawverePullbackFigures(root);
   stopConnectedCorrespondenceFigures(root);
   root.replaceChildren();
 
-  const filtered = paperListingRecords().filter((paper) => {
-    const searchText = [paper.title, paper.authors, paper.venue, paper.year, paper.tags?.join(" "), paper.summary].join(" ");
-    return matchesQuery(searchText, state.paperQuery);
-  });
+  const records = paperListingRecords();
+  renderPaperTagIndex(records);
+  const filtered = records.filter(paperMatchesActiveFilters);
 
   if (!filtered.length) {
     root.append(el("p", "empty-state", "No papers match this filter."));
@@ -9407,19 +10224,23 @@ function renderPreparationPapers() {
   const root = document.querySelector("#preparation-paper-list");
   if (!root) return;
   root.replaceChildren();
-  const filtered = siteData.papers.preparation.filter((title) => matchesQuery(title, state.paperQuery));
+  const filtered = siteData.papers.preparation.filter(preparationPaperMatchesActiveFilters);
   if (!filtered.length) {
     root.append(el("p", "empty-state", "No papers match this filter."));
     applyLanguage(root);
     return;
   }
   filtered.forEach((title) => {
+    const paper = preparationPaperRecord(title);
     const item = el("article", "publication-item publication-item-compact");
     const heading = el("h3");
     heading.innerHTML = title;
+    const details = renderPublicationDetails(paper);
+    item.append(heading);
+    if (details) item.append(details);
     const meta = el("div", "publication-meta");
-    meta.append(el("span", "publication-status", "In preparation"));
-    item.append(heading, meta);
+    paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
+    if (meta.children.length) item.append(meta);
     root.append(item);
   });
   typesetMath(root);
@@ -9441,17 +10262,22 @@ function renderMiscPapers() {
   const root = document.querySelector("#misc-paper-list");
   if (!root) return;
   root.replaceChildren();
-  siteData.papers.misc.forEach((paper) => {
+  const records = siteData.papers.misc.filter(paperMatchesActiveFilters);
+  if (!records.length) {
+    root.append(el("p", "empty-state", "No papers match this filter."));
+    return;
+  }
+  records.forEach((paper) => {
     const item = el("article", "publication-item");
     const row = el("div", "publication-title");
     const heading = el("h3");
     heading.append(link(paper.title, paper.link));
-    row.append(heading, el("span", "publication-venue", paper.year));
+    row.append(heading);
     item.append(row);
+    const details = renderPublicationDetails(paper);
+    if (details) item.append(details);
     const meta = el("div", "publication-meta");
-    const people = paperPeopleText(paper);
-    if (people) meta.append(el("span", null, people));
-    paper.tags?.forEach((tag) => meta.append(el("span", null, tag)));
+    paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
     if (meta.children.length) item.append(meta);
     item.append(el("p", "publication-summary", paper.venue));
     root.append(item);
@@ -9464,8 +10290,8 @@ function researchmapPaperRecord(record) {
     authors: record.authors,
     venue: record.venue || "researchmap",
     year: record.year,
+    publicationStatus: compactText([record.type, record.openAccess ? "open access" : "researchmap"]).join(" / "),
     link: record.link,
-    tags: compactText([record.type, record.openAccess ? "open access" : "researchmap"]),
     links: record.links
   };
 }
@@ -9474,12 +10300,17 @@ function renderResearchmapPapers() {
   const root = document.querySelector("#researchmap-paper-list");
   if (!root) return;
   root.replaceChildren();
-  const records = researchmapData?.papers || [];
-  if (!records.length) {
+  const sourceRecords = researchmapData?.papers || [];
+  if (!sourceRecords.length) {
     root.append(el("p", "empty-state", "No generated researchmap paper data is available yet."));
     return;
   }
-  records.forEach((record) => root.append(renderPaperRecord(researchmapPaperRecord(record))));
+  const records = sourceRecords.map(researchmapPaperRecord).filter(paperMatchesActiveFilters);
+  if (!records.length) {
+    root.append(el("p", "empty-state", "No papers match this filter."));
+    return;
+  }
+  records.forEach((record) => root.append(renderPaperRecord(record)));
   typesetMath(root);
 }
 
@@ -10303,9 +11134,7 @@ function setupInteractions() {
   const paperFilter = document.querySelector("#paper-filter");
   if (paperFilter) {
     paperFilter.addEventListener("input", (event) => {
-      state.paperQuery = event.target.value;
-      renderPapers();
-      renderPreparationPapers();
+      setPaperFilters({ query: event.target.value, theme: "" });
     });
   }
 
