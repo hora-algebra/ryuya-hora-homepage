@@ -7700,8 +7700,39 @@ const paperFigureTemplates = {
       <defs>
         <marker id="arrow-automata-cover" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
       </defs>
-      <g transform="translate(42 26)">
-        <g transform="translate(238 4)">
+      <g transform="translate(28 12)">
+        <g class="automata-input-tape" transform="translate(6 92) scale(1.22)">
+          <rect class="automata-input-panel" x="0" y="0" width="172" height="104" rx="12"></rect>
+          <text class="figure-small automata-input-label" x="28" y="35">w =</text>
+          <g transform="translate(52 54)">
+            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
+              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.24;0.25;0.99;1"></animate>
+              <rect x="-13" y="-18" width="26" height="34" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">a</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(34 0)">
+              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.49;0.5;0.99;1"></animate>
+              <rect x="-13" y="-18" width="26" height="34" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">a</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(68 0)">
+              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.74;0.75;0.99;1"></animate>
+              <rect x="-13" y="-18" width="26" height="34" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">b</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(102 0)">
+              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.94;0.95;0.99;1"></animate>
+              <rect x="-13" y="-18" width="26" height="34" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">b</text>
+            </g>
+            <g class="automata-input-head" transform="translate(0 27)">
+              <animateTransform attributeName="transform" type="translate" dur="8s" repeatCount="indefinite" values="0 27;0 27;34 27;34 27;68 27;68 27;102 27;102 27;136 27;136 27;0 27" keyTimes="0;0.24;0.25;0.49;0.5;0.74;0.75;0.94;0.95;0.99;1"></animateTransform>
+              <path d="M-7 0 H7 M0 0 V11"></path>
+            </g>
+          </g>
+        </g>
+
+        <g transform="translate(218 4) scale(1.08)">
           <rect class="automata-panel automata-panel-total" x="0" y="0" width="434" height="224" rx="12"></rect>
           <text class="figure-small automata-panel-title" x="24" y="30">A</text>
 
@@ -7753,7 +7784,7 @@ const paperFigureTemplates = {
           <text class="figure-small automata-edge-label automata-edge-label-b" x="268" y="144">b</text>
         </g>
 
-        <g transform="translate(342 246)">
+        <g transform="translate(350 254) scale(1.1)">
           <rect class="automata-panel automata-panel-base" x="0" y="0" width="226" height="112" rx="12"></rect>
           <text class="figure-small automata-panel-title" x="36" y="31">B&#931;</text>
           <g transform="translate(113 72)">
@@ -7773,8 +7804,8 @@ const paperFigureTemplates = {
           </g>
         </g>
 
-        <path class="figure-arrow dashed automata-projection" d="M455 228 C455 252, 455 278, 455 300"></path>
-        <text class="figure-small automata-projection-label" x="470" y="267">p</text>
+        <path class="figure-arrow dashed automata-projection" d="M474 246 V306"></path>
+        <text class="figure-small automata-projection-label" x="490" y="282">p</text>
       </g>
     </svg>`,
   "games-coalgebras": grundyFigureTemplate(),
@@ -8374,6 +8405,10 @@ function playLawverePullbackFigure(root) {
   state.timers.push(
     window.setTimeout(() => {
       renderLawverePullbackStep(root, totalAnimationSteps + 1);
+      if (state.loop) {
+        state.timers.push(window.setTimeout(() => playLawverePullbackFigure(root), state.intervalMs));
+        return;
+      }
       state.playing = false;
     }, 420 + totalAnimationSteps * state.intervalMs)
   );
@@ -8384,7 +8419,8 @@ function initializeLawverePullbackFigure(root, options = {}) {
   lawverePullbackStates.set(root, {
     timers: [],
     playing: false,
-    intervalMs: options.intervalMs || 760
+    intervalMs: options.intervalMs || 760,
+    loop: options.loop ?? true
   });
   if (options.controls) {
     root.setAttribute("role", "button");
@@ -8616,9 +8652,9 @@ function openPaperDiagram(paper) {
   stopConnectedCorrespondenceFigures(figure);
   figure.innerHTML = paperFigureTemplates[paper.figure];
   applyFigureMarkerIds(figure, paper.figure, "diagram-arrow");
-  initializeGrundyFigures(figure, { controls: true, autoplay: false, initialStep: grundyFinalStep });
-  initializeLawverePullbackFigures(figure, { controls: true, autoplay: false });
-  initializeConnectedCorrespondenceFigures(figure, { controls: true, autoplay: false });
+  initializeGrundyFigures(figure, { controls: true, autoplay: true });
+  initializeLawverePullbackFigures(figure, { controls: true, autoplay: true });
+  initializeConnectedCorrespondenceFigures(figure, { controls: true, autoplay: true });
   initializeNormalizationFigures(figure, { controls: true });
   renderDiagramNotes(notes, paper);
   typesetMath(dialog);
@@ -8978,26 +9014,10 @@ function renderPaperRecord(paper, options = {}) {
     figure.setAttribute("aria-label", `${paper.title} diagram`);
     figure.innerHTML = template;
     applyFigureMarkerIds(figure, paper.figure, "paper-arrow");
-    initializeGrundyFigures(figure, { autoplay: false, intervalMs: 1100, initialStep: grundyFinalStep });
-    initializeLawverePullbackFigures(figure, { autoplay: false, controls: true });
-    initializeConnectedCorrespondenceFigures(figure, { autoplay: false, controls: true });
+    initializeGrundyFigures(figure, { autoplay: true, intervalMs: 1100 });
+    initializeLawverePullbackFigures(figure, { autoplay: true, controls: true });
+    initializeConnectedCorrespondenceFigures(figure, { autoplay: true, controls: true });
     initializeNormalizationFigures(figure, { controls: true });
-    if (figure.querySelector("[data-grundy-figure]")) {
-      figure.classList.add("is-clickable");
-      figure.setAttribute("role", "button");
-      figure.tabIndex = 0;
-      figure.setAttribute("aria-label", `Play the ${paper.title} diagram animation`);
-      const startPreviewAnimation = () => {
-        const grundyFigure = figure.querySelector("[data-grundy-figure]");
-        if (grundyFigure) startGrundyFigure(grundyFigure);
-      };
-      figure.addEventListener("click", startPreviewAnimation);
-      figure.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        event.preventDefault();
-        startPreviewAnimation();
-      });
-    }
     item.append(figure);
   }
 
