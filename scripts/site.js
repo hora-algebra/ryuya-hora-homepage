@@ -75,7 +75,7 @@ const siteData = {
     {
       title: "Activities",
       href: "activities/index.html",
-      description: "Activities, visits, talks, and plans.",
+      description: "Visits, talks, plans.",
       icon: "activity"
     },
     {
@@ -88,7 +88,7 @@ const siteData = {
     {
       title: "Search",
       href: "search/index.html",
-      description: "Search this site.",
+      description: "Site index search.",
       icon: "search"
     }
   ],
@@ -104,8 +104,8 @@ const siteData = {
   ],
   currentPositions: [
     { text: "Assistant professor at ZEN University since April 2026.", href: "https://zen.ac.jp", icon: "building" },
-    { text: "Researcher at the Humai Center since April 2026.", href: "https://zen.ac.jp/humai", icon: "flask" },
-    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "kakenhi" },
+    { text: "Researcher at the Humai Center since April 2026.", href: "https://zen.ac.jp/humai", icon: "humai" },
+    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
     { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
     { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
     { text: "Tutor at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
@@ -362,6 +362,7 @@ const siteData = {
         authors: ["安福智明", "洞龍弥", "稲津大貴", "木谷裕紀", "末續鴻輝", "吉渡叶"],
         venue: "researchmap misc",
         year: "2026",
+        tags: ["combinatorial games", "Nim", "Wythoff game"],
         link: "https://researchmap.jp/ryuyahora/misc/52084435"
       }
     ]
@@ -421,31 +422,32 @@ const siteData = {
     {
       title: "Counting with Exponential of Groups",
       description: "An introduction to rieg theory",
+      theme: "algebra",
       language: "English",
       file: "counting-with-exponential-of-groups.pdf",
       ...notePdfAsset("1fYwhDbfaeWG107Rf68yocjyJpEvOu8Q8", "counting-with-exponential-of-groups"),
       href: "assets/notes/counting-with-exponential-of-groups.pdf",
       download: "assets/notes/counting-with-exponential-of-groups.pdf"
     },
-    { title: "Combinatorial games as recursive coalgebras", description: "Slides at CSCAT 2024", date: "2024-03-15", language: "English", file: "Hora_CSCAT2024.pdf", ...notePdfAsset("12qTwg-9KFTLe-g4UGFtupJUas58U3Ib7", "combinatorial-games-recursive-coalgebras") },
+    { title: "Combinatorial games as recursive coalgebras", description: "Slides at CSCAT 2024", theme: "games", date: "2024-03-15", language: "English", file: "Hora_CSCAT2024.pdf", ...notePdfAsset("12qTwg-9KFTLe-g4UGFtupJUas58U3Ib7", "combinatorial-games-recursive-coalgebras") },
     { title: "Cloud: Topos theoretic approach to representation theory", language: "English", file: "A_topos_theoretic_view_of_Gabriel_s_theorem-12.pdf", ...notePdfAsset("1M-Rxp0KuFykfrJgCLTUo-DrM2XmrJkj4", "topos-representation-theory") },
-    { title: "Cloud: What is the geometry behind Conway's game of life?", description: "A first step with a relative topos", date: "2024-12-10", language: "English", file: "Adv20241210_Dynamical_system_on_a_pretopological_space.pdf", ...notePdfAsset("1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl", "conway-game-of-life-geometry", "https://drive.google.com/thumbnail?id=1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl&sz=w339-h191-p-k-nu") },
-    { title: "Topoi of automata", description: "CSCAT 2025", date: "2025-03-12", language: "English", file: "CSCAT_2025-3.pdf", ...notePdfAsset("1WyOxS3qTZC5jar-nyg_yL7V1lZzJrNHI", "topoi-of-automata-cscat2025") },
-    { title: "Topoi of automata", description: "Groupe de travail topossique, April 30, 2025", date: "2025-04-30", language: "English", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf", ...notePdfAsset("1CZPU91ghZsBg5-ce8dEv8CKeZJVA4bbD", "topoi-of-automata-ctta") },
-    { title: "Local state classifier for algebraic language theory", description: "Centre Lagrange, 16 May", date: "2025-05-16", language: "English", file: "Local state classifier for algebraic language theory.pdf", ...notePdfAsset("1jwA88f7axVA_VmGsUasrudicI1OXMIPE", "local-state-classifier-algebraic-language") },
-    { title: "Topoi of automata (IRIF)", description: "IRIF, 6 May", date: "2025-05-06", language: "English", file: "IRIFtoday.pdf", ...notePdfAsset("1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU", "topoi-of-automata-irif") },
-    { title: "Local state classifier for automata theory", description: "IRIF 26 May / LIPN 5 June", date: "2025-05-26", language: "English", file: "IRIF20250527_ver1.pdf", ...notePdfAsset("1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF", "local-state-classifier-automata") },
-    { title: "Pen: A note on language measurability", description: "March 8, 2026", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
-    { title: "Cloud: A Rota-Baxter equation for winning games", description: "April 5, 2026", date: "2026-04-05", language: "English", file: "RYUYA,HORA.pdf", ...notePdfAsset("1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU", "rota-baxter-winning-games", "https://lh3.google.com/u/0/d/1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU=s2048?auditContext=thumbnail") },
-    { title: "順序集合で遊ぶKan拡張入門", language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
-    { title: "圏論のToy Exampleとしての集合演算", language: "Japanese", file: "圏論のToy_Exampleとしての集合演算__Ver2_.pdf", ...notePdfAsset("1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP", "toy-example-set-operations") },
-    { title: "Cloud: 構成的数学と表現論", description: "数学基礎論若手の会 2023", date: "2023-12-10", language: "Japanese", file: "若手の会2023-8.pdf", ...notePdfAsset("1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-", "constructive-math-representation") },
-    { title: "Turning lights out with the Snake Lemma", description: "CGP project, written with Kyosuke Higashida", date: "2026-02-22", language: "Japanese", file: "ライツアウトの代数的研究.pdf", ...notePdfAsset("1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp", "lights-out-snake-lemma", "https://lh3.google.com/u/0/d/1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp=s2048?auditContext=thumbnail") },
-    { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", date: "2021", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
-    { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
-    { title: "母関数の種", description: "数理空間トポス 2023年新歓", date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
-    { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
-    { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
+    { title: "Cloud: What is the geometry behind Conway's game of life?", description: "A first step with a relative topos", theme: "topos", date: "2024-12-10", language: "English", file: "Adv20241210_Dynamical_system_on_a_pretopological_space.pdf", ...notePdfAsset("1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl", "conway-game-of-life-geometry", "https://drive.google.com/thumbnail?id=1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl&sz=w339-h191-p-k-nu") },
+    { title: "Topoi of automata", description: "CSCAT 2025", theme: "automata", date: "2025-03-12", language: "English", file: "CSCAT_2025-3.pdf", ...notePdfAsset("1WyOxS3qTZC5jar-nyg_yL7V1lZzJrNHI", "topoi-of-automata-cscat2025") },
+    { title: "Topoi of automata", description: "Groupe de travail topossique, April 30, 2025", theme: "automata", date: "2025-04-30", language: "English", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf", ...notePdfAsset("1CZPU91ghZsBg5-ce8dEv8CKeZJVA4bbD", "topoi-of-automata-ctta") },
+    { title: "Local state classifier for algebraic language theory", description: "Centre Lagrange, 16 May", theme: "topos", date: "2025-05-16", language: "English", file: "Local state classifier for algebraic language theory.pdf", ...notePdfAsset("1jwA88f7axVA_VmGsUasrudicI1OXMIPE", "local-state-classifier-algebraic-language") },
+    { title: "Topoi of automata (IRIF)", description: "IRIF, 6 May", theme: "automata", date: "2025-05-06", language: "English", file: "IRIFtoday.pdf", ...notePdfAsset("1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU", "topoi-of-automata-irif") },
+    { title: "Local state classifier for automata theory", description: "IRIF 26 May / LIPN 5 June", theme: "topos", date: "2025-05-26", language: "English", file: "IRIF20250527_ver1.pdf", ...notePdfAsset("1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF", "local-state-classifier-automata") },
+    { title: "Pen: A note on language measurability", description: "March 8, 2026", theme: "automata", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
+    { title: "Cloud: A Rota-Baxter equation for winning games", description: "April 5, 2026", theme: "games", date: "2026-04-05", language: "English", file: "RYUYA,HORA.pdf", ...notePdfAsset("1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU", "rota-baxter-winning-games", "https://lh3.google.com/u/0/d/1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU=s2048?auditContext=thumbnail") },
+    { title: "順序集合で遊ぶKan拡張入門", theme: "category", language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
+    { title: "圏論のToy Exampleとしての集合演算", theme: "category", language: "Japanese", file: "圏論のToy_Exampleとしての集合演算__Ver2_.pdf", ...notePdfAsset("1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP", "toy-example-set-operations") },
+    { title: "Cloud: 構成的数学と表現論", description: "数学基礎論若手の会 2023", theme: "logic", date: "2023-12-10", language: "Japanese", file: "若手の会2023-8.pdf", ...notePdfAsset("1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-", "constructive-math-representation") },
+    { title: "Turning lights out with the Snake Lemma", description: "CGP project, written with Kyosuke Higashida", theme: "games", date: "2026-02-22", language: "Japanese", file: "ライツアウトの代数的研究.pdf", ...notePdfAsset("1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp", "lights-out-snake-lemma", "https://lh3.google.com/u/0/d/1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp=s2048?auditContext=thumbnail") },
+    { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", theme: "number", date: "2021", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
+    { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", theme: "category", date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
+    { title: "母関数の種", description: "数理空間トポス 2023年新歓", theme: "combinatorics", date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
+    { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", theme: "number", date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
+    { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", theme: "topos", date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
     { title: "Older notes", description: "Older documents are collected on Notion.", language: "Japanese", file: "Notion archive", href: "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b" }
   ],
   speculativeNotes: [
@@ -1117,8 +1119,137 @@ const state = {
 
 const researchmapData = globalThis.researchmapData || null;
 const overleafData = globalThis.overleafData || { artifacts: [] };
-const talkMapData = globalThis.talkMapData || null;
-const categoriesMapData = globalThis.categoriesMapData || null;
+let talkMapData = globalThis.talkMapData || null;
+let categoriesMapData = globalThis.categoriesMapData || null;
+let talkMapDataLoadFailed = false;
+let categoriesMapDataLoadFailed = false;
+let talkMapDataLoadPromise = null;
+let categoriesMapDataLoadPromise = null;
+let katexLoadPromise = null;
+
+const dynamicScriptLoads = new Map();
+const dynamicStylesheetLoads = new Map();
+const katexCdnBase = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist";
+
+function runWhenIdle(task) {
+  return new Promise((resolve, reject) => {
+    const run = () => {
+      Promise.resolve()
+        .then(task)
+        .then(resolve, reject);
+    };
+    if (globalThis.requestIdleCallback) globalThis.requestIdleCallback(run, { timeout: 1200 });
+    else window.setTimeout(run, 0);
+  });
+}
+
+function runWhenNearViewport(element, task) {
+  if (!element || !globalThis.IntersectionObserver) return runWhenIdle(task);
+  return new Promise((resolve, reject) => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        runWhenIdle(task).then(resolve, reject);
+      },
+      { rootMargin: "700px 0px" }
+    );
+    observer.observe(element);
+  });
+}
+
+function loadScriptOnce(src) {
+  const key = new URL(src, document.baseURI).href;
+  if (dynamicScriptLoads.has(key)) return dynamicScriptLoads.get(key);
+  const promise = new Promise((resolve, reject) => {
+    const existing = Array.from(document.scripts).find((script) => script.src === key);
+    if (existing?.dataset.dynamicLoaded === "true") {
+      resolve();
+      return;
+    }
+    const script = existing || document.createElement("script");
+    script.addEventListener("load", () => {
+      script.dataset.dynamicLoaded = "true";
+      resolve();
+    }, { once: true });
+    script.addEventListener("error", () => reject(new Error(`Failed to load ${src}`)), { once: true });
+    if (!existing) {
+      script.async = true;
+      script.src = src;
+      document.head.append(script);
+    }
+  });
+  dynamicScriptLoads.set(key, promise);
+  return promise;
+}
+
+function loadStylesheetOnce(href) {
+  const key = new URL(href, document.baseURI).href;
+  if (dynamicStylesheetLoads.has(key)) return dynamicStylesheetLoads.get(key);
+  const promise = new Promise((resolve, reject) => {
+    if (Array.from(document.styleSheets).some((sheet) => sheet.href === key)) {
+      resolve();
+      return;
+    }
+    const linkElement = document.createElement("link");
+    linkElement.rel = "stylesheet";
+    linkElement.href = href;
+    linkElement.addEventListener("load", resolve, { once: true });
+    linkElement.addEventListener("error", () => reject(new Error(`Failed to load ${href}`)), { once: true });
+    document.head.append(linkElement);
+  });
+  dynamicStylesheetLoads.set(key, promise);
+  return promise;
+}
+
+function ensureKatexAssets() {
+  if (globalThis.renderMathInElement) return Promise.resolve();
+  if (!katexLoadPromise) {
+    katexLoadPromise = Promise.all([
+      loadStylesheetOnce(`${katexCdnBase}/katex.min.css`),
+      loadScriptOnce(`${katexCdnBase}/katex.min.js`).then(() =>
+        loadScriptOnce(`${katexCdnBase}/contrib/auto-render.min.js`)
+      )
+    ]).then(() => {
+      if (!globalThis.renderMathInElement) throw new Error("KaTeX auto-render did not initialize.");
+    });
+  }
+  return katexLoadPromise;
+}
+
+function ensureTalkMapData(root) {
+  if (talkMapData) return Promise.resolve(talkMapData);
+  if (!talkMapDataLoadPromise) {
+    talkMapDataLoadPromise = runWhenNearViewport(root, () =>
+      loadScriptOnce(localHref("data/talk-map.generated.js")).then(() => {
+        talkMapData = globalThis.talkMapData || null;
+        if (!talkMapData) throw new Error("Talk map data did not initialize.");
+        return talkMapData;
+      })
+    ).catch((error) => {
+      talkMapDataLoadFailed = true;
+      throw error;
+    });
+  }
+  return talkMapDataLoadPromise;
+}
+
+function ensureCategoriesMapData(root) {
+  if (categoriesMapData) return Promise.resolve(categoriesMapData);
+  if (!categoriesMapDataLoadPromise) {
+    categoriesMapDataLoadPromise = runWhenNearViewport(root, () =>
+      loadScriptOnce(localHref("data/categories-map.generated.js?v=20260424-wards")).then(() => {
+        categoriesMapData = globalThis.categoriesMapData || null;
+        if (!categoriesMapData) throw new Error("Categories map data did not initialize.");
+        return categoriesMapData;
+      })
+    ).catch((error) => {
+      categoriesMapDataLoadFailed = true;
+      throw error;
+    });
+  }
+  return categoriesMapDataLoadPromise;
+}
 
 const i18nText = {
   ja: {
@@ -1151,9 +1282,11 @@ const i18nText = {
     "Quick Comparison": "Quick Comparison",
     "Site Search": "サイト内検索",
     "Search this site.": "サイト内検索。",
+    "Site index search.": "サイト内検索。",
     "Search public pages, papers, talks, notes, activities, problems, and links.":
       "公開ページ、論文、発表、ノート、活動、Problems、リンクを検索します。",
     "Search the site": "サイト内を検索",
+    "Query": "検索語",
     "topos, automata, Categories in Tokyo...": "topos, automata, Categories in Tokyo...",
     "Type to search the site.": "検索語を入力してください。",
     "No public site results match this search.": "この検索に合う公開ページはありません。",
@@ -1171,6 +1304,12 @@ const i18nText = {
     "Japanese": "日本語",
     "Automata": "Automata",
     "Games": "Games",
+    "Category theory": "圏論",
+    "Category": "圏論",
+    "Algebra": "代数",
+    "Logic": "論理",
+    "Geometry": "幾何",
+    "Combinatorics": "組合せ論",
     "Number theory": "数論",
     "General": "一般",
     "topos, games, language...": "topos, games, language...",
@@ -1197,7 +1336,9 @@ const i18nText = {
       "ZEN University の助教、Humai Center の researcher です。最近は、topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています。",
     "Research": "研究",
     "Papers, preprints, notes, and slides.": "論文、preprint、ノート、スライド。",
+    "Preprints and related writing.": "Preprint と関連文書。",
     "Web apps, problems, and links.": "Web apps、Problems、リンク。",
+    "Visits, talks, plans.": "訪問、発表、予定。",
     "Research Interests": "研究関心",
     "All themes": "すべてのテーマ",
     "Current Positions": "現在の所属",
@@ -1221,8 +1362,18 @@ const i18nText = {
     "Open Categories in Tokyo": "Categories in Tokyo を開く",
     "Related activities": "関連する活動",
     "Last updated: 22 April 2026.": "最終更新: 2026年4月22日",
+    "Last updated: 23 April 2026.": "最終更新: 2026年4月23日",
+    "Last updated: 24 April 2026.": "最終更新: 2026年4月24日",
     "Back to top": "上に戻る",
     "Home": "ホーム",
+    "More": "さらに見る",
+    "Open Activities": "活動を開く",
+    "Open Papers": "論文を開く",
+    "Open Talks": "発表を開く",
+    "Open Notes": "ノートを開く",
+    "Open Web Apps": "Web Apps を開く",
+    "Open Problems": "Problems を開く",
+    "Open Links": "リンクを開く",
     "Open navigation": "ナビゲーションを開く",
     "Primary navigation": "主要ナビゲーション",
     "Profile links": "プロフィールリンク",
@@ -1257,6 +1408,7 @@ const i18nText = {
     "Conference talks, seminars, workshop presentations, and available slides.":
       "Conference talks, seminars, workshop presentations とスライドをまとめています。",
     "Talks and slides.": "Talks and slides.",
+    "Slides and seminars.": "Slides and seminars.",
     "Timeline": "タイムライン",
     "Research Timeline": "研究タイムライン",
     "Activities Timeline": "活動タイムライン",
@@ -1264,6 +1416,7 @@ const i18nText = {
     "Paper Timeline": "論文タイムライン",
     "Talk Timeline": "発表タイムライン",
     "Activities by date.": "活動の時系列。",
+    "Activities and talks by date.": "活動と発表の時系列。",
     "Places": "場所",
     "Visits": "訪問",
     "Visit Map": "訪問地図",
@@ -1279,6 +1432,7 @@ const i18nText = {
     "Topos theory": "Topos theory",
     "Automata / languages": "Automata / languages",
     "Games": "Games",
+    "Geometry / dynamics": "Geometry / dynamics",
     "Category / algebra / logic": "Category / algebra / logic",
     "Other": "その他",
     "Latest": "最近",
@@ -1292,6 +1446,7 @@ const i18nText = {
     "Lecture notes, slides, speculative notes, and teaching material. ☁︎ marked notes are speculative; 🖊️ marked notes are under construction.":
       "Lecture notes, slides, speculative notes, teaching material をまとめています。☁︎ は speculative、🖊️ は under construction を表します。",
     "Notes and slides.": "Notes and slides.",
+    "Slides and teaching material.": "Slides and teaching material.",
     "Notes, slides, and teaching material. Last updated: 22 April 2026.":
       "Notes, slides, teaching material. 最終更新: 2026年4月22日",
     "Academic Activity": "研究活動",
@@ -1303,6 +1458,7 @@ const i18nText = {
     "Profile Details": "プロフィール詳細",
     "CV": "CV",
     "CV and awards.": "CV と受賞。",
+    "Positions, awards, education.": "所属、受賞、教育。",
     "Awards, education and outreach, teaching, current positions, and past positions.":
       "受賞、教育・アウトリーチ、現在と過去の所属をまとめています。",
     "Current": "現在",
@@ -1319,6 +1475,8 @@ const i18nText = {
       "CV, awards, positions, education. 最終更新: 2026年4月22日",
     "Open Problems and Questions": "Open Problems and Questions",
     "Open problems and trails.": "Open problems and trails.",
+    "Open questions and trails.": "Open questions and trails.",
+    "Questions and Trails": "Questions and Trails",
     "Web Apps": "Web Apps",
     "Deployed Tools": "公開中のツール",
     "Small deployed tools and experiments.": "公開中の小さな tools と experiments。",
@@ -1472,71 +1630,167 @@ const researchThemes = [
   {
     id: "topos",
     label: "Topos",
-    x: 320,
-    y: 84,
-    r: 54,
-    keywords: ["topos", "topoi", "grothendieck", "lawvere", "quotient", "hyperconnected", "local state", "geometric morphism"]
+    x: 78,
+    y: 150,
+    r: 52,
+    keywords: [
+      "topos",
+      "topoi",
+      "toposes",
+      "grothendieck",
+      "lawvere",
+      "quotient topos",
+      "quotient topoi",
+      "quotient toposes",
+      "subtopos",
+      "subtopoi",
+      "hyperconnected",
+      "local state",
+      "local state classifier",
+      "geometric morphism"
+    ]
   },
   {
     id: "automata",
     label: "Automata",
-    x: 512,
-    y: 178,
+    x: 320,
+    y: 342,
     r: 56,
-    keywords: ["automata", "regular language", "language", "word", "congruence", "syntactic", "sigma-set", "classifier", "measurability"]
+    keywords: [
+      "automata",
+      "automaton",
+      "regular language",
+      "regular languages",
+      "formal language",
+      "formal languages",
+      "algebraic language",
+      "algebraic language theory",
+      "language theory",
+      "language measurability",
+      "word",
+      "words",
+      "word congruence",
+      "word congruences",
+      "syntactic",
+      "sigma set",
+      "sigma sets",
+      "epsilon transition",
+      "epsilon transitions",
+      "varepsilon transition",
+      "varepsilon transitions",
+      "ε transition",
+      "ε transitions",
+      "measurability"
+    ]
   },
   {
     id: "games",
     label: "Games",
-    x: 500,
-    y: 338,
+    x: 146,
+    y: 342,
     r: 54,
-    keywords: ["game", "games", "nim", "rota-baxter", "conway", "lights out", "grundy", "ライツアウト"]
+    keywords: [
+      "combinatorial game",
+      "combinatorial games",
+      "impartial game",
+      "impartial games",
+      "nim",
+      "rota baxter",
+      "winning game",
+      "winning games",
+      "grundy",
+      "lights out",
+      "bouton",
+      "conway addition",
+      "ライツアウト"
+    ]
   },
   {
     id: "coalgebras",
     label: "Coalgebras",
-    x: 320,
-    y: 386,
-    r: 58,
-    keywords: ["coalgebra", "coalgebras", "recursive", "differential calculus", "conway"]
+    x: 318,
+    y: 150,
+    r: 56,
+    keywords: ["coalgebra", "coalgebras", "recursive coalgebra", "recursive coalgebras", "differential calculus"]
+  },
+  {
+    id: "category",
+    label: "Category",
+    x: 198,
+    y: 150,
+    r: 50,
+    keywords: [
+      "category",
+      "categories",
+      "categorical",
+      "category theory",
+      "category theoretic",
+      "kan",
+      "kan extension",
+      "kan extensions",
+      "enriched",
+      "finset",
+      "limits in finset",
+      "圏論"
+    ]
   },
   {
     id: "algebra",
     label: "Algebra",
-    x: 132,
-    y: 326,
-    r: 54,
-    keywords: ["algebra", "semiring", "rieg", "normalization", "gabriel", "representation", "kan", "表現論", "圏論"]
-  },
-  {
-    id: "logic",
-    label: "Logic",
-    x: 126,
-    y: 178,
+    x: 558,
+    y: 150,
     r: 52,
-    keywords: ["logic", "choice", "constructive", "axiom", "lawvere", "measurability", "構成的", "数学基礎論"]
+    keywords: [
+      "algebra",
+      "algebraic",
+      "semiring",
+      "rieg",
+      "riegs",
+      "normalization",
+      "normalizer",
+      "normalizing",
+      "subgroup",
+      "subgroups",
+      "gabriel",
+      "representation",
+      "表現論"
+    ]
   },
   {
     id: "geometry",
     label: "Geometry",
-    x: 320,
-    y: 236,
-    r: 62,
-    keywords: ["geometry", "dynamical", "pretopological", "species", "space-time", "space time", "quotient", "discrete dynamical"]
+    x: 438,
+    y: 150,
+    r: 54,
+    keywords: ["geometry", "dynamical", "dynamical system", "dynamical systems", "pretopological", "space time", "discrete dynamical", "regular tetrahedra", "tetrahedra"]
+  },
+  {
+    id: "combinatorics",
+    label: "Combinatorics",
+    x: 500,
+    y: 342,
+    r: 66,
+    keywords: [
+      "combinatorics",
+      "combinatorial",
+      "enumerative",
+      "profinite",
+      "species",
+      "generating function",
+      "generating functions",
+      "finite presheaf",
+      "finite presheaves",
+      "burnside",
+      "eisenstein",
+      "組合せ論",
+      "母関数"
+    ]
   }
 ];
 
-const researchThemeEdges = [
-  ["topos", "logic"],
-  ["topos", "automata"],
-  ["topos", "geometry"],
-  ["geometry", "algebra"],
-  ["geometry", "games"],
-  ["games", "coalgebras"],
-  ["automata", "coalgebras"],
-  ["logic", "algebra"],
-  ["algebra", "coalgebras"]
+const researchThemeLayers = [
+  { label: "Theory", x: 24, y: 48, width: 592, height: 188 },
+  { label: "Phenomena", x: 24, y: 266, width: 592, height: 160 }
 ];
 
 function el(tag, className, text) {
@@ -1678,6 +1932,10 @@ function translatedPhrase(text, element = null) {
   if (diagramMode) return `Diagram mode を開く: ${diagramMode[1]}`;
   const resultCount = original.match(/^(\d+) results?$/);
   if (resultCount) return `${resultCount[1]}件`;
+  const itemCount = original.match(/^(\d+) items?$/);
+  if (itemCount) return `${itemCount[1]}件`;
+  const themeSelectionCount = original.match(/^(\d+) themes?$/);
+  if (themeSelectionCount) return `${themeSelectionCount[1]}テーマ`;
   const noteFilterCount = original.match(/^Showing (\d+) \/ (\d+) notes$/);
   if (noteFilterCount) return `${noteFilterCount[1]} / ${noteFilterCount[2]} 件のノート`;
   const talkMapCount = original.match(/^(\d+) (talks?|visits?) \/ (.+)$/);
@@ -1716,6 +1974,8 @@ const translatableTextSelector = [
   ".empty-state",
   ".theme-status-label",
   ".theme-status-count",
+  ".theme-choice-label",
+  ".theme-choice-count",
   ".theme-result-column h3",
   ".note-thumb-kind",
   ".note-kind-badge",
@@ -1986,7 +2246,11 @@ const mathAnnotationRules = [
 let mathTooltipHideTimer = null;
 let timelineTooltipHideTimer = null;
 
-function typesetMath(root = document.body) {
+function rootContainsTeX(root) {
+  return /\\\(|\\\[/.test(root?.textContent || "");
+}
+
+function renderMathNow(root) {
   if (globalThis.renderMathInElement) {
     globalThis.renderMathInElement(root, {
       delimiters: [
@@ -1998,6 +2262,23 @@ function typesetMath(root = document.body) {
     });
   }
   annotateMath(root);
+}
+
+function typesetMath(root = document.body) {
+  if (!root) return;
+  if (!rootContainsTeX(root)) {
+    annotateMath(root);
+    return;
+  }
+  if (globalThis.renderMathInElement) {
+    renderMathNow(root);
+    return;
+  }
+  ensureKatexAssets()
+    .then(() => {
+      if (root === document.body || root.isConnected) renderMathNow(root);
+    })
+    .catch(() => annotateMath(root));
 }
 
 function normalizeTeX(value) {
@@ -2863,6 +3144,30 @@ function simplified(value) {
     .trim();
 }
 
+function topicText(value) {
+  return simplified(value)
+    .replace(/\bmath space topos\b/gu, " ")
+    .replace(/数理空間トポス/gu, " ")
+    .replace(/(^|\s)20\d{2}topos[\p{Letter}\p{Number}]*/gu, " ")
+    .replace(/(^|\s)topos新歓[\p{Letter}\p{Number}]*/gu, " ")
+    .replace(/\s+/gu, " ")
+    .trim();
+}
+
+function hasTopicKeyword(text, keyword) {
+  const haystack = topicText(text);
+  const needle = simplified(keyword);
+  if (!needle) return false;
+  if (/^[a-z0-9]+(?:\s+[a-z0-9]+)*$/.test(needle)) {
+    return ` ${haystack} `.includes(` ${needle} `);
+  }
+  return haystack.includes(needle);
+}
+
+function hasTopicKeywords(text, keywords) {
+  return keywords.some((keyword) => hasTopicKeyword(text, keyword));
+}
+
 function slideLinksForTalk(record) {
   const title = simplified(record.title);
   const event = simplified(record.event);
@@ -3263,7 +3568,7 @@ function siteSearchRecords() {
       title: cleanActivityTitle(record.text),
       href: record.href || localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
       summary: group.title,
-      icon: "activity"
+      icon: activityIconKey(group, record)
     });
   });
   });
@@ -3406,17 +3711,148 @@ function renderSiteSearch() {
   if (count) applyLanguage(count);
 }
 
+const contentThemeKeywords = {
+  games: [
+    "combinatorial game",
+    "combinatorial games",
+    "impartial game",
+    "impartial games",
+    "nim",
+    "snake lemma",
+    "wythoff",
+    "wythoff game",
+    "lights out",
+    "winning game",
+    "winning games",
+    "grundy",
+    "rota baxter",
+    "bouton",
+    "conway addition",
+    "ニム",
+    "ライツアウト"
+  ],
+  automata: [
+    "automata",
+    "automaton",
+    "regular language",
+    "regular languages",
+    "formal language",
+    "formal languages",
+    "algebraic language",
+    "algebraic language theory",
+    "language theory",
+    "language measurability",
+    "dfa",
+    "myhill nerode",
+    "monoid",
+    "monoids",
+    "word",
+    "words",
+    "word congruence",
+    "word congruences",
+    "syntactic",
+    "sigma set",
+    "sigma sets",
+    "epsilon transition",
+    "epsilon transitions",
+    "ε transition",
+    "ε transitions",
+    "varepsilon transition",
+    "varepsilon transitions",
+    "measurability"
+  ],
+  topos: [
+    "topos",
+    "topoi",
+    "toposes",
+    "grothendieck",
+    "lawvere",
+    "quotient topos",
+    "quotient topoi",
+    "quotient toposes",
+    "subtopos",
+    "subtopoi",
+    "hyperconnected",
+    "local state",
+    "local state classifier",
+    "geometric morphism",
+    "symmetric simplicial set",
+    "symmetric simplicial sets"
+  ],
+  category: [
+    "category",
+    "categories",
+    "categorical",
+    "category theory",
+    "category theoretic",
+    "kan",
+    "kan extension",
+    "kan extensions",
+    "enriched",
+    "finset",
+    "limits in finset",
+    "coalgebra",
+    "coalgebras",
+    "recursive coalgebra",
+    "recursive coalgebras",
+    "semantics",
+    "logic",
+    "algebra",
+    "algebraic",
+    "rieg",
+    "riegs",
+    "semiring",
+    "normalization",
+    "normalizer",
+    "normalizing",
+    "subgroup",
+    "subgroups",
+    "圏論"
+  ],
+  geometry: [
+    "geometry",
+    "dynamical",
+    "dynamical system",
+    "dynamical systems",
+    "pretopological",
+    "space time",
+    "regular tetrahedra",
+    "tetrahedra"
+  ],
+  combinatorics: [
+    "combinatorics",
+    "combinatorial",
+    "enumerative",
+    "species",
+    "generating function",
+    "generating functions",
+    "finite presheaf",
+    "finite presheaves",
+    "finset",
+    "finite set",
+    "finite sets",
+    "burnside",
+    "eisenstein",
+    "組合せ論",
+    "母関数"
+  ]
+};
+
 function contentTheme(text) {
-  const value = simplified(text);
-  if (/game|nim|snake|life|lights out|winning|grundy|ライツアウト/.test(value)) return "games";
-  if (/automata|regular language|formal language|language|measurability|dfa|myhill|monoid|word/.test(value)) return "automata";
-  if (/topos|topoi|quotient|lawvere|connected|choice|classifier|simplicial|species|subtopos|grothendieck/.test(value)) return "topos";
-  if (/category|categorical|kan|coalgebra|semantics|logic|algebra|rieg|semiring|normaliz|subgroup|圏論/.test(value)) return "category";
+  if (hasTopicKeywords(text, ["topoi of automata"])) return "automata";
+  if (hasTopicKeywords(text, ["local state", "local state classifier"])) return "topos";
+  if (hasTopicKeywords(text, ["subtopos", "subtopoi"])) return "topos";
+  if (hasTopicKeywords(text, contentThemeKeywords.games)) return "games";
+  if (hasTopicKeywords(text, contentThemeKeywords.automata)) return "automata";
+  if (hasTopicKeywords(text, contentThemeKeywords.topos)) return "topos";
+  if (hasTopicKeywords(text, contentThemeKeywords.geometry)) return "geometry";
+  if (hasTopicKeywords(text, contentThemeKeywords.category)) return "category";
+  if (hasTopicKeywords(text, contentThemeKeywords.combinatorics)) return "combinatorics";
   return "other";
 }
 
 function talkTheme(record) {
-  return contentTheme(`${record.title} ${record.event} ${record.type}`);
+  return contentTheme(record.title);
 }
 
 function formatTalkDate(record) {
@@ -4017,7 +4453,6 @@ function renderTalkMapDetail(groups) {
   const place = talkLocationLabel(selected.location);
 
   detail.append(
-    el("p", "section-kicker", "Mapped Visits"),
     heading,
     place ? el("p", "talk-map-place", place) : "",
     el(
@@ -4046,6 +4481,16 @@ function renderTalkMapDetail(groups) {
 function renderTalkMap() {
   const root = document.querySelector("#talk-map");
   if (!root) return;
+  if (!talkMapData) {
+    root.replaceChildren(el("p", "empty-state", talkMapDataLoadFailed ? "Map data unavailable." : "Map loading..."));
+    applyLanguage(root);
+    if (!talkMapDataLoadFailed) {
+      ensureTalkMapData(root)
+        .then(() => renderTalkMap())
+        .catch(() => renderTalkMap());
+    }
+    return;
+  }
   storeTalkMapPanPositions(root);
   root.replaceChildren();
 
@@ -4091,15 +4536,30 @@ function appendCategoriesPrefectures(svg, features) {
   });
 }
 
+function appendCategoriesWardBoundaries(svg, wards = []) {
+  const group = svgEl("g", { class: "categories-map-wards", "aria-hidden": "true" });
+  wards.filter((ward) => ward.d).forEach((ward) => {
+    const path = svgEl("path", {
+      class: "categories-map-ward-boundary",
+      d: ward.d
+    });
+    path.append(svgEl("title", {}, ward.name));
+    group.append(path);
+  });
+  svg.append(group);
+}
+
 const categoriesTokyoVenues = [
   {
     id: "komaba",
-    label: "第0回 UTokyo",
-    name: "第0回 UTokyo",
+    label: "第0回 The University of Tokyo",
+    labelLines: ["第0回", "The University of Tokyo"],
+    name: "第0回 The University of Tokyo",
     lon: 139.6847,
     lat: 35.6606,
-    dx: -4.5,
-    dy: 10.8,
+    dx: -23,
+    dy: 8,
+    labelAnchor: "start",
     meetings: [
       {
         label: "0",
@@ -4110,30 +4570,28 @@ const categoriesTokyoVenues = [
   },
   {
     id: "nii",
-    label: "第1回 NII",
-    name: "第1回 NII",
+    label: "第1回 / 第2回 National Institute of Informatics",
+    labelRows: [
+      [
+        { text: "第1回", meetingIndex: 0 },
+        " / ",
+        { text: "第2回", meetingIndex: 1 }
+      ],
+      ["National Institute"],
+      ["of Informatics"]
+    ],
+    name: "第1回・第2回 National Institute of Informatics",
     lon: 139.7585,
     lat: 35.6933,
-    dx: 3.5,
-    dy: -8.8,
+    dx: 20,
+    dy: -0.5,
+    labelAnchor: "end",
     meetings: [
       {
         label: "1",
         title: "Categories in Tokyo 1",
         href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A"
-      }
-    ]
-  },
-  {
-    id: "nii",
-    label: "第2回 NII",
-    name: "第2回 NII",
-    lon: 139.7585,
-    lat: 35.6933,
-    dx: 9.8,
-    dy: -2.8,
-    showPoint: false,
-    meetings: [
+      },
       {
         label: "2",
         title: "Categories in Tokyo 2",
@@ -4147,8 +4605,8 @@ const categoriesTokyoVenues = [
     name: "第3回 ZEN University",
     lon: 139.7671,
     lat: 35.6695,
-    dx: 3.5,
-    dy: 8,
+    dx: -3.2,
+    dy: 5.6,
     meetings: [
       {
         label: "3",
@@ -4173,24 +4631,63 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
   categoriesTokyoVenues.forEach((venue) => {
     const point = projectCategoriesPoint(projection, venue.lon, venue.lat);
     if (!point) return;
-    const [x, y] = point;
+    const [baseX, baseY] = point;
+    const x = Number((baseX + (venue.pointDx || 0)).toFixed(1));
+    const y = Number((baseY + (venue.pointDy || 0)).toFixed(1));
     const labelX = Number((x + venue.dx).toFixed(1));
     const labelY = Number((y + venue.dy).toFixed(1));
     const item = svgEl("g", { class: `categories-map-venue venue-${venue.id}` });
-    const meeting = venue.meetings?.[0] || null;
+    const meetings = Array.isArray(venue.meetings) ? venue.meetings : [];
+    const meeting = meetings[0] || null;
     const labelText = svgEl("text", {
       class: "categories-map-venue-label",
       x: labelX,
       y: labelY,
-      "text-anchor": venue.dx < 0 ? "end" : "start",
+      "text-anchor": venue.labelAnchor || (venue.dx < 0 ? "end" : "start"),
       "dominant-baseline": "middle"
-    }, venue.label);
-    const labelNode = meeting ? svgEl("a", {
+    });
+    const labelRows = Array.isArray(venue.labelRows) && venue.labelRows.length
+      ? venue.labelRows
+      : (Array.isArray(venue.labelLines) && venue.labelLines.length ? venue.labelLines : [venue.label]).map((line) => [line]);
+    const hasLinkedLabelSegments = labelRows.some((row) => (
+      Array.isArray(row) && row.some((segment) => typeof segment === "object" && Number.isInteger(segment.meetingIndex))
+    ));
+    const lineGap = 1.16;
+    const firstLineOffset = -((labelRows.length - 1) * lineGap) / 2;
+    labelRows.forEach((row, index) => {
+      const rowSegments = Array.isArray(row) ? row : [row];
+      rowSegments.forEach((segment, segmentIndex) => {
+        const segmentText = typeof segment === "string" ? segment : segment.text;
+        const segmentAttrs = segmentIndex === 0 ? {
+          x: labelX,
+          dy: labelRows.length === 1 ? 0 : index === 0 ? `${firstLineOffset.toFixed(2)}em` : `${lineGap}em`
+        } : {};
+        const segmentMeeting = typeof segment === "object" && Number.isInteger(segment.meetingIndex)
+          ? meetings[segment.meetingIndex]
+          : null;
+        const segmentNode = svgEl("tspan", {
+          ...segmentAttrs,
+          ...(segmentMeeting ? { class: "categories-map-venue-label-segment" } : {})
+        }, segmentText);
+        if (!segmentMeeting) {
+          labelText.append(segmentNode);
+          return;
+        }
+        const segmentLink = svgEl("a", {
+          class: "categories-map-venue-label-link",
+          href: segmentMeeting.href,
+          "aria-label": `${segmentMeeting.title} page`
+        });
+        segmentLink.append(svgEl("title", {}, segmentMeeting.title), segmentNode);
+        labelText.append(segmentLink);
+      });
+    });
+    const labelNode = !hasLinkedLabelSegments && meeting ? svgEl("a", {
       class: "categories-map-venue-label-link",
       href: meeting.href,
       "aria-label": `${meeting.title} page`
     }) : labelText;
-    if (meeting) {
+    if (!hasLinkedLabelSegments && meeting) {
       labelNode.append(
         svgEl("title", {}, meeting.title),
         labelText
@@ -4205,7 +4702,28 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
         svgEl("circle", { class: "categories-map-venue-halo", cx: x, cy: y, r: haloRadius }),
         svgEl("circle", { class: "categories-map-venue-dot", cx: x, cy: y, r: dotRadius })
       ];
-      if (meeting) {
+      if (meetings.length > 1) {
+        markerNodes.push(...pointNodes);
+        const hitRadius = Math.max(haloRadius, dotRadius + 2);
+        meetings.forEach((pointMeeting, index) => {
+          const pointLink = svgEl("a", {
+            class: "categories-map-venue-point-link",
+            href: pointMeeting.href,
+            "aria-label": `${pointMeeting.title} page`
+          });
+          pointLink.append(
+            svgEl("title", {}, pointMeeting.title),
+            svgEl("rect", {
+              class: "categories-map-venue-point-hit",
+              x: x - hitRadius,
+              y: y - hitRadius + index * hitRadius,
+              width: hitRadius * 2,
+              height: hitRadius
+            })
+          );
+          markerNodes.push(pointLink);
+        });
+      } else if (meeting) {
         const pointLink = svgEl("a", {
           class: "categories-map-venue-point-link",
           href: meeting.href,
@@ -4227,6 +4745,16 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
 function renderCategoriesTokyoMap() {
   const root = document.querySelector("[data-categories-tokyo-map]");
   if (!root) return;
+  if (!categoriesMapData) {
+    root.replaceChildren(el("p", "empty-state", categoriesMapDataLoadFailed ? "Map data unavailable." : "Map loading..."));
+    applyLanguage(root);
+    if (!categoriesMapDataLoadFailed) {
+      ensureCategoriesMapData(root)
+        .then(() => renderCategoriesTokyoMap())
+        .catch(() => renderCategoriesTokyoMap());
+    }
+    return;
+  }
   root.replaceChildren();
 
   const kanto = categoriesMapData?.kanto;
@@ -4235,7 +4763,7 @@ function renderCategoriesTokyoMap() {
     return;
   }
 
-  const tokyoCoreViewBox = [95, 110, 82, 40];
+  const tokyoCoreViewBox = [98.3, 113, 50.8, 24.8];
 
   const svg = svgEl("svg", {
     class: "categories-map-svg",
@@ -4262,11 +4790,12 @@ function renderCategoriesTokyoMap() {
   });
   kantoMap.append(svgEl("rect", { class: "categories-map-water", x: 0, y: 0, width: 260, height: 220, rx: 8 }));
   appendCategoriesPrefectures(kantoMap, kanto.prefectures);
+  appendCategoriesWardBoundaries(kantoMap, kanto.wards);
   appendCategoriesVenueDots(kantoMap, kanto.projection, { dotRadius: 1.3, haloRadius: 3.2 });
 
   svg.append(
     svgEl("title", { id: "categories-map-title" }, "Categories in Tokyo map"),
-    svgEl("desc", { id: "categories-map-desc" }, "A Tokyo-area Natural Earth map with Categories in Tokyo venues and meeting links."),
+    svgEl("desc", { id: "categories-map-desc" }, "A Tokyo-area map with Categories in Tokyo venues, meeting links, and Tokyo ward boundaries."),
     defs,
     svgEl("rect", { class: "categories-map-bg", x: 0, y: 0, width: 760, height: 440, rx: 8 }),
     svgEl("text", { class: "categories-map-label", x: 32, y: 34 }, "Tokyo venues"),
@@ -4524,11 +5053,13 @@ const homeTimelineThemeLabels = {
   topos: "Topos theory",
   automata: "Automata / languages",
   games: "Games",
+  geometry: "Geometry / dynamics",
+  combinatorics: "Combinatorics",
   category: "Category / algebra / logic",
   other: "Other"
 };
 
-const homeTimelineThemeOrder = ["topos", "automata", "games", "category", "other"];
+const homeTimelineThemeOrder = ["topos", "automata", "games", "geometry", "combinatorics", "category", "other"];
 
 function homeTimelineThemeLabel(theme) {
   return homeTimelineThemeLabels[theme] || homeTimelineThemeLabels.other;
@@ -4679,21 +5210,25 @@ function renderHomeTimeline() {
 }
 
 function activitiesTimelineRecords() {
-  return homeTimelineActivityRecords()
+  return [...homeTimelineActivityRecords(), ...homeTimelineTalkRecords()]
     .filter((record) => Number.isFinite(record.time))
-    .sort((a, b) => a.time - b.time || a.title.localeCompare(b.title));
+    .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title));
 }
 
 function activitiesTimelineNodeLayout(records, firstTime, lastTime) {
   const layout = new Map();
   const offsets = [-10, -5, 0, 5, 10];
-  const buckets = new Map();
-  records.forEach((record) => {
-    const x = timelinePosition(record.time, firstTime, lastTime, 0, 1);
-    const bucket = Math.round(x / 2.75);
-    const stack = buckets.get(bucket) || 0;
-    buckets.set(bucket, stack + 1);
-    layout.set(record, { x, offset: offsets[stack % offsets.length], lane: 0 });
+  ["activity", "talk"].forEach((kind, lane) => {
+    const buckets = new Map();
+    records
+      .filter((record) => record.kind === kind)
+      .forEach((record) => {
+        const x = timelinePosition(record.time, firstTime, lastTime, 0, 1);
+        const bucket = Math.round(x / 2.75);
+        const stack = buckets.get(bucket) || 0;
+        buckets.set(bucket, stack + 1);
+        layout.set(record, { x, offset: offsets[stack % offsets.length], lane });
+      });
   });
   return layout;
 }
@@ -4735,13 +5270,15 @@ function renderActivitiesTimeline() {
     track.append(now);
   }
 
-  const lane = el("div", "home-timeline-lane kind-activity");
-  lane.style.setProperty("--lane", 0);
-  lane.append(
-    el("div", "home-timeline-lane-label kind-activity", homeTimelineKindLabel("activity")),
-    el("div", "home-timeline-lane-rail")
-  );
-  track.append(lane);
+  ["activity", "talk"].forEach((kind, laneIndex) => {
+    const lane = el("div", `home-timeline-lane kind-${kind}`);
+    lane.style.setProperty("--lane", laneIndex);
+    lane.append(
+      el("div", `home-timeline-lane-label kind-${kind}`, homeTimelineKindLabel(kind)),
+      el("div", "home-timeline-lane-rail")
+    );
+    track.append(lane);
+  });
 
   records.forEach((record) => {
     track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
@@ -4884,11 +5421,15 @@ function noteKind(note) {
 
 function noteTheme(note) {
   if (note.theme) return note.theme;
-  const text = simplified(`${note.title} ${note.description || ""} ${note.file}`);
-  if (/game|nim|coalgebra|ライツアウト|母関数/.test(text)) return "games";
-  if (/automata|language|regular|nerode|measurability/.test(text)) return "automata";
-  if (/topos|topoi|quotient|classifier|kan|圏論/.test(text)) return "topos";
-  if (/zeta|mobius|eisenstein|整数|メビウス/.test(text)) return "number";
+  const text = `${note.title} ${note.description || ""} ${note.file}`;
+  if (hasTopicKeywords(text, ["zeta", "mobius", "moebius", "eisenstein", "整数", "メビウス"])) return "number";
+  if (hasTopicKeywords(text, ["generating function", "generating functions", "species", "combinatorics", "組合せ論", "母関数"])) return "combinatorics";
+  if (hasTopicKeywords(text, contentThemeKeywords.games)) return "games";
+  if (hasTopicKeywords(text, contentThemeKeywords.topos)) return "topos";
+  if (hasTopicKeywords(text, contentThemeKeywords.automata)) return "automata";
+  if (hasTopicKeywords(text, ["kan", "kan extension", "kan extensions", "category", "categorical", "category theory", "圏論"])) return "category";
+  if (hasTopicKeywords(text, ["rieg", "riegs", "semiring", "algebra", "algebraic", "representation", "表現論"])) return "algebra";
+  if (hasTopicKeywords(text, ["logic", "choice", "constructive", "constructive mathematics", "構成的", "数学基礎論"])) return "logic";
   return "general";
 }
 
@@ -4896,11 +5437,15 @@ const noteThemeLabels = {
   topos: "Topos",
   automata: "Automata",
   games: "Games",
+  category: "Category theory",
+  algebra: "Algebra",
+  logic: "Logic",
+  combinatorics: "Combinatorics",
   number: "Number theory",
   general: "General"
 };
 
-const noteThemeOrder = ["topos", "automata", "games", "number", "general"];
+const noteThemeOrder = ["topos", "automata", "games", "category", "algebra", "logic", "combinatorics", "number", "general"];
 
 function noteThemeLabel(theme) {
   return noteThemeLabels[theme] || theme || "General";
@@ -5081,6 +5626,8 @@ function uiIconSvg(key) {
     document: "paper",
     slides: "talk",
     activities: "activity",
+    visit: "globe",
+    visits: "globe",
     webapps: "webapp",
     papers: "paper",
     notes: "note",
@@ -5128,20 +5675,55 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "paper") {
     svg.append(
-      shape("path", { d: "M7 4.5h7l4 4v11A1.5 1.5 0 0 1 16.5 21h-9A1.5 1.5 0 0 1 6 19.5v-13A2 2 0 0 1 8 4.5Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
-      line({ d: "M13.9 4.9V9h4.1" }),
-      line({ d: "M9 12.1H15.6" }),
-      line({ d: "M9 15.2H15.6" })
+      shape("path", {
+        d: "M7.9 3.8H14L18.7 8.5V19.4C18.7 20.3 18 21 17.1 21H7.9C7 21 6.3 20.3 6.3 19.4V5.4C6.3 4.5 7 3.8 7.9 3.8Z",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.9"
+      }),
+      shape("path", {
+        d: "M14 4.2V8.7H18.4",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.7"
+      }),
+      shape("rect", { x: "8.8", y: "10.4", width: "6.1", height: "1.55", rx: "0.55", fill: "currentColor" }),
+      line({ d: "M8.8 14.2H16.2" }),
+      line({ d: "M8.8 16.7H14.8" }),
+      shape("path", {
+        d: "M8.8 8.1H11.5",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-width": "2.2"
+      })
     );
     return svg;
   }
 
   if (normalizedKey === "note") {
     svg.append(
-      shape("path", { d: "M7 4.8h10A1.8 1.8 0 0 1 18.8 6.6v10.8A1.8 1.8 0 0 1 17 19.2H9.8L5.2 14.6V6.6A1.8 1.8 0 0 1 7 4.8Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
-      line({ d: "M9 9.4H15.4" }),
-      line({ d: "M9 12.5H15.4" }),
-      line({ d: "M9 15.6H13.2" })
+      shape("rect", { x: "5.3", y: "4.1", width: "12.4", height: "15.9", rx: "1.8", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+      line({ d: "M9.2 4.4V19.7" }),
+      shape("circle", { cx: "7.25", cy: "8.2", r: "0.75", fill: "currentColor" }),
+      shape("circle", { cx: "7.25", cy: "12", r: "0.75", fill: "currentColor" }),
+      shape("circle", { cx: "7.25", cy: "15.8", r: "0.75", fill: "currentColor" }),
+      line({ d: "M11.3 8.4H15.2" }),
+      line({ d: "M11.3 11.4H15.2" }),
+      shape("path", {
+        d: "M14.8 18.6L19.4 14L21 15.6L16.4 20.2L14.2 20.8Z",
+        fill: "currentColor",
+        "fill-opacity": "0.7"
+      }),
+      shape("path", {
+        d: "M18.9 14.5L20.5 16.1",
+        fill: "none",
+        stroke: "var(--paper)",
+        "stroke-linecap": "round",
+        "stroke-width": "0.8"
+      })
     );
     return svg;
   }
@@ -5180,22 +5762,22 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "pullback") {
     svg.append(
-      line({ d: "M8.8 7.2H15.2" }),
-      line({ d: "M7.2 8.8V15.2" }),
-      line({ d: "M16.8 8.8V15.2" }),
-      line({ d: "M8.8 16.8H15.2" }),
+      line({ d: "M7.3 7.3H16.7" }),
+      line({ d: "M7.3 7.3V16.7" }),
+      line({ d: "M16.7 7.3V16.7" }),
+      line({ d: "M7.3 16.7H16.7" }),
       shape("path", {
-        d: "M10 10H12.2V12.2",
+        d: "M10.1 10.1H13V13",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
-        "stroke-width": "1.3"
+        "stroke-width": "1.6"
       }),
-      shape("circle", { cx: "7.2", cy: "7.2", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
-      shape("circle", { cx: "16.8", cy: "7.2", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
-      shape("circle", { cx: "7.2", cy: "16.8", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
-      shape("circle", { cx: "16.8", cy: "16.8", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" })
+      shape("circle", { cx: "7.3", cy: "7.3", r: "1.75", fill: "currentColor" }),
+      shape("circle", { cx: "16.7", cy: "7.3", r: "1.75", fill: "currentColor", "fill-opacity": "0.78" }),
+      shape("circle", { cx: "7.3", cy: "16.7", r: "1.75", fill: "currentColor", "fill-opacity": "0.78" }),
+      shape("circle", { cx: "16.7", cy: "16.7", r: "1.75", fill: "currentColor", "fill-opacity": "0.58" })
     );
     return svg;
   }
@@ -5209,6 +5791,63 @@ function uiIconSvg(key) {
       shape("circle", { cx: "9", cy: "13.7", r: "1.1", fill: "currentColor" }),
       shape("circle", { cx: "12", cy: "13.7", r: "1.1", fill: "currentColor" }),
       shape("circle", { cx: "15", cy: "13.7", r: "1.1", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "timeline") {
+    svg.append(
+      line({ d: "M5 17.8H19" }),
+      line({ d: "M7.3 17.8V9.2" }),
+      line({ d: "M12 17.8V6.5" }),
+      line({ d: "M16.7 17.8V11.1" }),
+      shape("circle", { cx: "7.3", cy: "9.2", r: "1.55", fill: "currentColor" }),
+      shape("circle", { cx: "12", cy: "6.5", r: "1.55", fill: "currentColor" }),
+      shape("circle", { cx: "16.7", cy: "11.1", r: "1.55", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "mail") {
+    svg.append(
+      shape("rect", { x: "4.2", y: "6.6", width: "15.6", height: "10.8", rx: "2", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+      line({ d: "M5.2 8.6L12 13.1L18.8 8.6" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "tag") {
+    svg.append(
+      shape("path", {
+        d: "M5.2 5.7H11.8L18.9 12.8L12.8 18.9L5.2 11.3Z",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.9"
+      }),
+      shape("circle", { cx: "8.8", cy: "9", r: "1.1", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "globe") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "12", r: "8.1", fill: "none", stroke: "currentColor", "stroke-width": "1.75" }),
+      shape("path", {
+        d: "M8.8 5.5C7.2 6.2 6 7.6 5.5 9.5L7 9.8C7.9 10 8.4 10.7 8.2 11.6L8 12.7C7.8 13.6 8.2 14.4 9 14.8L10 15.3C10.7 15.7 10.9 16.5 10.5 17.2L9.8 18.5C9.7 18.8 9.9 19.1 10.2 19.2L11 19.4C11.4 18.1 11.4 16.8 10.9 15.5C10.5 14.3 11 13.3 12.1 12.8L13.1 12.3C13.9 11.9 14.1 10.8 13.4 10.2L12 9C11.3 8.4 10.3 8.5 9.7 9.2L9.1 9.9C8.7 10.4 7.9 10.1 8 9.4L8.8 5.5Z",
+        fill: "currentColor",
+        "fill-opacity": "0.52"
+      }),
+      shape("path", {
+        d: "M13.3 5C15.4 5.3 17.1 6.4 18.2 8.1L17.4 8.7C16.9 9.1 16.9 9.8 17.4 10.2L18.6 11.3C18.8 11.5 18.7 11.9 18.4 12C17.5 12.3 16.7 12.1 15.9 11.6C15.1 11.1 14.3 11.4 14 12.2C13.8 12.9 14.2 13.5 14.8 13.9C15.5 14.4 15.6 15.3 15 16L13.8 17.4C13.3 18.1 12.3 18 11.9 17.3C11.5 16.6 11.8 16 12.3 15.4C12.9 14.8 12.6 13.8 11.7 13.6L10.6 13.3C9.7 13 9.3 12.2 9.7 11.4C10.1 10.5 11.1 10.3 12.1 10.6C12.9 10.8 13.4 9.8 12.8 9.2L12 8.4C11.2 7.6 11.3 6.4 12.2 5.7L13.3 5Z",
+        fill: "currentColor",
+        "fill-opacity": "0.34"
+      }),
+      shape("path", {
+        d: "M16.9 15.8C17.8 15.7 18.5 16.1 18.8 16.8C18.1 18 17.1 18.9 15.9 19.5L15.4 18.8C15 18.2 15.2 17.4 15.8 17L16.9 15.8Z",
+        fill: "currentColor",
+        "fill-opacity": "0.44"
+      })
     );
     return svg;
   }
@@ -5296,42 +5935,42 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "orcid") {
     svg.append(
-      shape("circle", { cx: "12", cy: "12", r: "9", fill: "#a6ce39" }),
-      shape("circle", { cx: "8.2", cy: "7.7", r: "0.95", fill: "#fff" }),
-      shape("rect", { x: "7.35", y: "10.1", width: "1.7", height: "6.2", rx: "0.35", fill: "#fff" }),
+      shape("circle", { cx: "12", cy: "12", r: "9", fill: "currentColor" }),
+      shape("circle", { cx: "8.2", cy: "7.7", r: "0.95", fill: "var(--paper)" }),
+      shape("rect", { x: "7.35", y: "10.1", width: "1.7", height: "6.2", rx: "0.35", fill: "var(--paper)" }),
       shape("path", {
         d: "M11.1 7.7h3.05c2.45 0 4.15 1.65 4.15 4.25s-1.7 4.35-4.15 4.35H11.1Z",
-        fill: "#fff"
+        fill: "var(--paper)"
       }),
       shape("path", {
         d: "M13.2 9.75v4.5h.95c1.18 0 2.02-.86 2.02-2.25c0-1.38-.84-2.25-2.02-2.25Z",
-        fill: "#a6ce39"
+        fill: "currentColor"
       })
     );
     return svg;
   }
 
   if (normalizedKey === "arxiv") {
+    const arxivMarkTransform = "translate(12 12) scale(0.175) translate(-486.5 -277.8)";
+    const arxivMarkAttrs = {
+      fill: "currentColor",
+      stroke: "currentColor",
+      "stroke-linejoin": "round",
+      "stroke-width": "2.1",
+      transform: arxivMarkTransform
+    };
     svg.append(
       shape("path", {
-        d: "M5.2 8.5C6.3 7.6 7.6 7.4 8.7 8.1C10.1 9 9.8 10.7 8.7 11.4C7.9 11.9 6.9 11.9 5.8 11.7M8.7 8.1L8.7 15.9",
-        fill: "none",
-        stroke: "#5b5853",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        "stroke-width": "1.35"
+        d: "M486.149,277.877l-32.741,38.852c-1.286,1.372-2.084,3.777-1.365,5.5a4.705,4.705,0,0,0,4.4,2.914,4.191,4.191,0,0,0,3.16-1.563l40.191-42.714a4.417,4.417,0,0,0,.042-6.042Z",
+        ...arxivMarkAttrs
       }),
       shape("path", {
-        d: "M10.4 6.2L13.15 12L10.15 17.8H12.6L14.45 14L16.25 17.8H18.7L15.75 12L18.45 6.2H16.15L14.48 9.85L12.78 6.2Z",
-        fill: "#b31b1b"
+        d: "M486.149,277.877l31.187-38.268c1.492-1.989,2.2-3.03,1.492-4.723a5.142,5.142,0,0,0-4.481-3.161h0a4.024,4.024,0,0,0-3.008,1.108L472.711,274.6a4.769,4.769,0,0,0,.015,6.53L520.512,332.2a3.913,3.913,0,0,0,3.137,1.192,4.394,4.394,0,0,0,4.027-2.818c.719-1.727-.076-3.438-1.4-5.23l-40.124-47.464",
+        ...arxivMarkAttrs
       }),
       shape("path", {
-        d: "M19 8.3V15.8M20.9 8.3L22 15.8",
-        fill: "none",
-        stroke: "#5b5853",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        "stroke-width": "1.35"
+        d: "M499.833,274.828,453.169,224.4s-1.713-2.08-3.524-2.124a4.607,4.607,0,0,0-4.338,2.788c-.705,1.692-.2,2.88,1.349,5.1l40.093,48.422",
+        ...arxivMarkAttrs
       })
     );
     return svg;
@@ -5339,25 +5978,34 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "nlab") {
     svg.append(
-      shape("path", { d: "M11.7 19.2C10 15.7 9.65 12.4 10.6 8.1", fill: "none", stroke: "#226622", "stroke-width": "1.25", "stroke-linecap": "round" }),
-      shape("ellipse", { cx: "11.2", cy: "7.2", rx: "2.15", ry: "4.15", fill: "#226622", transform: "rotate(-12 11.2 7.2)" }),
-      shape("ellipse", { cx: "7.4", cy: "10.1", rx: "1.85", ry: "3.7", fill: "#2f8a2f", transform: "rotate(-55 7.4 10.1)" }),
-      shape("ellipse", { cx: "14.7", cy: "10.2", rx: "1.85", ry: "3.8", fill: "#2f8a2f", transform: "rotate(45 14.7 10.2)" }),
-      shape("ellipse", { cx: "8.8", cy: "15.1", rx: "1.65", ry: "3.35", fill: "#226622", transform: "rotate(-40 8.8 15.1)" }),
-      shape("ellipse", { cx: "15.1", cy: "15.1", rx: "1.65", ry: "3.35", fill: "#226622", transform: "rotate(40 15.1 15.1)" })
+      shape("path", {
+        d: "M10.8 7.1C10.8 5.4 9.5 3.6 10.1 2C10.5 1 11.8.8 12.2 1.9C12.7 3.3 12.2 5.1 12 6.6C13.4 6.4 13.3 4.5 13.8 3.5C14.1 3 14.5 2.4 15.2 2.7C15.9 3 16.1 3.8 16 4.6C15.7 6.3 14.5 6.9 13.2 7.9C12.8 8.2 12.2 8.7 12.5 9.3C12.7 9.9 13.3 9.9 13.8 9.7C14.7 9.3 15.5 7.7 16.5 7.8C18.3 7.9 18 10.5 16.7 11.1C16.1 11.3 15.4 11.3 14.8 11.5C14.1 11.8 13.7 12.6 12.9 12.6C12.1 12.6 11.8 11.8 11.1 11.5C9.4 10.8 7 11.3 5.6 9.8C5.1 9.3 4.4 8.3 5 7.6C6.1 6.3 8.4 8.4 9.4 9C9.6 9.2 10.7 9.9 10.8 9.1C10.9 8.5 9.6 8.1 9.2 7.9C7.8 7.3 5.5 6.1 4.9 4.6C4.6 3.8 5.2 2.9 6 2.9C6.9 2.9 7.7 3.7 8.2 4.3C9 5 9.5 6.5 10.8 7.1Z",
+        fill: "currentColor",
+        "fill-opacity": "0.82"
+      }),
+      shape("path", {
+        d: "M8.9 18.7C8.7 20.8 7 19.9 6 21.1C5.3 22 6.6 23 7.4 22.9C8.8 22.9 9.7 21.3 10.6 20.4C11 20 11.6 19.9 12 19.5C12.5 19 12.5 18.3 12.4 17.8C12.2 16.6 10.8 15.5 10.3 14.5C9.7 13.3 9 11.2 7.4 11.2C5.2 11.1 7.3 14.4 8 15C8.3 15.3 8.6 15.5 8.9 15.8C9.1 16.1 9.1 16.5 8.8 16.7C8.1 17 7.3 15.9 6.9 15.5C5.8 14.2 5 12.7 3.7 11.6C3 11 2.2 10.6 1.4 11.1C0.6 11.7 0.9 12.7 1.4 13.4C2.4 14.6 3.8 15.7 5.2 16.3C5.6 16.5 6.8 17 6.5 17.6C6.2 18.2 5.1 17.9 4.6 17.7C3.6 17.2 1.6 15.1 0.4 16C0.1 16.3 0.1 16.9 0.2 17.4C0.6 18.5 1.7 19.5 2.8 19.9C4.9 20.7 6.9 19 8.9 18.7Z",
+        fill: "currentColor",
+        "fill-opacity": "0.64"
+      }),
+      shape("path", {
+        d: "M18 15.5C17.9 14.6 18 13.1 17.4 12.3C16.8 11.4 15.8 12.2 15.7 13C15.5 14 16 14.7 16.2 15.6C16.7 17.1 17 19.2 16.2 20.6C15.8 19.7 15.6 18.9 15.4 18C15.1 17 13.8 16.4 13.5 17.8C13.2 19 14.6 20.4 15 21.5C15.1 22 15.2 22.6 15.8 22.8C16.6 23.1 17.4 22.2 18 21.7C19.5 20.3 22.5 19.2 23.3 17.2C23.9 15.3 21.6 15.5 20.7 16.3C19.6 17.3 19.2 18.8 17.8 19.4C18.7 16.5 21.7 14.8 22.5 11.9C22.8 11 22.4 8.2 20.9 9.5C19.2 10.9 20.2 14.1 18 15.5Z",
+        fill: "currentColor",
+        "fill-opacity": "0.52"
+      })
     );
     return svg;
   }
 
   if (normalizedKey === "researchmap") {
     svg.append(
-      shape("circle", { cx: "7.4", cy: "9.1", r: "2.6", fill: "#2b95d6" }),
-      shape("circle", { cx: "16.5", cy: "8.2", r: "2.45", fill: "#64b646" }),
-      shape("circle", { cx: "14.4", cy: "16.2", r: "2.75", fill: "#2b95d6" }),
-      shape("path", { d: "M9.7 9L14.2 8.5M8.9 10.9L12.6 14.4M15.8 10.5L15 13.6", fill: "none", stroke: "#2d5b73", "stroke-width": "1.15", "stroke-linecap": "round" }),
-      shape("circle", { cx: "10.7", cy: "12.1", r: "0.8", fill: "#fff" }),
-      shape("circle", { cx: "13.2", cy: "11.2", r: "0.8", fill: "#fff" }),
-      shape("circle", { cx: "12.7", cy: "14", r: "0.8", fill: "#fff" })
+      shape("circle", { cx: "7.4", cy: "9.1", r: "2.6", fill: "currentColor" }),
+      shape("circle", { cx: "16.5", cy: "8.2", r: "2.45", fill: "currentColor", "fill-opacity": "0.68" }),
+      shape("circle", { cx: "14.4", cy: "16.2", r: "2.75", fill: "currentColor" }),
+      shape("path", { d: "M9.7 9L14.2 8.5M8.9 10.9L12.6 14.4M15.8 10.5L15 13.6", fill: "none", stroke: "currentColor", "stroke-width": "1.15", "stroke-linecap": "round", "stroke-opacity": "0.64" }),
+      shape("circle", { cx: "10.7", cy: "12.1", r: "0.8", fill: "var(--paper)" }),
+      shape("circle", { cx: "13.2", cy: "11.2", r: "0.8", fill: "var(--paper)" }),
+      shape("circle", { cx: "12.7", cy: "14", r: "0.8", fill: "var(--paper)" })
     );
     return svg;
   }
@@ -5415,6 +6063,72 @@ function uiIcon(key, className = "ui-icon") {
   span.setAttribute("aria-hidden", "true");
   span.append(uiIconSvg(key));
   return span;
+}
+
+function uniqueElementId(base, element) {
+  const fallback = "section";
+  const normalized = slugify(base) || fallback;
+  let candidate = normalized;
+  let index = 2;
+  while (document.getElementById(candidate) && document.getElementById(candidate) !== element) {
+    candidate = `${normalized}-${index}`;
+    index += 1;
+  }
+  return candidate;
+}
+
+function headingSelfHref(heading) {
+  if (!heading) return "";
+  if (!heading.id) {
+    const containerId = heading.closest("section[id], article[id], main[id]")?.id || "section";
+    const headingSlug = slugify(heading.textContent) || "heading";
+    heading.id = uniqueElementId(`${containerId}-${headingSlug}`, heading);
+  }
+  return `#${heading.id}`;
+}
+
+function sectionTitleIconLink(key, heading) {
+  const href = headingSelfHref(heading);
+  if (!href) return uiIcon(key, "section-title-icon");
+  const anchor = link("", href, "section-title-link");
+  anchor.setAttribute("aria-label", `Link to ${heading.textContent.trim() || "this section"}`);
+  anchor.title = "Copy link to this section";
+  anchor.append(uiIcon(key, "section-title-icon"));
+  return anchor;
+}
+
+function sectionMoreLink(heading) {
+  return heading?.closest(".section-head")?.querySelector(".section-link[href]") || null;
+}
+
+function hideRedundantMoreLink(moreLink) {
+  const label = normalizedUiText(moreLink?.dataset?.i18nOriginalText || moreLink?.textContent || "");
+  if (label !== "More") return;
+  moreLink.classList.add("section-link-hidden");
+  moreLink.setAttribute("aria-hidden", "true");
+  moreLink.tabIndex = -1;
+}
+
+function linkSectionHeadingText(heading) {
+  const moreLink = sectionMoreLink(heading);
+  const href = moreLink?.getAttribute("href") || "";
+  if (!heading || !href) return;
+  hideRedundantMoreLink(moreLink);
+  if (heading.querySelector(".section-title-text-link")) return;
+  const textNodes = Array.from(heading.childNodes).filter(
+    (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim()
+  );
+  if (!textNodes.length) return;
+  const label = textNodes
+    .map((node) => node.textContent)
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!label) return;
+  const anchor = link(label, href, "section-title-text-link");
+  anchor.setAttribute("aria-label", moreLink.getAttribute("aria-label") || `Open ${label}`);
+  textNodes[0].replaceWith(anchor);
+  textNodes.slice(1).forEach((node) => node.remove());
 }
 
 function pageIconKey(page) {
@@ -5481,6 +6195,7 @@ function navIconKey(label = "", href = "") {
   if (text.includes("documents") || text.includes("資料")) return "paper";
   if (text.includes("papers") || url.includes("/papers/")) return "paper";
   if (text.includes("notes") || url.includes("/notes/")) return "note";
+  if (text.includes("visit") || url.includes("#visits")) return "globe";
   if (text.includes("activities") || text.includes("活動") || url.includes("/activities/")) return "activity";
   if (text.includes("talks") || url.includes("/talks/")) return "talk";
   if (text.includes("others") || text.includes("その他")) return "link";
@@ -5503,11 +6218,34 @@ function linkedListIconKey(selector = "", record = {}) {
 
 function activityIconKey(group = {}, record = {}) {
   const text = simplified(`${group.title} ${record.text}`);
+  if (text.includes("visit")) return "globe";
   if (text.includes("organ")) return "network";
   if (text.includes("talk") || text.includes("present") || text.includes("spoke") || text.includes("poster")) return "talk";
   if (text.includes("upload") || text.includes("submit") || text.includes("preprint") || text.includes("wrote")) return "paper";
   if (text.includes("received") || text.includes("grant") || text.includes("ph d")) return "award";
   return "activity";
+}
+
+function sectionHeadingIconKey(label = "") {
+  const text = simplified(label);
+  if (text.includes("categories in tokyo")) return "kan-extension";
+  if (text.includes("research timeline") || text.includes("timeline") || text.includes("タイムライン")) return "timeline";
+  if (text.includes("upcoming") || text.includes("plan") || text.includes("予定")) return "activity";
+  if (text.includes("visit") || text.includes("訪問")) return "globe";
+  if (text.includes("recent talks") || text.includes("talk list") || text.includes("archive") || text.includes("talk") || text.includes("発表")) return "talk";
+  if (text.includes("recent papers") || text.includes("bibliography") || text.includes("paper") || text.includes("writing") || text.includes("論文")) return "paper";
+  if (text.includes("note") || text.includes("ノート")) return "note";
+  if (text.includes("web app")) return "webapp";
+  if (text.includes("question") || text.includes("trail") || text.includes("problem") || text.includes("entry") || text.includes("entries")) return "problem";
+  if (text.includes("index") || text.includes("explore") || text.includes("search") || text.includes("検索")) return "search";
+  if (text.includes("current position") || text.includes("past position") || text.includes("position") || text.includes("所属")) return "building";
+  if (text.includes("topic") || text.includes("トピック")) return "tag";
+  if (text.includes("email") || text.includes("メール")) return "mail";
+  if (text.includes("award") || text.includes("受賞")) return "award";
+  if (text.includes("education") || text.includes("outreach") || text.includes("教育")) return "education";
+  if (text.includes("interest") || text.includes("関心")) return "topos";
+  if (text.includes("link") || text.includes("リンク")) return "link";
+  return "";
 }
 
 function noteRecordByFile(file) {
@@ -5560,6 +6298,14 @@ function decorateUiIcons(root = document.body) {
     node.prepend(uiIcon(key, "action-link-icon"));
     node.classList.add("has-icon");
   });
+
+  collect(".section-head h2, .profile-grid h2, .categories-tokyo-copy h2").forEach((node) => {
+    const key = sectionHeadingIconKey(node.textContent);
+    linkSectionHeadingText(node);
+    if (!key) return;
+    if (!node.querySelector(".section-title-icon")) node.prepend(sectionTitleIconLink(key, node));
+    node.classList.add("has-section-icon");
+  });
 }
 
 function themeById(themeId) {
@@ -5567,10 +6313,9 @@ function themeById(themeId) {
 }
 
 function themeScore(text, theme) {
-  const haystack = simplified(text);
   return theme.keywords.reduce((score, keyword) => {
     const needle = simplified(keyword);
-    return needle && haystack.includes(needle) ? score + Math.max(1, needle.split(" ").length) : score;
+    return needle && hasTopicKeyword(text, keyword) ? score + Math.max(1, needle.split(" ").length) : score;
   }, 0);
 }
 
@@ -5606,8 +6351,6 @@ function themedPaperRecords() {
       const text = compactText([
         paper.title,
         paper.authors,
-        paper.venue,
-        paper.year,
         paper.tags?.join(" "),
         paper.summary
       ]).join(" ");
@@ -5620,7 +6363,7 @@ function themedPaperRecords() {
       };
     }),
     ...siteData.papers.misc.map((paper) => {
-      const text = compactText([paper.title, paper.authors, paper.venue, paper.year]).join(" ");
+      const text = compactText([paper.title, paper.authors, paper.tags?.join(" ")]).join(" ");
       return {
         type: "paper",
         title: paper.title,
@@ -5632,11 +6375,7 @@ function themedPaperRecords() {
     ...(researchmapData?.papers || []).map((paper) => {
       const text = compactText([
         paper.title,
-        paper.authors,
-        paper.venue,
-        paper.type,
-        paper.year,
-        paper.publicationDate
+        paper.authors
       ]).join(" ");
       return {
         type: "paper",
@@ -5667,7 +6406,8 @@ function themedNoteRecords() {
   return dedupeThemeRecords([...overleafNoteRecords(), ...siteData.notes]
     .filter((note) => note.file !== "Notion archive")
     .map((note) => {
-      const text = compactText([note.title, note.description, note.language, note.file]).join(" ");
+      const theme = noteTheme(note);
+      const text = compactText([note.title, note.description, note.language, note.file, theme, noteThemeLabel(theme)]).join(" ");
       return {
         type: "note",
         title: note.title,
@@ -5683,15 +6423,9 @@ function themedTalkRecords() {
   if (synced.length) {
     return synced
       .map((record) => {
-        const location = talkLocationForRecord(record);
         const text = compactText([
-          record.year,
           record.title,
-          record.presenters?.join(" "),
-          record.event,
-          record.type,
-          location?.name,
-          location?.country
+          record.presenters?.join(" ")
         ]).join(" ");
         return {
           type: "talk",
@@ -5709,7 +6443,7 @@ function themedTalkRecords() {
       group.items.map((talk) => {
         const presentationRecord = findResearchmapPresentationForTalk(talk);
         const presenters = presentationPeopleText(presentationRecord || talk);
-        const text = compactText([group.year, talk.title, talk.venue, presenters]).join(" ");
+        const text = compactText([talk.title, presenters]).join(" ");
         return {
           type: "talk",
           title: talk.title,
@@ -5730,15 +6464,22 @@ function themedRecords(kind) {
 }
 
 function normalizeThemeSelection(selection = "") {
-  if (Array.isArray(selection)) return selection.filter(Boolean);
-  return String(selection)
-    .split(/\s+/)
-    .map((themeId) => themeId.trim())
-    .filter(Boolean);
+  const rawIds = Array.isArray(selection)
+    ? selection
+    : String(selection)
+      .split(/\s+/)
+      .map((themeId) => themeId.trim());
+  const seen = new Set();
+  return rawIds.filter((themeId) => {
+    if (!themeId || seen.has(themeId) || !themeById(themeId)) return false;
+    seen.add(themeId);
+    return true;
+  });
 }
 
 function themeSelectionLabel(themeIds) {
   if (!themeIds.length) return "All themes";
+  if (themeIds.length > 2) return `${themeIds.length} themes`;
   return themeIds.map((themeId) => themeById(themeId)?.label || themeId).join(" + ");
 }
 
@@ -5769,15 +6510,16 @@ function renderThemeResult(record, selection = "") {
   return item;
 }
 
-function renderResearchMapResults(selection = "") {
+function renderResearchMapResults(selection = "", options = {}) {
   const root = document.querySelector("#research-map");
   if (!root) return;
+  const { updateStatus = true } = options;
   const themeIds = normalizeThemeSelection(selection);
   const status = root.querySelector("[data-theme-status]");
   const groups = researchThemeGroups();
 
   const counts = groups.map(([kind]) => topThemeRecords(kind, themeIds).length);
-  if (status) {
+  if (status && updateStatus) {
     status.replaceChildren(
       el("span", "theme-status-label", themeSelectionLabel(themeIds)),
       el(
@@ -5810,23 +6552,153 @@ function researchThemeGroups() {
   ];
 }
 
+function researchThemeItemCount(selection = "") {
+  return researchThemeGroups().reduce((total, [kind]) => total + topThemeRecords(kind, selection).length, 0);
+}
+
+function themeChoiceCountLabel(count) {
+  return `${count} ${count === 1 ? "item" : "items"}`;
+}
+
+function orderedSimplexThemes(themeIds) {
+  const themes = normalizeThemeSelection(themeIds).map(themeById).filter(Boolean);
+  if (themes.length < 2) return themes;
+  const center = themes.reduce((point, theme) => ({
+    x: point.x + theme.x / themes.length,
+    y: point.y + theme.y / themes.length
+  }), { x: 0, y: 0 });
+  return themes.sort((a, b) => Math.atan2(a.y - center.y, a.x - center.x) - Math.atan2(b.y - center.y, b.x - center.x));
+}
+
+function renderResearchThemeSimplex(root, selection = "", mode = "active") {
+  const layer = root.querySelector(`[data-theme-simplex="${mode}"]`);
+  if (!layer) return;
+  const themes = orderedSimplexThemes(selection);
+  layer.replaceChildren();
+  layer.classList.toggle("has-simplex", themes.length >= 2);
+  if (themes.length < 2) return;
+
+  if (themes.length >= 3) {
+    layer.append(svgEl("polygon", {
+      class: "theme-simplex-fill",
+      points: themes.map((theme) => `${theme.x},${theme.y}`).join(" ")
+    }));
+  }
+
+  for (let sourceIndex = 0; sourceIndex < themes.length; sourceIndex += 1) {
+    for (let targetIndex = sourceIndex + 1; targetIndex < themes.length; targetIndex += 1) {
+      const source = themes[sourceIndex];
+      const target = themes[targetIndex];
+      layer.append(svgEl("path", {
+        class: "theme-simplex-chord",
+        d: `M${source.x} ${source.y} L${target.x} ${target.y}`
+      }));
+    }
+  }
+}
+
+function renderThemeChoice(label, selection = "") {
+  const button = el("button", "theme-choice");
+  const themeIds = normalizeThemeSelection(selection);
+  const countLabel = themeChoiceCountLabel(researchThemeItemCount(themeIds));
+  button.type = "button";
+  button.dataset.themeChoice = themeIds.join(" ");
+  button.setAttribute("aria-pressed", "false");
+  button.setAttribute("aria-label", `${label}, ${countLabel}`);
+  button.append(
+    el("span", "theme-choice-label", label),
+    el("span", "theme-choice-count", countLabel)
+  );
+  button.addEventListener("click", () => {
+    if (themeIds.length) toggleResearchThemeSelection(themeIds);
+    else setResearchThemeSelection("");
+  });
+  return button;
+}
+
+function currentResearchThemeSelection() {
+  return normalizeThemeSelection(state.researchTheme);
+}
+
+function themeEdgeTouchesSelection(edgeThemeIds, themeIds) {
+  if (themeIds.length === 1) return edgeThemeIds.includes(themeIds[0]);
+  if (themeIds.length >= 2) return edgeThemeIds.every((themeId) => themeIds.includes(themeId));
+  return false;
+}
+
+function updateResearchThemeControls(root, themeIds, className = "is-active") {
+  root.querySelectorAll("[data-theme-node]").forEach((node) => {
+    const isActive = themeIds.includes(node.dataset.themeNode);
+    node.classList.toggle(className, isActive);
+    if (className === "is-active") node.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+  root.querySelectorAll("[data-theme-edge]").forEach((edge) => {
+    const edgeThemeIds = normalizeThemeSelection(edge.dataset.themeEdge);
+    const isActive = themeEdgeTouchesSelection(edgeThemeIds, themeIds);
+    edge.classList.toggle(className, isActive);
+    if (className === "is-active") edge.setAttribute("aria-pressed", isActive ? "true" : "false");
+    if (className === "is-preview") return;
+    edge.classList.toggle("is-selected", edgeThemeIds.every((themeId) => themeIds.includes(themeId)));
+  });
+  root.querySelectorAll("[data-theme-choice]").forEach((choice) => {
+    const choiceThemeIds = normalizeThemeSelection(choice.dataset.themeChoice);
+    const isActive = themeIds.length
+      ? choiceThemeIds.length === 1 && themeIds.includes(choiceThemeIds[0])
+      : !choiceThemeIds.length;
+    choice.classList.toggle(className, isActive);
+    if (className === "is-active") choice.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
+function clearResearchThemeControlClass(root, className) {
+  root.querySelectorAll(`.${className}`).forEach((node) => node.classList.remove(className));
+}
+
+function previewResearchThemeSelection(selection = "") {
+  const root = document.querySelector("#research-map");
+  if (!root) return;
+  const themeIds = normalizeThemeSelection(selection);
+  root.classList.add("is-previewing");
+  clearResearchThemeControlClass(root, "is-preview");
+  updateResearchThemeControls(root, themeIds, "is-preview");
+  renderResearchThemeSimplex(root, themeIds, "preview");
+  renderResearchMapResults(themeIds, { updateStatus: false });
+}
+
+function clearResearchThemePreview() {
+  const root = document.querySelector("#research-map");
+  if (!root) return;
+  root.classList.remove("is-previewing");
+  clearResearchThemeControlClass(root, "is-preview");
+  renderResearchThemeSimplex(root, "", "preview");
+  renderResearchMapResults(currentResearchThemeSelection(), { updateStatus: false });
+}
+
+function toggleResearchThemeSelection(selection = "") {
+  const toggledThemeIds = normalizeThemeSelection(selection);
+  if (!toggledThemeIds.length) {
+    setResearchThemeSelection("");
+    return;
+  }
+  const current = currentResearchThemeSelection();
+  const currentSet = new Set(current);
+  const shouldRemove = toggledThemeIds.every((themeId) => currentSet.has(themeId));
+  if (shouldRemove) toggledThemeIds.forEach((themeId) => currentSet.delete(themeId));
+  else toggledThemeIds.forEach((themeId) => currentSet.add(themeId));
+  setResearchThemeSelection(researchThemes.map((theme) => theme.id).filter((themeId) => currentSet.has(themeId)));
+}
+
 function setResearchThemeSelection(selection = "") {
   const themeIds = normalizeThemeSelection(selection);
   state.researchTheme = themeIds.join(" ");
   const root = document.querySelector("#research-map");
   if (!root) return;
   root.classList.toggle("has-active-theme", Boolean(themeIds.length));
-  root.querySelectorAll("[data-theme-node]").forEach((node) => {
-    node.classList.toggle("is-active", themeIds.includes(node.dataset.themeNode));
-  });
-  root.querySelectorAll("[data-theme-edge]").forEach((edge) => {
-    const themes = edge.dataset.themeEdge.split(" ");
-    const touchesSingleTheme = themeIds.length === 1 && themes.includes(themeIds[0]);
-    const isSelectedEdge = themeIds.length === 2 && themeIds.every((themeId) => themes.includes(themeId));
-    edge.classList.toggle("is-active", touchesSingleTheme || isSelectedEdge);
-    edge.classList.toggle("is-selected", isSelectedEdge);
-    edge.setAttribute("aria-pressed", isSelectedEdge ? "true" : "false");
-  });
+  root.classList.remove("is-previewing");
+  clearResearchThemeControlClass(root, "is-preview");
+  updateResearchThemeControls(root, themeIds);
+  renderResearchThemeSimplex(root, themeIds, "active");
+  renderResearchThemeSimplex(root, "", "preview");
   const reset = document.querySelector("[data-theme-reset]");
   if (reset) reset.classList.toggle("is-active", !themeIds.length);
   renderResearchMapResults(themeIds);
@@ -5836,12 +6708,37 @@ function setResearchTheme(themeId = "") {
   setResearchThemeSelection(themeId);
 }
 
+function renderResearchThemeLayers(svg) {
+  const layer = svgEl("g", { class: "theme-layer-group", "aria-hidden": "true" });
+  researchThemeLayers.forEach((record) => {
+    const band = svgEl("g", { class: "theme-layer" });
+    band.append(
+      svgEl("rect", {
+        class: "theme-layer-band",
+        x: record.x,
+        y: record.y,
+        width: record.width,
+        height: record.height,
+        rx: 16
+      }),
+      svgEl("text", {
+        class: "theme-layer-label",
+        x: record.x + 18,
+        y: record.y + 30
+      }, record.label)
+    );
+    layer.append(band);
+  });
+  svg.append(layer);
+}
+
 function renderResearchMap() {
   const root = document.querySelector("#research-map");
   if (!root) return;
   root.replaceChildren();
 
   const layout = el("div", "research-map-layout");
+  const mapColumn = el("div", "theme-map-column");
   const graph = el("figure", "theme-graph");
   const svg = svgEl("svg", {
     viewBox: "0 0 640 470",
@@ -5857,41 +6754,13 @@ function renderResearchMap() {
     ),
     svgEl("rect", { class: "theme-map-bg", x: 0, y: 0, width: 640, height: 470, rx: 0 })
   );
-
-  researchThemeEdges.forEach(([sourceId, targetId]) => {
-    const source = themeById(sourceId);
-    const target = themeById(targetId);
-    const midX = (source.x + target.x) / 2;
-    const midY = (source.y + target.y) / 2;
-    const bend = sourceId === "logic" || targetId === "games" ? -28 : 28;
-    const edgePath = `M${source.x} ${source.y} Q${midX} ${midY + bend} ${target.x} ${target.y}`;
-    const edge = svgEl("g", {
-      class: "theme-edge-group",
-      tabindex: "0",
-      role: "button",
-      "aria-label": `${source.label} + ${target.label}`,
-      "aria-pressed": "false",
-      "data-theme-edge": `${sourceId} ${targetId}`
-    });
-    edge.append(
-      svgEl("path", {
-        class: "theme-edge-hit",
-        d: edgePath
-      }),
-      svgEl("path", {
-        class: "theme-edge",
-        d: edgePath
-      })
-    );
-    edge.addEventListener("click", () => setResearchThemeSelection([sourceId, targetId]));
-    edge.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        setResearchThemeSelection([sourceId, targetId]);
-      }
-    });
-    svg.append(edge);
-  });
+  renderResearchThemeLayers(svg);
+  const simplexLayer = svgEl("g", { class: "theme-simplex-layer", "aria-hidden": "true" });
+  simplexLayer.append(
+    svgEl("g", { class: "theme-simplex theme-simplex-active", "data-theme-simplex": "active" }),
+    svgEl("g", { class: "theme-simplex theme-simplex-preview", "data-theme-simplex": "preview" })
+  );
+  svg.append(simplexLayer);
 
   researchThemes.forEach((theme) => {
     const node = svgEl("g", {
@@ -5899,28 +6768,34 @@ function renderResearchMap() {
       tabindex: "0",
       role: "button",
       "aria-label": theme.label,
+      "aria-pressed": "false",
       "data-theme-node": theme.id
     });
     node.append(
       svgEl("circle", { cx: theme.x, cy: theme.y, r: theme.r }),
       svgEl("text", { x: theme.x, y: theme.y + 6 }, theme.label)
     );
-    node.addEventListener("mouseenter", () => setResearchTheme(theme.id));
-    node.addEventListener("focus", () => setResearchTheme(theme.id));
-    node.addEventListener("click", () => setResearchTheme(theme.id));
+    node.addEventListener("click", () => toggleResearchThemeSelection(theme.id));
     node.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        setResearchTheme(theme.id);
+        toggleResearchThemeSelection(theme.id);
       }
     });
     svg.append(node);
   });
   graph.append(svg);
 
+  const overview = el("div", "theme-overview");
+  overview.append(el("div", "theme-status", null));
+  overview.firstElementChild.dataset.themeStatus = "";
+  const choices = el("div", "theme-choice-list");
+  choices.append(renderThemeChoice("All themes"));
+  researchThemes.forEach((theme) => choices.append(renderThemeChoice(theme.label, theme.id)));
+  overview.append(choices);
+  mapColumn.append(graph, overview);
+
   const panel = el("div", "theme-panel");
-  panel.append(el("div", "theme-status", null));
-  panel.firstElementChild.dataset.themeStatus = "";
   const columns = el("div", "theme-result-grid");
   researchThemeGroups().forEach(([kind, label]) => {
     const column = el("section", "theme-result-column");
@@ -5929,7 +6804,7 @@ function renderResearchMap() {
     columns.append(column);
   });
   panel.append(columns);
-  layout.append(graph, panel);
+  layout.append(mapColumn, panel);
   root.append(layout);
   setResearchTheme("");
 }
@@ -5973,10 +6848,14 @@ const grundyAlgebraOrder = [
 const grundyNodeStepMap = new Map(grundyAlgebraOrder.map((nodeId, index) => [nodeId, index + 1]));
 const grundyFinalStep = grundyAlgebraOrder.length + 1;
 const grundyNumberLineValues = [0, 1, 2, 3, 4];
+const grundyNumberLineMax = Math.max(...grundyNumberLineValues);
+const grundyReferenceTargetX = 570;
+const grundyReferenceBottomY = 396;
+const grundyReferenceStepY = 78;
 
 const grundyStepCopy = {
   0: {
-    focus: "game",
+    focus: "game coalgebra",
     options: "",
     mex: "choose a state or press Play",
     status: "This is the recursive calculation from the paper, not the heap chain."
@@ -6050,6 +6929,35 @@ function grundyEdgePath(from, to) {
   return `M${from.x} ${startY} C${from.x} ${midY + bend} ${to.x} ${midY - bend} ${to.x} ${endY}`;
 }
 
+function grundyReferenceTarget(value) {
+  return {
+    x: grundyReferenceTargetX,
+    y: grundyReferenceBottomY - value * grundyReferenceStepY
+  };
+}
+
+function grundyReferencePath(source, value, index = 0, count = 1) {
+  const target = grundyReferenceTarget(value);
+  const startX = source.x + 20;
+  const spread = index - (count - 1) / 2;
+  const arc = 48 + Math.abs(spread) * 20;
+  const controlX = Math.max(startX + 72, target.x - 150);
+  const c1Y = source.y - arc - spread * 10;
+  const c2Y = target.y + arc + spread * 12;
+  const endY = target.y + spread * 10;
+  return `M${startX} ${source.y} C${controlX} ${c1Y}, ${target.x - 88} ${c2Y}, ${target.x} ${endY}`;
+}
+
+function grundyReferenceLineData(node) {
+  if (!node.options.length) return [{ source: node, value: 0 }];
+  return node.options
+    .map((targetId) => {
+      const source = grundyGameNodeMap.get(targetId);
+      return source ? { source, value: source.value } : null;
+    })
+    .filter(Boolean);
+}
+
 function grundyFigureTemplate() {
   const edges = grundyGameNodes
     .flatMap((from) =>
@@ -6071,6 +6979,15 @@ function grundyFigureTemplate() {
   const naturalNumbers = grundyNumberLineValues
     .map((value) => `<span class="grundy-natural-number" data-grundy-natural="${value}">${value}</span>`)
     .join("");
+  const referenceLines = grundyGameNodes
+    .flatMap((node) => {
+      const lineData = grundyReferenceLineData(node);
+      return lineData.map(
+        ({ source, value }, index) =>
+          `<path class="grundy-reference-line" data-grundy-reference-node="${node.id}" data-grundy-reference-source="${source.id}" data-grundy-reference-value="${value}" data-grundy-reference-index="${index}" d="${grundyReferencePath(source, value, index, lineData.length)}"></path>`
+      );
+    })
+    .join("");
   return `
     <div class="grundy-figure" data-grundy-figure data-grundy-max="${grundyFinalStep}">
       <svg viewBox="0 0 760 456" role="img" aria-labelledby="fig-games-title fig-games-desc">
@@ -6081,29 +6998,22 @@ function grundyFigureTemplate() {
             <path d="M 0 0 L 10 5 L 0 10 z"></path>
           </marker>
         </defs>
-        <text class="grundy-title" x="34" y="37">game</text>
-        <text class="grundy-title" x="420" y="37">mex algebra</text>
+        <text class="grundy-title" x="34" y="37">game coalgebra</text>
+        <text class="grundy-title" x="498" y="37">mex algebra</text>
         <rect class="grundy-game-frame" x="28" y="76" width="330" height="340" rx="12"></rect>
-        <path class="grundy-divider" d="M386 78 V418"></path>
-        <text class="grundy-level-label" x="44" y="93">top</text>
-        <text class="grundy-level-label" x="44" y="401">terminal</text>
         <g class="grundy-edges">${edges}</g>
+        <g class="grundy-reference-lines">${referenceLines}</g>
         <g class="grundy-nodes">${nodes}</g>
       </svg>
       <div class="grundy-algebra-panel" data-grundy-algebra-panel>
         <div class="grundy-natural-line" aria-label="Natural numbers for mex">
+          <span class="grundy-mex-water" data-grundy-mex-water aria-hidden="true"></span>
           ${naturalNumbers}
-        </div>
-        <div class="grundy-mex-card">
-          <span class="grundy-algebra-label">reachable values</span>
-          <strong data-grundy-reachable-values>press Play</strong>
-          <span data-grundy-mex-reason>mex is the first natural number not crossed out.</span>
-          <strong class="grundy-mex-result" data-grundy-mex-result>mex</strong>
         </div>
       </div>
       <div class="grundy-panel" aria-live="polite">
         <span class="grundy-panel-label">Grundy recursion</span>
-        <strong data-grundy-focus>game</strong>
+        <strong data-grundy-focus>game coalgebra</strong>
         <span data-grundy-options></span>
         <span data-grundy-mex>choose a state or press Play</span>
         <span data-grundy-status>This is the recursive calculation from the paper.</span>
@@ -6111,65 +7021,181 @@ function grundyFigureTemplate() {
     </div>`;
 }
 
+const lawvereCoskelFillerEdges = [
+  [0, 1],
+  [0, 2],
+  [0, 3],
+  [0, 4],
+  [0, 6],
+  [1, 5],
+  [2, 5],
+  [3, 4],
+  [3, 5],
+  [4, 5],
+  [4, 6],
+  [5, 6]
+];
+const lawvereCoskelVertexFills = ["#ce2f36", "#244db7", "#2e9f3d", "#d48624", "#7e5c9b", "#c7783d", "#2c6f63"];
+
+function lawverePolarPoint(cx, cy, radius, index, total = 7) {
+  const angle = (-90 + (index * 360) / total) * (Math.PI / 180);
+  const round = (value) => Math.round(value * 10) / 10;
+  return {
+    x: round(cx + Math.cos(angle) * radius),
+    y: round(cy + Math.sin(angle) * radius)
+  };
+}
+
+function lawvereCoskelGraphTemplate({
+  cx,
+  cy,
+  radius,
+  deleted = null,
+  frameRadius = 0,
+  vertexRadius = 4,
+  compact = false,
+  animatedEdges = false,
+  monochromeVertices = false
+}) {
+  const points = Array.from({ length: 7 }, (_, index) => lawverePolarPoint(cx, cy, radius, index));
+  const frame = frameRadius
+    ? `<circle class="${compact ? "lawvere-coskel-frame" : "lawvere-coskel-core-frame"}" cx="${cx}" cy="${cy}" r="${frameRadius}"></circle>`
+    : "";
+  const edges = lawvereCoskelFillerEdges
+    .map(([from, to], edgeIndex) => {
+      if (from === deleted || to === deleted) return "";
+      const group = edgeIndex % 4;
+      const data = animatedEdges ? ` data-coskel-core-edge data-coskel-edge-from="${from}" data-coskel-edge-to="${to}"` : "";
+      const edgeClass = compact ? "boundary" : monochromeVertices ? "core" : `g${group}`;
+      return `<path class="lawvere-coskel-edge ${edgeClass}"${data} d="M${points[from].x} ${points[from].y} L${points[to].x} ${points[to].y}"></path>`;
+    })
+    .join("");
+  const vertices = points
+    .map((point, index) => {
+      if (index === deleted) {
+        const size = vertexRadius * 1.7;
+        return `
+          <g class="lawvere-coskel-deleted">
+            <path d="M${point.x - size} ${point.y - size} L${point.x + size} ${point.y + size}"></path>
+            <path d="M${point.x + size} ${point.y - size} L${point.x - size} ${point.y + size}"></path>
+          </g>`;
+      }
+      const fill = compact || monochromeVertices ? "#2b342b" : lawvereCoskelVertexFills[index];
+      const data = animatedEdges ? ` data-coskel-vertex="${index}"` : "";
+      return `<circle class="lawvere-coskel-vertex" cx="${point.x}" cy="${point.y}" r="${vertexRadius}" fill="${fill}"${data}></circle>`;
+    })
+    .join("");
+  return `${frame}<g class="lawvere-coskel-edges">${edges}</g><g class="lawvere-coskel-vertices">${vertices}</g>`;
+}
+
+function lawvereCoskelPanelTemplate() {
+  const center = { x: 570, y: 146 };
+  const coreRadius = 56;
+  const coreFrameRadius = 72;
+  const coreVertexRadius = 6.4;
+  const boundaryScale = 0.32;
+  const boundaryGraphs = Array.from({ length: 7 }, (_, index) => {
+    const point = lawverePolarPoint(center.x, center.y, 112, index);
+    const homeX = Math.round((point.x - center.x) * 10) / 10;
+    const homeY = Math.round((point.y - center.y) * 10) / 10;
+    return `
+      <g class="lawvere-coskel-boundary" data-coskel-boundary="${index}" style="--coskel-origin-x: ${center.x}px; --coskel-origin-y: ${center.y}px; --coskel-home-x: ${homeX}px; --coskel-home-y: ${homeY}px; --coskel-home-scale: ${boundaryScale};">
+        ${lawvereCoskelGraphTemplate({
+          cx: center.x,
+          cy: center.y,
+          radius: coreRadius,
+          deleted: index,
+          frameRadius: coreFrameRadius,
+          vertexRadius: coreVertexRadius,
+          compact: true
+        })}
+      </g>`;
+  }).join("");
+
+  return `
+    <g class="lawvere-coskel-panel">
+      <g class="lawvere-coskel-filler">
+        ${lawvereCoskelGraphTemplate({
+          cx: center.x,
+          cy: center.y,
+          radius: coreRadius,
+          frameRadius: coreFrameRadius,
+          vertexRadius: coreVertexRadius,
+          animatedEdges: true,
+          monochromeVertices: true
+        })}
+      </g>
+      <g class="lawvere-coskel-boundaries">${boundaryGraphs}</g>
+    </g>`;
+}
+
 function lawvereFourthFigureTemplate() {
   return `
     <div class="lawvere-pullback-figure" data-lawvere-pullback>
-      <svg viewBox="0 70 760 320" role="img" aria-labelledby="fig-lawvere-fourth-title fig-lawvere-fourth-desc">
-        <title id="fig-lawvere-fourth-title">EZ-decomposition as a pullback</title>
-        <desc id="fig-lawvere-fourth-desc">The graph x on A is the pullback of the graph y on B along alpha. Edges of y generate the corresponding complete bipartite edges in x.</desc>
+      <svg viewBox="0 0 760 320" role="img" aria-labelledby="fig-lawvere-fourth-title fig-lawvere-fourth-desc">
+        <title id="fig-lawvere-fourth-title">Skeletality and coskeletality in parallel</title>
+        <desc id="fig-lawvere-fourth-desc">The left panel shows a graph recovered from a quotient structure. The right panel shows a filler of a 6-cycle in Graph.</desc>
         <defs>
           <marker id="arrow-lawvere-fourth" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z"></path>
           </marker>
         </defs>
 
-        <g class="lawvere-x-graph" transform="translate(0 0)">
-          <circle class="lawvere-graph-frame" cx="177" cy="228" r="118"></circle>
-          <g class="lawvere-x-edges">
-            <path class="lawvere-x-edge rb" data-pullback-edge="rb" d="M177 120 L96 158"></path>
-            <path class="lawvere-x-edge rb" data-pullback-edge="rb" d="M177 120 L78 248"></path>
-            <path class="lawvere-x-edge rb" data-pullback-edge="rb" d="M96 158 L278 248"></path>
-            <path class="lawvere-x-edge rb" data-pullback-edge="rb" d="M78 248 L278 248"></path>
+        <path class="lawvere-panel-divider" d="M380 38 V282"></path>
 
-            <path class="lawvere-x-edge ro" data-pullback-edge="ro" d="M177 120 L224 318"></path>
-            <path class="lawvere-x-edge ro" data-pullback-edge="ro" d="M224 318 L278 248"></path>
+        <g class="lawvere-skel-panel">
+          <g class="lawvere-x-graph">
+            <circle class="lawvere-graph-frame" cx="92" cy="160" r="72"></circle>
+            <g class="lawvere-x-edges">
+              <path class="lawvere-x-edge rb" data-pullback-edge="rb" d="M92 88 L42 111"></path>
+              <path class="lawvere-x-edge rb" data-pullback-edge="rb" d="M92 88 L31 172"></path>
+              <path class="lawvere-x-edge rb" data-pullback-edge="rb" d="M42 111 L158 172"></path>
+              <path class="lawvere-x-edge rb" data-pullback-edge="rb" d="M31 172 L158 172"></path>
 
-            <path class="lawvere-x-edge rg" data-pullback-edge="rg" d="M177 120 L132 318"></path>
-            <path class="lawvere-x-edge rg" data-pullback-edge="rg" d="M177 120 L258 158"></path>
-            <path class="lawvere-x-edge rg" data-pullback-edge="rg" d="M132 318 L278 248"></path>
-            <path class="lawvere-x-edge rg" data-pullback-edge="rg" d="M278 248 L258 158"></path>
+              <path class="lawvere-x-edge ro" data-pullback-edge="ro" d="M92 88 L121 232"></path>
+              <path class="lawvere-x-edge ro" data-pullback-edge="ro" d="M121 232 L158 172"></path>
 
-            <path class="lawvere-x-edge og" data-pullback-edge="og" d="M224 318 L132 318"></path>
-            <path class="lawvere-x-edge og" data-pullback-edge="og" d="M224 318 L258 158"></path>
+              <path class="lawvere-x-edge rg" data-pullback-edge="rg" d="M92 88 L65 232"></path>
+              <path class="lawvere-x-edge rg" data-pullback-edge="rg" d="M92 88 L143 111"></path>
+              <path class="lawvere-x-edge rg" data-pullback-edge="rg" d="M65 232 L158 172"></path>
+              <path class="lawvere-x-edge rg" data-pullback-edge="rg" d="M158 172 L143 111"></path>
+
+              <path class="lawvere-x-edge og" data-pullback-edge="og" d="M121 232 L65 232"></path>
+              <path class="lawvere-x-edge og" data-pullback-edge="og" d="M121 232 L143 111"></path>
+            </g>
+            <g class="lawvere-x-vertices">
+              <circle class="c-red" cx="92" cy="88" r="7"></circle>
+              <circle class="c-blue" cx="42" cy="111" r="7"></circle>
+              <circle class="c-blue" cx="31" cy="172" r="7"></circle>
+              <circle class="c-green" cx="65" cy="232" r="7"></circle>
+              <circle class="c-orange" cx="121" cy="232" r="7"></circle>
+              <circle class="c-red" cx="158" cy="172" r="7"></circle>
+              <circle class="c-green" cx="143" cy="111" r="7"></circle>
+            </g>
           </g>
-          <g class="lawvere-x-vertices">
-            <circle class="c-red" cx="177" cy="120" r="10"></circle>
-            <circle class="c-blue" cx="96" cy="158" r="10"></circle>
-            <circle class="c-blue" cx="78" cy="248" r="10"></circle>
-            <circle class="c-green" cx="132" cy="318" r="10"></circle>
-            <circle class="c-orange" cx="224" cy="318" r="10"></circle>
-            <circle class="c-red" cx="278" cy="248" r="10"></circle>
-            <circle class="c-green" cx="258" cy="158" r="10"></circle>
+
+          <path class="figure-arrow lawvere-alpha-arrow" d="M180 160 H222"></path>
+
+          <g class="lawvere-y-graph">
+            <circle class="lawvere-graph-frame small" cx="284" cy="160" r="54"></circle>
+            <g class="lawvere-y-edges">
+              <path class="lawvere-y-edge rb" data-pullback-source="rb" d="M255 130 V190"></path>
+              <path class="lawvere-y-edge ro" data-pullback-source="ro" d="M255 130 L315 190"></path>
+              <path class="lawvere-y-edge rg" data-pullback-source="rg" d="M255 130 H315"></path>
+              <path class="lawvere-y-edge og" data-pullback-source="og" d="M315 190 V130"></path>
+            </g>
+            <g class="lawvere-y-vertices">
+              <circle class="c-red" cx="255" cy="130" r="8"></circle>
+              <circle class="c-blue" cx="255" cy="190" r="8"></circle>
+              <circle class="c-orange" cx="315" cy="190" r="8"></circle>
+              <circle class="c-green" cx="315" cy="130" r="8"></circle>
+            </g>
           </g>
         </g>
 
-        <path class="figure-arrow lawvere-alpha-arrow" d="M320 226 H470"></path>
-
-        <g class="lawvere-y-graph">
-          <circle class="lawvere-graph-frame small" cx="585" cy="228" r="92"></circle>
-          <g class="lawvere-y-edges">
-            <path class="lawvere-y-edge rb" data-pullback-source="rb" d="M535 178 V280"></path>
-            <path class="lawvere-y-edge ro" data-pullback-source="ro" d="M535 178 L635 280"></path>
-            <path class="lawvere-y-edge rg" data-pullback-source="rg" d="M535 178 H635"></path>
-            <path class="lawvere-y-edge og" data-pullback-source="og" d="M635 280 V178"></path>
-          </g>
-          <g class="lawvere-y-vertices">
-            <circle class="c-red" cx="535" cy="178" r="11"></circle>
-            <circle class="c-blue" cx="535" cy="280" r="11"></circle>
-            <circle class="c-orange" cx="635" cy="280" r="11"></circle>
-            <circle class="c-green" cx="635" cy="178" r="11"></circle>
-          </g>
-        </g>
+        ${lawvereCoskelPanelTemplate()}
+        <text class="lawvere-panel-label" x="190" y="294" text-anchor="middle">skeletality</text>
+        <text class="lawvere-panel-label" x="570" y="294" text-anchor="middle">coskeletality</text>
       </svg>
     </div>`;
 }
@@ -6181,86 +7207,424 @@ function completelyConnectedFigureTemplate() {
         <title id="fig-connected-title">Rooted trees and rooted forests</title>
         <desc id="fig-connected-desc">A rooted tree is paired with its corresponding rooted forest.</desc>
         <defs>
-          <marker id="arrow-connected" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <marker id="arrow-connected-a" class="connected-marker-a" data-connected-marker="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z"></path>
+          </marker>
+          <marker id="arrow-connected-b" class="connected-marker-b" data-connected-marker="b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z"></path>
+          </marker>
+          <marker id="arrow-connected-c" class="connected-marker-c" data-connected-marker="c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z"></path>
           </marker>
         </defs>
-        <g transform="translate(62 48)">
-          <path class="figure-line connected-top-edge" d="M130 0 L60 54 M130 0 L130 54 M130 0 L214 54"></path>
-          <rect class="connected-root-square connected-top-root" x="119" y="-11" width="22" height="22"></rect>
-          <g class="connected-match" data-connected-left="a">
-            <path class="figure-line" d="M60 54 L28 108 M60 54 L92 108 M28 108 L8 162 M28 108 L48 162 M92 108 L72 162 M92 108 L112 162"></path>
-            <circle class="figure-node soft" cx="60" cy="54" r="11"></circle>
-            <circle class="figure-node" cx="28" cy="108" r="11"></circle><circle class="figure-node" cx="92" cy="108" r="11"></circle>
-            <circle class="figure-node" cx="8" cy="162" r="11"></circle><circle class="figure-node" cx="48" cy="162" r="11"></circle><circle class="figure-node" cx="72" cy="162" r="11"></circle><circle class="figure-node" cx="112" cy="162" r="11"></circle>
+        <g class="connected-pattern is-visible" data-connected-pattern="0">
+          <g transform="translate(62 48)">
+            <path class="figure-line connected-top-edge" d="M130 0 L60 54 M130 0 L130 54 M130 0 L214 54"></path>
+            <circle class="figure-node connected-top-root" cx="130" cy="0" r="11"></circle>
+            <g class="connected-match" data-connected-left="a">
+              <path class="figure-line" d="M60 54 L28 108 M60 54 L92 108 M28 108 L8 162 M28 108 L48 162 M92 108 L72 162 M92 108 L112 162"></path>
+              <circle class="figure-node soft" cx="60" cy="54" r="11"></circle>
+              <circle class="figure-node" cx="28" cy="108" r="11"></circle><circle class="figure-node" cx="92" cy="108" r="11"></circle>
+              <circle class="figure-node" cx="8" cy="162" r="11"></circle><circle class="figure-node" cx="48" cy="162" r="11"></circle><circle class="figure-node" cx="72" cy="162" r="11"></circle><circle class="figure-node" cx="112" cy="162" r="11"></circle>
+            </g>
+            <g class="connected-match" data-connected-left="b">
+              <path class="figure-line" d="M130 54 L130 108"></path>
+              <circle class="figure-node soft" cx="130" cy="54" r="11"></circle>
+              <circle class="figure-node" cx="130" cy="108" r="11"></circle>
+            </g>
+            <g class="connected-match" data-connected-left="c">
+              <path class="figure-line" d="M214 54 L214 108 M214 108 L194 162 M214 108 L234 162"></path>
+              <circle class="figure-node soft" cx="214" cy="54" r="11"></circle>
+              <circle class="figure-node" cx="214" cy="108" r="11"></circle>
+              <circle class="figure-node" cx="194" cy="162" r="11"></circle><circle class="figure-node" cx="234" cy="162" r="11"></circle>
+            </g>
           </g>
-          <g class="connected-match" data-connected-left="b">
-            <path class="figure-line" d="M130 54 L130 108"></path>
-            <circle class="figure-node soft" cx="130" cy="54" r="11"></circle>
-            <circle class="figure-node" cx="130" cy="108" r="11"></circle>
+          <path class="figure-line dashed connected-divider" d="M380 38 V330"></path>
+          <g class="connected-correspondence-arrows">
+            <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="a" marker-end="url(#arrow-connected-a)" d="M234 150 C314 88, 404 78, 486 102"></path>
+            <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="b" marker-end="url(#arrow-connected-b)" d="M214 164 C332 214, 466 204, 578 140"></path>
+            <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="c" marker-end="url(#arrow-connected-c)" d="M306 158 C404 242, 564 232, 666 164"></path>
           </g>
-          <g class="connected-match" data-connected-left="c">
-            <path class="figure-line" d="M214 54 L214 108 M214 108 L194 162 M214 108 L234 162"></path>
-            <circle class="figure-node soft" cx="214" cy="54" r="11"></circle>
-            <circle class="figure-node" cx="214" cy="108" r="11"></circle>
-            <circle class="figure-node" cx="194" cy="162" r="11"></circle><circle class="figure-node" cx="234" cy="162" r="11"></circle>
+          <g transform="translate(446 102)">
+            <g class="connected-match" data-connected-right="a">
+              <path class="figure-line" d="M58 0 L26 54 M58 0 L90 54 M26 54 L6 108 M26 54 L46 108 M90 54 L70 108 M90 54 L110 108"></path>
+              <circle class="figure-node soft" cx="58" cy="0" r="11"></circle>
+              <circle class="figure-node" cx="26" cy="54" r="11"></circle><circle class="figure-node" cx="90" cy="54" r="11"></circle>
+              <circle class="figure-node" cx="6" cy="108" r="11"></circle><circle class="figure-node" cx="46" cy="108" r="11"></circle><circle class="figure-node" cx="70" cy="108" r="11"></circle><circle class="figure-node" cx="110" cy="108" r="11"></circle>
+            </g>
+            <g class="connected-match" data-connected-right="b">
+              <path class="figure-line" d="M148 0 L148 54"></path>
+              <circle class="figure-node soft" cx="148" cy="0" r="11"></circle>
+              <circle class="figure-node" cx="148" cy="54" r="11"></circle>
+            </g>
+            <g class="connected-match" data-connected-right="c">
+              <path class="figure-line" d="M230 0 L230 54 M230 54 L210 108 M230 54 L250 108"></path>
+              <circle class="figure-node soft" cx="230" cy="0" r="11"></circle>
+              <circle class="figure-node" cx="230" cy="54" r="11"></circle>
+              <circle class="figure-node" cx="210" cy="108" r="11"></circle><circle class="figure-node" cx="250" cy="108" r="11"></circle>
+            </g>
           </g>
-          <text class="figure-label" x="130" y="250">rooted tree</text>
         </g>
-        <path class="figure-line dashed connected-divider" d="M380 38 V330"></path>
-        <g class="connected-correspondence-arrows">
-          <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="a" d="M234 150 C314 88, 404 78, 486 102"></path>
-          <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="b" d="M214 164 C332 214, 466 204, 578 140"></path>
-          <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="c" d="M306 158 C404 242, 564 232, 666 164"></path>
+        <g class="connected-pattern" data-connected-pattern="1">
+          <g transform="translate(62 58)">
+            <path class="figure-line connected-top-edge" d="M130 0 L44 54 M130 0 L130 54 M130 0 L222 54"></path>
+            <circle class="figure-node connected-top-root" cx="130" cy="0" r="11"></circle>
+            <g class="connected-match" data-connected-left="a">
+              <path class="figure-line" d="M44 54 L44 108 L44 162"></path>
+              <circle class="figure-node soft" cx="44" cy="54" r="11"></circle>
+              <circle class="figure-node" cx="44" cy="108" r="11"></circle><circle class="figure-node" cx="44" cy="162" r="11"></circle>
+            </g>
+            <g class="connected-match" data-connected-left="b">
+              <path class="figure-line" d="M130 54 L98 108 M130 54 L162 108 M98 108 L80 162"></path>
+              <circle class="figure-node soft" cx="130" cy="54" r="11"></circle>
+              <circle class="figure-node" cx="98" cy="108" r="11"></circle><circle class="figure-node" cx="162" cy="108" r="11"></circle><circle class="figure-node" cx="80" cy="162" r="11"></circle>
+            </g>
+            <g class="connected-match" data-connected-left="c">
+              <circle class="figure-node soft" cx="222" cy="54" r="11"></circle>
+            </g>
+          </g>
+          <path class="figure-line dashed connected-divider" d="M380 38 V330"></path>
+          <g class="connected-correspondence-arrows">
+            <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="a" marker-end="url(#arrow-connected-a)" d="M118 112 C260 70, 352 74, 472 122"></path>
+            <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="b" marker-end="url(#arrow-connected-b)" d="M204 120 C330 188, 462 188, 574 128"></path>
+            <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="c" marker-end="url(#arrow-connected-c)" d="M296 114 C420 66, 560 76, 672 122"></path>
+          </g>
+          <g transform="translate(446 122)">
+            <g class="connected-match" data-connected-right="a">
+              <path class="figure-line" d="M38 0 L38 54 L38 108"></path>
+              <circle class="figure-node soft" cx="38" cy="0" r="11"></circle>
+              <circle class="figure-node" cx="38" cy="54" r="11"></circle><circle class="figure-node" cx="38" cy="108" r="11"></circle>
+            </g>
+            <g class="connected-match" data-connected-right="b">
+              <path class="figure-line" d="M140 0 L108 54 M140 0 L172 54 M108 54 L90 108"></path>
+              <circle class="figure-node soft" cx="140" cy="0" r="11"></circle>
+              <circle class="figure-node" cx="108" cy="54" r="11"></circle><circle class="figure-node" cx="172" cy="54" r="11"></circle><circle class="figure-node" cx="90" cy="108" r="11"></circle>
+            </g>
+            <g class="connected-match" data-connected-right="c">
+              <circle class="figure-node soft" cx="238" cy="0" r="11"></circle>
+            </g>
+          </g>
         </g>
-        <g transform="translate(446 102)">
-          <g class="connected-match" data-connected-right="a">
-            <path class="figure-line" d="M58 0 L26 54 M58 0 L90 54 M26 54 L6 108 M26 54 L46 108 M90 54 L70 108 M90 54 L110 108"></path>
-            <rect class="connected-root-square" x="47" y="-11" width="22" height="22"></rect>
-            <circle class="figure-node" cx="26" cy="54" r="11"></circle><circle class="figure-node" cx="90" cy="54" r="11"></circle>
-            <circle class="figure-node" cx="6" cy="108" r="11"></circle><circle class="figure-node" cx="46" cy="108" r="11"></circle><circle class="figure-node" cx="70" cy="108" r="11"></circle><circle class="figure-node" cx="110" cy="108" r="11"></circle>
-          </g>
-          <g class="connected-match" data-connected-right="b">
-            <path class="figure-line" d="M148 0 L148 54"></path>
-            <rect class="connected-root-square" x="137" y="-11" width="22" height="22"></rect>
-            <circle class="figure-node" cx="148" cy="54" r="11"></circle>
-          </g>
-          <g class="connected-match" data-connected-right="c">
-            <path class="figure-line" d="M230 0 L230 54 M230 54 L210 108 M230 54 L250 108"></path>
-            <rect class="connected-root-square" x="219" y="-11" width="22" height="22"></rect>
-            <circle class="figure-node" cx="230" cy="54" r="11"></circle>
-            <circle class="figure-node" cx="210" cy="108" r="11"></circle><circle class="figure-node" cx="250" cy="108" r="11"></circle>
-          </g>
-          <text class="figure-label" x="148" y="196">rooted forest</text>
-        </g>
+        <text class="connected-category-svg-label" x="192" y="306">Trees</text>
+        <text class="connected-category-svg-label" x="594" y="306">Fam(Trees)</text>
       </svg>
     </div>`;
 }
 
+function normalizationFigureTemplate() {
+  return `
+    <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 760 390" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
+      <title id="fig-normalization-title">Subgroups and D4-actions</title>
+      <desc id="fig-normalization-desc">A subgroup lattice for D4 on the left and examples of D4-actions on the right. Selecting a subgroup filters the actions by stabilizer containment.</desc>
+      <defs>
+        <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+      </defs>
+
+      <text class="figure-small normalization-caption" x="28" y="28">normalizer on subgroups</text>
+      <text class="figure-small normalization-caption" x="330" y="28">D<tspan baseline-shift="sub" font-size="68%">4</tspan>-actions</text>
+      <text class="normalization-status" data-normalization-status x="330" y="49">H = D4</text>
+
+      <g class="normalization-lattice" transform="translate(12 42)">
+        <path class="figure-line" d="M150 50 L70 88 M150 50 L150 88 M150 50 L230 88"></path>
+        <path class="figure-line" d="M70 124 L35 168 M70 124 L95 168 M70 124 L150 168"></path>
+        <path class="figure-line" d="M150 124 L150 168"></path>
+        <path class="figure-line" d="M230 124 L150 168 M230 124 L205 168 M230 124 L265 168"></path>
+        <path class="figure-line" d="M150 273 L35 210 M150 273 L95 210 M150 273 L150 210 M150 273 L205 210 M150 273 L265 210"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M35 168 C20 116, 44 96, 58 106"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M95 168 C98 128, 90 115, 84 112"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M205 168 C202 128, 210 115, 216 112"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M265 168 C280 116, 256 96, 242 106"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M150 88 V55"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M150 168 C120 136, 116 75, 134 55"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M70 88 C90 58, 122 45, 134 46"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M230 88 C210 58, 178 45, 166 46"></path>
+        <path class="figure-arrow dashed normalization-map-arrow" d="M150 273 C205 230, 205 108, 166 55"></path>
+
+        <g class="normalization-subgroup" data-normalization-subgroup="d4" data-subgroup-label="D4" transform="translate(150 38)">
+          <rect class="figure-node soft" x="-33" y="-18" width="66" height="36" rx="7"></rect>
+          <text class="figure-math-label large" y="1">D<tspan baseline-shift="sub" font-size="68%">4</tspan></text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="v0" data-subgroup-label="&lt;tau,sigma^2&gt;" transform="translate(70 106)">
+          <rect class="figure-node pale" x="-48" y="-18" width="96" height="36" rx="7"></rect>
+          <text class="figure-math-label tiny" y="1">&#10216;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="rot" data-subgroup-label="&lt;sigma&gt;" transform="translate(150 106)">
+          <rect class="figure-node pale" x="-36" y="-18" width="72" height="36" rx="7"></rect>
+          <text class="figure-math-label small" y="1">&#10216;&sigma;&#10217;</text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="v1" data-subgroup-label="&lt;sigma tau,sigma^2&gt;" transform="translate(230 106)">
+          <rect class="figure-node pale" x="-50" y="-18" width="100" height="36" rx="7"></rect>
+          <text class="figure-math-label tiny" y="1">&#10216;&sigma;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="ref0" data-subgroup-label="&lt;tau&gt;" transform="translate(35 190)">
+          <rect class="figure-node" x="-31" y="-17" width="62" height="34" rx="7"></rect>
+          <text class="figure-math-label small" y="1">&#10216;&tau;&#10217;</text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="ref2" data-subgroup-label="&lt;sigma^2 tau&gt;" transform="translate(95 190)">
+          <rect class="figure-node" x="-39" y="-17" width="78" height="34" rx="7"></rect>
+          <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&tau;&#10217;</text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="r2" data-subgroup-label="&lt;sigma^2&gt;" transform="translate(150 190)">
+          <rect class="figure-node warm" x="-35" y="-17" width="70" height="34" rx="7"></rect>
+          <text class="figure-math-label small" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="ref1" data-subgroup-label="&lt;sigma tau&gt;" transform="translate(205 190)">
+          <rect class="figure-node" x="-37" y="-17" width="74" height="34" rx="7"></rect>
+          <text class="figure-math-label small" y="1">&#10216;&sigma;&tau;&#10217;</text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="ref3" data-subgroup-label="&lt;sigma^3 tau&gt;" transform="translate(265 190)">
+          <rect class="figure-node" x="-39" y="-17" width="78" height="34" rx="7"></rect>
+          <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">3</tspan>&tau;&#10217;</text>
+        </g>
+        <g class="normalization-subgroup" data-normalization-subgroup="one" data-subgroup-label="&lt;1&gt;" transform="translate(150 290)">
+          <rect class="figure-node soft" x="-33" y="-17" width="66" height="34" rx="7"></rect>
+          <text class="figure-math-label small" y="1">&#10216;1&#10217;</text>
+        </g>
+      </g>
+
+      <g class="normalization-action" data-normalization-stabilizers="ref0 ref2" transform="translate(330 64)">
+        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
+        <g class="normalization-vertex-orbit" transform="translate(71 8)">
+          <path class="normalization-action-line" d="M0 4 H42 V46 H0 Z"></path>
+          <circle class="normalization-action-dot" cx="0" cy="4" r="3"></circle><circle class="normalization-action-dot" cx="42" cy="4" r="3"></circle>
+          <circle class="normalization-action-dot" cx="42" cy="46" r="3"></circle><circle class="normalization-action-dot" cx="0" cy="46" r="3"></circle>
+        </g>
+      </g>
+      <g class="normalization-action" data-normalization-stabilizers="ref1 ref3" transform="translate(535 64)">
+        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
+        <g class="normalization-edge-orbit" transform="translate(71 8)">
+          <path class="normalization-action-line" d="M0 4 H42 V46 H0 Z"></path>
+          <circle class="normalization-action-dot" cx="21" cy="4" r="3"></circle><circle class="normalization-action-dot" cx="42" cy="25" r="3"></circle>
+          <circle class="normalization-action-dot" cx="21" cy="46" r="3"></circle><circle class="normalization-action-dot" cx="0" cy="25" r="3"></circle>
+        </g>
+      </g>
+      <g class="normalization-action" data-normalization-stabilizers="v0" transform="translate(330 138)">
+        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
+        <g class="normalization-diagonal-orbit" transform="translate(70 9)">
+          <path class="normalization-action-line faint" d="M0 4 H44 V48 H0 Z"></path>
+          <path class="normalization-action-line" d="M0 4 L44 48 M44 4 L0 48"></path>
+        </g>
+      </g>
+      <g class="normalization-action" data-normalization-stabilizers="v1" transform="translate(535 138)">
+        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
+        <g class="normalization-axis-orbit" transform="translate(70 9)">
+          <path class="normalization-action-line faint" d="M0 4 H44 V48 H0 Z"></path>
+          <path class="normalization-action-line" d="M22 4 V48 M0 26 H44"></path>
+        </g>
+      </g>
+      <g class="normalization-action" data-normalization-stabilizers="rot" transform="translate(330 212)">
+        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
+        <g class="normalization-orientation-orbit" transform="translate(63 10)">
+          <circle class="normalization-action-dot ghost" cx="21" cy="23" r="14"></circle>
+          <circle class="normalization-action-dot ghost" cx="45" cy="23" r="14"></circle>
+          <path class="figure-arrow normalization-cycle-arrow" d="M8 23 C8 8, 27 4, 35 16" marker-end="url(#arrow-f)"></path>
+          <path class="figure-arrow normalization-cycle-arrow" d="M58 23 C58 38, 39 42, 31 30" marker-end="url(#arrow-f)"></path>
+        </g>
+      </g>
+      <g class="normalization-action" data-normalization-stabilizers="r2" transform="translate(535 212)">
+        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
+        <g class="normalization-halfturn-orbit" transform="translate(66 9)">
+          <path class="normalization-action-line" d="M8 13 H48 M8 37 H48 M8 13 V37 M48 13 V37"></path>
+          <path class="figure-arrow normalization-cycle-arrow" d="M23 19 C29 13, 39 16, 40 25" marker-end="url(#arrow-f)"></path>
+          <path class="figure-arrow normalization-cycle-arrow" d="M33 31 C27 37, 17 34, 16 25" marker-end="url(#arrow-f)"></path>
+          <circle class="normalization-action-dot" cx="8" cy="13" r="3"></circle><circle class="normalization-action-dot" cx="48" cy="13" r="3"></circle>
+          <circle class="normalization-action-dot" cx="8" cy="37" r="3"></circle><circle class="normalization-action-dot" cx="48" cy="37" r="3"></circle>
+        </g>
+      </g>
+      <g class="normalization-action" data-normalization-stabilizers="one" transform="translate(330 286)">
+        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
+        <g class="normalization-free-orbit" transform="translate(72 10)">
+          <circle class="normalization-action-dot ghost" cx="21" cy="21" r="22"></circle>
+          <circle class="normalization-action-dot" cx="21" cy="-1" r="2.7"></circle><circle class="normalization-action-dot" cx="37" cy="5" r="2.7"></circle>
+          <circle class="normalization-action-dot" cx="43" cy="21" r="2.7"></circle><circle class="normalization-action-dot" cx="37" cy="37" r="2.7"></circle>
+          <circle class="normalization-action-dot" cx="21" cy="43" r="2.7"></circle><circle class="normalization-action-dot" cx="5" cy="37" r="2.7"></circle>
+          <circle class="normalization-action-dot" cx="-1" cy="21" r="2.7"></circle><circle class="normalization-action-dot" cx="5" cy="5" r="2.7"></circle>
+        </g>
+      </g>
+      <g class="normalization-action" data-normalization-stabilizers="d4" transform="translate(535 286)">
+        <rect class="normalization-action-card" width="185" height="62" rx="8"></rect>
+        <g class="normalization-fixed-orbit" transform="translate(76 15)">
+          <circle class="normalization-action-dot ghost" cx="17" cy="16" r="14"></circle>
+          <circle class="normalization-action-dot filled" cx="17" cy="16" r="4"></circle>
+        </g>
+      </g>
+    </svg>`;
+}
+
+function internalPoint([x, y]) {
+  return `${Number(x.toFixed(1))} ${Number(y.toFixed(1))}`;
+}
+
+function internalOffsetPoint(point, center, scale, jitter = [0, 0]) {
+  return [point[0] + (point[0] - center[0]) * scale + jitter[0], point[1] + (point[1] - center[1]) * scale + jitter[1]];
+}
+
+function internalParameterizationPiece({ type, start, decomposed, classified, target, from, to, loopPath }) {
+  const duration = "18s";
+  const keyTimes = "0;0.12;0.34;0.58;0.82;0.88;1";
+  const compactScale = 0.42;
+  let content = "";
+  if (type === "vertex") {
+    content = `<circle class="internal-piece-dot internal-piece-dot-vertex" cx="0" cy="0" r="15"></circle>`;
+  } else if (type === "loop") {
+    content = `<path class="figure-arrow internal-piece-arrow internal-piece-arrow-l" d="${loopPath}"></path>`;
+  } else {
+    content = `<path class="figure-arrow internal-piece-arrow internal-piece-arrow-n" d="M${from[0]} ${from[1]} L${to[0]} ${to[1]}"></path>`;
+  }
+  return `<g class="internal-piece internal-piece-${type}" opacity="1" transform="translate(${internalPoint(start)})">
+        <animate attributeName="opacity" values="1;1;1;1;1;0;0" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate>
+        <animateTransform attributeName="transform" type="translate" values="${internalPoint(start)}; ${internalPoint(start)}; ${internalPoint(decomposed)}; ${internalPoint(classified)}; ${internalPoint(target)}; ${internalPoint(target)}; ${internalPoint(start)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animateTransform>
+        <g class="internal-piece-shape" transform="scale(1)">
+          <animateTransform attributeName="transform" type="scale" values="1;1;1;${compactScale};${compactScale};${compactScale};1" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animateTransform>
+          ${content}
+        </g>
+      </g>`;
+}
+
+function createInternalParameterizationPieces() {
+  const vertexTarget = [657, 194];
+  const nonLoopTarget = [704, 194];
+  const loopTarget = [616, 194];
+  const graphCenter = [280, 202];
+  const vertexClassified = [
+    [526, 102],
+    [542, 102],
+    [558, 102],
+    [526, 120],
+    [542, 120],
+    [558, 120],
+    [526, 138],
+    [542, 138],
+    [558, 138],
+    [542, 156],
+  ];
+  const nonLoopClassified = [
+    [528, 182],
+    [552, 182],
+    [528, 198],
+    [552, 198],
+    [528, 214],
+    [552, 214],
+    [528, 230],
+    [552, 230],
+    [528, 246],
+    [552, 246],
+  ];
+  const loopClassified = [
+    [528, 284],
+    [552, 284],
+  ];
+  const vertices = [
+    [88, 184],
+    [152, 132],
+    [230, 134],
+    [308, 184],
+    [388, 130],
+    [458, 182],
+    [136, 266],
+    [224, 274],
+    [326, 274],
+    [438, 270],
+  ].map((start, index) => ({
+    type: "vertex",
+    start,
+    classified: vertexClassified[index],
+    target: vertexTarget,
+  }));
+  const nonLoopEdges = [
+    [[100, 174], [140, 142]],
+    [[167, 132], [215, 134]],
+    [[243, 142], [295, 176]],
+    [[321, 176], [375, 140]],
+    [[400, 139], [446, 173]],
+    [[297, 197], [236, 262]],
+    [[151, 267], [209, 273]],
+    [[239, 274], [311, 274]],
+    [[339, 262], [425, 194]],
+    [[341, 273], [423, 270]],
+  ].map(([source, destination], index) => {
+    const start = [(source[0] + destination[0]) / 2, (source[1] + destination[1]) / 2];
+    return {
+      type: "nonloop",
+      start,
+      classified: nonLoopClassified[index],
+      target: nonLoopTarget,
+      from: [source[0] - start[0], source[1] - start[1]],
+      to: [destination[0] - start[0], destination[1] - start[1]],
+    };
+  });
+  const loops = [
+    {
+      type: "loop",
+      start: [458, 182],
+      classified: loopClassified[0],
+      target: loopTarget,
+      loopPath: "M12 -9 C44 -24, 44 25, 12 12",
+    },
+    {
+      type: "loop",
+      start: [136, 266],
+      classified: loopClassified[1],
+      target: loopTarget,
+      loopPath: "M-12 8 C-50 24, -50 -24, -12 -8",
+    },
+  ];
+  return [...vertices, ...nonLoopEdges, ...loops]
+    .map((piece, index) => {
+      const jitter = [(index % 3 - 1) * 4, (index % 4 - 1.5) * 4];
+      return internalParameterizationPiece({
+        ...piece,
+        decomposed: internalOffsetPoint(piece.start, graphCenter, 0.18, jitter),
+      });
+    })
+    .join("\n");
+}
+
 const paperFigureTemplates = {
   "internal-parameterizations": `
-    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-internal-title fig-internal-desc">
-      <title id="fig-internal-title">Locally determined cocones</title>
-      <desc id="fig-internal-desc">A local subobject U maps into X, and both determine a value in the local state classifier Psi.</desc>
-      <defs><marker id="arrow-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <circle class="figure-node" cx="132" cy="125" r="36"></circle>
-      <circle class="figure-dot" cx="132" cy="125" r="4"></circle>
-      <ellipse class="figure-node" cx="470" cy="125" rx="150" ry="72"></ellipse>
-      <circle class="figure-dot ghost" cx="438" cy="126" r="21"></circle>
-      <circle class="figure-dot" cx="438" cy="126" r="4"></circle>
-      <rect class="figure-node" x="284" y="283" width="230" height="56" rx="4"></rect>
-      <path class="figure-arrow" d="M168 125 H318"></path>
-      <path class="figure-arrow" d="M138 162 L318 278"></path>
-      <path class="figure-arrow" d="M438 197 L425 278"></path>
-    </svg>
-    <span class="figure-math large" style="left: 17.4%; top: 18%;">\\(U\\)</span>
-    <span class="figure-math small" style="left: 17.4%; top: 39%;">\\(x\\)</span>
-    <span class="figure-math large" style="left: 61.8%; top: 14%;">\\(X\\)</span>
-    <span class="figure-math small" style="left: 57.6%; top: 39%;">\\(x\\)</span>
-    <span class="figure-math large" style="left: 52.5%; top: 81%;">\\(\\Psi_U(x)=\\Psi_X(x)\\)</span>
-    <span class="figure-math small" style="left: 31.3%; top: 28.5%;">\\(i\\)</span>
-    <span class="figure-math small" style="left: 26%; top: 58.5%;">\\(\\Psi_U\\)</span>
-    <span class="figure-math small" style="left: 59.7%; top: 60%;">\\(\\Psi_X\\)</span>`,
+    <svg class="internal-parameterization-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-internal-title fig-internal-desc">
+      <title id="fig-internal-title">Directed graph local states</title>
+      <desc id="fig-internal-desc">In the directed graph example, non-loop edges are classified as N, while self-loops are classified as L in the local state classifier.</desc>
+      <defs><marker id="arrow-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <g transform="translate(34 58)">
+        <rect class="internal-panel-bg" x="0" y="0" width="472" height="274" rx="8"></rect>
+        <text class="figure-small internal-panel-label" x="24" y="28">X</text>
+        <g class="internal-source-graph">
+        <circle class="internal-graph-node" cx="54" cy="126" r="15"></circle>
+        <circle class="internal-graph-node" cx="118" cy="74" r="15"></circle>
+        <circle class="internal-graph-node" cx="196" cy="76" r="15"></circle>
+        <circle class="internal-graph-node" cx="274" cy="126" r="15"></circle>
+        <circle class="internal-graph-node" cx="354" cy="72" r="15"></circle>
+        <circle class="internal-graph-node" cx="424" cy="124" r="15"></circle>
+        <circle class="internal-graph-node" cx="102" cy="208" r="15"></circle>
+        <circle class="internal-graph-node" cx="190" cy="216" r="15"></circle>
+        <circle class="internal-graph-node" cx="292" cy="216" r="15"></circle>
+        <circle class="internal-graph-node" cx="404" cy="212" r="15"></circle>
+        <path class="figure-arrow internal-edge-base" d="M66 116 L106 84"></path>
+        <path class="figure-arrow internal-edge-base" d="M133 74 L181 76"></path>
+        <path class="figure-arrow internal-edge-base" d="M209 84 L261 118"></path>
+        <path class="figure-arrow internal-edge-base" d="M287 118 L341 82"></path>
+        <path class="figure-arrow internal-edge-base" d="M366 81 L412 115"></path>
+        <path class="figure-arrow internal-edge-base" d="M263 139 L202 204"></path>
+        <path class="figure-arrow internal-edge-base" d="M117 209 L175 215"></path>
+        <path class="figure-arrow internal-edge-base" d="M205 216 H277"></path>
+        <path class="figure-arrow internal-edge-base" d="M305 204 L391 136"></path>
+        <path class="figure-arrow internal-edge-base" d="M307 215 L389 212"></path>
+        <path class="figure-arrow internal-edge-base internal-self-loop" d="M436 115 C468 100, 468 149, 436 136"></path>
+        <path class="figure-arrow internal-edge-base internal-self-loop" d="M90 216 C52 232, 52 184, 90 200"></path>
+        </g>
+      </g>
+      <g transform="translate(584 76)">
+        <rect class="internal-panel-bg" x="0" y="0" width="142" height="232" rx="8"></rect>
+        <text class="figure-small internal-panel-label" x="18" y="28">&Xi;</text>
+        <text class="internal-classifier-subtitle" x="18" y="50">Local state classifier</text>
+        <path class="figure-arrow internal-classifier-loop internal-loop-l" d="M60 129 C22 144, 22 92, 60 107"></path>
+        <path class="figure-arrow internal-classifier-loop internal-loop-n" d="M86 107 C124 92, 124 144, 86 129"></path>
+        <circle class="internal-classifier-node" cx="73" cy="118" r="19"></circle>
+        <text class="figure-small internal-classifier-caption" x="73" y="179">loop / non-loop</text>
+      </g>
+      ${createInternalParameterizationPieces()}
+    </svg>`,
   "quotient-toposes": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
       <title id="fig-quotient-title">Period, height, and core</title>
@@ -6293,136 +7657,128 @@ const paperFigureTemplates = {
     <span class="figure-math small" style="left: 43.5%; top: 91%;">\\((h,p)=(\\infty,0)\\)</span>`,
   "completely-connected": completelyConnectedFigureTemplate(),
   "lawvere-first": `
-    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
-      <title id="fig-lawvere-first-title">Pairing machine</title>
-      <desc id="fig-lawvere-first-desc">A pairing system packs many coordinates into one point, and the maps p_i read the coordinates back out.</desc>
-      <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <text class="figure-small lawvere-caption" x="380" y="34">pairing system packs coordinates into one point</text>
+    <svg class="tensor-animation-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
+      <title id="fig-lawvere-first-title">Power set tensor calculation</title>
+      <desc id="fig-lawvere-first-desc">A concrete calculation for the covariant power set functor: selected elements on the right are connected by strings to landing points on the left.</desc>
+      <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      <text class="figure-small lawvere-caption" x="380" y="34">power set tensor: choose strings and collapse landings</text>
 
-      <g transform="translate(54 80)">
-        <rect class="lawvere-pairing-card" x="0" y="0" width="180" height="216" rx="12"></rect>
-        <text class="figure-label" x="90" y="38">coordinates</text>
-        <path class="lawvere-coordinate-rail" d="M50 70 V174"></path>
-        <g class="lawvere-coordinate-row" transform="translate(50 70)">
-          <circle class="lawvere-bead green" cx="0" cy="0" r="12"></circle>
-          <text class="figure-small" x="-28" y="5">x0</text>
-        </g>
-        <g class="lawvere-coordinate-row" transform="translate(50 104)">
-          <circle class="lawvere-bead blue" cx="0" cy="0" r="12"></circle>
-          <text class="figure-small" x="-28" y="5">x1</text>
-        </g>
-        <g class="lawvere-coordinate-row" transform="translate(50 138)">
-          <circle class="lawvere-bead warm" cx="0" cy="0" r="12"></circle>
-          <text class="figure-small" x="-28" y="5">x2</text>
-        </g>
-        <g class="lawvere-coordinate-row" transform="translate(50 172)">
-          <circle class="lawvere-bead pale" cx="0" cy="0" r="12"></circle>
-          <text class="figure-small" x="-28" y="5">...</text>
-        </g>
+      <g transform="translate(52 64)">
+        <rect class="tensor-string-card" x="0" y="0" width="656" height="300" rx="14"></rect>
+        <text class="tensor-side-label" x="82" y="52">X</text>
+        <text class="tensor-side-label" x="540" y="52">A</text>
+        <text class="tensor-side-label tensor-s-label" x="626" y="52">S</text>
+        <text class="tensor-map-symbol" x="328" y="152">f</text>
+
+        <path class="tensor-cord selected" pathLength="1" d="M490 108 C412 82, 272 76, 156 96"></path>
+        <path class="tensor-cord muted" pathLength="1" d="M562 108 C484 122, 386 122, 268 116"></path>
+        <path class="tensor-cord selected" pathLength="1" d="M634 108 C506 58, 304 58, 156 96"></path>
+        <path class="tensor-cord selected green" pathLength="1" d="M490 204 C390 204, 270 188, 156 188"></path>
+        <path class="tensor-cord muted" pathLength="1" d="M562 204 C480 222, 380 224, 268 198"></path>
+        <path class="tensor-cord selected green" pathLength="1" d="M634 204 C508 242, 304 234, 156 188"></path>
+
+        <g class="tensor-x-node selected" transform="translate(156 96)"><circle cx="0" cy="0" r="29"></circle><text x="0" y="8">x</text></g>
+        <g class="tensor-x-node selected green" transform="translate(156 188)"><circle cx="0" cy="0" r="29"></circle><text x="0" y="8">y</text></g>
+        <g class="tensor-x-node muted" transform="translate(268 116)"><circle cx="0" cy="0" r="23"></circle><text x="0" y="7">z</text></g>
+        <g class="tensor-x-node muted" transform="translate(268 198)"><circle cx="0" cy="0" r="23"></circle><text x="0" y="7">w</text></g>
+
+        <g class="tensor-a-node selected" transform="translate(490 108)"><circle cx="0" cy="0" r="22"></circle><text x="0" y="7">a</text></g>
+        <g class="tensor-a-node muted" transform="translate(562 108)"><circle cx="0" cy="0" r="20"></circle><text x="0" y="7">b</text></g>
+        <g class="tensor-a-node selected" transform="translate(634 108)"><circle cx="0" cy="0" r="22"></circle><text x="0" y="7">c</text></g>
+        <g class="tensor-a-node selected green" transform="translate(490 204)"><circle cx="0" cy="0" r="22"></circle><text x="0" y="7">d</text></g>
+        <g class="tensor-a-node muted" transform="translate(562 204)"><circle cx="0" cy="0" r="20"></circle><text x="0" y="7">e</text></g>
+        <g class="tensor-a-node selected green" transform="translate(634 204)"><circle cx="0" cy="0" r="22"></circle><text x="0" y="7">r</text></g>
+
+        <text class="tensor-length" x="328" y="268">four colored strings land on two points</text>
       </g>
-
-      <path class="figure-arrow lawvere-pairing-arrow" d="M238 188 C270 188, 286 188, 308 188"></path>
-      <path class="lawvere-pairing-stream green" d="M116 150 C176 114, 238 154, 308 154"></path>
-      <path class="lawvere-pairing-stream blue" d="M116 184 C180 180, 238 178, 308 184"></path>
-      <path class="lawvere-pairing-stream warm" d="M116 218 C176 254, 238 222, 308 214"></path>
-
-      <g transform="translate(306 72)">
-        <rect class="lawvere-machine" x="0" y="0" width="182" height="230" rx="18"></rect>
-        <path class="lawvere-machine-mouth" d="M0 82 L-34 116 L0 150 Z"></path>
-        <text class="figure-small" x="91" y="34">pairing</text>
-        <text class="figure-label" x="91" y="64">machine</text>
-        <circle class="lawvere-machine-core" cx="91" cy="126" r="46"></circle>
-        <circle class="lawvere-packed-point" cx="91" cy="126" r="18"></circle>
-        <text class="lawvere-packed-label" x="91" y="132">x</text>
-        <path class="lawvere-gear" d="M91 75 V96 M91 156 V177 M40 126 H61 M121 126 H142 M55 90 L70 105 M112 147 L127 162 M55 162 L70 147 M112 105 L127 90"></path>
-        <text class="figure-small" x="91" y="202">one packed point</text>
-      </g>
-
-      <path class="lawvere-readout-cable green" d="M490 144 C536 106, 585 96, 630 96"></path>
-      <path class="lawvere-readout-cable blue" d="M490 184 C542 184, 586 184, 630 184"></path>
-      <path class="lawvere-readout-cable warm" d="M490 224 C536 262, 585 270, 630 270"></path>
-      <text class="figure-small" x="532" y="124">p0</text>
-      <text class="figure-small" x="532" y="174">p1</text>
-      <text class="figure-small" x="532" y="246">p2</text>
-
-      <g transform="translate(618 62)">
-        <rect class="lawvere-readout-card" x="0" y="0" width="104" height="74" rx="10"></rect>
-        <circle class="lawvere-bead green" cx="28" cy="37" r="13"></circle>
-        <text class="figure-label" x="68" y="44">x0</text>
-      </g>
-      <g transform="translate(618 151)">
-        <rect class="lawvere-readout-card is-selected" x="0" y="0" width="104" height="74" rx="10"></rect>
-        <circle class="lawvere-bead blue" cx="28" cy="37" r="13"></circle>
-        <text class="figure-label" x="68" y="44">x1</text>
-      </g>
-      <g transform="translate(618 240)">
-        <rect class="lawvere-readout-card" x="0" y="0" width="104" height="74" rx="10"></rect>
-        <circle class="lawvere-bead warm" cx="28" cy="37" r="13"></circle>
-        <text class="figure-label" x="68" y="44">x2</text>
-      </g>
-
-      <path class="figure-line dashed" d="M116 336 H644"></path>
-      <text class="figure-small" x="380" y="362">one point stores the tuple; readout maps recover slots</text>
     </svg>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
-    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
-      <title id="fig-automata-title">Four characterizations of regular languages</title>
-      <desc id="fig-automata-desc">DFA, finite monoids, Myhill-Nerode, and profinite words surround a ringed topos.</desc>
-      <g transform="translate(48 40)">
-        <circle class="figure-node" cx="128" cy="84" r="52"></circle><text class="figure-label" x="128" y="90">DFA</text>
-        <circle class="figure-node" cx="600" cy="84" r="62"></circle><text class="figure-label" x="600" y="90">finite monoids</text>
-        <circle class="figure-node" cx="128" cy="270" r="62"></circle><text class="figure-label" x="128" y="264">Myhill-</text><text class="figure-label" x="128" y="291">Nerode</text>
-        <circle class="figure-node" cx="600" cy="270" r="62"></circle><text class="figure-label" x="600" y="264">profinite</text><text class="figure-label" x="600" y="291">words</text>
-        <ellipse class="figure-node soft-2" cx="364" cy="178" rx="122" ry="82"></ellipse>
-        <text class="figure-label" x="364" y="169">ringed topos</text>
-        <text class="figure-small" x="364" y="198">regular languages</text>
-        <path class="figure-line" d="M170 116 L257 154 M554 116 L471 154 M170 238 L257 202 M554 238 L471 202"></path>
+    <svg class="automata-cover-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
+      <title id="fig-automata-title">Automaton as a directed covering over a bouquet</title>
+      <desc id="fig-automata-desc">A finite automaton is drawn as a directed graph over the one-vertex bouquet B Sigma. A moving point on the bouquet is lifted to a moving point in the automaton.</desc>
+      <defs>
+        <marker id="arrow-automata-cover" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+      </defs>
+      <g transform="translate(42 26)">
+        <g transform="translate(238 4)">
+          <rect class="automata-panel automata-panel-total" x="0" y="0" width="434" height="224" rx="12"></rect>
+          <text class="figure-small automata-panel-title" x="24" y="30">A</text>
+
+          <path class="figure-arrow automata-edge automata-edge-a" d="M100 103 C146 62, 214 60, 257 83"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M282 67 C328 28, 379 56, 344 96"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M330 166 C284 206, 218 207, 196 184"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M160 181 C106 174, 70 148, 79 123"></path>
+
+          <path class="figure-arrow automata-edge automata-edge-b" d="M83 128 C82 160, 117 187, 158 189"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M285 96 C327 103, 353 122, 355 145"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M373 151 C421 124, 430 195, 378 184"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M198 179 C238 142, 300 138, 333 154"></path>
+
+          <path class="figure-arrow automata-start-arrow" d="M35 112 H64"></path>
+
+          <g class="automata-state" transform="translate(82 112)">
+            <circle class="figure-node soft" cx="0" cy="0" r="20"></circle>
+            <text class="figure-small" x="0" y="6">q0</text>
+          </g>
+          <g class="automata-state" transform="translate(276 92)">
+            <circle class="figure-node" cx="0" cy="0" r="20"></circle>
+            <text class="figure-small" x="0" y="6">q1</text>
+          </g>
+          <g class="automata-state automata-state-accepting" transform="translate(356 168)">
+            <circle class="figure-node warm" cx="0" cy="0" r="24"></circle>
+            <circle class="automata-accept-ring" cx="0" cy="0" r="17"></circle>
+            <text class="figure-small" x="0" y="6">q2</text>
+          </g>
+          <g class="automata-state" transform="translate(178 190)">
+            <circle class="figure-node" cx="0" cy="0" r="20"></circle>
+            <text class="figure-small" x="0" y="6">q3</text>
+          </g>
+
+          <g class="automata-moving-dot automata-moving-dot-cover">
+            <animateMotion dur="8s" repeatCount="indefinite" path="M82 112 L100 103 C146 62, 214 60, 257 83 L276 92 C310 42, 380 42, 344 96 C326 120, 294 118, 276 92 L285 96 C327 103, 353 122, 355 145 L356 168 L373 151 C421 124, 430 195, 378 184 L356 168"></animateMotion>
+            <circle class="automata-moving-dot-halo" cx="0" cy="0" r="12"></circle>
+            <circle class="automata-moving-dot-core" cx="0" cy="0" r="6">
+              <animate attributeName="fill" dur="8s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c" keyTimes="0;0.5;0.5001;0.99;1"></animate>
+            </circle>
+          </g>
+
+          <text class="figure-small automata-edge-label automata-edge-label-a" x="178" y="72">a</text>
+          <text class="figure-small automata-edge-label automata-edge-label-a" x="362" y="56">a</text>
+          <text class="figure-small automata-edge-label automata-edge-label-a" x="258" y="200">a</text>
+          <text class="figure-small automata-edge-label automata-edge-label-a" x="94" y="158">a</text>
+          <text class="figure-small automata-edge-label automata-edge-label-b" x="123" y="178">b</text>
+          <text class="figure-small automata-edge-label automata-edge-label-b" x="333" y="119">b</text>
+          <text class="figure-small automata-edge-label automata-edge-label-b" x="414" y="173">b</text>
+          <text class="figure-small automata-edge-label automata-edge-label-b" x="268" y="144">b</text>
+        </g>
+
+        <g transform="translate(342 246)">
+          <rect class="automata-panel automata-panel-base" x="0" y="0" width="226" height="112" rx="12"></rect>
+          <text class="figure-small automata-panel-title" x="36" y="31">B&#931;</text>
+          <g transform="translate(113 72)">
+            <path class="figure-arrow automata-edge automata-edge-a" d="M-8 -5 C-62 -44, -64 42, -8 10"></path>
+            <path class="figure-arrow automata-edge automata-edge-b" d="M9 -5 C62 -44, 65 42, 9 10"></path>
+            <circle class="figure-node soft-2" cx="0" cy="0" r="17"></circle>
+            <text class="figure-small" x="0" y="6">*</text>
+            <g class="automata-moving-dot automata-moving-dot-base">
+              <animateMotion dur="8s" repeatCount="indefinite" path="M0 0 C-62 -44, -64 42, 0 0 C-62 -44, -64 42, 0 0 C62 -44, 65 42, 0 0 C62 -44, 65 42, 0 0"></animateMotion>
+              <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
+              <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.6">
+                <animate attributeName="fill" dur="8s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c" keyTimes="0;0.5;0.5001;0.99;1"></animate>
+              </circle>
+            </g>
+            <text class="figure-small automata-edge-label automata-edge-label-a" x="-58" y="-4">a</text>
+            <text class="figure-small automata-edge-label automata-edge-label-b" x="58" y="-4">b</text>
+          </g>
+        </g>
+
+        <path class="figure-arrow dashed automata-projection" d="M455 228 C455 252, 455 278, 455 300"></path>
+        <text class="figure-small automata-projection-label" x="470" y="267">p</text>
       </g>
-    </svg>
-    <span class="figure-math small" style="left: 48%; top: 51%;">\\((\\Sigma\\text{-}\\mathbf{Set},R)\\)</span>`,
+    </svg>`,
   "games-coalgebras": grundyFigureTemplate(),
-  "normalization": `
-    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
-      <title id="fig-normalization-title">Subgroup lattice of the fourth dihedral group</title>
-      <desc id="fig-normalization-desc">The subgroup lattice of D4 with normalizer arrows from reflection subgroups to Klein four subgroups and then to D4.</desc>
-      <defs><marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <path class="figure-line" d="M380 70 L190 124 M380 70 L380 124 M380 70 L570 124"></path>
-      <path class="figure-line" d="M190 156 L105 226 M190 156 L240 226 M190 156 L380 226"></path>
-      <path class="figure-line" d="M380 156 L380 226"></path>
-      <path class="figure-line" d="M570 156 L380 226 M570 156 L520 226 M570 156 L655 226"></path>
-      <path class="figure-line" d="M380 314 L105 274 M380 314 L240 274 M380 314 L380 274 M380 314 L520 274 M380 314 L655 274"></path>
-      <path class="figure-arrow dashed" d="M105 226 C92 174, 132 140, 168 140"></path>
-      <path class="figure-arrow dashed" d="M240 226 C246 176, 228 150, 206 144"></path>
-      <path class="figure-arrow dashed" d="M520 226 C514 176, 532 150, 554 144"></path>
-      <path class="figure-arrow dashed" d="M655 226 C668 174, 628 140, 592 140"></path>
-      <path class="figure-arrow dashed" d="M380 226 V78"></path>
-      <path class="figure-arrow dashed" d="M190 124 C220 76, 298 55, 352 55"></path>
-      <path class="figure-arrow dashed" d="M570 124 C540 76, 462 55, 408 55"></path>
-      <path class="figure-arrow dashed" d="M380 314 C450 270, 500 158, 405 75"></path>
-      <rect class="figure-node soft" x="340" y="31" width="80" height="42" rx="7"></rect>
-      <rect class="figure-node pale" x="132" y="116" width="116" height="48" rx="7"></rect>
-      <rect class="figure-node pale" x="334" y="116" width="92" height="48" rx="7"></rect>
-      <rect class="figure-node pale" x="512" y="116" width="116" height="48" rx="7"></rect>
-      <rect class="figure-node" x="62" y="226" width="86" height="48" rx="7"></rect>
-      <rect class="figure-node" x="194" y="226" width="92" height="48" rx="7"></rect>
-      <rect class="figure-node warm" x="336" y="226" width="88" height="48" rx="7"></rect>
-      <rect class="figure-node" x="474" y="226" width="92" height="48" rx="7"></rect>
-      <rect class="figure-node" x="612" y="226" width="86" height="48" rx="7"></rect>
-      <rect class="figure-node soft" x="338" y="314" width="84" height="42" rx="7"></rect>
-      <text class="figure-small" x="380" y="18">normalizer map on subgroups</text>
-    </svg>
-    <span class="figure-math large" style="left: 50%; top: 13.5%;">\\(D_4\\)</span>
-    <span class="figure-math tiny" style="left: 25%; top: 36%;">\\(\\langle\\tau,\\sigma^2\\rangle\\)</span>
-    <span class="figure-math small" style="left: 50%; top: 36%;">\\(\\langle\\sigma\\rangle\\)</span>
-    <span class="figure-math tiny" style="left: 75%; top: 36%;">\\(\\langle\\sigma\\tau,\\sigma^2\\rangle\\)</span>
-    <span class="figure-math small" style="left: 13.8%; top: 64.2%;">\\(\\langle\\tau\\rangle\\)</span>
-    <span class="figure-math tiny" style="left: 31.6%; top: 64.2%;">\\(\\langle\\sigma^2\\tau\\rangle\\)</span>
-    <span class="figure-math small" style="left: 50%; top: 64.2%;">\\(\\langle\\sigma^2\\rangle\\)</span>
-    <span class="figure-math small" style="left: 68.4%; top: 64.2%;">\\(\\langle\\sigma\\tau\\rangle\\)</span>
-    <span class="figure-math tiny" style="left: 86.2%; top: 64.2%;">\\(\\langle\\sigma^3\\tau\\rangle\\)</span>
-    <span class="figure-math small" style="left: 50%; top: 86%;">\\(\\langle 1\\rangle\\)</span>
-    <span class="figure-math tiny" style="left: 58.5%; top: 24%;">\\(N_{D_4}(-)\\)</span>`
+  "normalization": normalizationFigureTemplate()
 };
 
 const paperDiagramNotes = {
@@ -6454,14 +7810,14 @@ const paperDiagramNotes = {
     results: ["The paper gives a site-theoretic way to build a Grothendieck topos with a long adjoint pattern."]
   },
   "lawvere-first": {
-    heading: "Pairing System",
-    keywords: ["Lawvere problem", "pairing functions", "rigid structure", "quotient topoi"],
+    heading: "Power Set Tensor Calculation",
+    keywords: ["Lawvere problem", "coend", "tensor notation", "minimal expression"],
     concepts: [
-      ["Pairing system", "Maps p_i that let one point encode a whole tuple of coordinates."],
-      ["Readout maps", "Each p_i reads the i-th coordinate back from the packed point."],
-      ["Rigid encoding", "The packing device is combined with rigid relations so the resulting quotient topoi stay distinct."]
+      ["Concrete input", "Put the target set X on the left and the source set A on the right."],
+      ["Selected part", "The colored points in A form S, and only the colored strings are kept."],
+      ["Minimal expression", "Four selected strings land on two points, so the picture visibly compresses."]
     ],
-    results: ["Pairing functions and rigid relational structures drive the construction of a Grothendieck topos with proper class many quotient topoi."]
+    results: ["This is the model-case calculation from Section 3, drawn without the formula band."]
   },
   "lawvere-fourth": {
     heading: "Pullback And Levels",
@@ -6475,13 +7831,14 @@ const paperDiagramNotes = {
     results: ["The pullback behaviour of structures under maps of finite sets is the local combinatorics behind the level calculation."]
   },
   "topoi-automata": {
-    heading: "Regular Languages As Topoi",
-    keywords: ["automata", "regular languages", "ringed topos", "profinite words"],
+    heading: "Automata As Coverings",
+    keywords: ["automata", "bouquet", "directed covering", "Sigma-sets", "regular languages"],
     concepts: [
-      ["Topos of automata", "A topos-theoretic environment where automata and languages can be compared."],
-      ["Ringed topos", "A topos equipped with algebraic structure encoding regular languages."]
+      ["Bouquet", "The one-vertex directed graph with one loop for each letter in the alphabet."],
+      ["Directed covering", "A graph over the bouquet in which each state has one outgoing lift of every letter-loop."],
+      ["Finite automaton", "A finite Sigma-set drawn as this covering graph, together with an initial state and accepting states."]
     ],
-    results: ["Four views of regular languages are tied together by a topos-theoretic construction."]
+    results: ["This picture makes the topos of orbit-finite Sigma-sets visible as a geometry of finite-state directed covers over the alphabet bouquet."]
   },
   "games-coalgebras": {
     heading: "Games As Recursive Coalgebras",
@@ -6506,6 +7863,17 @@ const paperDiagramNotes = {
 
 function applyFigureMarkerIds(container, figureId, prefix) {
   const svg = container.querySelector("svg");
+  if (figureId === "completely-connected") {
+    svg?.querySelectorAll("marker[data-connected-marker]").forEach((marker) => {
+      const group = marker.dataset.connectedMarker || "";
+      const markerId = `${prefix}-${figureId}-${group}`;
+      marker.id = markerId;
+      svg.querySelectorAll(`[data-connected-arrow="${group}"]`).forEach((path) => {
+        path.setAttribute("marker-end", `url(#${markerId})`);
+      });
+    });
+    return;
+  }
   const marker = svg?.querySelector("marker");
   if (!svg || !marker) return;
   const markerId = `${prefix}-${figureId}`;
@@ -6513,6 +7881,155 @@ function applyFigureMarkerIds(container, figureId, prefix) {
   svg.querySelectorAll(".figure-arrow").forEach((path) => {
     path.setAttribute("marker-end", `url(#${markerId})`);
   });
+}
+
+const normalizationContainment = {
+  d4: ["d4", "v0", "v1", "rot", "r2", "ref0", "ref1", "ref2", "ref3", "one"],
+  v0: ["v0", "r2", "ref0", "ref2", "one"],
+  v1: ["v1", "r2", "ref1", "ref3", "one"],
+  rot: ["rot", "r2", "one"],
+  r2: ["r2", "one"],
+  ref0: ["ref0", "one"],
+  ref1: ["ref1", "one"],
+  ref2: ["ref2", "one"],
+  ref3: ["ref3", "one"],
+  one: ["one"]
+};
+
+const normalizationConjugateDownsets = {
+  ...normalizationContainment,
+  ref0: ["ref0", "ref2", "one"],
+  ref2: ["ref0", "ref2", "one"],
+  ref1: ["ref1", "ref3", "one"],
+  ref3: ["ref1", "ref3", "one"]
+};
+
+const normalizationSubgroupLabels = {
+  d4: "D4",
+  v0: "<tau,sigma^2>",
+  v1: "<sigma tau,sigma^2>",
+  rot: "<sigma>",
+  r2: "<sigma^2>",
+  ref0: "<tau>",
+  ref1: "<sigma tau>",
+  ref2: "<sigma^2 tau>",
+  ref3: "<sigma^3 tau>",
+  one: "<1>"
+};
+
+function setNormalizationSelection(root, subgroupId = "d4") {
+  const selected = normalizationContainment[subgroupId] ? subgroupId : "d4";
+  const allowed = new Set(normalizationContainment[selected]);
+  const highlighted = new Set(normalizationConjugateDownsets[selected] || normalizationContainment[selected]);
+  root.dataset.normalizationSelected = selected;
+  delete root.dataset.normalizationActionSelected;
+
+  root.querySelectorAll("[data-normalization-subgroup]").forEach((node) => {
+    const subgroup = node.dataset.normalizationSubgroup || "";
+    const isSelected = subgroup === selected;
+    const isHighlighted = highlighted.has(subgroup);
+    node.classList.toggle("is-selected", isSelected);
+    node.classList.toggle("is-highlighted", isHighlighted);
+    node.classList.toggle("is-muted", !isHighlighted);
+    if (root.classList.contains("is-interactive")) node.setAttribute("aria-pressed", isSelected ? "true" : "false");
+  });
+
+  root.querySelectorAll("[data-normalization-stabilizers]").forEach((action) => {
+    const stabilizers = (action.dataset.normalizationStabilizers || "").split(/\s+/).filter(Boolean);
+    const matches = stabilizers.some((stabilizer) => allowed.has(stabilizer));
+    action.classList.remove("is-selected");
+    action.classList.toggle("is-dimmed", !matches);
+    action.classList.toggle("is-matched", matches && selected !== "d4");
+    if (root.classList.contains("is-interactive")) action.setAttribute("aria-pressed", "false");
+  });
+
+  const status = root.querySelector("[data-normalization-status]");
+  if (status) status.textContent = `H = ${normalizationSubgroupLabels[selected] || "D4"}`;
+}
+
+function normalizationStabilizerList(action) {
+  return (action.dataset.normalizationStabilizers || "")
+    .split(/\s+/)
+    .filter((stabilizer) => Boolean(normalizationContainment[stabilizer]));
+}
+
+function setNormalizationActionSelection(root, selectedAction) {
+  const stabilizers = normalizationStabilizerList(selectedAction);
+  const highlighted = new Set(stabilizers);
+  root.dataset.normalizationActionSelected = stabilizers.join(" ");
+  delete root.dataset.normalizationSelected;
+
+  root.querySelectorAll("[data-normalization-subgroup]").forEach((node) => {
+    const subgroup = node.dataset.normalizationSubgroup || "";
+    const isHighlighted = highlighted.has(subgroup);
+    node.classList.remove("is-selected");
+    node.classList.toggle("is-highlighted", isHighlighted);
+    node.classList.toggle("is-muted", !isHighlighted);
+    if (root.classList.contains("is-interactive")) node.setAttribute("aria-pressed", "false");
+  });
+
+  root.querySelectorAll("[data-normalization-stabilizers]").forEach((action) => {
+    const isSelected = action === selectedAction;
+    action.classList.toggle("is-selected", isSelected);
+    action.classList.toggle("is-matched", isSelected);
+    action.classList.toggle("is-dimmed", false);
+    if (root.classList.contains("is-interactive")) action.setAttribute("aria-pressed", isSelected ? "true" : "false");
+  });
+
+  const status = root.querySelector("[data-normalization-status]");
+  if (status) status.textContent = "stabilizers highlighted";
+}
+
+function initializeNormalizationFigure(root, options = {}) {
+  root.classList.toggle("is-interactive", Boolean(options.controls));
+  setNormalizationSelection(root, root.dataset.normalizationSelected || "d4");
+  if (!options.controls || root.dataset.normalizationInitialized) return;
+  root.dataset.normalizationInitialized = "true";
+
+  root.querySelectorAll("[data-normalization-subgroup]").forEach((node) => {
+    const subgroupId = node.dataset.normalizationSubgroup || "d4";
+    const label = normalizationSubgroupLabels[subgroupId] || node.dataset.subgroupLabel || subgroupId;
+    node.setAttribute("role", "button");
+    node.setAttribute("tabindex", "0");
+    node.setAttribute("aria-label", `Select subgroup ${label}`);
+    node.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setNormalizationSelection(root, subgroupId);
+    });
+    node.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      event.stopPropagation();
+      setNormalizationSelection(root, subgroupId);
+    });
+  });
+
+  root.querySelectorAll("[data-normalization-stabilizers]").forEach((action) => {
+    const stabilizers = normalizationStabilizerList(action)
+      .map((stabilizer) => normalizationSubgroupLabels[stabilizer] || stabilizer)
+      .join(", ");
+    action.setAttribute("role", "button");
+    action.setAttribute("tabindex", "0");
+    action.setAttribute("aria-label", `Highlight stabilizers ${stabilizers}`);
+    action.setAttribute("aria-pressed", "false");
+    action.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setNormalizationActionSelection(root, action);
+    });
+    action.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      event.stopPropagation();
+      setNormalizationActionSelection(root, action);
+    });
+  });
+}
+
+function initializeNormalizationFigures(scope, options = {}) {
+  const roots = scope.matches?.("[data-normalization-figure]")
+    ? [scope]
+    : Array.from(scope.querySelectorAll("[data-normalization-figure]"));
+  roots.forEach((root) => initializeNormalizationFigure(root, options));
 }
 
 const grundyFigureStates = new WeakMap();
@@ -6559,6 +8076,7 @@ function updateGrundyAlgebraPanel(root, state, activeIds) {
   const values = focusedNode ? grundyOptionValues(focusedNode) : [];
   const mexValue = focusedNode ? grundyMex(values) : null;
   const isReady = Boolean(focusedNode);
+  const water = root.querySelector("[data-grundy-mex-water]");
 
   root.querySelectorAll("[data-grundy-natural]").forEach((number) => {
     const value = Number(number.dataset.grundyNatural);
@@ -6569,20 +8087,26 @@ function updateGrundyAlgebraPanel(root, state, activeIds) {
     number.classList.toggle("is-after-mex", isReady && value > mexValue && !excluded);
   });
 
-  const reachable = root.querySelector("[data-grundy-reachable-values]");
-  const reason = root.querySelector("[data-grundy-mex-reason]");
-  const result = root.querySelector("[data-grundy-mex-result]");
-
-  if (!isReady) {
-    if (reachable) reachable.textContent = state.step >= state.max ? "all values computed" : "press Play";
-    if (reason) reason.textContent = "mex is the first natural number not crossed out.";
-    if (result) result.textContent = state.step >= state.max ? "done" : "mex";
-    return;
+  if (water) {
+    const line = water.closest(".grundy-natural-line");
+    const computedStyle = line && typeof window !== "undefined" ? window.getComputedStyle(line) : null;
+    const axisPad = Number.parseFloat(computedStyle?.getPropertyValue("--grundy-axis-pad")) || 28;
+    const mexLevel = isReady && grundyNumberLineMax ? Math.max(0, Math.min(1, mexValue / grundyNumberLineMax)) : 0;
+    const waterHeight = `calc(${mexLevel * 100}% + ${axisPad * (1 - 2 * mexLevel)}px)`;
+    const previousTransition = water.style.transition;
+    water.style.transition = "none";
+    water.classList.remove("is-ready");
+    water.style.setProperty("--grundy-mex-water-height", "0px");
+    void water.offsetHeight;
+    water.style.transition = previousTransition;
+    if (isReady) {
+      water.style.setProperty("--grundy-mex-water-height", waterHeight);
+      water.classList.add("is-ready");
+    }
+    water.dataset.grundyMexWater = isReady ? String(mexValue) : "";
   }
 
-  if (reachable) reachable.textContent = values.length ? values.join(", ") : "none";
-  if (reason) reason.textContent = values.length ? "cross these out; take the first remaining number." : "nothing is reachable, so start at 0.";
-  if (result) result.textContent = `mex = ${mexValue}`;
+  root.dataset.grundyMexValue = isReady ? String(mexValue) : "";
 }
 
 function updateGrundyPlayControl(root) {
@@ -6597,6 +8121,12 @@ function renderGrundyStep(root) {
   if (!state) return;
   const step = state.step;
   const activeIds = grundyActiveNodeIds(state);
+  const referencedIds = new Set();
+  activeIds.forEach((nodeId) => {
+    const record = grundyGameNodeMap.get(nodeId);
+    if (!record) return;
+    record.options.forEach((optionId) => referencedIds.add(optionId));
+  });
   root.dataset.grundyStep = String(step);
   root.classList.toggle("is-final", step >= state.max);
 
@@ -6610,8 +8140,9 @@ function renderGrundyStep(root) {
     node.classList.toggle("is-known", known);
     node.classList.toggle("is-computed", known && !active);
     node.classList.toggle("is-active", active);
-    node.classList.toggle("is-p-state", step >= state.max && known && record.value === 0);
-    node.classList.toggle("is-n-state", step >= state.max && known && record.value !== 0);
+    node.classList.toggle("is-referenced", referencedIds.has(record.id) && !active);
+    node.classList.toggle("is-p-state", known && record.value === 0);
+    node.classList.toggle("is-n-state", known && record.value !== 0);
     if (value) value.textContent = known ? String(record.value) : "";
   });
 
@@ -6624,6 +8155,11 @@ function renderGrundyStep(root) {
     const known = grundyNodeIsKnown(from, step);
     edge.classList.toggle("is-active", active);
     edge.classList.toggle("is-computed", known && !active);
+  });
+
+  const referenceNodeId = [...activeIds][0] || "";
+  root.querySelectorAll("[data-grundy-reference-node]").forEach((line) => {
+    line.classList.toggle("is-active", Boolean(referenceNodeId) && line.dataset.grundyReferenceNode === referenceNodeId);
   });
 
   const slider = root.querySelector("[data-grundy-slider]");
@@ -6652,6 +8188,7 @@ function stopGrundyFigure(root) {
 function startGrundyFigure(root) {
   const state = grundyFigureStates.get(root);
   if (!state || state.timer) return;
+  if (state.step >= state.max) setGrundyStep(root, 0);
   state.playing = true;
   updateGrundyPlayControl(root);
   state.timer = window.setInterval(() => {
@@ -6698,7 +8235,7 @@ function initializeGrundyFigure(root, options = {}) {
   const max = Number(root.dataset.grundyMax || grundyFinalStep);
   const state = {
     max,
-    step: Math.max(0, Math.min(max, Number(root.dataset.grundyStep || 0))),
+    step: Math.max(0, Math.min(max, Number(options.initialStep ?? root.dataset.grundyStep ?? 0))),
     focusId: "",
     timer: null,
     playing: false,
@@ -6767,21 +8304,48 @@ const lawverePullbackGroups = ["rb", "ro", "rg", "og"];
 const lawverePullbackStates = new WeakMap();
 
 function renderLawverePullbackStep(root, step) {
-  const completeStep = lawverePullbackGroups.length + 1;
+  const leftPhaseLength = lawverePullbackGroups.length;
+  const rightPhaseLength = 7;
+  const completeStep = leftPhaseLength + rightPhaseLength + 1;
   const boundedStep = Math.max(0, Math.min(completeStep, Number(step) || 0));
   root.dataset.pullbackStep = String(boundedStep);
   root.classList.toggle("is-complete", boundedStep === completeStep);
 
-  const activeGroup = lawverePullbackGroups[boundedStep - 1] || "";
+  const leftStep = Math.min(boundedStep, leftPhaseLength + 1);
+  const rightStep = Math.max(0, boundedStep - leftPhaseLength);
+  const activeLeftGroup = boundedStep <= leftPhaseLength ? lawverePullbackGroups[boundedStep - 1] || "" : "";
+  const activeRightVertex =
+    boundedStep > leftPhaseLength && boundedStep <= leftPhaseLength + rightPhaseLength ? rightStep - 1 : -1;
+  const isRightActive = activeRightVertex >= 0;
+  root.classList.toggle("is-coskel-building", isRightActive);
+
   root.querySelectorAll("[data-pullback-source]").forEach((edge) => {
     const index = lawverePullbackGroups.indexOf(edge.dataset.pullbackSource) + 1;
-    edge.classList.toggle("is-active", Boolean(activeGroup) && edge.dataset.pullbackSource === activeGroup);
-    edge.classList.toggle("is-complete", boundedStep === completeStep || (index > 0 && index < boundedStep));
+    edge.classList.toggle("is-active", Boolean(activeLeftGroup) && edge.dataset.pullbackSource === activeLeftGroup);
+    edge.classList.toggle("is-complete", boundedStep > leftPhaseLength || (index > 0 && index < leftStep));
   });
   root.querySelectorAll("[data-pullback-edge]").forEach((edge) => {
     const index = lawverePullbackGroups.indexOf(edge.dataset.pullbackEdge) + 1;
-    edge.classList.toggle("is-active", Boolean(activeGroup) && edge.dataset.pullbackEdge === activeGroup);
-    edge.classList.toggle("is-complete", boundedStep === completeStep || (index > 0 && index < boundedStep));
+    edge.classList.toggle("is-active", Boolean(activeLeftGroup) && edge.dataset.pullbackEdge === activeLeftGroup);
+    edge.classList.toggle("is-complete", boundedStep > leftPhaseLength || (index > 0 && index < leftStep));
+  });
+  root.querySelectorAll("[data-coskel-boundary]").forEach((graph) => {
+    const index = Number(graph.dataset.coskelBoundary);
+    graph.classList.toggle("is-active", activeRightVertex === index);
+    graph.classList.toggle("is-glued", isRightActive && index < activeRightVertex);
+    graph.classList.toggle("is-complete", boundedStep === completeStep);
+  });
+  root.querySelectorAll("[data-coskel-core-edge]").forEach((edge) => {
+    const from = Number(edge.dataset.coskelEdgeFrom);
+    const to = Number(edge.dataset.coskelEdgeTo);
+    const isIncident = from === activeRightVertex || to === activeRightVertex;
+    edge.classList.toggle("is-gluing", isRightActive && !isIncident);
+    edge.classList.toggle("is-complete", boundedStep === completeStep);
+  });
+  root.querySelectorAll("[data-coskel-vertex]").forEach((vertex) => {
+    const index = Number(vertex.dataset.coskelVertex);
+    vertex.classList.toggle("is-gluing", isRightActive && index !== activeRightVertex);
+    vertex.classList.toggle("is-complete", boundedStep === completeStep);
   });
 }
 
@@ -6801,16 +8365,17 @@ function playLawverePullbackFigure(root) {
   root.classList.add("is-animated");
   root.classList.remove("is-complete");
   renderLawverePullbackStep(root, 0);
-  lawverePullbackGroups.forEach((_, index) => {
+  const totalAnimationSteps = lawverePullbackGroups.length + 7;
+  Array.from({ length: totalAnimationSteps }, (_, index) => index).forEach((index) => {
     state.timers.push(
       window.setTimeout(() => renderLawverePullbackStep(root, index + 1), 420 + index * state.intervalMs)
     );
   });
   state.timers.push(
     window.setTimeout(() => {
-      renderLawverePullbackStep(root, lawverePullbackGroups.length + 1);
+      renderLawverePullbackStep(root, totalAnimationSteps + 1);
       state.playing = false;
-    }, 420 + lawverePullbackGroups.length * state.intervalMs)
+    }, 420 + totalAnimationSteps * state.intervalMs)
   );
 }
 
@@ -6834,7 +8399,7 @@ function initializeLawverePullbackFigure(root, options = {}) {
       playLawverePullbackFigure(root);
     });
   }
-  renderLawverePullbackStep(root, lawverePullbackGroups.length + 1);
+  renderLawverePullbackStep(root, lawverePullbackGroups.length + 8);
   if (options.autoplay) playLawverePullbackFigure(root);
 }
 
@@ -6854,6 +8419,17 @@ function stopLawverePullbackFigures(scope) {
 
 const connectedCorrespondenceGroups = ["a", "b", "c"];
 const connectedCorrespondenceStates = new WeakMap();
+
+function setConnectedPattern(root) {
+  const state = connectedCorrespondenceStates.get(root);
+  const patterns = Array.from(root.querySelectorAll("[data-connected-pattern]"));
+  if (!patterns.length) return;
+  const activeIndex = Math.max(0, Math.min(patterns.length - 1, state?.patternIndex || 0));
+  root.dataset.connectedPattern = String(activeIndex);
+  patterns.forEach((pattern, index) => {
+    pattern.classList.toggle("is-visible", index === activeIndex);
+  });
+}
 
 function renderConnectedCorrespondenceStep(root, step) {
   const completeStep = connectedCorrespondenceGroups.length + 1;
@@ -6891,6 +8467,7 @@ function playConnectedCorrespondenceFigure(root) {
   state.playing = true;
   root.classList.add("is-animated");
   root.classList.remove("is-complete");
+  setConnectedPattern(root);
   renderConnectedCorrespondenceStep(root, 0);
   connectedCorrespondenceGroups.forEach((_, index) => {
     state.timers.push(
@@ -6900,6 +8477,12 @@ function playConnectedCorrespondenceFigure(root) {
   state.timers.push(
     window.setTimeout(() => {
       renderConnectedCorrespondenceStep(root, connectedCorrespondenceGroups.length + 1);
+      if (state.loop) {
+        const patternCount = root.querySelectorAll("[data-connected-pattern]").length || 1;
+        state.patternIndex = (state.patternIndex + 1) % patternCount;
+        state.timers.push(window.setTimeout(() => playConnectedCorrespondenceFigure(root), state.intervalMs));
+        return;
+      }
       state.playing = false;
     }, 360 + connectedCorrespondenceGroups.length * state.intervalMs)
   );
@@ -6910,7 +8493,9 @@ function initializeConnectedCorrespondenceFigure(root, options = {}) {
   connectedCorrespondenceStates.set(root, {
     timers: [],
     playing: false,
-    intervalMs: options.intervalMs || 760
+    intervalMs: options.intervalMs || 760,
+    loop: options.loop ?? true,
+    patternIndex: 0
   });
   if (options.controls) {
     root.setAttribute("role", "button");
@@ -6923,6 +8508,7 @@ function initializeConnectedCorrespondenceFigure(root, options = {}) {
       playConnectedCorrespondenceFigure(root);
     });
   }
+  setConnectedPattern(root);
   renderConnectedCorrespondenceStep(root, connectedCorrespondenceGroups.length + 1);
   const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   if (options.autoplay && !reducedMotion) playConnectedCorrespondenceFigure(root);
@@ -7030,9 +8616,10 @@ function openPaperDiagram(paper) {
   stopConnectedCorrespondenceFigures(figure);
   figure.innerHTML = paperFigureTemplates[paper.figure];
   applyFigureMarkerIds(figure, paper.figure, "diagram-arrow");
-  initializeGrundyFigures(figure, { controls: true, autoplay: true });
-  initializeLawverePullbackFigures(figure, { controls: true, autoplay: true });
-  initializeConnectedCorrespondenceFigures(figure, { controls: true, autoplay: true });
+  initializeGrundyFigures(figure, { controls: true, autoplay: false, initialStep: grundyFinalStep });
+  initializeLawverePullbackFigures(figure, { controls: true, autoplay: false });
+  initializeConnectedCorrespondenceFigures(figure, { controls: true, autoplay: false });
+  initializeNormalizationFigures(figure, { controls: true });
   renderDiagramNotes(notes, paper);
   typesetMath(dialog);
   if (dialog.showModal) dialog.showModal();
@@ -7078,6 +8665,47 @@ function currentPositionIcon(icon) {
     return svg;
   }
 
+  if (icon === "humai") {
+    svg.append(
+      shape("path", {
+        d: "M7.2 7.2H14.6C16 7.2 16.8 8 16.8 9.4V16.8H9.4C8 16.8 7.2 16 7.2 14.6Z",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-width": "2.2",
+        "stroke-linejoin": "round"
+      }),
+      shape("circle", { cx: "10.5", cy: "10.5", r: "1.45", fill: "currentColor" }),
+      shape("circle", { cx: "13.8", cy: "13.8", r: "1.45", fill: "currentColor" }),
+      shape("path", {
+        d: "M10.5 10.5L13.8 13.8M16.8 12H20.2M12 16.8V20.2",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.75"
+      }),
+      shape("path", {
+        d: "M10.2 21.2C12 19.8 14.1 19.4 16 20.6V26.4C14 25.2 12 25.2 10.2 26.4Z",
+        fill: "currentColor",
+        "fill-opacity": "0.26"
+      }),
+      shape("path", {
+        d: "M16 20.6C17.9 19.4 20 19.8 21.8 21.2V26.4C20 25.2 18 25.2 16 26.4Z",
+        fill: "currentColor",
+        "fill-opacity": "0.46"
+      }),
+      shape("path", {
+        d: "M10.2 21.2C12 19.8 14.1 19.4 16 20.6C17.9 19.4 20 19.8 21.8 21.2M16 20.6V26.4",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.8"
+      })
+    );
+    return svg;
+  }
+
   if (icon === "badge" || icon === "kakenhi") {
     svg.append(
       shape("rect", { x: "7.3", y: "6.8", width: "3.2", height: "18.4", rx: "1.2", fill: "currentColor" }),
@@ -7090,6 +8718,41 @@ function currentPositionIcon(icon) {
         "stroke-width": "3"
       }),
       shape("rect", { x: "7.3", y: "25.7", width: "16.8", height: "2.3", rx: "1.15", fill: "#d3a336" })
+    );
+    return svg;
+  }
+
+  if (icon === "money") {
+    svg.append(
+      shape("path", {
+        d: "M11.2 8.4C12.8 9.3 19.2 9.3 20.8 8.4L19 12.4H13Z",
+        fill: "currentColor",
+        "fill-opacity": "0.5"
+      }),
+      shape("path", {
+        d: "M11.5 13C8.9 15 7.2 18.6 7.2 22.1C7.2 26 10.7 28.1 16 28.1C21.3 28.1 24.8 26 24.8 22.1C24.8 18.6 23.1 15 20.5 13Z",
+        fill: "currentColor",
+        "fill-opacity": "0.22"
+      }),
+      shape("path", {
+        d: "M11.5 13C8.9 15 7.2 18.6 7.2 22.1C7.2 26 10.7 28.1 16 28.1C21.3 28.1 24.8 26 24.8 22.1C24.8 18.6 23.1 15 20.5 13H11.5Z",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "2.2"
+      }),
+      line({ d: "M12.2 12.8H19.8" }),
+      shape("path", {
+        d: "M13 17.5H19M14 17.5L16 20.2L18 17.5M16 20.2V24.4M13.8 21.8H18.2",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.75"
+      }),
+      shape("circle", { cx: "23.2", cy: "9.1", r: "3.1", fill: "currentColor", "fill-opacity": "0.36" }),
+      shape("circle", { cx: "24.8", cy: "12.6", r: "2.45", fill: "currentColor", "fill-opacity": "0.28" })
     );
     return svg;
   }
@@ -7119,22 +8782,22 @@ function currentPositionIcon(icon) {
 
   if (icon === "pullback") {
     svg.append(
-      line({ d: "M12.2 9.6H19.8" }),
-      line({ d: "M9.6 12.2V19.8" }),
-      line({ d: "M22.4 12.2V19.8" }),
-      line({ d: "M12.2 22.4H19.8" }),
+      line({ d: "M7.8 7.8H24.2" }),
+      line({ d: "M7.8 7.8V24.2" }),
+      line({ d: "M24.2 7.8V24.2" }),
+      line({ d: "M7.8 24.2H24.2" }),
       shape("path", {
-        d: "M13 13H15.7V15.7",
+        d: "M12 12H16.5V16.5",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
-        "stroke-width": "1.5"
+        "stroke-width": "2"
       }),
-      shape("circle", { cx: "9.6", cy: "9.6", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
-      shape("circle", { cx: "22.4", cy: "9.6", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
-      shape("circle", { cx: "9.6", cy: "22.4", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
-      shape("circle", { cx: "22.4", cy: "22.4", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" })
+      shape("circle", { cx: "7.8", cy: "7.8", r: "2.65", fill: "currentColor" }),
+      shape("circle", { cx: "24.2", cy: "7.8", r: "2.65", fill: "currentColor", "fill-opacity": "0.78" }),
+      shape("circle", { cx: "7.8", cy: "24.2", r: "2.65", fill: "currentColor", "fill-opacity": "0.78" }),
+      shape("circle", { cx: "24.2", cy: "24.2", r: "2.65", fill: "currentColor", "fill-opacity": "0.58" })
     );
     return svg;
   }
@@ -7182,8 +8845,12 @@ function renderCurrentPositions() {
     root.classList.add("position-list");
     siteData.currentPositions.forEach((record) => {
       const item = el("li", "position-item");
-      const iconWrap = el("span", "position-icon");
+      const iconWrap = record.href ? link("", record.href, "position-icon") : el("span", "position-icon");
       iconWrap.classList.add(`position-icon--${record.icon}`);
+      if (record.href) {
+        iconWrap.setAttribute("aria-label", `Open ${record.text}`);
+        iconWrap.title = "Copy link";
+      }
       iconWrap.append(currentPositionIcon(record.icon));
       const content = record.href ? link(record.text, record.href, "position-link") : el("span", "position-link", record.text);
       item.append(iconWrap, content);
@@ -7307,16 +8974,31 @@ function renderPaperRecord(paper, options = {}) {
   item.id = paperAnchor(paper);
   const template = paperFigureTemplates[paper.figure];
   if (showFigure && template) {
-    const figureButton = el("button", "publication-figure publication-figure-button");
-    figureButton.type = "button";
-    figureButton.setAttribute("aria-label", `Open diagram mode for ${paper.title}`);
-    figureButton.innerHTML = template;
-    applyFigureMarkerIds(figureButton, paper.figure, "paper-arrow");
-    initializeGrundyFigures(figureButton, { autoplay: true, intervalMs: 1100 });
-    initializeLawverePullbackFigures(figureButton, { autoplay: true });
-    initializeConnectedCorrespondenceFigures(figureButton, { autoplay: true });
-    figureButton.addEventListener("click", () => openPaperDiagram(paper));
-    item.append(figureButton);
+    const figure = el("div", "publication-figure");
+    figure.setAttribute("aria-label", `${paper.title} diagram`);
+    figure.innerHTML = template;
+    applyFigureMarkerIds(figure, paper.figure, "paper-arrow");
+    initializeGrundyFigures(figure, { autoplay: false, intervalMs: 1100, initialStep: grundyFinalStep });
+    initializeLawverePullbackFigures(figure, { autoplay: false, controls: true });
+    initializeConnectedCorrespondenceFigures(figure, { autoplay: false, controls: true });
+    initializeNormalizationFigures(figure, { controls: true });
+    if (figure.querySelector("[data-grundy-figure]")) {
+      figure.classList.add("is-clickable");
+      figure.setAttribute("role", "button");
+      figure.tabIndex = 0;
+      figure.setAttribute("aria-label", `Play the ${paper.title} diagram animation`);
+      const startPreviewAnimation = () => {
+        const grundyFigure = figure.querySelector("[data-grundy-figure]");
+        if (grundyFigure) startGrundyFigure(grundyFigure);
+      };
+      figure.addEventListener("click", startPreviewAnimation);
+      figure.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        startPreviewAnimation();
+      });
+    }
+    item.append(figure);
   }
 
   const titleRow = el("div", "publication-title");
@@ -7430,6 +9112,7 @@ function renderMiscPapers() {
     const meta = el("div", "publication-meta");
     const people = paperPeopleText(paper);
     if (people) meta.append(el("span", null, people));
+    paper.tags?.forEach((tag) => meta.append(el("span", null, tag)));
     if (meta.children.length) item.append(meta);
     item.append(el("p", "publication-summary", paper.venue));
     root.append(item);
@@ -8297,6 +9980,7 @@ function setupInteractions() {
   if (talkFilter) {
     talkFilter.addEventListener("input", (event) => {
       state.talkQuery = event.target.value;
+      renderActivitiesTimeline();
       renderTalkTimeline();
       renderTalkMap();
       renderTalks();
@@ -8394,38 +10078,98 @@ function setupInteractions() {
   });
 }
 
-setupLanguage();
-renderProfileLinks();
-renderTopics();
-renderCurrentPositions();
-renderLinkedList("#past-position-list", siteData.pastPositions);
-renderLinkedList("#award-list", siteData.awards);
-renderLinkedList("#education-list", siteData.education);
-renderExplore();
-renderWebApps();
-renderResearchMap();
-renderHomeTimeline();
-renderActivitiesTimeline();
-renderPaperTimeline();
-renderCategoriesTokyoMap();
-renderPapers();
-renderPreparationPapers();
-renderHomePapers();
-renderMiscPapers();
-renderResearchmapPapers();
-renderTalks();
-renderTalks("#home-talk-list");
-renderTalkTimeline();
-renderTalkMap();
-renderResearchmapPresentations();
-renderNotes();
-renderSpeculativeNotes();
-renderActivities();
-renderPlans();
-renderProblems();
-renderSiteSearch();
-renderLinks();
-renderResearchmapAwards();
-renderResearchmapEducation();
-setupInteractions();
-applyLanguage();
+function renderProfileSections() {
+  renderProfileLinks();
+  renderTopics();
+  renderCurrentPositions();
+  renderLinkedList("#past-position-list", siteData.pastPositions);
+  renderLinkedList("#award-list", siteData.awards);
+  renderLinkedList("#education-list", siteData.education);
+  renderResearchmapAwards();
+  renderResearchmapEducation();
+}
+
+function renderInitialPage() {
+  const page = document.body?.dataset.page || "";
+  setupLanguage();
+
+  if (page === "home") {
+    renderProfileSections();
+    renderExplore();
+    renderResearchMap();
+    renderHomeTimeline();
+    renderCategoriesTokyoMap();
+    renderPlans();
+    renderHomePapers();
+    renderTalks("#home-talk-list");
+  } else if (page === "documents") {
+    renderPaperTimeline();
+    renderPapers();
+    renderPreparationPapers();
+    renderNotes();
+  } else if (page === "papers") {
+    renderPaperTimeline();
+    renderPapers();
+    renderPreparationPapers();
+    renderResearchmapPapers();
+    renderMiscPapers();
+  } else if (page === "activities") {
+    renderActivitiesTimeline();
+    renderTalkMap();
+    renderResearchmapPresentations();
+    renderActivities();
+  } else if (page === "talks") {
+    renderTalkTimeline();
+    renderTalkMap();
+    renderResearchmapPresentations();
+  } else if (page === "notes") {
+    renderNotes();
+  } else if (page === "cv") {
+    renderProfileSections();
+  } else if (page === "others") {
+    renderWebApps();
+    renderProblems();
+    renderLinks();
+  } else if (page === "problems") {
+    renderProblems();
+  } else if (page === "links") {
+    renderLinks();
+  } else if (page === "web-apps") {
+    renderWebApps();
+  } else if (page === "search") {
+    renderSiteSearch();
+  } else if (page === "speculative-notes") {
+    renderSpeculativeNotes();
+  } else {
+    renderProfileSections();
+    renderExplore();
+    renderWebApps();
+    renderResearchMap();
+    renderHomeTimeline();
+    renderActivitiesTimeline();
+    renderPaperTimeline();
+    renderCategoriesTokyoMap();
+    renderPapers();
+    renderPreparationPapers();
+    renderHomePapers();
+    renderMiscPapers();
+    renderResearchmapPapers();
+    renderTalks();
+    renderTalks("#home-talk-list");
+    renderTalkTimeline();
+    renderTalkMap();
+    renderResearchmapPresentations();
+    renderNotes();
+    renderSpeculativeNotes();
+    renderActivities();
+    renderPlans();
+    renderProblems();
+    renderSiteSearch();
+    renderLinks();
+  }
+
+  setupInteractions();
+  applyLanguage();
+}
+
+renderInitialPage();

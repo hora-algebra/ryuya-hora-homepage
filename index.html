@@ -10,9 +10,8 @@
     >
     <meta name="robots" content="noindex,nofollow,noarchive">
     <meta name="theme-color" content="#f6f2ea">
-    <link rel="icon" type="image/png" href="assets/icons/site-icon.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body data-page="home">
@@ -77,7 +76,7 @@
         </div>
         <div class="hero-media">
           <figure class="profile-photo">
-            <img src="assets/profile/ryuya-hora-sea.jpg" alt="Ryuya Hora by the sea" width="1600" height="1067">
+            <img src="assets/profile/ryuya-hora-sea-900.jpg" alt="Ryuya Hora by the sea" width="900" height="600" fetchpriority="high" decoding="async">
           </figure>
         </div>
       </section>
@@ -85,7 +84,6 @@
       <section class="section" aria-labelledby="home-timeline-title">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Timeline</p>
             <h2 id="home-timeline-title">Research Timeline</h2>
           </div>
         </div>
@@ -95,7 +93,6 @@
       <section class="section categories-tokyo-section" aria-labelledby="categories-tokyo-title">
         <div class="categories-tokyo-feature">
           <div class="categories-tokyo-copy">
-            <p class="section-kicker">Community</p>
             <h2 id="categories-tokyo-title">
               <a href="https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0">Categories in Tokyo</a>
             </h2>
@@ -116,10 +113,9 @@
       <section class="section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Plans</p>
-            <h2>Upcoming</h2>
+            <h2 id="section-upcoming">Upcoming</h2>
           </div>
-          <a class="section-link" href="activities/index.html">All activities</a>
+          <a class="section-link" href="activities/index.html" aria-label="Open Activities">More</a>
         </div>
         <div id="home-plan-list" class="plan-list"></div>
       </section>
@@ -127,8 +123,7 @@
       <section class="section research-map-section" aria-labelledby="research-map-title">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Research</p>
-            <h2 id="research-map-title">Research Interests</h2>
+            <h2 id="research-map-title">Interests</h2>
           </div>
           <button class="tab-button" type="button" data-theme-reset>All themes</button>
         </div>
@@ -137,22 +132,18 @@
 
       <section id="cv" class="section profile-grid" aria-labelledby="profile-details">
         <div>
-          <p class="section-kicker">Profile</p>
           <h2 id="profile-details">Current Positions</h2>
           <ul class="plain-list" id="current-position-list"></ul>
         </div>
         <div>
-          <p class="section-kicker">CV</p>
           <h2>Past Positions</h2>
           <ul class="plain-list" id="past-position-list"></ul>
         </div>
         <div>
-          <p class="section-kicker">Interests</p>
           <h2>Topics</h2>
           <div class="tag-cloud" data-topics></div>
         </div>
         <div>
-          <p class="section-kicker">Contact</p>
           <h2>Email</h2>
           <ul class="email-list" aria-label="Email addresses">
             <li class="email-item">
@@ -190,22 +181,18 @@
 
       <section id="awards" class="section profile-grid">
         <div>
-          <p class="section-kicker">Awards</p>
           <h2>Awards</h2>
           <ul class="plain-list" id="award-list"></ul>
         </div>
         <div>
-          <p class="section-kicker">Teaching</p>
           <h2>Education and Outreach</h2>
           <ul class="plain-list" id="education-list"></ul>
         </div>
         <div>
-          <p class="section-kicker">researchmap</p>
           <h2>Synced Awards</h2>
           <ul class="plain-list" id="researchmap-award-list"></ul>
         </div>
         <div>
-          <p class="section-kicker">researchmap</p>
           <h2>Synced Education</h2>
           <ul class="plain-list" id="researchmap-education-list"></ul>
         </div>
@@ -214,7 +201,6 @@
       <section class="section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Site Map</p>
             <h2>Explore</h2>
           </div>
         </div>
@@ -224,10 +210,9 @@
       <section class="section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Research</p>
-            <h2>Recent Papers</h2>
+            <h2 id="section-recent-papers">Recent Papers</h2>
           </div>
-          <a class="section-link" href="documents/index.html#papers">All papers</a>
+          <a class="section-link" href="documents/index.html#papers" aria-label="Open Papers">More</a>
         </div>
         <div id="home-paper-list" class="publication-list"></div>
       </section>
@@ -235,10 +220,9 @@
       <section class="section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Talks</p>
-            <h2>Recent Talks</h2>
+            <h2 id="section-recent-talks">Recent Talks</h2>
           </div>
-          <a class="section-link" href="activities/index.html#talks">All talks</a>
+          <a class="section-link" href="activities/index.html#talks" aria-label="Open Talks">More</a>
         </div>
         <div id="home-talk-list" class="timeline-list" data-limit="5"></div>
       </section>
@@ -252,12 +236,9 @@
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-    <script src="data/researchmap.generated.js"></script>
-    <script src="data/overleaf.generated.js"></script>
-    <script src="data/categories-map.generated.js"></script>
-    <script src="scripts/site.js"></script>
-    <script src="scripts/site-main-override.js"></script>
+    <script defer src="data/researchmap.generated.js"></script>
+    <script defer src="data/overleaf.generated.js"></script>
+    <script defer src="scripts/site.js"></script>
+    <script defer src="scripts/site-main-override.js"></script>
   </body>
 </html>

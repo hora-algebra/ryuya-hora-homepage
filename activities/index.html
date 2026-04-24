@@ -6,7 +6,7 @@
     <title>Ryuya Hora</title>
     <meta name="description" content="Activities by Ryuya Hora.">
     <meta name="robots" content="noindex,nofollow,noarchive">
-    <link rel="icon" type="image/png" href="../assets/icons/site-icon.png">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../styles.css">
   </head>
@@ -57,18 +57,15 @@
 
     <main>
       <section class="page-hero section">
-        <p class="eyebrow">Activities</p>
         <h1>Activities</h1>
-        <p class="lead">Activities and plans.</p>
+        <p class="lead">Visits, talks, plans.</p>
       </section>
 
       <section id="timeline" class="section" aria-labelledby="activities-timeline-title">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Timeline</p>
-            <h2 id="activities-timeline-title">Activities Timeline</h2>
+            <h2 id="activities-timeline-title">Timeline</h2>
           </div>
-          <p class="muted">Activities by date.</p>
         </div>
         <div id="activities-timeline" class="home-timeline" aria-live="polite"></div>
       </section>
@@ -76,10 +73,8 @@
       <section id="visits" class="section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Visits</p>
             <h2>Visit Map</h2>
           </div>
-          <p class="muted">Visits by place.</p>
         </div>
         <div id="talk-map" class="talk-map" aria-live="polite"></div>
       </section>
@@ -87,28 +82,9 @@
       <section id="talks" class="section">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Talks</p>
-            <h2>Talk Timeline</h2>
+            <h2 id="activities-talk-list-title">Talk List</h2>
           </div>
-          <div class="talk-timeline-actions" aria-label="Timeline controls">
-            <button class="timeline-control" type="button" data-talk-timeline="prev" aria-label="Previous talk">
-              <span class="control-icon prev" aria-hidden="true"></span>
-            </button>
-            <button class="timeline-control" type="button" data-talk-timeline="next" aria-label="Next talk">
-              <span class="control-icon next" aria-hidden="true"></span>
-            </button>
-          </div>
-        </div>
-        <div id="talk-timeline" class="talk-timeline" aria-live="polite"></div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Archive</p>
-            <h2>Talk List</h2>
-          </div>
-          <a class="section-link" href="../talks/index.html">Full talks page</a>
+          <a class="section-link" href="../talks/index.html">Talks</a>
           <label class="search-label">
             <span>Filter talks</span>
             <input id="talk-filter" type="search" placeholder="year, venue, topic...">
@@ -123,17 +99,16 @@
     </main>
 
     <footer class="site-footer">
-      <p>Academic activities, visits, and organizing work. Last updated: 22 April 2026.</p>
+      <p>Last updated: 22 April 2026.</p>
       <div class="site-footer-links">
         <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
         <a href="../index.html">Home</a>
       </div>
     </footer>
 
-    <script src="../data/researchmap.generated.js"></script>
-    <script src="../data/overleaf.generated.js"></script>
-    <script src="../data/talk-map.generated.js"></script>
-    <script src="../scripts/site.js"></script>
-    <script src="../scripts/site-main-override.js"></script>
+    <script defer src="../data/researchmap.generated.js"></script>
+    <script defer src="../data/overleaf.generated.js"></script>
+    <script defer src="../scripts/site.js"></script>
+    <script defer src="../scripts/site-main-override.js"></script>
   </body>
 </html>
