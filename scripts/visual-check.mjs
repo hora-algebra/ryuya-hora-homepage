@@ -10,6 +10,8 @@ const outDir = await mkdtemp(resolve(tmpdir(), "homepage-visual-check-"));
 
 const pages = [
   ["home", "index.html"],
+  ["documents", "documents/index.html"],
+  ["others", "others/index.html"],
   ["papers", "papers/index.html"],
   ["talks", "talks/index.html"],
   ["notes", "notes/index.html"],

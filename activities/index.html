@@ -21,29 +21,32 @@
         <div class="nav-group">
           <a class="nav-group-label" href="../index.html">Profile</a>
           <div class="nav-submenu">
-            <a href="../cv/index.html">CV</a>
-            <a href="../cv/index.html#awards">Awards</a>
+            <a href="../index.html#profile">Overview</a>
+            <a href="../index.html#cv">CV</a>
+            <a href="../index.html#awards">Awards</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="nav-group-label" type="button">Documents</button>
+          <a class="nav-group-label" href="../documents/index.html">Documents</a>
           <div class="nav-submenu">
-            <a href="../papers/index.html">Papers</a>
-            <a href="../notes/index.html">Notes</a>
+            <a href="../documents/index.html#papers">Papers</a>
+            <a href="../documents/index.html#notes">Notes</a>
           </div>
         </div>
         <div class="nav-group is-active">
           <a class="nav-group-label is-active" href="../activities/index.html">Activities</a>
           <div class="nav-submenu">
-            <a href="../talks/index.html">Talks</a>
+            <a href="../activities/index.html#visits">Visits</a>
+            <a href="../activities/index.html#talks">Talks</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="nav-group-label" type="button">Others</button>
+          <a class="nav-group-label" href="../others/index.html">Others</a>
           <div class="nav-submenu">
-            <a href="../web-apps/index.html">Web Apps</a>
-            <a href="../links/index.html">Links</a>
-            <a href="../problems/index.html">Problems</a>
+            <a href="../others/index.html#web-apps">Web Apps</a>
+            <a href="../others/index.html#problems">Problems</a>
+            <a href="../others/index.html#favorite-topoi">Favorite Topoi</a>
+            <a href="../others/index.html#links">Links</a>
           </div>
         </div>
         <a class="nav-search" href="../search/index.html" data-site-search-link aria-label="Search">
@@ -60,13 +63,7 @@
         <p class="lead">Activities and plans.</p>
       </section>
 
-      <section class="section page-photo-section">
-        <figure class="page-photo-feature page-photo-feature-activity">
-          <img src="../assets/profile/ryuya-hora-mondovi.jpg" alt="Ryuya Hora in Mondovi" width="1800" height="1350">
-        </figure>
-      </section>
-
-      <section class="section">
+      <section id="visits" class="section">
         <div class="section-head">
           <div>
             <p class="section-kicker">Visits</p>
@@ -75,6 +72,39 @@
           <p class="muted">Visits by place.</p>
         </div>
         <div id="talk-map" class="talk-map" aria-live="polite"></div>
+      </section>
+
+      <section id="talks" class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Talks</p>
+            <h2>Talk Timeline</h2>
+          </div>
+          <div class="talk-timeline-actions" aria-label="Timeline controls">
+            <button class="timeline-control" type="button" data-talk-timeline="prev" aria-label="Previous talk">
+              <span class="control-icon prev" aria-hidden="true"></span>
+            </button>
+            <button class="timeline-control" type="button" data-talk-timeline="next" aria-label="Next talk">
+              <span class="control-icon next" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <div id="talk-timeline" class="talk-timeline" aria-live="polite"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Archive</p>
+            <h2>Talk List</h2>
+          </div>
+          <a class="section-link" href="../talks/index.html">Full talks page</a>
+          <label class="search-label">
+            <span>Filter talks</span>
+            <input id="talk-filter" type="search" placeholder="year, venue, topic...">
+          </label>
+        </div>
+        <div id="researchmap-presentation-list" class="timeline-list" aria-live="polite"></div>
       </section>
 
       <section class="section">
@@ -91,6 +121,7 @@
     </footer>
 
     <script src="../data/researchmap.generated.js"></script>
+    <script src="../data/overleaf.generated.js"></script>
     <script src="../data/talk-map.generated.js"></script>
     <script src="../scripts/site.js"></script>
     <script src="../scripts/site-main-override.js"></script>

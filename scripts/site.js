@@ -66,54 +66,31 @@ function problemEntry({ id, formal = false, theme, title, statement, description
 const siteData = {
   pages: [
     {
-      title: "Papers",
-      href: "papers/index.html",
-      description: "Papers and preprints."
-    },
-    {
-      title: "Talks",
-      href: "talks/index.html",
-      description: "Talks and slides."
-    },
-    {
-      title: "Notes",
-      href: "notes/index.html",
-      description: "Notes and slides."
+      title: "Documents",
+      href: "documents/index.html",
+      description: "Papers, preprints, notes, and slides.",
+      icon: "paper",
+      thumbnail: "assets/papers/topoi-automata.jpg"
     },
     {
       title: "Activities",
       href: "activities/index.html",
-      description: "Activities and plans."
+      description: "Activities, visits, talks, and plans.",
+      icon: "activity",
+      thumbnail: "assets/profile/ryuya-hora-talk.jpg"
     },
     {
-      title: "CV/Awards",
-      href: "cv/index.html",
-      description: "CV and awards."
-    },
-    {
-      title: "Problems",
-      href: "problems/index.html",
-      description: "Open problems and trails."
-    },
-    {
-      title: "Web Apps",
-      href: "web-apps/index.html",
-      description: "Small deployed tools and experiments."
-    },
-    {
-      title: "Favorite Topoi",
-      href: "favorite-topoi/index.html",
-      description: "Favorite topoi."
+      title: "Others",
+      href: "others/index.html",
+      description: "Web apps, problems, favorite topoi, and links.",
+      icon: "webapp",
+      thumbnail: "assets/web-apps/genericalgoid.png"
     },
     {
       title: "Search",
       href: "search/index.html",
-      description: "Search this site."
-    },
-    {
-      title: "Links",
-      href: "links/index.html",
-      description: "Links."
+      description: "Search this site.",
+      icon: "search"
     }
   ],
   profileLinks: [
@@ -129,10 +106,10 @@ const siteData = {
   currentPositions: [
     { text: "Assistant professor at ZEN University since April 2026.", href: "https://zen.ac.jp", icon: "building" },
     { text: "Researcher at the Humai Center since April 2026.", href: "https://zen.ac.jp/humai", icon: "flask" },
-    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "badge" },
-    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "network" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "mentor" },
-    { text: "Tutor at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home", icon: "book" }
+    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "flask" },
+    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
+    { text: "Tutor at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
   ],
   pastPositions: [
     { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April-July 2025.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
@@ -1327,6 +1304,8 @@ const i18nText = {
     "Profile": "プロフィール",
     "Documents": "資料",
     "Others": "その他",
+    "Overview": "概要",
+    "Visits": "訪問",
     "Papers": "論文",
     "Talks": "発表",
     "Notes": "ノート",
@@ -1338,6 +1317,8 @@ const i18nText = {
     "Links": "リンク",
     "Ryuya Hora.": "Ryuya Hora.",
     "Papers by Ryuya Hora.": "Ryuya Hora の論文。",
+    "Documents by Ryuya Hora.": "Ryuya Hora の資料。",
+    "Other projects and links by Ryuya Hora.": "Ryuya Hora のその他のプロジェクトとリンク。",
     "Talks by Ryuya Hora.": "Ryuya Hora の発表。",
     "Notes by Ryuya Hora.": "Ryuya Hora のノート。",
     "Activities by Ryuya Hora.": "Ryuya Hora の活動。",
@@ -1403,6 +1384,8 @@ const i18nText = {
     "I am an assistant professor at ZEN University and a researcher at the Humai Center. My recent work explores how topos theory transfers ideas among algebra, geometry, logic, computation, and combinatorics.":
       "ZEN University の助教、Humai Center の researcher です。最近は、topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています。",
     "Research": "研究",
+    "Papers, preprints, notes, and slides.": "論文、preprint、ノート、スライド。",
+    "Web apps, problems, favorite topoi, and links.": "Web apps、Problems、好きな topoi、リンク。",
     "Research Interests": "研究関心",
     "All themes": "すべてのテーマ",
     "Current Positions": "現在の所属",
@@ -2085,6 +2068,7 @@ function applyLanguage(root = document.body) {
     translateAttributes(root);
     syncLanguageLinks(root);
     updateLanguageToggle();
+    decorateUiIcons(root);
   } finally {
     isApplyingLanguage = false;
   }
@@ -3302,7 +3286,8 @@ function siteSearchRecords() {
     title: "Ryuya Hora",
     href: localHref("index.html"),
     summary: "Profile.",
-    keywords: ["profile", "contact", "ZEN University", "Humai Center", "Categories in Tokyo"]
+    keywords: ["profile", "contact", "ZEN University", "Humai Center", "Categories in Tokyo"],
+    icon: "profile"
   });
 
   siteData.pages.forEach((page) => {
@@ -3310,7 +3295,9 @@ function siteSearchRecords() {
       type: "Page",
       title: page.title,
       href: localHref(page.href),
-      summary: page.description
+      summary: page.description,
+      icon: pageIconKey(page),
+      thumbnail: page.thumbnail || ""
     });
   });
 
@@ -3319,7 +3306,8 @@ function siteSearchRecords() {
       type: "Profile",
       title: record.text,
       href: record.href || localHref("index.html#profile"),
-      summary: "Current position"
+      summary: "Current position",
+      icon: record.icon || "profile"
     });
   });
 
@@ -3328,7 +3316,8 @@ function siteSearchRecords() {
       type: "Profile",
       title: record.text,
       href: record.href || localHref("cv/index.html"),
-      summary: "Past position"
+      summary: "Past position",
+      icon: "building"
     });
   });
 
@@ -3337,7 +3326,8 @@ function siteSearchRecords() {
       type: "Award",
       title: record.text,
       href: record.href || localHref("cv/index.html"),
-      summary: "Award"
+      summary: "Award",
+      icon: "award"
     });
   });
 
@@ -3346,7 +3336,8 @@ function siteSearchRecords() {
       type: "Education",
       title: record.text,
       href: record.href || localHref("cv/index.html"),
-      summary: "Education and outreach"
+      summary: "Education and outreach",
+      icon: "education"
     });
   });
 
@@ -3355,7 +3346,8 @@ function siteSearchRecords() {
       type: "Profile",
       title,
       href,
-      summary: "Research interest"
+      summary: "Research interest",
+      icon: "topos"
     });
   });
 
@@ -3367,7 +3359,9 @@ function siteSearchRecords() {
       href: localHref(`papers/index.html#${paperAnchor(paper)}`),
       summary: paper.summary,
       meta: compactText([paperPeopleText(paper, researchmapPaper), paper.year, paper.venue]).join(" / "),
-      keywords: paper.tags || []
+      keywords: paper.tags || [],
+      icon: "paper",
+      thumbnail: paperThumbnailSrc(paper)
     });
   });
 
@@ -3377,7 +3371,9 @@ function siteSearchRecords() {
       title: paper.title,
       href: paper.link,
       summary: paper.venue,
-      meta: compactText([paperPeopleText(paper), paper.year]).join(" / ")
+      meta: compactText([paperPeopleText(paper), paper.year]).join(" / "),
+      icon: "paper",
+      thumbnail: paperThumbnailSrc(paper)
     });
   });
 
@@ -3386,7 +3382,8 @@ function siteSearchRecords() {
       type: "In preparation",
       title,
       href: localHref("papers/index.html"),
-      summary: "Manuscript in preparation"
+      summary: "Manuscript in preparation",
+      icon: "paper"
     });
   });
 
@@ -3397,7 +3394,8 @@ function siteSearchRecords() {
       href: record.link || localHref(`papers/index.html#${paperAnchor(record)}`),
       summary: record.venue || record.type || "Synced paper metadata",
       meta: compactText([paperPeopleText(record), record.year, record.publicationDate]).join(" / "),
-      keywords: compactText([record.type, record.openAccess ? "open access" : "researchmap"])
+      keywords: compactText([record.type, record.openAccess ? "open access" : "researchmap"]),
+      icon: "paper"
     });
   });
 
@@ -3410,7 +3408,9 @@ function siteSearchRecords() {
         href: localHref(`talks/index.html#${talkRecordAnchor(record)}`),
         summary: record.event || record.type || "Talk",
         meta: compactText([presentationPeopleText(record), formatTalkDate(record), record.invited ? "invited" : ""]).join(" / "),
-        keywords: compactText([record.type, record.event])
+        keywords: compactText([record.type, record.event]),
+        icon: "talk",
+        thumbnail: talkThumbnail(record)?.src || ""
       });
     });
   } else {
@@ -3422,7 +3422,9 @@ function siteSearchRecords() {
           title: talk.title,
           href: talk.href || localHref("talks/index.html"),
           summary: talk.venue,
-          meta: compactText([presentationPeopleText(presentationRecord || talk), group.year]).join(" / ")
+          meta: compactText([presentationPeopleText(presentationRecord || talk), group.year]).join(" / "),
+          icon: "talk",
+          thumbnail: talkThumbnail(presentationRecord || talk)?.src || ""
         });
       });
     });
@@ -3436,19 +3438,22 @@ function siteSearchRecords() {
       href: note.href || localHref(`notes/index.html#${noteAnchor(note)}`),
       summary: note.description || note.file,
       meta: compactText([kindLabel, note.language, note.source === "overleaf" ? "Overleaf" : ""]).join(" / "),
-      keywords: compactText([kind, note.file])
+      keywords: compactText([kind, note.file]),
+      icon: "note",
+      thumbnail: noteThumbnailSrc(note)
     });
   });
 
   siteData.activities.forEach((group) => {
     group.items.forEach((record, index) => {
-      pushSiteSearchRecord(records, {
-        type: "Activity",
-        title: cleanActivityTitle(record.text),
-        href: record.href || localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
-        summary: group.title
-      });
+    pushSiteSearchRecord(records, {
+      type: "Activity",
+      title: cleanActivityTitle(record.text),
+      href: record.href || localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
+      summary: group.title,
+      icon: "activity"
     });
+  });
   });
 
   siteData.problems.forEach((problem) => {
@@ -3458,7 +3463,8 @@ function siteSearchRecords() {
       href: localHref(`problems/index.html#${problemAnchor(problem)}`),
       summary: problem.statement,
       meta: compactText([problemStatusLabel(problem.status), problem.theme]).join(" / "),
-      keywords: problem.tags || []
+      keywords: problem.tags || [],
+      icon: "problem"
     });
   });
 
@@ -3469,7 +3475,9 @@ function siteSearchRecords() {
       href: localHref(`favorite-topoi/index.html#${topos.id}`),
       summary: topos.summary,
       meta: compactText([topos.subtitle, topos.formula]).join(" / "),
-      keywords: compactText([topos.id, ...(topos.details || []).map((detail) => `${detail.label} ${detail.value}`)])
+      keywords: compactText([topos.id, ...(topos.details || []).map((detail) => `${detail.label} ${detail.value}`)]),
+      icon: "topos",
+      thumbnail: "assets/profile/green-fractal-cloud.png"
     });
   });
 
@@ -3480,7 +3488,9 @@ function siteSearchRecords() {
       href: localHref(`web-apps/index.html#${webAppAnchor(app)}`),
       summary: app.description,
       meta: compactText([app.tag, "Vercel"]).join(" / "),
-      keywords: compactText([...(app.keywords || []), ...(app.links || []).map(([label]) => label)])
+      keywords: compactText([...(app.keywords || []), ...(app.links || []).map(([label]) => label)]),
+      icon: "webapp",
+      thumbnail: app.thumbnail
     });
   });
 
@@ -3490,7 +3500,8 @@ function siteSearchRecords() {
         type: "Link",
         title,
         href,
-        summary: group.title
+        summary: group.title,
+        icon: iconKeyForLink(title, href, group.title)
       });
     });
   });
@@ -3500,14 +3511,37 @@ function siteSearchRecords() {
 
 function renderSiteSearchResult(record) {
   const article = el("article", "site-search-result");
-  article.append(el("span", "site-search-type", record.type));
+  const type = el("span", "site-search-type");
+  type.append(uiIcon(record.icon || iconKeyForSearchType(record.type), "site-search-type-icon"), el("span", null, record.type));
+
+  const body = el("div", "site-search-result-body");
+  body.append(type);
   const heading = el("h3");
   if (record.href) heading.append(link(record.title, record.href));
   else heading.textContent = record.title;
-  article.append(heading);
-  if (record.summary) article.append(el("p", "site-search-summary", record.summary));
+  body.append(heading);
+  if (record.summary) body.append(el("p", "site-search-summary", record.summary));
   const meta = compactText([record.meta, ...(record.keywords || []).slice(0, 5)]).join(" / ");
-  if (meta) article.append(el("p", "site-search-meta", meta));
+  if (meta) body.append(el("p", "site-search-meta", meta));
+
+  if (record.thumbnail) {
+    const media = record.href ? link("", record.href, "site-search-media") : el("div", "site-search-media");
+    const image = el("img");
+    image.src = resolveAssetHref(record.thumbnail);
+    image.alt = "";
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.addEventListener("error", () => {
+      media.remove();
+      article.classList.remove("has-thumbnail");
+    });
+    media.append(image);
+    article.classList.add("has-thumbnail");
+    article.append(media, body);
+    return article;
+  }
+
+  article.append(body);
   return article;
 }
 
@@ -4256,25 +4290,15 @@ function appendCategoriesPrefectures(svg, features) {
   });
 }
 
-function appendCategoriesPin(svg, point, labelDx = 14, labelDy = -10) {
-  if (!Array.isArray(point) || point.length < 2) return;
-  const [x, y] = point;
-  svg.append(
-    svgEl("circle", { class: "categories-map-pin-pulse", cx: x, cy: y, r: 15 }),
-    svgEl("circle", { class: "categories-map-pin", cx: x, cy: y, r: 5.6 }),
-    svgEl("text", { class: "categories-map-label is-small", x: x + labelDx, y: y + labelDy }, "Tokyo")
-  );
-}
-
 const categoriesTokyoVenues = [
   {
     id: "komaba",
-    label: "0. University of Tokyo",
+    label: "0. UTokyo",
     name: "第0回 / University of Tokyo",
     lon: 139.6847,
     lat: 35.6606,
-    dx: -1,
-    dy: 8,
+    dx: -4.5,
+    dy: 10.8,
     meetings: [
       {
         label: "0",
@@ -4285,7 +4309,7 @@ const categoriesTokyoVenues = [
   },
   {
     id: "nii",
-    label: "1.2, NII",
+    label: "1/2. NII",
     name: "第1,2回 / NII",
     lon: 139.7585,
     lat: 35.6933,
@@ -4306,7 +4330,7 @@ const categoriesTokyoVenues = [
   },
   {
     id: "kabukiza",
-    label: "3. ZEN university",
+    label: "3. ZEN University",
     name: "第3回 / ZEN university",
     lon: 139.7671,
     lat: 35.6695,
@@ -4329,9 +4353,46 @@ function projectCategoriesPoint(projection, lon, lat) {
   return [Number(x.toFixed(1)), Number(y.toFixed(1))];
 }
 
-function categoriesVenuePointLink(venue) {
+function appendCategoriesMeetingButtons(item, venue, labelX, labelY) {
   const meetings = venue.meetings || [];
-  return meetings[meetings.length - 1] || null;
+  if (!meetings.length) return;
+  const buttonWidth = 4.9;
+  const buttonHeight = 3.8;
+  const gap = 0.7;
+  const buttonsY = Number((labelY + 3.1).toFixed(1));
+  const totalWidth = meetings.length * buttonWidth + Math.max(0, meetings.length - 1) * gap;
+  const startX = venue.dx < 0 ? Number((labelX - totalWidth).toFixed(1)) : labelX;
+  const group = svgEl("g", { class: "categories-map-meeting-buttons" });
+
+  meetings.forEach((meeting, index) => {
+    const x = Number((startX + index * (buttonWidth + gap)).toFixed(1));
+    const linkNode = svgEl("a", {
+      class: "categories-map-meeting-link",
+      href: meeting.href,
+      "aria-label": `${meeting.title} page`
+    });
+    linkNode.append(
+      svgEl("title", {}, meeting.title),
+      svgEl("rect", {
+        class: "categories-map-meeting-button",
+        x,
+        y: buttonsY,
+        width: buttonWidth,
+        height: buttonHeight,
+        rx: 1
+      }),
+      svgEl("text", {
+        class: "categories-map-meeting-label",
+        x: x + buttonWidth / 2,
+        y: buttonsY + buttonHeight / 2 + 0.12,
+        "text-anchor": "middle",
+        "dominant-baseline": "middle"
+      }, meeting.label)
+    );
+    group.append(linkNode);
+  });
+
+  item.append(group);
 }
 
 function appendCategoriesVenueDots(svg, projection, options = {}) {
@@ -4345,22 +4406,11 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
     const labelX = Number((x + venue.dx).toFixed(1));
     const labelY = Number((y + venue.dy).toFixed(1));
     const item = svgEl("g", { class: `categories-map-venue venue-${venue.id}` });
-    const pointLink = categoriesVenuePointLink(venue);
-    const pointNode = pointLink ? svgEl("a", {
-      class: "categories-map-venue-dot-link",
-      href: pointLink.href,
-      "aria-label": `${venue.name}: open ${pointLink.title}`
-    }) : svgEl("g", { class: "categories-map-venue-dot-link" });
-    pointNode.append(
-      svgEl("title", {}, pointLink ? `${venue.name}: ${pointLink.title}` : venue.name),
-      svgEl("circle", { class: "categories-map-venue-hit", cx: x, cy: y, r: haloRadius + 1.8 }),
-      svgEl("circle", { class: "categories-map-venue-halo", cx: x, cy: y, r: haloRadius }),
-      svgEl("circle", { class: "categories-map-venue-dot", cx: x, cy: y, r: dotRadius })
-    );
     item.append(
       svgEl("title", {}, venue.name),
       svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${labelX} ${labelY}` }),
-      pointNode,
+      svgEl("circle", { class: "categories-map-venue-halo", cx: x, cy: y, r: haloRadius }),
+      svgEl("circle", { class: "categories-map-venue-dot", cx: x, cy: y, r: dotRadius }),
       svgEl("text", {
         class: "categories-map-venue-label",
         x: labelX,
@@ -4369,20 +4419,10 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
         "dominant-baseline": "middle"
       }, venue.label)
     );
+    appendCategoriesMeetingButtons(item, venue, labelX, labelY);
     group.append(item);
   });
   svg.append(group);
-}
-
-function pointInInset(origin, size, viewBox, point) {
-  if (!point || !viewBox) {
-    return { x: origin.x, y: origin.y };
-  }
-  const [minX, minY, width, height] = viewBox;
-  return {
-    x: origin.x + ((point[0] - minX) / width) * size.width,
-    y: origin.y + ((point[1] - minY) / height) * size.height
-  };
 }
 
 function renderCategoriesTokyoMap() {
@@ -4390,22 +4430,13 @@ function renderCategoriesTokyoMap() {
   if (!root) return;
   root.replaceChildren();
 
-  const japan = categoriesMapData?.japan;
   const kanto = categoriesMapData?.kanto;
-  if (!japan?.prefectures?.length || !kanto?.prefectures?.length) {
+  if (!kanto?.prefectures?.length) {
     root.append(el("p", "empty-state", "Map data unavailable."));
     return;
   }
 
-  const japanOrigin = { x: 26, y: 48 };
-  const kantoOrigin = { x: 476, y: 86 };
-  const kantoSize = { width: 260, height: 220 };
-  const tokyoCoreViewBox = [104, 106, 56, 48];
-  const japanTokyo = {
-    x: japanOrigin.x + (japan.tokyoPoint?.[0] || 0),
-    y: japanOrigin.y + (japan.tokyoPoint?.[1] || 0)
-  };
-  const kantoTokyo = pointInInset(kantoOrigin, kantoSize, tokyoCoreViewBox, kanto.tokyoPoint);
+  const tokyoCoreViewBox = [95, 110, 82, 40];
 
   const svg = svgEl("svg", {
     class: "categories-map-svg",
@@ -4421,45 +4452,25 @@ function renderCategoriesTokyoMap() {
   );
   defs.append(gradient);
 
-  const japanMap = svgEl("svg", {
-    class: "categories-map-japan",
-    x: japanOrigin.x,
-    y: japanOrigin.y,
-    width: 430,
-    height: 360,
-    viewBox: japan.viewBox || "0 0 430 360",
-    "aria-hidden": "true"
-  });
-  japanMap.append(svgEl("rect", { class: "categories-map-water", x: 0, y: 0, width: 430, height: 360, rx: 8 }));
-  appendCategoriesPrefectures(japanMap, japan.prefectures);
-  appendCategoriesPin(japanMap, japan.tokyoPoint);
-
   const kantoMap = svgEl("svg", {
-    class: "categories-map-kanto is-urban-zoom",
-    x: kantoOrigin.x,
-    y: kantoOrigin.y,
-    width: kantoSize.width,
-    height: kantoSize.height,
+    class: "categories-map-kanto is-tokyo-focus",
+    x: 28,
+    y: 54,
+    width: 704,
+    height: 344,
     viewBox: tokyoCoreViewBox.join(" "),
     "aria-hidden": "true"
   });
   kantoMap.append(svgEl("rect", { class: "categories-map-water", x: 0, y: 0, width: 260, height: 220, rx: 8 }));
   appendCategoriesPrefectures(kantoMap, kanto.prefectures);
-  appendCategoriesVenueDots(kantoMap, kanto.projection, { dotRadius: 1.05, haloRadius: 2.8 });
+  appendCategoriesVenueDots(kantoMap, kanto.projection, { dotRadius: 1.3, haloRadius: 3.2 });
 
   svg.append(
     svgEl("title", { id: "categories-map-title" }, "Categories in Tokyo map"),
-    svgEl("desc", { id: "categories-map-desc" }, "A Natural Earth map of Japan with Tokyo highlighted and a central Tokyo inset showing Categories in Tokyo venues."),
+    svgEl("desc", { id: "categories-map-desc" }, "A Tokyo-area Natural Earth map with Categories in Tokyo venues and meeting links."),
     defs,
     svgEl("rect", { class: "categories-map-bg", x: 0, y: 0, width: 760, height: 440, rx: 8 }),
-    svgEl("text", { class: "categories-map-label", x: 32, y: 32 }, "Japan"),
-    svgEl("text", { class: "categories-map-label", x: 476, y: 66 }, "Tokyo"),
-    svgEl("rect", { class: "categories-map-inset-frame", x: 468, y: 76, width: 276, height: 244, rx: 8 }),
-    svgEl("path", {
-      class: "categories-map-callout",
-      d: `M${japanTokyo.x + 11} ${japanTokyo.y - 7} C455 178 500 176 ${kantoTokyo.x - 16} ${kantoTokyo.y - 8}`
-    }),
-    japanMap,
+    svgEl("text", { class: "categories-map-label", x: 32, y: 34 }, "Tokyo venues"),
     kantoMap,
     svgEl("text", { class: "categories-map-credit", x: 736, y: 418, "text-anchor": "end" }, categoriesMapData.source?.note || "Natural Earth public domain data")
   );
@@ -5120,6 +5131,431 @@ function svgEl(tag, attrs = {}, text) {
   return node;
 }
 
+function resolveAssetHref(path) {
+  if (!path) return "";
+  if (/^(https?:)?\/\//.test(path) || path.startsWith("data:")) return path;
+  return localHref(path);
+}
+
+function uiIconSvg(key) {
+  const svg = svgEl("svg", {
+    viewBox: "0 0 24 24",
+    "aria-hidden": "true",
+    focusable: "false"
+  });
+  svg.classList.add("ui-icon-svg");
+  const line = (attrs) => svgEl("path", { ...attrs, fill: "none", stroke: "currentColor", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "1.9" });
+  const shape = (tag, attrs, text) => svgEl(tag, attrs, text);
+  const normalizedKey = ({
+    document: "paper",
+    slides: "talk",
+    activities: "activity",
+    webapps: "webapp",
+    papers: "paper",
+    notes: "note",
+    talks: "talk",
+    links: "link",
+    awards: "award",
+    education: "education"
+  })[key] || key;
+
+  if (normalizedKey === "profile") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "8.2", r: "3.1", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M6.3 19.1C7.7 15.9 9.5 14.5 12 14.5C14.5 14.5 16.3 15.9 17.7 19.1" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "cv" || normalizedKey === "paper") {
+    svg.append(
+      shape("path", { d: "M7 4.5h7l4 4v11A1.5 1.5 0 0 1 16.5 21h-9A1.5 1.5 0 0 1 6 19.5v-13A2 2 0 0 1 8 4.5Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+      line({ d: "M13.9 4.9V9h4.1" }),
+      line({ d: "M9 12.1H15.6" }),
+      line({ d: "M9 15.2H15.6" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "note") {
+    svg.append(
+      shape("path", { d: "M7 4.8h10A1.8 1.8 0 0 1 18.8 6.6v10.8A1.8 1.8 0 0 1 17 19.2H9.8L5.2 14.6V6.6A1.8 1.8 0 0 1 7 4.8Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+      line({ d: "M9 9.4H15.4" }),
+      line({ d: "M9 12.5H15.4" }),
+      line({ d: "M9 15.6H13.2" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "talk") {
+    svg.append(
+      shape("rect", { x: "4.4", y: "5.8", width: "15.2", height: "9.2", rx: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M8.5 18.7H15.5" }),
+      line({ d: "M12 15.1V18.7" }),
+      shape("path", { d: "M10 8.5l4.3 2.1L10 12.8Z", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "network") {
+    svg.append(
+      line({ d: "M7.2 15.6L12 8.5L16.8 15.6Z" }),
+      shape("circle", { cx: "7.2", cy: "15.6", r: "1.8", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "12", cy: "8.5", r: "1.8", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "16.8", cy: "15.6", r: "1.8", fill: "none", stroke: "currentColor", "stroke-width": "1.7" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "kan-extension") {
+    svg.append(
+      line({ d: "M8.3 8.1L15.8 11.3" }),
+      line({ d: "M6.8 9.4V14.6" }),
+      line({ d: "M8.3 15.9L15.8 12.7", "stroke-dasharray": "2 2" }),
+      shape("circle", { cx: "6.8", cy: "7.5", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "6.8", cy: "16.5", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "17.2", cy: "12", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "pullback") {
+    svg.append(
+      line({ d: "M8.8 7.2H15.2" }),
+      line({ d: "M7.2 8.8V15.2" }),
+      line({ d: "M16.8 8.8V15.2" }),
+      line({ d: "M8.8 16.8H15.2" }),
+      shape("path", {
+        d: "M10 10H12.2V12.2",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.3"
+      }),
+      shape("circle", { cx: "7.2", cy: "7.2", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "16.8", cy: "7.2", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "7.2", cy: "16.8", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "16.8", cy: "16.8", r: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.7" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "activity") {
+    svg.append(
+      shape("rect", { x: "4.5", y: "6.2", width: "15", height: "13.3", rx: "2", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M8 4.8V8" }),
+      line({ d: "M16 4.8V8" }),
+      line({ d: "M4.8 10H19.2" }),
+      shape("circle", { cx: "9", cy: "13.7", r: "1.1", fill: "currentColor" }),
+      shape("circle", { cx: "12", cy: "13.7", r: "1.1", fill: "currentColor" }),
+      shape("circle", { cx: "15", cy: "13.7", r: "1.1", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "webapp") {
+    svg.append(
+      shape("rect", { x: "3.8", y: "5.1", width: "16.4", height: "13.8", rx: "2", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M3.8 8.6H20.2" }),
+      shape("circle", { cx: "7", cy: "6.9", r: "0.8", fill: "currentColor" }),
+      shape("circle", { cx: "9.8", cy: "6.9", r: "0.8", fill: "currentColor" }),
+      line({ d: "M8 13.8H16" }),
+      line({ d: "M8 16.4H13" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "link" || normalizedKey === "external") {
+    svg.append(
+      line({ d: "M10.2 13.8L13.8 10.2" }),
+      shape("path", { d: "M8.3 15.7l-1.2 1.2a3.1 3.1 0 0 1-4.4-4.4l3-3a3.1 3.1 0 0 1 4.4 0l1.2 1.2", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M15.7 8.3l1.2-1.2a3.1 3.1 0 0 1 4.4 4.4l-3 3a3.1 3.1 0 0 1-4.4 0l-1.2-1.2", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linecap": "round", "stroke-linejoin": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "problem") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "12", r: "8.2", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M9.6 9.3A2.7 2.7 0 0 1 12 7.8C13.8 7.8 15.1 8.9 15.1 10.4C15.1 11.7 14.2 12.4 12.9 13.2C12.2 13.6 11.9 14 11.9 14.8" }),
+      shape("circle", { cx: "12", cy: "17.5", r: "0.9", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "search") {
+    svg.append(
+      shape("circle", { cx: "10.2", cy: "10.2", r: "4.9", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M13.8 13.8L18.9 18.9" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "topos") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "12", r: "7.8", fill: "none", stroke: "currentColor", "stroke-width": "1.7", "stroke-opacity": "0.34" }),
+      line({ d: "M7.8 8H16.8" }),
+      line({ d: "M12 8V18" }),
+      line({ d: "M9.4 8C9.4 10.4 10.1 11.8 11.5 12.9" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "award") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "9.6", r: "3.5", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M10.3 13.1L8.8 18.7L12 16.9L15.2 18.7L13.7 13.1" }),
+      line({ d: "M10.7 9.8L11.7 10.8L13.8 8.7" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "education" || normalizedKey === "book") {
+    svg.append(
+      shape("path", { d: "M5.5 6.6c0-1 .8-1.8 1.8-1.8h4.7c1.2 0 2.3.5 3 1.4c.7-.9 1.8-1.4 3-1.4h.7v13.7h-.7c-1.2 0-2.3.5-3 1.4c-.7-.9-1.8-1.4-3-1.4H7.3c-1 0-1.8-.8-1.8-1.8Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+      line({ d: "M15 6.2V19.3" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "orcid") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "12", r: "8", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      shape("circle", { cx: "9.1", cy: "8.2", r: "0.9", fill: "currentColor" }),
+      line({ d: "M9.1 10.4V15.7" }),
+      shape("circle", { cx: "14.9", cy: "12", r: "2.8", fill: "none", stroke: "currentColor", "stroke-width": "1.9" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "arxiv") {
+    svg.append(
+      line({ d: "M6 18.2L11.3 5.8L18 18.2" }),
+      line({ d: "M8 13.5H16" }),
+      line({ d: "M14.3 10.2L18 18.2" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "nlab") {
+    svg.append(
+      line({ d: "M7 15.8L12 8.4L17 15.8" }),
+      shape("circle", { cx: "7", cy: "15.8", r: "1.9", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "12", cy: "8.4", r: "1.9", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "17", cy: "15.8", r: "1.9", fill: "none", stroke: "currentColor", "stroke-width": "1.7" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "researchmap") {
+    svg.append(
+      shape("path", { d: "M12 20s5-5.4 5-9a5 5 0 0 0-10 0c0 3.6 5 9 5 9Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+      shape("circle", { cx: "12", cy: "11", r: "1.7", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "download") {
+    svg.append(
+      line({ d: "M12 5.7V14.9" }),
+      line({ d: "M8.6 11.7L12 15.1L15.4 11.7" }),
+      line({ d: "M6.2 18.2H17.8" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "open") {
+    svg.append(
+      shape("path", { d: "M8 8.6H6.6A1.6 1.6 0 0 0 5 10.2v7.2A1.6 1.6 0 0 0 6.6 19h7.2A1.6 1.6 0 0 0 15.4 17.4V16", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+      line({ d: "M11 13L19 5" }),
+      line({ d: "M13.5 5H19v5.5" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "friend") {
+    svg.append(
+      shape("circle", { cx: "9", cy: "9", r: "2.5", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      shape("circle", { cx: "15.5", cy: "10.4", r: "2.2", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
+      line({ d: "M5.9 18.2C7 15.7 8.6 14.6 10.7 14.6C12.3 14.6 13.7 15.3 14.8 16.7" }),
+      line({ d: "M13.3 18.2C14 16.5 15.2 15.6 16.9 15.6C18 15.6 19 16 19.7 16.9" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "building") {
+    svg.append(
+      line({ d: "M4.8 19.1H19.2" }),
+      line({ d: "M7 19.1V10.1" }),
+      line({ d: "M12 19.1V10.1" }),
+      line({ d: "M17 19.1V10.1" }),
+      line({ d: "M4.8 10.1H19.2" }),
+      line({ d: "M4.8 10.1L12 5L19.2 10.1" })
+    );
+    return svg;
+  }
+
+  svg.append(
+    line({ d: "M6.4 12H17.6" }),
+    line({ d: "M12 6.4V17.6" })
+  );
+  return svg;
+}
+
+function uiIcon(key, className = "ui-icon") {
+  const span = el("span", className);
+  span.dataset.iconKey = key;
+  span.setAttribute("aria-hidden", "true");
+  span.append(uiIconSvg(key));
+  return span;
+}
+
+function pageIconKey(page) {
+  return page?.icon || "page";
+}
+
+function pageThumbnailSrc(page) {
+  return resolveAssetHref(page?.thumbnail || "");
+}
+
+function paperThumbnailSrc(paper) {
+  return paper?.figure ? localHref(`assets/papers/${paper.figure}.jpg`) : "";
+}
+
+function iconKeyForLink(label = "", href = "", context = "") {
+  const text = simplified(`${context} ${label}`);
+  const url = String(href || "").toLowerCase();
+  if (url.includes("orcid.org") || text.includes("orcid")) return "orcid";
+  if (url.includes("arxiv.org") || text.includes("arxiv")) return "arxiv";
+  if (url.includes("researchmap.jp") || text.includes("researchmap")) return "researchmap";
+  if (url.includes("ncatlab.org") || text.includes("nlab")) return "nlab";
+  if (url.includes("youtube.com") || url.includes("youtu.be")) return "talk";
+  if (url.includes("springer.com") || url.includes("kyoritsu-pub.co.jp") || text.includes("book")) return "book";
+  if (url.includes("drive.google.com") || text === "cv") return "cv";
+  if (url.includes("github.com") || url.includes("github.io")) return "webapp";
+  if (text.includes("friend") || text.includes("friends")) return "friend";
+  if (text.includes("profile")) return "profile";
+  if (text.includes("paper")) return "paper";
+  if (text.includes("slide")) return "talk";
+  return "link";
+}
+
+function iconKeyForAction(label = "", href = "") {
+  const text = simplified(label);
+  if (text.includes("download")) return "download";
+  if (text.includes("slide")) return "talk";
+  if (text.includes("arxiv")) return "arxiv";
+  if (text.includes("paper") || text.includes("pdf") || text.includes("preprint")) return "paper";
+  if (text.includes("guide") || text.includes("tutorial") || text.includes("open") || text.includes("workbench") || text.includes("dev")) return "open";
+  return iconKeyForLink(label, href, "action");
+}
+
+function iconKeyForSearchType(type = "") {
+  const text = simplified(type);
+  if (text.includes("profile")) return "profile";
+  if (text.includes("page")) return "cv";
+  if (text.includes("paper")) return "paper";
+  if (text.includes("talk")) return "talk";
+  if (text.includes("note")) return "note";
+  if (text.includes("activity")) return "activity";
+  if (text.includes("problem")) return "problem";
+  if (text.includes("topos")) return "topos";
+  if (text.includes("award")) return "award";
+  if (text.includes("education")) return "education";
+  if (text.includes("web app")) return "webapp";
+  if (text.includes("link")) return "link";
+  return "cv";
+}
+
+function navIconKey(label = "", href = "") {
+  const text = simplified(label);
+  const url = String(href || "").toLowerCase();
+  if (text.includes("profile") || text.includes("プロフィール")) return "profile";
+  if (text.includes("documents") || text.includes("資料")) return "paper";
+  if (text.includes("papers") || url.includes("/papers/")) return "paper";
+  if (text.includes("notes") || url.includes("/notes/")) return "note";
+  if (text.includes("activities") || text.includes("活動") || url.includes("/activities/")) return "activity";
+  if (text.includes("talks") || url.includes("/talks/")) return "talk";
+  if (text.includes("others") || text.includes("その他")) return "link";
+  if (text.includes("web apps") || url.includes("/web-apps/")) return "webapp";
+  if (text.includes("links") || url.includes("/links/")) return "link";
+  if (text.includes("problems") || url.includes("/problems/")) return "problem";
+  if (text.includes("search") || url.includes("/search/")) return "search";
+  if (text.includes("cv") || url.includes("/cv/")) return "cv";
+  if (text.includes("awards")) return "award";
+  return "";
+}
+
+function linkedListIconKey(selector = "", record = {}) {
+  const key = String(selector);
+  if (key.includes("past-position")) return "building";
+  if (key.includes("award")) return "award";
+  if (key.includes("education")) return "education";
+  return iconKeyForLink(record.text || "", record.href || "", key);
+}
+
+function activityIconKey(group = {}, record = {}) {
+  const text = simplified(`${group.title} ${record.text}`);
+  if (text.includes("organ")) return "network";
+  if (text.includes("talk") || text.includes("present") || text.includes("spoke") || text.includes("poster")) return "talk";
+  if (text.includes("upload") || text.includes("submit") || text.includes("preprint") || text.includes("wrote")) return "paper";
+  if (text.includes("received") || text.includes("grant") || text.includes("ph d")) return "award";
+  return "activity";
+}
+
+function noteRecordByFile(file) {
+  if (!file) return null;
+  return [...siteData.notes, ...overleafNoteRecords()].find((record) => record.file === file) || null;
+}
+
+function talkThumbnailRecord(record) {
+  const title = simplified(record?.title || "");
+  const event = simplified(record?.event || record?.venue || "");
+  const match = talkSlideMatches.find((candidate) => {
+    const titleMatches = title.includes(simplified(candidate.title));
+    const eventMatches = !candidate.event || event.includes(simplified(candidate.event));
+    return titleMatches && eventMatches;
+  });
+  return match ? noteRecordByFile(match.file) : null;
+}
+
+function talkThumbnail(record) {
+  const note = talkThumbnailRecord(record);
+  const src = note ? noteThumbnailSrc(note) : "";
+  if (!note || !src) return null;
+  return {
+    src,
+    href: note.href || localHref(`notes/index.html#${noteAnchor(note)}`),
+    title: note.title
+  };
+}
+
+function decorateUiIcons(root = document.body) {
+  if (!root) return;
+  const collect = (selector) => {
+    const nodes = [];
+    if (root.nodeType === Node.ELEMENT_NODE && root.matches?.(selector)) nodes.push(root);
+    if (root.querySelectorAll) nodes.push(...root.querySelectorAll(selector));
+    return nodes;
+  };
+
+  collect(".nav-group-label, .nav-submenu a").forEach((node) => {
+    if (node.classList.contains("nav-search")) return;
+    const key = navIconKey(node.textContent, node.getAttribute("href"));
+    if (!key || node.querySelector(".nav-item-icon")) return;
+    node.prepend(uiIcon(key, "nav-item-icon"));
+    node.classList.add("has-icon");
+  });
+
+  collect(".action-link").forEach((node) => {
+    const key = iconKeyForAction(node.textContent, node.getAttribute("href"));
+    if (!key || node.querySelector(".action-link-icon")) return;
+    node.prepend(uiIcon(key, "action-link-icon"));
+    node.classList.add("has-icon");
+  });
+}
+
 function themeById(themeId) {
   return researchThemes.find((theme) => theme.id === themeId);
 }
@@ -5573,7 +6009,7 @@ const grundyStepCopy = {
 const grundyFinalCopy = {
   focus: "all states",
   options: "each Grundy number is now known",
-  mex: "P-states have G=0; N-states have G>0",
+  mex: "P-states have Grundy number 0; N-states have positive Grundy number",
   status: "The recursive pass is complete; sums use Nim-sum."
 };
 
@@ -5641,8 +6077,7 @@ function grundyFigureTemplate() {
       ({ id, x, y }) => `
         <g class="grundy-node" data-grundy-node="${id}" transform="translate(${x} ${y})" tabindex="0" role="button" aria-label="Show mex computation for ${id}">
           <circle class="grundy-node-shell" r="18"></circle>
-          <text class="grundy-heap-label" y="-4">${id}</text>
-          <text class="grundy-value-label" y="16" data-grundy-value="${id}">?</text>
+          <text class="grundy-value-label" y="6" data-grundy-value="${id}">?</text>
         </g>`
     )
     .join("");
@@ -6106,7 +6541,7 @@ function renderGrundyStep(root) {
     node.classList.toggle("is-active", active);
     node.classList.toggle("is-p-state", step >= state.max && known && record.value === 0);
     node.classList.toggle("is-n-state", step >= state.max && known && record.value !== 0);
-    if (value) value.textContent = known ? `G=${record.value}` : "?";
+    if (value) value.textContent = known ? String(record.value) : "?";
   });
 
   root.querySelectorAll("[data-grundy-edge]").forEach((edge) => {
@@ -6545,12 +6980,56 @@ function currentPositionIcon(icon) {
     return svg;
   }
 
+  if (icon === "kan-extension") {
+    svg.append(
+      line({ d: "M11 10.8L20.4 14.9" }),
+      line({ d: "M9 13.2V18.8" }),
+      line({ d: "M11 21.2L20.4 17.1", "stroke-dasharray": "2.4 2.4" }),
+      shape("circle", { cx: "9", cy: "9.6", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "9", cy: "22.4", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "23", cy: "16", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" })
+    );
+    return svg;
+  }
+
+  if (icon === "pullback") {
+    svg.append(
+      line({ d: "M12.2 9.6H19.8" }),
+      line({ d: "M9.6 12.2V19.8" }),
+      line({ d: "M22.4 12.2V19.8" }),
+      line({ d: "M12.2 22.4H19.8" }),
+      shape("path", {
+        d: "M13 13H15.7V15.7",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.5"
+      }),
+      shape("circle", { cx: "9.6", cy: "9.6", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "22.4", cy: "9.6", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "9.6", cy: "22.4", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "22.4", cy: "22.4", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" })
+    );
+    return svg;
+  }
+
   if (icon === "mentor") {
     svg.append(
       shape("polygon", { points: "8,20 12,18 12,10 8,12", fill: "currentColor", opacity: "0.74" }),
       shape("polygon", { points: "14,22 18,20 18,9 14,11", fill: "currentColor" }),
       shape("polygon", { points: "20,24 24,22 24,12 20,14", fill: "currentColor", opacity: "0.84" }),
       shape("circle", { cx: "11.4", cy: "8.4", r: "2.2", fill: "#7ed0de" })
+    );
+    return svg;
+  }
+
+  if (icon === "hexagon") {
+    svg.append(
+      shape("polygon", {
+        points: "16,6.8 23.97,11.4 23.97,20.6 16,25.2 8.03,20.6 8.03,11.4",
+        fill: "currentColor"
+      })
     );
     return svg;
   }
@@ -6592,13 +7071,17 @@ function renderLinkedList(selector, records) {
   const root = document.querySelector(selector);
   if (!root) return;
   root.replaceChildren();
+  root.classList.add("icon-list");
   records.forEach((record) => {
-    const item = el("li");
+    const item = el("li", "icon-list-item");
+    item.append(uiIcon(linkedListIconKey(selector, record), "list-item-icon"));
+    const body = el("div", "icon-list-body");
     if (record.href) {
-      item.append(link(record.text, record.href));
+      body.append(link(record.text, record.href));
     } else {
-      item.textContent = record.text;
+      body.textContent = record.text;
     }
+    item.append(body);
     root.append(item);
   });
 }
@@ -6606,7 +7089,11 @@ function renderLinkedList(selector, records) {
 function renderProfileLinks() {
   document.querySelectorAll("[data-profile-links]").forEach((root) => {
     root.replaceChildren();
-    siteData.profileLinks.forEach(([label, href]) => root.append(link(label, href, "text-link")));
+    siteData.profileLinks.forEach(([label, href]) => {
+      const item = el("span", "profile-link-chip");
+      item.append(uiIcon(iconKeyForLink(label, href, "profile"), "profile-link-icon"), link(label, href, "text-link"));
+      root.append(item);
+    });
   });
 }
 
@@ -6623,7 +7110,31 @@ function renderExplore() {
   root.replaceChildren();
   siteData.pages.forEach((page) => {
     const item = el("article", "explore-card");
-    item.append(link(page.title, localHref(page.href), "explore-title"), el("p", null, page.description));
+    const thumbnailSrc = pageThumbnailSrc(page);
+    if (thumbnailSrc) {
+      const media = link("", localHref(page.href), "explore-card-media");
+      media.setAttribute("aria-label", `Open ${page.title}`);
+      const image = el("img");
+      image.src = thumbnailSrc;
+      image.alt = "";
+      image.loading = "lazy";
+      image.decoding = "async";
+      image.addEventListener("error", () => {
+        media.remove();
+        item.classList.remove("has-thumbnail");
+      });
+      media.append(image);
+      item.classList.add("has-thumbnail");
+      item.append(media);
+    }
+    const body = el("div", "explore-card-body");
+    const head = el("div", "explore-card-head");
+    head.append(uiIcon(pageIconKey(page), "explore-card-icon"));
+    const copy = el("div", "explore-card-copy");
+    copy.append(link(page.title, localHref(page.href), "explore-title"), el("p", null, page.description));
+    head.append(copy);
+    body.append(head);
+    item.append(body);
     root.append(item);
   });
 }
@@ -6822,6 +7333,37 @@ function renderResearchmapPapers() {
   typesetMath(root);
 }
 
+function renderTalkItem(record, href, metaText, actions = []) {
+  const item = el("li");
+  const shell = el("div", "talk-item-shell");
+  const preview = talkThumbnail(record);
+
+  if (preview) {
+    const thumb = link("", preview.href, "talk-thumb");
+    thumb.setAttribute("aria-label", `Open slides for ${record.title}`);
+    const image = el("img");
+    image.src = preview.src;
+    image.alt = "";
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.addEventListener("error", () => thumb.remove());
+    thumb.append(image);
+    shell.append(thumb);
+    item.classList.add("has-thumbnail");
+  }
+
+  const body = el("div", "talk-item-body");
+  const title = el("span", "talk-title");
+  title.append(uiIcon("talk", "talk-title-icon"));
+  if (href) title.append(link(record.title, href));
+  else title.append(el("span", null, record.title));
+  body.append(title, el("span", "talk-venue", metaText));
+  if (actions.length) appendActionLinks(body, actions);
+  shell.append(body);
+  item.append(shell);
+  return item;
+}
+
 function renderResearchmapPresentations() {
   const root = document.querySelector("#researchmap-presentation-list");
   if (!root) return;
@@ -6849,17 +7391,10 @@ function renderResearchmapPresentations() {
       sortedPresentations(items)
         .reverse()
         .forEach((record) => {
-        const item = el("li");
+        const item = renderTalkItem(record, record.link, presentationMeta(record), slideLinksForTalk(record));
         const key = talkRecordKey(record);
         item.id = talkRecordAnchor(record);
         item.classList.toggle("is-current", key === state.talkTimelineKey);
-        const title = el("span", "talk-title");
-        title.append(link(record.title, record.link));
-        item.append(
-          title,
-          el("span", "talk-venue", presentationMeta(record))
-        );
-        appendActionLinks(item, slideLinksForTalk(record));
         list.append(item);
       });
       wrapper.append(list);
@@ -6872,15 +7407,19 @@ function renderResearchmapAwards() {
   const root = document.querySelector("#researchmap-award-list");
   if (!root) return;
   root.replaceChildren();
+  root.classList.add("icon-list");
   const records = researchmapData?.awards || [];
   if (!records.length) {
     root.append(el("li", "empty-state", "No generated researchmap award data is available yet."));
     return;
   }
   records.forEach((record) => {
-    const item = el("li");
+    const item = el("li", "icon-list-item");
+    item.append(uiIcon("award", "list-item-icon"));
+    const body = el("div", "icon-list-body");
     const text = compactText([record.date, record.title, record.association]).join(" - ");
-    item.append(link(text, record.link));
+    body.append(link(text, record.link));
+    item.append(body);
     root.append(item);
   });
 }
@@ -6889,15 +7428,19 @@ function renderResearchmapEducation() {
   const root = document.querySelector("#researchmap-education-list");
   if (!root) return;
   root.replaceChildren();
+  root.classList.add("icon-list");
   const records = researchmapData?.education || [];
   if (!records.length) {
     root.append(el("li", "empty-state", "No generated researchmap education data is available yet."));
     return;
   }
   records.forEach((record) => {
-    const item = el("li");
+    const item = el("li", "icon-list-item");
+    item.append(uiIcon("education", "list-item-icon"));
+    const body = el("div", "icon-list-body");
     const text = compactText([record.period, record.affiliation, record.department, record.course]).join(" - ");
-    item.append(link(text, record.link));
+    body.append(link(text, record.link));
+    item.append(body);
     root.append(item);
   });
 }
@@ -6926,12 +7469,13 @@ function renderTalks(limitSelector = "#talk-list") {
     wrapper.append(el("div", "timeline-year", group.year));
     const list = el("ul", "talk-items");
     visible.forEach((talk) => {
-      const item = el("li");
-      const title = el("span", "talk-title");
       const presentationRecord = findResearchmapPresentationForTalk(talk);
-      if (talk.href) title.append(link(talk.title, talk.href));
-      else title.textContent = talk.title;
-      item.append(title, el("span", "talk-venue", compactText([presentationPeopleText(presentationRecord || talk), talk.venue]).join(" / ")));
+      const item = renderTalkItem(
+        presentationRecord || talk,
+        talk.href,
+        compactText([presentationPeopleText(presentationRecord || talk), talk.venue]).join(" / "),
+        slideLinksForTalk(presentationRecord || talk)
+      );
       list.append(item);
     });
     wrapper.append(list);
@@ -7183,11 +7727,14 @@ function renderActivities() {
     column.append(el("h3", null, group.title));
     const list = el("ul");
     group.items.forEach((record, index) => {
-      const item = el("li");
+      const item = el("li", "activity-list-item");
       item.id = activityAnchor(group, record, index);
-      if (record.date) item.append(el("span", "activity-date", record.date));
-      if (record.href) item.append(link(record.text, record.href));
-      else item.append(record.text);
+      item.append(uiIcon(activityIconKey(group, record), "activity-item-icon"));
+      const body = el("div", "activity-item-body");
+      if (record.date) body.append(el("span", "activity-date", record.date));
+      if (record.href) body.append(link(record.text, record.href));
+      else body.append(record.text);
+      item.append(body);
       list.append(item);
     });
     column.append(list);
@@ -7587,8 +8134,11 @@ function renderLinks() {
     column.append(el("h3", null, group.title));
     const list = el("ul");
     group.items.forEach(([label, href]) => {
-      const item = el("li");
-      item.append(link(label, href));
+      const item = el("li", "icon-list-item");
+      item.append(uiIcon(iconKeyForLink(label, href, group.title), "list-item-icon"));
+      const body = el("div", "icon-list-body");
+      body.append(link(label, href));
+      item.append(body);
       list.append(item);
     });
     column.append(list);

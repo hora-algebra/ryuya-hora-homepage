@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ryuya Hora</title>
-    <meta name="description" content="Favorite topoi.">
+    <meta name="description" content="Other projects and links by Ryuya Hora.">
     <meta name="robots" content="noindex,nofollow,noarchive">
     <link rel="icon" type="image/png" href="../assets/icons/site-icon.png">
     <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <link rel="stylesheet" href="../styles.css">
   </head>
-  <body data-page="favorite-topoi" data-depth="child">
+  <body data-page="others" data-depth="child">
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="Ryuya Hora home">
         <span class="brand-mark">RH</span>
@@ -46,7 +46,7 @@
           <div class="nav-submenu">
             <a href="../others/index.html#web-apps">Web Apps</a>
             <a href="../others/index.html#problems">Problems</a>
-            <a class="is-active" href="../others/index.html#favorite-topoi">Favorite Topoi</a>
+            <a href="../others/index.html#favorite-topoi">Favorite Topoi</a>
             <a href="../others/index.html#links">Links</a>
           </div>
         </div>
@@ -59,37 +59,96 @@
 
     <main>
       <section class="page-hero section">
-        <p class="eyebrow">Topos Cabinet</p>
-        <h1>Favorite Topoi</h1>
-        <p class="lead">Favorite topoi.</p>
+        <p class="eyebrow">Others</p>
+        <h1>Others</h1>
+        <p class="lead">Web apps, problems, favorite topoi, and links.</p>
       </section>
 
-      <section class="section favorite-topoi-layout" aria-labelledby="favorite-topoi-title">
+      <section id="web-apps" class="section" aria-labelledby="others-web-apps-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Tools</p>
+            <h2 id="others-web-apps-title">Web Apps</h2>
+          </div>
+          <a class="section-link" href="../web-apps/index.html">Full web apps page</a>
+        </div>
+        <div id="web-app-grid" class="web-app-grid"></div>
+      </section>
+
+      <section id="problems" class="section" aria-labelledby="others-problems-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Problem Database</p>
+            <h2 id="others-problems-title">Problems and Trails</h2>
+          </div>
+          <div class="problem-random-actions">
+            <button class="tab-button" type="button" data-problem-random="any">Random problem</button>
+            <button class="tab-button" type="button" data-problem-random="open">Random formal</button>
+          </div>
+        </div>
+
+        <div class="problem-console">
+          <div class="problem-toolbar">
+            <label class="search-label">
+              <span>Filter problems</span>
+              <input id="problem-filter" type="search" autocomplete="off" placeholder="Topos, 2.0.2, rieg...">
+            </label>
+            <div id="problem-status-tabs" class="publication-tabs" aria-label="Problem status filters"></div>
+          </div>
+          <div id="problem-stats" class="problem-stats"></div>
+          <article id="problem-feature" class="problem-feature"></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Index</p>
+            <h2>All Problem Entries</h2>
+          </div>
+          <a class="section-link" href="../problems/index.html">Full problems page</a>
+        </div>
+        <div id="problem-list" class="problem-list"></div>
+      </section>
+
+      <section id="favorite-topoi" class="section favorite-topoi-layout" aria-labelledby="others-favorite-topoi-title">
         <div>
           <div class="section-head">
             <div>
-              <p class="section-kicker">Collection</p>
-              <h2 id="favorite-topoi-title">Topoi to Keep Around</h2>
+              <p class="section-kicker">Topos Cabinet</p>
+              <h2 id="others-favorite-topoi-title">Favorite Topoi</h2>
             </div>
+            <a class="section-link" href="../favorite-topoi/index.html">Full favorite topoi page</a>
           </div>
           <div id="favorite-topoi-list" class="favorite-topoi-list"></div>
         </div>
         <aside id="favorite-topoi-focus" class="topos-focus" aria-live="polite"></aside>
       </section>
 
-      <section class="section topos-comparison-section" aria-labelledby="topos-comparison-title">
+      <section class="section topos-comparison-section" aria-labelledby="others-topos-comparison-title">
         <div class="section-head">
           <div>
             <p class="section-kicker">Map</p>
-            <h2 id="topos-comparison-title">Quick Comparison</h2>
+            <h2 id="others-topos-comparison-title">Quick Comparison</h2>
           </div>
         </div>
         <div id="favorite-topoi-comparison" class="topos-comparison"></div>
       </section>
+
+      <section id="links" class="section" aria-labelledby="others-links-title">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Links</p>
+            <h2 id="others-links-title">Links</h2>
+          </div>
+          <a class="section-link" href="../links/index.html">Full links page</a>
+        </div>
+        <div id="link-list" class="link-columns"></div>
+      </section>
     </main>
 
     <footer class="site-footer">
-      <p>Favorite topoi. Last updated: 22 April 2026.</p>
+      <p>Other projects, problem lists, and links. Last updated: 24 April 2026.</p>
       <div class="site-footer-links">
         <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
         <a href="../index.html">Home</a>

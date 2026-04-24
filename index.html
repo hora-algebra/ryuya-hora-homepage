@@ -33,29 +33,32 @@
         <div class="nav-group is-active">
           <a class="nav-group-label is-active" href="index.html">Profile</a>
           <div class="nav-submenu">
-            <a href="cv/index.html">CV</a>
-            <a href="cv/index.html#awards">Awards</a>
+            <a class="is-active" href="index.html#profile">Overview</a>
+            <a href="index.html#cv">CV</a>
+            <a href="index.html#awards">Awards</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="nav-group-label" type="button">Documents</button>
+          <a class="nav-group-label" href="documents/index.html">Documents</a>
           <div class="nav-submenu">
-            <a href="papers/index.html">Papers</a>
-            <a href="notes/index.html">Notes</a>
+            <a href="documents/index.html#papers">Papers</a>
+            <a href="documents/index.html#notes">Notes</a>
           </div>
         </div>
         <div class="nav-group">
           <a class="nav-group-label" href="activities/index.html">Activities</a>
           <div class="nav-submenu">
-            <a href="talks/index.html">Talks</a>
+            <a href="activities/index.html#visits">Visits</a>
+            <a href="activities/index.html#talks">Talks</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="nav-group-label" type="button">Others</button>
+          <a class="nav-group-label" href="others/index.html">Others</a>
           <div class="nav-submenu">
-            <a href="web-apps/index.html">Web Apps</a>
-            <a href="links/index.html">Links</a>
-            <a href="problems/index.html">Problems</a>
+            <a href="others/index.html#web-apps">Web Apps</a>
+            <a href="others/index.html#problems">Problems</a>
+            <a href="others/index.html#favorite-topoi">Favorite Topoi</a>
+            <a href="others/index.html#links">Links</a>
           </div>
         </div>
         <a class="nav-search" href="search/index.html" data-site-search-link aria-label="Search">
@@ -105,7 +108,7 @@
               <a class="action-link" href="activities/index.html">Related activities</a>
             </div>
           </div>
-          <figure class="categories-tokyo-map" data-categories-tokyo-map aria-label="Map of Japan and Tokyo">
+          <figure class="categories-tokyo-map" data-categories-tokyo-map aria-label="Map of Categories in Tokyo venues">
             <p class="empty-state">Map loading...</p>
           </figure>
         </div>
@@ -133,11 +136,16 @@
         <div id="research-map" class="research-map" aria-live="polite"></div>
       </section>
 
-      <section class="section profile-grid" aria-labelledby="profile-details">
+      <section id="cv" class="section profile-grid" aria-labelledby="profile-details">
         <div>
           <p class="section-kicker">Profile</p>
           <h2 id="profile-details">Current Positions</h2>
           <ul class="plain-list" id="current-position-list"></ul>
+        </div>
+        <div>
+          <p class="section-kicker">CV</p>
+          <h2>Past Positions</h2>
+          <ul class="plain-list" id="past-position-list"></ul>
         </div>
         <div>
           <p class="section-kicker">Interests</p>
@@ -169,7 +177,6 @@
                   <svg viewBox="0 0 24 24" focusable="false">
                     <path d="M4.5 6.5h15a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 16V8a1.5 1.5 0 0 1 1.5-1.5Z"></path>
                     <path d="M4.6 8l7.4 5.7L19.4 8"></path>
-                    <path d="M15.9 5.2a2 2 0 0 1 0 4"></path>
                   </svg>
                 </span>
                 <span class="email-meta">
@@ -179,6 +186,29 @@
               </a>
             </li>
           </ul>
+        </div>
+      </section>
+
+      <section id="awards" class="section profile-grid">
+        <div>
+          <p class="section-kicker">Awards</p>
+          <h2>Awards</h2>
+          <ul class="plain-list" id="award-list"></ul>
+        </div>
+        <div>
+          <p class="section-kicker">Teaching</p>
+          <h2>Education and Outreach</h2>
+          <ul class="plain-list" id="education-list"></ul>
+        </div>
+        <div>
+          <p class="section-kicker">researchmap</p>
+          <h2>Synced Awards</h2>
+          <ul class="plain-list" id="researchmap-award-list"></ul>
+        </div>
+        <div>
+          <p class="section-kicker">researchmap</p>
+          <h2>Synced Education</h2>
+          <ul class="plain-list" id="researchmap-education-list"></ul>
         </div>
       </section>
 
@@ -198,7 +228,7 @@
             <p class="section-kicker">Research</p>
             <h2>Recent Papers</h2>
           </div>
-          <a class="section-link" href="papers/index.html">All papers</a>
+          <a class="section-link" href="documents/index.html#papers">All papers</a>
         </div>
         <div id="home-paper-list" class="publication-list"></div>
       </section>
@@ -209,7 +239,7 @@
             <p class="section-kicker">Talks</p>
             <h2>Recent Talks</h2>
           </div>
-          <a class="section-link" href="talks/index.html">All talks</a>
+          <a class="section-link" href="activities/index.html#talks">All talks</a>
         </div>
         <div id="home-talk-list" class="timeline-list" data-limit="5"></div>
       </section>
