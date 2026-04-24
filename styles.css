@@ -3276,6 +3276,19 @@ a.position-link:hover {
   fill: #2f5d8e;
 }
 
+.automata-language-mark {
+  font-size: 12.5px;
+  font-weight: 850;
+}
+
+.automata-language-accept {
+  fill: #2c6f63;
+}
+
+.automata-language-reject {
+  fill: #8a4d34;
+}
+
 .automata-input-head path {
   fill: none;
   stroke: #2c312d;
@@ -4589,7 +4602,7 @@ a.position-link:hover {
   font-size: clamp(0.58rem, 1.35vw, 0.92rem);
   opacity: 0;
   pointer-events: none;
-  animation-duration: var(--tensor-cycle);
+  animation-duration: 8s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
@@ -4671,8 +4684,6 @@ a.position-link:hover {
 
 .tensor-factorization-figure .tensor-image-node.factor {
   opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
   animation: tensor-image-node-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
@@ -4809,7 +4820,7 @@ a.position-link:hover {
   }
 
   34%,
-  54% {
+  46% {
     opacity: 0.88;
     stroke: var(--tensor-active);
     stroke-dasharray: 1;
@@ -4817,13 +4828,13 @@ a.position-link:hover {
     stroke-width: 4.4;
   }
 
-  68%,
+  58%,
   100% {
-    opacity: 0.08;
-    stroke: rgba(43, 52, 43, 0.16);
-    stroke-dasharray: 0.16 0.84;
-    stroke-dashoffset: -0.72;
-    stroke-width: 1.6;
+    opacity: 0.025;
+    stroke: rgba(43, 52, 43, 0.1);
+    stroke-dasharray: 0.04 0.96;
+    stroke-dashoffset: -0.9;
+    stroke-width: 1;
   }
 }
 
@@ -4901,13 +4912,11 @@ a.position-link:hover {
   0%,
   38% {
     opacity: 0;
-    transform: scale(0.58);
   }
 
   52%,
   100% {
     opacity: 1;
-    transform: scale(1);
   }
 }
 

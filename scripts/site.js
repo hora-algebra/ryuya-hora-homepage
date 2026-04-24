@@ -7743,10 +7743,11 @@ const paperFigureTemplates = {
       </g>
       <g class="quotient-system quotient-system-infinite" transform="translate(110 265)">
         <path class="figure-line dashed" d="M0 0 H540"></path>
-        <path class="figure-line" d="M115 0 H255 L312 45 H455"></path>
-        <g><circle class="figure-dot ghost-fill" cx="115" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="185" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="255" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="312" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="385" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="455" cy="45" r="5"></circle></g>
-        <path class="quotient-guide quotient-infinite-guide" d="M115 0 H185 H255 L312 45 H385 H455"></path>
-        ${quotientStepLights(["M115 0 H185", "M185 0 H255", "M255 0 L312 45", "M312 45 H385", "M385 45 H455", "M455 45 H515"], "blue")}
+        <path class="figure-line dashed" d="M0 45 H228"></path>
+        <path class="figure-line" d="M35 45 H110 H178 H228 L285 0 H425"></path>
+        <g><circle class="figure-dot ghost-fill" cx="35" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="110" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="178" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="228" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="285" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="355" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="425" cy="0" r="5"></circle></g>
+        <path class="quotient-guide quotient-infinite-guide" d="M35 45 H110 H178 H228 L285 0 H355 H425"></path>
+        ${quotientStepLights(["M-35 45 H35", "M35 45 H110", "M110 45 H178", "M178 45 H228", "M228 45 L285 0", "M285 0 H355", "M355 0 H425", "M425 0 H515"], "blue")}
         <text class="figure-small quotient-label quotient-infinite-label" x="34" y="82">infinite height</text>
       </g>
     </svg>
@@ -7820,33 +7821,50 @@ const paperFigureTemplates = {
       </defs>
       <g transform="translate(22 18)">
         <g class="automata-input-tape" transform="translate(54 248) scale(1.06)">
-          <rect class="automata-input-panel" x="0" y="0" width="172" height="104" rx="12"></rect>
-          <text class="figure-small automata-input-label" x="28" y="35">w =</text>
-          <g transform="translate(52 54)">
+          <rect class="automata-input-panel" x="0" y="0" width="270" height="104" rx="12"></rect>
+          <text class="figure-small automata-input-label" x="28" y="34">w =</text>
+          <g transform="translate(62 34)">
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
               <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.24;0.25;0.99;1"></animate>
-              <rect x="-13" y="-18" width="26" height="34" rx="7"></rect>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">a</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(34 0)">
               <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.49;0.5;0.99;1"></animate>
-              <rect x="-13" y="-18" width="26" height="34" rx="7"></rect>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">a</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-b" transform="translate(68 0)">
               <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.74;0.75;0.99;1"></animate>
-              <rect x="-13" y="-18" width="26" height="34" rx="7"></rect>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">b</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-b" transform="translate(102 0)">
               <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.94;0.95;0.99;1"></animate>
-              <rect x="-13" y="-18" width="26" height="34" rx="7"></rect>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">b</text>
             </g>
-            <g class="automata-input-head" transform="translate(0 27)">
-              <animateTransform attributeName="transform" type="translate" dur="8s" repeatCount="indefinite" values="0 27;0 27;34 27;34 27;68 27;68 27;102 27;102 27;136 27;136 27;0 27" keyTimes="0;0.24;0.25;0.49;0.5;0.74;0.75;0.94;0.95;0.99;1"></animateTransform>
+            <text class="figure-small automata-language-mark automata-language-accept" x="144" y="5">accept</text>
+            <g class="automata-input-head" transform="translate(0 24)">
+              <animateTransform attributeName="transform" type="translate" dur="8s" repeatCount="indefinite" values="0 24;0 24;34 24;34 24;68 24;68 24;102 24;102 24;136 24;136 24;0 24" keyTimes="0;0.24;0.25;0.49;0.5;0.74;0.75;0.94;0.95;0.99;1"></animateTransform>
               <path d="M-7 0 H7 M0 0 V11"></path>
             </g>
+          </g>
+          <text class="figure-small automata-input-label" x="28" y="77">u =</text>
+          <g transform="translate(62 77)">
+            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">a</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(34 0)">
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">b</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(68 0)">
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">a</text>
+            </g>
+            <text class="figure-small automata-language-mark automata-language-reject" x="110" y="5">reject</text>
           </g>
         </g>
 
@@ -7854,71 +7872,65 @@ const paperFigureTemplates = {
           <rect class="automata-panel automata-panel-total" x="0" y="0" width="434" height="224" rx="12"></rect>
           <text class="figure-small automata-panel-title" x="24" y="30">A</text>
 
-          <path class="figure-arrow automata-edge automata-edge-a" d="M101 105 C146 62, 214 60, 257 84"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M283 73 C326 38, 354 60, 295 101"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M333 174 C286 214, 226 207, 197 187"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M160 181 C116 176, 88 154, 97 125"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M91 125 C114 74, 134 74, 157 125"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M164 116 C118 50, 234 50, 188 116"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M302 123 C328 74, 344 74, 365 125"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M384 112 C330 18, 126 18, 72 112"></path>
 
-          <path class="figure-arrow automata-edge automata-edge-b" d="M90 130 C88 166, 121 188, 160 181"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M292 106 C326 110, 347 128, 340 151"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M377 156 C427 123, 436 196, 377 182"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M198 179 C238 142, 300 138, 333 154"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M72 152 C126 222, 330 222, 384 152"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M195 139 C218 184, 236 184, 258 141"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M266 151 C226 214, 334 214, 294 151"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M365 139 C344 184, 326 184, 302 141"></path>
 
-          <path class="figure-arrow automata-start-arrow" d="M35 112 H62"></path>
+          <path class="figure-arrow automata-start-arrow" d="M25 132 H52"></path>
 
-          <g class="automata-state" transform="translate(82 112)">
+          <g class="automata-state" transform="translate(72 132)">
             <circle class="figure-node soft" cx="0" cy="0" r="20"></circle>
             <text class="figure-small" x="0" y="6">q0</text>
           </g>
-          <g class="automata-state" transform="translate(276 92)">
+          <g class="automata-state" transform="translate(176 132)">
             <circle class="figure-node" cx="0" cy="0" r="20"></circle>
             <text class="figure-small" x="0" y="6">q1</text>
           </g>
-          <g class="automata-state automata-state-accepting" transform="translate(356 168)">
+          <g class="automata-state automata-state-accepting" transform="translate(280 132)">
             <circle class="figure-node warm" cx="0" cy="0" r="24"></circle>
             <circle class="automata-accept-ring" cx="0" cy="0" r="17"></circle>
             <text class="figure-small" x="0" y="6">q2</text>
           </g>
-          <g class="automata-state" transform="translate(178 190)">
+          <g class="automata-state" transform="translate(384 132)">
             <circle class="figure-node" cx="0" cy="0" r="20"></circle>
             <text class="figure-small" x="0" y="6">q3</text>
           </g>
 
           <g class="automata-moving-dot automata-moving-dot-cover">
-            <animateMotion dur="8s" repeatCount="indefinite" path="M82 112 L101 105 C146 62, 214 60, 257 84 L276 92 L283 73 C326 38, 354 60, 295 101 L276 92 L292 106 C326 110, 347 128, 340 151 L356 168 L377 156 C427 123, 436 196, 377 182 L356 168"></animateMotion>
+            <animateMotion dur="8s" repeatCount="indefinite" path="M72 132 L91 125 C114 74, 134 74, 157 125 L176 132 L164 116 C118 50, 234 50, 188 116 L176 132 L195 139 C218 184, 236 184, 258 141 L280 132 L266 151 C226 214, 334 214, 294 151 L280 132"></animateMotion>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="12"></circle>
             <circle class="automata-moving-dot-core" cx="0" cy="0" r="6">
               <animate attributeName="fill" dur="8s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c" keyTimes="0;0.5;0.5001;0.99;1"></animate>
             </circle>
           </g>
 
-          <text class="figure-small automata-edge-label automata-edge-label-a" x="178" y="72">a</text>
-          <text class="figure-small automata-edge-label automata-edge-label-a" x="362" y="56">a</text>
-          <text class="figure-small automata-edge-label automata-edge-label-a" x="258" y="200">a</text>
-          <text class="figure-small automata-edge-label automata-edge-label-a" x="94" y="158">a</text>
-          <text class="figure-small automata-edge-label automata-edge-label-b" x="123" y="178">b</text>
-          <text class="figure-small automata-edge-label automata-edge-label-b" x="333" y="119">b</text>
-          <text class="figure-small automata-edge-label automata-edge-label-b" x="414" y="173">b</text>
-          <text class="figure-small automata-edge-label automata-edge-label-b" x="268" y="144">b</text>
+          <text class="figure-small automata-edge-label automata-edge-label-a" x="224" y="46">a</text>
+          <text class="figure-small automata-edge-label automata-edge-label-b" x="224" y="205">b</text>
         </g>
 
         <g transform="translate(506 76) scale(0.98)">
           <rect class="automata-panel automata-panel-base" x="0" y="0" width="226" height="112" rx="12"></rect>
           <text class="figure-small automata-panel-title" x="36" y="31">B&#931;</text>
           <g transform="translate(113 72)">
-            <path class="figure-arrow automata-edge automata-edge-a" d="M-15 -7 C-72 -46, -72 46, -15 7"></path>
-            <path class="figure-arrow automata-edge automata-edge-b" d="M15 -7 C72 -46, 72 46, 15 7"></path>
+            <path class="figure-arrow automata-edge automata-edge-a" d="M-12 -11 C-58 -58, 58 -58, 12 -11"></path>
+            <path class="figure-arrow automata-edge automata-edge-b" d="M12 11 C58 58, -58 58, -12 11"></path>
             <circle class="figure-node soft-2" cx="0" cy="0" r="17"></circle>
             <text class="figure-small" x="0" y="6">*</text>
             <g class="automata-moving-dot automata-moving-dot-base">
-              <animateMotion dur="8s" repeatCount="indefinite" path="M0 0 C-72 -46, -72 46, 0 0 C-72 -46, -72 46, 0 0 C72 -46, 72 46, 0 0 C72 -46, 72 46, 0 0"></animateMotion>
+              <animateMotion dur="8s" repeatCount="indefinite" path="M0 0 C-58 -58, 58 -58, 0 0 C-58 -58, 58 -58, 0 0 C58 58, -58 58, 0 0 C58 58, -58 58, 0 0"></animateMotion>
               <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
               <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.6">
                 <animate attributeName="fill" dur="8s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c" keyTimes="0;0.5;0.5001;0.99;1"></animate>
               </circle>
             </g>
-            <text class="figure-small automata-edge-label automata-edge-label-a" x="-58" y="-4">a</text>
-            <text class="figure-small automata-edge-label automata-edge-label-b" x="58" y="-4">b</text>
+            <text class="figure-small automata-edge-label automata-edge-label-a" x="0" y="-43">a</text>
+            <text class="figure-small automata-edge-label automata-edge-label-b" x="0" y="58">b</text>
           </g>
         </g>
 
