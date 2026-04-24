@@ -2207,14 +2207,22 @@ function overleafNoteRecords() {
     language: artifact.language || "Document",
     theme: artifact.theme || "",
     file: artifact.outputName || artifact.href.split("/").pop() || `${artifact.id}.pdf`,
-    href: localHref(artifact.href),
-    download: localHref(artifact.href),
+    href: artifact.href,
+    download: artifact.href,
     source: "overleaf"
   }));
 }
 
 function noteAnchor(note) {
   return `note-${slugify(note.file || note.title)}`;
+}
+
+function noteHref(note) {
+  return localHref(note.href || `notes/index.html#${noteAnchor(note)}`);
+}
+
+function noteDownloadHref(note) {
+  return note.download ? localHref(note.download) : "";
 }
 
 function noteHrefByFile(file) {
@@ -3239,7 +3247,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Note",
       title: shortNoteTitle(note),
-      href: note.href || localHref(`notes/index.html#${noteAnchor(note)}`),
+      href: noteHref(note),
       summary: note.description || note.file,
       meta: compactText([kindLabel, note.language, note.source === "overleaf" ? "Overleaf" : ""]).join(" / "),
       keywords: compactText([kind, note.file]),
@@ -5014,7 +5022,7 @@ function noteThumbnailSrc(note) {
 function noteThumbnail(note) {
   const [kind, kindLabel, kindIcon] = noteKind(note);
   const thumbnailSrc = noteThumbnailSrc(note);
-  const thumb = link("", note.href, `note-thumbnail ${kind} ${noteTheme(note)}${thumbnailSrc ? " has-image" : ""}`);
+  const thumb = link("", noteHref(note), `note-thumbnail ${kind} ${noteTheme(note)}${thumbnailSrc ? " has-image" : ""}`);
   thumb.setAttribute("aria-label", `Open ${note.title}`);
 
   const body = el("div", "note-thumb-body");
@@ -5524,7 +5532,7 @@ function talkThumbnail(record) {
   if (!note || !src) return null;
   return {
     src,
-    href: note.href || localHref(`notes/index.html#${noteAnchor(note)}`),
+    href: noteHref(note),
     title: note.title
   };
 }
@@ -5663,7 +5671,7 @@ function themedNoteRecords() {
       return {
         type: "note",
         title: note.title,
-        href: note.href,
+        href: noteHref(note),
         meta: compactText([note.language, note.description || note.file]).join(" / "),
         ...scoreThemeRecord(text)
       };
@@ -7689,10 +7697,12 @@ function renderNotes() {
   records.forEach((note) => {
     const item = el("article", "note-item");
     const [kind, kindLabel, kindIcon] = noteKind(note);
+    const href = noteHref(note);
+    const downloadHref = noteDownloadHref(note);
     item.id = noteAnchor(note);
     item.append(noteThumbnail(note));
     const heading = el("h3");
-    heading.append(link(shortNoteTitle(note), note.href));
+    heading.append(link(shortNoteTitle(note), href));
     item.append(heading);
     if (note.description) item.append(el("p", null, note.description));
     const meta = el("div", "note-meta");
@@ -7705,8 +7715,8 @@ function renderNotes() {
     if (dateLabel) meta.append(el("span", null, dateLabel));
     meta.append(el("span", null, noteLanguageKey(note)), el("span", null, note.file));
     item.append(meta);
-    const actions = [["Open", note.href]];
-    if (note.download) actions.push(["Download", note.download]);
+    const actions = [["Open", href]];
+    if (downloadHref) actions.push(["Download", downloadHref]);
     appendActionLinks(item, actions);
     root.append(item);
   });
