@@ -477,7 +477,7 @@ const siteData = {
       updated: "2026-04-22",
       title: "A Rota-Baxter equation for winning games",
       status: "speculative",
-      tags: ["games", "Rota-Baxter", "coalgebras"],
+      tags: ["games", "Rota-Baxter", "algebra", "coalgebras"],
       noteFile: "RYUYA,HORA.pdf",
       abstract:
         "A working fragment around winning positions, coalgebraic recursion, and Rota-Baxter-like operations.",
@@ -1744,6 +1744,7 @@ const researchThemes = [
       "algebra",
       "algebraic",
       "semiring",
+      "rota baxter",
       "rieg",
       "riegs",
       "normalization",
@@ -4557,8 +4558,8 @@ const categoriesTokyoVenues = [
     name: "第0回 The University of Tokyo",
     lon: 139.6847,
     lat: 35.6606,
-    dx: -23,
-    dy: 8,
+    dx: -23.4,
+    dy: 7.1,
     labelAnchor: "start",
     meetings: [
       {
@@ -4606,7 +4607,7 @@ const categoriesTokyoVenues = [
     lon: 139.7671,
     lat: 35.6695,
     dx: -3.2,
-    dy: 5.6,
+    dy: 3.2,
     meetings: [
       {
         label: "3",
@@ -5408,15 +5409,44 @@ function renderPaperTimeline() {
 }
 
 function noteKind(note) {
-  const title = note.title.toLowerCase();
+  const titleKind = noteTitlePrefixKind(note.title);
   const text = `${note.title} ${note.description || ""} ${note.file}`.toLowerCase();
-  if (title.startsWith("cloud:")) return ["cloud", "Speculative", "☁︎"];
-  if (title.startsWith("pen:")) return ["pen", "Pen", "🖊️"];
+  if (titleKind === "cloud") return ["cloud", "☁︎", "☁︎"];
+  if (titleKind === "pen") return ["pen", "🖊️", "🖊️"];
   if (note.file === "Notion archive") return ["archive", "Archive"];
   if (text.includes("slides") || text.includes("talk") || text.includes("cscat") || text.includes("seminar")) {
     return ["slides", "Slides"];
   }
   return ["note", "Note"];
+}
+
+const noteKindSymbols = {
+  cloud: "☁︎",
+  pen: "🖊️"
+};
+
+function noteTitlePrefixKind(value) {
+  const match = normalizedUiText(value).match(/^(cloud|pen):\s*/i);
+  return match ? match[1].toLowerCase() : "";
+}
+
+function stripNoteTitlePrefix(value) {
+  return normalizedUiText(value).replace(/^(cloud|pen):\s*/i, "").trim();
+}
+
+function symbolicCloudPenLabel(value) {
+  const text = normalizedUiText(value);
+  if (!text) return text;
+  const exact = simplified(text);
+  if (exact === "cloud" || exact === "speculative") return noteKindSymbols.cloud;
+  if (exact === "pen") return noteKindSymbols.pen;
+  const match = text.match(/^(cloud|pen)\s*:?\s+(.+)$/i);
+  if (!match) return text;
+  return `${noteKindSymbols[match[1].toLowerCase()]} ${match[2].trim()}`.trim();
+}
+
+function symbolicNoteTitle(note) {
+  return symbolicCloudPenLabel(note?.title || note);
 }
 
 function noteTheme(note) {
@@ -5545,7 +5575,7 @@ function sortedNoteRecords(records) {
 }
 
 function shortNoteTitle(note) {
-  return note.title.replace(/^(Cloud|Pen):\s*/, "").trim();
+  return stripNoteTitlePrefix(note.title);
 }
 
 function noteThumbnailArt() {
@@ -5568,11 +5598,12 @@ function noteThumbnail(note) {
   const [kind, kindLabel, kindIcon] = noteKind(note);
   const thumbnailSrc = noteThumbnailSrc(note);
   const thumb = link("", noteHref(note), `note-thumbnail ${kind} ${noteTheme(note)}${thumbnailSrc ? " has-image" : ""}`);
-  thumb.setAttribute("aria-label", `Open ${note.title}`);
+  thumb.setAttribute("aria-label", `Open ${symbolicNoteTitle(note)}`);
 
   const body = el("div", "note-thumb-body");
   const kindBadge = el("span", "note-thumb-kind", kindLabel);
-  if (kindIcon) kindBadge.dataset.icon = kindIcon;
+  if (kindIcon && kindIcon !== kindLabel) kindBadge.dataset.icon = kindIcon;
+  if (kindIcon && kindIcon === kindLabel) kindBadge.classList.add("is-symbol");
   body.append(kindBadge, el("span", "note-thumb-title", shortNoteTitle(note)), el("span", "note-thumb-meta", note.language));
 
   if (thumbnailSrc) {
@@ -6271,7 +6302,7 @@ function talkThumbnail(record) {
   return {
     src,
     href: noteHref(note),
-    title: note.title
+    title: symbolicNoteTitle(note)
   };
 }
 
@@ -6410,7 +6441,7 @@ function themedNoteRecords() {
       const text = compactText([note.title, note.description, note.language, note.file, theme, noteThemeLabel(theme)]).join(" ");
       return {
         type: "note",
-        title: note.title,
+        title: symbolicNoteTitle(note),
         href: noteHref(note),
         meta: compactText([note.language, note.description || note.file]).join(" / "),
         ...scoreThemeRecord(text)
@@ -6924,9 +6955,20 @@ function grundyMex(values) {
 function grundyEdgePath(from, to) {
   const startY = from.y + 18;
   const endY = to.y - 18;
-  const midY = (startY + endY) / 2;
-  const bend = Math.min(34, Math.abs(from.x - to.x) * 0.22 + 12);
-  return `M${from.x} ${startY} C${from.x} ${midY + bend} ${to.x} ${midY - bend} ${to.x} ${endY}`;
+  const dx = to.x - from.x;
+  const dy = endY - startY;
+  if (Math.abs(dx) < 2) return `M${from.x} ${startY} L${to.x} ${endY}`;
+
+  const length = Math.hypot(dx, dy) || 1;
+  const curve = Math.min(7, Math.abs(dx) * 0.045);
+  const side = dx > 0 ? 1 : -1;
+  const normalX = (-dy / length) * curve * side;
+  const normalY = (dx / length) * curve * side;
+  const c1x = from.x + dx * 0.36 + normalX;
+  const c1y = startY + dy * 0.36 + normalY;
+  const c2x = from.x + dx * 0.64 + normalX;
+  const c2y = startY + dy * 0.64 + normalY;
+  return `M${from.x} ${startY} C${c1x} ${c1y} ${c2x} ${c2y} ${to.x} ${endY}`;
 }
 
 function grundyReferenceTarget(value) {
@@ -7459,32 +7501,48 @@ function internalOffsetPoint(point, center, scale, jitter = [0, 0]) {
   return [point[0] + (point[0] - center[0]) * scale + jitter[0], point[1] + (point[1] - center[1]) * scale + jitter[1]];
 }
 
-function internalParameterizationPiece({ type, start, decomposed, classified, target, from, to, loopPath }) {
-  const duration = "18s";
+function internalLineAsCubicPath(from, to) {
+  return `M${from[0]} ${from[1]} C${from[0]} ${from[1]}, ${to[0]} ${to[1]}, ${to[0]} ${to[1]}`;
+}
+
+function internalAnimatedPath(path, finalPath, className, keyTimes, duration) {
+  const pathAnimation = finalPath
+    ? `<animate attributeName="d" values="${path}; ${path}; ${path}; ${path}; ${finalPath}; ${finalPath}; ${path}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate>`
+    : "";
+  return `<path class="figure-arrow internal-piece-arrow ${className}" d="${path}">${pathAnimation}</path>`;
+}
+
+function internalParameterizationPiece({ type, start, decomposed, classified, target, from, to, loopPath, finalPath, finalScale }) {
+  const duration = "4s";
   const keyTimes = "0;0.12;0.34;0.58;0.82;0.88;1";
   const compactScale = 0.42;
+  const arrivalScale = finalScale ?? compactScale;
   let content = "";
   if (type === "vertex") {
     content = `<circle class="internal-piece-dot internal-piece-dot-vertex" cx="0" cy="0" r="15"></circle>`;
   } else if (type === "loop") {
-    content = `<path class="figure-arrow internal-piece-arrow internal-piece-arrow-l" d="${loopPath}"></path>`;
+    content = internalAnimatedPath(loopPath, finalPath, "internal-piece-arrow-l", keyTimes, duration);
   } else {
-    content = `<path class="figure-arrow internal-piece-arrow internal-piece-arrow-n" d="M${from[0]} ${from[1]} L${to[0]} ${to[1]}"></path>`;
+    content = internalAnimatedPath(internalLineAsCubicPath(from, to), finalPath, "internal-piece-arrow-n", keyTimes, duration);
   }
   return `<g class="internal-piece internal-piece-${type}" opacity="1" transform="translate(${internalPoint(start)})">
         <animate attributeName="opacity" values="1;1;1;1;1;0;0" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate>
         <animateTransform attributeName="transform" type="translate" values="${internalPoint(start)}; ${internalPoint(start)}; ${internalPoint(decomposed)}; ${internalPoint(classified)}; ${internalPoint(target)}; ${internalPoint(target)}; ${internalPoint(start)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animateTransform>
         <g class="internal-piece-shape" transform="scale(1)">
-          <animateTransform attributeName="transform" type="scale" values="1;1;1;${compactScale};${compactScale};${compactScale};1" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="scale" values="1;1;1;${compactScale};${arrivalScale};${arrivalScale};1" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animateTransform>
           ${content}
         </g>
       </g>`;
 }
 
 function createInternalParameterizationPieces() {
+  const classifierOrigin = [584, 76];
   const vertexTarget = [657, 194];
-  const nonLoopTarget = [704, 194];
-  const loopTarget = [616, 194];
+  const nonLoopTarget = classifierOrigin;
+  const loopTarget = classifierOrigin;
+  const vertexFinalScale = 19 / 15;
+  const nonLoopFinalPath = "M86 107 C124 92, 124 144, 86 129";
+  const loopFinalPath = "M60 129 C22 144, 22 92, 60 107";
   const graphCenter = [280, 202];
   const vertexClassified = [
     [526, 102],
@@ -7511,8 +7569,10 @@ function createInternalParameterizationPieces() {
     [552, 246],
   ];
   const loopClassified = [
-    [528, 284],
-    [552, 284],
+    [522, 274],
+    [542, 274],
+    [562, 274],
+    [542, 294],
   ];
   const vertices = [
     [88, 184],
@@ -7530,6 +7590,7 @@ function createInternalParameterizationPieces() {
     start,
     classified: vertexClassified[index],
     target: vertexTarget,
+    finalScale: vertexFinalScale,
   }));
   const nonLoopEdges = [
     [[100, 174], [140, 142]],
@@ -7551,6 +7612,8 @@ function createInternalParameterizationPieces() {
       target: nonLoopTarget,
       from: [source[0] - start[0], source[1] - start[1]],
       to: [destination[0] - start[0], destination[1] - start[1]],
+      finalPath: nonLoopFinalPath,
+      finalScale: 1,
     };
   });
   const loops = [
@@ -7560,6 +7623,8 @@ function createInternalParameterizationPieces() {
       classified: loopClassified[0],
       target: loopTarget,
       loopPath: "M12 -9 C44 -24, 44 25, 12 12",
+      finalPath: loopFinalPath,
+      finalScale: 1,
     },
     {
       type: "loop",
@@ -7567,6 +7632,26 @@ function createInternalParameterizationPieces() {
       classified: loopClassified[1],
       target: loopTarget,
       loopPath: "M-12 8 C-50 24, -50 -24, -12 -8",
+      finalPath: loopFinalPath,
+      finalScale: 1,
+    },
+    {
+      type: "loop",
+      start: [230, 134],
+      classified: loopClassified[2],
+      target: loopTarget,
+      loopPath: "M-8 -12 C-28 -42, 28 -42, 8 -12",
+      finalPath: loopFinalPath,
+      finalScale: 1,
+    },
+    {
+      type: "loop",
+      start: [438, 270],
+      classified: loopClassified[3],
+      target: loopTarget,
+      loopPath: "M12 -8 C48 -22, 48 22, 12 8",
+      finalPath: loopFinalPath,
+      finalScale: 1,
     },
   ];
   return [...vertices, ...nonLoopEdges, ...loops]
@@ -7612,6 +7697,8 @@ const paperFigureTemplates = {
         <path class="figure-arrow internal-edge-base" d="M307 215 L389 212"></path>
         <path class="figure-arrow internal-edge-base internal-self-loop" d="M436 115 C468 100, 468 149, 436 136"></path>
         <path class="figure-arrow internal-edge-base internal-self-loop" d="M90 216 C52 232, 52 184, 90 200"></path>
+        <path class="figure-arrow internal-edge-base internal-self-loop" d="M188 64 C168 34, 224 34, 204 64"></path>
+        <path class="figure-arrow internal-edge-base internal-self-loop" d="M416 204 C452 190, 452 234, 416 220"></path>
         </g>
       </g>
       <g transform="translate(584 76)">
@@ -7626,30 +7713,62 @@ const paperFigureTemplates = {
       ${createInternalParameterizationPieces()}
     </svg>`,
   "quotient-toposes": `
-    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
+    <svg class="quotient-toposes-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
       <title id="fig-quotient-title">Period, height, and core</title>
-      <desc id="fig-quotient-desc">Three discrete dynamical systems showing finite height with period, a core of fixed points, and an infinite tail.</desc>
+      <desc id="fig-quotient-desc">Three discrete dynamical systems with moving lights: one follows a finite tail into a cycle, one falls through finite height to an acyclic core, and one keeps traveling along an infinite tail.</desc>
       <defs><marker id="arrow-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <g transform="translate(74 34)">
+      <g class="quotient-system quotient-system-period" transform="translate(74 34)">
         <path class="figure-arrow" d="M0 68 H55 H110"></path>
         <circle class="figure-dot" cx="0" cy="68" r="5"></circle><circle class="figure-dot" cx="55" cy="68" r="5"></circle>
         <circle class="figure-dot" cx="110" cy="68" r="5"></circle>
         <circle class="figure-cycle" cx="170" cy="68" r="38"></circle>
         <path class="figure-arrow" d="M110 68 H132"></path>
         <circle class="figure-dot" cx="170" cy="30" r="5"></circle><circle class="figure-dot" cx="208" cy="68" r="5"></circle><circle class="figure-dot" cx="170" cy="106" r="5"></circle><circle class="figure-dot" cx="132" cy="68" r="5"></circle>
-        <text class="figure-small" x="101" y="130">height and period</text>
+        <path class="quotient-guide quotient-height-guide" d="M0 68 H55 H110 H132"></path>
+        <path class="quotient-guide quotient-period-guide" d="M132 68 A38 38 0 1 1 208 68 A38 38 0 1 1 132 68"></path>
+        <g class="quotient-moving-light">
+          <animateMotion dur="6.4s" repeatCount="indefinite" path="M0 68 H55 H110 H132 A38 38 0 1 1 208 68 A38 38 0 1 1 132 68 A38 38 0 1 1 208 68 A38 38 0 1 1 132 68"></animateMotion>
+          <circle class="quotient-light-halo" cx="0" cy="0" r="13"></circle>
+          <circle class="quotient-light-core" cx="0" cy="0" r="5.8">
+            <animate attributeName="fill" dur="6.4s" repeatCount="indefinite" values="#2c6f63;#2c6f63;#b66737;#b66737;#2c6f63" keyTimes="0;0.24;0.28;0.98;1"></animate>
+          </circle>
+        </g>
+        <text class="figure-small quotient-label quotient-height-label" x="34" y="50">height</text>
+        <text class="figure-small quotient-label quotient-period-label" x="153" y="18">period</text>
       </g>
-      <g transform="translate(365 48)">
+      <g class="quotient-system quotient-system-core" transform="translate(365 48)">
         <path class="figure-line" d="M0 116 H270"></path>
         <g class="figure-stem"><path d="M30 20 V116"></path><path d="M90 45 V116"></path><path d="M150 20 V116"></path><path d="M210 45 V116"></path></g>
         <g><circle class="figure-dot" cx="30" cy="20" r="5"></circle><circle class="figure-dot" cx="30" cy="68" r="5"></circle><circle class="figure-dot" cx="90" cy="45" r="5"></circle><circle class="figure-dot" cx="150" cy="20" r="5"></circle><circle class="figure-dot" cx="150" cy="68" r="5"></circle><circle class="figure-dot" cx="210" cy="45" r="5"></circle></g>
-        <text class="figure-small" x="58" y="152">height and period</text>
+        <path class="quotient-guide quotient-height-guide" d="M150 20 V68 V116"></path>
+        <path class="quotient-guide quotient-core-guide" d="M0 116 H270"></path>
+        <g class="quotient-moving-light quotient-moving-light-fall">
+          <animateMotion dur="4.8s" repeatCount="indefinite" path="M150 20 V68 V116"></animateMotion>
+          <animate attributeName="opacity" dur="4.8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.08;0.58;0.74;1"></animate>
+          <circle class="quotient-light-halo" cx="0" cy="0" r="12"></circle>
+          <circle class="quotient-light-core" cx="0" cy="0" r="5.4"></circle>
+        </g>
+        <g class="quotient-moving-light quotient-moving-light-core">
+          <animateMotion dur="4.8s" repeatCount="indefinite" path="M150 116 H270"></animateMotion>
+          <animate attributeName="opacity" dur="4.8s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.52;0.64;0.9;1"></animate>
+          <circle class="quotient-light-halo" cx="0" cy="0" r="11"></circle>
+          <circle class="quotient-light-core quotient-light-core-blue" cx="0" cy="0" r="5.2"></circle>
+        </g>
+        <text class="figure-small quotient-label quotient-height-label" x="156" y="55">height</text>
+        <text class="figure-small quotient-label quotient-core-label" x="166" y="142">period 0</text>
       </g>
-      <g transform="translate(110 265)">
+      <g class="quotient-system quotient-system-infinite" transform="translate(110 265)">
         <path class="figure-line dashed" d="M0 0 H540"></path>
         <path class="figure-line" d="M115 0 H255 L312 45 H455"></path>
         <g><circle class="figure-dot ghost-fill" cx="115" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="185" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="255" cy="0" r="5"></circle><circle class="figure-dot ghost-fill" cx="312" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="385" cy="45" r="5"></circle><circle class="figure-dot ghost-fill" cx="455" cy="45" r="5"></circle></g>
-        <text class="figure-small" x="220" y="88">height and period</text>
+        <path class="quotient-guide quotient-infinite-guide" d="M115 0 H185 H255 L312 45 H385 H455"></path>
+        <g class="quotient-moving-light quotient-moving-light-infinite">
+          <animateMotion dur="5.4s" repeatCount="indefinite" path="M115 0 H185 H255 L312 45 H385 H455"></animateMotion>
+          <animate attributeName="opacity" dur="5.4s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.08;0.88;1"></animate>
+          <circle class="quotient-light-halo" cx="0" cy="0" r="12"></circle>
+          <circle class="quotient-light-core quotient-light-core-blue" cx="0" cy="0" r="5.4"></circle>
+        </g>
+        <text class="figure-small quotient-label quotient-infinite-label" x="34" y="82">infinite height</text>
       </g>
     </svg>
     <span class="figure-math small" style="left: 23%; top: 39.5%;">\\((h,p)=(3,4)\\)</span>
@@ -7659,12 +7778,18 @@ const paperFigureTemplates = {
   "lawvere-first": `
     <svg class="tensor-animation-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
       <title id="fig-lawvere-first-title">Power set tensor calculation</title>
-      <desc id="fig-lawvere-first-desc">A concrete calculation for the covariant power set functor: selected elements on the right are connected by strings to landing points on the left.</desc>
+      <desc id="fig-lawvere-first-desc">A concrete calculation for the covariant power set functor: selected elements on the right are grouped into colored unit regions and connected by strings to landing points on the left.</desc>
       <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
       <text class="figure-small lawvere-caption" x="380" y="34">power set tensor: choose strings and collapse landings</text>
 
       <g transform="translate(52 64)">
         <rect class="tensor-string-card" x="0" y="0" width="656" height="300" rx="14"></rect>
+        <g class="tensor-unit-cells" aria-hidden="true">
+          <path class="tensor-unit-cell warm" d="M112 62 C234 32, 420 38, 648 78 L648 141 C424 106, 262 118, 112 134 Z"></path>
+          <path class="tensor-unit-cell green" d="M112 158 C266 178, 430 180, 648 168 L648 235 C426 246, 260 226, 112 218 Z"></path>
+          <path class="tensor-unit-cell muted" d="M228 82 C360 94, 470 94, 590 78 L590 142 C464 136, 352 144, 228 136 Z"></path>
+          <path class="tensor-unit-cell muted" d="M228 174 C358 210, 466 208, 590 176 L590 238 C466 242, 356 246, 228 222 Z"></path>
+        </g>
         <text class="tensor-side-label" x="82" y="52">X</text>
         <text class="tensor-side-label" x="540" y="52">A</text>
         <text class="tensor-side-label tensor-s-label" x="626" y="52">S</text>
@@ -7698,10 +7823,10 @@ const paperFigureTemplates = {
       <title id="fig-automata-title">Automaton as a directed covering over a bouquet</title>
       <desc id="fig-automata-desc">A finite automaton is drawn as a directed graph over the one-vertex bouquet B Sigma. A moving point on the bouquet is lifted to a moving point in the automaton.</desc>
       <defs>
-        <marker id="arrow-automata-cover" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-automata-cover" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z"></path></marker>
       </defs>
-      <g transform="translate(28 12)">
-        <g class="automata-input-tape" transform="translate(6 92) scale(1.22)">
+      <g transform="translate(22 18)">
+        <g class="automata-input-tape" transform="translate(54 248) scale(1.06)">
           <rect class="automata-input-panel" x="0" y="0" width="172" height="104" rx="12"></rect>
           <text class="figure-small automata-input-label" x="28" y="35">w =</text>
           <g transform="translate(52 54)">
@@ -7732,21 +7857,21 @@ const paperFigureTemplates = {
           </g>
         </g>
 
-        <g transform="translate(218 4) scale(1.08)">
+        <g transform="translate(18 4) scale(1.08)">
           <rect class="automata-panel automata-panel-total" x="0" y="0" width="434" height="224" rx="12"></rect>
           <text class="figure-small automata-panel-title" x="24" y="30">A</text>
 
-          <path class="figure-arrow automata-edge automata-edge-a" d="M100 103 C146 62, 214 60, 257 83"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M282 67 C328 28, 379 56, 344 96"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M330 166 C284 206, 218 207, 196 184"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M160 181 C106 174, 70 148, 79 123"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M101 105 C146 62, 214 60, 257 84"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M283 73 C326 38, 354 60, 295 101"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M333 174 C286 214, 226 207, 197 187"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M160 181 C116 176, 88 154, 97 125"></path>
 
-          <path class="figure-arrow automata-edge automata-edge-b" d="M83 128 C82 160, 117 187, 158 189"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M285 96 C327 103, 353 122, 355 145"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M373 151 C421 124, 430 195, 378 184"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M90 130 C88 166, 121 188, 160 181"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M292 106 C326 110, 347 128, 340 151"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M377 156 C427 123, 436 196, 377 182"></path>
           <path class="figure-arrow automata-edge automata-edge-b" d="M198 179 C238 142, 300 138, 333 154"></path>
 
-          <path class="figure-arrow automata-start-arrow" d="M35 112 H64"></path>
+          <path class="figure-arrow automata-start-arrow" d="M35 112 H62"></path>
 
           <g class="automata-state" transform="translate(82 112)">
             <circle class="figure-node soft" cx="0" cy="0" r="20"></circle>
@@ -7767,7 +7892,7 @@ const paperFigureTemplates = {
           </g>
 
           <g class="automata-moving-dot automata-moving-dot-cover">
-            <animateMotion dur="8s" repeatCount="indefinite" path="M82 112 L100 103 C146 62, 214 60, 257 83 L276 92 C310 42, 380 42, 344 96 C326 120, 294 118, 276 92 L285 96 C327 103, 353 122, 355 145 L356 168 L373 151 C421 124, 430 195, 378 184 L356 168"></animateMotion>
+            <animateMotion dur="8s" repeatCount="indefinite" path="M82 112 L101 105 C146 62, 214 60, 257 84 L276 92 L283 73 C326 38, 354 60, 295 101 L276 92 L292 106 C326 110, 347 128, 340 151 L356 168 L377 156 C427 123, 436 196, 377 182 L356 168"></animateMotion>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="12"></circle>
             <circle class="automata-moving-dot-core" cx="0" cy="0" r="6">
               <animate attributeName="fill" dur="8s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c" keyTimes="0;0.5;0.5001;0.99;1"></animate>
@@ -7784,16 +7909,16 @@ const paperFigureTemplates = {
           <text class="figure-small automata-edge-label automata-edge-label-b" x="268" y="144">b</text>
         </g>
 
-        <g transform="translate(350 254) scale(1.1)">
+        <g transform="translate(506 76) scale(0.98)">
           <rect class="automata-panel automata-panel-base" x="0" y="0" width="226" height="112" rx="12"></rect>
           <text class="figure-small automata-panel-title" x="36" y="31">B&#931;</text>
           <g transform="translate(113 72)">
-            <path class="figure-arrow automata-edge automata-edge-a" d="M-8 -5 C-62 -44, -64 42, -8 10"></path>
-            <path class="figure-arrow automata-edge automata-edge-b" d="M9 -5 C62 -44, 65 42, 9 10"></path>
+            <path class="figure-arrow automata-edge automata-edge-a" d="M-15 -7 C-72 -46, -72 46, -15 7"></path>
+            <path class="figure-arrow automata-edge automata-edge-b" d="M15 -7 C72 -46, 72 46, 15 7"></path>
             <circle class="figure-node soft-2" cx="0" cy="0" r="17"></circle>
             <text class="figure-small" x="0" y="6">*</text>
             <g class="automata-moving-dot automata-moving-dot-base">
-              <animateMotion dur="8s" repeatCount="indefinite" path="M0 0 C-62 -44, -64 42, 0 0 C-62 -44, -64 42, 0 0 C62 -44, 65 42, 0 0 C62 -44, 65 42, 0 0"></animateMotion>
+              <animateMotion dur="8s" repeatCount="indefinite" path="M0 0 C-72 -46, -72 46, 0 0 C-72 -46, -72 46, 0 0 C72 -46, 72 46, 0 0 C72 -46, 72 46, 0 0"></animateMotion>
               <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
               <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.6">
                 <animate attributeName="fill" dur="8s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c" keyTimes="0;0.5;0.5001;0.99;1"></animate>
@@ -7804,8 +7929,8 @@ const paperFigureTemplates = {
           </g>
         </g>
 
-        <path class="figure-arrow dashed automata-projection" d="M474 246 V306"></path>
-        <text class="figure-small automata-projection-label" x="490" y="282">p</text>
+        <path class="figure-arrow dashed automata-projection" d="M488 148 H506"></path>
+        <text class="figure-small automata-projection-label" x="497" y="133">p</text>
       </g>
     </svg>`,
   "games-coalgebras": grundyFigureTemplate(),
@@ -8140,6 +8265,66 @@ function updateGrundyAlgebraPanel(root, state, activeIds) {
   root.dataset.grundyMexValue = isReady ? String(mexValue) : "";
 }
 
+function clearGrundyTransfer(root, state) {
+  if (state?.transferTimer) window.clearTimeout(state.transferTimer);
+  if (state) {
+    state.transferTimer = null;
+    state.lastTransferKey = "";
+  }
+  root.querySelectorAll(".grundy-transfer-ball").forEach((ball) => ball.remove());
+  root.querySelectorAll(".grundy-node.is-receiving").forEach((node) => node.classList.remove("is-receiving"));
+}
+
+function animateGrundyMexTransfer(root, state, activeIds) {
+  const activeNodeId = [...activeIds][0] || "";
+  const focusedNode = state.focusId ? grundyGameNodeMap.get(state.focusId) : grundyGameNodeMap.get(activeNodeId);
+  if (!focusedNode || typeof window === "undefined") {
+    clearGrundyTransfer(root, state);
+    return;
+  }
+  if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+
+  const transferKey = `${state.step}:${state.focusId || ""}:${focusedNode.id}:${focusedNode.value}`;
+  if (state.lastTransferKey === transferKey) return;
+  clearGrundyTransfer(root, state);
+  state.lastTransferKey = transferKey;
+
+  state.transferTimer = window.setTimeout(() => {
+    state.transferTimer = null;
+    if (!root.isConnected || state.lastTransferKey !== transferKey) return;
+    const source = root.querySelector(`[data-grundy-natural="${focusedNode.value}"]`);
+    const targetNode = root.querySelector(`[data-grundy-node="${focusedNode.id}"]`);
+    const target = targetNode?.querySelector(".grundy-node-shell");
+    if (!source || !target) return;
+
+    const rootRect = root.getBoundingClientRect();
+    const sourceRect = source.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    const fromX = sourceRect.left + sourceRect.width / 2 - rootRect.left;
+    const fromY = sourceRect.top + sourceRect.height / 2 - rootRect.top;
+    const toX = targetRect.left + targetRect.width / 2 - rootRect.left;
+    const toY = targetRect.top + targetRect.height / 2 - rootRect.top;
+    const arc = Math.max(36, Math.min(92, Math.abs(fromX - toX) * 0.14));
+    const size = Math.max(28, Math.min(42, sourceRect.width, targetRect.width));
+    const ball = document.createElement("span");
+    ball.className = `grundy-transfer-ball ${focusedNode.value === 0 ? "is-zero" : "is-positive"}`;
+    ball.textContent = String(focusedNode.value);
+    ball.style.setProperty("--from-x", `${fromX}px`);
+    ball.style.setProperty("--from-y", `${fromY}px`);
+    ball.style.setProperty("--mid-x", `${(fromX + toX) / 2}px`);
+    ball.style.setProperty("--mid-y", `${Math.min(fromY, toY) - arc}px`);
+    ball.style.setProperty("--to-x", `${toX}px`);
+    ball.style.setProperty("--to-y", `${toY}px`);
+    ball.style.setProperty("--grundy-transfer-size", `${size}px`);
+    targetNode.classList.add("is-receiving");
+    root.append(ball);
+    ball.addEventListener("animationend", () => {
+      ball.remove();
+      targetNode.classList.remove("is-receiving");
+    }, { once: true });
+  }, 330);
+}
+
 function updateGrundyPlayControl(root) {
   const state = grundyFigureStates.get(root);
   const play = root.querySelector('[data-grundy-action="play"]');
@@ -8196,6 +8381,7 @@ function renderGrundyStep(root) {
   const slider = root.querySelector("[data-grundy-slider]");
   if (slider) slider.value = String(step);
   updateGrundyAlgebraPanel(root, state, activeIds);
+  animateGrundyMexTransfer(root, state, activeIds);
   updateGrundyPanel(root, state, activeIds);
 }
 
@@ -8262,6 +8448,7 @@ function ensureGrundyControls(root) {
 function initializeGrundyFigure(root, options = {}) {
   const previous = grundyFigureStates.get(root);
   if (previous?.timer) window.clearInterval(previous.timer);
+  if (previous?.transferTimer) window.clearTimeout(previous.transferTimer);
 
   const max = Number(root.dataset.grundyMax || grundyFinalStep);
   const state = {
@@ -8269,6 +8456,8 @@ function initializeGrundyFigure(root, options = {}) {
     step: Math.max(0, Math.min(max, Number(options.initialStep ?? root.dataset.grundyStep ?? 0))),
     focusId: "",
     timer: null,
+    transferTimer: null,
+    lastTransferKey: "",
     playing: false,
     intervalMs: options.intervalMs || 1000
   };
@@ -8665,7 +8854,7 @@ function openPaperDiagram(paper) {
 function appendActionLinks(parent, records) {
   if (!records || !records.length) return;
   const actions = el("div", "action-links");
-  records.forEach(([label, href]) => actions.append(link(label, href, "action-link")));
+  records.forEach(([label, href]) => actions.append(link(symbolicCloudPenLabel(label), href, "action-link")));
   parent.append(actions);
 }
 
@@ -9411,7 +9600,8 @@ function renderNotes() {
     const meta = el("div", "note-meta");
     if (kind === "cloud" || kind === "pen") {
       const badge = el("span", `note-kind-badge note-${kind}-badge`, kindLabel);
-      badge.dataset.icon = kindIcon || (kind === "cloud" ? "☁︎" : "🖊️");
+      if (kindIcon && kindIcon !== kindLabel) badge.dataset.icon = kindIcon;
+      if (kindIcon && kindIcon === kindLabel) badge.classList.add("is-symbol");
       meta.append(badge);
     }
     const dateLabel = noteDateLabel(note);
