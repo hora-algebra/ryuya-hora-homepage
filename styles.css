@@ -2495,6 +2495,7 @@ a.position-link:hover {
 .connected-match,
 .connected-match .figure-line,
 .connected-match .figure-node,
+.connected-root-square,
 .connected-correspondence-arrow,
 .connected-top-edge,
 .connected-top-root {
@@ -2532,6 +2533,12 @@ a.position-link:hover {
 
 .connected-top-root {
   stroke-width: 2.8;
+}
+
+.connected-root-square {
+  fill: rgba(231, 239, 232, 0.95);
+  stroke: rgba(43, 52, 43, 0.74);
+  stroke-width: 2;
 }
 
 .connected-divider {
@@ -5473,6 +5480,7 @@ a.position-link:hover {
   .connected-match,
   .connected-match .figure-line,
   .connected-match .figure-node,
+  .connected-root-square,
   .connected-correspondence-arrow,
   .connected-top-edge,
   .connected-top-root {

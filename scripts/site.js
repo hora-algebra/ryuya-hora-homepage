@@ -6029,7 +6029,7 @@ function completelyConnectedFigureTemplate() {
         </defs>
         <g transform="translate(62 48)">
           <path class="figure-line connected-top-edge" d="M130 0 L60 54 M130 0 L130 54 M130 0 L214 54"></path>
-          <circle class="figure-node pale connected-top-root" cx="130" cy="0" r="11"></circle>
+          <rect class="connected-root-square connected-top-root" x="119" y="-11" width="22" height="22"></rect>
           <g class="connected-match" data-connected-left="a">
             <path class="figure-line" d="M60 54 L28 108 M60 54 L92 108 M28 108 L8 162 M28 108 L48 162 M92 108 L72 162 M92 108 L112 162"></path>
             <circle class="figure-node soft" cx="60" cy="54" r="11"></circle>
@@ -6058,18 +6058,18 @@ function completelyConnectedFigureTemplate() {
         <g transform="translate(446 102)">
           <g class="connected-match" data-connected-right="a">
             <path class="figure-line" d="M58 0 L26 54 M58 0 L90 54 M26 54 L6 108 M26 54 L46 108 M90 54 L70 108 M90 54 L110 108"></path>
-            <circle class="figure-node soft" cx="58" cy="0" r="11"></circle>
+            <rect class="connected-root-square" x="47" y="-11" width="22" height="22"></rect>
             <circle class="figure-node" cx="26" cy="54" r="11"></circle><circle class="figure-node" cx="90" cy="54" r="11"></circle>
             <circle class="figure-node" cx="6" cy="108" r="11"></circle><circle class="figure-node" cx="46" cy="108" r="11"></circle><circle class="figure-node" cx="70" cy="108" r="11"></circle><circle class="figure-node" cx="110" cy="108" r="11"></circle>
           </g>
           <g class="connected-match" data-connected-right="b">
             <path class="figure-line" d="M148 0 L148 54"></path>
-            <circle class="figure-node soft" cx="148" cy="0" r="11"></circle>
+            <rect class="connected-root-square" x="137" y="-11" width="22" height="22"></rect>
             <circle class="figure-node" cx="148" cy="54" r="11"></circle>
           </g>
           <g class="connected-match" data-connected-right="c">
             <path class="figure-line" d="M230 0 L230 54 M230 54 L210 108 M230 54 L250 108"></path>
-            <circle class="figure-node soft" cx="230" cy="0" r="11"></circle>
+            <rect class="connected-root-square" x="219" y="-11" width="22" height="22"></rect>
             <circle class="figure-node" cx="230" cy="54" r="11"></circle>
             <circle class="figure-node" cx="210" cy="108" r="11"></circle><circle class="figure-node" cx="250" cy="108" r="11"></circle>
           </g>
