@@ -2696,37 +2696,30 @@ a.position-link:hover {
   text-transform: uppercase;
 }
 
-.lawvere-thermo-card,
-.lawvere-thermo-panel {
+.lawvere-pairing-card,
+.lawvere-readout-card {
   fill: rgba(255, 253, 248, 0.92);
   stroke: rgba(43, 52, 43, 0.18);
   stroke-width: 1.7;
 }
 
-.lawvere-thermo-card.warm {
-  fill: rgba(247, 236, 224, 0.92);
-  stroke: rgba(138, 77, 52, 0.26);
-}
-
-.lawvere-thermo-panel {
-  fill: rgba(236, 244, 239, 0.84);
-  stroke: rgba(44, 111, 99, 0.26);
-}
-
-.lawvere-expression-thread {
-  fill: none;
-  stroke: rgba(43, 52, 43, 0.55);
-  stroke-linecap: round;
+.lawvere-readout-card.is-selected {
+  fill: rgba(232, 240, 234, 0.94);
+  stroke: rgba(44, 111, 99, 0.46);
   stroke-width: 2.4;
 }
 
-.lawvere-expression-thread.compact {
-  stroke: rgba(138, 77, 52, 0.56);
+.lawvere-coordinate-rail {
+  fill: none;
+  stroke: rgba(43, 52, 43, 0.24);
+  stroke-dasharray: 3 7;
+  stroke-linecap: round;
+  stroke-width: 2;
 }
 
 .lawvere-bead {
   stroke: #fffdf8;
-  stroke-width: 2.6;
+  stroke-width: 2.8;
 }
 
 .lawvere-bead.green {
@@ -2745,51 +2738,81 @@ a.position-link:hover {
   fill: #c8d26a;
 }
 
-.lawvere-thermo-arrow {
-  stroke: rgba(44, 111, 99, 0.86);
-  stroke-width: 2.6;
-}
-
-.lawvere-thermo-tube {
-  fill: #fffdf8;
-  stroke: rgba(43, 52, 43, 0.38);
-  stroke-width: 2;
-}
-
-.lawvere-thermo-fill,
-.lawvere-thermo-bulb,
-.lawvere-thermo-mercury {
-  fill: #c7783d;
-  stroke: rgba(138, 77, 52, 0.76);
-  stroke-width: 1.8;
-}
-
-.lawvere-thermo-ticks path {
+.lawvere-pairing-stream,
+.lawvere-readout-cable {
   fill: none;
-  stroke: rgba(43, 52, 43, 0.52);
   stroke-linecap: round;
-  stroke-width: 1.7;
+  stroke-linejoin: round;
+  stroke-width: 4.4;
 }
 
-.lawvere-thermo-ticks text {
-  fill: #4a4f49;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  text-anchor: start;
+.lawvere-pairing-stream {
+  opacity: 0.55;
 }
 
-.lawvere-lock rect {
+.lawvere-readout-cable {
+  opacity: 0.72;
+}
+
+.lawvere-pairing-stream.green,
+.lawvere-readout-cable.green {
+  stroke: #5c9a7b;
+}
+
+.lawvere-pairing-stream.blue,
+.lawvere-readout-cable.blue {
+  stroke: #5e7fa9;
+}
+
+.lawvere-pairing-stream.warm,
+.lawvere-readout-cable.warm {
+  stroke: #c7783d;
+}
+
+.lawvere-pairing-arrow {
+  stroke: rgba(44, 111, 99, 0.74);
+  stroke-width: 2.8;
+}
+
+.lawvere-machine {
+  fill: rgba(236, 244, 239, 0.92);
+  stroke: rgba(44, 111, 99, 0.35);
+  stroke-width: 2.2;
+}
+
+.lawvere-machine-mouth {
+  fill: rgba(236, 244, 239, 0.92);
+  stroke: rgba(44, 111, 99, 0.35);
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.lawvere-machine-core {
+  fill: rgba(255, 253, 248, 0.8);
+  stroke: rgba(47, 83, 111, 0.48);
+  stroke-width: 2.2;
+}
+
+.lawvere-packed-point {
+  fill: #25342d;
+  stroke: #fffdf8;
+  stroke-width: 3.2;
+}
+
+.lawvere-packed-label {
   fill: #fffdf8;
-  stroke: rgba(138, 77, 52, 0.78);
-  stroke-width: 2;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 700;
+  text-anchor: middle;
 }
 
-.lawvere-lock path {
+.lawvere-gear {
   fill: none;
-  stroke: rgba(138, 77, 52, 0.78);
+  stroke: rgba(47, 83, 111, 0.42);
   stroke-linecap: round;
-  stroke-width: 3;
+  stroke-width: 2.8;
 }
 
 .c-red {
@@ -4162,12 +4185,20 @@ a.position-link:hover {
   min-height: clamp(218px, 21vw, 260px);
 }
 
+.activities-timeline-track {
+  min-height: clamp(132px, 12vw, 170px);
+}
+
 .paper-timeline-track .home-year-tick::before {
   height: 94px;
 }
 
 .document-timeline-track .home-year-tick::before {
   height: 154px;
+}
+
+.activities-timeline-track .home-year-tick::before {
+  height: 74px;
 }
 
 .home-timeline-year-row {
@@ -5306,6 +5337,10 @@ a.position-link:hover {
     min-height: 220px;
   }
 
+  .activities-timeline-track {
+    min-height: 160px;
+  }
+
   .home-timeline-lane-label {
     left: 12px;
     font-size: 0.68rem;
@@ -5461,6 +5496,10 @@ a.position-link:hover {
   .home-timeline-track {
     min-height: 210px;
   }
+
+  .activities-timeline-track {
+    min-height: 150px;
+  }
 }
 
 @media (max-height: 520px) and (min-width: 700px) and (max-width: 980px) {
@@ -5504,6 +5543,10 @@ a.position-link:hover {
 
   .home-timeline-track {
     min-height: 200px;
+  }
+
+  .activities-timeline-track {
+    min-height: 145px;
   }
 }
 

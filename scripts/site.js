@@ -1259,9 +1259,11 @@ const i18nText = {
     "Talks and slides.": "Talks and slides.",
     "Timeline": "タイムライン",
     "Research Timeline": "研究タイムライン",
+    "Activities Timeline": "活動タイムライン",
     "Documents Timeline": "資料タイムライン",
     "Paper Timeline": "論文タイムライン",
     "Talk Timeline": "発表タイムライン",
+    "Activities by date.": "活動の時系列。",
     "Places": "場所",
     "Visits": "訪問",
     "Visit Map": "訪問地図",
@@ -1696,6 +1698,7 @@ const translatableTextSelector = [
   "h3",
   "h4",
   ".lead",
+  ".section-head > .muted",
   ".categories-tokyo-lead",
   ".section-link",
   ".site-footer p",
@@ -4667,6 +4670,78 @@ function renderHomeTimeline() {
   root.append(timelineScrollFrame(track));
 }
 
+function activitiesTimelineRecords() {
+  return homeTimelineActivityRecords()
+    .filter((record) => Number.isFinite(record.time))
+    .sort((a, b) => a.time - b.time || a.title.localeCompare(b.title));
+}
+
+function activitiesTimelineNodeLayout(records, firstTime, lastTime) {
+  const layout = new Map();
+  const offsets = [-10, -5, 0, 5, 10];
+  const buckets = new Map();
+  records.forEach((record) => {
+    const x = timelinePosition(record.time, firstTime, lastTime, 0, 1);
+    const bucket = Math.round(x / 2.75);
+    const stack = buckets.get(bucket) || 0;
+    buckets.set(bucket, stack + 1);
+    layout.set(record, { x, offset: offsets[stack % offsets.length], lane: 0 });
+  });
+  return layout;
+}
+
+function renderActivitiesTimeline() {
+  const root = document.querySelector("#activities-timeline");
+  if (!root) return;
+  root.replaceChildren();
+
+  const records = activitiesTimelineRecords();
+  if (!records.length) {
+    root.append(el("p", "empty-state", "No timeline entries yet."));
+    return;
+  }
+
+  const times = records.map((record) => record.time);
+  const firstTime = Math.min(...times);
+  const lastTime = Math.max(...times);
+  const pointLayout = activitiesTimelineNodeLayout(records, firstTime, lastTime);
+  const track = el("div", "home-timeline-track activities-timeline-track");
+
+  const yearRow = el("div", "home-timeline-year-row");
+  const firstYear = new Date(firstTime).getUTCFullYear();
+  const lastYear = new Date(lastTime).getUTCFullYear();
+  for (let year = firstYear; year <= lastYear; year += 1) {
+    const position = timelinePosition(timelineUtc(year, 0, 1), firstTime, lastTime, 0, 1);
+    const tick = el("span", "home-year-tick", year);
+    tick.style.setProperty("--x", Math.max(0, Math.min(100, position)));
+    yearRow.append(tick);
+  }
+  track.append(yearRow);
+
+  const today = timelineToday();
+  if (today >= firstTime && today <= lastTime) {
+    const now = el("span", "home-timeline-now");
+    now.style.setProperty("--x", timelinePosition(today, firstTime, lastTime, 0, 1));
+    now.setAttribute("aria-label", "Now");
+    now.setAttribute("title", "Now");
+    track.append(now);
+  }
+
+  const lane = el("div", "home-timeline-lane kind-activity");
+  lane.style.setProperty("--lane", 0);
+  lane.append(
+    el("div", "home-timeline-lane-label kind-activity", homeTimelineKindLabel("activity")),
+    el("div", "home-timeline-lane-rail")
+  );
+  track.append(lane);
+
+  records.forEach((record) => {
+    track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
+  });
+
+  root.append(timelineScrollFrame(track));
+}
+
 function documentTimelineNoteRecords() {
   return sortedNoteRecords([...overleafNoteRecords(), ...siteData.notes])
     .map((note) => {
@@ -5015,7 +5090,35 @@ function uiIconSvg(key) {
     return svg;
   }
 
-  if (normalizedKey === "cv" || normalizedKey === "paper") {
+  if (normalizedKey === "cv") {
+    svg.append(
+      shape("path", {
+        d: "M6.4 4.3h7.4l4 4v11.1c0 .9-.7 1.6-1.6 1.6H7.8c-.9 0-1.6-.7-1.6-1.6V5.9c0-.9.7-1.6 1.6-1.6Z",
+        fill: "#fffdf8",
+        stroke: "currentColor",
+        "stroke-width": "1.6",
+        "stroke-linejoin": "round"
+      }),
+      shape("path", {
+        d: "M13.6 4.7V8.4h3.8",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-width": "1.6",
+        "stroke-linejoin": "round"
+      }),
+      shape("path", {
+        d: "M10.8 13.2C10.4 12.5 9.7 12.1 8.9 12.1C7.7 12.1 6.9 13 6.9 14.2C6.9 15.5 7.7 16.4 8.9 16.4C9.8 16.4 10.4 16 10.8 15.3M12.4 12.2L14.1 16.3L15.8 12.2",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.15"
+      })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "paper") {
     svg.append(
       shape("path", { d: "M7 4.5h7l4 4v11A1.5 1.5 0 0 1 16.5 21h-9A1.5 1.5 0 0 1 6 19.5v-13A2 2 0 0 1 8 4.5Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
       line({ d: "M13.9 4.9V9h4.1" }),
@@ -5185,37 +5288,68 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "orcid") {
     svg.append(
-      shape("circle", { cx: "12", cy: "12", r: "8", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
-      shape("circle", { cx: "9.1", cy: "8.2", r: "0.9", fill: "currentColor" }),
-      line({ d: "M9.1 10.4V15.7" }),
-      shape("circle", { cx: "14.9", cy: "12", r: "2.8", fill: "none", stroke: "currentColor", "stroke-width": "1.9" })
+      shape("circle", { cx: "12", cy: "12", r: "9", fill: "#a6ce39" }),
+      shape("circle", { cx: "8.2", cy: "7.7", r: "0.95", fill: "#fff" }),
+      shape("rect", { x: "7.35", y: "10.1", width: "1.7", height: "6.2", rx: "0.35", fill: "#fff" }),
+      shape("path", {
+        d: "M11.1 7.7h3.05c2.45 0 4.15 1.65 4.15 4.25s-1.7 4.35-4.15 4.35H11.1Z",
+        fill: "#fff"
+      }),
+      shape("path", {
+        d: "M13.2 9.75v4.5h.95c1.18 0 2.02-.86 2.02-2.25c0-1.38-.84-2.25-2.02-2.25Z",
+        fill: "#a6ce39"
+      })
     );
     return svg;
   }
 
   if (normalizedKey === "arxiv") {
     svg.append(
-      line({ d: "M6 18.2L11.3 5.8L18 18.2" }),
-      line({ d: "M8 13.5H16" }),
-      line({ d: "M14.3 10.2L18 18.2" })
+      shape("path", {
+        d: "M5.2 8.5C6.3 7.6 7.6 7.4 8.7 8.1C10.1 9 9.8 10.7 8.7 11.4C7.9 11.9 6.9 11.9 5.8 11.7M8.7 8.1L8.7 15.9",
+        fill: "none",
+        stroke: "#5b5853",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.35"
+      }),
+      shape("path", {
+        d: "M10.4 6.2L13.15 12L10.15 17.8H12.6L14.45 14L16.25 17.8H18.7L15.75 12L18.45 6.2H16.15L14.48 9.85L12.78 6.2Z",
+        fill: "#b31b1b"
+      }),
+      shape("path", {
+        d: "M19 8.3V15.8M20.9 8.3L22 15.8",
+        fill: "none",
+        stroke: "#5b5853",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.35"
+      })
     );
     return svg;
   }
 
   if (normalizedKey === "nlab") {
     svg.append(
-      line({ d: "M7 15.8L12 8.4L17 15.8" }),
-      shape("circle", { cx: "7", cy: "15.8", r: "1.9", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
-      shape("circle", { cx: "12", cy: "8.4", r: "1.9", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
-      shape("circle", { cx: "17", cy: "15.8", r: "1.9", fill: "none", stroke: "currentColor", "stroke-width": "1.7" })
+      shape("path", { d: "M11.7 19.2C10 15.7 9.65 12.4 10.6 8.1", fill: "none", stroke: "#226622", "stroke-width": "1.25", "stroke-linecap": "round" }),
+      shape("ellipse", { cx: "11.2", cy: "7.2", rx: "2.15", ry: "4.15", fill: "#226622", transform: "rotate(-12 11.2 7.2)" }),
+      shape("ellipse", { cx: "7.4", cy: "10.1", rx: "1.85", ry: "3.7", fill: "#2f8a2f", transform: "rotate(-55 7.4 10.1)" }),
+      shape("ellipse", { cx: "14.7", cy: "10.2", rx: "1.85", ry: "3.8", fill: "#2f8a2f", transform: "rotate(45 14.7 10.2)" }),
+      shape("ellipse", { cx: "8.8", cy: "15.1", rx: "1.65", ry: "3.35", fill: "#226622", transform: "rotate(-40 8.8 15.1)" }),
+      shape("ellipse", { cx: "15.1", cy: "15.1", rx: "1.65", ry: "3.35", fill: "#226622", transform: "rotate(40 15.1 15.1)" })
     );
     return svg;
   }
 
   if (normalizedKey === "researchmap") {
     svg.append(
-      shape("path", { d: "M12 20s5-5.4 5-9a5 5 0 0 0-10 0c0 3.6 5 9 5 9Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
-      shape("circle", { cx: "12", cy: "11", r: "1.7", fill: "currentColor" })
+      shape("circle", { cx: "7.4", cy: "9.1", r: "2.6", fill: "#2b95d6" }),
+      shape("circle", { cx: "16.5", cy: "8.2", r: "2.45", fill: "#64b646" }),
+      shape("circle", { cx: "14.4", cy: "16.2", r: "2.75", fill: "#2b95d6" }),
+      shape("path", { d: "M9.7 9L14.2 8.5M8.9 10.9L12.6 14.4M15.8 10.5L15 13.6", fill: "none", stroke: "#2d5b73", "stroke-width": "1.15", "stroke-linecap": "round" }),
+      shape("circle", { cx: "10.7", cy: "12.1", r: "0.8", fill: "#fff" }),
+      shape("circle", { cx: "13.2", cy: "11.2", r: "0.8", fill: "#fff" }),
+      shape("circle", { cx: "12.7", cy: "14", r: "0.8", fill: "#fff" })
     );
     return svg;
   }
@@ -5834,8 +5968,8 @@ const grundyNumberLineValues = [0, 1, 2, 3, 4];
 
 const grundyStepCopy = {
   0: {
-    focus: "game graph",
-    options: "moves point downward; values are computed upward",
+    focus: "game",
+    options: "",
     mex: "choose a state or press Play",
     status: "This is the recursive calculation from the paper, not the heap chain."
   },
@@ -5939,10 +6073,8 @@ function grundyFigureTemplate() {
             <path d="M 0 0 L 10 5 L 0 10 z"></path>
           </marker>
         </defs>
-        <text class="grundy-title" x="34" y="37">game graph</text>
-        <text class="grundy-formula" x="34" y="62">moves go down; recursion goes up</text>
+        <text class="grundy-title" x="34" y="37">game</text>
         <text class="grundy-title" x="420" y="37">mex algebra</text>
-        <text class="grundy-formula" x="420" y="62">one state per step</text>
         <rect class="grundy-game-frame" x="28" y="76" width="330" height="340" rx="12"></rect>
         <path class="grundy-divider" d="M386 78 V418"></path>
         <text class="grundy-level-label" x="44" y="93">top</text>
@@ -5963,8 +6095,8 @@ function grundyFigureTemplate() {
       </div>
       <div class="grundy-panel" aria-live="polite">
         <span class="grundy-panel-label">Grundy recursion</span>
-        <strong data-grundy-focus>game graph</strong>
-        <span data-grundy-options>moves point downward; values are computed upward</span>
+        <strong data-grundy-focus>game</strong>
+        <span data-grundy-options></span>
         <span data-grundy-mex>choose a state or press Play</span>
         <span data-grundy-status>This is the recursive calculation from the paper.</span>
       </div>
@@ -6154,70 +6286,76 @@ const paperFigureTemplates = {
   "completely-connected": completelyConnectedFigureTemplate(),
   "lawvere-first": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
-      <title id="fig-lawvere-first-title">Length thermometer for minimal expressions</title>
-      <desc id="fig-lawvere-first-desc">A long expression is reduced to a minimal expression, measured by a length thermometer that keeps the construction controlled.</desc>
+      <title id="fig-lawvere-first-title">Pairing machine</title>
+      <desc id="fig-lawvere-first-desc">A pairing system packs many coordinates into one point, and the maps p_i read the coordinates back out.</desc>
       <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <text class="figure-small lawvere-caption" x="380" y="34">length thermometer for minimal expressions</text>
+      <text class="figure-small lawvere-caption" x="380" y="34">pairing system packs coordinates into one point</text>
 
-      <g transform="translate(54 92)">
-        <rect class="lawvere-thermo-card" x="0" y="0" width="202" height="182" rx="12"></rect>
-        <text class="figure-label" x="101" y="42">expression</text>
-        <text class="figure-small" x="101" y="70">possibly too long</text>
-        <path class="lawvere-expression-thread" d="M44 112 C64 78, 95 142, 120 104 S166 94, 170 132"></path>
-        <circle class="lawvere-bead green" cx="44" cy="112" r="12"></circle>
-        <circle class="lawvere-bead blue" cx="75" cy="93" r="12"></circle>
-        <circle class="lawvere-bead warm" cx="103" cy="125" r="12"></circle>
-        <circle class="lawvere-bead pale" cx="132" cy="103" r="12"></circle>
-        <circle class="lawvere-bead green" cx="158" cy="111" r="12"></circle>
-        <circle class="lawvere-bead blue" cx="170" cy="132" r="12"></circle>
-        <text class="figure-small" x="101" y="160">six pieces</text>
-      </g>
-
-      <path class="figure-arrow lawvere-thermo-arrow" d="M268 184 C304 184, 310 184, 340 184"></path>
-      <text class="figure-small" x="304" y="162">minimize</text>
-
-      <g transform="translate(340 68)">
-        <rect class="lawvere-thermo-panel" x="0" y="0" width="112" height="246" rx="14"></rect>
-        <text class="figure-small" x="56" y="28">length</text>
-        <g transform="translate(56 52)">
-          <rect class="lawvere-thermo-tube" x="-14" y="0" width="28" height="148" rx="14"></rect>
-          <rect class="lawvere-thermo-fill" x="-10" y="66" width="20" height="82" rx="10"></rect>
-          <circle class="lawvere-thermo-bulb" cx="0" cy="164" r="27"></circle>
-          <path class="lawvere-thermo-mercury" d="M-10 133 V164 A10 10 0 0 0 10 164 V133 Z"></path>
-          <g class="lawvere-thermo-ticks">
-            <path d="M18 2 H42"></path><text x="50" y="7">m</text>
-            <path d="M18 36 H36"></path><text x="50" y="41">4</text>
-            <path d="M18 72 H42"></path><text x="50" y="77">3</text>
-            <path d="M18 108 H36"></path><text x="50" y="113">2</text>
-            <path d="M18 144 H42"></path><text x="50" y="149">1</text>
-          </g>
+      <g transform="translate(54 80)">
+        <rect class="lawvere-pairing-card" x="0" y="0" width="180" height="216" rx="12"></rect>
+        <text class="figure-label" x="90" y="38">coordinates</text>
+        <path class="lawvere-coordinate-rail" d="M50 70 V174"></path>
+        <g class="lawvere-coordinate-row" transform="translate(50 70)">
+          <circle class="lawvere-bead green" cx="0" cy="0" r="12"></circle>
+          <text class="figure-small" x="-28" y="5">x0</text>
         </g>
-        <text class="figure-small" x="56" y="228">minimal length</text>
-      </g>
-
-      <path class="figure-arrow lawvere-thermo-arrow" d="M464 184 C496 184, 504 184, 536 184"></path>
-      <text class="figure-small" x="500" y="162">bounded</text>
-
-      <g transform="translate(548 92)">
-        <rect class="lawvere-thermo-card warm" x="0" y="0" width="158" height="182" rx="12"></rect>
-        <text class="figure-label" x="79" y="42">minimal</text>
-        <text class="figure-small" x="79" y="70">core</text>
-        <path class="lawvere-expression-thread compact" d="M39 116 C60 96, 79 136, 119 108"></path>
-        <circle class="lawvere-bead green" cx="39" cy="116" r="13"></circle>
-        <circle class="lawvere-bead warm" cx="79" cy="128" r="13"></circle>
-        <circle class="lawvere-bead blue" cx="119" cy="108" r="13"></circle>
-        <g class="lawvere-lock" transform="translate(79 154)">
-          <rect x="-18" y="-8" width="36" height="28" rx="5"></rect>
-          <path d="M-11 -8 V-18 C-11 -30, 11 -30, 11 -18 V-8"></path>
+        <g class="lawvere-coordinate-row" transform="translate(50 104)">
+          <circle class="lawvere-bead blue" cx="0" cy="0" r="12"></circle>
+          <text class="figure-small" x="-28" y="5">x1</text>
+        </g>
+        <g class="lawvere-coordinate-row" transform="translate(50 138)">
+          <circle class="lawvere-bead warm" cx="0" cy="0" r="12"></circle>
+          <text class="figure-small" x="-28" y="5">x2</text>
+        </g>
+        <g class="lawvere-coordinate-row" transform="translate(50 172)">
+          <circle class="lawvere-bead pale" cx="0" cy="0" r="12"></circle>
+          <text class="figure-small" x="-28" y="5">...</text>
         </g>
       </g>
 
-      <path class="figure-line dashed" d="M110 324 H650"></path>
-      <text class="figure-small" x="380" y="350">bounded length is the control knob in the construction</text>
-    </svg>
-    <span class="figure-math small" style="left: 15.8%; top: 73%;">\\(f\\otimes\\sigma\\)</span>
-    <span class="figure-math small" style="left: 52.2%; top: 56%;">\\(\\operatorname{Le}(t)\\le m\\)</span>
-    <span class="figure-math small" style="left: 82.5%; top: 73%;">\\(t_{\\min}\\)</span>`,
+      <path class="figure-arrow lawvere-pairing-arrow" d="M238 188 C270 188, 286 188, 308 188"></path>
+      <path class="lawvere-pairing-stream green" d="M116 150 C176 114, 238 154, 308 154"></path>
+      <path class="lawvere-pairing-stream blue" d="M116 184 C180 180, 238 178, 308 184"></path>
+      <path class="lawvere-pairing-stream warm" d="M116 218 C176 254, 238 222, 308 214"></path>
+
+      <g transform="translate(306 72)">
+        <rect class="lawvere-machine" x="0" y="0" width="182" height="230" rx="18"></rect>
+        <path class="lawvere-machine-mouth" d="M0 82 L-34 116 L0 150 Z"></path>
+        <text class="figure-small" x="91" y="34">pairing</text>
+        <text class="figure-label" x="91" y="64">machine</text>
+        <circle class="lawvere-machine-core" cx="91" cy="126" r="46"></circle>
+        <circle class="lawvere-packed-point" cx="91" cy="126" r="18"></circle>
+        <text class="lawvere-packed-label" x="91" y="132">x</text>
+        <path class="lawvere-gear" d="M91 75 V96 M91 156 V177 M40 126 H61 M121 126 H142 M55 90 L70 105 M112 147 L127 162 M55 162 L70 147 M112 105 L127 90"></path>
+        <text class="figure-small" x="91" y="202">one packed point</text>
+      </g>
+
+      <path class="lawvere-readout-cable green" d="M490 144 C536 106, 585 96, 630 96"></path>
+      <path class="lawvere-readout-cable blue" d="M490 184 C542 184, 586 184, 630 184"></path>
+      <path class="lawvere-readout-cable warm" d="M490 224 C536 262, 585 270, 630 270"></path>
+      <text class="figure-small" x="532" y="124">p0</text>
+      <text class="figure-small" x="532" y="174">p1</text>
+      <text class="figure-small" x="532" y="246">p2</text>
+
+      <g transform="translate(618 62)">
+        <rect class="lawvere-readout-card" x="0" y="0" width="104" height="74" rx="10"></rect>
+        <circle class="lawvere-bead green" cx="28" cy="37" r="13"></circle>
+        <text class="figure-label" x="68" y="44">x0</text>
+      </g>
+      <g transform="translate(618 151)">
+        <rect class="lawvere-readout-card is-selected" x="0" y="0" width="104" height="74" rx="10"></rect>
+        <circle class="lawvere-bead blue" cx="28" cy="37" r="13"></circle>
+        <text class="figure-label" x="68" y="44">x1</text>
+      </g>
+      <g transform="translate(618 240)">
+        <rect class="lawvere-readout-card" x="0" y="0" width="104" height="74" rx="10"></rect>
+        <circle class="lawvere-bead warm" cx="28" cy="37" r="13"></circle>
+        <text class="figure-label" x="68" y="44">x2</text>
+      </g>
+
+      <path class="figure-line dashed" d="M116 336 H644"></path>
+      <text class="figure-small" x="380" y="362">one point stores the tuple; readout maps recover slots</text>
+    </svg>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
@@ -6308,14 +6446,14 @@ const paperDiagramNotes = {
     results: ["The paper gives a site-theoretic way to build a Grothendieck topos with a long adjoint pattern."]
   },
   "lawvere-first": {
-    heading: "Inhabited Objects And Quotients",
-    keywords: ["Lawvere problem", "quotient topos", "inhabited object classifier", "rigidity"],
+    heading: "Pairing System",
+    keywords: ["Lawvere problem", "pairing functions", "rigid structure", "quotient topoi"],
     concepts: [
-      ["Inhabited object classifier", "The topos iOC classifies inhabited objects through Geom(E, iOC) equivalent to E_inhabited."],
-      ["Inhabited-topos-rigid object", "An inhabited object whose corresponding morphism to iOC is connected, hence gives a quotient topos."],
-      ["Meta-rigidity of iOC", "Equivalences of iOC are forced to be trivial, so equivalent quotients force the original rigid objects to be isomorphic."]
+      ["Pairing system", "Maps p_i that let one point encode a whole tuple of coordinates."],
+      ["Readout maps", "Each p_i reads the i-th coordinate back from the packed point."],
+      ["Rigid encoding", "The packing device is combined with rigid relations so the resulting quotient topoi stay distinct."]
     ],
-    results: ["Proper class many inhabited-topos-rigid objects in one Grothendieck topos give proper class many non-equivalent quotient topoi."]
+    results: ["Pairing functions and rigid relational structures drive the construction of a Grothendieck topos with proper class many quotient topoi."]
   },
   "lawvere-fourth": {
     heading: "Pullback And Levels",
@@ -8257,6 +8395,7 @@ renderExplore();
 renderWebApps();
 renderResearchMap();
 renderHomeTimeline();
+renderActivitiesTimeline();
 renderPaperTimeline();
 renderCategoriesTokyoMap();
 renderPapers();
