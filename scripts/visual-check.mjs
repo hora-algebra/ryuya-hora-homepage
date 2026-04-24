@@ -24,15 +24,25 @@ const pages = [
 ];
 
 const viewports = [
-  ["ultrawide", 2560, 1080],
-  ["desktop", 1440, 1000],
-  ["short-desktop", 1440, 760],
-  ["laptop", 1280, 720],
-  ["tablet-landscape", 1024, 768],
-  ["tablet", 820, 1180],
-  ["mobile", 390, 844],
+  ["minimum-mobile", 320, 568],
   ["small-mobile", 360, 740],
-  ["mobile-landscape", 844, 390]
+  ["mobile", 390, 844],
+  ["large-mobile", 430, 932],
+  ["small-mobile-landscape", 667, 375],
+  ["mobile-landscape", 844, 390],
+  ["large-mobile-landscape", 932, 430],
+  ["tablet", 820, 1180],
+  ["tablet-landscape", 1024, 768],
+  ["ipad-pro", 1024, 1366],
+  ["laptop", 1280, 720],
+  ["short-desktop", 1440, 760],
+  ["desktop", 1440, 1000],
+  ["wide-desktop", 1728, 1117],
+  ["full-hd", 1920, 1080],
+  ["wide-short", 1920, 540],
+  ["ultrawide", 2560, 1080],
+  ["curved-ultrawide", 3440, 1440],
+  ["super-ultrawide", 5120, 1440]
 ];
 
 const languages = [
@@ -178,7 +188,7 @@ const measureScript = String.raw`(() => {
     ".publication-figure", ".publication-title", ".publication-meta span", ".note-thumbnail",
     ".note-thumb-body", ".note-thumb-title", ".note-meta span", ".problem-card",
     ".problem-feature", ".talk-timeline", ".talk-timeline-card", ".talk-timeline-track",
-    ".home-timeline", ".home-timeline-track", ".home-timeline-lane", ".home-timeline-paper-span", ".home-timeline-node",
+    ".timeline-scroll-frame", ".home-timeline", ".home-timeline-track", ".home-timeline-lane", ".home-timeline-paper-span", ".home-timeline-node",
     ".theme-graph", ".theme-result", ".categories-tokyo-map", ".categories-map-svg",
     ".explore-card", ".plan-item", ".speculative-post",
     ".web-app-card", ".web-app-media", ".web-app-body",
@@ -195,6 +205,19 @@ const measureScript = String.raw`(() => {
         element: labelOf(el),
         rect: rectOf(el),
         detail: "scroll " + el.scrollWidth + "x" + el.scrollHeight + ", client " + el.clientWidth + "x" + el.clientHeight
+      });
+    }
+  });
+
+  [...document.querySelectorAll(".home-timeline-track, .talk-timeline-track")].filter(visible).forEach((track) => {
+    const frame = track.closest(".timeline-scroll-frame");
+    const minReadableWidth = track.classList.contains("talk-timeline-track") ? 620 : 640;
+    if (track.clientWidth < minReadableWidth && (!frame || frame.scrollWidth <= frame.clientWidth + 4)) {
+      issues.push({
+        type: "timeline-compressed",
+        element: labelOf(track),
+        rect: rectOf(track),
+        detail: "timeline width " + track.clientWidth + " below readable threshold " + minReadableWidth
       });
     }
   });
@@ -300,7 +323,7 @@ try {
           width,
           height,
           deviceScaleFactor: 1,
-          mobile: viewportName === "mobile"
+          mobile: /mobile|phone/.test(viewportName)
         });
         const url = pageUrl(relativePath, query);
         const load = cdp.once("Page.loadEventFired");

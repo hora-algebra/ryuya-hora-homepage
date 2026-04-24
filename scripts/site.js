@@ -3616,6 +3616,19 @@ function selectTalkTimelineRecord(key, shouldScroll = false) {
   if (shouldScroll && record) document.getElementById(talkRecordAnchor(record))?.scrollIntoView({ block: "center" });
 }
 
+function timelineScrollFrame(track, position = 100) {
+  const frame = el("div", "timeline-scroll-frame");
+  frame.tabIndex = 0;
+  frame.append(track);
+  requestAnimationFrame(() => {
+    const maxScroll = frame.scrollWidth - frame.clientWidth;
+    if (maxScroll <= 4) return;
+    const clampedPosition = Math.max(0, Math.min(100, position));
+    frame.scrollLeft = (maxScroll * clampedPosition) / 100;
+  });
+  return frame;
+}
+
 function renderTalkTimeline() {
   const root = document.querySelector("#talk-timeline");
   if (!root) return;
@@ -3693,7 +3706,7 @@ function renderTalkTimeline() {
   );
   appendActionLinks(card, slideLinksForTalk(selected));
 
-  root.append(track, card);
+  root.append(timelineScrollFrame(track, selectedPosition), card);
 }
 
 function talkMapRecordHref(record) {
@@ -4316,46 +4329,9 @@ function projectCategoriesPoint(projection, lon, lat) {
   return [Number(x.toFixed(1)), Number(y.toFixed(1))];
 }
 
-function appendCategoriesVenueButtons(item, venue, labelX, labelY) {
+function categoriesVenuePointLink(venue) {
   const meetings = venue.meetings || [];
-  if (!meetings.length) return;
-  const buttonWidth = 14;
-  const buttonHeight = 11;
-  const gap = 3;
-  const buttonsY = Number((labelY + 8).toFixed(1));
-  const totalWidth = meetings.length * buttonWidth + Math.max(0, meetings.length - 1) * gap;
-  const startX = venue.dx < 0 ? Number((labelX - totalWidth).toFixed(1)) : labelX;
-  const group = svgEl("g", { class: "categories-map-venue-buttons" });
-
-  meetings.forEach((meeting, index) => {
-    const x = Number((startX + index * (buttonWidth + gap)).toFixed(1));
-    const linkNode = svgEl("a", {
-      class: "categories-map-venue-button-link",
-      href: meeting.href,
-      "aria-label": `${meeting.title} page`
-    });
-    linkNode.append(
-      svgEl("title", {}, meeting.title),
-      svgEl("rect", {
-        class: "categories-map-venue-button",
-        x,
-        y: buttonsY,
-        width: buttonWidth,
-        height: buttonHeight,
-        rx: 4
-      }),
-      svgEl("text", {
-        class: "categories-map-venue-button-label",
-        x: x + buttonWidth / 2,
-        y: buttonsY + buttonHeight / 2 + 0.2,
-        "text-anchor": "middle",
-        "dominant-baseline": "middle"
-      }, meeting.label)
-    );
-    group.append(linkNode);
-  });
-
-  item.append(group);
+  return meetings[meetings.length - 1] || null;
 }
 
 function appendCategoriesVenueDots(svg, projection, options = {}) {
@@ -4369,11 +4345,22 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
     const labelX = Number((x + venue.dx).toFixed(1));
     const labelY = Number((y + venue.dy).toFixed(1));
     const item = svgEl("g", { class: `categories-map-venue venue-${venue.id}` });
+    const pointLink = categoriesVenuePointLink(venue);
+    const pointNode = pointLink ? svgEl("a", {
+      class: "categories-map-venue-dot-link",
+      href: pointLink.href,
+      "aria-label": `${venue.name}: open ${pointLink.title}`
+    }) : svgEl("g", { class: "categories-map-venue-dot-link" });
+    pointNode.append(
+      svgEl("title", {}, pointLink ? `${venue.name}: ${pointLink.title}` : venue.name),
+      svgEl("circle", { class: "categories-map-venue-hit", cx: x, cy: y, r: haloRadius + 1.8 }),
+      svgEl("circle", { class: "categories-map-venue-halo", cx: x, cy: y, r: haloRadius }),
+      svgEl("circle", { class: "categories-map-venue-dot", cx: x, cy: y, r: dotRadius })
+    );
     item.append(
       svgEl("title", {}, venue.name),
       svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${labelX} ${labelY}` }),
-      svgEl("circle", { class: "categories-map-venue-halo", cx: x, cy: y, r: haloRadius }),
-      svgEl("circle", { class: "categories-map-venue-dot", cx: x, cy: y, r: dotRadius }),
+      pointNode,
       svgEl("text", {
         class: "categories-map-venue-label",
         x: labelX,
@@ -4382,7 +4369,6 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
         "dominant-baseline": "middle"
       }, venue.label)
     );
-    appendCategoriesVenueButtons(item, venue, labelX, labelY);
     group.append(item);
   });
   svg.append(group);
@@ -4878,7 +4864,7 @@ function renderHomeTimeline() {
       track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
   });
 
-  root.append(track);
+  root.append(timelineScrollFrame(track));
 }
 
 function renderPaperTimeline() {
@@ -4938,7 +4924,7 @@ function renderPaperTimeline() {
     track.append(renderHomeTimelinePaperSpan(record, paperLayout.get(record)));
   });
 
-  root.append(legend, track);
+  root.append(legend, timelineScrollFrame(track));
   applyLanguage(root);
 }
 
@@ -5507,20 +5493,20 @@ function renderResearchMap() {
 }
 
 const grundyGameNodes = [
-  { id: "V1", tex: "V_1", x: 126, y: 88, stage: 5, value: 0, options: ["W1", "W2", "W3"] },
-  { id: "V2", tex: "V_2", x: 250, y: 88, stage: 5, value: 3, options: ["W2", "X2", "X3"] },
-  { id: "W1", tex: "W_1", x: 82, y: 138, stage: 4, value: 1, options: ["X1", "X2"] },
-  { id: "W3", tex: "W_3", x: 188, y: 138, stage: 3, value: 2, options: ["Y1", "Z3"] },
-  { id: "W2", tex: "W_2", x: 294, y: 138, stage: 4, value: 1, options: ["X2", "X3"] },
-  { id: "X1", tex: "X_1", x: 82, y: 188, stage: 3, value: 0, options: ["Y1", "Y2"] },
-  { id: "X2", tex: "X_2", x: 188, y: 188, stage: 3, value: 2, options: ["Y2", "Z1"] },
-  { id: "X3", tex: "X_3", x: 294, y: 188, stage: 3, value: 0, options: ["Y3"] },
-  { id: "Y1", tex: "Y_1", x: 82, y: 238, stage: 2, value: 1, options: ["Z1"] },
-  { id: "Y2", tex: "Y_2", x: 188, y: 238, stage: 2, value: 1, options: ["Z2", "Z3"] },
-  { id: "Y3", tex: "Y_3", x: 294, y: 238, stage: 2, value: 1, options: ["Z3"] },
-  { id: "Z1", tex: "Z_1", x: 82, y: 288, stage: 1, value: 0, options: [] },
-  { id: "Z2", tex: "Z_2", x: 188, y: 288, stage: 1, value: 0, options: [] },
-  { id: "Z3", tex: "Z_3", x: 294, y: 288, stage: 1, value: 0, options: [] }
+  { id: "V1", tex: "V_1", x: 126, y: 92, stage: 5, value: 0, options: ["W1", "W2", "W3"] },
+  { id: "V2", tex: "V_2", x: 250, y: 92, stage: 5, value: 3, options: ["W2", "X2", "X3"] },
+  { id: "W1", tex: "W_1", x: 82, y: 168, stage: 4, value: 1, options: ["X1", "X2"] },
+  { id: "W3", tex: "W_3", x: 188, y: 168, stage: 3, value: 2, options: ["Y1", "Z3"] },
+  { id: "W2", tex: "W_2", x: 294, y: 168, stage: 4, value: 1, options: ["X2", "X3"] },
+  { id: "X1", tex: "X_1", x: 82, y: 244, stage: 3, value: 0, options: ["Y1", "Y2"] },
+  { id: "X2", tex: "X_2", x: 188, y: 244, stage: 3, value: 2, options: ["Y2", "Z1"] },
+  { id: "X3", tex: "X_3", x: 294, y: 244, stage: 3, value: 0, options: ["Y3"] },
+  { id: "Y1", tex: "Y_1", x: 82, y: 320, stage: 2, value: 1, options: ["Z1"] },
+  { id: "Y2", tex: "Y_2", x: 188, y: 320, stage: 2, value: 1, options: ["Z2", "Z3"] },
+  { id: "Y3", tex: "Y_3", x: 294, y: 320, stage: 2, value: 1, options: ["Z3"] },
+  { id: "Z1", tex: "Z_1", x: 82, y: 396, stage: 1, value: 0, options: [] },
+  { id: "Z2", tex: "Z_2", x: 188, y: 396, stage: 1, value: 0, options: [] },
+  { id: "Z3", tex: "Z_3", x: 294, y: 396, stage: 1, value: 0, options: [] }
 ];
 
 const grundyGameNodeMap = new Map(grundyGameNodes.map((node) => [node.id, node]));
@@ -5672,7 +5658,7 @@ function grundyFigureTemplate() {
     .join("");
   return `
     <div class="grundy-figure" data-grundy-figure data-grundy-max="${grundyFinalStep}">
-      <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-title fig-games-desc">
+      <svg viewBox="0 0 760 456" role="img" aria-labelledby="fig-games-title fig-games-desc">
         <title id="fig-games-title">Recursive calculation of Grundy numbers</title>
         <desc id="fig-games-desc">A finite impartial game is drawn on the left, and the corresponding mex algebra is shown on the right.</desc>
         <defs>
@@ -5684,10 +5670,10 @@ function grundyFigureTemplate() {
         <text class="grundy-formula" x="34" y="62">moves go down; recursion goes up</text>
         <text class="grundy-title" x="420" y="37">mex algebra</text>
         <text class="grundy-formula" x="420" y="62">one state per step</text>
-        <rect class="grundy-game-frame" x="28" y="76" width="330" height="234" rx="12"></rect>
-        <path class="grundy-divider" d="M386 78 V312"></path>
+        <rect class="grundy-game-frame" x="28" y="76" width="330" height="340" rx="12"></rect>
+        <path class="grundy-divider" d="M386 78 V418"></path>
         <text class="grundy-level-label" x="44" y="93">top</text>
-        <text class="grundy-level-label" x="44" y="293">terminal</text>
+        <text class="grundy-level-label" x="44" y="401">terminal</text>
         <g class="grundy-bridges">${bridges}</g>
         <g class="grundy-edges">${edges}</g>
         <g class="grundy-nodes">${nodes}</g>
@@ -6502,72 +6488,86 @@ function appendActionLinks(parent, records) {
 
 function currentPositionIcon(icon) {
   const svg = svgEl("svg", {
-    viewBox: "0 0 24 24",
+    viewBox: "0 0 32 32",
     "aria-hidden": "true",
     focusable: "false"
   });
   svg.classList.add("position-icon-svg");
+  svg.classList.add(`position-icon-svg--${icon}`);
 
-  const line = (attrs) => svgEl("path", { ...attrs, fill: "none", stroke: "currentColor", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "1.8" });
+  const line = (attrs) => svgEl("path", { ...attrs, fill: "none", stroke: "currentColor", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2.2" });
   const shape = (tag, attrs) => svgEl(tag, attrs);
 
   if (icon === "building") {
     svg.append(
-      line({ d: "M4 20H20" }),
-      line({ d: "M6 20V10" }),
-      line({ d: "M12 20V10" }),
-      line({ d: "M18 20V10" }),
-      line({ d: "M4 10H20" }),
-      line({ d: "M4 10L12 5L20 10" })
+      shape("polygon", {
+        points: "8,8 24,8 24,11 14,11 24,21 24,24 8,24 8,21 18,21 8,11",
+        fill: "currentColor"
+      })
     );
     return svg;
   }
 
   if (icon === "flask") {
     svg.append(
-      line({ d: "M10 3V8L5 18A2 2 0 0 0 6.8 21H17.2A2 2 0 0 0 19 18L14 8V3" }),
-      line({ d: "M8.5 13H15.5" }),
-      line({ d: "M7.5 16C8.8 15.1 10 15.1 11.2 16C12.4 16.9 13.7 16.9 15 16C16.1 15.2 17 15.2 18 16" })
+      shape("rect", { x: "7", y: "8", width: "4.4", height: "16", rx: "1.4", fill: "currentColor" }),
+      shape("rect", { x: "20.6", y: "8", width: "4.4", height: "16", rx: "1.4", fill: "currentColor" }),
+      shape("rect", { x: "11.2", y: "14.2", width: "10", height: "3.6", rx: "1.2", fill: "currentColor" }),
+      shape("circle", { cx: "23.1", cy: "8.9", r: "2.15", fill: "#8ad6ff" })
     );
     return svg;
   }
 
   if (icon === "badge") {
     svg.append(
-      shape("circle", { cx: "12", cy: "10", r: "5.3", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
-      line({ d: "M10.2 15.1L8.7 20L12 18.2L15.3 20L13.8 15.1" }),
-      line({ d: "M10 10.1L11.3 11.5L14.2 8.7" })
+      shape("rect", { x: "7.3", y: "6.8", width: "3.2", height: "18.4", rx: "1.2", fill: "currentColor" }),
+      shape("path", {
+        d: "M10.2 16.1L22.7 7.7M10.2 16.1L22.9 24.3",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "3"
+      }),
+      shape("rect", { x: "7.3", y: "25.7", width: "16.8", height: "2.3", rx: "1.15", fill: "#d3a336" })
     );
     return svg;
   }
 
   if (icon === "network") {
     svg.append(
-      line({ d: "M7.2 8.1L12 12" }),
-      line({ d: "M16.8 8.1L12 12" }),
-      line({ d: "M12 12L12 16.2" }),
-      shape("circle", { cx: "7.2", cy: "8.1", r: "2.2", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
-      shape("circle", { cx: "16.8", cy: "8.1", r: "2.2", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
-      shape("circle", { cx: "12", cy: "16.2", r: "2.2", fill: "none", stroke: "currentColor", "stroke-width": "1.8" })
+      line({ d: "M9 20.2L16 11.6L23 20.2Z" }),
+      shape("circle", { cx: "9", cy: "20.2", r: "2.55", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "16", cy: "11.6", r: "2.55", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "23", cy: "20.2", r: "2.55", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "16", cy: "20.2", r: "1.55", fill: "currentColor" })
     );
     return svg;
   }
 
   if (icon === "mentor") {
     svg.append(
-      shape("circle", { cx: "12", cy: "8.1", r: "2.4", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
-      line({ d: "M7.1 19.4C8.2 16.8 10 15.5 12 15.5C14 15.5 15.8 16.8 16.9 19.4" }),
-      line({ d: "M17 5.5H20V10" }),
-      line({ d: "M20 5.5L15.8 9.7" })
+      shape("polygon", { points: "8,20 12,18 12,10 8,12", fill: "currentColor", opacity: "0.74" }),
+      shape("polygon", { points: "14,22 18,20 18,9 14,11", fill: "currentColor" }),
+      shape("polygon", { points: "20,24 24,22 24,12 20,14", fill: "currentColor", opacity: "0.84" }),
+      shape("circle", { cx: "11.4", cy: "8.4", r: "2.2", fill: "#7ed0de" })
     );
     return svg;
   }
 
   svg.append(
-    line({ d: "M4.6 6.4H19.4V18.8H4.6Z" }),
-    line({ d: "M7.5 9.1H16.5" }),
-    line({ d: "M7.5 12H16.5" }),
-    line({ d: "M7.5 14.9H13.6" })
+    shape("circle", {
+      cx: "16",
+      cy: "16.7",
+      r: "8.3",
+      fill: "none",
+      stroke: "currentColor",
+      "stroke-width": "1.8",
+      "stroke-opacity": "0.24"
+    }),
+    line({ d: "M9 10.5H23" }),
+    line({ d: "M16 10.5V23" }),
+    line({ d: "M12.2 10.5C12.2 13 13 14.6 14.5 15.7" })
   );
   return svg;
 }
@@ -6579,6 +6579,7 @@ function renderCurrentPositions() {
     siteData.currentPositions.forEach((record) => {
       const item = el("li", "position-item");
       const iconWrap = el("span", "position-icon");
+      iconWrap.classList.add(`position-icon--${record.icon}`);
       iconWrap.append(currentPositionIcon(record.icon));
       const content = record.href ? link(record.text, record.href, "position-link") : el("span", "position-link", record.text);
       item.append(iconWrap, content);
@@ -6676,6 +6677,7 @@ function renderPaperRecord(paper, options = {}) {
     figureButton.innerHTML = template;
     applyFigureMarkerIds(figureButton, paper.figure, "paper-arrow");
     initializeGrundyFigures(figureButton, { autoplay: true, intervalMs: 1100 });
+    initializeLawverePullbackFigures(figureButton, { autoplay: true });
     figureButton.addEventListener("click", () => openPaperDiagram(paper));
     item.append(figureButton);
   }
@@ -6723,6 +6725,7 @@ function renderPapers() {
   if (!root) return;
   updatePaperViewButtons();
   stopGrundyFigures(root);
+  stopLawverePullbackFigures(root);
   root.replaceChildren();
 
   const filtered = paperListingRecords().filter((paper) => {
@@ -6768,6 +6771,7 @@ function renderHomePapers() {
   const root = document.querySelector("#home-paper-list");
   if (!root) return;
   stopGrundyFigures(root);
+  stopLawverePullbackFigures(root);
   root.replaceChildren();
   paperListingRecords().slice(0, 4).forEach((paper) => root.append(renderPaperRecord(paper)));
   typesetMath(root);
