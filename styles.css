@@ -1899,26 +1899,6 @@ a.position-link:hover {
   opacity: 1;
 }
 
-.grundy-bridge {
-  fill: none;
-  stroke: rgba(43, 52, 43, 0.1);
-  stroke-dasharray: 3 6;
-  stroke-linecap: round;
-  stroke-width: 1.2;
-  opacity: 0;
-  transition: opacity 220ms ease, stroke 220ms ease, stroke-width 220ms ease;
-}
-
-.grundy-bridge.is-known {
-  opacity: 0.2;
-}
-
-.grundy-bridge.is-active {
-  stroke: #bf6b32;
-  stroke-width: 2.1;
-  opacity: 0.72;
-}
-
 .grundy-node {
   cursor: pointer;
 }
@@ -2067,74 +2047,6 @@ a.position-link:hover {
   font-weight: 900;
 }
 
-.grundy-algebra-row {
-  display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 7px;
-  align-items: center;
-  min-height: 18px;
-  padding: 2px 5px;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  color: rgba(37, 52, 45, 0.48);
-  font-family: "Times New Roman", Times, serif;
-  font-size: clamp(0.52rem, 0.84vw, 0.7rem);
-  line-height: 1.04;
-  opacity: 0.52;
-  transition: background 220ms ease, border-color 220ms ease, color 220ms ease, opacity 220ms ease, transform 220ms ease;
-}
-
-.grundy-algebra-row[role="button"] {
-  cursor: pointer;
-}
-
-.grundy-algebra-row:focus-visible {
-  outline: 2px solid rgba(44, 111, 99, 0.32);
-  outline-offset: 2px;
-}
-
-.grundy-algebra-row.is-known {
-  color: #25342d;
-  opacity: 0.82;
-}
-
-.grundy-algebra-row.is-computed {
-  background: rgba(237, 245, 241, 0.62);
-  border-color: rgba(44, 111, 99, 0.14);
-}
-
-.grundy-algebra-row.is-active {
-  border-color: rgba(191, 107, 50, 0.48);
-  background: #fff0df;
-  color: #7b421f;
-  opacity: 1;
-  transform: translateX(-2px);
-}
-
-.grundy-algebra-row.is-p-state:not(.is-active) {
-  border-color: rgba(49, 92, 168, 0.18);
-  background: rgba(234, 241, 255, 0.76);
-}
-
-.grundy-algebra-row.is-n-state:not(.is-active) {
-  border-color: rgba(182, 74, 61, 0.18);
-  background: rgba(255, 240, 237, 0.76);
-}
-
-.grundy-algebra-state {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.68em;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-}
-
-.grundy-algebra-formula {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .grundy-panel {
   position: absolute;
   right: 14px;
@@ -2212,14 +2124,6 @@ a.position-link:hover {
 
 .publication-figure .grundy-mex-result {
   font-size: 0.68rem;
-}
-
-.publication-figure .grundy-algebra-row {
-  grid-template-columns: 22px minmax(0, 1fr);
-  gap: 4px;
-  min-height: 13px;
-  padding: 1px 3px;
-  font-size: clamp(0.38rem, 0.78vw, 0.55rem);
 }
 
 .lawvere-pullback-figure {
@@ -2785,6 +2689,102 @@ a.position-link:hover {
   font-weight: 850;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.lawvere-thermo-card,
+.lawvere-thermo-panel {
+  fill: rgba(255, 253, 248, 0.92);
+  stroke: rgba(43, 52, 43, 0.18);
+  stroke-width: 1.7;
+}
+
+.lawvere-thermo-card.warm {
+  fill: rgba(247, 236, 224, 0.92);
+  stroke: rgba(138, 77, 52, 0.26);
+}
+
+.lawvere-thermo-panel {
+  fill: rgba(236, 244, 239, 0.84);
+  stroke: rgba(44, 111, 99, 0.26);
+}
+
+.lawvere-expression-thread {
+  fill: none;
+  stroke: rgba(43, 52, 43, 0.55);
+  stroke-linecap: round;
+  stroke-width: 2.4;
+}
+
+.lawvere-expression-thread.compact {
+  stroke: rgba(138, 77, 52, 0.56);
+}
+
+.lawvere-bead {
+  stroke: #fffdf8;
+  stroke-width: 2.6;
+}
+
+.lawvere-bead.green {
+  fill: #5c9a7b;
+}
+
+.lawvere-bead.blue {
+  fill: #5e7fa9;
+}
+
+.lawvere-bead.warm {
+  fill: #c7783d;
+}
+
+.lawvere-bead.pale {
+  fill: #c8d26a;
+}
+
+.lawvere-thermo-arrow {
+  stroke: rgba(44, 111, 99, 0.86);
+  stroke-width: 2.6;
+}
+
+.lawvere-thermo-tube {
+  fill: #fffdf8;
+  stroke: rgba(43, 52, 43, 0.38);
+  stroke-width: 2;
+}
+
+.lawvere-thermo-fill,
+.lawvere-thermo-bulb,
+.lawvere-thermo-mercury {
+  fill: #c7783d;
+  stroke: rgba(138, 77, 52, 0.76);
+  stroke-width: 1.8;
+}
+
+.lawvere-thermo-ticks path {
+  fill: none;
+  stroke: rgba(43, 52, 43, 0.52);
+  stroke-linecap: round;
+  stroke-width: 1.7;
+}
+
+.lawvere-thermo-ticks text {
+  fill: #4a4f49;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  text-anchor: start;
+}
+
+.lawvere-lock rect {
+  fill: #fffdf8;
+  stroke: rgba(138, 77, 52, 0.78);
+  stroke-width: 2;
+}
+
+.lawvere-lock path {
+  fill: none;
+  stroke: rgba(138, 77, 52, 0.78);
+  stroke-linecap: round;
+  stroke-width: 3;
 }
 
 .c-red {

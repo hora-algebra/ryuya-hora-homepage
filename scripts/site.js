@@ -111,10 +111,10 @@ const siteData = {
     { text: "Tutor at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
   ],
   pastPositions: [
-    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April-July 2025.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
-    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024-March 2026.", href: "https://www.ms.u-tokyo.ac.jp/" },
-    { text: "Graduate student supported by FoPM, October 2022-March 2024.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
-    { text: "Research Assistant at National Institute of Informatics, November 2020-March 2021.", href: "https://www.nii.ac.jp/en/" }
+    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
+    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", href: "https://www.ms.u-tokyo.ac.jp/" },
+    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
+    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", href: "https://www.nii.ac.jp/en/" }
   ],
   topics: [
     ["Category theory", "https://ncatlab.org/nlab/show/category+theory"],
@@ -563,8 +563,8 @@ const siteData = {
         { title: "Local state classifier for algebraic language theory", venue: "Groupe de travail topossique, Centre Lagrange, Paris, 16 May", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
         { title: "Local state classifier for automata theory", venue: "Semantique seminar, Salle 3071, IRIF, Paris, 27 May", href: "https://www.irif.fr/seminaires/semantique/index" },
         { title: "A topos for regular language theory", venue: "Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June", href: "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/" },
-        { title: "Topoi of automata", venue: "CT2025, Building B2, Faculty of Arts, Masaryk University, Brno, 17 July", href: "https://conference.math.muni.cz/ct2025/" },
-        { title: "Topoi of automata", venue: "SLACS2025, Shared Room 321, Akita University, 31 October", href: "https://sites.google.com/view/slacs2025akita/home" },
+        { title: "Topoi of automata", venue: "CT 2025, Building B2, Faculty of Arts, Masaryk University, Brno, 17 July", href: "https://conference.math.muni.cz/ct2025/" },
+        { title: "Topoi of automata", venue: "SLACS 2025, Shared Room 321, Akita University, 31 October", href: "https://sites.google.com/view/slacs2025akita/home" },
         { title: "Connectedness and full subcategories of topoi", venue: "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 28 November", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/index_e.html" },
         { title: "The axiom of choice and local state classifier", venue: "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 5 December", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic/" }
       ]
@@ -572,10 +572,10 @@ const siteData = {
     {
       year: "2024",
       items: [
-        { title: "Combinatorial games as recursive coalgebras", venue: "CSCAT2024, Multimedia Room 1, Science Building 4, Chiba University, 15 March", href: "https://sites.google.com/faculty.gs.chiba-u.jp/cscat2024/home" },
+        { title: "Combinatorial games as recursive coalgebras", venue: "CSCAT 2024, Multimedia Room 1, Science Building 4, Chiba University, 15 March", href: "https://sites.google.com/faculty.gs.chiba-u.jp/cscat2024/home" },
         { title: "Introduction to topos theory", venue: "代数トポロジー若手の会, Nagoya University, 16 March" },
         { title: "圏論の利用と濫用", venue: "18th AFSA Colloquium, NII Kanda Lab, Tokyo, 25 April", href: "https://afsa.jp/g-en/" },
-        { title: "Quotient toposes of discrete dynamical systems", venue: "CT2024, Facultade de Matemáticas, Universidade de Santiago de Compostela, 28 June", href: "https://www.usc.gal/regaca/ct2024/" },
+        { title: "Quotient toposes of discrete dynamical systems", venue: "CT 2024, Facultade de Matemáticas, Universidade de Santiago de Compostela, 28 June", href: "https://www.usc.gal/regaca/ct2024/" },
         { title: "Topos theory as a tool of automata theory", venue: "Young Automata Theorists Gathering in Japan, Room 305, Akita University, 29 August", href: "https://sites.google.com/view/ciaa-preworkshop/home" },
         { title: "The colimit of all monomorphisms classifies hyperconnected geometric morphisms", venue: "Toposes in Mondovi, Circolo di Lettura, Palazzo del Governatore, 10 September", href: "https://ctta.igrothendieck.org/" },
         { title: "Quotient topoi and geometry of computation", venue: "AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November", href: "https://afsa.jp/afsa-2024_generalmeetingautumn/" }
@@ -584,7 +584,7 @@ const siteData = {
     {
       year: "2023",
       items: [
-        { title: "Internal parameterization of hyperconnected quotients", venue: "CSCAT2023, Room 478, Research Building 2, Kyoto University, 9 March", href: "https://sites.google.com/view/cscat2023" },
+        { title: "Internal parameterization of hyperconnected quotients", venue: "CSCAT 2023, Room 478, Research Building 2, Kyoto University, 9 March", href: "https://sites.google.com/view/cscat2023" },
         { title: "Internal parameterization of hyperconnected quotients", venue: "Australia Category Seminar, online, 19 April", href: "http://web.science.mq.edu.au/groups/coact/seminar/" },
         { title: "Grundy Numbers and Categories", venue: "Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj" },
         { title: "Internal parameterization of hyperconnected quotients", venue: "Category Theory 2023, Auditoires des Sciences, UCLouvain, 6 July", href: "https://sites.uclouvain.be/ct2023/" },
@@ -621,7 +621,7 @@ const siteData = {
     { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
     { title: "母関数の種", description: "数理空間トポス 2023年新歓", date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
     { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
-    { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT2026", date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
+    { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
     { title: "Older notes", description: "Older documents are collected on Notion.", language: "Japanese", file: "Notion archive", href: "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b" }
   ],
   speculativeNotes: [
@@ -695,18 +695,18 @@ const siteData = {
     {
       title: "Plans",
       items: [
-        { date: "2026-07", text: "July 2026: planning to attend ACT2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" },
-        { date: "2026-09-29", text: "September 29, 2026: give a talk at ItaCatFest.", href: "https://progetto-itaca.github.io/fests/fest26.html" }
+        { date: "2026-07", text: "July 2026: planning to attend ACT 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" },
+        { date: "2026-09-29", text: "September 29, 2026: give a talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" }
       ]
     },
     {
       title: "2026",
       items: [
         { date: "2026-01", text: "Submitted Ph.D. thesis.", href: "https://www.ms.u-tokyo.ac.jp/seminar/2026/sem26-042.html" },
-        { date: "2026-02-07 - 2026-02-08", text: "Organized and attended the 2nd Categories in Tokyo.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+        { date: "2026-02-07 - 2026-02-08", text: "Organized and attended Categories in Tokyo 2.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2026-02-22 - 2026-02-23", text: "Attended 20th CGP project.", href: "http://www.alg.cei.uec.ac.jp/itohiro/Games/" },
         { date: "2026-03-11", text: "Presented a poster with Ryoma Sin'ya at PPL 2026.", href: "https://jssst-ppl.org/workshop/2026/" },
-        { date: "2026-03-16 - 2026-03-17", text: "Gave a talk at CSCAT2026.", href: "https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html" },
+        { date: "2026-03-16 - 2026-03-17", text: "Gave a talk at CSCAT 2026.", href: "https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html" },
         { date: "2026-03-24", text: "Received Ph.D. as department representative at the graduation ceremony.", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
         { date: "2026-03-27", text: "Attended Workshop on Modal Logic.", href: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0" },
         { date: "2026-03-27", text: "Attended PCT seminar.", href: "https://pctseminar.github.io" },
@@ -723,11 +723,11 @@ const siteData = {
         { date: "2025-03-05", text: "Uploaded Lawvere's fourth open problem preprint.", href: "https://arxiv.org/abs/2503.03439" },
         { date: "2025-04-11 - 2025-06-26", text: "Visited Paris as a research associate at CTTA and visitor in Paris-Saclay University.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
         { date: "2025-05-27 - 2025-06-05", text: "Gave talks at IRIF and LIPN.", href: "https://www.irif.fr/seminaires/semantique/index" },
-        { date: "2025-07-17", text: "Gave a talk at CT2025.", href: "https://conference.math.muni.cz/ct2025/" },
+        { date: "2025-07-17", text: "Gave a talk at CT 2025.", href: "https://conference.math.muni.cz/ct2025/" },
         { date: "2025-10-10", text: "Wrote in 数学セミナー2025年11月号.", href: "https://www.nippyo.co.jp/shop/magazine/9611.html" },
         { date: "2025-10-18 - 2025-10-19", text: "Attended Takagi Lecture 2025.", href: "https://www.kurims.kyoto-u.ac.jp/~toshi/jjm/JJMJ/JJM_JHP/contents/takagi_jp/25th/index.htm" },
         { date: "2025-10-27", text: "Uploaded preprint on games as recursive coalgebras.", href: "https://arxiv.org/abs/2510.22886" },
-        { date: "2025-10-31", text: "Gave a talk at SLACS2025.", href: "https://sites.google.com/view/slacs2025akita/home" },
+        { date: "2025-10-31", text: "Gave a talk at SLACS 2025.", href: "https://sites.google.com/view/slacs2025akita/home" },
         { date: "2025-11-07", text: "Uploaded preprint on normalization of a subgroup.", href: "https://arxiv.org/abs/2511.05012" },
         { date: "2025-11-28 - 2025-12-05", text: "Gave talks at UTokyo Logic seminar.", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic/" }
       ]
@@ -736,12 +736,12 @@ const siteData = {
       title: "2024",
       items: [
         { date: "2024-04-25", text: "Spoke at AFSA.", href: "https://afsa.jp/g-en/" },
-        { date: "2024-05-18", text: "Organized the 0th conference of Categories in Tokyo.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
-        { date: "2024-06-28", text: "Gave a talk at CT2024 in Santiago de Compostela.", href: "https://www.usc.gal/regaca/ct2024/" },
-        { date: "2024-07-01 - 2024-07-05", text: "Attended TACL2024.", href: "https://iiia.csic.es/tacl2024/" },
+        { date: "2024-05-18", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+        { date: "2024-06-28", text: "Gave a talk at CT 2024 in Santiago de Compostela.", href: "https://www.usc.gal/regaca/ct2024/" },
+        { date: "2024-07-01 - 2024-07-05", text: "Attended TACL 2024.", href: "https://iiia.csic.es/tacl2024/" },
         { date: "2024-08", text: "Paper on quotient toposes of discrete dynamical systems appeared in JPAA.", href: "https://doi.org/10.1016/j.jpaa.2024.107657" },
         { date: "2024-11-10", text: "Uploaded Topoi of automata I.", href: "https://arxiv.org/abs/2411.06358" },
-        { date: "2024-11-23", text: "Organized the first conference of Categories in Tokyo.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+        { date: "2024-11-23", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2024-12-10", text: "Wrote for Advent Calendar 2024.", href: "https://adventar.org/calendars/10265" }
       ]
     },
@@ -767,7 +767,7 @@ const siteData = {
   awards: [
     { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
     { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
-    { text: "SLACS2025 presentation award, October 2025.", href: "https://sites.google.com/view/slacs2025akita/home" },
+    { text: "SLACS 2025 presentation award, October 2025.", href: "https://sites.google.com/view/slacs2025akita/home" },
     { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
     { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
     { text: "Faculty of Science encouragement award, The University of Tokyo, March 2022.", href: "https://warp.ndl.go.jp/info:ndljp/pid/12972979/www.s.u-tokyo.ac.jp/ja/awards/encouragement/R3.html" }
@@ -1402,7 +1402,7 @@ const i18nText = {
     "Recent Talks": "最近の発表",
     "All talks": "すべての発表",
     "Community": "コミュニティ",
-    "A category theory workshop in Tokyo that I founded and organize.": "私が発案し，運営している圏論集会です。",
+    "A category theory workshop in Tokyo that I founded and organize.": "私が発案し、運営している圏論集会です。",
     "A category theory workshop series and local research community around Tokyo. I am a founder and one of the organizers.":
       "東京周辺の category theory workshop series / local research community です。私は founder かつ organizer の一人です。",
     "Open Categories in Tokyo": "Categories in Tokyo を開く",
@@ -3004,7 +3004,7 @@ const talkLocationCatalog = [
 const oldActivitiesSource = "https://sites.google.com/view/ryuya-hora/activities";
 
 const activityVisitRecords = [
-  { date: "2026-02-07", title: "Organized and attended the 2nd Categories in Tokyo", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+  { date: "2026-02-07", title: "Organized and attended Categories in Tokyo 2", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2026-02-22", title: "Attended the 20th Combinatorial Games and Puzzle Project", locationId: "tokyo", kind: "attended", href: "http://www.alg.cei.uec.ac.jp/itohiro/Games/" },
   { date: "2026-03-27", title: "Attended Workshop on Modal Logic", locationId: "tokyo", kind: "attended", href: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0" },
   { date: "2026-03-27", title: "Attended PCT seminar", locationId: "tokyo", kind: "attended", href: "https://pctseminar.github.io" },
@@ -3017,16 +3017,16 @@ const activityVisitRecords = [
   { date: "2025-05", title: "Attended the first OxTop seminar at Oxford University", locationId: "oxford", kind: "attended", href: oldActivitiesSource },
   { date: "2025-06-26", title: "Finished CTTA Paris visit, 11 April to 26 June 2025", locationId: "paris", kind: "visit", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
   { date: "2025-10-18", title: "Attended Takagi Lecture 2025", locationId: "kyoto", kind: "attended", href: "https://www.kurims.kyoto-u.ac.jp/~toshi/jjm/JJMJ/JJM_JHP/contents/takagi_jp/25th/index.htm" },
-  { date: "2025-10-27", title: "Visited Akita University for SLACS2025", locationId: "akita", kind: "visit", href: "https://sites.google.com/view/slacs2025akita/home" },
+  { date: "2025-10-27", title: "Visited Akita University for SLACS 2025", locationId: "akita", kind: "visit", href: "https://sites.google.com/view/slacs2025akita/home" },
   { date: "2025-11-16", title: "Attended the Game theory seminar at Karuizawa seminar house", locationId: "karuizawa", kind: "attended", href: oldActivitiesSource },
   { date: "2025-11", title: "Attended a seminar by Ryoma Sin'ya at Hongo campus, The University of Tokyo", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
   { date: "2025-12", title: "Attended PCT seminar", locationId: "tokyo", kind: "attended", href: "https://pctseminar.github.io" },
   { date: "2025-12", title: "Attended TMU geometry seminar", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
-  { date: "2024-05-18", title: "Organized the 0th Categories in Tokyo", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+  { date: "2024-05-18", title: "Organized Categories in Tokyo 0", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2024-06", title: "Visited Queen Mary University of London", locationId: "london", kind: "visit", href: oldActivitiesSource },
-  { date: "2024-07-01", title: "Attended TACL2024 at Barcelona", locationId: "barcelona", kind: "attended", href: "https://iiia.csic.es/tacl2024/" },
+  { date: "2024-07-01", title: "Attended TACL 2024 at Barcelona", locationId: "barcelona", kind: "attended", href: "https://iiia.csic.es/tacl2024/" },
   { date: "2024-08", title: "Visited Kyoto RIMS", locationId: "kyoto", kind: "visit", href: oldActivitiesSource },
-  { date: "2024-11-23", title: "Organized the first Categories in Tokyo", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+  { date: "2024-11-23", title: "Organized Categories in Tokyo 1", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2024-11-30", title: "Gave a poster session talk at AFSA area meeting", locationId: "tokyo", kind: "poster", href: oldActivitiesSource },
   { date: "2024-12", title: "Attended courses on Automata and Class field theory by Prof. Uramoto at RIMS", locationId: "kyoto", kind: "attended", href: oldActivitiesSource },
   { date: "2023-02", title: "Attended FoPM symposium", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
@@ -6204,7 +6204,7 @@ function completelyConnectedFigureTemplate() {
     <div class="connected-figure" data-connected-correspondence>
       <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-connected-title fig-connected-desc">
         <title id="fig-connected-title">Rooted trees and rooted forests</title>
-        <desc id="fig-connected-desc">The three subtrees under the deleted top root correspond to the three components of the rooted forest.</desc>
+        <desc id="fig-connected-desc">A rooted tree is paired with its corresponding rooted forest.</desc>
         <defs>
           <marker id="arrow-connected" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z"></path>
@@ -6230,7 +6230,6 @@ function completelyConnectedFigureTemplate() {
             <circle class="figure-node" cx="214" cy="108" r="11"></circle>
             <circle class="figure-node" cx="194" cy="162" r="11"></circle><circle class="figure-node" cx="234" cy="162" r="11"></circle>
           </g>
-          <text class="figure-small" x="130" y="214">delete the top root</text>
           <text class="figure-label" x="130" y="250">rooted tree</text>
         </g>
         <path class="figure-line dashed connected-divider" d="M380 38 V330"></path>
@@ -6257,7 +6256,6 @@ function completelyConnectedFigureTemplate() {
             <circle class="figure-node" cx="230" cy="54" r="11"></circle>
             <circle class="figure-node" cx="210" cy="108" r="11"></circle><circle class="figure-node" cx="250" cy="108" r="11"></circle>
           </g>
-          <text class="figure-small" x="148" y="160">three components</text>
           <text class="figure-label" x="148" y="196">rooted forest</text>
         </g>
       </svg>
@@ -6321,54 +6319,70 @@ const paperFigureTemplates = {
   "completely-connected": completelyConnectedFigureTemplate(),
   "lawvere-first": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
-      <title id="fig-lawvere-first-title">One topos with many quotient topoi</title>
-      <desc id="fig-lawvere-first-desc">A single Grothendieck topos contains proper class many rigid inhabited objects, and these give proper class many distinct quotient topoi.</desc>
+      <title id="fig-lawvere-first-title">Length thermometer for minimal expressions</title>
+      <desc id="fig-lawvere-first-desc">A long expression is reduced to a minimal expression, measured by a length thermometer that keeps the construction controlled.</desc>
       <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <text class="figure-small lawvere-caption" x="380" y="38">one Grothendieck topos gives many quotient topoi</text>
+      <text class="figure-small lawvere-caption" x="380" y="34">length thermometer for minimal expressions</text>
 
-      <g transform="translate(54 118)">
-        <rect class="figure-node soft" x="0" y="0" width="170" height="126" rx="10"></rect>
-        <text class="figure-label" x="85" y="48">one topos</text>
-        <text class="figure-small" x="85" y="83">contains the data</text>
+      <g transform="translate(54 92)">
+        <rect class="lawvere-thermo-card" x="0" y="0" width="202" height="182" rx="12"></rect>
+        <text class="figure-label" x="101" y="42">expression</text>
+        <text class="figure-small" x="101" y="70">possibly too long</text>
+        <path class="lawvere-expression-thread" d="M44 112 C64 78, 95 142, 120 104 S166 94, 170 132"></path>
+        <circle class="lawvere-bead green" cx="44" cy="112" r="12"></circle>
+        <circle class="lawvere-bead blue" cx="75" cy="93" r="12"></circle>
+        <circle class="lawvere-bead warm" cx="103" cy="125" r="12"></circle>
+        <circle class="lawvere-bead pale" cx="132" cy="103" r="12"></circle>
+        <circle class="lawvere-bead green" cx="158" cy="111" r="12"></circle>
+        <circle class="lawvere-bead blue" cx="170" cy="132" r="12"></circle>
+        <text class="figure-small" x="101" y="160">six pieces</text>
       </g>
 
-      <path class="figure-arrow" d="M238 181 H300"></path>
-      <text class="figure-small" x="269" y="160">inside</text>
+      <path class="figure-arrow lawvere-thermo-arrow" d="M268 184 C304 184, 310 184, 340 184"></path>
+      <text class="figure-small" x="304" y="162">minimize</text>
 
-      <g transform="translate(310 92)">
-        <rect class="figure-node soft-2" x="0" y="0" width="178" height="178" rx="12"></rect>
-        <text class="figure-small" x="89" y="44">proper class many</text>
-        <text class="figure-label" x="89" y="76">rigid objects</text>
-        <g transform="translate(23 108)">
-          <rect class="lawvere-object-card" x="0" y="0" width="54" height="34" rx="6"></rect>
-          <rect class="lawvere-object-card" x="50" y="-14" width="54" height="34" rx="6"></rect>
-          <rect class="lawvere-object-card" x="100" y="0" width="54" height="34" rx="6"></rect>
-          <circle class="figure-dot" cx="18" cy="17" r="3.6"></circle>
-          <circle class="figure-dot" cx="36" cy="17" r="3.6"></circle>
-          <circle class="figure-dot" cx="68" cy="3" r="3.6"></circle>
-          <circle class="figure-dot" cx="86" cy="3" r="3.6"></circle>
-          <circle class="figure-dot" cx="118" cy="17" r="3.6"></circle>
-          <circle class="figure-dot" cx="136" cy="17" r="3.6"></circle>
+      <g transform="translate(340 68)">
+        <rect class="lawvere-thermo-panel" x="0" y="0" width="112" height="246" rx="14"></rect>
+        <text class="figure-small" x="56" y="28">length</text>
+        <g transform="translate(56 52)">
+          <rect class="lawvere-thermo-tube" x="-14" y="0" width="28" height="148" rx="14"></rect>
+          <rect class="lawvere-thermo-fill" x="-10" y="66" width="20" height="82" rx="10"></rect>
+          <circle class="lawvere-thermo-bulb" cx="0" cy="164" r="27"></circle>
+          <path class="lawvere-thermo-mercury" d="M-10 133 V164 A10 10 0 0 0 10 164 V133 Z"></path>
+          <g class="lawvere-thermo-ticks">
+            <path d="M18 2 H42"></path><text x="50" y="7">m</text>
+            <path d="M18 36 H36"></path><text x="50" y="41">4</text>
+            <path d="M18 72 H42"></path><text x="50" y="77">3</text>
+            <path d="M18 108 H36"></path><text x="50" y="113">2</text>
+            <path d="M18 144 H42"></path><text x="50" y="149">1</text>
+          </g>
+        </g>
+        <text class="figure-small" x="56" y="228">minimal length</text>
+      </g>
+
+      <path class="figure-arrow lawvere-thermo-arrow" d="M464 184 C496 184, 504 184, 536 184"></path>
+      <text class="figure-small" x="500" y="162">bounded</text>
+
+      <g transform="translate(548 92)">
+        <rect class="lawvere-thermo-card warm" x="0" y="0" width="158" height="182" rx="12"></rect>
+        <text class="figure-label" x="79" y="42">minimal</text>
+        <text class="figure-small" x="79" y="70">core</text>
+        <path class="lawvere-expression-thread compact" d="M39 116 C60 96, 79 136, 119 108"></path>
+        <circle class="lawvere-bead green" cx="39" cy="116" r="13"></circle>
+        <circle class="lawvere-bead warm" cx="79" cy="128" r="13"></circle>
+        <circle class="lawvere-bead blue" cx="119" cy="108" r="13"></circle>
+        <g class="lawvere-lock" transform="translate(79 154)">
+          <rect x="-18" y="-8" width="36" height="28" rx="5"></rect>
+          <path d="M-11 -8 V-18 C-11 -30, 11 -30, 11 -18 V-8"></path>
         </g>
       </g>
 
-      <path class="figure-arrow" d="M500 181 H560"></path>
-      <text class="figure-small" x="530" y="154">iOC</text>
-      <text class="figure-small" x="530" y="210">classifies</text>
-
-      <g transform="translate(574 118)">
-        <rect class="figure-node warm" x="0" y="0" width="140" height="126" rx="10"></rect>
-        <text class="figure-label" x="70" y="44">quotient</text>
-        <text class="figure-label" x="70" y="72">topoi</text>
-        <text class="figure-small" x="70" y="103">proper class many</text>
-      </g>
-
-      <path class="figure-line dashed" d="M116 306 H644"></path>
-      <text class="figure-small" x="380" y="334">rigidity keeps different objects from becoming the same quotient</text>
+      <path class="figure-line dashed" d="M110 324 H650"></path>
+      <text class="figure-small" x="380" y="350">bounded length is the control knob in the construction</text>
     </svg>
-    <span class="figure-math large" style="left: 16.5%; top: 48%;">\\(\\mathcal E_{\\mathcal L}\\)</span>
-    <span class="figure-math small" style="left: 52.5%; top: 63%;">\\(X_\\kappa,\\ldots\\)</span>
-    <span class="figure-math small" style="left: 85%; top: 65%;">\\(\\bar X_\\kappa,\\ldots\\)</span>`,
+    <span class="figure-math small" style="left: 15.8%; top: 73%;">\\(f\\otimes\\sigma\\)</span>
+    <span class="figure-math small" style="left: 52.2%; top: 56%;">\\(\\operatorname{Le}(t)\\le m\\)</span>
+    <span class="figure-math small" style="left: 82.5%; top: 73%;">\\(t_{\\min}\\)</span>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
@@ -6631,29 +6645,6 @@ function renderGrundyStep(root) {
     edge.classList.toggle("is-computed", known && !active);
   });
 
-  root.querySelectorAll("[data-grundy-bridge]").forEach((bridge) => {
-    const nodeId = bridge.dataset.grundyBridge || "";
-    const record = grundyGameNodeMap.get(nodeId);
-    if (!record) return;
-    const known = grundyNodeIsKnown(record, step);
-    const active = activeIds.has(record.id);
-    bridge.classList.toggle("is-known", known);
-    bridge.classList.toggle("is-active", active);
-  });
-
-  root.querySelectorAll("[data-grundy-algebra]").forEach((row) => {
-    const nodeId = row.dataset.grundyAlgebra || "";
-    const record = grundyGameNodeMap.get(nodeId);
-    if (!record) return;
-    const known = grundyNodeIsKnown(record, step);
-    const active = activeIds.has(record.id);
-    row.classList.toggle("is-known", known);
-    row.classList.toggle("is-computed", known && !active);
-    row.classList.toggle("is-active", active);
-    row.classList.toggle("is-p-state", step >= state.max && known && record.value === 0);
-    row.classList.toggle("is-n-state", step >= state.max && known && record.value !== 0);
-  });
-
   const slider = root.querySelector("[data-grundy-slider]");
   if (slider) slider.value = String(step);
   updateGrundyAlgebraPanel(root, state, activeIds);
@@ -6744,23 +6735,6 @@ function initializeGrundyFigure(root, options = {}) {
         if (record) setGrundyStep(root, grundyNodeStep(record.id), record.id);
       });
       node.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        event.preventDefault();
-        stopGrundyFigure(root);
-        if (record) setGrundyStep(root, grundyNodeStep(record.id), record.id);
-      });
-    });
-    root.querySelectorAll("[data-grundy-algebra]").forEach((row) => {
-      const record = grundyGameNodeMap.get(row.dataset.grundyAlgebra || "");
-      row.tabIndex = 0;
-      row.setAttribute("role", "button");
-      row.setAttribute("aria-label", record ? `Show mex computation for ${record.id}` : "Show mex computation");
-      row.addEventListener("click", (event) => {
-        event.stopPropagation();
-        stopGrundyFigure(root);
-        if (record) setGrundyStep(root, grundyNodeStep(record.id), record.id);
-      });
-      row.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
         stopGrundyFigure(root);
