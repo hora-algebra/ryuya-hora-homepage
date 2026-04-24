@@ -1091,7 +1091,7 @@ const siteData = {
 
 const state = {
   paperQuery: "",
-  paperView: "list",
+  paperView: "diagram",
   talkQuery: "",
   talkTimelineKey: "",
   talkMapLocationId: "",
@@ -1107,7 +1107,6 @@ const state = {
   problemQuery: "",
   problemStatus: "all",
   selectedProblemId: "",
-  favoriteToposId: "",
   siteSearchQuery: new URLSearchParams(globalThis.location?.search || "").get("q") || "",
   noteQuery: "",
   noteLanguage: "all",
@@ -1260,6 +1259,7 @@ const i18nText = {
     "Talks and slides.": "Talks and slides.",
     "Timeline": "タイムライン",
     "Research Timeline": "研究タイムライン",
+    "Documents Timeline": "資料タイムライン",
     "Paper Timeline": "論文タイムライン",
     "Talk Timeline": "発表タイムライン",
     "Places": "場所",
@@ -4502,6 +4502,7 @@ function homeTimelineRecords() {
 
 function homeTimelineKindLabel(kind) {
   if (kind === "paper") return "Paper";
+  if (kind === "note") return "Note";
   if (kind === "activity") return "Activity";
   return "Talk";
 }
@@ -4590,7 +4591,7 @@ function renderHomeTimelineNode(record, position) {
   ]).join(" / ");
   node.style.setProperty("--x", position.x);
   node.style.setProperty("--offset", position.offset);
-  node.style.setProperty("--lane", ["paper", "activity", "talk"].indexOf(record.kind));
+  node.style.setProperty("--lane", position.lane ?? ["paper", "activity", "talk"].indexOf(record.kind));
   node.dataset.label = label;
   node.setAttribute("aria-label", label);
   node.setAttribute("title", label);
@@ -4664,31 +4665,74 @@ function renderHomeTimeline() {
   root.append(timelineScrollFrame(track));
 }
 
+function documentTimelineNoteRecords() {
+  return sortedNoteRecords([...overleafNoteRecords(), ...siteData.notes])
+    .map((note) => {
+      const time = noteTime(note);
+      if (!Number.isFinite(time)) return null;
+      const anchor = noteAnchor(note);
+      const title = shortNoteTitle(note);
+      const [, kindLabel] = noteKind(note);
+      return {
+        kind: "note",
+        theme: contentTheme(`${title} ${note.description || ""} ${note.file} ${noteThemeLabel(noteTheme(note))}`),
+        title,
+        dateLabel: noteDateLabel(note),
+        meta: compactText([kindLabel, noteLanguageKey(note), note.file]).join(" / "),
+        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`notes/index.html#${anchor}`),
+        time
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.time - b.time || a.title.localeCompare(b.title));
+}
+
+function documentTimelineNoteLayout(records, firstTime, lastTime) {
+  const layout = new Map();
+  const buckets = new Map();
+  const offsets = [-11, -5, 1, 7, 13, -17];
+  records.forEach((record) => {
+    const x = timelinePosition(record.time, firstTime, lastTime, 0, 1);
+    const bucket = Math.round(x / 2.3);
+    const stack = buckets.get(bucket) || 0;
+    buckets.set(bucket, stack + 1);
+    layout.set(record, { x, offset: offsets[stack % offsets.length], lane: 1 });
+  });
+  return layout;
+}
+
 function renderPaperTimeline() {
   const root = document.querySelector("#paper-timeline");
   if (!root) return;
   root.replaceChildren();
 
-  const records = homeTimelinePaperRecords()
+  const isDocumentsTimeline = document.body.dataset.page === "documents";
+  const paperRecords = homeTimelinePaperRecords()
     .filter((record) => Number.isFinite(record.startTime) && Number.isFinite(record.endTime))
     .sort((a, b) => a.startTime - b.startTime || a.title.localeCompare(b.title));
-  if (!records.length) {
+  const noteRecords = isDocumentsTimeline ? documentTimelineNoteRecords() : [];
+  if (!paperRecords.length && !noteRecords.length) {
     root.append(el("p", "empty-state", "No timeline entries yet."));
     return;
   }
 
-  const times = records.flatMap((record) => [record.startTime, record.endTime]);
+  const times = [
+    ...paperRecords.flatMap((record) => [record.startTime, record.endTime]),
+    ...noteRecords.map((record) => record.time)
+  ];
   const firstTime = Math.min(...times);
   const lastTime = Math.max(...times);
-  const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime);
+  const paperLayout = homeTimelinePaperSpanLayout(paperRecords, firstTime, lastTime);
+  const noteLayout = documentTimelineNoteLayout(noteRecords, firstTime, lastTime);
 
   const legend = el("div", "home-timeline-legend paper-timeline-legend");
   legend.append(
     el("span", "paper-timeline-status status-published", "Published"),
     el("span", "paper-timeline-status status-preprint", "Preprint")
   );
+  if (isDocumentsTimeline) legend.append(el("span", "paper-timeline-status status-note", "Note"));
 
-  const track = el("div", "home-timeline-track paper-timeline-track");
+  const track = el("div", `home-timeline-track paper-timeline-track${isDocumentsTimeline ? " document-timeline-track" : ""}`);
   const yearRow = el("div", "home-timeline-year-row");
   const firstYear = new Date(firstTime).getUTCFullYear();
   const lastYear = new Date(lastTime).getUTCFullYear();
@@ -4717,9 +4761,25 @@ function renderPaperTimeline() {
   );
   track.append(lane);
 
-  records.forEach((record) => {
+  if (isDocumentsTimeline) {
+    const noteLane = el("div", "home-timeline-lane kind-note");
+    noteLane.style.setProperty("--lane", 1);
+    noteLane.append(
+      el("div", "home-timeline-lane-label kind-note", "Note"),
+      el("div", "home-timeline-lane-rail")
+    );
+    track.append(noteLane);
+  }
+
+  paperRecords.forEach((record) => {
     track.append(renderHomeTimelinePaperSpan(record, paperLayout.get(record)));
   });
+
+  if (isDocumentsTimeline) {
+    noteRecords.forEach((record) => {
+      track.append(renderHomeTimelineNode(record, noteLayout.get(record)));
+    });
+  }
 
   root.append(legend, timelineScrollFrame(track));
   applyLanguage(root);

@@ -3995,6 +3995,14 @@ a.position-link:hover {
   content: "";
 }
 
+.paper-timeline-status.status-note::before {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #574b68;
+  border-radius: 50%;
+  background: #eee9f0;
+}
+
 .home-timeline-legend-item,
 .home-timeline-theme-item,
 .home-timeline-lane-label {
@@ -4041,6 +4049,14 @@ a.position-link:hover {
   border: 0;
   border-radius: 50%;
   background: #8a4d34;
+}
+
+.home-timeline-lane-label.kind-note::before {
+  width: 9px;
+  height: 9px;
+  border-color: #574b68;
+  border-radius: 50%;
+  background: #eee9f0;
 }
 
 .home-timeline-theme-item {
@@ -4095,8 +4111,16 @@ a.position-link:hover {
   min-height: clamp(150px, 13vw, 190px);
 }
 
+.document-timeline-track {
+  min-height: clamp(218px, 21vw, 260px);
+}
+
 .paper-timeline-track .home-year-tick::before {
   height: 94px;
+}
+
+.document-timeline-track .home-year-tick::before {
+  height: 154px;
 }
 
 .home-timeline-year-row {
@@ -4287,6 +4311,12 @@ a.position-link:hover {
   border-radius: 50%;
   background: var(--theme-stroke);
   opacity: 0.82;
+}
+
+.home-timeline-node.kind-note {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }
 
 .home-timeline-node.theme-topos {
@@ -4860,258 +4890,6 @@ a.position-link:hover {
   margin-top: 18px;
 }
 
-.favorite-topoi-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.42fr);
-  gap: clamp(18px, 3vw, 34px);
-  align-items: start;
-}
-
-.favorite-topoi-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.topos-card {
-  display: grid;
-  gap: 12px;
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 253, 248, 0.76);
-  box-shadow: 0 12px 30px rgba(42, 45, 39, 0.05);
-}
-
-.topos-card.is-selected {
-  border-color: rgba(44, 111, 99, 0.55);
-  background: linear-gradient(180deg, rgba(255, 253, 248, 0.92), rgba(230, 237, 232, 0.72));
-}
-
-.topos-card-main {
-  display: grid;
-  gap: 10px;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.topos-card-main:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-}
-
-.topos-card-kicker,
-.topos-focus-subtitle {
-  margin: 0;
-  color: var(--accent-2);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.76rem;
-  font-weight: 850;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.topos-card h3 {
-  font-size: clamp(1.16rem, 2vw, 1.45rem);
-  line-height: 1.2;
-}
-
-.topos-formula {
-  min-height: 30px;
-  margin: 0;
-  color: #26352d;
-  font-size: 1rem;
-}
-
-.topos-card-summary,
-.topos-focus-summary,
-.topos-card-reason,
-.topos-comparison-cell {
-  margin: 0;
-  color: #38433b;
-  line-height: 1.58;
-}
-
-.topos-card-links {
-  margin-top: 0;
-}
-
-.topos-focus {
-  position: sticky;
-  top: 82px;
-  display: grid;
-  gap: 14px;
-  padding: clamp(16px, 2.2vw, 22px);
-  border: 1px solid rgba(44, 111, 99, 0.28);
-  border-radius: 8px;
-  background: rgba(255, 253, 248, 0.86);
-  box-shadow: var(--shadow);
-}
-
-.topos-focus h2 {
-  margin-top: 4px;
-  font-size: clamp(1.35rem, 2.4vw, 2rem);
-}
-
-.topos-focus-head {
-  display: grid;
-  gap: 8px;
-}
-
-.topos-why,
-.topos-dictionary {
-  padding-top: 16px;
-  border-top: 1px solid rgba(215, 210, 199, 0.82);
-}
-
-.topos-why h3,
-.topos-dictionary h3 {
-  margin-bottom: 10px;
-  color: var(--accent-2);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 850;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.topos-detail {
-  display: grid;
-  grid-template-columns: minmax(86px, 0.32fr) minmax(0, 1fr);
-  gap: 10px 14px;
-  margin: 0;
-}
-
-.topos-detail dt {
-  color: var(--accent-3);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 850;
-}
-
-.topos-detail dd {
-  margin: 0;
-  color: #38433b;
-}
-
-.topos-diagram {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  margin: 0;
-  border: 1px solid rgba(43, 52, 43, 0.12);
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(230, 237, 232, 0.68), rgba(255, 253, 248, 0.9) 54%, rgba(231, 237, 242, 0.7));
-  aspect-ratio: 7 / 4;
-}
-
-.topos-diagram svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.topos-node circle,
-.topos-spark circle {
-  fill: #fffdf8;
-  stroke: #25342d;
-  stroke-width: 2;
-}
-
-.topos-node.accent circle {
-  fill: #e7edf2;
-  stroke: var(--accent-3);
-}
-
-.topos-node.warm circle,
-.topos-set-box.warm {
-  fill: #f3e6d8;
-  stroke: var(--accent-2);
-}
-
-.topos-node text,
-.topos-spark text,
-.topos-svg-label {
-  fill: #26352d;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 16px;
-  font-weight: 750;
-  text-anchor: middle;
-}
-
-.topos-svg-label.large {
-  font-size: 20px;
-}
-
-.topos-orbit-line,
-.topos-arrow {
-  fill: none;
-  stroke: rgba(44, 111, 99, 0.82);
-  stroke-linecap: round;
-  stroke-width: 3;
-}
-
-.muted-line,
-.muted-arrow {
-  stroke: rgba(47, 83, 111, 0.58);
-}
-
-.topos-open-box,
-.topos-set-box,
-.topos-language-strip {
-  fill: rgba(255, 253, 248, 0.82);
-  stroke: rgba(38, 53, 45, 0.36);
-  stroke-width: 2;
-}
-
-.topos-open-box.part,
-.topos-language-strip {
-  fill: rgba(230, 237, 232, 0.72);
-  stroke: rgba(44, 111, 99, 0.72);
-}
-
-.topos-set-box.wide {
-  fill: rgba(231, 237, 242, 0.74);
-  stroke: rgba(47, 83, 111, 0.48);
-}
-
-.topos-spark circle {
-  fill: #fffdf8;
-  stroke: rgba(44, 111, 99, 0.74);
-}
-
-.topos-comparison {
-  display: grid;
-  gap: 10px;
-}
-
-.topos-comparison-row {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.9fr) minmax(170px, 0.7fr) minmax(170px, 0.8fr) minmax(0, 1.3fr);
-  gap: 12px;
-  align-items: start;
-  padding: 14px 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 253, 248, 0.74);
-}
-
-.topos-comparison-heading {
-  font-size: 1rem;
-  line-height: 1.25;
-}
-
-.topos-comparison-formula {
-  margin: 0;
-  color: #26352d;
-}
-
 .activity-column h3,
 .link-column h3 {
   margin-bottom: 16px;
@@ -5236,8 +5014,7 @@ a.position-link:hover {
   }
 
   .plan-list,
-  .problem-list,
-  .favorite-topoi-list {
+  .problem-list {
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   }
 }
@@ -5275,9 +5052,6 @@ a.position-link:hover {
   .plan-list,
   .problem-list,
   .speculative-layout,
-  .favorite-topoi-layout,
-  .favorite-topoi-list,
-  .topos-comparison-row,
   .note-grid,
   .activity-grid,
   .link-columns {
@@ -5308,10 +5082,6 @@ a.position-link:hover {
   }
 
   .speculative-sidebar {
-    position: static;
-  }
-
-  .topos-focus {
     position: static;
   }
 

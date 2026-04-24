@@ -20,7 +20,6 @@ const pages = [
   ["cv", "cv/index.html"],
   ["problems", "problems/index.html"],
   ["links", "links/index.html"],
-  ["favorite-topoi", "favorite-topoi/index.html"],
   ["web-apps", "web-apps/index.html"],
   ["search", "search/index.html"],
   ["speculative", "speculative-notes/index.html"]
@@ -188,6 +187,9 @@ const measureScript = String.raw`(() => {
 
   const viewportWidth = document.documentElement.clientWidth;
   const pageWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+  if (location.href.startsWith("chrome-error://")) {
+    issues.push({ type: "navigation-error", detail: document.title || location.href });
+  }
   if (pageWidth > viewportWidth + 2) {
     issues.push({ type: "horizontal-overflow", detail: "page width " + pageWidth + ", viewport " + viewportWidth });
   }
@@ -207,7 +209,7 @@ const measureScript = String.raw`(() => {
     ".theme-graph", ".theme-result", ".categories-tokyo-map", ".categories-map-svg",
     ".explore-card", ".plan-item", ".speculative-post",
     ".web-app-card", ".web-app-media", ".web-app-body",
-    ".speculative-sidebar", ".topos-card", ".topos-diagram", ".topos-focus", ".topos-comparison-row",
+    ".speculative-sidebar",
     ".problem-comments", ".problem-comment-setup"
   ].join(",");
 
@@ -258,8 +260,7 @@ const measureScript = String.raw`(() => {
     ".problem-card-statement", ".problem-feature h2", ".problem-statement",
     ".problem-comments-title", ".problem-comments-note", ".problem-comment-setup",
     ".web-app-title", ".web-app-summary", ".web-app-tag",
-    ".speculative-post h2", ".speculative-abstract", ".topos-card h3",
-    ".topos-card-summary", ".topos-focus h2", ".topos-focus-summary", ".topos-comparison-row"
+    ".speculative-post h2", ".speculative-abstract"
   ].join(",")));
 
   const intersects = (a, b) => {

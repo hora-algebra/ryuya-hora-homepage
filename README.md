@@ -11,7 +11,6 @@ This is a static first draft for an independent homepage.
 - `activities/index.html`: academic activities by year
 - `cv/index.html`: CV, awards, positions, and education/outreach
 - `problems/index.html`: open problem reference trails
-- `favorite-topoi/index.html`: favorite topoi cabinet
 - `links/index.html`: external links
 - `styles.css`: visual design and responsive layout
 - `scripts/site.js`: structured content and rendering logic
