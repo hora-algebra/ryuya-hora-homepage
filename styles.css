@@ -967,6 +967,12 @@ h3 {
   color: #0f5b99;
 }
 
+.position-icon--kakenhi {
+  background: rgba(232, 241, 248, 0.96);
+  border-color: rgba(15, 91, 153, 0.16);
+  color: #0f5b99;
+}
+
 .position-icon--network {
   background: rgba(249, 228, 239, 0.96);
   border-color: rgba(193, 40, 114, 0.18);
@@ -2569,6 +2575,10 @@ a.position-link:hover {
   stroke-width: 3.4;
 }
 
+.connected-match.is-active .connected-root-square {
+  stroke-width: 3.4;
+}
+
 .connected-match[data-connected-left="a"].is-complete .figure-line,
 .connected-match[data-connected-right="a"].is-complete .figure-line,
 .connected-match[data-connected-left="a"].is-active .figure-line,
@@ -2580,7 +2590,9 @@ a.position-link:hover {
 .connected-match[data-connected-left="a"].is-complete .figure-node,
 .connected-match[data-connected-right="a"].is-complete .figure-node,
 .connected-match[data-connected-left="a"].is-active .figure-node,
-.connected-match[data-connected-right="a"].is-active .figure-node {
+.connected-match[data-connected-right="a"].is-active .figure-node,
+.connected-match[data-connected-right="a"].is-complete .connected-root-square,
+.connected-match[data-connected-right="a"].is-active .connected-root-square {
   fill: #e8f0ea;
   stroke: #2c6f63;
 }
@@ -2596,7 +2608,9 @@ a.position-link:hover {
 .connected-match[data-connected-left="b"].is-complete .figure-node,
 .connected-match[data-connected-right="b"].is-complete .figure-node,
 .connected-match[data-connected-left="b"].is-active .figure-node,
-.connected-match[data-connected-right="b"].is-active .figure-node {
+.connected-match[data-connected-right="b"].is-active .figure-node,
+.connected-match[data-connected-right="b"].is-complete .connected-root-square,
+.connected-match[data-connected-right="b"].is-active .connected-root-square {
   fill: #e7edf2;
   stroke: #2f536f;
 }
@@ -2612,7 +2626,9 @@ a.position-link:hover {
 .connected-match[data-connected-left="c"].is-complete .figure-node,
 .connected-match[data-connected-right="c"].is-complete .figure-node,
 .connected-match[data-connected-left="c"].is-active .figure-node,
-.connected-match[data-connected-right="c"].is-active .figure-node {
+.connected-match[data-connected-right="c"].is-active .figure-node,
+.connected-match[data-connected-right="c"].is-complete .connected-root-square,
+.connected-match[data-connected-right="c"].is-active .connected-root-square {
   fill: #f4e6d7;
   stroke: #8a4d34;
 }
@@ -3895,9 +3911,33 @@ a.position-link:hover {
 .talk-map-records {
   display: grid;
   gap: 12px;
+  max-height: clamp(240px, 34vh, 360px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   margin: 0;
-  padding: 0;
+  padding: 0 6px 0 0;
   list-style: none;
+}
+
+.talk-map-records:focus-visible {
+  outline: 2px solid rgba(44, 111, 99, 0.42);
+  outline-offset: 2px;
+}
+
+.talk-map-records::-webkit-scrollbar {
+  width: 10px;
+}
+
+.talk-map-records::-webkit-scrollbar-track {
+  background: rgba(49, 70, 61, 0.08);
+  border-radius: 999px;
+}
+
+.talk-map-records::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(255, 253, 248, 0.72);
+  border-radius: 999px;
+  background: rgba(44, 111, 99, 0.36);
 }
 
 .talk-map-records li {

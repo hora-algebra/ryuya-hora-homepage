@@ -105,7 +105,7 @@ const siteData = {
   currentPositions: [
     { text: "Assistant professor at ZEN University since April 2026.", href: "https://zen.ac.jp", icon: "building" },
     { text: "Researcher at the Humai Center since April 2026.", href: "https://zen.ac.jp/humai", icon: "flask" },
-    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "flask" },
+    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "kakenhi" },
     { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
     { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
     { text: "Tutor at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
@@ -4017,6 +4017,8 @@ function renderTalkMapDetail(groups) {
   );
 
   const list = el("ol", "talk-map-records");
+  list.tabIndex = 0;
+  list.setAttribute("aria-label", `Mapped visits for ${selected.location.name}`);
   selected.records.forEach((record) => {
     const item = el("li");
     const title = record.href ? link(record.title, record.href) : document.createTextNode(record.title);
@@ -5153,6 +5155,22 @@ function uiIconSvg(key) {
       shape("circle", { cx: "12", cy: "9.6", r: "3.5", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
       line({ d: "M10.3 13.1L8.8 18.7L12 16.9L15.2 18.7L13.7 13.1" }),
       line({ d: "M10.7 9.8L11.7 10.8L13.8 8.7" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "kakenhi") {
+    svg.append(
+      shape("rect", { x: "6.6", y: "4.8", width: "2.7", height: "13.8", rx: "1.1", fill: "currentColor" }),
+      shape("path", {
+        d: "M9 12L17.4 5.8M9 12L17.6 18.2",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "2.25"
+      }),
+      shape("rect", { x: "6.6", y: "19.6", width: "11.4", height: "1.9", rx: "0.95", fill: "#d3a336" })
     );
     return svg;
   }
@@ -6914,7 +6932,7 @@ function currentPositionIcon(icon) {
     return svg;
   }
 
-  if (icon === "badge") {
+  if (icon === "badge" || icon === "kakenhi") {
     svg.append(
       shape("rect", { x: "7.3", y: "6.8", width: "3.2", height: "18.4", rx: "1.2", fill: "currentColor" }),
       shape("path", {
