@@ -76,8 +76,7 @@ const siteData = {
       title: "Activities",
       href: "activities/index.html",
       description: "Activities, visits, talks, and plans.",
-      icon: "activity",
-      thumbnail: "assets/profile/ryuya-hora-talk.jpg"
+      icon: "activity"
     },
     {
       title: "Others",
