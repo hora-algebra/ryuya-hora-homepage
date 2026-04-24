@@ -1292,6 +1292,10 @@ const state = {
     europe: 1,
     japan: 1
   },
+  talkMapPan: {
+    europe: null,
+    japan: null
+  },
   researchTheme: "",
   problemQuery: "",
   problemStatus: "all",
@@ -3792,9 +3796,14 @@ function talkMapViewBox(scope) {
   return talkMapData?.[scope]?.viewBox || (scope === "europe" ? "0 0 560 440" : "0 0 360 520");
 }
 
+function talkMapViewBoxParts(scope) {
+  const [x = 0, y = 0, width = 720, height = 360] = talkMapViewBox(scope).split(/\s+/).map(Number);
+  return { x, y, width, height };
+}
+
 function talkMapViewBoxSize(scope) {
-  const parts = talkMapViewBox(scope).split(/\s+/).map(Number);
-  return { width: parts[2] || 720, height: parts[3] || 360 };
+  const parts = talkMapViewBoxParts(scope);
+  return { width: parts.width || 720, height: parts.height || 360 };
 }
 
 function talkMapPoint(location, scope) {
@@ -3857,6 +3866,110 @@ function clampTalkMapZoom(value) {
   return Math.min(talkMapZoom.max, Math.max(talkMapZoom.min, Number(value) || 1));
 }
 
+function clampScroll(value, max) {
+  return Math.min(Math.max(Number(value) || 0, 0), Math.max(max, 0));
+}
+
+function rememberTalkMapPan(scope, canvas) {
+  state.talkMapPan[scope] = {
+    left: clampScroll(canvas.scrollLeft, canvas.scrollWidth - canvas.clientWidth),
+    top: clampScroll(canvas.scrollTop, canvas.scrollHeight - canvas.clientHeight)
+  };
+}
+
+function storeTalkMapPanPositions(root) {
+  root.querySelectorAll("[data-talk-map-canvas]").forEach((canvas) => {
+    const scope = canvas.dataset.talkMapScope;
+    if (scope) rememberTalkMapPan(scope, canvas);
+  });
+}
+
+function talkMapMarkerBounds(groups, scope) {
+  const points = groups.map((group) => talkMapPoint(group.location, scope));
+  if (!points.length) return null;
+  const viewBox = talkMapViewBoxParts(scope);
+  const padding = scope === "japan" ? 42 : 36;
+  const minX = Math.max(viewBox.x, Math.min(...points.map((point) => point.x)) - padding);
+  const maxX = Math.min(viewBox.x + viewBox.width, Math.max(...points.map((point) => point.x)) + padding);
+  const minY = Math.max(viewBox.y, Math.min(...points.map((point) => point.y)) - padding);
+  const maxY = Math.min(viewBox.y + viewBox.height, Math.max(...points.map((point) => point.y)) + padding);
+  return { minX, maxX, minY, maxY };
+}
+
+function talkMapScrollForBounds(canvas, svg, scope, bounds) {
+  const viewBox = talkMapViewBoxParts(scope);
+  const svgRect = svg.getBoundingClientRect();
+  const scaleX = svgRect.width / viewBox.width;
+  const scaleY = svgRect.height / viewBox.height;
+  const centerX = ((bounds.minX + bounds.maxX) / 2 - viewBox.x) * scaleX;
+  const centerY = ((bounds.minY + bounds.maxY) / 2 - viewBox.y) * scaleY;
+  return {
+    left: clampScroll(centerX - canvas.clientWidth / 2, canvas.scrollWidth - canvas.clientWidth),
+    top: clampScroll(centerY - canvas.clientHeight / 2, canvas.scrollHeight - canvas.clientHeight)
+  };
+}
+
+function applyTalkMapPan(canvas, scope, pan, shouldRemember = false) {
+  canvas.scrollLeft = clampScroll(pan.left, canvas.scrollWidth - canvas.clientWidth);
+  canvas.scrollTop = clampScroll(pan.top, canvas.scrollHeight - canvas.clientHeight);
+  if (shouldRemember) rememberTalkMapPan(scope, canvas);
+}
+
+function fitTalkMapToMarkers(figure, scope, groups, shouldRemember = false) {
+  const canvas = figure.querySelector(".talk-map-canvas");
+  const svg = figure.querySelector("svg");
+  const bounds = talkMapMarkerBounds(groups, scope);
+  if (!canvas || !svg || !bounds) return;
+  applyTalkMapPan(canvas, scope, talkMapScrollForBounds(canvas, svg, scope, bounds), shouldRemember);
+}
+
+function initializeTalkMapViewport(figure, scope, groups) {
+  window.requestAnimationFrame(() => {
+    const canvas = figure.querySelector(".talk-map-canvas");
+    if (!canvas) return;
+    const saved = state.talkMapPan?.[scope];
+    if (saved) applyTalkMapPan(canvas, scope, saved);
+    else fitTalkMapToMarkers(figure, scope, groups);
+  });
+}
+
+function enableTalkMapDragPan(canvas, scope) {
+  let dragging = false;
+  let startX = 0;
+  let startY = 0;
+  let startLeft = 0;
+  let startTop = 0;
+
+  const finishDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    canvas.classList.remove("is-dragging");
+    rememberTalkMapPan(scope, canvas);
+  };
+
+  canvas.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0 || event.target?.closest?.(".talk-map-marker")) return;
+    dragging = true;
+    startX = event.clientX;
+    startY = event.clientY;
+    startLeft = canvas.scrollLeft;
+    startTop = canvas.scrollTop;
+    canvas.classList.add("is-dragging");
+    canvas.setPointerCapture?.(event.pointerId);
+  });
+
+  canvas.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+    event.preventDefault();
+    canvas.scrollLeft = startLeft - (event.clientX - startX);
+    canvas.scrollTop = startTop - (event.clientY - startY);
+  });
+
+  canvas.addEventListener("pointerup", finishDrag);
+  canvas.addEventListener("pointercancel", finishDrag);
+  canvas.addEventListener("lostpointercapture", finishDrag);
+}
+
 function updateTalkMapZoomUi(figure, scope) {
   const zoom = currentTalkMapZoom(scope);
   figure.style.setProperty("--visit-map-zoom", String(zoom));
@@ -3867,12 +3980,19 @@ function updateTalkMapZoomUi(figure, scope) {
     button.disabled =
       (action === "out" && zoom <= talkMapZoom.min) ||
       (action === "in" && zoom >= talkMapZoom.max) ||
-      (action === "reset" && zoom === 1);
+      (action === "reset" && zoom === 1 && !state.talkMapPan?.[scope]);
   });
 }
 
-function setTalkMapZoom(scope, action, figure) {
+function setTalkMapZoom(scope, action, figure, groups = []) {
   const current = currentTalkMapZoom(scope);
+  const canvas = figure.querySelector(".talk-map-canvas");
+  const currentCenter = canvas
+    ? {
+        x: canvas.scrollLeft + canvas.clientWidth / 2,
+        y: canvas.scrollTop + canvas.clientHeight / 2
+      }
+    : null;
   const next =
     action === "in"
       ? current + talkMapZoom.step
@@ -3881,13 +4001,31 @@ function setTalkMapZoom(scope, action, figure) {
         : 1;
   state.talkMapZoom[scope] = clampTalkMapZoom(next);
   updateTalkMapZoomUi(figure, scope);
-  if (action === "reset") {
-    const canvas = figure.querySelector(".talk-map-canvas");
-    if (canvas) canvas.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }
+
+  window.requestAnimationFrame(() => {
+    if (!canvas) return;
+    if (action === "reset") {
+      state.talkMapPan[scope] = null;
+      fitTalkMapToMarkers(figure, scope, groups);
+      updateTalkMapZoomUi(figure, scope);
+      return;
+    }
+    if (currentCenter) {
+      const ratio = currentTalkMapZoom(scope) / current;
+      applyTalkMapPan(
+        canvas,
+        scope,
+        {
+          left: currentCenter.x * ratio - canvas.clientWidth / 2,
+          top: currentCenter.y * ratio - canvas.clientHeight / 2
+        },
+        true
+      );
+    }
+  });
 }
 
-function renderTalkMapZoomControls(scope, figure) {
+function renderTalkMapZoomControls(scope, figure, groups) {
   const controls = el("div", "talk-map-controls");
   [
     ["out", "−", `Zoom out ${scope} map`],
@@ -3899,7 +4037,7 @@ function renderTalkMapZoomControls(scope, figure) {
     button.dataset.talkMapZoom = action;
     button.setAttribute("aria-label", ariaLabel);
     button.title = ariaLabel;
-    button.addEventListener("click", () => setTalkMapZoom(scope, action, figure));
+    button.addEventListener("click", () => setTalkMapZoom(scope, action, figure, groups));
     controls.append(button);
   });
   controls.append(el("span", "talk-map-zoom-readout", "100%"));
@@ -3996,11 +4134,14 @@ function renderTalkMapFigure(title, scope, groups) {
   else appendJapanMapBase(svg);
   groups.forEach((group) => svg.append(talkMapMarker(group, scope)));
   const canvas = el("div", "talk-map-canvas");
+  canvas.dataset.talkMapCanvas = "";
+  canvas.dataset.talkMapScope = scope;
   canvas.tabIndex = 0;
-  canvas.setAttribute("aria-label", `${title} map viewport. Scroll to pan after zooming.`);
-  canvas.addEventListener("dblclick", () => setTalkMapZoom(scope, "in", figure));
+  canvas.setAttribute("aria-label", `${title} map viewport. Drag to pan after zooming.`);
+  canvas.addEventListener("dblclick", () => setTalkMapZoom(scope, "in", figure, groups));
+  enableTalkMapDragPan(canvas, scope);
   canvas.append(svg);
-  toolbar.append(caption, renderTalkMapZoomControls(scope, figure));
+  toolbar.append(caption, renderTalkMapZoomControls(scope, figure, groups));
   figure.append(toolbar, canvas);
   updateTalkMapZoomUi(figure, scope);
   return figure;
@@ -4049,6 +4190,7 @@ function renderTalkMapDetail(groups) {
 function renderTalkMap() {
   const root = document.querySelector("#talk-map");
   if (!root) return;
+  storeTalkMapPanPositions(root);
   root.replaceChildren();
 
   const entries = visitMapRecords();
@@ -4066,9 +4208,19 @@ function renderTalkMap() {
   }
 
   const maps = el("div", "talk-map-grid");
-  if (europeGroups.length) maps.append(renderTalkMapFigure("Europe", "europe", europeGroups));
-  if (japanGroups.length) maps.append(renderTalkMapFigure("Japan", "japan", japanGroups));
+  const figures = [];
+  if (europeGroups.length) {
+    const figure = renderTalkMapFigure("Europe", "europe", europeGroups);
+    figures.push([figure, "europe", europeGroups]);
+    maps.append(figure);
+  }
+  if (japanGroups.length) {
+    const figure = renderTalkMapFigure("Japan", "japan", japanGroups);
+    figures.push([figure, "japan", japanGroups]);
+    maps.append(figure);
+  }
   root.append(maps, renderTalkMapDetail(allGroups));
+  figures.forEach(([figure, scope, groups]) => initializeTalkMapViewport(figure, scope, groups));
   applyLanguage(root);
 }
 
@@ -5289,73 +5441,179 @@ function renderResearchMap() {
   setResearchTheme("");
 }
 
-const grundyHeapLayout = [
-  { heap: 0, x: 68, y: 268 },
-  { heap: 1, x: 172, y: 268 },
-  { heap: 2, x: 276, y: 268 },
-  { heap: 3, x: 380, y: 268 },
-  { heap: 4, x: 484, y: 268 },
-  { heap: 5, x: 588, y: 268 },
-  { heap: 6, x: 692, y: 268 }
+const grundyGameNodes = [
+  { id: "V1", tex: "V_1", x: 126, y: 88, stage: 5, value: 0, options: ["W1", "W2", "W3"] },
+  { id: "V2", tex: "V_2", x: 250, y: 88, stage: 5, value: 3, options: ["W2", "X2", "X3"] },
+  { id: "W1", tex: "W_1", x: 82, y: 138, stage: 4, value: 1, options: ["X1", "X2"] },
+  { id: "W3", tex: "W_3", x: 188, y: 138, stage: 3, value: 2, options: ["Y1", "Z3"] },
+  { id: "W2", tex: "W_2", x: 294, y: 138, stage: 4, value: 1, options: ["X2", "X3"] },
+  { id: "X1", tex: "X_1", x: 82, y: 188, stage: 3, value: 0, options: ["Y1", "Y2"] },
+  { id: "X2", tex: "X_2", x: 188, y: 188, stage: 3, value: 2, options: ["Y2", "Z1"] },
+  { id: "X3", tex: "X_3", x: 294, y: 188, stage: 3, value: 0, options: ["Y3"] },
+  { id: "Y1", tex: "Y_1", x: 82, y: 238, stage: 2, value: 1, options: ["Z1"] },
+  { id: "Y2", tex: "Y_2", x: 188, y: 238, stage: 2, value: 1, options: ["Z2", "Z3"] },
+  { id: "Y3", tex: "Y_3", x: 294, y: 238, stage: 2, value: 1, options: ["Z3"] },
+  { id: "Z1", tex: "Z_1", x: 82, y: 288, stage: 1, value: 0, options: [] },
+  { id: "Z2", tex: "Z_2", x: 188, y: 288, stage: 1, value: 0, options: [] },
+  { id: "Z3", tex: "Z_3", x: 294, y: 288, stage: 1, value: 0, options: [] }
 ];
 
+const grundyGameNodeMap = new Map(grundyGameNodes.map((node) => [node.id, node]));
+
+const grundyAlgebraOrder = [
+  "Z1",
+  "Z2",
+  "Z3",
+  "Y1",
+  "Y2",
+  "Y3",
+  "X1",
+  "X2",
+  "X3",
+  "W3",
+  "W1",
+  "W2",
+  "V1",
+  "V2"
+];
+
+const grundyStepCopy = {
+  0: {
+    focus: "game graph",
+    options: "moves point downward; values are computed upward",
+    mex: "choose a state or press Play",
+    status: "This is the recursive calculation from the paper, not the heap chain."
+  },
+  1: {
+    focus: "Z1, Z2, Z3",
+    options: "terminal states have no options",
+    mex: "mex(empty set) = 0",
+    status: "Every terminal receives Grundy number 0."
+  },
+  2: {
+    focus: "Y1, Y2, Y3",
+    options: "each sees only Grundy value 0",
+    mex: "mex({0}) = 1",
+    status: "The Y layer is computed from the terminal layer."
+  },
+  3: {
+    focus: "X1, X2, X3, W3",
+    options: "X2 and W3 see both 0 and 1",
+    mex: "mex({1}) = 0; mex({0,1}) = 2",
+    status: "Nonlinear branches already force two different Grundy values."
+  },
+  4: {
+    focus: "W1, W2",
+    options: "both see values 0 and 2",
+    mex: "mex({0,2}) = 1",
+    status: "The W layer now uses the X layer computed in the previous step."
+  },
+  5: {
+    focus: "V1, V2",
+    options: "V1 sees {1,2}; V2 sees {0,1,2}",
+    mex: "mex({1,2}) = 0; mex({0,1,2}) = 3",
+    status: "P-states are exactly the states with Grundy number 0; sums use Nim-sum."
+  }
+};
+
+function grundyOptionValues(node) {
+  return [...new Set(node.options.map((id) => grundyGameNodeMap.get(id)?.value).filter((value) => value !== undefined))].sort((a, b) => a - b);
+}
+
+function grundyMex(values) {
+  let mex = 0;
+  while (values.includes(mex)) mex += 1;
+  return mex;
+}
+
 function grundyEdgePath(from, to) {
-  const span = from.heap - to.heap;
-  const lift = 42 + span * 13;
-  const startX = from.x - 23;
-  const endX = to.x + 23;
-  const y = from.y - 15;
-  return `M${startX} ${y} C${startX - 12} ${from.y - lift} ${endX + 12} ${to.y - lift} ${endX} ${y}`;
+  const startY = from.y + 18;
+  const endY = to.y - 18;
+  const midY = (startY + endY) / 2;
+  const bend = Math.min(34, Math.abs(from.x - to.x) * 0.22 + 12);
+  return `M${from.x} ${startY} C${from.x} ${midY + bend} ${to.x} ${midY - bend} ${to.x} ${endY}`;
+}
+
+function grundyBridgePath(node, rowY) {
+  return `M${node.x + 20} ${node.y} C${node.x + 82} ${node.y} 342 ${rowY} 398 ${rowY}`;
+}
+
+function grundyAlgebraRowY(index) {
+  return 82 + index * 19;
+}
+
+function grundyFormulaTeX(node) {
+  const values = grundyOptionValues(node);
+  const set = values.length ? `\\{${values.join(",")}\\}` : "\\varnothing";
+  return `\\(\\mathcal G(${node.tex})=\\operatorname{mex}(${set})=${grundyMex(values)}\\)`;
 }
 
 function grundyFigureTemplate() {
-  const edges = grundyHeapLayout
+  const edges = grundyGameNodes
     .flatMap((from) =>
-      grundyHeapLayout
-        .filter((to) => to.heap < from.heap)
-        .map((to) => `<path class="figure-arrow grundy-edge" data-grundy-edge="${from.heap}-${to.heap}" d="${grundyEdgePath(from, to)}"></path>`)
+      from.options.map((targetId) => {
+        const to = grundyGameNodeMap.get(targetId);
+        return `<path class="figure-arrow grundy-edge" data-grundy-edge="${from.id}-${to.id}" d="${grundyEdgePath(from, to)}"></path>`;
+      })
     )
     .join("");
-  const nodes = grundyHeapLayout
+  const bridges = grundyAlgebraOrder
+    .map((nodeId, index) => {
+      const node = grundyGameNodeMap.get(nodeId);
+      return `<path class="grundy-bridge" data-grundy-bridge="${node.id}" d="${grundyBridgePath(node, grundyAlgebraRowY(index))}"></path>`;
+    })
+    .join("");
+  const nodes = grundyGameNodes
     .map(
-      ({ heap, x, y }) => `
-        <g class="grundy-node" data-grundy-node="${heap}" transform="translate(${x} ${y})" tabindex="0" role="button" aria-label="Compute Grundy number for heap ${heap}">
-          <circle class="grundy-node-shell" r="26"></circle>
-          <text class="grundy-heap-label" y="-4">n=${heap}</text>
-          <text class="grundy-value-label" y="18" data-grundy-value="${heap}">?</text>
+      ({ id, x, y }) => `
+        <g class="grundy-node" data-grundy-node="${id}" transform="translate(${x} ${y})" tabindex="0" role="button" aria-label="Show mex computation for ${id}">
+          <circle class="grundy-node-shell" r="18"></circle>
+          <text class="grundy-heap-label" y="-4">${id}</text>
+          <text class="grundy-value-label" y="16" data-grundy-value="${id}">?</text>
         </g>`
     )
     .join("");
-  const maxHeap = grundyHeapLayout.at(-1)?.heap || 0;
+  const algebraRows = grundyAlgebraOrder
+    .map((nodeId) => {
+      const node = grundyGameNodeMap.get(nodeId);
+      return `
+        <div class="grundy-algebra-row" data-grundy-algebra="${node.id}">
+          <span class="grundy-algebra-state">${node.id}</span>
+          <span class="grundy-algebra-formula">${grundyFormulaTeX(node)}</span>
+        </div>`;
+    })
+    .join("");
   return `
-    <div class="grundy-figure" data-grundy-figure data-grundy-max="${maxHeap}">
+    <div class="grundy-figure" data-grundy-figure data-grundy-max="5">
       <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-title fig-games-desc">
-        <title id="fig-games-title">Grundy numbers for Nim heaps</title>
-        <desc id="fig-games-desc">The Grundy number of each Nim heap is computed by the mex of all smaller reachable heaps.</desc>
+        <title id="fig-games-title">Recursive calculation of Grundy numbers</title>
+        <desc id="fig-games-desc">A finite impartial game is drawn on the left, and the corresponding mex algebra is shown on the right.</desc>
         <defs>
           <marker id="arrow-grundy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z"></path>
           </marker>
         </defs>
-        <text class="grundy-title" x="36" y="40">Nim heap positions</text>
-        <text class="grundy-formula" x="36" y="68">g(n)=mex { g(m) | m&lt;n }</text>
-        <text class="grundy-formula muted" x="36" y="94">for sums: xor the Grundy values</text>
+        <text class="grundy-title" x="34" y="37">game graph</text>
+        <text class="grundy-formula" x="34" y="62">moves go down; recursion goes up</text>
+        <text class="grundy-title" x="420" y="37">mex algebra</text>
+        <text class="grundy-formula" x="420" y="62">same states, same step</text>
+        <rect class="grundy-game-frame" x="28" y="76" width="330" height="234" rx="12"></rect>
+        <path class="grundy-divider" d="M386 78 V312"></path>
+        <text class="grundy-level-label" x="44" y="93">top</text>
+        <text class="grundy-level-label" x="44" y="293">terminal</text>
+        <g class="grundy-bridges">${bridges}</g>
         <g class="grundy-edges">${edges}</g>
         <g class="grundy-nodes">${nodes}</g>
-        <g class="grundy-key" transform="translate(515 36)">
-          <rect x="0" y="0" width="204" height="74" rx="8"></rect>
-          <circle class="key-pending" cx="22" cy="25" r="6"></circle>
-          <text x="40" y="30">pending</text>
-          <circle class="key-active" cx="22" cy="52" r="6"></circle>
-          <text x="40" y="57">current mex step</text>
-        </g>
       </svg>
+      <div class="grundy-algebra-panel" data-grundy-algebra-panel>
+        ${algebraRows}
+      </div>
       <div class="grundy-panel" aria-live="polite">
         <span class="grundy-panel-label">Grundy recursion</span>
-        <strong data-grundy-focus>heap 0</strong>
-        <span data-grundy-options>reachable values: empty set</span>
-        <span data-grundy-mex>mex(empty set) = 0</span>
-        <span data-grundy-status>g(0)=0</span>
+        <strong data-grundy-focus>game graph</strong>
+        <span data-grundy-options>moves point downward; values are computed upward</span>
+        <span data-grundy-mex>choose a state or press Play</span>
+        <span data-grundy-status>This is the recursive calculation from the paper.</span>
       </div>
     </div>`;
 }
@@ -5765,12 +6023,41 @@ function applyFigureMarkerIds(container, figureId, prefix) {
 
 const grundyFigureStates = new WeakMap();
 
-function grundyReachableValues(heap) {
-  return Array.from({ length: heap }, (_, index) => index);
-}
-
 function formatGrundySet(values) {
   return values.length ? `{${values.join(", ")}}` : "empty set";
+}
+
+function grundyActiveNodeIds(state) {
+  if (!state.step) return new Set();
+  if (state.focusId && grundyGameNodeMap.get(state.focusId)?.stage <= state.step) return new Set([state.focusId]);
+  return new Set(grundyGameNodes.filter((node) => node.stage === state.step).map((node) => node.id));
+}
+
+function updateGrundyPanel(root, state, activeIds) {
+  const focus = root.querySelector("[data-grundy-focus]");
+  const options = root.querySelector("[data-grundy-options]");
+  const mex = root.querySelector("[data-grundy-mex]");
+  const status = root.querySelector("[data-grundy-status]");
+  const focusedNode = state.focusId ? grundyGameNodeMap.get(state.focusId) : null;
+
+  if (focusedNode) {
+    const values = grundyOptionValues(focusedNode);
+    if (focus) focus.textContent = focusedNode.id;
+    if (options) options.textContent = `reachable values: ${formatGrundySet(values)}`;
+    if (mex) mex.textContent = `mex(${formatGrundySet(values)}) = ${focusedNode.value}`;
+    if (status) {
+      const children = focusedNode.options.length ? focusedNode.options.join(", ") : "no options";
+      status.textContent = `${focusedNode.id} -> ${children}`;
+    }
+    return;
+  }
+
+  const copy = grundyStepCopy[state.step] || grundyStepCopy[0];
+  const activeText = [...activeIds].join(", ");
+  if (focus) focus.textContent = activeText || copy.focus;
+  if (options) options.textContent = copy.options;
+  if (mex) mex.textContent = copy.mex;
+  if (status) status.textContent = copy.status;
 }
 
 function updateGrundyPlayControl(root) {
@@ -5784,41 +6071,68 @@ function renderGrundyStep(root) {
   const state = grundyFigureStates.get(root);
   if (!state) return;
   const step = state.step;
+  const activeIds = grundyActiveNodeIds(state);
   root.dataset.grundyStep = String(step);
+  root.classList.toggle("is-final", step >= state.max);
 
   root.querySelectorAll("[data-grundy-node]").forEach((node) => {
-    const heap = Number(node.dataset.grundyNode || 0);
+    const nodeId = node.dataset.grundyNode || "";
+    const record = grundyGameNodeMap.get(nodeId);
+    if (!record) return;
     const value = node.querySelector("[data-grundy-value]");
-    node.classList.toggle("is-known", heap <= step);
-    node.classList.toggle("is-computed", heap < step);
-    node.classList.toggle("is-active", heap === step);
-    if (value) value.textContent = heap <= step ? `g=${heap}` : "?";
+    const known = record.stage <= step;
+    const active = activeIds.has(record.id);
+    node.classList.toggle("is-known", known);
+    node.classList.toggle("is-computed", known && !active);
+    node.classList.toggle("is-active", active);
+    node.classList.toggle("is-p-state", step >= state.max && known && record.value === 0);
+    node.classList.toggle("is-n-state", step >= state.max && known && record.value !== 0);
+    if (value) value.textContent = known ? `G=${record.value}` : "?";
   });
 
   root.querySelectorAll("[data-grundy-edge]").forEach((edge) => {
-    const [from, to] = String(edge.dataset.grundyEdge || "").split("-").map(Number);
-    edge.classList.toggle("is-active", from === step && to < step);
-    edge.classList.toggle("is-computed", from < step);
+    const [fromId, toId] = String(edge.dataset.grundyEdge || "").split("-");
+    const from = grundyGameNodeMap.get(fromId);
+    const to = grundyGameNodeMap.get(toId);
+    if (!from || !to) return;
+    const active = activeIds.has(from.id) && to.stage < from.stage;
+    edge.classList.toggle("is-active", active);
+    edge.classList.toggle("is-computed", from.stage < step || (from.stage <= step && !active));
   });
 
-  const reachable = grundyReachableValues(step);
-  const setText = formatGrundySet(reachable);
-  const focus = root.querySelector("[data-grundy-focus]");
-  const options = root.querySelector("[data-grundy-options]");
-  const mex = root.querySelector("[data-grundy-mex]");
-  const status = root.querySelector("[data-grundy-status]");
+  root.querySelectorAll("[data-grundy-bridge]").forEach((bridge) => {
+    const nodeId = bridge.dataset.grundyBridge || "";
+    const record = grundyGameNodeMap.get(nodeId);
+    if (!record) return;
+    const known = record.stage <= step;
+    const active = activeIds.has(record.id);
+    bridge.classList.toggle("is-known", known);
+    bridge.classList.toggle("is-active", active);
+  });
+
+  root.querySelectorAll("[data-grundy-algebra]").forEach((row) => {
+    const nodeId = row.dataset.grundyAlgebra || "";
+    const record = grundyGameNodeMap.get(nodeId);
+    if (!record) return;
+    const known = record.stage <= step;
+    const active = activeIds.has(record.id);
+    row.classList.toggle("is-known", known);
+    row.classList.toggle("is-computed", known && !active);
+    row.classList.toggle("is-active", active);
+    row.classList.toggle("is-p-state", step >= state.max && known && record.value === 0);
+    row.classList.toggle("is-n-state", step >= state.max && known && record.value !== 0);
+  });
+
   const slider = root.querySelector("[data-grundy-slider]");
-  if (focus) focus.textContent = `heap ${step}`;
-  if (options) options.textContent = `reachable values: ${setText}`;
-  if (mex) mex.textContent = `mex(${setText}) = ${step}`;
-  if (status) status.textContent = `g(${step})=${step}; sums use xor.`;
   if (slider) slider.value = String(step);
+  updateGrundyPanel(root, state, activeIds);
 }
 
-function setGrundyStep(root, step) {
+function setGrundyStep(root, step, focusId = "") {
   const state = grundyFigureStates.get(root);
   if (!state) return;
   state.step = Math.max(0, Math.min(state.max, Number(step) || 0));
+  state.focusId = focusId;
   renderGrundyStep(root);
 }
 
@@ -5854,7 +6168,7 @@ function ensureGrundyControls(root) {
   };
 
   const sliderLabel = el("label", "grundy-slider");
-  sliderLabel.append(el("span", null, "heap"));
+  sliderLabel.append(el("span", null, "step"));
   const slider = document.createElement("input");
   slider.type = "range";
   slider.min = "0";
@@ -5881,6 +6195,7 @@ function initializeGrundyFigure(root, options = {}) {
   const state = {
     max,
     step: Math.max(0, Math.min(max, Number(root.dataset.grundyStep || 0))),
+    focusId: "",
     timer: null,
     playing: false,
     intervalMs: options.intervalMs || 1000
@@ -5890,17 +6205,34 @@ function initializeGrundyFigure(root, options = {}) {
   if (options.controls) {
     ensureGrundyControls(root);
     root.querySelectorAll("[data-grundy-node]").forEach((node) => {
-      const heap = Number(node.dataset.grundyNode || 0);
+      const record = grundyGameNodeMap.get(node.dataset.grundyNode || "");
       node.addEventListener("click", (event) => {
         event.stopPropagation();
         stopGrundyFigure(root);
-        setGrundyStep(root, heap);
+        if (record) setGrundyStep(root, record.stage, record.id);
       });
       node.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
         stopGrundyFigure(root);
-        setGrundyStep(root, heap);
+        if (record) setGrundyStep(root, record.stage, record.id);
+      });
+    });
+    root.querySelectorAll("[data-grundy-algebra]").forEach((row) => {
+      const record = grundyGameNodeMap.get(row.dataset.grundyAlgebra || "");
+      row.tabIndex = 0;
+      row.setAttribute("role", "button");
+      row.setAttribute("aria-label", record ? `Show mex computation for ${record.id}` : "Show mex computation");
+      row.addEventListener("click", (event) => {
+        event.stopPropagation();
+        stopGrundyFigure(root);
+        if (record) setGrundyStep(root, record.stage, record.id);
+      });
+      row.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        stopGrundyFigure(root);
+        if (record) setGrundyStep(root, record.stage, record.id);
       });
     });
     root.querySelectorAll("[data-grundy-action]").forEach((button) => {

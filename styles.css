@@ -1485,6 +1485,7 @@ h3 {
 
 .grundy-title,
 .grundy-formula,
+.grundy-level-label,
 .grundy-key text,
 .grundy-node text {
   fill: #25342d;
@@ -1504,6 +1505,28 @@ h3 {
 .grundy-formula.muted {
   fill: rgba(37, 52, 45, 0.64);
   font-weight: 650;
+}
+
+.grundy-game-frame {
+  fill: rgba(255, 253, 248, 0.62);
+  stroke: rgba(43, 52, 43, 0.12);
+  stroke-width: 1.5;
+}
+
+.grundy-divider {
+  fill: none;
+  stroke: rgba(43, 52, 43, 0.16);
+  stroke-dasharray: 5 8;
+  stroke-linecap: round;
+  stroke-width: 1.7;
+}
+
+.grundy-level-label {
+  fill: rgba(37, 52, 45, 0.52);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .grundy-key rect {
@@ -1549,6 +1572,26 @@ h3 {
   opacity: 1;
 }
 
+.grundy-bridge {
+  fill: none;
+  stroke: rgba(43, 52, 43, 0.1);
+  stroke-dasharray: 3 6;
+  stroke-linecap: round;
+  stroke-width: 1.2;
+  opacity: 0;
+  transition: opacity 220ms ease, stroke 220ms ease, stroke-width 220ms ease;
+}
+
+.grundy-bridge.is-known {
+  opacity: 0.2;
+}
+
+.grundy-bridge.is-active {
+  stroke: #bf6b32;
+  stroke-width: 2.1;
+  opacity: 0.72;
+}
+
 .grundy-node {
   cursor: pointer;
 }
@@ -1579,6 +1622,16 @@ h3 {
   filter: drop-shadow(0 10px 14px rgba(166, 91, 44, 0.16));
 }
 
+.grundy-node.is-p-state:not(.is-active) .grundy-node-shell {
+  fill: #eaf1ff;
+  stroke: #315ca8;
+}
+
+.grundy-node.is-n-state:not(.is-active) .grundy-node-shell {
+  fill: #fff0ed;
+  stroke: #b64a3d;
+}
+
 .grundy-node text {
   pointer-events: none;
   text-anchor: middle;
@@ -1597,6 +1650,89 @@ h3 {
 .grundy-node.is-active .grundy-value-label {
   fill: #9f5527;
   font-weight: 900;
+}
+
+.grundy-algebra-panel {
+  position: absolute;
+  top: 74px;
+  right: 18px;
+  z-index: 2;
+  display: grid;
+  gap: 3px;
+  width: min(43%, 326px);
+  padding: 8px;
+  border: 1px solid rgba(43, 52, 43, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.84);
+  box-shadow: 0 10px 28px rgba(43, 52, 43, 0.08);
+}
+
+.grundy-algebra-row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 7px;
+  align-items: center;
+  min-height: 18px;
+  padding: 2px 5px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: rgba(37, 52, 45, 0.48);
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(0.52rem, 0.84vw, 0.7rem);
+  line-height: 1.04;
+  opacity: 0.52;
+  transition: background 220ms ease, border-color 220ms ease, color 220ms ease, opacity 220ms ease, transform 220ms ease;
+}
+
+.grundy-algebra-row[role="button"] {
+  cursor: pointer;
+}
+
+.grundy-algebra-row:focus-visible {
+  outline: 2px solid rgba(44, 111, 99, 0.32);
+  outline-offset: 2px;
+}
+
+.grundy-algebra-row.is-known {
+  color: #25342d;
+  opacity: 0.82;
+}
+
+.grundy-algebra-row.is-computed {
+  background: rgba(237, 245, 241, 0.62);
+  border-color: rgba(44, 111, 99, 0.14);
+}
+
+.grundy-algebra-row.is-active {
+  border-color: rgba(191, 107, 50, 0.48);
+  background: #fff0df;
+  color: #7b421f;
+  opacity: 1;
+  transform: translateX(-2px);
+}
+
+.grundy-algebra-row.is-p-state:not(.is-active) {
+  border-color: rgba(49, 92, 168, 0.18);
+  background: rgba(234, 241, 255, 0.76);
+}
+
+.grundy-algebra-row.is-n-state:not(.is-active) {
+  border-color: rgba(182, 74, 61, 0.18);
+  background: rgba(255, 240, 237, 0.76);
+}
+
+.grundy-algebra-state {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.68em;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.grundy-algebra-formula {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .grundy-panel {
@@ -1633,17 +1769,23 @@ h3 {
 }
 
 .publication-figure .grundy-panel {
-  right: 10px;
-  bottom: 9px;
-  left: 10px;
-  grid-template-columns: auto minmax(0, 0.45fr) minmax(0, 1fr) minmax(0, 0.75fr);
-  gap: 4px 8px;
-  padding: 7px 8px;
-  font-size: 0.62rem;
+  display: none;
 }
 
-.publication-figure .grundy-panel [data-grundy-status] {
-  display: none;
+.publication-figure .grundy-algebra-panel {
+  top: 57px;
+  right: 10px;
+  gap: 2px;
+  width: 43%;
+  padding: 5px;
+}
+
+.publication-figure .grundy-algebra-row {
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 4px;
+  min-height: 13px;
+  padding: 1px 3px;
+  font-size: clamp(0.38rem, 0.78vw, 0.55rem);
 }
 
 .lawvere-pullback-figure {
@@ -3153,12 +3295,20 @@ h3 {
   border: 1px solid rgba(43, 52, 43, 0.1);
   border-radius: 8px;
   background: #edf3f4;
+  cursor: grab;
+  overscroll-behavior: contain;
   scrollbar-gutter: stable both-edges;
+  touch-action: none;
+  user-select: none;
 }
 
 .talk-map-canvas:focus-visible {
   outline: 2px solid rgba(44, 111, 99, 0.42);
   outline-offset: 2px;
+}
+
+.talk-map-canvas.is-dragging {
+  cursor: grabbing;
 }
 
 .talk-map-figure svg {
