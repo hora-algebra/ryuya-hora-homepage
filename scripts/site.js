@@ -127,12 +127,12 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", href: "https://zen.ac.jp" },
-    { text: "Researcher at the Humai Center since April 2026.", href: "https://zen.ac.jp/humai" },
-    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/" },
-    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/" },
-    { text: "Tutor at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home" }
+    { text: "Assistant professor at ZEN University since April 2026.", href: "https://zen.ac.jp", icon: "building" },
+    { text: "Researcher at the Humai Center since April 2026.", href: "https://zen.ac.jp/humai", icon: "flask" },
+    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "badge" },
+    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "network" },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "mentor" },
+    { text: "Tutor at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home", icon: "book" }
   ],
   pastPositions: [
     { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April-July 2025.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
@@ -4248,30 +4248,56 @@ function appendCategoriesPin(svg, point, labelDx = 14, labelDy = -10) {
 const categoriesTokyoVenues = [
   {
     id: "komaba",
-    label: "0 Komaba",
-    name: "第0回 / UTokyo Komaba",
+    label: "0. University of Tokyo",
+    name: "第0回 / University of Tokyo",
     lon: 139.6847,
     lat: 35.6606,
     dx: -1,
-    dy: 8
+    dy: 8,
+    meetings: [
+      {
+        label: "0",
+        title: "Categories in Tokyo 0",
+        href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A%E8%A9%A6%E9%96%8B%E5%82%AC"
+      }
+    ]
   },
   {
     id: "nii",
-    label: "1,2 NII",
+    label: "1.2, NII",
     name: "第1,2回 / NII",
     lon: 139.7585,
     lat: 35.6933,
     dx: 3.5,
-    dy: -6.7
+    dy: -6.7,
+    meetings: [
+      {
+        label: "1",
+        title: "Categories in Tokyo 1",
+        href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A"
+      },
+      {
+        label: "2",
+        title: "Categories in Tokyo 2",
+        href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A"
+      }
+    ]
   },
   {
     id: "kabukiza",
-    label: "3 ZEN/Kabukiza",
-    name: "第3回 / ZEN University Kabukiza Tower",
+    label: "3. ZEN university",
+    name: "第3回 / ZEN university",
     lon: 139.7671,
     lat: 35.6695,
     dx: 3.5,
-    dy: 8
+    dy: 8,
+    meetings: [
+      {
+        label: "3",
+        title: "Categories in Tokyo 3",
+        href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A"
+      }
+    ]
   }
 ];
 
@@ -4280,6 +4306,48 @@ function projectCategoriesPoint(projection, lon, lat) {
   const x = projection.offsetX + (lon - projection.minLon) * projection.scale;
   const y = projection.offsetY + (projection.maxLat - lat) * projection.scale;
   return [Number(x.toFixed(1)), Number(y.toFixed(1))];
+}
+
+function appendCategoriesVenueButtons(item, venue, labelX, labelY) {
+  const meetings = venue.meetings || [];
+  if (!meetings.length) return;
+  const buttonWidth = 14;
+  const buttonHeight = 11;
+  const gap = 3;
+  const buttonsY = Number((labelY + 8).toFixed(1));
+  const totalWidth = meetings.length * buttonWidth + Math.max(0, meetings.length - 1) * gap;
+  const startX = venue.dx < 0 ? Number((labelX - totalWidth).toFixed(1)) : labelX;
+  const group = svgEl("g", { class: "categories-map-venue-buttons" });
+
+  meetings.forEach((meeting, index) => {
+    const x = Number((startX + index * (buttonWidth + gap)).toFixed(1));
+    const linkNode = svgEl("a", {
+      class: "categories-map-venue-button-link",
+      href: meeting.href,
+      "aria-label": `${meeting.title} page`
+    });
+    linkNode.append(
+      svgEl("title", {}, meeting.title),
+      svgEl("rect", {
+        class: "categories-map-venue-button",
+        x,
+        y: buttonsY,
+        width: buttonWidth,
+        height: buttonHeight,
+        rx: 4
+      }),
+      svgEl("text", {
+        class: "categories-map-venue-button-label",
+        x: x + buttonWidth / 2,
+        y: buttonsY + buttonHeight / 2 + 0.2,
+        "text-anchor": "middle",
+        "dominant-baseline": "middle"
+      }, meeting.label)
+    );
+    group.append(linkNode);
+  });
+
+  item.append(group);
 }
 
 function appendCategoriesVenueDots(svg, projection, options = {}) {
@@ -4306,6 +4374,7 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
         "dominant-baseline": "middle"
       }, venue.label)
     );
+    appendCategoriesVenueButtons(item, venue, labelX, labelY);
     group.append(item);
   });
   svg.append(group);
@@ -4757,18 +4826,6 @@ function renderHomeTimeline() {
   const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime);
   const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime);
 
-  const legend = el("div", "home-timeline-legend");
-  ["paper", "activity", "talk"].forEach((kind) => {
-    const item = el("span", `home-timeline-legend-item kind-${kind}`, homeTimelineKindLabel(kind));
-    legend.append(item);
-  });
-
-  const themeLegend = el("div", "home-timeline-theme-legend");
-  const themes = homeTimelineThemeOrder.filter((theme) => records.some((record) => record.theme === theme));
-  themes.forEach((theme) => {
-    themeLegend.append(el("span", `home-timeline-theme-item theme-${theme}`, homeTimelineThemeLabel(theme)));
-  });
-
   const track = el("div", "home-timeline-track");
 
   const yearRow = el("div", "home-timeline-year-row");
@@ -4813,7 +4870,7 @@ function renderHomeTimeline() {
       track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
   });
 
-  root.append(legend, themeLegend, track);
+  root.append(track);
 }
 
 function renderPaperTimeline() {
@@ -5477,6 +5534,9 @@ const grundyAlgebraOrder = [
   "V2"
 ];
 
+const grundyNodeStepMap = new Map(grundyAlgebraOrder.map((nodeId, index) => [nodeId, index + 1]));
+const grundyFinalStep = grundyAlgebraOrder.length + 1;
+
 const grundyStepCopy = {
   0: {
     focus: "game graph",
@@ -5516,8 +5576,27 @@ const grundyStepCopy = {
   }
 };
 
+const grundyFinalCopy = {
+  focus: "all states",
+  options: "each Grundy number is now known",
+  mex: "P-states have G=0; N-states have G>0",
+  status: "The recursive pass is complete; sums use Nim-sum."
+};
+
 function grundyOptionValues(node) {
   return [...new Set(node.options.map((id) => grundyGameNodeMap.get(id)?.value).filter((value) => value !== undefined))].sort((a, b) => a - b);
+}
+
+function grundyNodeStep(nodeId) {
+  return grundyNodeStepMap.get(nodeId) || Number.POSITIVE_INFINITY;
+}
+
+function grundyNodeForStep(step) {
+  return grundyGameNodeMap.get(grundyAlgebraOrder[step - 1] || "");
+}
+
+function grundyNodeIsKnown(node, step) {
+  return grundyNodeStep(node.id) <= Math.min(step, grundyAlgebraOrder.length);
 }
 
 function grundyMex(values) {
@@ -5584,7 +5663,7 @@ function grundyFigureTemplate() {
     })
     .join("");
   return `
-    <div class="grundy-figure" data-grundy-figure data-grundy-max="5">
+    <div class="grundy-figure" data-grundy-figure data-grundy-max="${grundyFinalStep}">
       <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-title fig-games-desc">
         <title id="fig-games-title">Recursive calculation of Grundy numbers</title>
         <desc id="fig-games-desc">A finite impartial game is drawn on the left, and the corresponding mex algebra is shown on the right.</desc>
@@ -5596,7 +5675,7 @@ function grundyFigureTemplate() {
         <text class="grundy-title" x="34" y="37">game graph</text>
         <text class="grundy-formula" x="34" y="62">moves go down; recursion goes up</text>
         <text class="grundy-title" x="420" y="37">mex algebra</text>
-        <text class="grundy-formula" x="420" y="62">same states, same step</text>
+        <text class="grundy-formula" x="420" y="62">one state per step</text>
         <rect class="grundy-game-frame" x="28" y="76" width="330" height="234" rx="12"></rect>
         <path class="grundy-divider" d="M386 78 V312"></path>
         <text class="grundy-level-label" x="44" y="93">top</text>
@@ -5621,7 +5700,7 @@ function grundyFigureTemplate() {
 function lawvereFourthFigureTemplate() {
   return `
     <div class="lawvere-pullback-figure" data-lawvere-pullback>
-      <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-fourth-title fig-lawvere-fourth-desc">
+      <svg viewBox="0 70 760 320" role="img" aria-labelledby="fig-lawvere-fourth-title fig-lawvere-fourth-desc">
         <title id="fig-lawvere-fourth-title">EZ-decomposition as a pullback</title>
         <desc id="fig-lawvere-fourth-desc">The graph x on A is the pullback of the graph y on B along alpha. Edges of y generate the corresponding complete bipartite edges in x.</desc>
         <defs>
@@ -5629,18 +5708,6 @@ function lawvereFourthFigureTemplate() {
             <path d="M 0 0 L 10 5 L 0 10 z"></path>
           </marker>
         </defs>
-
-        <g class="lawvere-pullback-square" transform="translate(288 24)">
-          <rect x="0" y="0" width="226" height="120" rx="10"></rect>
-          <path class="figure-arrow" d="M58 32 H166"></path>
-          <path class="figure-arrow" d="M58 42 V86"></path>
-          <path class="figure-arrow" d="M168 42 V86"></path>
-          <path class="figure-arrow" d="M58 96 H166"></path>
-          <path class="lawvere-pullback-corner" d="M46 43 H61 V58"></path>
-          <text class="figure-small lawvere-pullback-caption" x="113" y="114">edge set pullback</text>
-        </g>
-
-        <text class="figure-small lawvere-pullback-caption" x="177" y="42">pull back the edges of y along alpha</text>
 
         <g class="lawvere-x-graph" transform="translate(0 0)">
           <circle class="lawvere-graph-frame" cx="177" cy="228" r="118"></circle>
@@ -5660,11 +5727,6 @@ function lawvereFourthFigureTemplate() {
 
             <path class="lawvere-x-edge og" data-pullback-edge="og" d="M224 318 L132 318"></path>
             <path class="lawvere-x-edge og" data-pullback-edge="og" d="M224 318 L258 158"></path>
-          </g>
-          <g class="lawvere-vertex-fibers">
-            <path class="lawvere-fiber-link c-red-stroke" d="M177 120 C205 160, 238 210, 278 248"></path>
-            <path class="lawvere-fiber-link c-blue-stroke" d="M96 158 C80 188, 76 218, 78 248"></path>
-            <path class="lawvere-fiber-link c-green-stroke" d="M132 318 C182 274, 221 212, 258 158"></path>
           </g>
           <g class="lawvere-x-vertices">
             <circle class="c-red" cx="177" cy="120" r="10"></circle>
@@ -5695,19 +5757,6 @@ function lawvereFourthFigureTemplate() {
           </g>
         </g>
       </svg>
-      <span class="figure-math tiny" style="left: 45.5%; top: 14%;">\\(E_x\\)</span>
-      <span class="figure-math tiny" style="left: 64.3%; top: 14%;">\\(E_y\\)</span>
-      <span class="figure-math tiny" style="left: 45.5%; top: 30.4%;">\\(\\mathcal P_2(A)\\)</span>
-      <span class="figure-math tiny" style="left: 64.3%; top: 30.4%;">\\(\\mathcal P_2(B)\\)</span>
-      <span class="figure-math small" style="left: 23.3%; top: 90%;">\\(x=\\alpha^*y=y\\alpha\\)</span>
-      <span class="figure-math small" style="left: 77%; top: 84%;">\\(y\\)</span>
-      <span class="figure-math large" style="left: 52.3%; top: 56%;">\\(\\alpha:A\\twoheadrightarrow B\\)</span>
-      <span class="figure-math tiny lawvere-pullback-equation" style="left: 50.3%; top: 38.3%;">\\(E_x=\\mathcal P_2(A)\\times_{\\mathcal P_2(B)}E_y\\)</span>
-      <div class="lawvere-pullback-panel" aria-live="polite">
-        <span class="lawvere-pullback-panel-label">Pullback</span>
-        <strong data-pullback-focus>edge set square</strong>
-        <span data-pullback-status>Click the diagram to replay the pullback of edges.</span>
-      </div>
     </div>`;
 }
 
@@ -5796,80 +5845,54 @@ const paperFigureTemplates = {
     </svg>`,
   "lawvere-first": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
-      <title id="fig-lawvere-first-title">Inhabited object classifier and quotient topoi</title>
-      <desc id="fig-lawvere-first-desc">The inhabited object classifier turns inhabited-topos-rigid objects into connected geometric morphisms, hence quotient topoi.</desc>
+      <title id="fig-lawvere-first-title">One topos with many quotient topoi</title>
+      <desc id="fig-lawvere-first-desc">A single Grothendieck topos contains proper class many rigid inhabited objects, and these give proper class many distinct quotient topoi.</desc>
       <defs><marker id="arrow-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
-      <rect class="lawvere-band" x="74" y="28" width="612" height="95" rx="10"></rect>
-      <rect class="lawvere-mini-box" x="104" y="48" width="170" height="30" rx="5"></rect>
-      <rect class="lawvere-mini-box soft" x="506" y="48" width="126" height="30" rx="5"></rect>
-      <rect class="lawvere-mini-box" x="104" y="88" width="170" height="30" rx="5"></rect>
-      <rect class="lawvere-mini-box soft" x="506" y="88" width="126" height="30" rx="5"></rect>
-      <path class="figure-arrow lawvere-equivalence-arrow" d="M278 63 H500"></path>
-      <path class="figure-arrow lawvere-equivalence-arrow" d="M278 103 H500"></path>
-      <path class="figure-arrow dashed" d="M188 79 V86"></path>
-      <path class="figure-arrow dashed" d="M568 79 V86"></path>
-      <text class="figure-small lawvere-caption" x="380" y="20">classification by the inhabited object classifier</text>
+      <text class="figure-small lawvere-caption" x="380" y="38">one Grothendieck topos gives many quotient topoi</text>
 
-      <g transform="translate(72 145)">
-        <rect class="figure-node soft" x="0" y="0" width="186" height="92" rx="10"></rect>
-        <text class="figure-small" x="93" y="28">proper class many</text>
-        <text class="figure-small" x="93" y="51">inhabited-topos-rigid</text>
-        <text class="figure-small" x="93" y="74">objects in the encoding topos</text>
-        <g transform="translate(25 112)">
-          <rect class="lawvere-object-card" x="0" y="0" width="60" height="36" rx="6"></rect>
-          <rect class="lawvere-object-card" x="49" y="-12" width="60" height="36" rx="6"></rect>
-          <rect class="lawvere-object-card" x="98" y="0" width="60" height="36" rx="6"></rect>
-          <path class="figure-line" d="M18 17 H44 M67 5 H92 M116 17 H142"></path>
-          <circle class="figure-dot" cx="18" cy="17" r="3.5"></circle><circle class="figure-dot" cx="44" cy="17" r="3.5"></circle>
-          <circle class="figure-dot" cx="67" cy="5" r="3.5"></circle><circle class="figure-dot" cx="92" cy="5" r="3.5"></circle>
-          <circle class="figure-dot" cx="116" cy="17" r="3.5"></circle><circle class="figure-dot" cx="142" cy="17" r="3.5"></circle>
+      <g transform="translate(54 118)">
+        <rect class="figure-node soft" x="0" y="0" width="170" height="126" rx="10"></rect>
+        <text class="figure-label" x="85" y="48">one topos</text>
+        <text class="figure-small" x="85" y="83">contains the data</text>
+      </g>
+
+      <path class="figure-arrow" d="M238 181 H300"></path>
+      <text class="figure-small" x="269" y="160">inside</text>
+
+      <g transform="translate(310 92)">
+        <rect class="figure-node soft-2" x="0" y="0" width="178" height="178" rx="12"></rect>
+        <text class="figure-small" x="89" y="44">proper class many</text>
+        <text class="figure-label" x="89" y="76">rigid objects</text>
+        <g transform="translate(23 108)">
+          <rect class="lawvere-object-card" x="0" y="0" width="54" height="34" rx="6"></rect>
+          <rect class="lawvere-object-card" x="50" y="-14" width="54" height="34" rx="6"></rect>
+          <rect class="lawvere-object-card" x="100" y="0" width="54" height="34" rx="6"></rect>
+          <circle class="figure-dot" cx="18" cy="17" r="3.6"></circle>
+          <circle class="figure-dot" cx="36" cy="17" r="3.6"></circle>
+          <circle class="figure-dot" cx="68" cy="3" r="3.6"></circle>
+          <circle class="figure-dot" cx="86" cy="3" r="3.6"></circle>
+          <circle class="figure-dot" cx="118" cy="17" r="3.6"></circle>
+          <circle class="figure-dot" cx="136" cy="17" r="3.6"></circle>
         </g>
       </g>
-      <path class="figure-arrow" d="M264 190 H316"></path>
-      <g transform="translate(318 141)">
-        <rect class="figure-node soft-2" x="0" y="0" width="126" height="112" rx="12"></rect>
-        <circle class="lawvere-universal" cx="63" cy="42" r="21"></circle>
-        <text class="figure-small" x="63" y="79">universal</text>
-        <text class="figure-small" x="63" y="99">inhabited object</text>
+
+      <path class="figure-arrow" d="M500 181 H560"></path>
+      <text class="figure-small" x="530" y="154">iOC</text>
+      <text class="figure-small" x="530" y="210">classifies</text>
+
+      <g transform="translate(574 118)">
+        <rect class="figure-node warm" x="0" y="0" width="140" height="126" rx="10"></rect>
+        <text class="figure-label" x="70" y="44">quotient</text>
+        <text class="figure-label" x="70" y="72">topoi</text>
+        <text class="figure-small" x="70" y="103">proper class many</text>
       </g>
-      <path class="figure-arrow" d="M448 190 H505"></path>
-      <g transform="translate(514 144)">
-        <rect class="figure-node warm" x="0" y="0" width="178" height="102" rx="10"></rect>
-        <text class="figure-small" x="89" y="28">connected morphisms</text>
-        <text class="figure-small" x="89" y="52">define quotient topoi</text>
-        <path class="figure-line" d="M26 76 H152"></path>
-        <rect class="lawvere-quotient-card" x="24" y="66" width="42" height="22" rx="5"></rect>
-        <rect class="lawvere-quotient-card" x="69" y="66" width="42" height="22" rx="5"></rect>
-        <rect class="lawvere-quotient-card" x="114" y="66" width="42" height="22" rx="5"></rect>
-      </g>
-      <rect class="lawvere-band lower" x="82" y="278" width="596" height="78" rx="10"></rect>
-      <circle class="lawvere-endpoint" cx="196" cy="317" r="24"></circle>
-      <circle class="lawvere-endpoint" cx="396" cy="296" r="22"></circle>
-      <circle class="lawvere-endpoint" cx="396" cy="338" r="22"></circle>
-      <path class="figure-arrow" d="M221 311 C278 286, 319 282, 371 292"></path>
-      <path class="figure-arrow" d="M221 323 C278 349, 319 353, 371 342"></path>
-      <path class="figure-arrow dashed" d="M420 296 V338"></path>
-      <text class="figure-small" x="556" y="307">meta-rigidity of iOC</text>
-      <text class="figure-small" x="556" y="332">separates the quotients</text>
+
+      <path class="figure-line dashed" d="M116 306 H644"></path>
+      <text class="figure-small" x="380" y="334">rigidity keeps different objects from becoming the same quotient</text>
     </svg>
-    <span class="figure-math tiny" style="left: 25%; top: 16.3%;">\\(\\operatorname{Geom}(\\mathcal E,\\mathsf{iOC})\\)</span>
-    <span class="figure-math tiny" style="left: 75%; top: 16.3%;">\\(\\mathcal E_{\\mathrm{inh}}\\)</span>
-    <span class="figure-math tiny" style="left: 25%; top: 26.5%;">\\(\\operatorname{Geom}(\\mathcal E,\\mathsf{OC})\\)</span>
-    <span class="figure-math tiny" style="left: 75%; top: 26.5%;">\\(\\mathcal E\\)</span>
-    <span class="figure-math small" style="left: 43.7%; top: 50.5%;">\\(X\\longleftrightarrow \\overline X\\)</span>
-    <span class="figure-math tiny" style="left: 33.9%; top: 47%;">classifies</span>
-    <span class="figure-math tiny" style="left: 62.8%; top: 47%;">connected</span>
-    <span class="figure-math large" style="left: 50.2%; top: 41.7%;">\\(\\mathsf{iOC}\\)</span>
-    <span class="figure-math tiny" style="left: 50.2%; top: 28.8%;">\\([\\mathbf{FinSet}_{\\ne\\emptyset},\\mathbf{Set}]\\)</span>
-    <span class="figure-math tiny" style="left: 14.2%; top: 67.5%;">\\(\\mathcal X_\\kappa,\\mathcal X_\\lambda,\\ldots\\)</span>
-    <span class="figure-math tiny" style="left: 77.6%; top: 66.6%;">\\(\\overline{\\mathcal X}_\\kappa,\\overline{\\mathcal X}_\\lambda,\\ldots\\)</span>
-    <span class="figure-math tiny" style="left: 25.8%; top: 81.4%;">\\(\\mathcal E_{\\mathcal L}\\)</span>
-    <span class="figure-math tiny" style="left: 52.1%; top: 76%;">\\(\\mathsf{iOC}\\)</span>
-    <span class="figure-math tiny" style="left: 52.1%; top: 86.8%;">\\(\\mathsf{iOC}\\)</span>
-    <span class="figure-math tiny" style="left: 56.9%; top: 81.7%;">\\(F\\simeq\\mathrm{id}\\)</span>
-    <span class="figure-math tiny" style="left: 39.6%; top: 77.2%;">\\(\\overline X\\)</span>
-    <span class="figure-math tiny" style="left: 39.6%; top: 86.1%;">\\(\\overline Y\\)</span>
-    <span class="figure-math small" style="left: 73.5%; top: 88.6%;">\\(X\\not\\cong Y\\Rightarrow \\overline X\\not\\simeq\\overline Y\\)</span>`,
+    <span class="figure-math large" style="left: 16.5%; top: 48%;">\\(\\mathcal E_{\\mathcal L}\\)</span>
+    <span class="figure-math small" style="left: 52.5%; top: 63%;">\\(X_\\kappa,\\ldots\\)</span>
+    <span class="figure-math small" style="left: 85%; top: 65%;">\\(\\bar X_\\kappa,\\ldots\\)</span>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
@@ -6029,8 +6052,9 @@ function formatGrundySet(values) {
 
 function grundyActiveNodeIds(state) {
   if (!state.step) return new Set();
-  if (state.focusId && grundyGameNodeMap.get(state.focusId)?.stage <= state.step) return new Set([state.focusId]);
-  return new Set(grundyGameNodes.filter((node) => node.stage === state.step).map((node) => node.id));
+  if (state.focusId && grundyNodeStep(state.focusId) <= state.step) return new Set([state.focusId]);
+  const activeNode = grundyNodeForStep(state.step);
+  return activeNode ? new Set([activeNode.id]) : new Set();
 }
 
 function updateGrundyPanel(root, state, activeIds) {
@@ -6038,7 +6062,8 @@ function updateGrundyPanel(root, state, activeIds) {
   const options = root.querySelector("[data-grundy-options]");
   const mex = root.querySelector("[data-grundy-mex]");
   const status = root.querySelector("[data-grundy-status]");
-  const focusedNode = state.focusId ? grundyGameNodeMap.get(state.focusId) : null;
+  const activeNodeId = [...activeIds][0] || "";
+  const focusedNode = state.focusId ? grundyGameNodeMap.get(state.focusId) : grundyGameNodeMap.get(activeNodeId);
 
   if (focusedNode) {
     const values = grundyOptionValues(focusedNode);
@@ -6052,7 +6077,7 @@ function updateGrundyPanel(root, state, activeIds) {
     return;
   }
 
-  const copy = grundyStepCopy[state.step] || grundyStepCopy[0];
+  const copy = state.step >= state.max ? grundyFinalCopy : grundyStepCopy[state.step] || grundyStepCopy[0];
   const activeText = [...activeIds].join(", ");
   if (focus) focus.textContent = activeText || copy.focus;
   if (options) options.textContent = copy.options;
@@ -6080,7 +6105,7 @@ function renderGrundyStep(root) {
     const record = grundyGameNodeMap.get(nodeId);
     if (!record) return;
     const value = node.querySelector("[data-grundy-value]");
-    const known = record.stage <= step;
+    const known = grundyNodeIsKnown(record, step);
     const active = activeIds.has(record.id);
     node.classList.toggle("is-known", known);
     node.classList.toggle("is-computed", known && !active);
@@ -6095,16 +6120,17 @@ function renderGrundyStep(root) {
     const from = grundyGameNodeMap.get(fromId);
     const to = grundyGameNodeMap.get(toId);
     if (!from || !to) return;
-    const active = activeIds.has(from.id) && to.stage < from.stage;
+    const active = activeIds.has(from.id) && grundyNodeIsKnown(to, step);
+    const known = grundyNodeIsKnown(from, step);
     edge.classList.toggle("is-active", active);
-    edge.classList.toggle("is-computed", from.stage < step || (from.stage <= step && !active));
+    edge.classList.toggle("is-computed", known && !active);
   });
 
   root.querySelectorAll("[data-grundy-bridge]").forEach((bridge) => {
     const nodeId = bridge.dataset.grundyBridge || "";
     const record = grundyGameNodeMap.get(nodeId);
     if (!record) return;
-    const known = record.stage <= step;
+    const known = grundyNodeIsKnown(record, step);
     const active = activeIds.has(record.id);
     bridge.classList.toggle("is-known", known);
     bridge.classList.toggle("is-active", active);
@@ -6114,7 +6140,7 @@ function renderGrundyStep(root) {
     const nodeId = row.dataset.grundyAlgebra || "";
     const record = grundyGameNodeMap.get(nodeId);
     if (!record) return;
-    const known = record.stage <= step;
+    const known = grundyNodeIsKnown(record, step);
     const active = activeIds.has(record.id);
     row.classList.toggle("is-known", known);
     row.classList.toggle("is-computed", known && !active);
@@ -6168,11 +6194,11 @@ function ensureGrundyControls(root) {
   };
 
   const sliderLabel = el("label", "grundy-slider");
-  sliderLabel.append(el("span", null, "step"));
+  sliderLabel.append(el("span", null, "node"));
   const slider = document.createElement("input");
   slider.type = "range";
   slider.min = "0";
-  slider.max = root.dataset.grundyMax || "6";
+  slider.max = root.dataset.grundyMax || String(grundyFinalStep);
   slider.value = root.dataset.grundyStep || "0";
   slider.dataset.grundySlider = "";
   sliderLabel.append(slider);
@@ -6191,7 +6217,7 @@ function initializeGrundyFigure(root, options = {}) {
   const previous = grundyFigureStates.get(root);
   if (previous?.timer) window.clearInterval(previous.timer);
 
-  const max = Number(root.dataset.grundyMax || 6);
+  const max = Number(root.dataset.grundyMax || grundyFinalStep);
   const state = {
     max,
     step: Math.max(0, Math.min(max, Number(root.dataset.grundyStep || 0))),
@@ -6209,13 +6235,13 @@ function initializeGrundyFigure(root, options = {}) {
       node.addEventListener("click", (event) => {
         event.stopPropagation();
         stopGrundyFigure(root);
-        if (record) setGrundyStep(root, record.stage, record.id);
+        if (record) setGrundyStep(root, grundyNodeStep(record.id), record.id);
       });
       node.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
         stopGrundyFigure(root);
-        if (record) setGrundyStep(root, record.stage, record.id);
+        if (record) setGrundyStep(root, grundyNodeStep(record.id), record.id);
       });
     });
     root.querySelectorAll("[data-grundy-algebra]").forEach((row) => {
@@ -6226,13 +6252,13 @@ function initializeGrundyFigure(root, options = {}) {
       row.addEventListener("click", (event) => {
         event.stopPropagation();
         stopGrundyFigure(root);
-        if (record) setGrundyStep(root, record.stage, record.id);
+        if (record) setGrundyStep(root, grundyNodeStep(record.id), record.id);
       });
       row.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
         stopGrundyFigure(root);
-        if (record) setGrundyStep(root, record.stage, record.id);
+        if (record) setGrundyStep(root, grundyNodeStep(record.id), record.id);
       });
     });
     root.querySelectorAll("[data-grundy-action]").forEach((button) => {
@@ -6276,22 +6302,8 @@ function stopGrundyFigures(scope) {
   roots.forEach((root) => stopGrundyFigure(root));
 }
 
-const lawverePullbackGroups = [
-  ["rb", "red-blue edge"],
-  ["ro", "red-orange edge"],
-  ["rg", "red-green edge"],
-  ["og", "orange-green edge"]
-];
+const lawverePullbackGroups = ["rb", "ro", "rg", "og"];
 const lawverePullbackStates = new WeakMap();
-
-function lawverePullbackStepText(groupId) {
-  const group = lawverePullbackGroups.find(([id]) => id === groupId);
-  if (!group) return ["edge set square", "Each edge of y pulls back to all pairs of vertices in the corresponding fibres of alpha."];
-  return [
-    group[1],
-    `Pulling back the ${group[1]} of y adds exactly the matching fibrewise edges in x.`
-  ];
-}
 
 function renderLawverePullbackStep(root, step) {
   const completeStep = lawverePullbackGroups.length + 1;
@@ -6299,26 +6311,17 @@ function renderLawverePullbackStep(root, step) {
   root.dataset.pullbackStep = String(boundedStep);
   root.classList.toggle("is-complete", boundedStep === completeStep);
 
-  const activeGroup = lawverePullbackGroups[boundedStep - 1]?.[0] || "";
+  const activeGroup = lawverePullbackGroups[boundedStep - 1] || "";
   root.querySelectorAll("[data-pullback-source]").forEach((edge) => {
-    const index = lawverePullbackGroups.findIndex(([id]) => id === edge.dataset.pullbackSource) + 1;
+    const index = lawverePullbackGroups.indexOf(edge.dataset.pullbackSource) + 1;
     edge.classList.toggle("is-active", Boolean(activeGroup) && edge.dataset.pullbackSource === activeGroup);
     edge.classList.toggle("is-complete", boundedStep === completeStep || (index > 0 && index < boundedStep));
   });
   root.querySelectorAll("[data-pullback-edge]").forEach((edge) => {
-    const index = lawverePullbackGroups.findIndex(([id]) => id === edge.dataset.pullbackEdge) + 1;
+    const index = lawverePullbackGroups.indexOf(edge.dataset.pullbackEdge) + 1;
     edge.classList.toggle("is-active", Boolean(activeGroup) && edge.dataset.pullbackEdge === activeGroup);
     edge.classList.toggle("is-complete", boundedStep === completeStep || (index > 0 && index < boundedStep));
   });
-
-  const focus = root.querySelector("[data-pullback-focus]");
-  const status = root.querySelector("[data-pullback-status]");
-  const [focusText, statusText] =
-    boundedStep === completeStep
-      ? ["pullback complete", "The graph x is reconstructed as the pullback of the edge set of y along alpha."]
-      : lawverePullbackStepText(activeGroup);
-  if (focus) focus.textContent = focusText;
-  if (status) status.textContent = statusText;
 }
 
 function stopLawverePullbackFigure(root) {
@@ -6350,18 +6353,6 @@ function playLawverePullbackFigure(root) {
   );
 }
 
-function ensureLawverePullbackControls(root) {
-  if (root.querySelector("[data-pullback-action]")) return;
-  const replay = el("button", "lawvere-pullback-replay", "Replay pullback");
-  replay.type = "button";
-  replay.dataset.pullbackAction = "replay";
-  replay.addEventListener("click", (event) => {
-    event.stopPropagation();
-    playLawverePullbackFigure(root);
-  });
-  root.append(replay);
-}
-
 function initializeLawverePullbackFigure(root, options = {}) {
   stopLawverePullbackFigure(root);
   lawverePullbackStates.set(root, {
@@ -6370,12 +6361,10 @@ function initializeLawverePullbackFigure(root, options = {}) {
     intervalMs: options.intervalMs || 760
   });
   if (options.controls) {
-    ensureLawverePullbackControls(root);
     root.setAttribute("role", "button");
     root.setAttribute("aria-label", "Replay the pullback animation");
     root.tabIndex = 0;
     root.addEventListener("click", (event) => {
-      if (event.target.closest("[data-pullback-action]")) return;
       playLawverePullbackFigure(root);
     });
     root.addEventListener("keydown", (event) => {
@@ -6501,6 +6490,93 @@ function appendActionLinks(parent, records) {
   const actions = el("div", "action-links");
   records.forEach(([label, href]) => actions.append(link(label, href, "action-link")));
   parent.append(actions);
+}
+
+function currentPositionIcon(icon) {
+  const svg = svgEl("svg", {
+    viewBox: "0 0 24 24",
+    "aria-hidden": "true",
+    focusable: "false"
+  });
+  svg.classList.add("position-icon-svg");
+
+  const line = (attrs) => svgEl("path", { ...attrs, fill: "none", stroke: "currentColor", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "1.8" });
+  const shape = (tag, attrs) => svgEl(tag, attrs);
+
+  if (icon === "building") {
+    svg.append(
+      line({ d: "M4 20H20" }),
+      line({ d: "M6 20V10" }),
+      line({ d: "M12 20V10" }),
+      line({ d: "M18 20V10" }),
+      line({ d: "M4 10H20" }),
+      line({ d: "M4 10L12 5L20 10" })
+    );
+    return svg;
+  }
+
+  if (icon === "flask") {
+    svg.append(
+      line({ d: "M10 3V8L5 18A2 2 0 0 0 6.8 21H17.2A2 2 0 0 0 19 18L14 8V3" }),
+      line({ d: "M8.5 13H15.5" }),
+      line({ d: "M7.5 16C8.8 15.1 10 15.1 11.2 16C12.4 16.9 13.7 16.9 15 16C16.1 15.2 17 15.2 18 16" })
+    );
+    return svg;
+  }
+
+  if (icon === "badge") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "10", r: "5.3", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
+      line({ d: "M10.2 15.1L8.7 20L12 18.2L15.3 20L13.8 15.1" }),
+      line({ d: "M10 10.1L11.3 11.5L14.2 8.7" })
+    );
+    return svg;
+  }
+
+  if (icon === "network") {
+    svg.append(
+      line({ d: "M7.2 8.1L12 12" }),
+      line({ d: "M16.8 8.1L12 12" }),
+      line({ d: "M12 12L12 16.2" }),
+      shape("circle", { cx: "7.2", cy: "8.1", r: "2.2", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "16.8", cy: "8.1", r: "2.2", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "12", cy: "16.2", r: "2.2", fill: "none", stroke: "currentColor", "stroke-width": "1.8" })
+    );
+    return svg;
+  }
+
+  if (icon === "mentor") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "8.1", r: "2.4", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
+      line({ d: "M7.1 19.4C8.2 16.8 10 15.5 12 15.5C14 15.5 15.8 16.8 16.9 19.4" }),
+      line({ d: "M17 5.5H20V10" }),
+      line({ d: "M20 5.5L15.8 9.7" })
+    );
+    return svg;
+  }
+
+  svg.append(
+    line({ d: "M4.6 6.4H19.4V18.8H4.6Z" }),
+    line({ d: "M7.5 9.1H16.5" }),
+    line({ d: "M7.5 12H16.5" }),
+    line({ d: "M7.5 14.9H13.6" })
+  );
+  return svg;
+}
+
+function renderCurrentPositions() {
+  document.querySelectorAll("#current-position-list").forEach((root) => {
+    root.replaceChildren();
+    root.classList.add("position-list");
+    siteData.currentPositions.forEach((record) => {
+      const item = el("li", "position-item");
+      const iconWrap = el("span", "position-icon");
+      iconWrap.append(currentPositionIcon(record.icon));
+      const content = record.href ? link(record.text, record.href, "position-link") : el("span", "position-link", record.text);
+      item.append(iconWrap, content);
+      root.append(item);
+    });
+  });
 }
 
 function renderLinkedList(selector, records) {
@@ -7834,7 +7910,7 @@ function setupInteractions() {
 setupLanguage();
 renderProfileLinks();
 renderTopics();
-renderLinkedList("#current-position-list", siteData.currentPositions);
+renderCurrentPositions();
 renderLinkedList("#past-position-list", siteData.pastPositions);
 renderLinkedList("#award-list", siteData.awards);
 renderLinkedList("#education-list", siteData.education);
