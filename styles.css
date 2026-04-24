@@ -1980,13 +1980,91 @@ a.position-link:hover {
   right: 18px;
   z-index: 2;
   display: grid;
-  gap: 3px;
+  gap: 10px;
   width: min(43%, 326px);
-  padding: 8px;
+  padding: 10px;
   border: 1px solid rgba(43, 52, 43, 0.13);
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.84);
   box-shadow: 0 10px 28px rgba(43, 52, 43, 0.08);
+}
+
+.grundy-natural-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+}
+
+.grundy-natural-number {
+  position: relative;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(43, 52, 43, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.92);
+  color: #25342d;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.94rem;
+  font-weight: 900;
+  transition: background 220ms ease, border-color 220ms ease, color 220ms ease, opacity 220ms ease, transform 220ms ease;
+}
+
+.grundy-natural-number.is-excluded {
+  border-color: rgba(43, 52, 43, 0.12);
+  background: rgba(237, 245, 241, 0.55);
+  color: rgba(37, 52, 45, 0.42);
+}
+
+.grundy-natural-number.is-excluded::after {
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  height: 2px;
+  border-radius: 999px;
+  background: #bf6b32;
+  content: "";
+  transform: rotate(-18deg);
+}
+
+.grundy-natural-number.is-mex {
+  border-color: rgba(191, 107, 50, 0.62);
+  background: #fff0df;
+  color: #7b421f;
+  transform: translateY(-2px);
+}
+
+.grundy-natural-number.is-after-mex {
+  opacity: 0.54;
+}
+
+.grundy-mex-card {
+  display: grid;
+  gap: 5px;
+  padding: 8px;
+  border: 1px solid rgba(43, 52, 43, 0.12);
+  border-radius: 7px;
+  background: rgba(255, 253, 248, 0.74);
+  color: #25342d;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  line-height: 1.25;
+}
+
+.grundy-algebra-label {
+  color: var(--accent-2);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.grundy-mex-result {
+  color: #9f5527;
+  font-size: 0.92rem;
+  font-weight: 900;
 }
 
 .grundy-algebra-row {
@@ -2097,9 +2175,43 @@ a.position-link:hover {
 .publication-figure .grundy-algebra-panel {
   top: 57px;
   right: 10px;
-  gap: 2px;
+  gap: 5px;
   width: 43%;
   padding: 5px;
+}
+
+.publication-figure .grundy-natural-line {
+  gap: 3px;
+}
+
+.publication-figure .grundy-natural-number {
+  width: 20px;
+  height: 20px;
+  font-size: 0.64rem;
+}
+
+.publication-figure .grundy-natural-number.is-excluded::after {
+  left: 4px;
+  right: 4px;
+  height: 1.5px;
+}
+
+.publication-figure .grundy-mex-card {
+  gap: 2px;
+  padding: 5px;
+  font-size: 0.56rem;
+}
+
+.publication-figure .grundy-mex-card [data-grundy-mex-reason] {
+  display: none;
+}
+
+.publication-figure .grundy-algebra-label {
+  font-size: 0.48rem;
+}
+
+.publication-figure .grundy-mex-result {
+  font-size: 0.68rem;
 }
 
 .publication-figure .grundy-algebra-row {

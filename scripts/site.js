@@ -5996,6 +5996,7 @@ const grundyAlgebraOrder = [
 
 const grundyNodeStepMap = new Map(grundyAlgebraOrder.map((nodeId, index) => [nodeId, index + 1]));
 const grundyFinalStep = grundyAlgebraOrder.length + 1;
+const grundyNumberLineValues = [0, 1, 2, 3, 4];
 
 const grundyStepCopy = {
   0: {
@@ -6005,32 +6006,32 @@ const grundyStepCopy = {
     status: "This is the recursive calculation from the paper, not the heap chain."
   },
   1: {
-    focus: "Z1, Z2, Z3",
+    focus: "terminal layer",
     options: "terminal states have no options",
     mex: "mex(empty set) = 0",
     status: "Every terminal receives Grundy number 0."
   },
   2: {
-    focus: "Y1, Y2, Y3",
+    focus: "next layer",
     options: "each sees only Grundy value 0",
     mex: "mex({0}) = 1",
     status: "The Y layer is computed from the terminal layer."
   },
   3: {
-    focus: "X1, X2, X3, W3",
-    options: "X2 and W3 see both 0 and 1",
+    focus: "middle layer",
+    options: "some nodes see both 0 and 1",
     mex: "mex({1}) = 0; mex({0,1}) = 2",
     status: "Nonlinear branches already force two different Grundy values."
   },
   4: {
-    focus: "W1, W2",
+    focus: "upper layer",
     options: "both see values 0 and 2",
     mex: "mex({0,2}) = 1",
     status: "The W layer now uses the X layer computed in the previous step."
   },
   5: {
-    focus: "V1, V2",
-    options: "V1 sees {1,2}; V2 sees {0,1,2}",
+    focus: "top layer",
+    options: "top nodes see values from the layers below",
     mex: "mex({1,2}) = 0; mex({0,1,2}) = 3",
     status: "P-states are exactly the states with Grundy number 0; sums use Nim-sum."
   }
@@ -6073,20 +6074,6 @@ function grundyEdgePath(from, to) {
   return `M${from.x} ${startY} C${from.x} ${midY + bend} ${to.x} ${midY - bend} ${to.x} ${endY}`;
 }
 
-function grundyBridgePath(node, rowY) {
-  return `M${node.x + 20} ${node.y} C${node.x + 82} ${node.y} 342 ${rowY} 398 ${rowY}`;
-}
-
-function grundyAlgebraRowY(index) {
-  return 82 + index * 19;
-}
-
-function grundyFormulaTeX(node) {
-  const values = grundyOptionValues(node);
-  const set = values.length ? `\\{${values.join(",")}\\}` : "\\varnothing";
-  return `\\(\\mathcal G(${node.tex})=\\operatorname{mex}(${set})=${grundyMex(values)}\\)`;
-}
-
 function grundyFigureTemplate() {
   const edges = grundyGameNodes
     .flatMap((from) =>
@@ -6096,30 +6083,17 @@ function grundyFigureTemplate() {
       })
     )
     .join("");
-  const bridges = grundyAlgebraOrder
-    .map((nodeId, index) => {
-      const node = grundyGameNodeMap.get(nodeId);
-      return `<path class="grundy-bridge" data-grundy-bridge="${node.id}" d="${grundyBridgePath(node, grundyAlgebraRowY(index))}"></path>`;
-    })
-    .join("");
   const nodes = grundyGameNodes
     .map(
       ({ id, x, y }) => `
         <g class="grundy-node" data-grundy-node="${id}" transform="translate(${x} ${y})" tabindex="0" role="button" aria-label="Show mex computation for ${id}">
           <circle class="grundy-node-shell" r="18"></circle>
-          <text class="grundy-value-label" y="6" data-grundy-value="${id}">?</text>
+          <text class="grundy-value-label" y="6" data-grundy-value="${id}"></text>
         </g>`
     )
     .join("");
-  const algebraRows = grundyAlgebraOrder
-    .map((nodeId) => {
-      const node = grundyGameNodeMap.get(nodeId);
-      return `
-        <div class="grundy-algebra-row" data-grundy-algebra="${node.id}">
-          <span class="grundy-algebra-state">${node.id}</span>
-          <span class="grundy-algebra-formula">${grundyFormulaTeX(node)}</span>
-        </div>`;
-    })
+  const naturalNumbers = grundyNumberLineValues
+    .map((value) => `<span class="grundy-natural-number" data-grundy-natural="${value}">${value}</span>`)
     .join("");
   return `
     <div class="grundy-figure" data-grundy-figure data-grundy-max="${grundyFinalStep}">
@@ -6139,12 +6113,19 @@ function grundyFigureTemplate() {
         <path class="grundy-divider" d="M386 78 V418"></path>
         <text class="grundy-level-label" x="44" y="93">top</text>
         <text class="grundy-level-label" x="44" y="401">terminal</text>
-        <g class="grundy-bridges">${bridges}</g>
         <g class="grundy-edges">${edges}</g>
         <g class="grundy-nodes">${nodes}</g>
       </svg>
       <div class="grundy-algebra-panel" data-grundy-algebra-panel>
-        ${algebraRows}
+        <div class="grundy-natural-line" aria-label="Natural numbers for mex">
+          ${naturalNumbers}
+        </div>
+        <div class="grundy-mex-card">
+          <span class="grundy-algebra-label">reachable values</span>
+          <strong data-grundy-reachable-values>press Play</strong>
+          <span data-grundy-mex-reason>mex is the first natural number not crossed out.</span>
+          <strong class="grundy-mex-result" data-grundy-mex-result>mex</strong>
+        </div>
       </div>
       <div class="grundy-panel" aria-live="polite">
         <span class="grundy-panel-label">Grundy recursion</span>
@@ -6563,13 +6544,10 @@ function updateGrundyPanel(root, state, activeIds) {
 
   if (focusedNode) {
     const values = grundyOptionValues(focusedNode);
-    if (focus) focus.textContent = focusedNode.id;
+    if (focus) focus.textContent = "current node";
     if (options) options.textContent = `reachable values: ${formatGrundySet(values)}`;
-    if (mex) mex.textContent = `mex(${formatGrundySet(values)}) = ${focusedNode.value}`;
-    if (status) {
-      const children = focusedNode.options.length ? focusedNode.options.join(", ") : "no options";
-      status.textContent = `${focusedNode.id} -> ${children}`;
-    }
+    if (mex) mex.textContent = `mex = ${focusedNode.value}`;
+    if (status) status.textContent = "cross out the reachable values; choose the first number left.";
     return;
   }
 
@@ -6579,6 +6557,38 @@ function updateGrundyPanel(root, state, activeIds) {
   if (options) options.textContent = copy.options;
   if (mex) mex.textContent = copy.mex;
   if (status) status.textContent = copy.status;
+}
+
+function updateGrundyAlgebraPanel(root, state, activeIds) {
+  const activeNodeId = [...activeIds][0] || "";
+  const focusedNode = state.focusId ? grundyGameNodeMap.get(state.focusId) : grundyGameNodeMap.get(activeNodeId);
+  const values = focusedNode ? grundyOptionValues(focusedNode) : [];
+  const mexValue = focusedNode ? grundyMex(values) : null;
+  const isReady = Boolean(focusedNode);
+
+  root.querySelectorAll("[data-grundy-natural]").forEach((number) => {
+    const value = Number(number.dataset.grundyNatural);
+    const excluded = isReady && values.includes(value);
+    const isMex = isReady && value === mexValue;
+    number.classList.toggle("is-excluded", excluded);
+    number.classList.toggle("is-mex", isMex);
+    number.classList.toggle("is-after-mex", isReady && value > mexValue && !excluded);
+  });
+
+  const reachable = root.querySelector("[data-grundy-reachable-values]");
+  const reason = root.querySelector("[data-grundy-mex-reason]");
+  const result = root.querySelector("[data-grundy-mex-result]");
+
+  if (!isReady) {
+    if (reachable) reachable.textContent = state.step >= state.max ? "all values computed" : "press Play";
+    if (reason) reason.textContent = "mex is the first natural number not crossed out.";
+    if (result) result.textContent = state.step >= state.max ? "done" : "mex";
+    return;
+  }
+
+  if (reachable) reachable.textContent = values.length ? values.join(", ") : "none";
+  if (reason) reason.textContent = values.length ? "cross these out; take the first remaining number." : "nothing is reachable, so start at 0.";
+  if (result) result.textContent = `mex = ${mexValue}`;
 }
 
 function updateGrundyPlayControl(root) {
@@ -6608,7 +6618,7 @@ function renderGrundyStep(root) {
     node.classList.toggle("is-active", active);
     node.classList.toggle("is-p-state", step >= state.max && known && record.value === 0);
     node.classList.toggle("is-n-state", step >= state.max && known && record.value !== 0);
-    if (value) value.textContent = known ? String(record.value) : "?";
+    if (value) value.textContent = known ? String(record.value) : "";
   });
 
   root.querySelectorAll("[data-grundy-edge]").forEach((edge) => {
@@ -6647,6 +6657,7 @@ function renderGrundyStep(root) {
 
   const slider = root.querySelector("[data-grundy-slider]");
   if (slider) slider.value = String(step);
+  updateGrundyAlgebraPanel(root, state, activeIds);
   updateGrundyPanel(root, state, activeIds);
 }
 
