@@ -7,6 +7,7 @@ import { pathToFileURL } from "node:url";
 const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const root = process.cwd();
 const outDir = await mkdtemp(resolve(tmpdir(), "homepage-visual-check-"));
+const debugPort = Number(process.env.VISUAL_CHECK_CDP_PORT || 9300 + Math.floor(Math.random() * 600));
 
 const pages = [
   ["home", "index.html"],
@@ -52,12 +53,24 @@ const languages = [
   ["ja", "?lang=ja"]
 ];
 
+function filterByEnv(items, envName) {
+  const value = process.env[envName];
+  if (!value) return items;
+  const allowed = new Set(value.split(",").map((item) => item.trim()).filter(Boolean));
+  return items.filter(([name]) => allowed.has(name));
+}
+
+const selectedPages = filterByEnv(pages, "VISUAL_CHECK_PAGES");
+const selectedViewports = filterByEnv(viewports, "VISUAL_CHECK_VIEWPORTS");
+const selectedLanguages = filterByEnv(languages, "VISUAL_CHECK_LANGUAGES");
+const shouldCaptureScreenshots = process.env.VISUAL_CHECK_SCREENSHOTS !== "0";
+
 const chrome = spawn(chromePath, [
   "--headless=new",
   "--disable-gpu",
   "--disable-dev-shm-usage",
   "--no-sandbox",
-  "--remote-debugging-port=9229",
+  `--remote-debugging-port=${debugPort}`,
   `--user-data-dir=${outDir}/chrome-profile`,
   "about:blank"
 ], { stdio: ["ignore", "pipe", "pipe"] });
@@ -72,7 +85,7 @@ function delay(ms) {
 async function waitForDebugEndpoint() {
   for (let attempt = 0; attempt < 80; attempt += 1) {
     try {
-      const response = await fetch("http://127.0.0.1:9229/json/version");
+      const response = await fetch(`http://127.0.0.1:${debugPort}/json/version`);
       if (response.ok) return;
     } catch {
       // Chrome is still starting.
@@ -135,7 +148,7 @@ class Cdp {
 }
 
 async function createPage() {
-  const response = await fetch("http://127.0.0.1:9229/json/new?about:blank", { method: "PUT" });
+  const response = await fetch(`http://127.0.0.1:${debugPort}/json/new?about:blank`, { method: "PUT" });
   if (!response.ok) throw new Error(`Failed to create CDP page: ${response.status}`);
   const target = await response.json();
   return new Cdp(target.webSocketDebuggerUrl);
@@ -318,9 +331,9 @@ try {
   await cdp.send("Page.enable");
   await cdp.send("Runtime.enable");
 
-  for (const [pageName, relativePath] of pages) {
-    for (const [viewportName, width, height] of viewports) {
-      for (const [language, query] of languages) {
+  for (const [pageName, relativePath] of selectedPages) {
+    for (const [viewportName, width, height] of selectedViewports) {
+      for (const [language, query] of selectedLanguages) {
         await cdp.send("Emulation.setDeviceMetricsOverride", {
           width,
           height,
@@ -347,13 +360,15 @@ try {
         data.language = language;
         results.push(data);
 
-        const screenshot = await cdp.send("Page.captureScreenshot", {
-          format: "png",
-          captureBeyondViewport: false
-        });
-        const shotPath = `${outDir}/${pageName}-${viewportName}-${language}.png`;
-        await writeFile(shotPath, Buffer.from(screenshot.data, "base64"));
-        data.screenshot = shotPath;
+        if (shouldCaptureScreenshots) {
+          const screenshot = await cdp.send("Page.captureScreenshot", {
+            format: "png",
+            captureBeyondViewport: false
+          });
+          const shotPath = `${outDir}/${pageName}-${viewportName}-${language}.png`;
+          await writeFile(shotPath, Buffer.from(screenshot.data, "base64"));
+          data.screenshot = shotPath;
+        }
       }
     }
   }

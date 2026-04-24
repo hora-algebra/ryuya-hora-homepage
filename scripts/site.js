@@ -737,7 +737,7 @@ const siteData = {
       title: "2024",
       items: [
         { date: "2024-04-25", text: "Spoke at AFSA.", href: "https://afsa.jp/g-en/" },
-        { date: "2024-05-18", text: "Organized the 0th conference of Categories in Tokyo.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A%E8%A9%A6%E9%96%8B%E5%82%AC" },
+        { date: "2024-05-18", text: "Organized the 0th conference of Categories in Tokyo.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2024-06-28", text: "Gave a talk at CT2024 in Santiago de Compostela.", href: "https://www.usc.gal/regaca/ct2024/" },
         { date: "2024-07-01 - 2024-07-05", text: "Attended TACL2024.", href: "https://iiia.csic.es/tacl2024/" },
         { date: "2024-08", text: "Paper on quotient toposes of discrete dynamical systems appeared in JPAA.", href: "https://doi.org/10.1016/j.jpaa.2024.107657" },
@@ -3023,7 +3023,7 @@ const activityVisitRecords = [
   { date: "2025-11", title: "Attended a seminar by Ryoma Sin'ya at Hongo campus, The University of Tokyo", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
   { date: "2025-12", title: "Attended PCT seminar", locationId: "tokyo", kind: "attended", href: "https://pctseminar.github.io" },
   { date: "2025-12", title: "Attended TMU geometry seminar", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
-  { date: "2024-05-18", title: "Organized the 0th Categories in Tokyo", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A%E8%A9%A6%E9%96%8B%E5%82%AC" },
+  { date: "2024-05-18", title: "Organized the 0th Categories in Tokyo", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2024-06", title: "Visited Queen Mary University of London", locationId: "london", kind: "visit", href: oldActivitiesSource },
   { date: "2024-07-01", title: "Attended TACL2024 at Barcelona", locationId: "barcelona", kind: "attended", href: "https://iiia.csic.es/tacl2024/" },
   { date: "2024-08", title: "Visited Kyoto RIMS", locationId: "kyoto", kind: "visit", href: oldActivitiesSource },
@@ -4293,8 +4293,8 @@ function appendCategoriesPrefectures(svg, features) {
 const categoriesTokyoVenues = [
   {
     id: "komaba",
-    label: "0. UTokyo",
-    name: "第0回 / University of Tokyo",
+    label: "第0回 UTokyo",
+    name: "第0回 UTokyo",
     lon: 139.6847,
     lat: 35.6606,
     dx: -4.5,
@@ -4303,24 +4303,36 @@ const categoriesTokyoVenues = [
       {
         label: "0",
         title: "Categories in Tokyo 0",
-        href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A%E8%A9%A6%E9%96%8B%E5%82%AC"
+        href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A"
       }
     ]
   },
   {
     id: "nii",
-    label: "1/2. NII",
-    name: "第1,2回 / NII",
+    label: "第1回 NII",
+    name: "第1回 NII",
     lon: 139.7585,
     lat: 35.6933,
     dx: 3.5,
-    dy: -6.7,
+    dy: -8.8,
     meetings: [
       {
         label: "1",
         title: "Categories in Tokyo 1",
         href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A"
-      },
+      }
+    ]
+  },
+  {
+    id: "nii",
+    label: "第2回 NII",
+    name: "第2回 NII",
+    lon: 139.7585,
+    lat: 35.6933,
+    dx: 9.8,
+    dy: -2.8,
+    showPoint: false,
+    meetings: [
       {
         label: "2",
         title: "Categories in Tokyo 2",
@@ -4330,8 +4342,8 @@ const categoriesTokyoVenues = [
   },
   {
     id: "kabukiza",
-    label: "3. ZEN University",
-    name: "第3回 / ZEN university",
+    label: "第3回 ZEN University",
+    name: "第3回 ZEN University",
     lon: 139.7671,
     lat: 35.6695,
     dx: 3.5,
@@ -4406,19 +4418,37 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
     const labelX = Number((x + venue.dx).toFixed(1));
     const labelY = Number((y + venue.dy).toFixed(1));
     const item = svgEl("g", { class: `categories-map-venue venue-${venue.id}` });
-    item.append(
+    const labelMeeting = venue.meetings?.[0] || null;
+    const labelText = svgEl("text", {
+      class: "categories-map-venue-label",
+      x: labelX,
+      y: labelY,
+      "text-anchor": venue.dx < 0 ? "end" : "start",
+      "dominant-baseline": "middle"
+    }, venue.label);
+    const labelNode = labelMeeting ? svgEl("a", {
+      class: "categories-map-venue-label-link",
+      href: labelMeeting.href,
+      "aria-label": `${labelMeeting.title} page`
+    }) : labelText;
+    if (labelMeeting) {
+      labelNode.append(
+        svgEl("title", {}, labelMeeting.title),
+        labelText
+      );
+    }
+    const markerNodes = [
       svgEl("title", {}, venue.name),
-      svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${labelX} ${labelY}` }),
-      svgEl("circle", { class: "categories-map-venue-halo", cx: x, cy: y, r: haloRadius }),
-      svgEl("circle", { class: "categories-map-venue-dot", cx: x, cy: y, r: dotRadius }),
-      svgEl("text", {
-        class: "categories-map-venue-label",
-        x: labelX,
-        y: labelY,
-        "text-anchor": venue.dx < 0 ? "end" : "start",
-        "dominant-baseline": "middle"
-      }, venue.label)
-    );
+      svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${labelX} ${labelY}` })
+    ];
+    if (venue.showPoint !== false) {
+      markerNodes.push(
+        svgEl("circle", { class: "categories-map-venue-halo", cx: x, cy: y, r: haloRadius }),
+        svgEl("circle", { class: "categories-map-venue-dot", cx: x, cy: y, r: dotRadius })
+      );
+    }
+    markerNodes.push(labelNode);
+    item.append(...markerNodes);
     appendCategoriesMeetingButtons(item, venue, labelX, labelY);
     group.append(item);
   });
@@ -6189,6 +6219,71 @@ function lawvereFourthFigureTemplate() {
     </div>`;
 }
 
+function completelyConnectedFigureTemplate() {
+  return `
+    <div class="connected-figure" data-connected-correspondence>
+      <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-connected-title fig-connected-desc">
+        <title id="fig-connected-title">Rooted trees and rooted forests</title>
+        <desc id="fig-connected-desc">The three subtrees under the deleted top root correspond to the three components of the rooted forest.</desc>
+        <defs>
+          <marker id="arrow-connected" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z"></path>
+          </marker>
+        </defs>
+        <g transform="translate(62 48)">
+          <path class="figure-line connected-top-edge" d="M130 0 L60 54 M130 0 L130 54 M130 0 L214 54"></path>
+          <circle class="figure-node pale connected-top-root" cx="130" cy="0" r="11"></circle>
+          <g class="connected-match" data-connected-left="a">
+            <path class="figure-line" d="M60 54 L28 108 M60 54 L92 108 M28 108 L8 162 M28 108 L48 162 M92 108 L72 162 M92 108 L112 162"></path>
+            <circle class="figure-node soft" cx="60" cy="54" r="11"></circle>
+            <circle class="figure-node" cx="28" cy="108" r="11"></circle><circle class="figure-node" cx="92" cy="108" r="11"></circle>
+            <circle class="figure-node" cx="8" cy="162" r="11"></circle><circle class="figure-node" cx="48" cy="162" r="11"></circle><circle class="figure-node" cx="72" cy="162" r="11"></circle><circle class="figure-node" cx="112" cy="162" r="11"></circle>
+          </g>
+          <g class="connected-match" data-connected-left="b">
+            <path class="figure-line" d="M130 54 L130 108"></path>
+            <circle class="figure-node soft" cx="130" cy="54" r="11"></circle>
+            <circle class="figure-node" cx="130" cy="108" r="11"></circle>
+          </g>
+          <g class="connected-match" data-connected-left="c">
+            <path class="figure-line" d="M214 54 L214 108 M214 108 L194 162 M214 108 L234 162"></path>
+            <circle class="figure-node soft" cx="214" cy="54" r="11"></circle>
+            <circle class="figure-node" cx="214" cy="108" r="11"></circle>
+            <circle class="figure-node" cx="194" cy="162" r="11"></circle><circle class="figure-node" cx="234" cy="162" r="11"></circle>
+          </g>
+          <text class="figure-small" x="130" y="214">delete the top root</text>
+          <text class="figure-label" x="130" y="250">rooted tree</text>
+        </g>
+        <path class="figure-line dashed connected-divider" d="M380 38 V330"></path>
+        <g class="connected-correspondence-arrows">
+          <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="a" d="M234 150 C314 88, 404 78, 486 102"></path>
+          <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="b" d="M214 164 C332 214, 466 204, 578 140"></path>
+          <path class="figure-arrow connected-correspondence-arrow" data-connected-arrow="c" d="M306 158 C404 242, 564 232, 666 164"></path>
+        </g>
+        <g transform="translate(446 102)">
+          <g class="connected-match" data-connected-right="a">
+            <path class="figure-line" d="M58 0 L26 54 M58 0 L90 54 M26 54 L6 108 M26 54 L46 108 M90 54 L70 108 M90 54 L110 108"></path>
+            <circle class="figure-node soft" cx="58" cy="0" r="11"></circle>
+            <circle class="figure-node" cx="26" cy="54" r="11"></circle><circle class="figure-node" cx="90" cy="54" r="11"></circle>
+            <circle class="figure-node" cx="6" cy="108" r="11"></circle><circle class="figure-node" cx="46" cy="108" r="11"></circle><circle class="figure-node" cx="70" cy="108" r="11"></circle><circle class="figure-node" cx="110" cy="108" r="11"></circle>
+          </g>
+          <g class="connected-match" data-connected-right="b">
+            <path class="figure-line" d="M148 0 L148 54"></path>
+            <circle class="figure-node soft" cx="148" cy="0" r="11"></circle>
+            <circle class="figure-node" cx="148" cy="54" r="11"></circle>
+          </g>
+          <g class="connected-match" data-connected-right="c">
+            <path class="figure-line" d="M230 0 L230 54 M230 54 L210 108 M230 54 L250 108"></path>
+            <circle class="figure-node soft" cx="230" cy="0" r="11"></circle>
+            <circle class="figure-node" cx="230" cy="54" r="11"></circle>
+            <circle class="figure-node" cx="210" cy="108" r="11"></circle><circle class="figure-node" cx="250" cy="108" r="11"></circle>
+          </g>
+          <text class="figure-small" x="148" y="160">three components</text>
+          <text class="figure-label" x="148" y="196">rooted forest</text>
+        </g>
+      </svg>
+    </div>`;
+}
+
 const paperFigureTemplates = {
   "internal-parameterizations": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-internal-title fig-internal-desc">
@@ -6243,35 +6338,7 @@ const paperFigureTemplates = {
     <span class="figure-math small" style="left: 23%; top: 39.5%;">\\((h,p)=(3,4)\\)</span>
     <span class="figure-math small" style="left: 54.6%; top: 45.5%;">\\((h,p)=(3,0)\\)</span>
     <span class="figure-math small" style="left: 43.5%; top: 91%;">\\((h,p)=(\\infty,0)\\)</span>`,
-  "completely-connected": `
-    <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-connected-title fig-connected-desc">
-      <title id="fig-connected-title">Rooted trees and rooted forests</title>
-      <desc id="fig-connected-desc">A rooted tree corresponds to the rooted forest obtained by deleting its top root.</desc>
-      <g transform="translate(62 48)">
-        <path class="figure-line" d="M130 0 L60 54 M130 0 L130 54 M130 0 L214 54 M60 54 L28 108 M60 54 L92 108 M130 54 L130 108 M214 54 L214 108 M28 108 L8 162 M28 108 L48 162 M92 108 L72 162 M92 108 L112 162 M214 108 L194 162 M214 108 L234 162"></path>
-        <g>
-          <circle class="figure-node pale" cx="130" cy="0" r="11"></circle>
-          <circle class="figure-node soft" cx="60" cy="54" r="11"></circle><circle class="figure-node soft" cx="130" cy="54" r="11"></circle><circle class="figure-node soft" cx="214" cy="54" r="11"></circle>
-          <circle class="figure-node" cx="28" cy="108" r="11"></circle><circle class="figure-node" cx="92" cy="108" r="11"></circle><circle class="figure-node" cx="130" cy="108" r="11"></circle><circle class="figure-node" cx="214" cy="108" r="11"></circle>
-          <circle class="figure-node" cx="8" cy="162" r="11"></circle><circle class="figure-node" cx="48" cy="162" r="11"></circle><circle class="figure-node" cx="72" cy="162" r="11"></circle><circle class="figure-node" cx="112" cy="162" r="11"></circle><circle class="figure-node" cx="194" cy="162" r="11"></circle><circle class="figure-node" cx="234" cy="162" r="11"></circle>
-        </g>
-        <text class="figure-small" x="130" y="214">delete the top root</text>
-        <text class="figure-label" x="130" y="250">rooted tree</text>
-      </g>
-      <path class="figure-line dashed" d="M380 38 V330"></path>
-      <g transform="translate(446 102)">
-        <path class="figure-line" d="M58 0 L26 54 M58 0 L90 54 M26 54 L6 108 M26 54 L46 108 M90 54 L70 108 M90 54 L110 108"></path>
-        <path class="figure-line" d="M148 0 L148 54"></path>
-        <path class="figure-line" d="M230 0 L230 54 M230 54 L210 108 M230 54 L250 108"></path>
-        <g>
-          <circle class="figure-node soft" cx="58" cy="0" r="11"></circle><circle class="figure-node soft" cx="148" cy="0" r="11"></circle><circle class="figure-node soft" cx="230" cy="0" r="11"></circle>
-          <circle class="figure-node" cx="26" cy="54" r="11"></circle><circle class="figure-node" cx="90" cy="54" r="11"></circle><circle class="figure-node" cx="148" cy="54" r="11"></circle><circle class="figure-node" cx="230" cy="54" r="11"></circle>
-          <circle class="figure-node" cx="6" cy="108" r="11"></circle><circle class="figure-node" cx="46" cy="108" r="11"></circle><circle class="figure-node" cx="70" cy="108" r="11"></circle><circle class="figure-node" cx="110" cy="108" r="11"></circle><circle class="figure-node" cx="210" cy="108" r="11"></circle><circle class="figure-node" cx="250" cy="108" r="11"></circle>
-        </g>
-        <text class="figure-small" x="148" y="160">three components</text>
-        <text class="figure-label" x="148" y="196">rooted forest</text>
-      </g>
-    </svg>`,
+  "completely-connected": completelyConnectedFigureTemplate(),
   "lawvere-first": `
     <svg viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
       <title id="fig-lawvere-first-title">One topos with many quotient topoi</title>
@@ -6820,6 +6887,96 @@ function stopLawverePullbackFigures(scope) {
   roots.forEach((root) => stopLawverePullbackFigure(root));
 }
 
+const connectedCorrespondenceGroups = ["a", "b", "c"];
+const connectedCorrespondenceStates = new WeakMap();
+
+function renderConnectedCorrespondenceStep(root, step) {
+  const completeStep = connectedCorrespondenceGroups.length + 1;
+  const boundedStep = Math.max(0, Math.min(completeStep, Number(step) || 0));
+  root.dataset.connectedStep = String(boundedStep);
+  root.classList.toggle("is-complete", boundedStep === completeStep);
+
+  const activeGroup = connectedCorrespondenceGroups[boundedStep - 1] || "";
+  root.querySelectorAll("[data-connected-left], [data-connected-right]").forEach((group) => {
+    const groupId = group.dataset.connectedLeft || group.dataset.connectedRight || "";
+    const index = connectedCorrespondenceGroups.indexOf(groupId) + 1;
+    group.classList.toggle("is-active", Boolean(activeGroup) && groupId === activeGroup);
+    group.classList.toggle("is-complete", boundedStep === completeStep || (index > 0 && index < boundedStep));
+  });
+
+  root.querySelectorAll("[data-connected-arrow]").forEach((arrow) => {
+    const index = connectedCorrespondenceGroups.indexOf(arrow.dataset.connectedArrow) + 1;
+    arrow.classList.toggle("is-active", Boolean(activeGroup) && arrow.dataset.connectedArrow === activeGroup);
+    arrow.classList.toggle("is-complete", boundedStep === completeStep || (index > 0 && index < boundedStep));
+  });
+}
+
+function stopConnectedCorrespondenceFigure(root) {
+  const state = connectedCorrespondenceStates.get(root);
+  if (!state) return;
+  state.timers.forEach((timer) => window.clearTimeout(timer));
+  state.timers = [];
+  state.playing = false;
+}
+
+function playConnectedCorrespondenceFigure(root) {
+  const state = connectedCorrespondenceStates.get(root);
+  if (!state) return;
+  stopConnectedCorrespondenceFigure(root);
+  state.playing = true;
+  root.classList.add("is-animated");
+  root.classList.remove("is-complete");
+  renderConnectedCorrespondenceStep(root, 0);
+  connectedCorrespondenceGroups.forEach((_, index) => {
+    state.timers.push(
+      window.setTimeout(() => renderConnectedCorrespondenceStep(root, index + 1), 360 + index * state.intervalMs)
+    );
+  });
+  state.timers.push(
+    window.setTimeout(() => {
+      renderConnectedCorrespondenceStep(root, connectedCorrespondenceGroups.length + 1);
+      state.playing = false;
+    }, 360 + connectedCorrespondenceGroups.length * state.intervalMs)
+  );
+}
+
+function initializeConnectedCorrespondenceFigure(root, options = {}) {
+  stopConnectedCorrespondenceFigure(root);
+  connectedCorrespondenceStates.set(root, {
+    timers: [],
+    playing: false,
+    intervalMs: options.intervalMs || 760
+  });
+  if (options.controls) {
+    root.setAttribute("role", "button");
+    root.setAttribute("aria-label", "Replay the rooted tree and rooted forest correspondence animation");
+    root.tabIndex = 0;
+    root.addEventListener("click", () => playConnectedCorrespondenceFigure(root));
+    root.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      playConnectedCorrespondenceFigure(root);
+    });
+  }
+  renderConnectedCorrespondenceStep(root, connectedCorrespondenceGroups.length + 1);
+  const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  if (options.autoplay && !reducedMotion) playConnectedCorrespondenceFigure(root);
+}
+
+function initializeConnectedCorrespondenceFigures(scope, options = {}) {
+  const roots = scope.matches?.("[data-connected-correspondence]")
+    ? [scope]
+    : Array.from(scope.querySelectorAll("[data-connected-correspondence]"));
+  roots.forEach((root) => initializeConnectedCorrespondenceFigure(root, options));
+}
+
+function stopConnectedCorrespondenceFigures(scope) {
+  const roots = scope.matches?.("[data-connected-correspondence]")
+    ? [scope]
+    : Array.from(scope.querySelectorAll("[data-connected-correspondence]"));
+  roots.forEach((root) => stopConnectedCorrespondenceFigure(root));
+}
+
 function ensureDiagramDialog() {
   let dialog = document.querySelector("#paper-diagram-dialog");
   if (dialog) return dialog;
@@ -6851,6 +7008,7 @@ function ensureDiagramDialog() {
   dialog.addEventListener("close", () => {
     stopGrundyFigures(dialog);
     stopLawverePullbackFigures(dialog);
+    stopConnectedCorrespondenceFigures(dialog);
   });
 
   document.body.append(dialog);
@@ -6904,10 +7062,12 @@ function openPaperDiagram(paper) {
   title.textContent = paperDiagramNotes[paper.figure]?.heading || "Paper Diagram";
   stopGrundyFigures(figure);
   stopLawverePullbackFigures(figure);
+  stopConnectedCorrespondenceFigures(figure);
   figure.innerHTML = paperFigureTemplates[paper.figure];
   applyFigureMarkerIds(figure, paper.figure, "diagram-arrow");
   initializeGrundyFigures(figure, { controls: true, autoplay: true });
   initializeLawverePullbackFigures(figure, { controls: true, autoplay: true });
+  initializeConnectedCorrespondenceFigures(figure, { controls: true, autoplay: true });
   renderDiagramNotes(notes, paper);
   typesetMath(dialog);
   if (dialog.showModal) dialog.showModal();
@@ -7189,6 +7349,7 @@ function renderPaperRecord(paper, options = {}) {
     applyFigureMarkerIds(figureButton, paper.figure, "paper-arrow");
     initializeGrundyFigures(figureButton, { autoplay: true, intervalMs: 1100 });
     initializeLawverePullbackFigures(figureButton, { autoplay: true });
+    initializeConnectedCorrespondenceFigures(figureButton, { autoplay: true });
     figureButton.addEventListener("click", () => openPaperDiagram(paper));
     item.append(figureButton);
   }
@@ -7237,6 +7398,7 @@ function renderPapers() {
   updatePaperViewButtons();
   stopGrundyFigures(root);
   stopLawverePullbackFigures(root);
+  stopConnectedCorrespondenceFigures(root);
   root.replaceChildren();
 
   const filtered = paperListingRecords().filter((paper) => {
@@ -7283,6 +7445,7 @@ function renderHomePapers() {
   if (!root) return;
   stopGrundyFigures(root);
   stopLawverePullbackFigures(root);
+  stopConnectedCorrespondenceFigures(root);
   root.replaceChildren();
   paperListingRecords().slice(0, 4).forEach((paper) => root.append(renderPaperRecord(paper)));
   typesetMath(root);
