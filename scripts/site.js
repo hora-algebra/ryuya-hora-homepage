@@ -5001,7 +5001,7 @@ function homeTimelinePaperRecords() {
       theme: contentTheme(compactText([paper.title, paper.venue, paperThemeIds(paper).join(" "), paper.tags?.join(" "), paper.summary]).join(" ")),
       title: paper.title,
       dateLabel: `${startLabel} -> ${endLabel}`,
-      meta: compactText([people, status === "published" ? "published" : "preprint", paper.venue]).join(" / "),
+      meta: compactText([people, paper.venue]).join(" / "),
       href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`papers/index.html#${anchor}`),
       time: startTime,
       startTime,
@@ -7646,18 +7646,6 @@ function internalParameterizationPiece({ type, start, decomposed, classified, ta
       </g>`;
 }
 
-function internalTargetHighlight(type, keyTimes) {
-  const activeOpacity = type === "vertex" ? "0.9" : "0.82";
-  const opacityAnimation = `<animate attributeName="opacity" values="0;0;0;0;0;${activeOpacity};0;0;0" keyTimes="${keyTimes}" calcMode="discrete" dur="${internalParameterizationDuration}" repeatCount="indefinite"></animate>`;
-  if (type === "vertex") {
-    return `<circle class="internal-target-highlight internal-target-highlight-vertex" cx="73" cy="118" r="24" opacity="0">${opacityAnimation}</circle>`;
-  }
-  if (type === "loop") {
-    return `<path class="internal-target-highlight internal-target-highlight-l" d="M60 129 C22 144, 22 92, 60 107" opacity="0">${opacityAnimation}</path>`;
-  }
-  return `<path class="internal-target-highlight internal-target-highlight-n" d="M86 107 C124 92, 124 144, 86 129" opacity="0">${opacityAnimation}</path>`;
-}
-
 function createInternalParameterizationPieces() {
   const classifierOrigin = [584, 76];
   const vertexTarget = [657, 194];
@@ -7782,9 +7770,6 @@ function createInternalParameterizationPieces() {
     const secondOrder = second.start[0] + second.start[1] * 2;
     return firstOrder - secondOrder;
   });
-  const highlights = pieces
-    .map((piece, index) => internalTargetHighlight(piece.type, internalStaggeredKeyTimes(index, pieces.length)))
-    .join("\n");
   const animatedPieces = pieces
     .map((piece, index) => {
       const jitter = [(index % 3 - 1) * 4, (index % 4 - 1.5) * 4];
@@ -7796,10 +7781,7 @@ function createInternalParameterizationPieces() {
       });
     })
     .join("\n");
-  return `<g class="internal-target-highlights" transform="translate(${internalPoint(classifierOrigin)})">
-        ${highlights}
-      </g>
-      ${animatedPieces}`;
+  return animatedPieces;
 }
 
 const quotientLightColorValues = {
@@ -7928,7 +7910,7 @@ const paperFigureTemplates = {
 
         <path class="quotient-guide quotient-height-guide" d="M0 76 H58 H116 H174"></path>
         <path class="quotient-guide quotient-period-guide" d="M174 76 A45 45 0 0 1 219 121 A45 45 0 0 1 174 166 A45 45 0 0 1 129 121 A45 45 0 0 1 174 76"></path>
-        ${quotientTurnLights(["M0 76 H58", "M58 76 H116", "M116 76 H174"], "green")}
+        ${quotientTurnLights(["M0 76 H58", "M58 76 H116", { path: "M116 76 H174", transitionTo: "orange" }], "green")}
         ${quotientTurnLights(["M174 76 A45 45 0 0 1 219 121", "M219 121 A45 45 0 0 1 174 166", "M174 166 A45 45 0 0 1 129 121", "M129 121 A45 45 0 0 1 174 76"], "orange")}
 
         <circle class="figure-dot quotient-state-height" cx="0" cy="76" r="5.4"></circle>
@@ -7965,7 +7947,7 @@ const paperFigureTemplates = {
 
         <path class="quotient-guide quotient-height-guide" d="M244 32 H304 H364 L424 96"></path>
         <path class="quotient-guide quotient-infinite-guide" d="M52 96 H72 H132 H192 H252 H312 H372 H424 H484 H544 H606"></path>
-        ${quotientTurnLights(["M244 32 H304", "M304 32 H364", "M364 32 L424 96"], "green")}
+        ${quotientTurnLights(["M244 32 H304", "M304 32 H364", { path: "M364 32 L424 96", transitionTo: "orange" }], "green")}
         ${quotientTurnLights(["M52 96 H72", "M72 96 H132", "M132 96 H192", "M192 96 H252", "M252 96 H312", "M312 96 H372", "M372 96 H424", "M424 96 H484", "M484 96 H544", "M544 96 H606"], "orange")}
 
         <circle class="figure-dot quotient-state-height" cx="244" cy="32" r="5.4"></circle>
@@ -8002,7 +7984,7 @@ const paperFigureTemplates = {
 
         <path class="quotient-guide quotient-height-guide" d="M72 52 H132 H192 H252 H312 H370"></path>
         <path class="quotient-guide quotient-period-guide" d="M370 52 L410 23 L450 52 L435 99 L385 99 L370 52"></path>
-        ${quotientTurnLights(["M72 52 H132", "M132 52 H192", "M192 52 H252", "M252 52 H312", "M312 52 H370"], "green")}
+        ${quotientTurnLights(["M72 52 H132", "M132 52 H192", "M192 52 H252", "M252 52 H312", { path: "M312 52 H370", transitionTo: "orange" }], "green")}
         ${quotientTurnLights(["M370 52 L410 23", "M410 23 L450 52", "M450 52 L435 99", "M435 99 L385 99", "M385 99 L370 52"], "orange")}
 
         <circle class="figure-dot quotient-state-height" cx="72" cy="52" r="5.4"></circle>
@@ -8034,6 +8016,9 @@ const paperFigureTemplates = {
         <marker id="tensor-f-arrow-muted" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="3.6" markerHeight="3.6" orient="auto">
           <path class="tensor-f-arrow-head tensor-f-arrow-head-muted" d="M 1 1 L 9 5 L 1 9 z"></path>
         </marker>
+        <marker id="tensor-subset-pressure-arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto">
+          <path class="tensor-subset-pressure-arrow-head" d="M 1 1 L 9 5 L 1 9 z"></path>
+        </marker>
       </defs>
       <text class="figure-small lawvere-caption" x="380" y="30">power set tensor: image factorization gives the minimal expression</text>
 
@@ -8047,6 +8032,19 @@ const paperFigureTemplates = {
         <text class="tensor-side-label tensor-s-label" x="628" y="48">S</text>
 
         <rect class="tensor-s-envelope" x="510" y="68" width="140" height="156" rx="42"></rect>
+
+        <g class="tensor-press-layer" aria-hidden="true">
+          <path class="tensor-press-flow tensor-press-flow-map" pathLength="1" d="M176 148 C236 128, 310 128, 382 148"></path>
+          <path class="tensor-press-flow tensor-press-flow-subset" pathLength="1" d="M624 148 C558 128, 474 128, 408 148"></path>
+          <rect class="tensor-press-pad tensor-press-pad-map" x="292" y="78" width="18" height="140" rx="9"></rect>
+          <rect class="tensor-press-pad tensor-press-pad-subset" x="454" y="78" width="18" height="140" rx="9"></rect>
+          <path class="tensor-press-arrow tensor-press-arrow-map" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M210 148 C260 138, 326 138, 376 148"></path>
+          <path class="tensor-press-arrow tensor-press-arrow-subset" marker-end="url(#tensor-subset-pressure-arrow)" pathLength="1" d="M584 148 C520 138, 462 138, 410 148"></path>
+          <g class="tensor-press-core" transform="translate(394 148)">
+            <circle cx="0" cy="0" r="27"></circle>
+            <text x="0" y="8">⊗</text>
+          </g>
+        </g>
 
         <path class="tensor-cord selected" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M500 104 C396 74, 232 74, 182 92"></path>
         <path class="tensor-cord muted" marker-end="url(#tensor-f-arrow-muted)" pathLength="1" d="M570 104 C482 112, 344 118, 268 112"></path>
@@ -9980,7 +9978,9 @@ function renderWebApps() {
 function publicationDetail(label, value) {
   if (!value) return null;
   const item = el("div", "publication-detail");
-  item.append(el("span", "publication-detail-label", label), el("span", "publication-detail-value", value));
+  if (label) item.append(el("span", "publication-detail-label", label));
+  else item.classList.add("is-unlabeled");
+  item.append(el("span", "publication-detail-value", value));
   return item;
 }
 
@@ -9994,9 +9994,8 @@ function paperPeopleDetail(paper, fallbackRecord = null) {
 function renderPublicationDetails(paper, fallbackRecord = null) {
   const details = compactText([
     paperPeopleDetail(paper, fallbackRecord),
-    publicationDetail("Status", paper.publicationStatus),
-    publicationDetail("Year", paper.year),
-    publicationDetail("Venue", paper.venue || paper.type)
+    publicationDetail("", paper.year),
+    publicationDetail("", paper.venue)
   ]);
   if (!details.length) return null;
   const root = el("div", "publication-details");
@@ -10290,7 +10289,6 @@ function researchmapPaperRecord(record) {
     authors: record.authors,
     venue: record.venue || "researchmap",
     year: record.year,
-    publicationStatus: compactText([record.type, record.openAccess ? "open access" : "researchmap"]).join(" / "),
     link: record.link,
     links: record.links
   };
@@ -10567,7 +10565,7 @@ function renderNotes() {
     }
     const dateLabel = noteDateLabel(note);
     if (dateLabel) meta.append(el("span", null, dateLabel));
-    meta.append(el("span", null, noteLanguageKey(note)), el("span", null, note.file));
+    meta.append(el("span", null, noteLanguageKey(note)));
     item.append(meta);
     const actions = [["Open", href]];
     if (downloadHref) actions.push(["Download", downloadHref]);
