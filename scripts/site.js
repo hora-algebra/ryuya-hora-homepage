@@ -618,7 +618,15 @@ const siteData = {
     }
   ],
   notes: [
-    { title: "Counting with Exponential of Groups", description: "An introduction to rieg theory", language: "English", file: "COUNTING_WITH_EXPONENTIAL_OF_GROUPS.pdf", ...notePdfAsset("1fYwhDbfaeWG107Rf68yocjyJpEvOu8Q8", "counting-with-exponential-of-groups") },
+    {
+      title: "Counting with Exponential of Groups",
+      description: "An introduction to rieg theory",
+      language: "English",
+      file: "counting-with-exponential-of-groups.pdf",
+      ...notePdfAsset("1fYwhDbfaeWG107Rf68yocjyJpEvOu8Q8", "counting-with-exponential-of-groups"),
+      href: "assets/notes/counting-with-exponential-of-groups.pdf",
+      download: "assets/notes/counting-with-exponential-of-groups.pdf"
+    },
     { title: "Combinatorial games as recursive coalgebras", description: "Slides at CSCAT 2024", date: "2024-03-15", language: "English", file: "Hora_CSCAT2024.pdf", ...notePdfAsset("12qTwg-9KFTLe-g4UGFtupJUas58U3Ib7", "combinatorial-games-recursive-coalgebras") },
     { title: "Cloud: Topos theoretic approach to representation theory", language: "English", file: "A_topos_theoretic_view_of_Gabriel_s_theorem-12.pdf", ...notePdfAsset("1M-Rxp0KuFykfrJgCLTUo-DrM2XmrJkj4", "topos-representation-theory") },
     { title: "Cloud: What is the geometry behind Conway's game of life?", description: "A first step with a relative topos", date: "2024-12-10", language: "English", file: "Adv20241210_Dynamical_system_on_a_pretopological_space.pdf", ...notePdfAsset("1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl", "conway-game-of-life-geometry", "https://drive.google.com/thumbnail?id=1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl&sz=w339-h191-p-k-nu") },
