@@ -81,7 +81,7 @@ const siteData = {
     {
       title: "Others",
       href: "others/index.html",
-      description: "Web apps, problems, favorite topoi, and links.",
+      description: "Web apps, problems, and links.",
       icon: "webapp",
       thumbnail: "assets/web-apps/genericalgoid.png"
     },
@@ -218,182 +218,6 @@ const siteData = {
     theme: "preferred_color_scheme",
     lang: "en"
   },
-  favoriteTopoi: [
-    {
-      id: "discrete-dynamical-systems",
-      title: "Topos of discrete dynamical systems",
-      formula: "\\(\\mathbf{Set}^{\\mathbb{N}}\\)",
-      subtitle: "time as an endomorphism",
-      subtitleJa: "time を endomorphism として持つ世界",
-      summary:
-        "Objects are sets equipped with a chosen evolution. The topos turns iteration, orbits, and eventual periodicity into geometric structure.",
-      summaryJa:
-        "objects は chosen evolution を備えた sets です。iteration, orbits, eventual periodicity が geometric structure として見えてきます。",
-      why: "It is one of the cleanest places where dynamics becomes topos theory without first becoming smooth, measurable, or metric.",
-      whyJa:
-        "dynamics が smooth, measurable, metric になる前に、そのまま topos theory になる感じがかなり良いです。",
-      diagram: "dynamics",
-      details: [
-        {
-          label: "Object",
-          value: "A set with one-step time evolution.",
-          valueJa: "one-step time evolution を持つ set。"
-        },
-        {
-          label: "Picture",
-          value: "A point carries its whole future orbit.",
-          valueJa: "point が自分の future orbit を背負っている。"
-        },
-        {
-          label: "Good for",
-          value: "Quotient topoi, closure conditions, height-period invariants.",
-          valueJa: "quotient topoi, closure conditions, height-period invariants。"
-        }
-      ],
-      links: [
-        ["Quotient toposes paper", "papers/index.html"],
-        ["nLab: action", "https://ncatlab.org/nlab/show/action"]
-      ]
-    },
-    {
-      id: "sierpinski",
-      title: "Sierpinski topos",
-      formula: "\\(\\mathbf{Set}^{\\Delta[1]} \\simeq \\mathbf{Sh}(\\mathbb{S})\\)",
-      subtitle: "the topos of a single visible inclusion",
-      subtitleJa: "single visible inclusion の topos",
-      summary:
-        "The arrow category of sets, equivalently sheaves on the Sierpinski space. It is tiny, but it already remembers how an open part sits inside a whole.",
-      summaryJa:
-        "sets の arrow category、同じこととして Sierpinski space 上の sheaves です。小さいのに、open part が whole にどう入るかを覚えています。",
-      why: "It is the best pocket model for gluing, open subspaces, and geometric logic with only one nontrivial direction.",
-      whyJa:
-        "gluing, open subspaces, geometric logic の pocket model として優秀です。nontrivial direction が一つしかないのが良い。",
-      diagram: "sierpinski",
-      details: [
-        {
-          label: "Object",
-          value: "A function of sets.",
-          valueJa: "sets の function。"
-        },
-        {
-          label: "Picture",
-          value: "A local part restricts from, or maps into, the ambient part.",
-          valueJa: "local part と ambient part の間に restriction / inclusion がある。"
-        },
-        {
-          label: "Good for",
-          value: "Open truth values, gluing, first examples of sheaf semantics.",
-          valueJa: "open truth values, gluing, sheaf semantics の最初の例。"
-        }
-      ],
-      links: [
-        ["nLab: Sierpinski topos", "https://ncatlab.org/nlab/show/Sierpinski+topos"],
-        ["nLab: Sierpinski space", "https://ncatlab.org/nlab/show/Sierpinski+space"]
-      ]
-    },
-    {
-      id: "presheaf",
-      title: "Presheaf topoi",
-      formula: "\\(\\widehat{\\mathcal{C}}=[\\mathcal{C}^{op},\\mathbf{Set}]\\)",
-      subtitle: "all probes at once",
-      subtitleJa: "すべての probes を一度に見る",
-      summary:
-        "A presheaf topos stores what every object of a small category sees. It is the default laboratory where syntax, geometry, and combinatorics can be compared objectwise.",
-      summaryJa:
-        "presheaf topos は small category の各 object から何が見えるかを保存します。syntax, geometry, combinatorics を objectwise に比べるための標準実験室です。",
-      why: "It is flexible enough to hold diagrams, automata, games, and spaces before imposing sheaf conditions.",
-      whyJa:
-        "sheaf condition を課す前に、diagrams, automata, games, spaces を置ける柔らかさが良いです。",
-      diagram: "presheaf",
-      details: [
-        {
-          label: "Object",
-          value: "A contravariant set-valued functor.",
-          valueJa: "contravariant set-valued functor。"
-        },
-        {
-          label: "Picture",
-          value: "Each probe has its own set of observations, compatibly restricted.",
-          valueJa: "各 probe が observations の set を持ち、それらが compatible に restrict される。"
-        },
-        {
-          label: "Good for",
-          value: "Yoneda, models, automata-shaped worlds, finite combinatorics.",
-          valueJa: "Yoneda, models, automata-shaped worlds, finite combinatorics。"
-        }
-      ],
-      links: [["nLab: category of presheaves", "https://ncatlab.org/nlab/show/category+of+presheaves"]]
-    },
-    {
-      id: "automata",
-      title: "Topoi of automata",
-      formula: "\\((\\Sigma\\text{-}\\mathbf{Set}, R)\\)",
-      subtitle: "regular languages as geometry",
-      subtitleJa: "regular languages を geometry として見る",
-      summary:
-        "Automata become objects with word actions, while languages appear through additional algebraic structure. The point is not only to recognize words, but to organize recognition geometrically.",
-      summaryJa:
-        "automata は word actions を持つ objects になり、languages は additional algebraic structure として現れます。words を認識するだけでなく、recognition を geometry として整理する視点です。",
-      why: "It keeps finite-state computation close to geometric morphisms, syntactic monoids, and local classifiers.",
-      whyJa:
-        "finite-state computation が geometric morphisms, syntactic monoids, local classifiers の近くにいるのが気持ち良いです。",
-      diagram: "automata",
-      details: [
-        {
-          label: "Object",
-          value: "A set with actions by words.",
-          valueJa: "words の actions を持つ set。"
-        },
-        {
-          label: "Picture",
-          value: "Transitions draw a language-shaped region inside state space.",
-          valueJa: "transitions が state space の中に language-shaped region を描く。"
-        },
-        {
-          label: "Good for",
-          value: "Regular languages, syntactic monoids, hyperconnected morphisms.",
-          valueJa: "regular languages, syntactic monoids, hyperconnected morphisms。"
-        }
-      ],
-      links: [
-        ["Topoi of automata I", "https://arxiv.org/abs/2411.06358"],
-        ["Papers", "papers/index.html"]
-      ]
-    },
-    {
-      id: "effective",
-      title: "Effective topos",
-      formula: "\\(\\mathbf{Eff}\\)",
-      subtitle: "a universe where computability is internal",
-      subtitleJa: "computability が internal になる universe",
-      summary:
-        "A realizability topos where constructive and recursive phenomena are built into the ambient logic. It feels like a place where algorithms become truth conditions.",
-      summaryJa:
-        "constructive / recursive phenomena が ambient logic に組み込まれた realizability topos です。algorithms が truth conditions になる場所という感じがします。",
-      why: "It is a reminder that changing the topos can change what a function, proof, or existence statement means.",
-      whyJa:
-        "topos を変えると function, proof, existence statement の意味が変わる、ということを思い出させてくれます。",
-      diagram: "effective",
-      details: [
-        {
-          label: "Object",
-          value: "A realizability-flavored object with computational evidence.",
-          valueJa: "computational evidence を伴う realizability-flavored object。"
-        },
-        {
-          label: "Picture",
-          value: "A proof carries a program-like witness.",
-          valueJa: "proof が program-like witness を運ぶ。"
-        },
-        {
-          label: "Good for",
-          value: "Constructive logic, realizability, recursion-theoretic intuition.",
-          valueJa: "constructive logic, realizability, recursion-theoretic intuition。"
-        }
-      ],
-      links: [["nLab: effective topos", "https://ncatlab.org/nlab/show/effective+topos"]]
-    }
-  ],
   papers: {
     published: [
       {
@@ -687,8 +511,7 @@ const siteData = {
       questions: [
         "What is the correct notion of open set or observable for a space-time of Life?",
         "Can gliders, still lifes, and finite support conditions be seen as geometric subobjects?"
-      ],
-      links: [["Favorite Topoi: discrete dynamical systems", "favorite-topoi/index.html#discrete-dynamical-systems"]]
+      ]
     }
   ],
   activities: [
@@ -1311,7 +1134,6 @@ const i18nText = {
     "Activities": "活動",
     "CV/Awards": "CV/受賞",
     "Problems": "Problems",
-    "Favorite Topoi": "好きなトポス",
     "Search": "検索",
     "Links": "リンク",
     "Ryuya Hora.": "Ryuya Hora.",
@@ -1324,22 +1146,14 @@ const i18nText = {
     "CV by Ryuya Hora.": "Ryuya Hora の CV。",
     "Problems by Ryuya Hora.": "Ryuya Hora の Problems。",
     "Links.": "リンク。",
-    "Favorite topoi.": "好きな topoi。",
     "Search.": "検索。",
     "Speculative notes.": "思弁的なノート。",
-    "Topos Cabinet": "Topos Cabinet",
-    "A small cabinet of favorite topoi by Ryuya Hora.": "Ryuya Hora の好きな topoi を集めた小さなページです。",
-    "A small, growing page for topoi that are mathematically useful, visually memorable, or just too charming not to keep nearby.":
-      "数学的に役立つ、見た目にも記憶に残る、あるいは単に近くに置いておきたい topoi を集めていくページです。",
-    "Collection": "コレクション",
-    "Topoi to Keep Around": "手元に置きたい Topoi",
     "Map": "見取り図",
     "Quick Comparison": "Quick Comparison",
-    "Favorite topoi. Last updated: 22 April 2026.": "Favorite topoi. 最終更新: 2026年4月22日",
     "Site Search": "サイト内検索",
     "Search this site.": "サイト内検索。",
-    "Search public pages, papers, talks, notes, activities, problems, favorite topoi, and links.":
-      "公開ページ、論文、発表、ノート、活動、Problems、好きなトポス、リンクを検索します。",
+    "Search public pages, papers, talks, notes, activities, problems, and links.":
+      "公開ページ、論文、発表、ノート、活動、Problems、リンクを検索します。",
     "Search the site": "サイト内を検索",
     "topos, automata, Categories in Tokyo...": "topos, automata, Categories in Tokyo...",
     "Type to search the site.": "検索語を入力してください。",
@@ -1384,7 +1198,7 @@ const i18nText = {
       "ZEN University の助教、Humai Center の researcher です。最近は、topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています。",
     "Research": "研究",
     "Papers, preprints, notes, and slides.": "論文、preprint、ノート、スライド。",
-    "Web apps, problems, favorite topoi, and links.": "Web apps、Problems、好きな topoi、リンク。",
+    "Web apps, problems, and links.": "Web apps、Problems、リンク。",
     "Research Interests": "研究関心",
     "All themes": "すべてのテーマ",
     "Current Positions": "現在の所属",
@@ -1558,8 +1372,6 @@ const i18nText = {
       "受賞、教育・アウトリーチ、プロフィールリンクをまとめています。",
     "Open questions and reference trails around topoi, automata, and games.":
       "topoi, automata, games に関する open questions と reference trails です。",
-    "A small cabinet of topoi that are useful, memorable, or just pleasant to revisit.":
-      "役立つ、記憶に残る、あるいは単に何度も戻りたくなる topoi の小さな棚です。",
     "Friends' pages, friends' papers, books, events, and external profile pages.":
       "友人のページ、友人の論文、本、イベント、外部プロフィールへのリンクです。",
     "Introduces local state classifiers and uses them to establish an internal parameterization of hyperconnected quotients.":
@@ -1935,17 +1747,7 @@ const translatableTextSelector = [
   ".web-app-missing",
   ".speculative-status",
   ".speculative-abstract",
-  ".speculative-questions h3",
-  ".topos-card-kicker",
-  ".topos-card-summary",
-  ".topos-card-reason",
-  ".topos-focus-subtitle",
-  ".topos-focus-summary",
-  ".topos-detail dt",
-  ".topos-detail dd",
-  ".topos-comparison-heading",
-  ".topos-comparison-cell",
-  ".topos-mini-title"
+  ".speculative-questions h3"
 ].join(",");
 
 function translatableElements(root = document.body) {
@@ -3467,19 +3269,6 @@ function siteSearchRecords() {
     });
   });
 
-  siteData.favoriteTopoi.forEach((topos) => {
-    pushSiteSearchRecord(records, {
-      type: "Topos",
-      title: topos.title,
-      href: localHref(`favorite-topoi/index.html#${topos.id}`),
-      summary: topos.summary,
-      meta: compactText([topos.subtitle, topos.formula]).join(" / "),
-      keywords: compactText([topos.id, ...(topos.details || []).map((detail) => `${detail.label} ${detail.value}`)]),
-      icon: "topos",
-      thumbnail: "assets/profile/green-fractal-cloud.png"
-    });
-  });
-
   siteData.webApps.forEach((app) => {
     pushSiteSearchRecord(records, {
       type: "Web App",
@@ -4364,48 +4153,6 @@ function projectCategoriesPoint(projection, lon, lat) {
   return [Number(x.toFixed(1)), Number(y.toFixed(1))];
 }
 
-function appendCategoriesMeetingButtons(item, venue, labelX, labelY) {
-  const meetings = venue.meetings || [];
-  if (!meetings.length) return;
-  const buttonWidth = 4.9;
-  const buttonHeight = 3.8;
-  const gap = 0.7;
-  const buttonsY = Number((labelY + 3.1).toFixed(1));
-  const totalWidth = meetings.length * buttonWidth + Math.max(0, meetings.length - 1) * gap;
-  const startX = venue.dx < 0 ? Number((labelX - totalWidth).toFixed(1)) : labelX;
-  const group = svgEl("g", { class: "categories-map-meeting-buttons" });
-
-  meetings.forEach((meeting, index) => {
-    const x = Number((startX + index * (buttonWidth + gap)).toFixed(1));
-    const linkNode = svgEl("a", {
-      class: "categories-map-meeting-link",
-      href: meeting.href,
-      "aria-label": `${meeting.title} page`
-    });
-    linkNode.append(
-      svgEl("title", {}, meeting.title),
-      svgEl("rect", {
-        class: "categories-map-meeting-button",
-        x,
-        y: buttonsY,
-        width: buttonWidth,
-        height: buttonHeight,
-        rx: 1
-      }),
-      svgEl("text", {
-        class: "categories-map-meeting-label",
-        x: x + buttonWidth / 2,
-        y: buttonsY + buttonHeight / 2 + 0.12,
-        "text-anchor": "middle",
-        "dominant-baseline": "middle"
-      }, meeting.label)
-    );
-    group.append(linkNode);
-  });
-
-  item.append(group);
-}
-
 function appendCategoriesVenueDots(svg, projection, options = {}) {
   const dotRadius = options.dotRadius ?? 6.4;
   const haloRadius = options.haloRadius ?? 11;
@@ -4417,7 +4164,7 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
     const labelX = Number((x + venue.dx).toFixed(1));
     const labelY = Number((y + venue.dy).toFixed(1));
     const item = svgEl("g", { class: `categories-map-venue venue-${venue.id}` });
-    const labelMeeting = venue.meetings?.[0] || null;
+    const meeting = venue.meetings?.[0] || null;
     const labelText = svgEl("text", {
       class: "categories-map-venue-label",
       x: labelX,
@@ -4425,14 +4172,14 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
       "text-anchor": venue.dx < 0 ? "end" : "start",
       "dominant-baseline": "middle"
     }, venue.label);
-    const labelNode = labelMeeting ? svgEl("a", {
+    const labelNode = meeting ? svgEl("a", {
       class: "categories-map-venue-label-link",
-      href: labelMeeting.href,
-      "aria-label": `${labelMeeting.title} page`
+      href: meeting.href,
+      "aria-label": `${meeting.title} page`
     }) : labelText;
-    if (labelMeeting) {
+    if (meeting) {
       labelNode.append(
-        svgEl("title", {}, labelMeeting.title),
+        svgEl("title", {}, meeting.title),
         labelText
       );
     }
@@ -4441,14 +4188,24 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
       svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${labelX} ${labelY}` })
     ];
     if (venue.showPoint !== false) {
-      markerNodes.push(
+      const pointNodes = [
         svgEl("circle", { class: "categories-map-venue-halo", cx: x, cy: y, r: haloRadius }),
         svgEl("circle", { class: "categories-map-venue-dot", cx: x, cy: y, r: dotRadius })
-      );
+      ];
+      if (meeting) {
+        const pointLink = svgEl("a", {
+          class: "categories-map-venue-point-link",
+          href: meeting.href,
+          "aria-label": `${meeting.title} page`
+        });
+        pointLink.append(svgEl("title", {}, meeting.title), ...pointNodes);
+        markerNodes.push(pointLink);
+      } else {
+        markerNodes.push(...pointNodes);
+      }
     }
     markerNodes.push(labelNode);
     item.append(...markerNodes);
-    appendCategoriesMeetingButtons(item, venue, labelX, labelY);
     group.append(item);
   });
   svg.append(group);
@@ -8293,211 +8050,6 @@ function renderLinks() {
   });
 }
 
-function favoriteToposFromHash() {
-  const hash = decodeURIComponent(globalThis.location?.hash?.slice(1) || "");
-  return siteData.favoriteTopoi.find((record) => hash === record.id || hash === slugify(record.title));
-}
-
-function selectedFavoriteTopos() {
-  if (!state.favoriteToposId) {
-    state.favoriteToposId = favoriteToposFromHash()?.id || siteData.favoriteTopoi[0]?.id || "";
-  }
-  return siteData.favoriteTopoi.find((record) => record.id === state.favoriteToposId) || siteData.favoriteTopoi[0];
-}
-
-function setFavoriteTopos(toposId) {
-  const record = siteData.favoriteTopoi.find((topos) => topos.id === toposId);
-  if (!record) return;
-  state.favoriteToposId = record.id;
-  if (globalThis.history?.replaceState && globalThis.location) {
-    const url = new URL(globalThis.location.href);
-    url.hash = record.id;
-    globalThis.history.replaceState(null, "", url.href);
-  }
-  renderFavoriteTopoi();
-}
-
-function toposDiagramHtml(kind) {
-  if (kind === "dynamics") {
-    return `
-      <svg viewBox="0 0 420 240" role="img" aria-label="Discrete dynamical system diagram">
-        <path class="topos-orbit-line" d="M62 76 C128 36, 210 36, 276 76"></path>
-        <path class="topos-orbit-line muted-line" d="M102 154 C156 202, 254 202, 316 154"></path>
-        <g class="topos-node"><circle cx="62" cy="76" r="25"></circle><text x="62" y="82">x</text></g>
-        <g class="topos-node"><circle cx="168" cy="52" r="25"></circle><text x="168" y="58">f(x)</text></g>
-        <g class="topos-node"><circle cx="276" cy="76" r="25"></circle><text x="276" y="82">f²(x)</text></g>
-        <g class="topos-node warm"><circle cx="102" cy="154" r="24"></circle><text x="102" y="160">h</text></g>
-        <g class="topos-node warm"><circle cx="316" cy="154" r="24"></circle><text x="316" y="160">p</text></g>
-        <text class="topos-svg-label" x="196" y="117">height-period shadow</text>
-      </svg>`;
-  }
-
-  if (kind === "sierpinski") {
-    return `
-      <svg viewBox="0 0 420 240" role="img" aria-label="Sierpinski topos diagram">
-        <rect class="topos-open-box whole" x="52" y="45" width="140" height="130" rx="8"></rect>
-        <rect class="topos-open-box part" x="84" y="84" width="76" height="58" rx="8"></rect>
-        <text class="topos-svg-label large" x="122" y="116">U</text>
-        <text class="topos-svg-label" x="122" y="194">U ⊂ X</text>
-        <path class="topos-arrow" d="M225 78 L330 78"></path>
-        <path class="topos-arrow" d="M330 150 L225 150"></path>
-        <text class="topos-svg-label" x="278" y="61">arrow</text>
-        <g class="topos-node"><circle cx="225" cy="78" r="24"></circle><text x="225" y="84">A</text></g>
-        <g class="topos-node accent"><circle cx="330" cy="78" r="24"></circle><text x="330" y="84">B</text></g>
-        <text class="topos-svg-label" x="278" y="175">truth opens</text>
-      </svg>`;
-  }
-
-  if (kind === "presheaf") {
-    return `
-      <svg viewBox="0 0 420 240" role="img" aria-label="Presheaf topos diagram">
-        <g class="topos-node"><circle cx="84" cy="66" r="24"></circle><text x="84" y="72">c</text></g>
-        <g class="topos-node"><circle cx="190" cy="124" r="24"></circle><text x="190" y="130">d</text></g>
-        <g class="topos-node"><circle cx="84" cy="182" r="24"></circle><text x="84" y="188">e</text></g>
-        <path class="topos-arrow" d="M108 78 L166 111"></path>
-        <path class="topos-arrow" d="M108 174 L166 137"></path>
-        <rect class="topos-set-box" x="258" y="44" width="92" height="44" rx="8"></rect>
-        <rect class="topos-set-box" x="258" y="105" width="92" height="44" rx="8"></rect>
-        <rect class="topos-set-box" x="258" y="166" width="92" height="44" rx="8"></rect>
-        <text class="topos-svg-label" x="304" y="72">F(c)</text>
-        <text class="topos-svg-label" x="304" y="133">F(d)</text>
-        <text class="topos-svg-label" x="304" y="194">F(e)</text>
-        <path class="topos-arrow muted-arrow" d="M304 98 L304 91"></path>
-        <path class="topos-arrow muted-arrow" d="M304 159 L304 152"></path>
-      </svg>`;
-  }
-
-  if (kind === "automata") {
-    return `
-      <svg viewBox="0 0 420 240" role="img" aria-label="Topos of automata diagram">
-        <g class="topos-node"><circle cx="82" cy="122" r="26"></circle><text x="82" y="128">q₀</text></g>
-        <g class="topos-node accent"><circle cx="198" cy="76" r="26"></circle><text x="198" y="82">q₁</text></g>
-        <g class="topos-node warm"><circle cx="198" cy="168" r="26"></circle><text x="198" y="174">q₂</text></g>
-        <path class="topos-arrow" d="M108 113 L172 87"></path>
-        <path class="topos-arrow" d="M108 131 L172 157"></path>
-        <path class="topos-arrow muted-arrow" d="M224 76 C296 76, 318 118, 268 148"></path>
-        <rect class="topos-language-strip" x="286" y="52" width="84" height="136" rx="10"></rect>
-        <text class="topos-svg-label" x="328" y="92">Σ*</text>
-        <text class="topos-svg-label" x="328" y="128">L</text>
-        <text class="topos-svg-label" x="328" y="164">R</text>
-      </svg>`;
-  }
-
-  return `
-    <svg viewBox="0 0 420 240" role="img" aria-label="Effective topos diagram">
-      <rect class="topos-set-box wide" x="52" y="54" width="116" height="132" rx="10"></rect>
-      <rect class="topos-set-box warm" x="252" y="54" width="116" height="132" rx="10"></rect>
-      <path class="topos-arrow" d="M168 94 C206 70, 216 70, 252 94"></path>
-      <path class="topos-arrow muted-arrow" d="M252 146 C216 170, 206 170, 168 146"></path>
-      <text class="topos-svg-label large" x="110" y="103">proof</text>
-      <text class="topos-svg-label" x="110" y="137">realizer</text>
-      <text class="topos-svg-label large" x="310" y="103">truth</text>
-      <text class="topos-svg-label" x="310" y="137">program</text>
-      <g class="topos-spark"><circle cx="210" cy="120" r="18"></circle><text x="210" y="126">λ</text></g>
-    </svg>`;
-}
-
-function toposDiagram(kind, title) {
-  const figure = el("figure", "topos-diagram");
-  figure.setAttribute("aria-label", title);
-  figure.innerHTML = toposDiagramHtml(kind);
-  return figure;
-}
-
-function renderToposActions(parent, records) {
-  if (!records || !records.length) return;
-  const actions = el("div", "action-links topos-card-links");
-  records.forEach(([label, href]) => actions.append(link(label, localHref(href), "action-link")));
-  parent.append(actions);
-}
-
-function renderFavoriteToposCard(topos) {
-  const card = el("article", "topos-card");
-  card.classList.toggle("is-selected", topos.id === state.favoriteToposId);
-
-  const button = el("button", "topos-card-main");
-  button.type = "button";
-  button.dataset.toposId = topos.id;
-  button.setAttribute("aria-pressed", String(topos.id === state.favoriteToposId));
-  button.setAttribute("aria-label", `Focus this topos: ${topos.title}`);
-  button.addEventListener("click", () => setFavoriteTopos(topos.id));
-
-  const formula = el("p", "topos-formula", topos.formula);
-  button.append(
-    localizedText("p", "topos-card-kicker", topos.subtitle, topos.subtitleJa),
-    el("h3", null, topos.title),
-    formula,
-    toposDiagram(topos.diagram, topos.title),
-    localizedText("p", "topos-card-summary", topos.summary, topos.summaryJa)
-  );
-
-  card.append(button);
-  renderToposActions(card, topos.links);
-  return card;
-}
-
-function renderFavoriteToposFocus(topos) {
-  const root = document.querySelector("#favorite-topoi-focus");
-  if (!root || !topos) return;
-  root.replaceChildren();
-
-  const header = el("div", "topos-focus-head");
-  header.append(
-    el("p", "section-kicker", "Focus"),
-    el("h2", null, topos.title),
-    localizedText("p", "topos-focus-subtitle", topos.subtitle, topos.subtitleJa),
-    el("p", "topos-formula", topos.formula)
-  );
-
-  const detail = el("dl", "topos-detail");
-  (topos.details || []).forEach((item) => {
-    detail.append(localizedText("dt", null, item.label, item.labelJa), localizedText("dd", null, item.value, item.valueJa));
-  });
-
-  const why = el("div", "topos-why");
-  why.append(el("h3", null, "Why it is good"), localizedText("p", "topos-card-reason", topos.why, topos.whyJa));
-
-  const dictionary = el("div", "topos-dictionary");
-  dictionary.append(el("h3", null, "Basic dictionary"), detail);
-
-  root.append(header, toposDiagram(topos.diagram, `${topos.title} focus diagram`), localizedText("p", "topos-focus-summary", topos.summary, topos.summaryJa), why, dictionary);
-  renderToposActions(root, topos.links);
-  typesetMath(root);
-}
-
-function renderFavoriteTopoiComparison() {
-  const root = document.querySelector("#favorite-topoi-comparison");
-  if (!root) return;
-  root.replaceChildren();
-
-  siteData.favoriteTopoi.forEach((topos) => {
-    const row = el("article", "topos-comparison-row");
-    row.append(
-      el("h3", "topos-comparison-heading", topos.title),
-      el("p", "topos-comparison-formula", topos.formula),
-      localizedText("p", "topos-comparison-cell", topos.subtitle, topos.subtitleJa),
-      localizedText("p", "topos-comparison-cell", topos.why, topos.whyJa)
-    );
-    root.append(row);
-  });
-  typesetMath(root);
-}
-
-function renderFavoriteTopoi() {
-  const root = document.querySelector("#favorite-topoi-list");
-  if (!root) return;
-
-  const selected = selectedFavoriteTopos();
-  if (selected) state.favoriteToposId = selected.id;
-
-  root.replaceChildren();
-  siteData.favoriteTopoi.forEach((topos) => root.append(renderFavoriteToposCard(topos)));
-  renderFavoriteToposFocus(selected);
-  renderFavoriteTopoiComparison();
-  typesetMath(root);
-  applyLanguage(document.querySelector("[data-page='favorite-topoi']") || document.body);
-}
-
 function setupInteractions() {
   const paperFilter = document.querySelector("#paper-filter");
   if (paperFilter) {
@@ -8646,7 +8198,6 @@ renderPlans();
 renderProblems();
 renderSiteSearch();
 renderLinks();
-renderFavoriteTopoi();
 renderResearchmapAwards();
 renderResearchmapEducation();
 setupInteractions();

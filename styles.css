@@ -1174,9 +1174,21 @@ a.position-link:hover {
   pointer-events: none;
 }
 
+.categories-map-venue-point-link,
 .categories-map-venue-label-link {
   cursor: pointer;
   outline: none;
+}
+
+.categories-map-venue-point-link:hover .categories-map-venue-halo,
+.categories-map-venue-point-link:focus-visible .categories-map-venue-halo {
+  fill: rgba(191, 107, 50, 0.28);
+}
+
+.categories-map-venue-point-link:hover .categories-map-venue-dot,
+.categories-map-venue-point-link:focus-visible .categories-map-venue-dot {
+  stroke: var(--accent);
+  stroke-width: 2.8;
 }
 
 .categories-map-venue-label-link:hover .categories-map-venue-label,
@@ -1185,47 +1197,9 @@ a.position-link:hover {
   text-decoration: underline;
 }
 
-.categories-map-meeting-link {
-  cursor: pointer;
-  outline: none;
-}
-
-.categories-map-meeting-button {
-  fill: rgba(255, 253, 248, 0.96);
-  stroke: rgba(43, 52, 43, 0.44);
-  stroke-width: 0.22;
-  vector-effect: non-scaling-stroke;
-  transition: fill 140ms ease, stroke 140ms ease;
-}
-
-.categories-map-meeting-label {
-  fill: #243128;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 1.9px;
-  font-weight: 900;
-  pointer-events: none;
-}
-
-.categories-map-meeting-link:hover .categories-map-meeting-button,
-.categories-map-meeting-link:focus-visible .categories-map-meeting-button {
-  fill: #e8f0ea;
-  stroke: #2c6f63;
-}
-
-.categories-map-venue.venue-kabukiza .categories-map-meeting-link:hover .categories-map-meeting-button,
-.categories-map-venue.venue-kabukiza .categories-map-meeting-link:focus-visible .categories-map-meeting-button {
-  fill: #f4e6d7;
-  stroke: #c7783d;
-}
-
 .categories-map-kanto.is-tokyo-focus .categories-map-venue-label {
   font-size: 3px;
   stroke-width: 0.85px;
-}
-
-.categories-map-kanto.is-tokyo-focus .categories-map-meeting-link:hover .categories-map-meeting-button,
-.categories-map-kanto.is-tokyo-focus .categories-map-meeting-link:focus-visible .categories-map-meeting-button {
-  stroke-width: 0.34;
 }
 
 .categories-map-credit {
@@ -2544,12 +2518,20 @@ a.position-link:hover {
 
 .connected-top-edge,
 .connected-top-root {
-  opacity: 0.44;
+  opacity: 1;
 }
 
 .connected-figure.is-complete .connected-top-edge,
 .connected-figure.is-complete .connected-top-root {
-  opacity: 0.24;
+  opacity: 1;
+}
+
+.connected-top-edge {
+  stroke-width: 2.6;
+}
+
+.connected-top-root {
+  stroke-width: 2.8;
 }
 
 .connected-divider {
@@ -5266,7 +5248,12 @@ a.position-link:hover {
   }
 
   .section {
-    width: min(2120px, calc(100% - 160px));
+    width: min(72vw, calc(100% - 240px), 3400px);
+  }
+
+  .hero,
+  .page-hero {
+    width: min(2120px, calc(100% - 240px));
   }
 
   .talk-map-canvas {
