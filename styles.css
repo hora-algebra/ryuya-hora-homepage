@@ -1555,16 +1555,11 @@ a.position-link:hover {
 }
 
 .categories-map-kanto.is-tokyo-focus .categories-map-venue-label {
-  font-size: 2.03px;
-  stroke-width: 0.54px;
-}
-
-.categories-map-kanto.is-tokyo-focus .venue-nii .categories-map-venue-label {
   font-size: 1.34px;
   stroke-width: 0.38px;
 }
 
-.categories-map-kanto.is-tokyo-focus .venue-nii .categories-map-venue-label-meeting {
+.categories-map-kanto.is-tokyo-focus .venue-kabukiza .categories-map-venue-label {
   font-size: 2.03px;
   stroke-width: 0.54px;
 }
@@ -2126,6 +2121,253 @@ a.position-link:hover {
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, #fffdf8 0%, #f6f2ea 100%);
+}
+
+.publication-figure-games-integral-calculus {
+  aspect-ratio: 16 / 9;
+}
+
+.games-integral-figure {
+  --games-integral-green: #2c6f63;
+  --games-integral-orange: #b66737;
+  --games-integral-blue: #2f536f;
+  --games-integral-purple: #574b68;
+  --games-integral-ink: #24312a;
+  color: var(--games-integral-ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.games-integral-figure .games-integral-paper {
+  fill: url("#games-integral-paper");
+}
+
+.games-integral-figure marker path {
+  fill: var(--games-integral-green);
+}
+
+.games-integral-panel-bg {
+  fill: rgba(255, 253, 248, 0.82);
+  stroke: rgba(43, 52, 43, 0.13);
+  stroke-width: 1.5;
+}
+
+.games-integral-caption,
+.games-integral-panel-label,
+.games-integral-token-label,
+.games-integral-equation,
+.games-integral-rb-label,
+.games-integral-rb-symbol,
+.games-integral-sum-label,
+.games-integral-node-text,
+.games-integral-operator text {
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+.games-integral-caption {
+  fill: rgba(36, 49, 42, 0.76);
+  font-size: 17px;
+  text-anchor: middle;
+}
+
+.games-integral-panel-label {
+  fill: var(--games-integral-green);
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.games-integral-tree-edge {
+  fill: none;
+  stroke: rgba(43, 52, 43, 0.38);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.3;
+}
+
+.games-integral-node {
+  stroke-width: 2.2;
+}
+
+.games-integral-node-root {
+  fill: #fff4e8;
+  stroke: var(--games-integral-orange);
+}
+
+.games-integral-node-n {
+  fill: #e7efe8;
+  stroke: var(--games-integral-green);
+}
+
+.games-integral-node-p {
+  fill: #e7edf2;
+  stroke: var(--games-integral-blue);
+}
+
+.games-integral-node-text {
+  fill: var(--games-integral-ink);
+  font-size: 15px;
+  text-anchor: middle;
+}
+
+.games-integral-node-text.small {
+  font-size: 12px;
+}
+
+.games-integral-main-arrow,
+.games-integral-ribbon {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: games-integral-flow 4.8s ease-in-out infinite;
+}
+
+.games-integral-main-arrow {
+  stroke: var(--games-integral-green);
+  stroke-width: 4;
+}
+
+.games-integral-i-arrow {
+  stroke: var(--games-integral-orange);
+  animation-delay: 0.55s;
+}
+
+.games-integral-operator circle {
+  fill: rgba(255, 253, 248, 0.96);
+  stroke-width: 2.3;
+}
+
+.games-integral-d-operator circle {
+  stroke: var(--games-integral-green);
+}
+
+.games-integral-i-operator circle {
+  stroke: var(--games-integral-orange);
+}
+
+.games-integral-operator text {
+  fill: var(--games-integral-ink);
+  font-size: 25px;
+  text-anchor: middle;
+}
+
+.games-integral-boundary-token {
+  stroke-width: 1.4;
+}
+
+.games-integral-boundary-token.token-a,
+.games-integral-boundary-token.token-c {
+  fill: rgba(231, 239, 232, 0.86);
+  stroke: rgba(44, 111, 99, 0.36);
+}
+
+.games-integral-boundary-token.token-b {
+  fill: rgba(243, 230, 216, 0.9);
+  stroke: rgba(182, 103, 55, 0.38);
+}
+
+.games-integral-boundary-token.token-d {
+  fill: rgba(231, 237, 242, 0.9);
+  stroke: rgba(47, 83, 111, 0.38);
+}
+
+.games-integral-token-label {
+  fill: rgba(36, 49, 42, 0.7);
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.games-integral-basin {
+  fill: none;
+  stroke: rgba(87, 75, 104, 0.56);
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.games-integral-layer {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.games-integral-layer.layer-one {
+  stroke: rgba(44, 111, 99, 0.72);
+}
+
+.games-integral-layer.layer-two {
+  stroke: rgba(182, 103, 55, 0.72);
+}
+
+.games-integral-layer.layer-three {
+  stroke: rgba(47, 83, 111, 0.72);
+}
+
+.games-integral-invariant-dot {
+  stroke: rgba(36, 49, 42, 0.44);
+  stroke-width: 1.3;
+}
+
+.games-integral-invariant-dot.dot-one {
+  fill: #dcebe2;
+}
+
+.games-integral-invariant-dot.dot-two {
+  fill: #f3e0cf;
+}
+
+.games-integral-invariant-dot.dot-three {
+  fill: #dfe8ef;
+}
+
+.games-integral-equation {
+  fill: var(--games-integral-purple);
+  font-size: 15px;
+}
+
+.games-integral-ribbon {
+  stroke-width: 3.2;
+}
+
+.games-integral-ribbon-left {
+  stroke: var(--games-integral-green);
+}
+
+.games-integral-ribbon-right {
+  stroke: var(--games-integral-orange);
+  animation-delay: 0.3s;
+}
+
+.games-integral-ribbon-merge {
+  stroke: var(--games-integral-blue);
+  animation-delay: 0.72s;
+}
+
+.games-integral-rb-label {
+  fill: rgba(36, 49, 42, 0.72);
+  font-size: 13px;
+}
+
+.games-integral-rb-symbol {
+  fill: var(--games-integral-purple);
+  font-size: 13px;
+}
+
+.games-integral-sum-label {
+  fill: var(--games-integral-blue);
+  font-size: 17px;
+}
+
+@keyframes games-integral-flow {
+  0%,
+  15% {
+    stroke-dashoffset: 1;
+  }
+
+  58%,
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 .grundy-figure {
@@ -3849,6 +4091,12 @@ a.position-link:hover {
   stroke: rgba(44, 49, 45, 0.66);
 }
 
+.quotient-toposes-figure .quotient-guide,
+.quotient-toposes-figure .quotient-infinite-continuation,
+.quotient-toposes-figure .quotient-infinite-height-continuation {
+  display: none;
+}
+
 .quotient-toposes-figure .quotient-edge-height,
 .quotient-toposes-figure .quotient-edge-period,
 .quotient-toposes-figure .quotient-edge-infinite {
@@ -4129,24 +4377,6 @@ a.position-link:hover {
 
 .internal-loop-n {
   stroke: rgba(44, 111, 99, 0.55);
-}
-
-.internal-classification-slots rect {
-  fill: rgba(255, 253, 248, 0.68);
-  stroke: rgba(43, 52, 43, 0.12);
-  stroke-width: 1.1;
-}
-
-.internal-classification-slots .internal-slot-vertex {
-  stroke: rgba(47, 83, 111, 0.18);
-}
-
-.internal-classification-slots .internal-slot-nonloop {
-  stroke: rgba(44, 111, 99, 0.18);
-}
-
-.internal-classification-slots .internal-slot-loop {
-  stroke: rgba(138, 77, 52, 0.2);
 }
 
 .internal-highlight-n,
@@ -5087,11 +5317,23 @@ a.position-link:hover {
   animation: tensor-press-layer-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
+.tensor-factorization-figure .tensor-tensor-divider {
+  stroke: rgba(67, 72, 64, 0.32);
+  stroke-dasharray: 6 8;
+  stroke-linecap: round;
+  stroke-width: 2.2;
+}
+
 .tensor-factorization-figure .tensor-press-flow,
-.tensor-factorization-figure .tensor-press-arrow {
+.tensor-factorization-figure .tensor-press-arrow,
+.tensor-factorization-figure .tensor-mini-map-arrow {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.tensor-factorization-figure .tensor-press-flow,
+.tensor-factorization-figure .tensor-press-arrow {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
 }
@@ -5122,6 +5364,91 @@ a.position-link:hover {
 
 .tensor-factorization-figure .tensor-press-arrow-subset {
   stroke: var(--tensor-subset);
+}
+
+.tensor-factorization-figure .tensor-input-sketch {
+  opacity: 0.9;
+}
+
+.tensor-factorization-figure .tensor-mini-node,
+.tensor-factorization-figure .tensor-mini-set,
+.tensor-factorization-figure .tensor-mini-dot {
+  vector-effect: non-scaling-stroke;
+}
+
+.tensor-factorization-figure .tensor-mini-x {
+  fill: var(--tensor-map-fill);
+  stroke: var(--tensor-map);
+  stroke-width: 1.6;
+}
+
+.tensor-factorization-figure .tensor-mini-a {
+  fill: rgba(255, 253, 248, 0.92);
+  stroke: rgba(44, 111, 99, 0.38);
+  stroke-width: 1.45;
+}
+
+.tensor-factorization-figure .tensor-mini-map-arrow {
+  stroke: var(--tensor-map);
+  stroke-width: 2.4;
+}
+
+.tensor-factorization-figure .tensor-mini-set-a {
+  fill: rgba(255, 253, 248, 0.72);
+  stroke: rgba(182, 103, 55, 0.36);
+  stroke-width: 1.45;
+}
+
+.tensor-factorization-figure .tensor-mini-set-s {
+  fill: rgba(245, 220, 198, 0.42);
+  stroke: rgba(182, 103, 55, 0.72);
+  stroke-dasharray: 4 4;
+  stroke-width: 1.6;
+}
+
+.tensor-factorization-figure .tensor-mini-dot-in {
+  fill: var(--tensor-subset-fill);
+  stroke: var(--tensor-subset);
+  stroke-width: 1.2;
+}
+
+.tensor-factorization-figure .tensor-mini-dot-out {
+  fill: rgba(248, 246, 238, 0.88);
+  stroke: rgba(43, 52, 43, 0.22);
+  stroke-width: 1.1;
+}
+
+.tensor-factorization-figure .tensor-mini-node-text,
+.tensor-factorization-figure .tensor-mini-set-label,
+.tensor-factorization-figure .tensor-mini-caption {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 900;
+  text-anchor: middle;
+}
+
+.tensor-factorization-figure .tensor-mini-node-text {
+  fill: #24312a;
+  font-size: 11px;
+}
+
+.tensor-factorization-figure .tensor-mini-set-label {
+  fill: rgba(36, 49, 42, 0.68);
+  font-size: 10px;
+}
+
+.tensor-factorization-figure .tensor-mini-caption {
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.tensor-factorization-figure .tensor-mini-caption-map {
+  fill: var(--tensor-map);
+  font-size: 18px;
+}
+
+.tensor-factorization-figure .tensor-mini-caption-subset {
+  fill: var(--tensor-subset);
+  font-size: 12px;
 }
 
 .tensor-factorization-figure .tensor-press-pad {
@@ -8731,12 +9058,19 @@ a.position-link:hover {
   .tensor-factorization-figure .tensor-press-core,
   .tensor-factorization-figure .tensor-image-node.factor,
   .tensor-formula-stage,
+  .games-integral-main-arrow,
+  .games-integral-ribbon,
   .tensor-animation-figure .tensor-length {
     animation: none;
   }
 
   .internal-piece {
     display: none;
+  }
+
+  .games-integral-main-arrow,
+  .games-integral-ribbon {
+    stroke-dashoffset: 0;
   }
 
   .internal-source-graph {

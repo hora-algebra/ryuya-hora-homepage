@@ -3501,12 +3501,15 @@ function siteSearchRecords() {
   });
 
   siteData.papers.preparation.forEach((title) => {
+    const paper = preparationPaperRecord(title);
     pushSiteSearchRecord(records, {
       type: "In preparation",
-      title,
-      href: localHref("papers/index.html"),
-      summary: "Manuscript in preparation",
-      icon: "paper"
+      title: paper.title,
+      href: localHref(`papers/index.html#${paperAnchor(paper)}`),
+      summary: paper.summary || "Manuscript in preparation",
+      keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
+      icon: "paper",
+      thumbnail: paper.thumbnail || ""
     });
   });
 
@@ -4581,6 +4584,7 @@ const categoriesTokyoVenues = [
       { meetingIndex: 1, lines: ["第2回", "National Institute", "of Informatics"] }
     ],
     labelLineGap: 1.04,
+    labelLeaderUnit: 1.34,
     name: "第1回・第2回 National Institute of Informatics",
     lon: 139.7585,
     lat: 35.6933,
@@ -4652,11 +4656,20 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
       ? venue.labelBlocks
       : null;
     let hasLinkedLabelSegments = false;
+    let labelLeaderTargets = null;
     if (labelBlocks) {
-      const blockLines = labelBlocks.flatMap((block) => Array.isArray(block.lines) ? block.lines : [block.text]);
-      const firstLineOffset = -((blockLines.length - 1) * lineGap) / 2;
+      const allBlockLines = labelBlocks.flatMap((block) => Array.isArray(block.lines) ? block.lines : [block.text]);
+      const firstLineOffset = -((allBlockLines.length - 1) * lineGap) / 2;
+      const leaderUnit = venue.labelLeaderUnit || 1;
+      labelLeaderTargets = [];
       let lineIndex = 0;
       labelBlocks.forEach((block) => {
+        const blockLineValues = Array.isArray(block.lines) ? block.lines : [block.text];
+        const blockCenterLineIndex = lineIndex + (blockLineValues.length - 1) / 2;
+        const blockLeaderDy = allBlockLines.length === 1
+          ? 0
+          : (firstLineOffset + blockCenterLineIndex * lineGap) * leaderUnit;
+        labelLeaderTargets.push([labelX, Number((labelY + blockLeaderDy).toFixed(1))]);
         const blockMeeting = Number.isInteger(block.meetingIndex) ? meetings[block.meetingIndex] : null;
         const blockLink = blockMeeting ? svgEl("a", {
           class: "categories-map-venue-label-link",
@@ -4667,14 +4680,14 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
           hasLinkedLabelSegments = true;
           blockLink.append(svgEl("title", {}, blockMeeting.title));
         }
-        (Array.isArray(block.lines) ? block.lines : [block.text]).forEach((line, blockLineIndex) => {
+        blockLineValues.forEach((line, blockLineIndex) => {
           const segmentClasses = compactText([
             blockMeeting ? "categories-map-venue-label-segment" : "",
             blockMeeting && blockLineIndex === 0 ? "categories-map-venue-label-meeting" : ""
           ]).join(" ");
           const segmentNode = svgEl("tspan", {
             x: labelX,
-            dy: blockLines.length === 1 ? 0 : lineIndex === 0 ? `${firstLineOffset.toFixed(2)}em` : `${lineGap}em`,
+            dy: allBlockLines.length === 1 ? 0 : lineIndex === 0 ? `${firstLineOffset.toFixed(2)}em` : `${lineGap}em`,
             ...(segmentClasses ? { class: segmentClasses } : {})
           }, line);
           if (blockLink) blockLink.append(segmentNode);
@@ -4731,9 +4744,14 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
         labelText
       );
     }
+    const leaderNodes = Array.isArray(labelLeaderTargets) && labelLeaderTargets.length
+      ? labelLeaderTargets.map(([leaderX, leaderY]) => (
+        svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${leaderX} ${leaderY}` })
+      ))
+      : [svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${labelX} ${labelY}` })];
     const markerNodes = [
       svgEl("title", {}, venue.name),
-      svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${labelX} ${labelY}` })
+      ...leaderNodes
     ];
     if (venue.showPoint !== false) {
       const pointNodes = [
@@ -6413,10 +6431,31 @@ function paperThemeIds(paper) {
   return paperThemeScore(paper).themes;
 }
 
-function preparationPaperRecord(title) {
+const differentialGamesPreparationTitle = "Differential calculus of impartial combinatorial games (with Ryo Suzuki)";
+
+function preparationPaperDetails(title) {
+  if (title !== differentialGamesPreparationTitle) return {};
+  const slidesHref = noteHrefByFile("RYUYA,HORA.pdf");
   return {
-    title,
-    publicationStatus: "In preparation"
+    figure: "games-integral-calculus",
+    themes: ["games", "algebra"],
+    tags: ["differential calculus", "Rota-Baxter", "integration", "impartial games"],
+    summary:
+      "Visual proposal: the derivative exposes the option boundary of a game, while the integral operator accumulates that boundary back into a game invariant; the lower ribbon records the Rota-Baxter-style split of independent branches before disjoint-sum recombination.",
+    links: compactText([
+      slidesHref ? ["Rota-Baxter slides", slidesHref] : null,
+      ["Speculative note", localHref("speculative-notes/index.html#winning-games-rota-baxter")]
+    ])
+  };
+}
+
+function preparationPaperRecord(title) {
+  const base = typeof title === "object" && title ? title : { title };
+  return {
+    ...base,
+    title: base.title,
+    publicationStatus: "In preparation",
+    ...preparationPaperDetails(base.title)
   };
 }
 
@@ -6517,13 +6556,16 @@ function themedPaperRecords() {
 
 function themedPreparationRecords() {
   return siteData.papers.preparation
-    .map((title) => ({
-      type: "preparation",
-      title,
-      href: localHref("papers/index.html"),
-      meta: "In preparation",
-      ...scoreThemeRecord(title)
-    }))
+    .map((title) => {
+      const paper = preparationPaperRecord(title);
+      return {
+        type: "preparation",
+        title: paper.title,
+        href: localHref(`papers/index.html#${paperAnchor(paper)}`),
+        meta: "In preparation",
+        ...paperThemeScore(paper)
+      };
+    })
     .filter((record) => record.themes.length);
 }
 
@@ -7490,7 +7532,7 @@ function normalizationFigureTemplate() {
 
       <g class="normalization-action-atlas" transform="translate(330 64)">
         <rect class="normalization-action-stage-bg" width="390" height="282" rx="10"></rect>
-        <g class="normalization-square-stage" transform="translate(30 23) scale(3.36)">
+        <g class="normalization-square-stage" transform="translate(105 34) scale(4.3)">
           <path class="normalization-square-shadow" d="M0 4 H42 V46 H0 Z"></path>
           <path class="normalization-action-line normalization-square-frame" d="M0 4 H42 V46 H0 Z"></path>
           <g class="normalization-action" data-normalization-stabilizers="v0">
@@ -7512,39 +7554,6 @@ function normalizationFigureTemplate() {
           <g class="normalization-action" data-normalization-stabilizers="d4">
             <circle class="normalization-action-dot ghost" cx="21" cy="25" r="5.4"></circle>
             <circle class="normalization-action-dot filled normalization-action-place" data-normalization-place-stabilizer="d4" data-normalization-orbit="fixed" data-normalization-point="p0" data-normalization-token="a" cx="21" cy="25" r="2.55"></circle>
-          </g>
-        </g>
-        <g class="normalization-action-strip" transform="translate(212 18)">
-          <g class="normalization-action" data-normalization-stabilizers="rot">
-            <rect class="normalization-action-hit" x="-10" y="-8" width="132" height="58" rx="9"></rect>
-            <g class="normalization-orientation-orbit" transform="translate(15 1)">
-              <circle class="normalization-action-dot ghost normalization-action-place" data-normalization-place-stabilizer="rot" data-normalization-orbit="orientation" data-normalization-point="o0" data-normalization-token="a" cx="21" cy="23" r="14"></circle>
-              <circle class="normalization-action-dot ghost normalization-action-place" data-normalization-place-stabilizer="rot" data-normalization-orbit="orientation" data-normalization-point="o1" data-normalization-token="b" cx="45" cy="23" r="14"></circle>
-              <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="rot" data-normalization-orbit="orientation" data-normalization-point="o0" data-normalization-token="a" d="M8 23 C8 8, 27 4, 35 16" marker-end="url(#arrow-f)"></path>
-              <path class="figure-arrow normalization-cycle-arrow normalization-action-place" data-normalization-place-stabilizer="rot" data-normalization-orbit="orientation" data-normalization-point="o1" data-normalization-token="b" d="M58 23 C58 38, 39 42, 31 30" marker-end="url(#arrow-f)"></path>
-            </g>
-          </g>
-          <g class="normalization-action" data-normalization-stabilizers="r2" transform="translate(0 72)">
-            <rect class="normalization-action-hit" x="-10" y="-8" width="132" height="58" rx="9"></rect>
-            <g class="normalization-halfturn-orbit" transform="translate(19 1)">
-              <path class="normalization-action-line normalization-halfturn-frame" d="M8 13 H48 M8 37 H48 M8 13 V37 M48 13 V37"></path>
-              <path class="figure-arrow normalization-cycle-arrow" d="M23 19 C29 13, 39 16, 40 25" marker-end="url(#arrow-f)"></path>
-              <path class="figure-arrow normalization-cycle-arrow" d="M33 31 C27 37, 17 34, 16 25" marker-end="url(#arrow-f)"></path>
-              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" data-normalization-orbit="halfturn" data-normalization-point="h0" data-normalization-token="a" cx="8" cy="13" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" data-normalization-orbit="halfturn" data-normalization-point="h1" data-normalization-token="b" cx="48" cy="13" r="3"></circle>
-              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" data-normalization-orbit="halfturn" data-normalization-point="h3" data-normalization-token="d" cx="8" cy="37" r="3"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="r2" data-normalization-orbit="halfturn" data-normalization-point="h2" data-normalization-token="c" cx="48" cy="37" r="3"></circle>
-            </g>
-          </g>
-          <g class="normalization-action" data-normalization-stabilizers="one" transform="translate(0 145)">
-            <rect class="normalization-action-hit" x="-10" y="-8" width="132" height="84" rx="9"></rect>
-            <g class="normalization-free-orbit" transform="translate(26 13) scale(1.18)">
-              <circle class="normalization-action-dot ghost" cx="21" cy="21" r="22"></circle>
-              <path class="normalization-cayley-edge rotation" d="M21 -1 L37 5 L43 21 L37 37 L21 43 L5 37 L-1 21 L5 5 Z"></path>
-              <path class="normalization-cayley-edge reflection" d="M21 -1 L21 43 M37 5 L5 37 M43 21 L-1 21 M37 37 L5 5"></path>
-              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="e" data-normalization-token="a" cx="21" cy="-1" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s" data-normalization-token="b" cx="37" cy="5" r="2.7"></circle>
-              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s2" data-normalization-token="c" cx="43" cy="21" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s3" data-normalization-token="d" cx="37" cy="37" r="2.7"></circle>
-              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="t" data-normalization-token="e" cx="21" cy="43" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="st" data-normalization-token="f" cx="5" cy="37" r="2.7"></circle>
-              <circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s2t" data-normalization-token="g" cx="-1" cy="21" r="2.7"></circle><circle class="normalization-action-dot normalization-action-place" data-normalization-place-stabilizer="one" data-normalization-orbit="free" data-normalization-point="s3t" data-normalization-token="h" cx="5" cy="5" r="2.7"></circle>
-            </g>
           </g>
         </g>
       </g>
@@ -7609,24 +7618,24 @@ function internalAnimatedPath(path, finalPath, className, keyTimes, duration, co
 }
 
 function internalStaggeredKeyTimes(staggerIndex, staggerTotal) {
-  const classifyStart = 0.05;
+  const splitStart = 0.05;
   const decomposedTime = 0.13;
   const colorDoneTime = 0.21;
-  const classifiedTime = 0.3;
+  const holdTime = 0.3;
   const flightWindowStart = 0.34;
   const flightWindowEnd = 0.92;
   const slot = (flightWindowEnd - flightWindowStart) / Math.max(staggerTotal, 1);
   const flightStart = flightWindowStart + staggerIndex * slot;
   const flightEnd = flightStart + slot * 0.84;
-  return [0, classifyStart, decomposedTime, colorDoneTime, classifiedTime, flightStart, flightEnd, 0.94, 1]
+  return [0, splitStart, decomposedTime, colorDoneTime, holdTime, flightStart, flightEnd, 0.94, 1]
     .map((time) => Number(time.toFixed(3)))
     .join(";");
 }
 
-function internalParameterizationPiece({ type, start, decomposed, classified, target, from, to, loopPath, finalPath, finalScale, staggerIndex = 0, staggerTotal = 1 }) {
+function internalParameterizationPiece({ type, start, decomposed, target, from, to, loopPath, finalPath, finalScale, staggerIndex = 0, staggerTotal = 1 }) {
   const duration = internalParameterizationDuration;
   const keyTimes = internalStaggeredKeyTimes(staggerIndex, staggerTotal);
-  const compactScale = 0.42;
+  const compactScale = 0.88;
   const arrivalScale = finalScale ?? compactScale;
   let content = "";
   if (type === "vertex") {
@@ -7638,7 +7647,7 @@ function internalParameterizationPiece({ type, start, decomposed, classified, ta
   }
   return `<g class="internal-piece internal-piece-${type}" opacity="1" transform="translate(${internalPoint(start)})">
         <animate attributeName="opacity" values="1;1;1;1;1;1;1;0;0" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate>
-        <animateTransform attributeName="transform" type="translate" values="${internalPoint(start)}; ${internalPoint(start)}; ${internalPoint(decomposed)}; ${internalPoint(decomposed)}; ${internalPoint(classified)}; ${internalPoint(classified)}; ${internalPoint(target)}; ${internalPoint(target)}; ${internalPoint(start)}" keyTimes="${keyTimes}" ${internalSmoothTiming} dur="${duration}" repeatCount="indefinite"></animateTransform>
+        <animateTransform attributeName="transform" type="translate" values="${internalPoint(start)}; ${internalPoint(start)}; ${internalPoint(decomposed)}; ${internalPoint(decomposed)}; ${internalPoint(decomposed)}; ${internalPoint(decomposed)}; ${internalPoint(target)}; ${internalPoint(target)}; ${internalPoint(start)}" keyTimes="${keyTimes}" ${internalSmoothTiming} dur="${duration}" repeatCount="indefinite"></animateTransform>
         <g class="internal-piece-shape" transform="scale(1)">
           <animateTransform attributeName="transform" type="scale" values="1;1;1;${compactScale};${compactScale};${compactScale};${arrivalScale};${arrivalScale};1" keyTimes="${keyTimes}" ${internalSmoothTiming} dur="${duration}" repeatCount="indefinite"></animateTransform>
           ${content}
@@ -7655,36 +7664,6 @@ function createInternalParameterizationPieces() {
   const nonLoopFinalPath = "M86 107 C124 92, 124 144, 86 129";
   const loopFinalPath = "M60 129 C22 144, 22 92, 60 107";
   const graphCenter = [280, 202];
-  const vertexClassified = [
-    [526, 102],
-    [542, 102],
-    [558, 102],
-    [526, 120],
-    [542, 120],
-    [558, 120],
-    [526, 138],
-    [542, 138],
-    [558, 138],
-    [542, 156],
-  ];
-  const nonLoopClassified = [
-    [528, 182],
-    [552, 182],
-    [528, 198],
-    [552, 198],
-    [528, 214],
-    [552, 214],
-    [528, 230],
-    [552, 230],
-    [528, 246],
-    [552, 246],
-  ];
-  const loopClassified = [
-    [522, 274],
-    [542, 274],
-    [562, 274],
-    [542, 294],
-  ];
   const vertices = [
     [88, 184],
     [152, 132],
@@ -7699,7 +7678,6 @@ function createInternalParameterizationPieces() {
   ].map((start, index) => ({
     type: "vertex",
     start,
-    classified: vertexClassified[index],
     target: vertexTarget,
     finalScale: vertexFinalScale,
   }));
@@ -7719,7 +7697,6 @@ function createInternalParameterizationPieces() {
     return {
       type: "nonloop",
       start,
-      classified: nonLoopClassified[index],
       target: nonLoopTarget,
       from: [source[0] - start[0], source[1] - start[1]],
       to: [destination[0] - start[0], destination[1] - start[1]],
@@ -7731,7 +7708,6 @@ function createInternalParameterizationPieces() {
     {
       type: "loop",
       start: [458, 182],
-      classified: loopClassified[0],
       target: loopTarget,
       loopPath: "M12 -9 C44 -24, 44 25, 12 12",
       finalPath: loopFinalPath,
@@ -7740,7 +7716,6 @@ function createInternalParameterizationPieces() {
     {
       type: "loop",
       start: [136, 266],
-      classified: loopClassified[1],
       target: loopTarget,
       loopPath: "M-12 8 C-50 24, -50 -24, -12 -8",
       finalPath: loopFinalPath,
@@ -7749,7 +7724,6 @@ function createInternalParameterizationPieces() {
     {
       type: "loop",
       start: [230, 134],
-      classified: loopClassified[2],
       target: loopTarget,
       loopPath: "M-8 -12 C-28 -42, 28 -42, 8 -12",
       finalPath: loopFinalPath,
@@ -7758,7 +7732,6 @@ function createInternalParameterizationPieces() {
     {
       type: "loop",
       start: [438, 270],
-      classified: loopClassified[3],
       target: loopTarget,
       loopPath: "M12 -8 C48 -22, 48 22, 12 8",
       finalPath: loopFinalPath,
@@ -7827,6 +7800,94 @@ function quotientTurnLights(paths, color = "green") {
 }
 
 const paperFigureTemplates = {
+  "games-integral-calculus": `
+    <svg class="games-integral-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-integral-title fig-games-integral-desc">
+      <title id="fig-games-integral-title">Differential and integral structure for impartial games</title>
+      <desc id="fig-games-integral-desc">A game is differentiated to its option boundary. The integral operator then accumulates that boundary back into a game invariant. A lower ribbon shows a Rota-Baxter-style split of independent branches before recombination.</desc>
+      <defs>
+        <marker id="games-integral-arrow" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="5.4" markerHeight="5.4" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z"></path>
+        </marker>
+        <linearGradient id="games-integral-paper" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#fffdf8"></stop>
+          <stop offset="0.58" stop-color="#f7f1e7"></stop>
+          <stop offset="1" stop-color="#e8f0ec"></stop>
+        </linearGradient>
+      </defs>
+
+      <rect class="games-integral-paper" width="760" height="390" rx="0"></rect>
+      <text class="games-integral-caption" x="380" y="32">differentiate options, integrate invariants</text>
+
+      <g class="games-integral-panel games-integral-game-panel" transform="translate(36 70)">
+        <rect class="games-integral-panel-bg" width="210" height="222" rx="12"></rect>
+        <text class="games-integral-panel-label" x="22" y="28">game G</text>
+        <g class="games-integral-tree" transform="translate(18 46)">
+          <path class="games-integral-tree-edge" d="M88 34 L42 92 M88 34 L88 100 M88 34 L138 92 M42 92 L20 148 M42 92 L64 148 M138 92 L116 148 M138 92 L160 148"></path>
+          <circle class="games-integral-node games-integral-node-root" cx="88" cy="34" r="18"></circle>
+          <circle class="games-integral-node games-integral-node-n" cx="42" cy="92" r="14"></circle>
+          <circle class="games-integral-node games-integral-node-p" cx="88" cy="100" r="14"></circle>
+          <circle class="games-integral-node games-integral-node-n" cx="138" cy="92" r="14"></circle>
+          <circle class="games-integral-node games-integral-node-p" cx="20" cy="148" r="11"></circle>
+          <circle class="games-integral-node games-integral-node-n" cx="64" cy="148" r="11"></circle>
+          <circle class="games-integral-node games-integral-node-p" cx="116" cy="148" r="11"></circle>
+          <circle class="games-integral-node games-integral-node-p" cx="160" cy="148" r="11"></circle>
+          <text class="games-integral-node-text" x="88" y="39">G</text>
+          <text class="games-integral-node-text small" x="42" y="96">N</text>
+          <text class="games-integral-node-text small" x="88" y="104">P</text>
+          <text class="games-integral-node-text small" x="138" y="96">N</text>
+        </g>
+      </g>
+
+      <path class="figure-arrow games-integral-main-arrow games-integral-d-arrow" pathLength="1" d="M258 180 C286 146, 318 136, 352 148"></path>
+      <g class="games-integral-operator games-integral-d-operator" transform="translate(306 134)">
+        <circle r="24"></circle>
+        <text y="8">D</text>
+      </g>
+
+      <g class="games-integral-panel games-integral-boundary-panel" transform="translate(326 70)">
+        <rect class="games-integral-panel-bg" width="150" height="222" rx="12"></rect>
+        <text class="games-integral-panel-label" x="75" y="28" text-anchor="middle">option boundary</text>
+        <g class="games-integral-boundary-stack" transform="translate(24 58)">
+          <rect class="games-integral-boundary-token token-a" x="0" y="0" width="102" height="26" rx="13"></rect>
+          <rect class="games-integral-boundary-token token-b" x="18" y="42" width="84" height="26" rx="13"></rect>
+          <rect class="games-integral-boundary-token token-c" x="4" y="84" width="98" height="26" rx="13"></rect>
+          <rect class="games-integral-boundary-token token-d" x="28" y="126" width="74" height="26" rx="13"></rect>
+          <text class="games-integral-token-label" x="51" y="18">options</text>
+          <text class="games-integral-token-label" x="60" y="60">moves</text>
+          <text class="games-integral-token-label" x="53" y="102">boundary</text>
+          <text class="games-integral-token-label" x="65" y="144">data</text>
+        </g>
+      </g>
+
+      <path class="figure-arrow games-integral-main-arrow games-integral-i-arrow" pathLength="1" d="M486 150 C520 136, 548 146, 574 180"></path>
+      <g class="games-integral-operator games-integral-i-operator" transform="translate(530 134)">
+        <circle r="24"></circle>
+        <text y="8">&#8747;</text>
+      </g>
+
+      <g class="games-integral-panel games-integral-integral-panel" transform="translate(558 70)">
+        <rect class="games-integral-panel-bg" width="166" height="222" rx="12"></rect>
+        <text class="games-integral-panel-label" x="83" y="28" text-anchor="middle">integral structure</text>
+        <path class="games-integral-basin" d="M38 154 C42 98, 66 70, 83 70 C100 70, 124 98, 128 154"></path>
+        <path class="games-integral-layer layer-one" d="M46 148 C62 138, 104 138, 120 148"></path>
+        <path class="games-integral-layer layer-two" d="M54 120 C68 111, 98 111, 112 120"></path>
+        <path class="games-integral-layer layer-three" d="M64 94 C73 88, 93 88, 102 94"></path>
+        <circle class="games-integral-invariant-dot dot-one" cx="83" cy="154" r="9"></circle>
+        <circle class="games-integral-invariant-dot dot-two" cx="83" cy="122" r="8"></circle>
+        <circle class="games-integral-invariant-dot dot-three" cx="83" cy="94" r="7"></circle>
+        <text class="games-integral-equation" x="83" y="190" text-anchor="middle">&#8747; D(G) -> G&#772;</text>
+      </g>
+
+      <g class="games-integral-rb-strip" transform="translate(96 328)">
+        <path class="figure-arrow games-integral-ribbon games-integral-ribbon-left" pathLength="1" d="M0 8 C86 -28, 168 -28, 238 8"></path>
+        <path class="figure-arrow games-integral-ribbon games-integral-ribbon-right" pathLength="1" d="M272 8 C356 -28, 438 -28, 512 8"></path>
+        <path class="figure-arrow games-integral-ribbon games-integral-ribbon-merge" pathLength="1" d="M238 8 C252 24, 258 24, 272 8"></path>
+        <text class="games-integral-rb-label" x="256" y="43" text-anchor="middle">Rota-Baxter split: integrate branches, then recombine</text>
+        <text class="games-integral-rb-symbol left" x="116" y="-8" text-anchor="middle">&#8747; branch A</text>
+        <text class="games-integral-rb-symbol right" x="392" y="-8" text-anchor="middle">&#8747; branch B</text>
+        <text class="games-integral-sum-label" x="546" y="14">G + H</text>
+      </g>
+    </svg>`,
   "internal-parameterizations": `
     <svg class="internal-parameterization-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-internal-title fig-internal-desc">
       <title id="fig-internal-title">Directed graph local states</title>
@@ -8032,17 +8093,26 @@ const paperFigureTemplates = {
         <text class="tensor-side-label tensor-s-label" x="628" y="48">S</text>
 
         <rect class="tensor-s-envelope" x="510" y="68" width="140" height="156" rx="42"></rect>
+        <line class="tensor-tensor-divider" x1="394" y1="48" x2="394" y2="238"></line>
 
         <g class="tensor-press-layer" aria-hidden="true">
-          <path class="tensor-press-flow tensor-press-flow-map" pathLength="1" d="M176 148 C236 128, 310 128, 382 148"></path>
-          <path class="tensor-press-flow tensor-press-flow-subset" pathLength="1" d="M624 148 C558 128, 474 128, 408 148"></path>
-          <rect class="tensor-press-pad tensor-press-pad-map" x="292" y="78" width="18" height="140" rx="9"></rect>
-          <rect class="tensor-press-pad tensor-press-pad-subset" x="454" y="78" width="18" height="140" rx="9"></rect>
-          <path class="tensor-press-arrow tensor-press-arrow-map" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M210 148 C260 138, 326 138, 376 148"></path>
-          <path class="tensor-press-arrow tensor-press-arrow-subset" marker-end="url(#tensor-subset-pressure-arrow)" pathLength="1" d="M584 148 C520 138, 462 138, 410 148"></path>
-          <g class="tensor-press-core" transform="translate(394 148)">
-            <circle cx="0" cy="0" r="27"></circle>
-            <text x="0" y="8">⊗</text>
+          <path class="tensor-press-arrow tensor-press-arrow-map" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M292 146 C322 136, 354 136, 384 146"></path>
+          <path class="tensor-press-arrow tensor-press-arrow-subset" marker-end="url(#tensor-subset-pressure-arrow)" pathLength="1" d="M500 146 C468 136, 432 136, 404 146"></path>
+          <g class="tensor-input-sketch tensor-map-sketch" transform="translate(304 64)">
+            <circle class="tensor-mini-node tensor-mini-x" cx="-34" cy="24" r="7"></circle>
+            <circle class="tensor-mini-node tensor-mini-a" cx="48" cy="24" r="7"></circle>
+            <path class="tensor-mini-map-arrow" marker-end="url(#tensor-f-arrow-green)" d="M42 24 C18 8, -8 8, -28 24"></path>
+            <text class="tensor-mini-caption tensor-mini-caption-map" x="8" y="12">f</text>
+          </g>
+          <g class="tensor-input-sketch tensor-subset-sketch" transform="translate(448 58)">
+            <rect class="tensor-mini-set tensor-mini-set-a" x="-22" y="0" width="70" height="48" rx="14"></rect>
+            <rect class="tensor-mini-set tensor-mini-set-s" x="8" y="8" width="34" height="32" rx="11"></rect>
+            <circle class="tensor-mini-dot tensor-mini-dot-in" cx="18" cy="22" r="3.8"></circle>
+            <circle class="tensor-mini-dot tensor-mini-dot-in" cx="32" cy="31" r="3.8"></circle>
+            <circle class="tensor-mini-dot tensor-mini-dot-out" cx="-8" cy="33" r="3.4"></circle>
+            <text class="tensor-mini-set-label tensor-mini-set-label-a" x="-5" y="16">A</text>
+            <text class="tensor-mini-set-label tensor-mini-set-label-s" x="45" y="16">S</text>
+            <text class="tensor-mini-caption tensor-mini-caption-subset" x="13" y="62">S ⊂ A</text>
           </g>
         </g>
 
@@ -8148,9 +8218,9 @@ const paperFigureTemplates = {
           <path class="figure-arrow automata-edge automata-edge-a" d="M91 125 C114 74, 134 74, 157 125"></path>
           <path class="figure-arrow automata-edge automata-edge-a" d="M164 116 C118 50, 234 50, 188 116"></path>
           <path class="figure-arrow automata-edge automata-edge-a" d="M302 123 C328 74, 344 74, 365 125"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M384 112 C330 18, 126 18, 72 112"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M372 116 C326 50, 438 50, 396 116"></path>
 
-          <path class="figure-arrow automata-edge automata-edge-b" d="M72 152 C126 222, 330 222, 384 152"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M84 148 C126 214, 18 214, 60 148"></path>
           <path class="figure-arrow automata-edge automata-edge-b" d="M195 139 C218 184, 236 184, 258 141"></path>
           <path class="figure-arrow automata-edge automata-edge-b" d="M266 151 C226 214, 334 214, 294 151"></path>
           <path class="figure-arrow automata-edge automata-edge-b" d="M365 139 C344 184, 326 184, 302 141"></path>
@@ -10231,15 +10301,28 @@ function renderPreparationPapers() {
   }
   filtered.forEach((title) => {
     const paper = preparationPaperRecord(title);
-    const item = el("article", "publication-item publication-item-compact");
+    const template = paperFigureTemplates[paper.figure];
+    const showFigure = state.paperView === "diagram" && template;
+    const item = el("article", showFigure ? "publication-item publication-item-compact has-figure publication-preparation-feature" : "publication-item publication-item-compact");
+    item.id = paperAnchor(paper);
+    if (showFigure) {
+      const figure = el("div", "publication-figure");
+      figure.classList.add(`publication-figure-${paper.figure}`);
+      figure.setAttribute("aria-label", `${paper.title} visual proposal`);
+      figure.innerHTML = template;
+      applyFigureMarkerIds(figure, paper.figure, "preparation-arrow");
+      item.append(figure);
+    }
     const heading = el("h3");
-    heading.innerHTML = title;
+    heading.innerHTML = paper.title;
     const details = renderPublicationDetails(paper);
     item.append(heading);
     if (details) item.append(details);
     const meta = el("div", "publication-meta");
     paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
     if (meta.children.length) item.append(meta);
+    if (paper.summary) item.append(el("p", "publication-summary", paper.summary));
+    appendActionLinks(item, paper.links || []);
     root.append(item);
   });
   typesetMath(root);
@@ -11140,6 +11223,7 @@ function setupInteractions() {
     button.addEventListener("click", () => {
       state.paperView = button.dataset.paperView === "diagram" ? "diagram" : "list";
       renderPapers();
+      renderPreparationPapers();
     });
   });
 
