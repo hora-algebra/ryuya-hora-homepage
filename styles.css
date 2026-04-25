@@ -1352,6 +1352,7 @@ a.position-icon:focus-visible {
 .position-icon--pullback {
   background: transparent;
   border-color: transparent;
+  color: var(--accent-2);
 }
 
 .position-link {
@@ -1557,6 +1558,11 @@ a.position-link:hover {
 .categories-map-kanto.is-tokyo-focus .categories-map-venue-label {
   font-size: 1.34px;
   stroke-width: 0.38px;
+}
+
+.categories-map-kanto.is-tokyo-focus .venue-komaba .categories-map-venue-label {
+  font-size: 1.16px;
+  stroke-width: 0.34px;
 }
 
 .categories-map-kanto.is-tokyo-focus .venue-kabukiza .categories-map-venue-label {
@@ -4437,6 +4443,13 @@ a.position-link:hover {
   stroke-width: 1.5;
 }
 
+.automata-input-heading {
+  fill: #626b62;
+  font-size: 13px;
+  font-weight: 860;
+  text-anchor: start;
+}
+
 .automata-input-label {
   fill: #2c6f63;
   font-size: 15px;
@@ -4797,21 +4810,11 @@ a.position-link:hover {
   transition: opacity 180ms ease, fill 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
 }
 
-.normalization-figure[data-normalization-element-selected] .normalization-action-place.is-moving {
-  opacity: 0.18;
-}
-
-.normalization-figure[data-normalization-element-selected] .normalization-square-cell.is-moving {
-  filter: grayscale(0.5);
-  opacity: 0.16;
-}
-
 .normalization-figure[data-normalization-element-selected] .normalization-square-cell.is-fixed {
   opacity: 0.96;
-}
-
-.normalization-figure[data-normalization-element-selected] .normalization-square-edge-segment.is-moving {
-  opacity: 0.16;
+  filter: saturate(1.16);
+  stroke: #8a4d34;
+  stroke-width: 0.85;
 }
 
 .normalization-figure[data-normalization-element-selected] .normalization-square-edge-segment.is-fixed {
@@ -5338,7 +5341,8 @@ a.position-link:hover {
 }
 
 .internal-classifier-node {
-  animation: internal-classifier-node-color 12s ease-in-out infinite;
+  fill: rgba(47, 95, 145, 0.12);
+  stroke: #2f5f91;
 }
 
 .internal-edge-base,
@@ -5488,21 +5492,6 @@ a.position-link:hover {
 
   50%,
   86% {
-    stroke: #2f5f91;
-  }
-}
-
-@keyframes internal-classifier-node-color {
-  0%,
-  42%,
-  100% {
-    fill: #fffdf8;
-    stroke: #1f2721;
-  }
-
-  50%,
-  86% {
-    fill: rgba(47, 95, 145, 0.12);
     stroke: #2f5f91;
   }
 }

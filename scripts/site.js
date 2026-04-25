@@ -4584,6 +4584,7 @@ const categoriesTokyoVenues = [
       { meetingIndex: 1, lines: ["第2回", "National Institute", "of Informatics"] }
     ],
     labelLineGap: 1.04,
+    labelBlockGap: 0.42,
     labelLeaderUnit: 1.34,
     name: "第1回・第2回 National Institute of Informatics",
     lon: 139.7585,
@@ -4659,16 +4660,17 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
     let labelLeaderTargets = null;
     if (labelBlocks) {
       const allBlockLines = labelBlocks.flatMap((block) => Array.isArray(block.lines) ? block.lines : [block.text]);
-      const firstLineOffset = -((allBlockLines.length - 1) * lineGap) / 2;
+      const blockGap = venue.labelBlockGap || 0;
+      const firstLineOffset = -(((allBlockLines.length - 1) * lineGap) + ((labelBlocks.length - 1) * blockGap)) / 2;
       const leaderUnit = venue.labelLeaderUnit || 1;
       labelLeaderTargets = [];
       let lineIndex = 0;
-      labelBlocks.forEach((block) => {
+      labelBlocks.forEach((block, blockIndex) => {
         const blockLineValues = Array.isArray(block.lines) ? block.lines : [block.text];
         const blockCenterLineIndex = lineIndex + (blockLineValues.length - 1) / 2;
         const blockLeaderDy = allBlockLines.length === 1
           ? 0
-          : (firstLineOffset + blockCenterLineIndex * lineGap) * leaderUnit;
+          : (firstLineOffset + (blockCenterLineIndex * lineGap) + (blockIndex * blockGap)) * leaderUnit;
         labelLeaderTargets.push([labelX, Number((labelY + blockLeaderDy).toFixed(1))]);
         const blockMeeting = Number.isInteger(block.meetingIndex) ? meetings[block.meetingIndex] : null;
         const blockLink = blockMeeting ? svgEl("a", {
@@ -4687,7 +4689,11 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
           ]).join(" ");
           const segmentNode = svgEl("tspan", {
             x: labelX,
-            dy: allBlockLines.length === 1 ? 0 : lineIndex === 0 ? `${firstLineOffset.toFixed(2)}em` : `${lineGap}em`,
+            dy: allBlockLines.length === 1
+              ? 0
+              : lineIndex === 0
+                ? `${firstLineOffset.toFixed(2)}em`
+                : `${(lineGap + (blockLineIndex === 0 ? blockGap : 0)).toFixed(2)}em`,
             ...(segmentClasses ? { class: segmentClasses } : {})
           }, line);
           if (blockLink) blockLink.append(segmentNode);
@@ -7701,7 +7707,7 @@ function createInternalParameterizationPieces() {
   const vertexTarget = [657, 194];
   const nonLoopTarget = classifierOrigin;
   const loopTarget = classifierOrigin;
-  const vertexFinalScale = 19 / 15;
+  const vertexFinalScale = 17 / 15;
   const nonLoopFinalPath = "M86 107 C124 92, 124 144, 86 129";
   const loopFinalPath = "M60 129 C22 144, 22 92, 60 107";
   const graphCenter = [280, 202];
@@ -7930,60 +7936,60 @@ const paperFigureTemplates = {
       <rect class="automata-cantor-paper" width="760" height="390"></rect>
       <g class="automata-cantor-layout">
         <g class="automata-cantor-space">
-          <text class="automata-cantor-space-label" x="118" y="122">Cantor space</text>
+          <text class="automata-cantor-space-label" x="118" y="96">Cantor space</text>
           <g class="automata-cantor-fractal" transform="translate(0 44.75)">
             <g transform="rotate(-90 118 150.25)">
-            <rect class="automata-cantor-interval stage-0" x="62" y="84.5" width="112" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-1" x="62" y="116.5" width="37.3" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-1" x="136.7" y="116.5" width="37.3" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-2" x="62" y="148.5" width="12.4" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-2" x="86.9" y="148.5" width="12.4" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-2" x="136.7" y="148.5" width="12.4" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-2" x="161.6" y="148.5" width="12.4" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="62" y="180.5" width="4.1" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="70.3" y="180.5" width="4.1" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="86.9" y="180.5" width="4.1" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="95.2" y="180.5" width="4.1" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="136.7" y="180.5" width="4.1" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="145" y="180.5" width="4.1" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="161.6" y="180.5" width="4.1" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="169.9" y="180.5" width="4.1" height="7" rx="3.5"></rect>
-            <path class="automata-cantor-connector" d="M118 93.5 L80.7 114.5"></path>
-            <path class="automata-cantor-connector" d="M118 93.5 L155.3 114.5"></path>
-            <path class="automata-cantor-connector" d="M80.7 125.5 L68.2 146.5"></path>
-            <path class="automata-cantor-connector" d="M80.7 125.5 L93.1 146.5"></path>
-            <path class="automata-cantor-connector" d="M155.3 125.5 L142.9 146.5"></path>
-            <path class="automata-cantor-connector" d="M155.3 125.5 L167.8 146.5"></path>
-            <path class="automata-cantor-connector" d="M68.2 157.5 L64.1 178.5"></path>
-            <path class="automata-cantor-connector" d="M68.2 157.5 L72.4 178.5"></path>
-            <path class="automata-cantor-connector" d="M93.1 157.5 L89 178.5"></path>
-            <path class="automata-cantor-connector" d="M93.1 157.5 L97.3 178.5"></path>
-            <path class="automata-cantor-connector" d="M142.9 157.5 L138.7 178.5"></path>
-            <path class="automata-cantor-connector" d="M142.9 157.5 L147 178.5"></path>
-            <path class="automata-cantor-connector" d="M167.8 157.5 L163.6 178.5"></path>
-            <path class="automata-cantor-connector" d="M167.8 157.5 L171.9 178.5"></path>
-            <circle class="automata-cantor-dot" cx="62.7" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="65.5" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="71" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="73.8" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="87.6" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="90.3" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="95.9" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="98.6" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="137.4" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="140.1" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="145.7" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="148.4" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="162.2" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="165" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="170.5" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="173.3" cy="216" r="2.1"></circle>
+            <rect class="automata-cantor-interval stage-0" x="29" y="84.5" width="178" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-1" x="29" y="116.5" width="59.3" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-1" x="147.7" y="116.5" width="59.3" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-2" x="29" y="148.5" width="19.7" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-2" x="68.6" y="148.5" width="19.7" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-2" x="147.7" y="148.5" width="19.7" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-2" x="187.3" y="148.5" width="19.7" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="29" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="42.2" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="68.6" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="81.8" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="147.7" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="160.9" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="187.3" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="200.5" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+            <path class="automata-cantor-connector" d="M118 93.5 L58.7 114.5"></path>
+            <path class="automata-cantor-connector" d="M118 93.5 L177.3 114.5"></path>
+            <path class="automata-cantor-connector" d="M58.7 125.5 L38.9 146.5"></path>
+            <path class="automata-cantor-connector" d="M58.7 125.5 L78.4 146.5"></path>
+            <path class="automata-cantor-connector" d="M177.3 125.5 L157.6 146.5"></path>
+            <path class="automata-cantor-connector" d="M177.3 125.5 L197.1 146.5"></path>
+            <path class="automata-cantor-connector" d="M38.9 157.5 L32.3 178.5"></path>
+            <path class="automata-cantor-connector" d="M38.9 157.5 L45.5 178.5"></path>
+            <path class="automata-cantor-connector" d="M78.4 157.5 L71.9 178.5"></path>
+            <path class="automata-cantor-connector" d="M78.4 157.5 L85.1 178.5"></path>
+            <path class="automata-cantor-connector" d="M157.6 157.5 L150.9 178.5"></path>
+            <path class="automata-cantor-connector" d="M157.6 157.5 L164.1 178.5"></path>
+            <path class="automata-cantor-connector" d="M197.1 157.5 L190.5 178.5"></path>
+            <path class="automata-cantor-connector" d="M197.1 157.5 L203.7 178.5"></path>
+            <circle class="automata-cantor-dot" cx="30.1" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="34.6" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="43.3" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="47.8" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="69.7" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="74" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="82.9" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="87.2" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="148.8" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="153.1" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="162" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="166.3" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="188.3" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="192.7" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="201.4" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="205.9" cy="216" r="2.1"></circle>
             </g>
           </g>
         </g>
 
         <path class="figure-arrow automata-cantor-main-arrow" data-cantor-arrow="neutral" d="M205 195 H264"></path>
-        <text class="automata-cantor-arrow-label large" x="205" y="172">sublocale</text>
+        <text class="automata-cantor-arrow-label large" x="240" y="180">sublocale</text>
 
         <g class="automata-prefix-poset">
           <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 106.9 L329.1 118.9"></path>
@@ -8021,8 +8027,8 @@ const paperFigureTemplates = {
         <text class="automata-cantor-arrow-label large" x="564" y="170">&eacute;tale cover</text>
 
         <g class="automata-bouquet-space" transform="translate(650 195)">
-          <path class="automata-cantor-bouquet-loop blue" data-cantor-arrow="blue" d="M0 -8 C-28 -88, 62 -88, 32 -8 C25 10, 7 10, 0 -8"></path>
-          <path class="automata-cantor-bouquet-loop red" data-cantor-arrow="red" d="M-1 8 C-42 68, 24 92, 31 20 C32 5, 8 3, -1 8"></path>
+          <path class="automata-cantor-bouquet-loop blue" data-cantor-arrow="blue" d="M0 0 C-40 -24, -36 -92, 0 -92 C36 -92, 40 -24, 0 0"></path>
+          <path class="automata-cantor-bouquet-loop red" data-cantor-arrow="red" d="M0 0 C-40 24, -36 92, 0 92 C36 92, 40 24, 0 0"></path>
           <circle class="automata-cantor-node large" cx="0" cy="0" r="10"></circle>
         </g>
       </g>
@@ -8072,7 +8078,7 @@ const paperFigureTemplates = {
         <text class="internal-classifier-symbol" x="73" y="52">&Xi;</text>
         <path class="figure-arrow internal-classifier-loop internal-loop-l" d="M60 129 C22 144, 22 92, 60 107"></path>
         <path class="figure-arrow internal-classifier-loop internal-loop-n" d="M86 107 C124 92, 124 144, 86 129"></path>
-        <circle class="internal-classifier-node" cx="73" cy="118" r="19"></circle>
+        <circle class="internal-classifier-node" cx="73" cy="118" r="17"></circle>
         <text class="figure-small internal-classifier-edge-label internal-classifier-caption-loop" x="36" y="158">loop</text>
         <text class="figure-small internal-classifier-edge-label internal-classifier-caption-nonloop" x="111" y="158">non-loop</text>
       </g>
@@ -8335,10 +8341,11 @@ const paperFigureTemplates = {
         <marker id="arrow-automata-cover-neutral" class="automata-marker-neutral" data-automata-marker="neutral" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z"></path></marker>
       </defs>
       <g transform="translate(22 18)">
-        <g class="automata-input-tape" transform="translate(54 228)">
-          <rect class="automata-input-panel" x="0" y="0" width="270" height="126" rx="12"></rect>
-          <text class="figure-small automata-input-label" x="28" y="28">u =</text>
-          <g transform="translate(62 28)">
+        <g class="automata-input-tape" transform="translate(36 8)">
+          <rect class="automata-input-panel" x="0" y="0" width="288" height="132" rx="12"></rect>
+          <text class="figure-small automata-input-heading" x="18" y="24">Input</text>
+          <text class="figure-small automata-input-label" x="28" y="52">u =</text>
+          <g transform="translate(62 52)">
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
               <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0083;0.0208;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
@@ -8355,8 +8362,8 @@ const paperFigureTemplates = {
               <text class="figure-small" x="0" y="5">a</text>
             </g>
           </g>
-          <text class="figure-small automata-input-label" x="28" y="66">v =</text>
-          <g transform="translate(62 66)">
+          <text class="figure-small automata-input-label" x="28" y="84">v =</text>
+          <g transform="translate(62 84)">
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
               <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3417;0.3542;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
@@ -8373,8 +8380,8 @@ const paperFigureTemplates = {
               <text class="figure-small" x="0" y="5">b</text>
             </g>
           </g>
-          <text class="figure-small automata-input-label" x="28" y="104">w =</text>
-          <g transform="translate(62 104)">
+          <text class="figure-small automata-input-label" x="28" y="116">w =</text>
+          <g transform="translate(62 116)">
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
               <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.675;0.6875;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
@@ -8398,7 +8405,7 @@ const paperFigureTemplates = {
           </g>
         </g>
 
-        <g transform="translate(18 4) scale(1.08)">
+        <g transform="translate(18 106) scale(1.08)">
           <path class="figure-arrow automata-edge automata-edge-a" d="M88 122 C114 50, 134 50, 160 122"></path>
           <path class="figure-arrow automata-edge automata-edge-a" d="M160 122 C118 50, 234 50, 192 122"></path>
           <path class="figure-arrow automata-edge automata-edge-a" d="M300 122 C328 50, 344 50, 368 122"></path>
@@ -8452,7 +8459,7 @@ const paperFigureTemplates = {
 
         </g>
 
-        <g transform="translate(506 76) scale(0.98)">
+        <g transform="translate(506 178) scale(0.98)">
           <g transform="translate(113 72)">
             <path class="figure-arrow automata-edge automata-edge-a" d="M-12 -11 C-58 -90.4, 58 -90.4, 12 -11"></path>
             <path class="figure-arrow automata-edge automata-edge-b" d="M12 11 C58 86, -58 86, -12 11"></path>
@@ -8467,10 +8474,10 @@ const paperFigureTemplates = {
           </g>
         </g>
 
-        <path class="figure-arrow dashed automata-projection" d="M456 148 H600"></path>
-        <text class="figure-small automata-projection-label" x="528" y="133">p</text>
+        <path class="figure-arrow dashed automata-projection" d="M456 250 H600"></path>
+        <text class="figure-small automata-projection-label" x="528" y="235">p</text>
         <g class="automata-result-output automata-language-reject">
-          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M432.7 146.6 C390 192, 300 226, 216.3 256" keyTimes="0;0.1542;0.1708;0.3125;0.325;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M432.7 248.6 C386 190, 294 112, 198.3 60" keyTimes="0;0.1542;0.1708;0.3125;0.325;1" keyPoints="0;0;1;1;1;0"></animateMotion>
           <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.1542;0.1708;0.3125;0.325;1"></animate>
           <g class="automata-result-badge">
             <circle class="automata-result-badge-bg" cx="0" cy="0" r="11"></circle>
@@ -8478,7 +8485,7 @@ const paperFigureTemplates = {
           </g>
         </g>
         <g class="automata-result-output automata-language-accept">
-          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M320.4 146.6 C308 202, 268 258, 216.3 294" keyTimes="0;0.4875;0.5042;0.6458;0.6583;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M320.4 248.6 C292 190, 246 136, 198.3 92" keyTimes="0;0.4875;0.5042;0.6458;0.6583;1" keyPoints="0;0;1;1;1;0"></animateMotion>
           <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.4875;0.5042;0.6458;0.6583;1"></animate>
           <g class="automata-result-badge">
             <circle class="automata-result-badge-bg" cx="0" cy="0" r="11"></circle>
@@ -8486,7 +8493,7 @@ const paperFigureTemplates = {
           </g>
         </g>
         <g class="automata-result-output automata-language-accept">
-          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M320.4 146.6 C314 218, 288 292, 250.3 332" keyTimes="0;0.8708;0.8875;0.9958;1" keyPoints="0;0;1;1;0"></animateMotion>
+          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M320.4 248.6 C294 204, 264 160, 232.3 124" keyTimes="0;0.8708;0.8875;0.9958;1" keyPoints="0;0;1;1;0"></animateMotion>
           <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.8708;0.8875;0.9958;1"></animate>
           <g class="automata-result-badge">
             <circle class="automata-result-badge-bg" cx="0" cy="0" r="11"></circle>
@@ -8495,52 +8502,52 @@ const paperFigureTemplates = {
         </g>
         <g class="automata-consuming-letters">
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M116 256 C112 214, 108 166, 113 135.8" keyTimes="0;0.0083;0.0167;1" keyPoints="0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M98 60 C102 118, 108 188, 113 237.8" keyTimes="0;0.0083;0.0167;1" keyPoints="0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.0083;0.0167;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M150 256 C176 226, 212 188, 225.4 157.4" keyTimes="0;0.0125;0.0187;0.0583;0.0667;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M132 60 C162 126, 205 210, 225.4 259.4" keyTimes="0;0.0125;0.0187;0.0583;0.0667;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0125;0.0187;0.0583;0.0667;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M184 256 C236 218, 318 174, 342 135.8" keyTimes="0;0.0625;0.0687;0.1083;0.1167;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M166 60 C220 120, 310 200, 342 237.8" keyTimes="0;0.0625;0.0687;0.1083;0.1167;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0625;0.0687;0.1083;0.1167;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M116 294 C112 236, 108 178, 113 135.8" keyTimes="0;0.2958;0.3021;0.3417;0.35;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M98 92 C102 140, 108 196, 113 237.8" keyTimes="0;0.2958;0.3021;0.3417;0.35;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.2958;0.3021;0.3417;0.35;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M150 294 C176 250, 212 204, 225.4 157.4" keyTimes="0;0.3458;0.3521;0.3917;0.4;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M132 92 C162 150, 205 220, 225.4 259.4" keyTimes="0;0.3458;0.3521;0.3917;0.4;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3458;0.3521;0.3917;0.4;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M184 294 C226 256, 282 206, 298.8 157.4" keyTimes="0;0.3958;0.4021;0.4417;0.45;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M166 92 C220 158, 280 218, 298.8 259.4" keyTimes="0;0.3958;0.4021;0.4417;0.45;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3958;0.4021;0.4417;0.45;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M116 332 C112 260, 108 190, 113 135.8" keyTimes="0;0.6292;0.6354;0.675;0.6833;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M98 124 C104 166, 110 210, 113 237.8" keyTimes="0;0.6292;0.6354;0.675;0.6833;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6292;0.6354;0.675;0.6833;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M150 332 C160 258, 176 184, 190.8 135.8" keyTimes="0;0.6792;0.6854;0.725;0.7333;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M132 124 C150 162, 174 210, 190.8 237.8" keyTimes="0;0.6792;0.6854;0.725;0.7333;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6792;0.6854;0.725;0.7333;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M184 332 C200 268, 216 206, 225.4 157.4" keyTimes="0;0.7292;0.7354;0.775;0.7833;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M166 124 C194 176, 216 224, 225.4 259.4" keyTimes="0;0.7292;0.7354;0.775;0.7833;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7292;0.7354;0.775;0.7833;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M218 332 C244 272, 284 216, 298.8 157.4" keyTimes="0;0.7792;0.7854;0.825;0.8333;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M200 124 C242 176, 282 222, 298.8 259.4" keyTimes="0;0.7792;0.7854;0.825;0.8333;1" keyPoints="0;0;1;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7792;0.7854;0.825;0.8333;1"></animate>
             <text x="0" y="5">b</text>
           </g>
@@ -10318,13 +10325,17 @@ function currentPositionIcon(icon) {
 
   const line = (attrs) => svgEl("path", { ...attrs, fill: "none", stroke: "currentColor", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2.2" });
   const shape = (tag, attrs) => svgEl(tag, attrs);
+  const outlinedCircle = (cx, cy, r = 2.35) =>
+    shape("circle", { cx, cy, r, fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.9" });
 
   if (icon === "building") {
     svg.append(
-      shape("polygon", {
-        points: "8,8 24,8 24,11 14,11 24,21 24,24 8,24 8,21 18,21 8,11",
-        fill: "currentColor"
-      })
+      line({ d: "M6.5 24.5H25.5" }),
+      line({ d: "M9.2 24.5V13" }),
+      line({ d: "M16 24.5V13" }),
+      line({ d: "M22.8 24.5V13" }),
+      line({ d: "M7 13H25" }),
+      line({ d: "M7 13L16 7L25 13" })
     );
     return svg;
   }
@@ -10342,39 +10353,31 @@ function currentPositionIcon(icon) {
   if (icon === "humai") {
     svg.append(
       shape("path", {
-        d: "M7.2 7.2H14.6C16 7.2 16.8 8 16.8 9.4V16.8H9.4C8 16.8 7.2 16 7.2 14.6Z",
+        d: "M7.4 8.7C10.4 7.4 13.2 7.8 16 9.9V25.4C13.4 23.6 10.5 23.2 7.4 24.5Z",
         fill: "none",
         stroke: "currentColor",
-        "stroke-width": "2.2",
-        "stroke-linejoin": "round"
+        "stroke-linejoin": "round",
+        "stroke-width": "2"
       }),
-      shape("circle", { cx: "10.5", cy: "10.5", r: "1.45", fill: "currentColor" }),
-      shape("circle", { cx: "13.8", cy: "13.8", r: "1.45", fill: "currentColor" }),
       shape("path", {
-        d: "M10.5 10.5L13.8 13.8M16.8 12H20.2M12 16.8V20.2",
+        d: "M16 9.9C18.8 7.8 21.6 7.4 24.6 8.7V24.5C21.5 23.2 18.6 23.6 16 25.4Z",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linejoin": "round",
+        "stroke-width": "2"
+      }),
+      line({ d: "M16 9.9V25.4" }),
+      line({ d: "M10.2 13.2H13.3" }),
+      line({ d: "M10.2 16.3H13.3" }),
+      line({ d: "M18.7 13.2H21.8" }),
+      line({ d: "M18.7 16.3H21.8" }),
+      shape("path", {
+        d: "M11 20.5C12.2 20.2 13.2 20.4 14.1 20.9M17.9 20.9C18.8 20.4 19.8 20.2 21 20.5",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
-        "stroke-width": "1.75"
-      }),
-      shape("path", {
-        d: "M10.2 21.2C12 19.8 14.1 19.4 16 20.6V26.4C14 25.2 12 25.2 10.2 26.4Z",
-        fill: "currentColor",
-        "fill-opacity": "0.26"
-      }),
-      shape("path", {
-        d: "M16 20.6C17.9 19.4 20 19.8 21.8 21.2V26.4C20 25.2 18 25.2 16 26.4Z",
-        fill: "currentColor",
-        "fill-opacity": "0.46"
-      }),
-      shape("path", {
-        d: "M10.2 21.2C12 19.8 14.1 19.4 16 20.6C17.9 19.4 20 19.8 21.8 21.2M16 20.6V26.4",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        "stroke-width": "1.8"
+        "stroke-width": "1.7"
       })
     );
     return svg;
@@ -10398,25 +10401,16 @@ function currentPositionIcon(icon) {
 
   if (icon === "money") {
     svg.append(
+      line({ d: "M12 8.8C13.6 9.8 18.4 9.8 20 8.8" }),
+      line({ d: "M13.2 12.6H18.8" }),
       shape("path", {
-        d: "M11.2 8.4C12.8 9.3 19.2 9.3 20.8 8.4L19 12.4H13Z",
-        fill: "currentColor",
-        "fill-opacity": "0.5"
-      }),
-      shape("path", {
-        d: "M11.5 13C8.9 15 7.2 18.6 7.2 22.1C7.2 26 10.7 28.1 16 28.1C21.3 28.1 24.8 26 24.8 22.1C24.8 18.6 23.1 15 20.5 13Z",
-        fill: "currentColor",
-        "fill-opacity": "0.22"
-      }),
-      shape("path", {
-        d: "M11.5 13C8.9 15 7.2 18.6 7.2 22.1C7.2 26 10.7 28.1 16 28.1C21.3 28.1 24.8 26 24.8 22.1C24.8 18.6 23.1 15 20.5 13H11.5Z",
+        d: "M12.2 12.8C9.4 15.1 7.8 18.6 7.8 22C7.8 25.9 11.1 28 16 28C20.9 28 24.2 25.9 24.2 22C24.2 18.6 22.6 15.1 19.8 12.8Z",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
         "stroke-width": "2.2"
       }),
-      line({ d: "M12.2 12.8H19.8" }),
       shape("path", {
         d: "M13 17.5H19M14 17.5L16 20.2L18 17.5M16 20.2V24.4M13.8 21.8H18.2",
         fill: "none",
@@ -10424,9 +10418,7 @@ function currentPositionIcon(icon) {
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
         "stroke-width": "1.75"
-      }),
-      shape("circle", { cx: "23.2", cy: "9.1", r: "3.1", fill: "currentColor", "fill-opacity": "0.36" }),
-      shape("circle", { cx: "24.8", cy: "12.6", r: "2.45", fill: "currentColor", "fill-opacity": "0.28" })
+      })
     );
     return svg;
   }
@@ -10444,34 +10436,34 @@ function currentPositionIcon(icon) {
 
   if (icon === "kan-extension") {
     svg.append(
-      line({ d: "M11 10.8L20.4 14.9" }),
-      line({ d: "M9 13.2V18.8" }),
-      line({ d: "M11 21.2L20.4 17.1", "stroke-dasharray": "2.4 2.4" }),
-      shape("circle", { cx: "9", cy: "9.6", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
-      shape("circle", { cx: "9", cy: "22.4", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" }),
-      shape("circle", { cx: "23", cy: "16", r: "2.45", fill: "#fff9fc", stroke: "currentColor", "stroke-width": "1.8" })
+      line({ d: "M10.6 10.6L21.3 15.2" }),
+      line({ d: "M8.7 13.2V18.8" }),
+      line({ d: "M10.6 21.4L21.3 16.8", "stroke-dasharray": "2.5 2.5" }),
+      outlinedCircle("8.7", "9.5"),
+      outlinedCircle("8.7", "22.5"),
+      outlinedCircle("23.3", "16")
     );
     return svg;
   }
 
   if (icon === "pullback") {
     svg.append(
-      line({ d: "M7.8 7.8H24.2" }),
-      line({ d: "M7.8 7.8V24.2" }),
-      line({ d: "M24.2 7.8V24.2" }),
-      line({ d: "M7.8 24.2H24.2" }),
+      line({ d: "M8 8H24" }),
+      line({ d: "M8 8V24" }),
+      line({ d: "M24 8V24" }),
+      line({ d: "M8 24H24" }),
       shape("path", {
-        d: "M12 12H16.5V16.5",
+        d: "M12 16.5H16.5V12",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
         "stroke-width": "2"
       }),
-      shape("circle", { cx: "7.8", cy: "7.8", r: "2.65", fill: "currentColor" }),
-      shape("circle", { cx: "24.2", cy: "7.8", r: "2.65", fill: "currentColor", "fill-opacity": "0.78" }),
-      shape("circle", { cx: "7.8", cy: "24.2", r: "2.65", fill: "currentColor", "fill-opacity": "0.78" }),
-      shape("circle", { cx: "24.2", cy: "24.2", r: "2.65", fill: "currentColor", "fill-opacity": "0.58" })
+      outlinedCircle("8", "8", "2.45"),
+      outlinedCircle("24", "8", "2.45"),
+      outlinedCircle("8", "24", "2.45"),
+      outlinedCircle("24", "24", "2.45")
     );
     return svg;
   }
@@ -10490,8 +10482,13 @@ function currentPositionIcon(icon) {
     svg.append(
       shape("polygon", {
         points: "16,6.8 23.97,11.4 23.97,20.6 16,25.2 8.03,20.6 8.03,11.4",
-        fill: "currentColor"
-      })
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-width": "2.2",
+        "stroke-linejoin": "round"
+      }),
+      line({ d: "M11.5 16H20.5" }),
+      line({ d: "M16 11.5V20.5" })
     );
     return svg;
   }
