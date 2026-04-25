@@ -2113,7 +2113,7 @@ a.position-link:hover {
 }
 
 .publication-figure-quotient-toposes {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 19 / 10;
 }
 
 .publication-figure svg {
@@ -2124,6 +2124,10 @@ a.position-link:hover {
 }
 
 .publication-figure-games-integral-calculus {
+  aspect-ratio: 16 / 9;
+}
+
+.publication-figure-automata-cantor-morphism {
   aspect-ratio: 16 / 9;
 }
 
@@ -2170,10 +2174,51 @@ a.position-link:hover {
   text-anchor: middle;
 }
 
+.games-integral-divider {
+  fill: none;
+  stroke: rgba(87, 75, 104, 0.38);
+  stroke-dasharray: 7 8;
+  stroke-linecap: round;
+  stroke-width: 2.4;
+}
+
+.games-integral-split-label {
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.games-integral-split-label.split-left {
+  fill: var(--games-integral-green);
+}
+
+.games-integral-split-label.split-right {
+  fill: var(--games-integral-orange);
+}
+
+.games-integral-side-note {
+  fill: rgba(36, 49, 42, 0.58);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.games-integral-side-note.split-left {
+  fill: rgba(44, 111, 99, 0.7);
+}
+
+.games-integral-side-note.split-right {
+  fill: rgba(182, 103, 55, 0.72);
+}
+
 .games-integral-panel-label {
   fill: var(--games-integral-green);
   font-size: 14px;
   text-transform: uppercase;
+}
+
+.games-integral-panel-label.right {
+  fill: var(--games-integral-orange);
 }
 
 .games-integral-tree-edge {
@@ -2252,6 +2297,84 @@ a.position-link:hover {
   text-anchor: middle;
 }
 
+.games-product-box {
+  fill: rgba(255, 253, 248, 0.86);
+  stroke-width: 1.7;
+}
+
+.games-product-box.product-x {
+  stroke: rgba(44, 111, 99, 0.54);
+}
+
+.games-product-box.product-y {
+  stroke: rgba(47, 83, 111, 0.48);
+}
+
+.games-product-symbol,
+.games-product-label,
+.games-product-caption {
+  fill: var(--games-integral-ink);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.games-product-symbol {
+  fill: var(--games-integral-purple);
+  font-size: 20px;
+}
+
+.games-product-label {
+  font-size: 14px;
+}
+
+.games-product-caption {
+  fill: rgba(36, 49, 42, 0.58);
+  font-size: 10px;
+}
+
+.games-leibniz-box rect {
+  fill: rgba(255, 253, 248, 0.92);
+  stroke: rgba(44, 111, 99, 0.36);
+  stroke-width: 1.5;
+}
+
+.games-leibniz-box.is-source rect {
+  fill: rgba(231, 239, 232, 0.86);
+  stroke: rgba(44, 111, 99, 0.52);
+  stroke-width: 1.8;
+}
+
+.games-leibniz-box text,
+.games-leibniz-plus {
+  fill: var(--games-integral-ink);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.games-leibniz-box text {
+  font-size: 14px;
+}
+
+.games-leibniz-plus {
+  fill: var(--games-integral-green);
+  font-size: 18px;
+}
+
+.games-leibniz-arrow {
+  fill: none;
+  stroke: var(--games-integral-green);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: games-integral-flow 4.8s ease-in-out infinite;
+}
+
+.games-leibniz-arrow-right {
+  animation-delay: 0.25s;
+}
+
 .games-integral-boundary-token {
   stroke-width: 1.4;
 }
@@ -2276,6 +2399,292 @@ a.position-link:hover {
   fill: rgba(36, 49, 42, 0.7);
   font-size: 12px;
   text-anchor: middle;
+}
+
+.games-integral-mex-axis {
+  fill: none;
+  stroke: rgba(43, 52, 43, 0.28);
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.games-integral-mex-label {
+  fill: var(--games-integral-blue);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.games-integral-mex-number circle {
+  fill: rgba(255, 253, 248, 0.92);
+  stroke: rgba(43, 52, 43, 0.28);
+  stroke-width: 1.6;
+}
+
+.games-integral-mex-number text {
+  fill: var(--games-integral-ink);
+  font-size: 14px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+
+.games-integral-mex-number path {
+  fill: none;
+  stroke: rgba(182, 103, 55, 0.72);
+  stroke-linecap: round;
+  stroke-width: 2.4;
+}
+
+.games-integral-mex-number.is-mex circle {
+  fill: #fff0ed;
+  stroke: #b64a3d;
+  stroke-width: 2;
+}
+
+.games-integral-mex-number.is-mex text {
+  fill: #9b3a30;
+  font-size: 16px;
+}
+
+.games-simple-rb {
+  --games-simple-cycle: 5.6s;
+}
+
+.games-simple-set-label,
+.games-simple-op,
+.games-simple-caption {
+  fill: rgba(36, 49, 42, 0.72);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+.games-simple-set-label {
+  font-size: 15px;
+}
+
+.games-simple-op {
+  fill: var(--games-integral-purple);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.games-simple-caption {
+  fill: rgba(36, 49, 42, 0.58);
+  font-size: 11px;
+}
+
+.games-simple-chip circle {
+  fill: rgba(255, 253, 248, 0.96);
+  stroke: rgba(43, 52, 43, 0.24);
+  stroke-width: 1.45;
+}
+
+.games-simple-chip text {
+  fill: var(--games-integral-ink);
+  font-size: 14px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+
+.games-simple-chip.is-mex circle {
+  fill: rgba(236, 231, 241, 0.96);
+  stroke: rgba(87, 75, 104, 0.5);
+  stroke-width: 1.8;
+}
+
+.games-simple-chip.is-result circle {
+  fill: #fff0ed;
+  stroke: #b64a3d;
+  stroke-width: 2;
+}
+
+.games-simple-chip.is-result text {
+  fill: #9b3a30;
+  font-size: 17px;
+}
+
+.games-simple-arrow {
+  fill: none;
+  stroke: rgba(182, 103, 55, 0.68);
+  stroke-linecap: round;
+  stroke-width: 2.2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: games-simple-arrow-flow var(--games-simple-cycle) ease-in-out infinite;
+}
+
+.games-simple-arrow.is-result-arrow {
+  stroke: var(--games-integral-orange);
+  stroke-width: 2.8;
+  animation-delay: 0.75s;
+}
+
+.games-simple-chip.is-mex,
+.games-simple-chip.is-result {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.games-simple-chip.is-mex {
+  animation: games-simple-chip-pulse var(--games-simple-cycle) ease-in-out infinite;
+}
+
+.games-simple-chip.is-result {
+  animation: games-simple-result-pulse var(--games-simple-cycle) ease-in-out infinite;
+}
+
+.games-rb-animation {
+  --games-rb-cycle: 7.6s;
+  color: var(--games-integral-ink);
+}
+
+.games-rb-row-label,
+.games-rb-stage-label,
+.games-rb-micro-label,
+.games-rb-operation {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+.games-rb-row-label {
+  fill: var(--games-integral-orange);
+  font-size: 13px;
+}
+
+.games-rb-stage-label {
+  fill: rgba(36, 49, 42, 0.68);
+  font-size: 10px;
+}
+
+.games-rb-micro-label {
+  fill: rgba(36, 49, 42, 0.58);
+  font-size: 8.5px;
+}
+
+.games-rb-operation {
+  fill: var(--games-integral-purple);
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+.games-rb-chip circle,
+.games-rb-mini-chip circle {
+  fill: rgba(255, 253, 248, 0.96);
+  stroke: rgba(43, 52, 43, 0.24);
+  stroke-width: 1.35;
+}
+
+.games-rb-chip text,
+.games-rb-mini-chip text {
+  fill: var(--games-integral-ink);
+  font-size: 11px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+
+.games-rb-mini-chip text {
+  font-size: 8px;
+}
+
+.games-rb-chip.is-in-s circle {
+  fill: rgba(231, 239, 232, 0.94);
+  stroke: rgba(44, 111, 99, 0.42);
+}
+
+.games-rb-chip.is-in-t circle {
+  fill: rgba(243, 230, 216, 0.94);
+  stroke: rgba(182, 103, 55, 0.42);
+}
+
+.games-rb-chip.is-gap circle,
+.games-rb-chip.is-result circle {
+  fill: #fff0ed;
+  stroke: #b64a3d;
+  stroke-width: 1.8;
+}
+
+.games-rb-chip.is-gap text,
+.games-rb-chip.is-result text {
+  fill: #9b3a30;
+}
+
+.games-rb-chip.is-mex-s circle,
+.games-rb-chip.is-mex-t circle {
+  fill: rgba(236, 231, 241, 0.96);
+  stroke: rgba(87, 75, 104, 0.48);
+  stroke-width: 1.7;
+}
+
+.games-rb-mini-chip.is-union circle {
+  fill: rgba(231, 237, 242, 0.95);
+  stroke: rgba(47, 83, 111, 0.42);
+}
+
+.games-rb-mini-chip.is-union-result circle {
+  fill: rgba(231, 239, 232, 0.96);
+  stroke: rgba(44, 111, 99, 0.46);
+}
+
+.games-rb-stage {
+  opacity: 0.22;
+}
+
+.games-rb-stage-mex {
+  animation: games-rb-stage-mex var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-stage-lhs {
+  animation: games-rb-stage-lhs var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-stage-rhs {
+  animation: games-rb-stage-rhs var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-stage-done {
+  animation: games-rb-stage-done var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-chip.is-gap,
+.games-rb-chip.is-result,
+.games-rb-mini-chip.is-union-result {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.games-rb-chip.is-gap {
+  animation: games-rb-gap-pulse var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-chip.is-result,
+.games-rb-mini-chip.is-union-result {
+  animation: games-rb-result-pop var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-arrow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  stroke-width: 2;
+}
+
+.games-rb-arrow-lhs {
+  stroke: var(--games-integral-orange);
+  animation: games-rb-arrow-lhs var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-arrow-rhs {
+  stroke: var(--games-integral-blue);
+  animation: games-rb-arrow-rhs var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-union-tray rect {
+  fill: rgba(255, 253, 248, 0.88);
+  stroke: rgba(44, 111, 99, 0.24);
+  stroke-width: 1.2;
 }
 
 .games-integral-basin {
@@ -2325,6 +2734,76 @@ a.position-link:hover {
   font-size: 15px;
 }
 
+.games-leibniz-card rect,
+.games-mex-rb-card rect {
+  fill: rgba(255, 253, 248, 0.94);
+  stroke-width: 1.45;
+}
+
+.games-leibniz-card rect {
+  stroke: rgba(44, 111, 99, 0.26);
+}
+
+.games-mex-rb-card rect {
+  stroke: rgba(182, 103, 55, 0.28);
+}
+
+.games-leibniz-card text,
+.games-mex-rb-card text {
+  fill: var(--games-integral-ink);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.games-leibniz-card text {
+  font-size: 14px;
+}
+
+.games-mex-rb-card text {
+  font-size: 10.6px;
+}
+
+.games-leibniz-card .games-formula-note,
+.games-mex-rb-card .games-formula-note {
+  fill: rgba(36, 49, 42, 0.58);
+  font-size: 9.5px;
+  font-weight: 780;
+}
+
+.games-tex {
+  color: var(--games-integral-ink);
+  font-size: 0.64rem;
+  line-height: 1;
+}
+
+.games-tex .katex {
+  color: inherit;
+}
+
+.games-tex:not(:has(.katex)) {
+  font-size: 0;
+}
+
+.games-tex-leibniz-a,
+.games-tex-leibniz-b,
+.games-tex-leibniz-c {
+  left: 24%;
+  font-size: 0.52rem;
+}
+
+.games-tex-leibniz-a {
+  top: 69.8%;
+  color: var(--games-integral-green);
+}
+
+.games-tex-leibniz-b {
+  top: 74.1%;
+}
+
+.games-tex-leibniz-c {
+  top: 78.4%;
+}
+
 .games-integral-ribbon {
   stroke-width: 3.2;
 }
@@ -2358,6 +2837,26 @@ a.position-link:hover {
   font-size: 17px;
 }
 
+.games-rb-equation-bg {
+  fill: rgba(255, 253, 248, 0.94);
+  stroke: rgba(87, 75, 104, 0.24);
+  stroke-width: 1.5;
+}
+
+.games-rb-product {
+  fill: var(--games-integral-purple);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.games-rb-term-note {
+  fill: rgba(36, 49, 42, 0.62);
+  font-size: 11px;
+  font-weight: 820;
+  letter-spacing: 0;
+}
+
 @keyframes games-integral-flow {
   0%,
   15% {
@@ -2365,6 +2864,167 @@ a.position-link:hover {
   }
 
   58%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes games-simple-arrow-flow {
+  0%,
+  18% {
+    stroke-dashoffset: 1;
+  }
+
+  42%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes games-simple-chip-pulse {
+  0%,
+  18%,
+  100% {
+    transform: scale(1);
+  }
+
+  34%,
+  48% {
+    transform: scale(1.14);
+  }
+}
+
+@keyframes games-simple-result-pulse {
+  0%,
+  48% {
+    transform: scale(0.9);
+  }
+
+  66%,
+  90% {
+    transform: scale(1.14);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes games-rb-stage-mex {
+  0%,
+  10% {
+    opacity: 0.2;
+  }
+
+  18%,
+  52% {
+    opacity: 1;
+  }
+
+  64%,
+  100% {
+    opacity: 0.32;
+  }
+}
+
+@keyframes games-rb-stage-lhs {
+  0%,
+  24% {
+    opacity: 0.16;
+  }
+
+  32%,
+  66% {
+    opacity: 1;
+  }
+
+  78%,
+  100% {
+    opacity: 0.36;
+  }
+}
+
+@keyframes games-rb-stage-rhs {
+  0%,
+  42% {
+    opacity: 0.16;
+  }
+
+  52%,
+  86% {
+    opacity: 1;
+  }
+
+  96%,
+  100% {
+    opacity: 0.36;
+  }
+}
+
+@keyframes games-rb-stage-done {
+  0%,
+  66% {
+    opacity: 0.14;
+  }
+
+  76%,
+  96% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.42;
+  }
+}
+
+@keyframes games-rb-gap-pulse {
+  0%,
+  8%,
+  100% {
+    transform: scale(1);
+  }
+
+  16%,
+  28% {
+    transform: scale(1.18);
+  }
+}
+
+@keyframes games-rb-result-pop {
+  0%,
+  34% {
+    transform: scale(0.88);
+  }
+
+  44%,
+  88% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes games-rb-arrow-lhs {
+  0%,
+  32% {
+    stroke-dashoffset: 1;
+  }
+
+  48%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes games-rb-arrow-rhs {
+  0%,
+  50% {
+    stroke-dashoffset: 1;
+  }
+
+  66%,
   100% {
     stroke-dashoffset: 0;
   }
@@ -3557,6 +4217,146 @@ a.position-link:hover {
   font-weight: 650;
 }
 
+.automata-cantor-figure {
+  --cantor-ink: #1f2721;
+  --cantor-muted: #626b62;
+  --cantor-green: #2c6f63;
+  --cantor-red: #b84f3c;
+  --cantor-blue: #2f6aa3;
+  --cantor-purple: #8f3ad8;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.automata-cantor-paper {
+  fill: #fffdf8;
+}
+
+.automata-cantor-main-arrow {
+  stroke: var(--cantor-muted);
+  stroke-width: 2.1;
+}
+
+.automata-cantor-arrow-label {
+  fill: var(--cantor-muted);
+  font-size: 13px;
+  font-weight: 820;
+  text-anchor: middle;
+}
+
+.automata-cantor-arrow-label.large {
+  fill: var(--cantor-ink);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.automata-cantor-space-label {
+  fill: var(--cantor-green);
+  font-size: 18px;
+  font-weight: 880;
+  text-anchor: middle;
+}
+
+.automata-cantor-interval,
+.automata-cantor-dot {
+  fill: var(--cantor-purple);
+}
+
+.automata-cantor-interval.stage-0 {
+  opacity: 0.58;
+}
+
+.automata-cantor-interval.stage-1 {
+  opacity: 0.74;
+}
+
+.automata-cantor-interval.stage-2,
+.automata-cantor-interval.stage-3,
+.automata-cantor-dot {
+  opacity: 0.95;
+}
+
+.automata-cantor-connector {
+  fill: none;
+  stroke: rgba(143, 58, 216, 0.24);
+  stroke-linecap: round;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-cantor-ray,
+.automata-cantor-tree-edge,
+.automata-cantor-bouquet-loop {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-cantor-ray {
+  opacity: 0.62;
+  stroke-width: 1.8;
+}
+
+.automata-cantor-tree-edge,
+.automata-cantor-bouquet-loop {
+  stroke-width: 4.6;
+}
+
+.automata-cantor-ray.red,
+.automata-cantor-tree-edge.red,
+.automata-cantor-bouquet-loop.red {
+  stroke: var(--cantor-red);
+}
+
+.automata-cantor-ray.blue,
+.automata-cantor-tree-edge.blue,
+.automata-cantor-bouquet-loop.blue {
+  stroke: var(--cantor-blue);
+}
+
+.automata-cantor-node {
+  fill: var(--cantor-ink);
+  stroke: #fffdf8;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-cantor-node.small {
+  stroke-width: 1;
+}
+
+.automata-cantor-node.tiny {
+  stroke-width: 0.9;
+}
+
+.automata-cantor-node.large {
+  stroke-width: 2;
+}
+
+.publication-figure svg .automata-cantor-marker-neutral path,
+.diagram-expanded svg .automata-cantor-marker-neutral path,
+.automata-cantor-marker-neutral path {
+  fill: var(--cantor-muted);
+}
+
+.publication-figure svg .automata-cantor-marker-red path,
+.diagram-expanded svg .automata-cantor-marker-red path,
+.automata-cantor-marker-red path {
+  fill: var(--cantor-red);
+}
+
+.publication-figure svg .automata-cantor-marker-blue path,
+.diagram-expanded svg .automata-cantor-marker-blue path,
+.automata-cantor-marker-blue path {
+  fill: var(--cantor-blue);
+}
+
+.publication-figure svg .automata-cantor-marker-purple path,
+.diagram-expanded svg .automata-cantor-marker-purple path,
+.automata-cantor-marker-purple path {
+  fill: var(--cantor-purple);
+}
+
 .automata-cover-figure .automata-panel {
   fill: rgba(255, 253, 248, 0.86);
   stroke: rgba(43, 52, 43, 0.16);
@@ -3609,6 +4409,21 @@ a.position-link:hover {
   fill: none;
   stroke: #1f2721;
   stroke-width: 1.8;
+}
+
+.automata-state-mark {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.7;
+}
+
+.automata-state-check {
+  stroke: #2c6f63;
+}
+
+.automata-state-cross {
+  stroke: #9f3f31;
 }
 
 .automata-projection {
@@ -3681,17 +4496,48 @@ a.position-link:hover {
   fill: #2f5d8e;
 }
 
-.automata-language-mark {
-  font-size: 12.5px;
-  font-weight: 850;
-}
-
 .automata-language-accept {
   fill: #2c6f63;
 }
 
 .automata-language-reject {
   fill: #8a4d34;
+}
+
+.automata-result-output {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.automata-result-badge-bg {
+  fill: #fffdf8;
+  stroke: rgba(31, 39, 33, 0.22);
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-result-mark {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.7;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-result-output.automata-language-accept .automata-result-badge-bg {
+  stroke: rgba(44, 111, 99, 0.34);
+}
+
+.automata-result-output.automata-language-accept .automata-result-mark {
+  stroke: #2c6f63;
+}
+
+.automata-result-output.automata-language-reject .automata-result-badge-bg {
+  stroke: rgba(138, 77, 52, 0.34);
+}
+
+.automata-result-output.automata-language-reject .automata-result-mark {
+  stroke: #8a4d34;
 }
 
 .automata-moving-dot {
@@ -3747,6 +4593,18 @@ a.position-link:hover {
   font-size: 15px;
 }
 
+.normalization-subgroup .figure-math-label.large {
+  font-size: 24px;
+}
+
+.normalization-subgroup .figure-math-label.small {
+  font-size: 16px;
+}
+
+.normalization-subgroup .figure-math-label.tiny {
+  font-size: 12.5px;
+}
+
 .normalization-map-arrow {
   stroke: #2c6f63;
   stroke-width: 2.3;
@@ -3757,15 +4615,40 @@ a.position-link:hover {
   transition: opacity 180ms ease, filter 180ms ease;
 }
 
+.normalization-subgroup[data-normalization-face-colors="blue"] {
+  --normalization-subgroup-fill: #e4edf4;
+  --normalization-subgroup-stroke: #2f536f;
+  --normalization-subgroup-highlight-fill: #dcebf5;
+  --normalization-subgroup-highlight-stroke: #2f536f;
+}
+
+.normalization-subgroup[data-normalization-face-colors="red"] {
+  --normalization-subgroup-fill: #f3e3dc;
+  --normalization-subgroup-stroke: #9a573f;
+  --normalization-subgroup-highlight-fill: #f4ded4;
+  --normalization-subgroup-highlight-stroke: #9a573f;
+}
+
+.normalization-subgroup[data-normalization-face-colors="blue-red"] {
+  --normalization-subgroup-fill: url("#normalization-face-blue-red-fill");
+  --normalization-subgroup-stroke: #705e65;
+  --normalization-subgroup-highlight-fill: url("#normalization-face-blue-red-fill");
+  --normalization-subgroup-highlight-stroke: #705e65;
+}
+
 .normalization-figure.is-interactive .normalization-subgroup,
 .normalization-figure.is-interactive .normalization-action,
-.normalization-figure.is-interactive .normalization-element-control {
+.normalization-figure.is-interactive .normalization-element-control,
+.normalization-figure.is-interactive .normalization-square-cell,
+.normalization-figure.is-interactive .normalization-square-edge-segment,
+.normalization-figure.is-interactive .normalization-square-edge-hit,
+.normalization-figure.is-interactive .normalization-action-place {
   cursor: pointer;
 }
 
 .normalization-subgroup .figure-node {
-  fill: rgba(255, 253, 248, 0.96);
-  stroke: rgba(43, 52, 43, 0.72);
+  fill: var(--normalization-subgroup-fill, rgba(255, 253, 248, 0.96));
+  stroke: var(--normalization-subgroup-stroke, rgba(43, 52, 43, 0.72));
   transition: fill 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
 }
 
@@ -3784,14 +4667,14 @@ a.position-link:hover {
 }
 
 .normalization-subgroup.is-highlighted .figure-node {
-  fill: #dff0e7;
-  stroke: #2c6f63;
+  fill: var(--normalization-subgroup-highlight-fill, #f4f1e8);
+  stroke: var(--normalization-subgroup-highlight-stroke, rgba(43, 52, 43, 0.76));
   stroke-width: 2.8;
 }
 
 .normalization-subgroup.is-selected .figure-node {
-  fill: #dff0e7;
-  stroke: #1f5c54;
+  fill: var(--normalization-subgroup-highlight-fill, #f0eadc);
+  stroke: var(--normalization-subgroup-highlight-stroke, #2b342b);
   stroke-width: 3.4;
 }
 
@@ -3838,20 +4721,56 @@ a.position-link:hover {
   stroke-width: 1.4;
 }
 
-.normalization-square-stage {
-  transform-box: fill-box;
-}
-
 .normalization-square-shadow {
-  fill: rgba(232, 240, 234, 0.34);
+  fill: rgba(255, 253, 248, 0.9);
   stroke: rgba(43, 52, 43, 0.13);
   stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.normalization-square-cell {
+  opacity: 0.78;
+  transition: opacity 180ms ease, filter 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
+}
+
+.normalization-square-cell-a {
+  fill: #e4edf4;
+}
+
+.normalization-square-cell-b {
+  fill: #f3e3dc;
+}
+
+.normalization-square-cell-c {
+  fill: #e4edf4;
+}
+
+.normalization-square-cell-d {
+  fill: #f3e3dc;
+}
+
+.normalization-square-fold {
+  fill: none;
+  stroke: rgba(31, 39, 33, 0.16);
+  stroke-width: 1.1;
   vector-effect: non-scaling-stroke;
 }
 
 .normalization-square-frame {
   stroke: rgba(31, 39, 33, 0.48);
   stroke-width: 2.1;
+}
+
+.normalization-square-edge-segment {
+  transition: opacity 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
+}
+
+.normalization-square-edge-hit {
+  fill: none;
+  pointer-events: stroke;
+  stroke: transparent;
+  stroke-linecap: round;
+  stroke-width: 8;
 }
 
 .normalization-action-hit {
@@ -3879,7 +4798,51 @@ a.position-link:hover {
 }
 
 .normalization-figure[data-normalization-element-selected] .normalization-action-place.is-moving {
-  opacity: 0.34;
+  opacity: 0.18;
+}
+
+.normalization-figure[data-normalization-element-selected] .normalization-square-cell.is-moving {
+  filter: grayscale(0.5);
+  opacity: 0.16;
+}
+
+.normalization-figure[data-normalization-element-selected] .normalization-square-cell.is-fixed {
+  opacity: 0.96;
+}
+
+.normalization-figure[data-normalization-element-selected] .normalization-square-edge-segment.is-moving {
+  opacity: 0.16;
+}
+
+.normalization-figure[data-normalization-element-selected] .normalization-square-edge-segment.is-fixed {
+  opacity: 1;
+  stroke: #8a4d34;
+  stroke-width: 2.65;
+}
+
+.normalization-figure[data-normalization-feature-selected] .normalization-square-cell:not(.is-feature-selected),
+.normalization-figure[data-normalization-feature-selected] .normalization-square-edge-segment:not(.is-feature-selected),
+.normalization-figure[data-normalization-feature-selected] .normalization-action-place:not(.is-feature-selected) {
+  opacity: 0.18;
+}
+
+.normalization-figure[data-normalization-feature-selected] .normalization-square-cell.is-feature-selected {
+  opacity: 0.98;
+  stroke: #8a4d34;
+  stroke-width: 0.8;
+}
+
+.normalization-figure[data-normalization-feature-selected] .normalization-square-edge-segment.is-feature-selected {
+  opacity: 1;
+  stroke: #8a4d34;
+  stroke-width: 2.85;
+}
+
+.normalization-figure[data-normalization-feature-selected] .normalization-action-dot.is-feature-selected {
+  opacity: 1;
+  fill: #f4e6d7;
+  stroke: #8a4d34;
+  stroke-width: 2.6;
 }
 
 .normalization-figure[data-normalization-element-selected] .normalization-action-dot.is-fixed {
@@ -3932,8 +4895,8 @@ a.position-link:hover {
 }
 
 .normalization-action-dot.filled {
-  fill: #2c6f63;
-  stroke: #2c6f63;
+  fill: #2f536f;
+  stroke: #2f536f;
 }
 
 .normalization-vertex-point {
@@ -3978,15 +4941,15 @@ a.position-link:hover {
 }
 
 .normalization-action-place[data-normalization-token="c"] {
-  --normalization-token-fill: #deeee7;
-  --normalization-token-ghost: rgba(222, 238, 231, 0.62);
-  --normalization-token-stroke: #2c6f63;
+  --normalization-token-fill: #e4edf4;
+  --normalization-token-ghost: rgba(228, 237, 244, 0.62);
+  --normalization-token-stroke: #2f536f;
 }
 
 .normalization-action-place[data-normalization-token="d"] {
-  --normalization-token-fill: #ece6f3;
-  --normalization-token-ghost: rgba(236, 230, 243, 0.62);
-  --normalization-token-stroke: #70589a;
+  --normalization-token-fill: #f3e3dc;
+  --normalization-token-ghost: rgba(243, 227, 220, 0.62);
+  --normalization-token-stroke: #9a573f;
 }
 
 .normalization-action-place[data-normalization-token="e"] {
@@ -4048,6 +5011,10 @@ a.position-link:hover {
   transition: fill 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
 }
 
+.normalization-element-control {
+  transition: opacity 180ms ease;
+}
+
 .normalization-element-control text {
   fill: #1f2721;
   font-size: 13px;
@@ -4060,6 +5027,20 @@ a.position-link:hover {
   fill: #f4e6d7;
   stroke: #8a4d34;
   stroke-width: 2;
+}
+
+.normalization-element-control.is-feature-dimmed {
+  opacity: 0.3;
+}
+
+.normalization-element-control.is-feature-fixer .normalization-element-button {
+  fill: #e8f0ea;
+  stroke: #2c6f63;
+  stroke-width: 2.2;
+}
+
+.normalization-element-control.is-feature-fixer text {
+  fill: #1f5c54;
 }
 
 .normalization-element-control:focus-visible .normalization-element-button {
@@ -4343,11 +5324,10 @@ a.position-link:hover {
   stroke-width: 1.3;
 }
 
-.internal-panel-label {
-  fill: var(--accent-2);
+.internal-figure-heading {
+  fill: #1f2721;
   font-size: 17px;
   font-weight: 850;
-  text-anchor: start;
 }
 
 .internal-graph-node,
@@ -4358,7 +5338,7 @@ a.position-link:hover {
 }
 
 .internal-classifier-node {
-  animation: internal-classifier-node-color 16s ease-in-out infinite;
+  animation: internal-classifier-node-color 12s ease-in-out infinite;
 }
 
 .internal-edge-base,
@@ -4448,16 +5428,27 @@ a.position-link:hover {
   stroke: none;
 }
 
-.internal-classifier-caption {
-  fill: var(--muted);
-  font-size: 13px;
-  font-weight: 750;
+.internal-classifier-edge-label {
+  font-size: 12px;
+  font-weight: 850;
+  text-anchor: middle;
 }
 
-.internal-classifier-subtitle {
-  fill: var(--muted);
-  font-size: 11px;
-  font-weight: 750;
+.internal-classifier-caption-loop {
+  fill: #8a4d34;
+}
+
+.internal-classifier-caption-nonloop {
+  fill: #2c6f63;
+}
+
+.internal-classifier-symbol {
+  fill: #1f2721;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  text-anchor: middle;
 }
 
 .internal-piece {
@@ -4862,6 +5853,9 @@ a.position-link:hover {
 .tensor-value text,
 .tensor-pair text,
 .tensor-image-node text,
+.tensor-left-a-node text,
+.tensor-right-a-node text,
+.tensor-s-node text,
 .tensor-a-node text,
 .tensor-x-node text,
 .tensor-result-pill text,
@@ -4927,6 +5921,9 @@ a.position-link:hover {
 .tensor-chip text,
 .tensor-value text,
 .tensor-pair text,
+.tensor-left-a-node text,
+.tensor-right-a-node text,
+.tensor-s-node text,
 .tensor-a-node text,
 .tensor-x-node text,
 .tensor-result-pill text,
@@ -4937,6 +5934,9 @@ a.position-link:hover {
   font-weight: 900;
 }
 
+.tensor-left-a-node text,
+.tensor-right-a-node text,
+.tensor-s-node text,
 .tensor-a-node text,
 .tensor-x-node text {
   font-size: 22px;
@@ -5235,7 +6235,7 @@ a.position-link:hover {
 }
 
 .tensor-factorization-figure {
-  --tensor-cycle: 8s;
+  --tensor-cycle: 10s;
   --tensor-map: #2c6f63;
   --tensor-map-fill: #dfeee5;
   --tensor-map-faint: rgba(44, 111, 99, 0.38);
@@ -5245,20 +6245,20 @@ a.position-link:hover {
 }
 
 .tensor-formula-stage {
-  left: 50%;
+  left: 57.37%;
   top: 84%;
   z-index: 3;
   max-width: calc(100% - 34px);
-  padding: 7px 12px;
+  padding: 8px 14px;
   border: 1px solid rgba(44, 111, 99, 0.2);
-  border-radius: 999px;
+  border-radius: 14px;
   background: rgba(255, 253, 248, 0.9);
   box-shadow: 0 12px 22px rgba(38, 46, 39, 0.08);
   color: #24312a;
-  font-size: clamp(0.58rem, 1.35vw, 0.92rem);
+  font-size: clamp(0.76rem, 1.75vw, 1.16rem);
   opacity: 0;
   pointer-events: none;
-  animation-duration: 8s;
+  animation-duration: var(--tensor-cycle);
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
@@ -5280,7 +6280,50 @@ a.position-link:hover {
 }
 
 .tensor-formula-stage .katex {
+  font-size: 1em;
   white-space: nowrap;
+}
+
+.tensor-formula-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: center;
+  width: min(76%, 690px);
+}
+
+.tensor-formula-left {
+  justify-self: end;
+  text-align: right;
+}
+
+.tensor-formula-operator {
+  justify-self: center;
+  color: #26342b;
+  font-size: 1.18em;
+  line-height: 1;
+}
+
+.tensor-formula-right {
+  justify-self: start;
+  text-align: left;
+}
+
+.tensor-formula-free {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tensor-formula-with-result {
+  row-gap: 6px;
+}
+
+.tensor-formula-result {
+  grid-column: 1 / -1;
+  justify-self: center;
+  font-size: 0.84em;
+  line-height: 1;
 }
 
 .tensor-factorization-figure .tensor-image-label,
@@ -5310,6 +6353,135 @@ a.position-link:hover {
 
 .tensor-factorization-figure .tensor-a-envelope {
   stroke: rgba(138, 77, 52, 0.2);
+}
+
+.tensor-factorization-figure .tensor-left-a-envelope {
+  stroke: rgba(44, 111, 99, 0.24);
+}
+
+.tensor-factorization-figure .tensor-left-a-label {
+  fill: rgba(44, 111, 99, 0.72);
+}
+
+.tensor-factorization-figure .tensor-left-map-arrow {
+  fill: none;
+  stroke: var(--tensor-map);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.tensor-factorization-figure .tensor-left-map-cord {
+  fill: none;
+  stroke: var(--tensor-map);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.8;
+  opacity: 0.82;
+  vector-effect: non-scaling-stroke;
+}
+
+.tensor-factorization-figure .tensor-a-reference-line {
+  fill: none;
+  stroke: rgba(67, 72, 64, 0.22);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke;
+}
+
+.tensor-factorization-figure .tensor-subset-extension {
+  fill: none;
+  stroke: var(--tensor-subset);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4.4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke;
+}
+
+.tensor-factorization-figure .tensor-iota-arrow-head {
+  fill: rgba(99, 102, 96, 0.88);
+  stroke: rgba(255, 253, 248, 0.94);
+  stroke-linejoin: round;
+  stroke-width: 0.85;
+}
+
+.tensor-factorization-figure .tensor-iota-arrow,
+.tensor-factorization-figure .tensor-composite-cord {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.tensor-factorization-figure .tensor-iota-arrow {
+  stroke: rgba(99, 102, 96, 0.84);
+  stroke-width: 3.2;
+}
+
+.tensor-factorization-figure .tensor-iota-local-arrow {
+  animation: tensor-iota-local-arrow-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-iota-cross-arrow {
+  animation: tensor-iota-cross-arrow-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-s-self-pulse {
+  fill: rgba(245, 220, 198, 0.18);
+  stroke: rgba(182, 103, 55, 0.58);
+  stroke-dasharray: 7 7;
+  stroke-width: 2.2;
+  opacity: 0;
+  animation: tensor-s-self-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-composite-cord {
+  stroke: var(--tensor-map);
+  stroke-width: 4.2;
+  animation: tensor-composite-cord-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-operator-label {
+  font-family: ui-serif, Georgia, serif;
+  font-size: 23px;
+  font-weight: 900;
+  opacity: 0;
+  text-anchor: middle;
+}
+
+.tensor-factorization-figure .tensor-iota-label,
+.tensor-factorization-figure .tensor-iota-cross-label {
+  fill: rgba(82, 86, 80, 0.9);
+}
+
+.tensor-factorization-figure .tensor-iota-label {
+  animation: tensor-iota-label-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-iota-cross-label {
+  animation: tensor-iota-cross-label-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-s-self-label {
+  fill: var(--tensor-subset);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0;
+  animation: tensor-s-self-label-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-composite-label {
+  fill: var(--tensor-map);
+  font-size: 21px;
+  animation: tensor-composite-label-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
 .tensor-factorization-figure .tensor-press-layer {
@@ -5515,8 +6687,7 @@ a.position-link:hover {
   stroke: rgba(182, 103, 55, 0.42);
   stroke-dasharray: 8 8;
   stroke-width: 2;
-  opacity: 0;
-  animation: tensor-s-envelope-stage var(--tensor-cycle) ease-in-out infinite;
+  opacity: 1;
 }
 
 .tensor-factorization-figure .tensor-factor-cord {
@@ -5593,6 +6764,64 @@ a.position-link:hover {
   text-anchor: middle;
 }
 
+.tensor-factorization-figure .tensor-left-a-node circle {
+  fill: rgba(255, 253, 248, 0.95);
+  stroke: rgba(44, 111, 99, 0.34);
+  stroke-width: 2;
+}
+
+.tensor-factorization-figure .tensor-left-a-node.selected circle {
+  fill: var(--tensor-map-fill);
+  stroke: var(--tensor-map);
+  stroke-width: 2.6;
+}
+
+.tensor-factorization-figure .tensor-left-a-node.selected.green circle {
+  fill: var(--tensor-map-fill);
+  stroke: var(--tensor-map);
+}
+
+.tensor-factorization-figure .tensor-left-a-node.muted circle {
+  fill: rgba(248, 246, 238, 0.84);
+  stroke: rgba(44, 111, 99, 0.18);
+}
+
+.tensor-factorization-figure .tensor-left-a-node.muted text {
+  fill: rgba(36, 49, 42, 0.44);
+}
+
+.tensor-factorization-figure .tensor-right-a-node {
+  opacity: 1;
+}
+
+.tensor-factorization-figure .tensor-right-a-node circle {
+  fill: rgba(255, 253, 248, 0.94);
+  stroke: rgba(67, 72, 64, 0.3);
+  stroke-width: 2;
+}
+
+.tensor-factorization-figure .tensor-right-a-node.in-s circle {
+  stroke: rgba(182, 103, 55, 0.52);
+}
+
+.tensor-factorization-figure .tensor-right-a-node text {
+  fill: rgba(36, 49, 42, 0.68);
+}
+
+.tensor-factorization-figure .tensor-s-node {
+  opacity: 1;
+}
+
+.tensor-factorization-figure .tensor-s-node circle {
+  fill: var(--tensor-subset-fill);
+  stroke: var(--tensor-subset);
+  stroke-width: 2.8;
+}
+
+.tensor-factorization-figure .tensor-s-node text {
+  fill: #24312a;
+}
+
 .tensor-factorization-figure .tensor-cord.selected {
   --tensor-active: var(--tensor-map);
   stroke: var(--tensor-map);
@@ -5655,35 +6884,65 @@ a.position-link:hover {
 }
 
 .tensor-factorization-figure .tensor-length {
-  animation: tensor-factor-result-copy var(--tensor-cycle) ease-in-out infinite;
+  opacity: 0;
+  animation: tensor-cycle-caption-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-step-label {
+  opacity: 0;
+}
+
+.tensor-factorization-figure .tensor-step-label rect {
+  fill: rgba(255, 253, 248, 0.9);
+  stroke: rgba(36, 49, 42, 0.16);
+  stroke-width: 1.1;
+}
+
+.tensor-factorization-figure .tensor-step-label text {
+  fill: rgba(36, 49, 42, 0.72);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-anchor: middle;
+}
+
+.tensor-factorization-figure .tensor-step-label-1 {
+  animation: tensor-step-label-1 var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-step-label-2 {
+  animation: tensor-step-label-2 var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-step-label-3 {
+  animation: tensor-step-label-3 var(--tensor-cycle) ease-in-out infinite;
 }
 
 @keyframes tensor-formula-stage-1 {
   0%,
-  22%,
+  16% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  20%,
   100% {
     opacity: 0;
     transform: translate(-50%, calc(-50% + 6px));
-  }
-
-  4%,
-  18% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
   }
 }
 
 @keyframes tensor-formula-stage-2 {
   0%,
-  20%,
-  41%,
+  18%,
+  44%,
   100% {
     opacity: 0;
     transform: translate(-50%, calc(-50% + 6px));
   }
 
-  24%,
-  37% {
+  22%,
+  40% {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
@@ -5691,15 +6950,15 @@ a.position-link:hover {
 
 @keyframes tensor-formula-stage-3 {
   0%,
-  39%,
-  65%,
+  42%,
+  76%,
   100% {
     opacity: 0;
     transform: translate(-50%, calc(-50% + 6px));
   }
 
-  43%,
-  61% {
+  46%,
+  72% {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
@@ -5707,15 +6966,257 @@ a.position-link:hover {
 
 @keyframes tensor-formula-stage-4 {
   0%,
-  63% {
+  72%,
+  100% {
     opacity: 0;
     transform: translate(-50%, calc(-50% + 6px));
   }
 
-  68%,
-  100% {
+  78%,
+  96% {
     opacity: 1;
     transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes tensor-step-label-1 {
+  0%,
+  18%,
+  48%,
+  100% {
+    opacity: 0;
+  }
+
+  24%,
+  44% {
+    opacity: 1;
+  }
+}
+
+@keyframes tensor-step-label-2 {
+  0%,
+  44%,
+  76%,
+  100% {
+    opacity: 0;
+  }
+
+  50%,
+  72% {
+    opacity: 1;
+  }
+}
+
+@keyframes tensor-step-label-3 {
+  0%,
+  74%,
+  100% {
+    opacity: 0;
+  }
+
+  80%,
+  96% {
+    opacity: 1;
+  }
+}
+
+@keyframes tensor-iota-local-arrow-stage {
+  0%,
+  18% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  25%,
+  72% {
+    opacity: 0.96;
+    stroke-dashoffset: 0;
+  }
+
+  78%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes tensor-s-self-stage {
+  0%,
+  19% {
+    opacity: 0;
+    stroke-dashoffset: 18;
+  }
+
+  26%,
+  72% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+
+  78%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -10;
+  }
+}
+
+@keyframes tensor-iota-label-stage {
+  0%,
+  19%,
+  78%,
+  100% {
+    opacity: 0;
+  }
+
+  25%,
+  72% {
+    opacity: 1;
+  }
+}
+
+@keyframes tensor-s-self-label-stage {
+  0%,
+  20%,
+  78%,
+  100% {
+    opacity: 0;
+  }
+
+  28%,
+  72% {
+    opacity: 1;
+  }
+}
+
+@keyframes tensor-iota-cross-arrow-stage {
+  0%,
+  42% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  50%,
+  66% {
+    opacity: 0.94;
+    stroke-dashoffset: 0;
+  }
+
+  76%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes tensor-iota-cross-label-stage {
+  0%,
+  43%,
+  76%,
+  100% {
+    opacity: 0;
+  }
+
+  51%,
+  66% {
+    opacity: 1;
+  }
+}
+
+@keyframes tensor-composite-cord-stage {
+  0%,
+  72% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  80%,
+  96% {
+    opacity: 0.96;
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes tensor-composite-label-stage {
+  0%,
+  72%,
+  100% {
+    opacity: 0;
+  }
+
+  80%,
+  96% {
+    opacity: 1;
+  }
+}
+
+@keyframes tensor-cycle-caption-stage {
+  0%,
+  48%,
+  100% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  58%,
+  96% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tensor-a-reference-line-stage {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  8%,
+  100% {
+    opacity: 0.88;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes tensor-subset-extension-stage {
+  0%,
+  20% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  32%,
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes tensor-right-a-node-stage {
+  0%,
+  4% {
+    opacity: 0;
+  }
+
+  12%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tensor-s-node-stage {
+  0%,
+  24% {
+    opacity: 0;
+  }
+
+  36%,
+  100% {
+    opacity: 1;
   }
 }
 
@@ -9052,6 +10553,16 @@ a.position-link:hover {
   .tensor-factorization-figure .tensor-image-label,
   .tensor-factorization-figure .tensor-factor-label,
   .tensor-factorization-figure .tensor-s-envelope,
+  .tensor-factorization-figure .tensor-a-reference-line,
+  .tensor-factorization-figure .tensor-subset-extension,
+  .tensor-factorization-figure .tensor-iota-arrow,
+  .tensor-factorization-figure .tensor-s-self-pulse,
+  .tensor-factorization-figure .tensor-operator-label,
+  .tensor-factorization-figure .tensor-composite-cord,
+  .tensor-factorization-figure .tensor-step-label,
+  .tensor-factorization-figure .tensor-tensor-divider,
+  .tensor-factorization-figure .tensor-right-a-node,
+  .tensor-factorization-figure .tensor-s-node,
   .tensor-factorization-figure .tensor-press-layer,
   .tensor-factorization-figure .tensor-press-arrow,
   .tensor-factorization-figure .tensor-press-pad,
@@ -9060,6 +10571,15 @@ a.position-link:hover {
   .tensor-formula-stage,
   .games-integral-main-arrow,
   .games-integral-ribbon,
+  .games-leibniz-arrow,
+  .games-simple-arrow,
+  .games-simple-chip.is-mex,
+  .games-simple-chip.is-result,
+  .games-rb-stage,
+  .games-rb-chip.is-gap,
+  .games-rb-chip.is-result,
+  .games-rb-mini-chip.is-union-result,
+  .games-rb-arrow,
   .tensor-animation-figure .tensor-length {
     animation: none;
   }
@@ -9068,8 +10588,15 @@ a.position-link:hover {
     display: none;
   }
 
+  .games-rb-stage {
+    opacity: 1;
+  }
+
   .games-integral-main-arrow,
-  .games-integral-ribbon {
+  .games-integral-ribbon,
+  .games-leibniz-arrow,
+  .games-simple-arrow,
+  .games-rb-arrow {
     stroke-dashoffset: 0;
   }
 
@@ -9098,6 +10625,13 @@ a.position-link:hover {
   .tensor-factorization-figure .tensor-image-label,
   .tensor-factorization-figure .tensor-factor-label,
   .tensor-factorization-figure .tensor-s-envelope,
+  .tensor-factorization-figure .tensor-a-reference-line,
+  .tensor-factorization-figure .tensor-subset-extension,
+  .tensor-factorization-figure .tensor-right-a-node,
+  .tensor-factorization-figure .tensor-s-node,
+  .tensor-factorization-figure .tensor-composite-cord,
+  .tensor-factorization-figure .tensor-composite-label,
+  .tensor-factorization-figure .tensor-step-label-3,
   .tensor-factorization-figure .tensor-image-node.factor,
   .tensor-formula-stage-4 {
     opacity: 1;
@@ -9109,6 +10643,21 @@ a.position-link:hover {
 
   .tensor-factorization-figure .tensor-factor-cord {
     stroke-dashoffset: 0;
+  }
+
+  .tensor-factorization-figure .tensor-a-reference-line,
+  .tensor-factorization-figure .tensor-subset-extension,
+  .tensor-factorization-figure .tensor-composite-cord {
+    stroke-dashoffset: 0;
+  }
+
+  .tensor-factorization-figure .tensor-iota-local-arrow,
+  .tensor-factorization-figure .tensor-iota-cross-arrow,
+  .tensor-factorization-figure .tensor-iota-label,
+  .tensor-factorization-figure .tensor-iota-cross-label,
+  .tensor-factorization-figure .tensor-s-self-pulse,
+  .tensor-factorization-figure .tensor-s-self-label {
+    opacity: 0;
   }
 
   .tensor-formula-stage-4 {

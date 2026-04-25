@@ -6432,21 +6432,37 @@ function paperThemeIds(paper) {
 }
 
 const differentialGamesPreparationTitle = "Differential calculus of impartial combinatorial games (with Ryo Suzuki)";
+const topoiAutomataIIIPreparationTitle = "Topoi of automata III: Geometry of \\(\\Sigma\\)-sets";
 
 function preparationPaperDetails(title) {
-  if (title !== differentialGamesPreparationTitle) return {};
-  const slidesHref = noteHrefByFile("RYUYA,HORA.pdf");
-  return {
-    figure: "games-integral-calculus",
+  if (title === differentialGamesPreparationTitle) {
+    const slidesHref = noteHrefByFile("RYUYA,HORA.pdf");
+    return {
+      figure: "games-integral-calculus",
     themes: ["games", "algebra"],
     tags: ["differential calculus", "Rota-Baxter", "integration", "impartial games"],
     summary:
-      "Visual proposal: the derivative exposes the option boundary of a game, while the integral operator accumulates that boundary back into a game invariant; the lower ribbon records the Rota-Baxter-style split of independent branches before disjoint-sum recombination.",
-    links: compactText([
-      slidesHref ? ["Rota-Baxter slides", slidesHref] : null,
-      ["Speculative note", localHref("speculative-notes/index.html#winning-games-rota-baxter")]
-    ])
-  };
+      "Visual proposal: follow the slide dichotomy with a vertical split. The left side treats games and differentiation through the Leibniz rule for box product; the right side checks the mex Rota-Baxter equation on concrete finite sets.",
+      links: compactText([
+        slidesHref ? ["Rota-Baxter slides", slidesHref] : null,
+        ["Speculative note", localHref("speculative-notes/index.html#winning-games-rota-baxter")]
+      ])
+    };
+  }
+  if (title === topoiAutomataIIIPreparationTitle) {
+    const slidesHref = noteHrefByFile("_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf");
+    return {
+      figure: "automata-cantor-morphism",
+      themes: ["automata", "topos", "geometry"],
+      tags: ["Cantor space", "geometric morphism", "Sigma-sets", "infinite words"],
+      summary:
+        "Visual proposal: reproduce the CTTA slide where the Cantor space of infinite words maps by a canonical geometric morphism through the prefix-poset slice and then by the etale-cover picture to \\(\\Sigma\\)-sets.",
+      links: compactText([
+        slidesHref ? ["CTTA slides", slidesHref] : null
+      ])
+    };
+  }
+  return {};
 }
 
 function preparationPaperRecord(title) {
@@ -7463,9 +7479,15 @@ function normalizationFigureTemplate() {
   return `
     <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 760 430" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
       <title id="fig-normalization-title">Subgroups and D4-actions</title>
-      <desc id="fig-normalization-desc">A subgroup lattice for D4 on the left and examples of D4-actions on the right. Selecting a subgroup filters the actions by stabilizer containment; selecting a D4 element moves each action and highlights the places fixed by that element.</desc>
+      <desc id="fig-normalization-desc">A subgroup lattice for D4 on the left and a D4-action on a square on the right. Selecting a subgroup filters by stabilizer containment; selecting a D4 element conjugates the subgroup labels, moves the square, and highlights fixed places.</desc>
       <defs>
         <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <linearGradient id="normalization-face-blue-red-fill" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#e4edf4"></stop>
+          <stop offset="49%" stop-color="#e4edf4"></stop>
+          <stop offset="51%" stop-color="#f3e3dc"></stop>
+          <stop offset="100%" stop-color="#f3e3dc"></stop>
+        </linearGradient>
       </defs>
 
       <text class="figure-small normalization-caption" x="28" y="28">normalizer on subgroups</text>
@@ -7489,43 +7511,43 @@ function normalizationFigureTemplate() {
         <path class="figure-arrow dashed normalization-map-arrow" d="M150 273 C205 230, 205 108, 166 55"></path>
 
         <g class="normalization-subgroup" data-normalization-subgroup="d4" data-subgroup-label="D4" transform="translate(150 38)">
-          <rect class="figure-node soft" x="-33" y="-18" width="66" height="36" rx="7"></rect>
+          <rect class="figure-node soft" x="-28" y="-16" width="56" height="32" rx="6"></rect>
           <text class="figure-math-label large" y="1">D<tspan baseline-shift="sub" font-size="68%">4</tspan></text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="v0" data-subgroup-label="&lt;tau,sigma^2&gt;" transform="translate(70 106)">
-          <rect class="figure-node pale" x="-48" y="-18" width="96" height="36" rx="7"></rect>
+          <rect class="figure-node pale" x="-38" y="-15" width="76" height="30" rx="6"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="rot" data-subgroup-label="&lt;sigma&gt;" transform="translate(150 106)">
-          <rect class="figure-node pale" x="-36" y="-18" width="72" height="36" rx="7"></rect>
+          <rect class="figure-node pale" x="-27" y="-15" width="54" height="30" rx="6"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="v1" data-subgroup-label="&lt;sigma tau,sigma^2&gt;" transform="translate(230 106)">
-          <rect class="figure-node pale" x="-50" y="-18" width="100" height="36" rx="7"></rect>
+          <rect class="figure-node pale" x="-41" y="-15" width="82" height="30" rx="6"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="ref0" data-subgroup-label="&lt;tau&gt;" transform="translate(35 190)">
-          <rect class="figure-node" x="-31" y="-17" width="62" height="34" rx="7"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="ref0" data-normalization-face-colors="blue" data-subgroup-label="&lt;tau&gt;" transform="translate(35 190)">
+          <rect class="figure-node" x="-24" y="-15" width="48" height="30" rx="6"></rect>
           <text class="figure-math-label small" y="1">&#10216;&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="ref2" data-subgroup-label="&lt;sigma^2 tau&gt;" transform="translate(95 190)">
-          <rect class="figure-node" x="-39" y="-17" width="78" height="34" rx="7"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="ref2" data-normalization-face-colors="red" data-subgroup-label="&lt;sigma^2 tau&gt;" transform="translate(95 190)">
+          <rect class="figure-node" x="-29" y="-15" width="58" height="30" rx="6"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&tau;&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="r2" data-subgroup-label="&lt;sigma^2&gt;" transform="translate(150 190)">
-          <rect class="figure-node warm" x="-35" y="-17" width="70" height="34" rx="7"></rect>
+          <rect class="figure-node warm" x="-27" y="-15" width="54" height="30" rx="6"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="ref1" data-subgroup-label="&lt;sigma tau&gt;" transform="translate(205 190)">
-          <rect class="figure-node" x="-37" y="-17" width="74" height="34" rx="7"></rect>
+          <rect class="figure-node" x="-29" y="-15" width="58" height="30" rx="6"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;&tau;&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="ref3" data-subgroup-label="&lt;sigma^3 tau&gt;" transform="translate(265 190)">
-          <rect class="figure-node" x="-39" y="-17" width="78" height="34" rx="7"></rect>
+          <rect class="figure-node" x="-29" y="-15" width="58" height="30" rx="6"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">3</tspan>&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="one" data-subgroup-label="&lt;1&gt;" transform="translate(150 290)">
-          <rect class="figure-node soft" x="-33" y="-17" width="66" height="34" rx="7"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="one" data-normalization-face-colors="blue-red" data-subgroup-label="&lt;1&gt;" transform="translate(150 290)">
+          <rect class="figure-node soft" x="-25" y="-15" width="50" height="30" rx="6"></rect>
           <text class="figure-math-label small" y="1">&#10216;1&#10217;</text>
         </g>
       </g>
@@ -7533,8 +7555,22 @@ function normalizationFigureTemplate() {
       <g class="normalization-action-atlas" transform="translate(330 64)">
         <rect class="normalization-action-stage-bg" width="390" height="282" rx="10"></rect>
         <g class="normalization-square-stage" transform="translate(105 34) scale(4.3)">
-          <path class="normalization-square-shadow" d="M0 4 H42 V46 H0 Z"></path>
-          <path class="normalization-action-line normalization-square-frame" d="M0 4 H42 V46 H0 Z"></path>
+          <g class="normalization-square-body" data-normalization-square-body>
+            <path class="normalization-square-shadow" d="M0 4 H42 V46 H0 Z"></path>
+            <rect class="normalization-square-cell normalization-square-cell-a" data-normalization-face-cell="f0" x="0" y="4" width="21" height="21"></rect>
+            <rect class="normalization-square-cell normalization-square-cell-b" data-normalization-face-cell="f1" x="21" y="4" width="21" height="21"></rect>
+            <rect class="normalization-square-cell normalization-square-cell-c" data-normalization-face-cell="f2" x="21" y="25" width="21" height="21"></rect>
+            <rect class="normalization-square-cell normalization-square-cell-d" data-normalization-face-cell="f3" x="0" y="25" width="21" height="21"></rect>
+            <path class="normalization-square-fold" d="M21 4 V46 M0 25 H42"></path>
+            <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e0" d="M0 4 H42"></path>
+            <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e1" d="M42 4 V46"></path>
+            <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e2" d="M42 46 H0"></path>
+            <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e3" d="M0 46 V4"></path>
+            <path class="normalization-action-line normalization-square-frame normalization-square-edge-segment" data-normalization-boundary-edge="e0" d="M0 4 H42"></path>
+            <path class="normalization-action-line normalization-square-frame normalization-square-edge-segment" data-normalization-boundary-edge="e1" d="M42 4 V46"></path>
+            <path class="normalization-action-line normalization-square-frame normalization-square-edge-segment" data-normalization-boundary-edge="e2" d="M42 46 H0"></path>
+            <path class="normalization-action-line normalization-square-frame normalization-square-edge-segment" data-normalization-boundary-edge="e3" d="M0 46 V4"></path>
+          </g>
           <g class="normalization-action" data-normalization-stabilizers="v0">
             <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v0" data-normalization-orbit="diagonal" data-normalization-point="d0" data-normalization-token="a" d="M0 4 L42 46"></path>
             <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v0" data-normalization-orbit="diagonal" data-normalization-point="d1" data-normalization-token="b" d="M42 4 L0 46"></path>
@@ -7580,10 +7616,14 @@ function internalOffsetPoint(point, center, scale, jitter = [0, 0]) {
 }
 
 function internalLineAsCubicPath(from, to) {
-  return `M${from[0]} ${from[1]} C${from[0]} ${from[1]}, ${to[0]} ${to[1]}, ${to[0]} ${to[1]}`;
+  const dx = to[0] - from[0];
+  const dy = to[1] - from[1];
+  const controlA = [from[0] + dx / 3, from[1] + dy / 3];
+  const controlB = [from[0] + (dx * 2) / 3, from[1] + (dy * 2) / 3];
+  return `M${internalPoint(from)} C${internalPoint(controlA)}, ${internalPoint(controlB)}, ${internalPoint(to)}`;
 }
 
-const internalParameterizationDuration = "16s";
+const internalParameterizationDuration = "12s";
 const internalPieceBaseStroke = "#2c312d";
 const internalPieceVertexStroke = "#2f5f91";
 const internalPieceNonLoopStroke = "#2c6f63";
@@ -7604,7 +7644,8 @@ function internalPieceColorValues(baseColor, activeColor) {
 }
 
 function internalPieceMarker(markerKey, className, color, keyTimes, duration) {
-  return `<defs><marker id="arrow-a-${markerKey}" class="${className}" data-internal-piece-marker="${markerKey}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"><animate attributeName="fill" attributeType="CSS" values="${internalPieceColorValues(internalPieceBaseStroke, color)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate></path></marker></defs>`;
+  const refX = className.includes("-n") ? "9.45" : "8";
+  return `<defs><marker id="arrow-a-${markerKey}" class="${className}" data-internal-piece-marker="${markerKey}" viewBox="0 0 10 10" refX="${refX}" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"><animate attributeName="fill" attributeType="CSS" values="${internalPieceColorValues(internalPieceBaseStroke, color)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate></path></marker></defs>`;
 }
 
 function internalAnimatedPath(path, finalPath, className, keyTimes, duration, color, markerKey) {
@@ -7618,12 +7659,12 @@ function internalAnimatedPath(path, finalPath, className, keyTimes, duration, co
 }
 
 function internalStaggeredKeyTimes(staggerIndex, staggerTotal) {
-  const splitStart = 0.05;
-  const decomposedTime = 0.13;
-  const colorDoneTime = 0.21;
-  const holdTime = 0.3;
-  const flightWindowStart = 0.34;
-  const flightWindowEnd = 0.92;
+  const splitStart = 0.25;
+  const decomposedTime = 0.31;
+  const colorDoneTime = 0.37;
+  const holdTime = 0.438;
+  const flightWindowStart = 0.468;
+  const flightWindowEnd = 0.903;
   const slot = (flightWindowEnd - flightWindowStart) / Math.max(staggerTotal, 1);
   const flightStart = flightWindowStart + staggerIndex * slot;
   const flightEnd = flightStart + slot * 0.84;
@@ -7690,7 +7731,7 @@ function createInternalParameterizationPieces() {
     [[297, 197], [236, 262]],
     [[151, 267], [209, 273]],
     [[239, 274], [311, 274]],
-    [[339, 262], [425, 194]],
+    [[338, 265], [446, 191]],
     [[341, 273], [423, 270]],
   ].map(([source, destination], index) => {
     const start = [(source[0] + destination[0]) / 2, (source[1] + destination[1]) / 2];
@@ -7802,8 +7843,8 @@ function quotientTurnLights(paths, color = "green") {
 const paperFigureTemplates = {
   "games-integral-calculus": `
     <svg class="games-integral-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-integral-title fig-games-integral-desc">
-      <title id="fig-games-integral-title">Differential and integral structure for impartial games</title>
-      <desc id="fig-games-integral-desc">A game is differentiated to its option boundary. The integral operator then accumulates that boundary back into a game invariant. A lower ribbon shows a Rota-Baxter-style split of independent branches before recombination.</desc>
+      <title id="fig-games-integral-title">Games plus differentiation and mex plus integration</title>
+      <desc id="fig-games-integral-desc">A vertical divider separates the game-side Leibniz rule for box product from a concrete mex-side check of the Rota-Baxter equation for Nim-sum with S={0,1,3} and T={0,1,2}.</desc>
       <defs>
         <marker id="games-integral-arrow" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="5.4" markerHeight="5.4" orient="auto-start-reverse">
           <path d="M 0 0 L 10 5 L 0 10 z"></path>
@@ -7816,76 +7857,174 @@ const paperFigureTemplates = {
       </defs>
 
       <rect class="games-integral-paper" width="760" height="390" rx="0"></rect>
-      <text class="games-integral-caption" x="380" y="32">differentiate options, integrate invariants</text>
+      <text class="games-integral-caption" x="380" y="32">Leibniz rule  ↔  Rota-Baxter equation</text>
+      <path class="games-integral-divider" d="M380 56 V346"></path>
 
-      <g class="games-integral-panel games-integral-game-panel" transform="translate(36 70)">
-        <rect class="games-integral-panel-bg" width="210" height="222" rx="12"></rect>
-        <text class="games-integral-panel-label" x="22" y="28">game G</text>
-        <g class="games-integral-tree" transform="translate(18 46)">
-          <path class="games-integral-tree-edge" d="M88 34 L42 92 M88 34 L88 100 M88 34 L138 92 M42 92 L20 148 M42 92 L64 148 M138 92 L116 148 M138 92 L160 148"></path>
-          <circle class="games-integral-node games-integral-node-root" cx="88" cy="34" r="18"></circle>
-          <circle class="games-integral-node games-integral-node-n" cx="42" cy="92" r="14"></circle>
-          <circle class="games-integral-node games-integral-node-p" cx="88" cy="100" r="14"></circle>
-          <circle class="games-integral-node games-integral-node-n" cx="138" cy="92" r="14"></circle>
-          <circle class="games-integral-node games-integral-node-p" cx="20" cy="148" r="11"></circle>
-          <circle class="games-integral-node games-integral-node-n" cx="64" cy="148" r="11"></circle>
-          <circle class="games-integral-node games-integral-node-p" cx="116" cy="148" r="11"></circle>
-          <circle class="games-integral-node games-integral-node-p" cx="160" cy="148" r="11"></circle>
-          <text class="games-integral-node-text" x="88" y="39">G</text>
-          <text class="games-integral-node-text small" x="42" y="96">N</text>
-          <text class="games-integral-node-text small" x="88" y="104">P</text>
-          <text class="games-integral-node-text small" x="138" y="96">N</text>
+      <text class="games-integral-split-label split-left" x="198" y="68" text-anchor="middle">ゲーム + 微分</text>
+      <text class="games-integral-split-label split-right" x="562" y="68" text-anchor="middle">mex + 積分</text>
+
+      <g class="games-integral-panel games-integral-game-panel" transform="translate(38 104)">
+        <rect class="games-integral-panel-bg" width="300" height="218" rx="12"></rect>
+        <text class="games-integral-panel-label" x="22" y="28">Leibniz</text>
+        <g class="games-leibniz-diagram" transform="translate(28 50)">
+          <g class="games-leibniz-box is-source" transform="translate(84 0)">
+            <rect width="104" height="38" rx="9"></rect>
+            <text x="52" y="24" text-anchor="middle">X⊗Y</text>
+          </g>
+          <path class="games-leibniz-arrow games-leibniz-arrow-left" pathLength="1" d="M136 44 C116 68, 91 78, 68 92"></path>
+          <path class="games-leibniz-arrow games-leibniz-arrow-right" pathLength="1" d="M136 44 C156 68, 181 78, 204 92"></path>
+          <g class="games-leibniz-box" transform="translate(0 92)">
+            <rect width="118" height="38" rx="9"></rect>
+            <text x="59" y="24" text-anchor="middle">(∂X)⊗Y</text>
+          </g>
+          <text class="games-leibniz-plus" x="136" y="117" text-anchor="middle">+</text>
+          <g class="games-leibniz-box" transform="translate(154 92)">
+            <rect width="118" height="38" rx="9"></rect>
+            <text x="59" y="24" text-anchor="middle">X⊗(∂Y)</text>
+          </g>
+        </g>
+        <g class="games-leibniz-card" transform="translate(18 158)">
+          <rect width="264" height="44" rx="10"></rect>
         </g>
       </g>
 
-      <path class="figure-arrow games-integral-main-arrow games-integral-d-arrow" pathLength="1" d="M258 180 C286 146, 318 136, 352 148"></path>
-      <g class="games-integral-operator games-integral-d-operator" transform="translate(306 134)">
-        <circle r="24"></circle>
-        <text y="8">D</text>
-      </g>
-
-      <g class="games-integral-panel games-integral-boundary-panel" transform="translate(326 70)">
-        <rect class="games-integral-panel-bg" width="150" height="222" rx="12"></rect>
-        <text class="games-integral-panel-label" x="75" y="28" text-anchor="middle">option boundary</text>
-        <g class="games-integral-boundary-stack" transform="translate(24 58)">
-          <rect class="games-integral-boundary-token token-a" x="0" y="0" width="102" height="26" rx="13"></rect>
-          <rect class="games-integral-boundary-token token-b" x="18" y="42" width="84" height="26" rx="13"></rect>
-          <rect class="games-integral-boundary-token token-c" x="4" y="84" width="98" height="26" rx="13"></rect>
-          <rect class="games-integral-boundary-token token-d" x="28" y="126" width="74" height="26" rx="13"></rect>
-          <text class="games-integral-token-label" x="51" y="18">options</text>
-          <text class="games-integral-token-label" x="60" y="60">moves</text>
-          <text class="games-integral-token-label" x="53" y="102">boundary</text>
-          <text class="games-integral-token-label" x="65" y="144">data</text>
+      <g class="games-integral-panel games-integral-integral-panel" transform="translate(422 104)">
+        <rect class="games-integral-panel-bg" width="300" height="218" rx="12"></rect>
+        <text class="games-integral-panel-label right" x="22" y="28">mex = ∫</text>
+        <g class="games-simple-rb" transform="translate(26 52)">
+          <g class="games-simple-set" transform="translate(0 0)">
+            <text class="games-simple-set-label" x="0" y="18">S = {0,1,3}</text>
+            <path class="games-simple-arrow" pathLength="1" d="M94 14 H124"></path>
+            <g class="games-simple-chip is-mex" transform="translate(148 14)"><circle r="14"></circle><text y="5">2</text></g>
+          </g>
+          <g class="games-simple-set" transform="translate(0 42)">
+            <text class="games-simple-set-label" x="0" y="18">T = {0,1,2}</text>
+            <path class="games-simple-arrow" pathLength="1" d="M94 14 H124"></path>
+            <g class="games-simple-chip is-mex" transform="translate(148 14)"><circle r="14"></circle><text y="5">3</text></g>
+          </g>
+          <g class="games-simple-check" transform="translate(0 104)">
+            <g class="games-simple-chip" transform="translate(24 0)"><circle r="15"></circle><text y="5">2</text></g>
+            <text class="games-simple-op" x="58" y="5" text-anchor="middle">xor</text>
+            <g class="games-simple-chip" transform="translate(92 0)"><circle r="15"></circle><text y="5">3</text></g>
+            <path class="games-simple-arrow is-result-arrow" pathLength="1" d="M112 0 H154"></path>
+            <g class="games-simple-chip is-result" transform="translate(180 0)"><circle r="18"></circle><text y="6">1</text></g>
+          </g>
+          <text class="games-simple-caption" x="128" y="154" text-anchor="middle">same 1</text>
         </g>
       </g>
+    </svg>
+    <span class="figure-math games-tex games-tex-leibniz-a">\\(\\partial(X\\otimes Y)\\cong\\)</span>
+    <span class="figure-math games-tex games-tex-leibniz-b">\\((\\partial X)\\otimes Y\\)</span>
+    <span class="figure-math games-tex games-tex-leibniz-c">\\(+X\\otimes(\\partial Y)\\)</span>`,
+  "automata-cantor-morphism": `
+    <svg class="automata-cantor-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-cantor-title fig-automata-cantor-desc">
+      <title id="fig-automata-cantor-title">Canonical geometric morphism from Cantor space to Sigma-sets</title>
+      <desc id="fig-automata-cantor-desc">The Cantor space of infinite words maps as a sublocale to the prefix poset sheaf topos, equivalent to Sigma-Set over Sigma star, and then by an etale cover to Sigma-Set.</desc>
+      <defs>
+        <marker id="automata-cantor-arrow-neutral" class="automata-cantor-marker-neutral" data-cantor-marker="neutral" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="automata-cantor-arrow-red" class="automata-cantor-marker-red" data-cantor-marker="red" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="automata-cantor-arrow-blue" class="automata-cantor-marker-blue" data-cantor-marker="blue" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="automata-cantor-arrow-purple" class="automata-cantor-marker-purple" data-cantor-marker="purple" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+      </defs>
 
-      <path class="figure-arrow games-integral-main-arrow games-integral-i-arrow" pathLength="1" d="M486 150 C520 136, 548 146, 574 180"></path>
-      <g class="games-integral-operator games-integral-i-operator" transform="translate(530 134)">
-        <circle r="24"></circle>
-        <text y="8">&#8747;</text>
-      </g>
+      <rect class="automata-cantor-paper" width="760" height="390"></rect>
+      <g class="automata-cantor-layout">
+        <g class="automata-cantor-space">
+          <text class="automata-cantor-space-label" x="118" y="122">Cantor space</text>
+          <g class="automata-cantor-fractal" transform="translate(0 44.75)">
+            <g transform="rotate(-90 118 150.25)">
+            <rect class="automata-cantor-interval stage-0" x="62" y="84.5" width="112" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-1" x="62" y="116.5" width="37.3" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-1" x="136.7" y="116.5" width="37.3" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-2" x="62" y="148.5" width="12.4" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-2" x="86.9" y="148.5" width="12.4" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-2" x="136.7" y="148.5" width="12.4" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-2" x="161.6" y="148.5" width="12.4" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="62" y="180.5" width="4.1" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="70.3" y="180.5" width="4.1" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="86.9" y="180.5" width="4.1" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="95.2" y="180.5" width="4.1" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="136.7" y="180.5" width="4.1" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="145" y="180.5" width="4.1" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="161.6" y="180.5" width="4.1" height="7" rx="3.5"></rect>
+            <rect class="automata-cantor-interval stage-3" x="169.9" y="180.5" width="4.1" height="7" rx="3.5"></rect>
+            <path class="automata-cantor-connector" d="M118 93.5 L80.7 114.5"></path>
+            <path class="automata-cantor-connector" d="M118 93.5 L155.3 114.5"></path>
+            <path class="automata-cantor-connector" d="M80.7 125.5 L68.2 146.5"></path>
+            <path class="automata-cantor-connector" d="M80.7 125.5 L93.1 146.5"></path>
+            <path class="automata-cantor-connector" d="M155.3 125.5 L142.9 146.5"></path>
+            <path class="automata-cantor-connector" d="M155.3 125.5 L167.8 146.5"></path>
+            <path class="automata-cantor-connector" d="M68.2 157.5 L64.1 178.5"></path>
+            <path class="automata-cantor-connector" d="M68.2 157.5 L72.4 178.5"></path>
+            <path class="automata-cantor-connector" d="M93.1 157.5 L89 178.5"></path>
+            <path class="automata-cantor-connector" d="M93.1 157.5 L97.3 178.5"></path>
+            <path class="automata-cantor-connector" d="M142.9 157.5 L138.7 178.5"></path>
+            <path class="automata-cantor-connector" d="M142.9 157.5 L147 178.5"></path>
+            <path class="automata-cantor-connector" d="M167.8 157.5 L163.6 178.5"></path>
+            <path class="automata-cantor-connector" d="M167.8 157.5 L171.9 178.5"></path>
+            <circle class="automata-cantor-dot" cx="62.7" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="65.5" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="71" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="73.8" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="87.6" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="90.3" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="95.9" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="98.6" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="137.4" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="140.1" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="145.7" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="148.4" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="162.2" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="165" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="170.5" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot" cx="173.3" cy="216" r="2.1"></circle>
+            </g>
+          </g>
+        </g>
 
-      <g class="games-integral-panel games-integral-integral-panel" transform="translate(558 70)">
-        <rect class="games-integral-panel-bg" width="166" height="222" rx="12"></rect>
-        <text class="games-integral-panel-label" x="83" y="28" text-anchor="middle">integral structure</text>
-        <path class="games-integral-basin" d="M38 154 C42 98, 66 70, 83 70 C100 70, 124 98, 128 154"></path>
-        <path class="games-integral-layer layer-one" d="M46 148 C62 138, 104 138, 120 148"></path>
-        <path class="games-integral-layer layer-two" d="M54 120 C68 111, 98 111, 112 120"></path>
-        <path class="games-integral-layer layer-three" d="M64 94 C73 88, 93 88, 102 94"></path>
-        <circle class="games-integral-invariant-dot dot-one" cx="83" cy="154" r="9"></circle>
-        <circle class="games-integral-invariant-dot dot-two" cx="83" cy="122" r="8"></circle>
-        <circle class="games-integral-invariant-dot dot-three" cx="83" cy="94" r="7"></circle>
-        <text class="games-integral-equation" x="83" y="190" text-anchor="middle">&#8747; D(G) -> G&#772;</text>
-      </g>
+        <path class="figure-arrow automata-cantor-main-arrow" data-cantor-arrow="neutral" d="M205 195 H264"></path>
+        <text class="automata-cantor-arrow-label large" x="205" y="172">sublocale</text>
 
-      <g class="games-integral-rb-strip" transform="translate(96 328)">
-        <path class="figure-arrow games-integral-ribbon games-integral-ribbon-left" pathLength="1" d="M0 8 C86 -28, 168 -28, 238 8"></path>
-        <path class="figure-arrow games-integral-ribbon games-integral-ribbon-right" pathLength="1" d="M272 8 C356 -28, 438 -28, 512 8"></path>
-        <path class="figure-arrow games-integral-ribbon games-integral-ribbon-merge" pathLength="1" d="M238 8 C252 24, 258 24, 272 8"></path>
-        <text class="games-integral-rb-label" x="256" y="43" text-anchor="middle">Rota-Baxter split: integrate branches, then recombine</text>
-        <text class="games-integral-rb-symbol left" x="116" y="-8" text-anchor="middle">&#8747; branch A</text>
-        <text class="games-integral-rb-symbol right" x="392" y="-8" text-anchor="middle">&#8747; branch B</text>
-        <text class="games-integral-sum-label" x="546" y="14">G + H</text>
+        <g class="automata-prefix-poset">
+          <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 106.9 L329.1 118.9"></path>
+          <path class="automata-cantor-tree-edge child red" data-cantor-arrow="red" d="M289.1 131.3 L329 122.5"></path>
+          <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 140.7 L329 149.5"></path>
+          <path class="automata-cantor-tree-edge child red" data-cantor-arrow="red" d="M289.1 165.1 L329.1 153.1"></path>
+          <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 224.9 L329.1 236.9"></path>
+          <path class="automata-cantor-tree-edge child red" data-cantor-arrow="red" d="M289.1 249.3 L329 240.5"></path>
+          <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 258.7 L329 267.5"></path>
+          <path class="automata-cantor-tree-edge child red" data-cantor-arrow="red" d="M289.1 283.1 L329.1 271.1"></path>
+          <path class="automata-cantor-tree-edge blue" data-cantor-arrow="blue" d="M339.9 122.6 L398.6 147.1"></path>
+          <path class="automata-cantor-tree-edge red" data-cantor-arrow="red" d="M340.2 151 L397.8 151"></path>
+          <path class="automata-cantor-tree-edge blue" data-cantor-arrow="blue" d="M413.4 154 L472.1 187.1"></path>
+          <path class="automata-cantor-tree-edge blue" data-cantor-arrow="blue" d="M340.2 239 L397.8 239"></path>
+          <path class="automata-cantor-tree-edge red" data-cantor-arrow="red" d="M339.9 267.4 L398.6 242.9"></path>
+          <path class="automata-cantor-tree-edge red" data-cantor-arrow="red" d="M413.4 236 L472.1 202.9"></path>
+          <circle class="automata-cantor-node tiny" cx="286" cy="106" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny" cx="286" cy="132" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny" cx="286" cy="140" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny" cx="286" cy="166" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny" cx="286" cy="224" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny" cx="286" cy="250" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny" cx="286" cy="258" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny" cx="286" cy="284" r="3.2"></circle>
+          <circle class="automata-cantor-node small" cx="336" cy="121" r="4.2"></circle>
+          <circle class="automata-cantor-node small" cx="336" cy="151" r="4.2"></circle>
+          <circle class="automata-cantor-node small" cx="336" cy="239" r="4.2"></circle>
+          <circle class="automata-cantor-node small" cx="336" cy="269" r="4.2"></circle>
+          <circle class="automata-cantor-node" cx="408" cy="151" r="6.2"></circle>
+          <circle class="automata-cantor-node" cx="408" cy="239" r="6.2"></circle>
+          <circle class="automata-cantor-node large" cx="486" cy="195" r="12"></circle>
+        </g>
+
+        <path class="figure-arrow automata-cantor-main-arrow" data-cantor-arrow="neutral" d="M522 195 H606"></path>
+        <text class="automata-cantor-arrow-label large" x="564" y="170">&eacute;tale cover</text>
+
+        <g class="automata-bouquet-space" transform="translate(650 195)">
+          <path class="automata-cantor-bouquet-loop blue" data-cantor-arrow="blue" d="M0 -8 C-28 -88, 62 -88, 32 -8 C25 10, 7 10, 0 -8"></path>
+          <path class="automata-cantor-bouquet-loop red" data-cantor-arrow="red" d="M-1 8 C-42 68, 24 92, 31 20 C32 5, 8 3, -1 8"></path>
+          <circle class="automata-cantor-node large" cx="0" cy="0" r="10"></circle>
+        </g>
       </g>
     </svg>`,
   "internal-parameterizations": `
@@ -7894,14 +8033,13 @@ const paperFigureTemplates = {
       <desc id="fig-internal-desc">In the directed graph example, non-loop edges are classified as N, while self-loops are classified as L in the local state classifier.</desc>
       <defs>
         <marker id="arrow-a" data-internal-marker="default" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
-        <marker id="arrow-a-piece-n" class="internal-marker-piece-n" data-internal-marker="piece-n" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-a-piece-n" class="internal-marker-piece-n" data-internal-marker="piece-n" viewBox="0 0 10 10" refX="9.45" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
         <marker id="arrow-a-piece-l" class="internal-marker-piece-l" data-internal-marker="piece-l" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
-        <marker id="arrow-a-n" class="internal-marker-n" data-internal-marker="n" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="arrow-a-n" class="internal-marker-n" data-internal-marker="n" viewBox="0 0 10 10" refX="9.45" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
         <marker id="arrow-a-l" class="internal-marker-l" data-internal-marker="l" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
       </defs>
+      <text class="internal-figure-heading" x="42" y="34">Local state classifier of Directed Graphs</text>
       <g transform="translate(34 58)">
-        <rect class="internal-panel-bg" x="0" y="0" width="472" height="274" rx="8"></rect>
-        <text class="figure-small internal-panel-label" x="24" y="28">X</text>
         <g class="internal-source-graph">
         <circle class="internal-graph-node" cx="54" cy="126" r="15"></circle>
         <circle class="internal-graph-node" cx="118" cy="74" r="15"></circle>
@@ -7921,7 +8059,7 @@ const paperFigureTemplates = {
         <path class="figure-arrow internal-edge-base" d="M263 139 L202 204"></path>
         <path class="figure-arrow internal-edge-base" d="M117 209 L175 215"></path>
         <path class="figure-arrow internal-edge-base" d="M205 216 H277"></path>
-        <path class="figure-arrow internal-edge-base" d="M305 204 L391 136"></path>
+        <path class="figure-arrow internal-edge-base" d="M304 207 L412 133"></path>
         <path class="figure-arrow internal-edge-base" d="M307 215 L389 212"></path>
         <path class="figure-arrow internal-edge-base internal-self-loop" d="M436 115 C468 100, 468 149, 436 136"></path>
         <path class="figure-arrow internal-edge-base internal-self-loop" d="M90 216 C52 232, 52 184, 90 200"></path>
@@ -7931,17 +8069,17 @@ const paperFigureTemplates = {
       </g>
       <g transform="translate(584 76)">
         <rect class="internal-panel-bg" x="0" y="0" width="142" height="232" rx="8"></rect>
-        <text class="figure-small internal-panel-label" x="18" y="28">&Xi;</text>
-        <text class="internal-classifier-subtitle" x="18" y="50">Local state classifier</text>
+        <text class="internal-classifier-symbol" x="73" y="52">&Xi;</text>
         <path class="figure-arrow internal-classifier-loop internal-loop-l" d="M60 129 C22 144, 22 92, 60 107"></path>
         <path class="figure-arrow internal-classifier-loop internal-loop-n" d="M86 107 C124 92, 124 144, 86 129"></path>
         <circle class="internal-classifier-node" cx="73" cy="118" r="19"></circle>
-        <text class="figure-small internal-classifier-caption" x="73" y="179">loop / non-loop</text>
+        <text class="figure-small internal-classifier-edge-label internal-classifier-caption-loop" x="36" y="158">loop</text>
+        <text class="figure-small internal-classifier-edge-label internal-classifier-caption-nonloop" x="111" y="158">non-loop</text>
       </g>
       ${createInternalParameterizationPieces()}
     </svg>`,
   "quotient-toposes": `
-    <svg class="quotient-toposes-figure" viewBox="0 0 760 430" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
+    <svg class="quotient-toposes-figure" viewBox="0 0 760 400" role="img" aria-labelledby="fig-quotient-title fig-quotient-desc">
       <title id="fig-quotient-title">Discrete dynamical systems with finite height and infinite orbit</title>
       <desc id="fig-quotient-desc">A reconstruction of the paper TikZ picture with an added infinite-height example. The first system has a finite height-three tail followed by a four-cycle. The second system has a finite height-three branch entering a two-sided infinite non-periodic orbit. The third has an infinite-height branch entering a five-cycle. In each turn, every visible point moves along exactly one outgoing arrow.</desc>
       <defs>
@@ -7959,7 +8097,7 @@ const paperFigureTemplates = {
         <text class="figure-small quotient-label quotient-infinite-label" x="13" y="52">infinite orbit</text>
       </g>
 
-      <g class="quotient-system quotient-system-t34" transform="translate(82 18)">
+      <g class="quotient-system quotient-system-t34" transform="translate(82 10)">
 
         <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M0 76 H58"></path>
         <path class="figure-arrow quotient-edge-height" data-quotient-arrow="height" d="M58 76 H116"></path>
@@ -7985,7 +8123,7 @@ const paperFigureTemplates = {
         <text class="figure-small quotient-label quotient-period-label" x="206" y="87">period 4</text>
       </g>
 
-      <g class="quotient-system quotient-system-t30" transform="translate(68 177)">
+      <g class="quotient-system quotient-system-t30" transform="translate(68 154)">
 
         <text class="quotient-ellipsis quotient-ellipsis-left" x="20" y="102">...</text>
         <text class="quotient-ellipsis quotient-ellipsis-right" x="638" y="102">...</text>
@@ -8027,7 +8165,7 @@ const paperFigureTemplates = {
         <text class="figure-small quotient-label quotient-infinite-label" x="424" y="122">non-periodic infinite orbit</text>
       </g>
 
-      <g class="quotient-system quotient-system-infinite-period" transform="translate(72 300)">
+      <g class="quotient-system quotient-system-infinite-period" transform="translate(72 276)">
         <text class="quotient-ellipsis quotient-ellipsis-left" x="16" y="58">...</text>
         <path class="figure-line quotient-infinite-height-continuation" d="M44 52 H350"></path>
 
@@ -8077,6 +8215,9 @@ const paperFigureTemplates = {
         <marker id="tensor-f-arrow-muted" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="3.6" markerHeight="3.6" orient="auto">
           <path class="tensor-f-arrow-head tensor-f-arrow-head-muted" d="M 1 1 L 9 5 L 1 9 z"></path>
         </marker>
+        <marker id="tensor-iota-arrow-gray" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+          <path class="tensor-iota-arrow-head" d="M 1 1 L 9 5 L 1 9 z"></path>
+        </marker>
         <marker id="tensor-subset-pressure-arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto">
           <path class="tensor-subset-pressure-arrow-head" d="M 1 1 L 9 5 L 1 9 z"></path>
         </marker>
@@ -8085,77 +8226,104 @@ const paperFigureTemplates = {
 
       <g transform="translate(42 56)">
         <rect class="tensor-string-card" x="0" y="0" width="676" height="270" rx="14"></rect>
-        <rect class="tensor-set-envelope tensor-x-envelope" x="48" y="34" width="238" height="206" rx="54"></rect>
-        <rect class="tensor-set-envelope tensor-a-envelope" x="452" y="34" width="218" height="206" rx="54"></rect>
-        <text class="tensor-side-label" x="76" y="48">X</text>
-        <text class="tensor-side-label tensor-image-label" x="332" y="48">f(S)</text>
-        <text class="tensor-side-label" x="546" y="48">A</text>
-        <text class="tensor-side-label tensor-s-label" x="628" y="48">S</text>
+        <rect class="tensor-set-envelope tensor-x-envelope" x="30" y="42" width="164" height="190" rx="48"></rect>
+        <rect class="tensor-set-envelope tensor-left-a-envelope" x="264" y="58" width="104" height="170" rx="38"></rect>
+        <rect class="tensor-set-envelope tensor-a-envelope" x="424" y="58" width="114" height="170" rx="38"></rect>
+        <text class="tensor-side-label" x="74" y="48">X</text>
+        <text class="tensor-side-label tensor-left-a-label" x="316" y="48">A</text>
+        <text class="tensor-side-label" x="481" y="48">A</text>
+        <text class="tensor-side-label tensor-s-label" x="602" y="48">S</text>
 
-        <rect class="tensor-s-envelope" x="510" y="68" width="140" height="156" rx="42"></rect>
-        <line class="tensor-tensor-divider" x1="394" y1="48" x2="394" y2="238"></line>
+        <rect class="tensor-s-envelope tensor-s-choice-envelope" x="552" y="70" width="94" height="146" rx="36"></rect>
+        <line class="tensor-tensor-divider" x1="394" y1="48" x2="394" y2="238">
+          <animate attributeName="x1" values="394;394;548;548;394" keyTimes="0;0.5;0.64;0.96;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="x2" values="394;394;548;548;394" keyTimes="0;0.5;0.64;0.96;1" dur="10s" repeatCount="indefinite"></animate>
+        </line>
 
-        <g class="tensor-press-layer" aria-hidden="true">
-          <path class="tensor-press-arrow tensor-press-arrow-map" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M292 146 C322 136, 354 136, 384 146"></path>
-          <path class="tensor-press-arrow tensor-press-arrow-subset" marker-end="url(#tensor-subset-pressure-arrow)" pathLength="1" d="M500 146 C468 136, 432 136, 404 146"></path>
-          <g class="tensor-input-sketch tensor-map-sketch" transform="translate(304 64)">
-            <circle class="tensor-mini-node tensor-mini-x" cx="-34" cy="24" r="7"></circle>
-            <circle class="tensor-mini-node tensor-mini-a" cx="48" cy="24" r="7"></circle>
-            <path class="tensor-mini-map-arrow" marker-end="url(#tensor-f-arrow-green)" d="M42 24 C18 8, -8 8, -28 24"></path>
-            <text class="tensor-mini-caption tensor-mini-caption-map" x="8" y="12">f</text>
-          </g>
-          <g class="tensor-input-sketch tensor-subset-sketch" transform="translate(448 58)">
-            <rect class="tensor-mini-set tensor-mini-set-a" x="-22" y="0" width="70" height="48" rx="14"></rect>
-            <rect class="tensor-mini-set tensor-mini-set-s" x="8" y="8" width="34" height="32" rx="11"></rect>
-            <circle class="tensor-mini-dot tensor-mini-dot-in" cx="18" cy="22" r="3.8"></circle>
-            <circle class="tensor-mini-dot tensor-mini-dot-in" cx="32" cy="31" r="3.8"></circle>
-            <circle class="tensor-mini-dot tensor-mini-dot-out" cx="-8" cy="33" r="3.4"></circle>
-            <text class="tensor-mini-set-label tensor-mini-set-label-a" x="-5" y="16">A</text>
-            <text class="tensor-mini-set-label tensor-mini-set-label-s" x="45" y="16">S</text>
-            <text class="tensor-mini-caption tensor-mini-caption-subset" x="13" y="62">S ⊂ A</text>
-          </g>
+        <g class="tensor-x-node selected" transform="translate(112 92)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
+        <g class="tensor-x-node selected green" transform="translate(112 146)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
+        <g class="tensor-x-node muted" transform="translate(112 200)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
+
+        <g class="tensor-left-a-node selected" transform="translate(316 88)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+        <g class="tensor-left-a-node muted" transform="translate(316 126)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+        <g class="tensor-left-a-node selected green" transform="translate(316 164)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+        <g class="tensor-left-a-node muted" transform="translate(316 202)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+
+        <g class="tensor-left-map-cords">
+          <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M298 88 C244 78, 184 80, 132 92"></path>
+          <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M298 126 C244 118, 184 130, 132 140"></path>
+          <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M298 164 C244 174, 184 164, 132 152"></path>
+          <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M298 202 C244 212, 184 210, 132 200"></path>
+        </g>
+        <text class="tensor-map-symbol tensor-f-label" x="220" y="136">f</text>
+
+        <g class="tensor-a-reference-lines">
+          <path class="tensor-a-reference-line" pathLength="1" d="M334 88 C366 88, 426 88, 481 88"></path>
+          <path class="tensor-a-reference-line" pathLength="1" d="M334 126 C366 126, 426 126, 481 126"></path>
+          <path class="tensor-a-reference-line" pathLength="1" d="M334 164 C366 164, 426 164, 481 164"></path>
+          <path class="tensor-a-reference-line" pathLength="1" d="M334 202 C366 202, 426 202, 481 202"></path>
+        </g>
+        <g class="tensor-subset-extensions">
+          <path class="tensor-subset-extension" pathLength="1" d="M499 88 C526 88, 552 88, 582 88"></path>
+          <path class="tensor-subset-extension" pathLength="1" d="M499 164 C526 164, 552 164, 582 164"></path>
+        </g>
+        <g class="tensor-right-a-node in-s" transform="translate(481 88)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+        <g class="tensor-right-a-node" transform="translate(481 126)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+        <g class="tensor-right-a-node in-s" transform="translate(481 164)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+        <g class="tensor-right-a-node" transform="translate(481 202)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+        <g class="tensor-s-node" transform="translate(600 88)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+        <g class="tensor-s-node" transform="translate(600 164)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+
+        <g class="tensor-iota-decompose-layer">
+          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M582 88 C552 88, 526 88, 499 88"></path>
+          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M582 164 C552 164, 526 164, 499 164"></path>
+          <rect class="tensor-s-self-pulse" x="558" y="76" width="84" height="132" rx="32"></rect>
+          <text class="tensor-operator-label tensor-iota-label" x="538" y="79">&#953;</text>
+          <text class="tensor-operator-label tensor-s-self-label" x="624" y="134">S&#8835;S</text>
+        </g>
+        <g class="tensor-composite-layer">
+          <path class="tensor-composite-cord" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M582 88 C476 60, 262 68, 132 92"></path>
+          <path class="tensor-composite-cord" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M582 164 C474 174, 262 164, 132 146"></path>
+          <text class="tensor-operator-label tensor-composite-label" x="340" y="66">f&#8728;&#953;</text>
         </g>
 
-        <path class="tensor-cord selected" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M500 104 C396 74, 232 74, 182 92"></path>
-        <path class="tensor-cord muted" marker-end="url(#tensor-f-arrow-muted)" pathLength="1" d="M570 104 C482 112, 344 118, 268 112"></path>
-        <path class="tensor-cord selected" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M640 104 C492 52, 290 58, 182 92"></path>
-        <path class="tensor-cord selected green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M500 196 C402 190, 258 178, 182 178"></path>
-        <path class="tensor-cord muted" marker-end="url(#tensor-f-arrow-muted)" pathLength="1" d="M570 196 C470 214, 340 214, 268 194"></path>
-        <path class="tensor-cord selected green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M640 196 C500 238, 290 222, 182 178"></path>
-
-        <path class="tensor-factor-cord tensor-epi-cord warm" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M500 104 C452 82, 390 78, 366 96"></path>
-        <path class="tensor-factor-cord tensor-epi-cord warm" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M640 104 C520 54, 414 58, 366 96"></path>
-        <path class="tensor-factor-cord tensor-epi-cord green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M500 196 C450 194, 390 180, 366 184"></path>
-        <path class="tensor-factor-cord tensor-epi-cord green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M640 196 C522 230, 412 218, 366 184"></path>
-        <path class="tensor-factor-cord tensor-mono-cord warm" marker-end="url(#tensor-f-arrow-warm)" pathLength="1" d="M308 96 C270 88, 214 86, 182 92"></path>
-        <path class="tensor-factor-cord tensor-mono-cord green" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M308 184 C264 184, 210 180, 182 178"></path>
-
-        <text class="tensor-map-symbol tensor-f-label" x="352" y="148">f</text>
-        <text class="tensor-factor-label tensor-e-label" x="430" y="70">epi</text>
-        <text class="tensor-factor-label tensor-i-label" x="232" y="70">mono</text>
-
-        <g class="tensor-x-node selected" transform="translate(144 92)"><circle cx="0" cy="0" r="28"></circle><text x="0" y="8">x</text></g>
-        <g class="tensor-x-node selected green" transform="translate(144 178)"><circle cx="0" cy="0" r="28"></circle><text x="0" y="8">y</text></g>
-        <g class="tensor-x-node muted" transform="translate(236 112)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">z</text></g>
-        <g class="tensor-x-node muted" transform="translate(236 194)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">w</text></g>
-
-        <g class="tensor-image-node factor warm" transform="translate(332 96)"><circle cx="0" cy="0" r="24"></circle><text x="0" y="7">x</text></g>
-        <g class="tensor-image-node factor green" transform="translate(332 184)"><circle cx="0" cy="0" r="24"></circle><text x="0" y="7">y</text></g>
-
-        <g class="tensor-a-node selected" transform="translate(500 104)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">a</text></g>
-        <g class="tensor-a-node muted" transform="translate(570 104)"><circle cx="0" cy="0" r="19"></circle><text x="0" y="7">b</text></g>
-        <g class="tensor-a-node selected" transform="translate(640 104)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">c</text></g>
-        <g class="tensor-a-node selected green" transform="translate(500 196)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">d</text></g>
-        <g class="tensor-a-node muted" transform="translate(570 196)"><circle cx="0" cy="0" r="19"></circle><text x="0" y="7">e</text></g>
-        <g class="tensor-a-node selected green" transform="translate(640 196)"><circle cx="0" cy="0" r="21"></circle><text x="0" y="7">r</text></g>
-
-        <text class="tensor-length" x="338" y="246">epi-mono factorization removes degeneracy</text>
+        <g class="tensor-step-labels" aria-hidden="true">
+          <g class="tensor-step-label tensor-step-label-1" transform="translate(384 247)">
+            <rect x="-92" y="-16" width="184" height="24" rx="12"></rect>
+            <text x="0" y="2">Step 1: split A&#8835;S</text>
+          </g>
+          <g class="tensor-step-label tensor-step-label-2" transform="translate(384 247)">
+            <rect x="-104" y="-16" width="208" height="24" rx="12"></rect>
+            <text x="0" y="2">Step 2: move tensor line</text>
+          </g>
+          <g class="tensor-step-label tensor-step-label-3" transform="translate(384 247)">
+            <rect x="-110" y="-16" width="220" height="24" rx="12"></rect>
+            <text x="0" y="2">Step 3: compose f with &#953;</text>
+          </g>
+        </g>
       </g>
     </svg>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-1">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f}A})\\otimes(\\textcolor{#b66737}{S\\subset A})\\)</span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-2">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f|_S}S})\\otimes(\\textcolor{#b66737}{S\\subset S})\\)</span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-3">\\(\\textcolor{#2c6f63}{f|_S=i\\circ e},\\quad \\textcolor{#b66737}{S}\\textcolor{#2c6f63}{\\twoheadrightarrow f(S)\\hookrightarrow X}\\)</span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-4">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{i}f(S)})\\otimes(\\textcolor{#b66737}{f(S)\\subset f(S)}),\\quad \\mathrm{Le}(t)=\\#\\textcolor{#2c6f63}{f(S)}\\)</span>`,
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-1 tensor-formula-split">
+      <span class="tensor-formula-left">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f}A})\\)</span>
+      <span class="tensor-formula-operator">\\(\\otimes\\)</span>
+      <span class="tensor-formula-right">\\((\\textcolor{#b66737}{A\\supset S})\\)</span>
+    </span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-2 tensor-formula-split">
+      <span class="tensor-formula-left">\\(\\textcolor{#b66737}{A\\supset S}\\leadsto \\textcolor{#7b7f78}{A\\xleftarrow{\\iota}S}\\)</span>
+      <span class="tensor-formula-operator">\\(\\otimes\\)</span>
+      <span class="tensor-formula-right">\\((\\textcolor{#b66737}{S\\supset S})\\)</span>
+    </span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-3 tensor-formula-split">
+      <span class="tensor-formula-left">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f}A}\\textcolor{#7b7f78}{\\xleftarrow{\\iota}S})\\)</span>
+      <span class="tensor-formula-operator">\\(\\otimes\\)</span>
+      <span class="tensor-formula-right">\\((\\textcolor{#b66737}{S\\supset S})\\)</span>
+    </span>
+    <span class="figure-math tensor-formula-stage tensor-formula-stage-4 tensor-formula-split tensor-formula-with-result">
+      <span class="tensor-formula-left">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f\\circ\\iota}S})\\)</span>
+      <span class="tensor-formula-operator">\\(\\otimes\\)</span>
+      <span class="tensor-formula-right">\\((\\textcolor{#b66737}{S\\supset S})\\)</span>
+      <span class="tensor-formula-result">\\(\\textcolor{#2c6f63}{f\\circ\\iota}:\\textcolor{#b66737}{S}\\to X\\)</span>
+    </span>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
     <svg class="automata-cover-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
@@ -8167,92 +8335,118 @@ const paperFigureTemplates = {
         <marker id="arrow-automata-cover-neutral" class="automata-marker-neutral" data-automata-marker="neutral" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 8 4 L 0 8 z"></path></marker>
       </defs>
       <g transform="translate(22 18)">
-        <g class="automata-input-tape" transform="translate(54 248) scale(1.06)">
-          <rect class="automata-input-panel" x="0" y="0" width="270" height="104" rx="12"></rect>
-          <text class="figure-small automata-input-label" x="28" y="34">w =</text>
-          <g transform="translate(62 34)">
+        <g class="automata-input-tape" transform="translate(54 228)">
+          <rect class="automata-input-panel" x="0" y="0" width="270" height="126" rx="12"></rect>
+          <text class="figure-small automata-input-label" x="28" y="28">u =</text>
+          <g transform="translate(62 28)">
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
-              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1;1" keyTimes="0;0.065;0.12;0.495;0.5;1"></animate>
-              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
-              <text class="figure-small" x="0" y="5">a</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(34 0)">
-              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1;1" keyTimes="0;0.19;0.245;0.495;0.5;1"></animate>
-              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
-              <text class="figure-small" x="0" y="5">a</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(68 0)">
-              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1;1" keyTimes="0;0.315;0.37;0.495;0.5;1"></animate>
-              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
-              <text class="figure-small" x="0" y="5">b</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(102 0)">
-              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1;1" keyTimes="0;0.42;0.47;0.495;0.5;1"></animate>
-              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
-              <text class="figure-small" x="0" y="5">b</text>
-            </g>
-            <text class="figure-small automata-language-mark automata-language-accept" x="144" y="5">accept</text>
-          </g>
-          <text class="figure-small automata-input-label" x="28" y="77">u =</text>
-          <g transform="translate(62 77)">
-            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
-              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.565;0.62;0.995;1"></animate>
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0083;0.0208;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">a</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-b" transform="translate(34 0)">
-              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.69;0.745;0.995;1"></animate>
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0583;0.0708;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">b</text>
             </g>
             <g class="automata-input-symbol automata-input-symbol-a" transform="translate(68 0)">
-              <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.815;0.87;0.995;1"></animate>
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.1083;0.1208;0.995;1"></animate>
               <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
               <text class="figure-small" x="0" y="5">a</text>
             </g>
-            <text class="figure-small automata-language-mark automata-language-reject" x="110" y="5">reject</text>
+          </g>
+          <text class="figure-small automata-input-label" x="28" y="66">v =</text>
+          <g transform="translate(62 66)">
+            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3417;0.3542;0.995;1"></animate>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">a</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(34 0)">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3917;0.4042;0.995;1"></animate>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">b</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(68 0)">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.4417;0.4542;0.995;1"></animate>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">b</text>
+            </g>
+          </g>
+          <text class="figure-small automata-input-label" x="28" y="104">w =</text>
+          <g transform="translate(62 104)">
+            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.675;0.6875;0.995;1"></animate>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">a</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(34 0)">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.725;0.7375;0.995;1"></animate>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">a</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(68 0)">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.775;0.7875;0.995;1"></animate>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">b</text>
+            </g>
+            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(102 0)">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.825;0.8375;0.995;1"></animate>
+              <rect x="-12" y="-16" width="24" height="30" rx="7"></rect>
+              <text class="figure-small" x="0" y="5">b</text>
+            </g>
           </g>
         </g>
 
         <g transform="translate(18 4) scale(1.08)">
-          <path class="figure-arrow automata-edge automata-edge-a" d="M91 125 C114 74, 134 74, 157 125"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M164 116 C118 50, 234 50, 188 116"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M302 123 C328 74, 344 74, 365 125"></path>
-          <path class="figure-arrow automata-edge automata-edge-a" d="M372 116 C326 50, 438 50, 396 116"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M88 122 C114 50, 134 50, 160 122"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M160 122 C118 50, 234 50, 192 122"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M300 122 C328 50, 344 50, 368 122"></path>
+          <path class="figure-arrow automata-edge automata-edge-a" d="M368 122 C326 50, 438 50, 400 122"></path>
 
-          <path class="figure-arrow automata-edge automata-edge-b" d="M84 148 C126 214, 18 214, 60 148"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M195 139 C218 184, 236 184, 258 141"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M266 151 C226 214, 334 214, 294 151"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M365 139 C344 184, 326 184, 302 141"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M88 142 C126 210, 18 210, 56 142"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M192 142 C218 210, 236 210, 260 142"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M260 142 C226 210, 334 210, 300 142"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M368 145 C344 218, 318 216, 291 151"></path>
 
           <g class="automata-state" transform="translate(72 132)">
-            <circle class="figure-node" cx="0" cy="0" r="20"></circle>
+            <circle class="figure-node" cx="0" cy="0" r="17"></circle>
           </g>
           <g class="automata-state" transform="translate(176 132)">
-            <circle class="figure-node" cx="0" cy="0" r="20"></circle>
+            <circle class="figure-node" cx="0" cy="0" r="17"></circle>
           </g>
           <g class="automata-state automata-state-accepting" transform="translate(280 132)">
-            <circle class="figure-node" cx="0" cy="0" r="24"></circle>
-            <circle class="automata-accept-ring" cx="0" cy="0" r="17"></circle>
+            <circle class="figure-node" cx="0" cy="0" r="21"></circle>
+            <circle class="automata-accept-ring" cx="0" cy="0" r="14.5"></circle>
+            <path class="automata-state-mark automata-state-check" d="M-7 -1 L-2 5 L8 -7"></path>
           </g>
           <g class="automata-state" transform="translate(384 132)">
-            <circle class="figure-node" cx="0" cy="0" r="20"></circle>
+            <circle class="figure-node" cx="0" cy="0" r="17"></circle>
+            <path class="automata-state-mark automata-state-cross" d="M-6 -6 L6 6 M6 -6 L-6 6"></path>
           </g>
 
-          <g class="automata-moving-dot automata-moving-dot-cover">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M72 132 L91 125 C114 74, 134 74, 157 125 L176 132 L164 116 C118 50, 234 50, 188 116 L176 132 L195 139 C218 184, 236 184, 258 141 L280 132 L266 151 C226 214, 334 214, 294 151 L280 132" keyTimes="0;0.49;0.5;1" keyPoints="0;1;0;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="1;1;0;0;1" keyTimes="0;0.49;0.5;0.99;1"></animate>
-            <circle class="automata-moving-dot-halo" cx="0" cy="0" r="12"></circle>
-            <circle class="automata-moving-dot-core" cx="0" cy="0" r="6">
-              <animate attributeName="fill" dur="16s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c" keyTimes="0;0.25;0.2501;0.49;0.5;1"></animate>
+          <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-u">
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;300 122;319.1 81.5;335.5 68;351.2 81.5;368 122;384 132;384 132;72 132;72 132" keyTimes="0;0.0083;0.0167;0.025;0.0333;0.0417;0.05;0.0583;0.0667;0.075;0.0833;0.0917;0.1;0.1083;0.1167;0.125;0.1333;0.1417;0.15;0.3333;0.3337;1"></animateTransform>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.325;0.3333;1"></animate>
+            <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
+            <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.4">
+              <animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c" keyTimes="0;0.05;0.0501;0.1;0.1001;1"></animate>
             </circle>
           </g>
-          <g class="automata-moving-dot automata-moving-dot-reject">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M72 132 L91 125 C114 74, 134 74, 157 125 L176 132 L195 139 C218 184, 236 184, 258 141 L280 132 L302 123 C328 74, 344 74, 365 125 L384 132" keyTimes="0;0.5;0.99;1" keyPoints="0;0;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.5;0.51;0.99;1"></animate>
-            <circle class="automata-moving-dot-halo" cx="0" cy="0" r="10"></circle>
-            <circle class="automata-moving-dot-core" cx="0" cy="0" r="4.8">
-              <animate attributeName="fill" dur="16s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c" keyTimes="0;0.665;0.6651;0.83;0.8301;1"></animate>
+          <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-v">
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;260 142;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132;72 132;72 132" keyTimes="0;0.3332;0.3333;0.3417;0.35;0.3583;0.3667;0.375;0.3833;0.3917;0.4;0.4083;0.4167;0.425;0.4333;0.4417;0.45;0.4583;0.4667;0.475;0.4833;0.6667;0.6671;1"></animateTransform>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3332;0.3333;0.6583;0.6667;1"></animate>
+            <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
+            <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.4">
+              <animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3" keyTimes="0;0.3833;0.3834;1"></animate>
+            </circle>
+          </g>
+          <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-w">
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;160 122;153.2 81.5;176 68;198.8 81.5;192 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;260 142;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132" keyTimes="0;0.6666;0.6667;0.675;0.6833;0.6917;0.7;0.7083;0.7167;0.725;0.7333;0.7417;0.75;0.7583;0.7667;0.775;0.7833;0.7917;0.8;0.8083;0.8167;0.825;0.8333;0.8417;0.85;0.8583;0.8667;1"></animateTransform>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.6666;0.6667;0.9958;1"></animate>
+            <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
+            <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.4">
+              <animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3" keyTimes="0;0.7667;0.7668;1"></animate>
             </circle>
           </g>
 
@@ -8260,14 +8454,14 @@ const paperFigureTemplates = {
 
         <g transform="translate(506 76) scale(0.98)">
           <g transform="translate(113 72)">
-            <path class="figure-arrow automata-edge automata-edge-a" d="M-12 -11 C-58 -58, 58 -58, 12 -11"></path>
-            <path class="figure-arrow automata-edge automata-edge-b" d="M12 11 C58 58, -58 58, -12 11"></path>
-            <circle class="figure-node" cx="0" cy="0" r="17"></circle>
+            <path class="figure-arrow automata-edge automata-edge-a" d="M-12 -11 C-58 -90.4, 58 -90.4, 12 -11"></path>
+            <path class="figure-arrow automata-edge automata-edge-b" d="M12 11 C58 86, -58 86, -12 11"></path>
+            <circle class="figure-node" cx="0" cy="0" r="15"></circle>
             <g class="automata-moving-dot automata-moving-dot-base">
-              <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M0 0 C-58 -58, 58 -58, 0 0 C-58 -58, 58 -58, 0 0 C58 58, -58 58, 0 0 C58 58, -58 58, 0 0 C-58 -58, 58 -58, 0 0 C58 58, -58 58, 0 0 C-58 -58, 58 -58, 0 0" keyTimes="0;0.5;1" keyPoints="0;0.5714;1"></animateMotion>
+              <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;0 0" keyTimes="0;0.0083;0.0167;0.025;0.0333;0.0417;0.05;0.0583;0.0667;0.075;0.0833;0.0917;0.1;0.1083;0.1167;0.125;0.1333;0.1417;0.15;0.3333;0.3417;0.35;0.3583;0.3667;0.375;0.3833;0.3917;0.4;0.4083;0.4167;0.425;0.4333;0.4417;0.45;0.4583;0.4667;0.475;0.4833;0.6667;0.675;0.6833;0.6917;0.7;0.7083;0.7167;0.725;0.7333;0.7417;0.75;0.7583;0.7667;0.775;0.7833;0.7917;0.8;0.8083;0.8167;0.825;0.8333;0.8417;0.85;0.8583;0.8667;1"></animateTransform>
               <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
               <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.6">
-                <animate attributeName="fill" dur="16s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c" keyTimes="0;0.25;0.2501;0.5;0.5001;0.6666;0.6667;0.8333;0.8334;1"></animate>
+                <animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c;#2f6aa3;#2f6aa3" keyTimes="0;0.05;0.0501;0.1;0.1001;0.3833;0.3834;0.6667;0.6668;0.7667;0.7668;1"></animate>
               </circle>
             </g>
           </g>
@@ -8275,41 +8469,80 @@ const paperFigureTemplates = {
 
         <path class="figure-arrow dashed automata-projection" d="M456 148 H600"></path>
         <text class="figure-small automata-projection-label" x="528" y="133">p</text>
+        <g class="automata-result-output automata-language-reject">
+          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M432.7 146.6 C390 192, 300 226, 216.3 256" keyTimes="0;0.1542;0.1708;0.3125;0.325;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+          <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.1542;0.1708;0.3125;0.325;1"></animate>
+          <g class="automata-result-badge">
+            <circle class="automata-result-badge-bg" cx="0" cy="0" r="11"></circle>
+            <path class="automata-result-mark automata-result-cross" d="M-5.5 -5.5 L5.5 5.5 M5.5 -5.5 L-5.5 5.5"></path>
+          </g>
+        </g>
+        <g class="automata-result-output automata-language-accept">
+          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M320.4 146.6 C308 202, 268 258, 216.3 294" keyTimes="0;0.4875;0.5042;0.6458;0.6583;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+          <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.4875;0.5042;0.6458;0.6583;1"></animate>
+          <g class="automata-result-badge">
+            <circle class="automata-result-badge-bg" cx="0" cy="0" r="11"></circle>
+            <path class="automata-result-mark automata-result-check" d="M-6 -1 L-1.5 4.5 L7 -6.5"></path>
+          </g>
+        </g>
+        <g class="automata-result-output automata-language-accept">
+          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M320.4 146.6 C314 218, 288 292, 250.3 332" keyTimes="0;0.8708;0.8875;0.9958;1" keyPoints="0;0;1;1;0"></animateMotion>
+          <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.8708;0.8875;0.9958;1"></animate>
+          <g class="automata-result-badge">
+            <circle class="automata-result-badge-bg" cx="0" cy="0" r="11"></circle>
+            <path class="automata-result-mark automata-result-check" d="M-6 -1 L-1.5 4.5 L7 -6.5"></path>
+          </g>
+        </g>
         <g class="automata-consuming-letters">
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M120 284 C122 232, 126 148, 156 102" keyTimes="0;0.06;0.115;0.125;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.06;0.08;0.115;0.125;0.99;1"></animate>
-            <text x="0" y="5">a</text>
-          </g>
-          <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M156 284 C170 222, 178 124, 208 84" keyTimes="0;0.18;0.24;0.25;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.18;0.2;0.24;0.25;0.99;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M116 256 C112 214, 108 166, 113 135.8" keyTimes="0;0.0083;0.0167;1" keyPoints="0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.0083;0.0167;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M192 284 C210 254, 232 198, 264 186" keyTimes="0;0.305;0.365;0.375;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.305;0.325;0.365;0.375;0.99;1"></animate>
-            <text x="0" y="5">b</text>
-          </g>
-          <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M228 284 C260 272, 292 214, 320 198" keyTimes="0;0.41;0.465;0.475;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.41;0.43;0.465;0.475;0.99;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M150 256 C176 226, 212 188, 225.4 157.4" keyTimes="0;0.0125;0.0187;0.0583;0.0667;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0125;0.0187;0.0583;0.0667;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M120 330 C118 268, 126 148, 156 102" keyTimes="0;0.56;0.615;0.625;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.56;0.58;0.615;0.625;0.99;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M184 256 C236 218, 318 174, 342 135.8" keyTimes="0;0.0625;0.0687;0.1083;0.1167;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0625;0.0687;0.1083;0.1167;1"></animate>
+            <text x="0" y="5">a</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-a">
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M116 294 C112 236, 108 178, 113 135.8" keyTimes="0;0.2958;0.3021;0.3417;0.35;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.2958;0.3021;0.3417;0.35;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M156 330 C174 284, 218 208, 264 186" keyTimes="0;0.68;0.74;0.75;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.68;0.7;0.74;0.75;0.99;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M150 294 C176 250, 212 204, 225.4 157.4" keyTimes="0;0.3458;0.3521;0.3917;0.4;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3458;0.3521;0.3917;0.4;1"></animate>
+            <text x="0" y="5">b</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-b">
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M184 294 C226 256, 282 206, 298.8 157.4" keyTimes="0;0.3958;0.4021;0.4417;0.45;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3958;0.4021;0.4417;0.45;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" path="M192 330 C246 278, 326 150, 382 102" keyTimes="0;0.805;0.865;0.875;0.99;1" keyPoints="0;0;1;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="16s" repeatCount="indefinite" values="0;0;1;1;0;0;0" keyTimes="0;0.805;0.825;0.865;0.875;0.99;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M116 332 C112 260, 108 190, 113 135.8" keyTimes="0;0.6292;0.6354;0.675;0.6833;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6292;0.6354;0.675;0.6833;1"></animate>
             <text x="0" y="5">a</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-a">
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M150 332 C160 258, 176 184, 190.8 135.8" keyTimes="0;0.6792;0.6854;0.725;0.7333;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6792;0.6854;0.725;0.7333;1"></animate>
+            <text x="0" y="5">a</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-b">
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M184 332 C200 268, 216 206, 225.4 157.4" keyTimes="0;0.7292;0.7354;0.775;0.7833;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7292;0.7354;0.775;0.7833;1"></animate>
+            <text x="0" y="5">b</text>
+          </g>
+          <g class="automata-consumed-letter automata-consumed-letter-b">
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M218 332 C244 272, 284 216, 298.8 157.4" keyTimes="0;0.7792;0.7854;0.825;0.8333;1" keyPoints="0;0;1;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7792;0.7854;0.825;0.8333;1"></animate>
+            <text x="0" y="5">b</text>
           </g>
         </g>
       </g>
@@ -8488,6 +8721,21 @@ function applyFigureMarkerIds(container, figureId, prefix) {
     setMarker(".automata-projection", "neutral");
     return;
   }
+  if (figureId === "automata-cantor-morphism") {
+    if (!svg) return;
+    const markers = new Map();
+    svg.querySelectorAll("marker[data-cantor-marker]").forEach((marker) => {
+      const group = marker.dataset.cantorMarker || "neutral";
+      const markerId = `${prefix}-${figureId}-${group}`;
+      marker.id = markerId;
+      markers.set(group, markerId);
+    });
+    svg.querySelectorAll("[data-cantor-arrow]").forEach((path) => {
+      const markerId = markers.get(path.dataset.cantorArrow || "neutral");
+      if (markerId) path.setAttribute("marker-end", `url(#${markerId})`);
+    });
+    return;
+  }
   const marker = svg?.querySelector("marker");
   if (!svg || !marker) return;
   const markerId = `${prefix}-${figureId}`;
@@ -8566,6 +8814,21 @@ const normalizationSubgroupElements = {
   one: ["e"]
 };
 
+const normalizationSubgroupCoordinates = {
+  d4: [150, 38],
+  v0: [70, 106],
+  rot: [150, 106],
+  v1: [230, 106],
+  ref0: [35, 190],
+  ref2: [95, 190],
+  r2: [150, 190],
+  ref1: [205, 190],
+  ref3: [265, 190],
+  one: [150, 290]
+};
+
+const normalizationElementOrder = Object.keys(normalizationElementLabels);
+
 const normalizationElementCoordinates = {
   orientation: {
     o0: [21, 23],
@@ -8618,12 +8881,21 @@ const normalizationD4Matrices = {
   s3t: [1, 0, 0, -1]
 };
 
+const normalizationRotationStepDegrees = {
+  e: 0,
+  s: 90,
+  s2: 180,
+  s3: -90
+};
+
 const normalizationGeometricMotion = {
   vertex: [21, 25],
   edge: [21, 25],
   diagonal: [21, 25],
   axis: [21, 25]
 };
+
+const normalizationSquareBodyCenter = [21, 25];
 
 const normalizationOrbitCoordinates = {
   vertex: {
@@ -8637,10 +8909,17 @@ const normalizationOrbitCoordinates = {
     e1: [1, 0],
     e2: [0, 1],
     e3: [-1, 0]
+  },
+  face: {
+    f0: [-1, -1],
+    f1: [1, -1],
+    f2: [1, 1],
+    f3: [-1, 1]
   }
 };
 
 const normalizationMotionState = new WeakMap();
+const normalizationSubgroupMotionState = new WeakMap();
 
 function normalizationMultiplyElements(left, right) {
   const leftTuple = normalizationElementTuples[left] || normalizationElementTuples.e;
@@ -8649,6 +8928,41 @@ function normalizationMultiplyElements(left, right) {
   const rotation = (leftTuple[0] + rotationSign * rightTuple[0] + 4) % 4;
   const reflection = (leftTuple[1] + rightTuple[1]) % 2;
   return normalizationTupleElements[[rotation, reflection].join(",")] || "e";
+}
+
+function normalizationInverseElement(elementId) {
+  return (
+    normalizationElementOrder.find(
+      (candidate) =>
+        normalizationMultiplyElements(elementId, candidate) === "e" &&
+        normalizationMultiplyElements(candidate, elementId) === "e"
+    ) || "e"
+  );
+}
+
+function normalizationConjugateElement(conjugator, elementId) {
+  return normalizationMultiplyElements(
+    normalizationMultiplyElements(conjugator, elementId),
+    normalizationInverseElement(conjugator)
+  );
+}
+
+function normalizationElementSetKey(elements) {
+  const elementSet = new Set(elements);
+  return normalizationElementOrder.filter((elementId) => elementSet.has(elementId)).join(" ");
+}
+
+const normalizationSubgroupByElementSet = Object.fromEntries(
+  Object.entries(normalizationSubgroupElements).map(([subgroupId, elements]) => [
+    normalizationElementSetKey(elements),
+    subgroupId
+  ])
+);
+
+function normalizationConjugateSubgroup(conjugator, subgroupId) {
+  const elements = normalizationSubgroupElements[subgroupId] || normalizationSubgroupElements.one;
+  const conjugatedElements = elements.map((elementId) => normalizationConjugateElement(conjugator, elementId));
+  return normalizationSubgroupByElementSet[normalizationElementSetKey(conjugatedElements)] || subgroupId;
 }
 
 function normalizationPointByCoordinate(orbit, coordinate) {
@@ -8688,7 +9002,7 @@ function normalizationHalfturnTargetPoint(elementId, pointId) {
 }
 
 function normalizationTargetPoint(orbit, elementId, pointId) {
-  if (orbit === "vertex" || orbit === "edge") {
+  if (orbit === "vertex" || orbit === "edge" || orbit === "face") {
     const coordinate = normalizationOrbitCoordinates[orbit]?.[pointId];
     if (!coordinate) return pointId;
     return normalizationPointByCoordinate(orbit, normalizationTargetCoordinate(elementId, coordinate)) || pointId;
@@ -8708,6 +9022,26 @@ function normalizationMatrixAround(center, linear) {
   const [cx, cy] = center;
   const [a, b, c, d] = linear;
   return [a, b, c, d, cx - a * cx - c * cy, cy - b * cx - d * cy];
+}
+
+function normalizationRotationMatrix(degrees) {
+  const radians = (degrees * Math.PI) / 180;
+  const cos = Math.cos(radians);
+  const sin = Math.sin(radians);
+  return [cos, sin, -sin, cos];
+}
+
+function normalizationMultiplyMatrices(left, right) {
+  const [a1, b1, c1, d1, e1, f1] = left;
+  const [a2, b2, c2, d2, e2, f2] = right;
+  return [
+    a1 * a2 + c1 * b2,
+    b1 * a2 + d1 * b2,
+    a1 * c2 + c1 * d2,
+    b1 * c2 + d1 * d2,
+    a1 * e2 + c1 * f2 + e1,
+    b1 * e2 + d1 * f2 + f1
+  ];
 }
 
 function normalizationTranslateMatrix(dx, dy) {
@@ -8763,6 +9097,114 @@ function animateNormalizationTransform(element, targetMatrix) {
   state.frame = requestAnimationFrame(step);
 }
 
+function normalizationTranslateString(point) {
+  return `translate(${point.map((value) => Number(value.toFixed(2))).join(" ")})`;
+}
+
+function animateNormalizationSubgroupTransform(element, targetPoint) {
+  const subgroupId = element.dataset.normalizationSubgroup || "";
+  const homePoint = normalizationSubgroupCoordinates[subgroupId] || [0, 0];
+  const currentState = normalizationSubgroupMotionState.get(element);
+  const fromPoint = currentState?.point || homePoint;
+  if (currentState?.frame) cancelAnimationFrame(currentState.frame);
+
+  const prefersReducedMotion =
+    typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const canAnimate =
+    typeof requestAnimationFrame === "function" &&
+    typeof performance !== "undefined" &&
+    !prefersReducedMotion;
+
+  if (!canAnimate) {
+    element.setAttribute("transform", normalizationTranslateString(targetPoint));
+    normalizationSubgroupMotionState.set(element, { point: targetPoint, frame: null });
+    return;
+  }
+
+  const startedAt = performance.now();
+  const duration = 360;
+  const state = { point: fromPoint, frame: null };
+  normalizationSubgroupMotionState.set(element, state);
+
+  const step = (now) => {
+    const progress = Math.min(1, (now - startedAt) / duration);
+    const eased = normalizationEase(progress);
+    const point = [
+      fromPoint[0] + (targetPoint[0] - fromPoint[0]) * eased,
+      fromPoint[1] + (targetPoint[1] - fromPoint[1]) * eased
+    ];
+    state.point = point;
+    element.setAttribute("transform", normalizationTranslateString(point));
+    if (progress < 1) {
+      state.frame = requestAnimationFrame(step);
+      return;
+    }
+    state.frame = null;
+    state.point = targetPoint;
+    element.setAttribute("transform", normalizationTranslateString(targetPoint));
+  };
+
+  state.frame = requestAnimationFrame(step);
+}
+
+function setNormalizationTransform(element, targetMatrix) {
+  const currentState = normalizationMotionState.get(element);
+  if (currentState?.frame) cancelAnimationFrame(currentState.frame);
+  element.setAttribute("transform", normalizationMatrixString(targetMatrix));
+  normalizationMotionState.set(element, { matrix: targetMatrix, frame: null });
+}
+
+function animateNormalizationRotationTransform(element, targetMatrix, center, degrees) {
+  const currentState = normalizationMotionState.get(element);
+  const fromMatrix = currentState?.matrix || [1, 0, 0, 1, 0, 0];
+  if (currentState?.frame) cancelAnimationFrame(currentState.frame);
+
+  const prefersReducedMotion =
+    typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  const canAnimate =
+    typeof requestAnimationFrame === "function" &&
+    typeof performance !== "undefined" &&
+    !prefersReducedMotion &&
+    degrees !== 0;
+
+  if (!canAnimate) {
+    setNormalizationTransform(element, targetMatrix);
+    return;
+  }
+
+  const startedAt = performance.now();
+  const duration = Math.abs(degrees) === 180 ? 460 : 360;
+  const state = { matrix: fromMatrix, frame: null };
+  normalizationMotionState.set(element, state);
+
+  const step = (now) => {
+    const progress = Math.min(1, (now - startedAt) / duration);
+    const eased = normalizationEase(progress);
+    const rotationMatrix = normalizationMatrixAround(center, normalizationRotationMatrix(degrees * eased));
+    const matrix = normalizationMultiplyMatrices(rotationMatrix, fromMatrix);
+    state.matrix = matrix;
+    element.setAttribute("transform", normalizationMatrixString(matrix));
+    if (progress < 1) {
+      state.frame = requestAnimationFrame(step);
+      return;
+    }
+    state.frame = null;
+    state.matrix = targetMatrix;
+    element.setAttribute("transform", normalizationMatrixString(targetMatrix));
+  };
+
+  state.frame = requestAnimationFrame(step);
+}
+
+function applyNormalizationD4Transform(element, targetMatrix, center, actedElement) {
+  const rotationDegrees = normalizationRotationStepDegrees[actedElement];
+  if (typeof rotationDegrees === "number") {
+    animateNormalizationRotationTransform(element, targetMatrix, center, rotationDegrees);
+    return;
+  }
+  animateNormalizationTransform(element, targetMatrix);
+}
+
 function normalizationCurrentActionState(root) {
   const current = root.dataset.normalizationActionState || "e";
   return normalizationElementLabels[current] ? current : "e";
@@ -8775,12 +9217,21 @@ function setNormalizationActionMotion(root, elementId) {
   const d4Matrix = normalizationD4Matrices[toState] || normalizationD4Matrices.e;
   root.dataset.normalizationActionState = toState;
 
+  root.querySelectorAll("[data-normalization-square-body]").forEach((squareBody) => {
+    applyNormalizationD4Transform(
+      squareBody,
+      normalizationMatrixAround(normalizationSquareBodyCenter, d4Matrix),
+      normalizationSquareBodyCenter,
+      actedElement
+    );
+  });
+
   root.querySelectorAll("[data-normalization-orbit][data-normalization-point]").forEach((place) => {
     const orbit = place.dataset.normalizationOrbit || "";
     const pointId = place.dataset.normalizationPoint || "";
     const center = normalizationGeometricMotion[orbit];
     if (center) {
-      animateNormalizationTransform(place, normalizationMatrixAround(center, d4Matrix));
+      applyNormalizationD4Transform(place, normalizationMatrixAround(center, d4Matrix), center, actedElement);
       return;
     }
 
@@ -8794,11 +9245,91 @@ function setNormalizationActionMotion(root, elementId) {
   return { actedElement, fromState, toState };
 }
 
-function normalizationPlaceStayedPut(place, fromState, toState) {
-  const orbit = place.dataset.normalizationOrbit || "";
-  const pointId = place.dataset.normalizationPoint || "";
+function setNormalizationSubgroupMotion(root, conjugator) {
+  const actingElement = normalizationElementLabels[conjugator] ? conjugator : "e";
+  root.dataset.normalizationSubgroupActionState = actingElement;
+
+  root.querySelectorAll("[data-normalization-subgroup]").forEach((subgroup) => {
+    const subgroupId = subgroup.dataset.normalizationSubgroup || "one";
+    const targetSubgroupId = normalizationConjugateSubgroup(actingElement, subgroupId);
+    const targetPoint = normalizationSubgroupCoordinates[targetSubgroupId] || normalizationSubgroupCoordinates[subgroupId];
+    if (!targetPoint) return;
+    subgroup.classList.toggle("is-conjugated", targetSubgroupId !== subgroupId);
+    animateNormalizationSubgroupTransform(subgroup, targetPoint);
+  });
+}
+
+function normalizationFeatureStayedPut(orbit, pointId, fromState, toState) {
   if (!orbit || !pointId) return false;
   return normalizationTargetPoint(orbit, fromState, pointId) === normalizationTargetPoint(orbit, toState, pointId);
+}
+
+function normalizationPlaceStayedPut(place, fromState, toState) {
+  return normalizationFeatureStayedPut(
+    place.dataset.normalizationOrbit || "",
+    place.dataset.normalizationPoint || "",
+    fromState,
+    toState
+  );
+}
+
+function setNormalizationMotionClass(element, isFixed) {
+  element.classList.toggle("is-fixed", isFixed);
+  element.classList.toggle("is-moving", !isFixed);
+}
+
+function normalizationElementsFixingFeature(orbit, pointId) {
+  return Object.keys(normalizationElementLabels).filter((elementId) =>
+    normalizationFeatureStayedPut(orbit, pointId, "e", elementId)
+  );
+}
+
+function normalizationFeatureLabel(orbit, pointId) {
+  if (orbit === "vertex") return `vertex ${pointId.replace("v", "")}`;
+  if (orbit === "edge") return `edge ${pointId.replace("e", "")}`;
+  if (orbit === "face") return `face ${pointId.replace("f", "")}`;
+  return pointId || orbit;
+}
+
+function normalizationFeatureSelector(orbit, pointId) {
+  if (orbit === "face") return `[data-normalization-face-cell="${pointId}"]`;
+  if (orbit === "edge") {
+    return [
+      `[data-normalization-boundary-edge="${pointId}"]`,
+      `[data-normalization-orbit="edge"][data-normalization-point="${pointId}"]`
+    ].join(", ");
+  }
+  return `[data-normalization-orbit="${orbit}"][data-normalization-point="${pointId}"]`;
+}
+
+function normalizationFeatureTargetInfo(feature) {
+  if (feature.dataset.normalizationFaceCell) {
+    return { orbit: "face", pointId: feature.dataset.normalizationFaceCell };
+  }
+  if (feature.dataset.normalizationBoundaryEdge) {
+    return { orbit: "edge", pointId: feature.dataset.normalizationBoundaryEdge };
+  }
+  const orbit = feature.dataset.normalizationOrbit || "";
+  const pointId = feature.dataset.normalizationPoint || "";
+  if (orbit === "vertex" || orbit === "edge") return { orbit, pointId };
+  return { orbit: "", pointId: "" };
+}
+
+function clearNormalizationFeatureSelection(root) {
+  delete root.dataset.normalizationFeatureSelected;
+  root.querySelectorAll(".is-feature-selected").forEach((feature) => {
+    feature.classList.remove("is-feature-selected");
+  });
+  root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
+    control.classList.remove("is-feature-fixer", "is-feature-dimmed");
+  });
+}
+
+function clearNormalizationMotionSelection(root) {
+  delete root.dataset.normalizationElementSelected;
+  root.querySelectorAll(".is-fixed, .is-moving").forEach((feature) => {
+    feature.classList.remove("is-fixed", "is-moving");
+  });
 }
 
 function pulseNormalizationElementControl(root, elementId) {
@@ -8816,6 +9347,8 @@ function setNormalizationSelection(root, subgroupId = "d4") {
   const selected = normalizationContainment[subgroupId] ? subgroupId : "d4";
   const allowed = new Set(normalizationContainment[selected]);
   const highlighted = new Set(normalizationConjugateDownsets[selected] || normalizationContainment[selected]);
+  clearNormalizationFeatureSelection(root);
+  clearNormalizationMotionSelection(root);
   root.dataset.normalizationSelected = selected;
   delete root.dataset.normalizationActionSelected;
 
@@ -8856,14 +9389,24 @@ function normalizationStabilizerList(action) {
 
 function setNormalizationElementSelection(root, elementId) {
   const selectedElement = normalizationElementLabels[elementId] ? elementId : "e";
+  clearNormalizationFeatureSelection(root);
   const { fromState, toState } = setNormalizationActionMotion(root, selectedElement);
+  setNormalizationSubgroupMotion(root, toState);
   root.dataset.normalizationElementSelected = selectedElement;
   pulseNormalizationElementControl(root, selectedElement);
 
   root.querySelectorAll("[data-normalization-place-stabilizer]").forEach((place) => {
-    const isFixed = normalizationPlaceStayedPut(place, fromState, toState);
-    place.classList.toggle("is-fixed", isFixed);
-    place.classList.toggle("is-moving", !isFixed);
+    setNormalizationMotionClass(place, normalizationPlaceStayedPut(place, fromState, toState));
+  });
+
+  root.querySelectorAll("[data-normalization-face-cell]").forEach((cell) => {
+    const faceId = cell.dataset.normalizationFaceCell || "";
+    setNormalizationMotionClass(cell, normalizationFeatureStayedPut("face", faceId, fromState, toState));
+  });
+
+  root.querySelectorAll("[data-normalization-boundary-edge]").forEach((edge) => {
+    const edgeId = edge.dataset.normalizationBoundaryEdge || "";
+    setNormalizationMotionClass(edge, normalizationFeatureStayedPut("edge", edgeId, fromState, toState));
   });
 
   root.querySelectorAll("[data-normalization-stabilizers]").forEach((action) => {
@@ -8875,9 +9418,37 @@ function setNormalizationElementSelection(root, elementId) {
   if (status) status.textContent = `acted by ${normalizationElementDisplayLabels[selectedElement] || selectedElement}: one step`;
 }
 
+function setNormalizationFeatureSelection(root, orbit, pointId) {
+  const fixedElements = new Set(normalizationElementsFixingFeature(orbit, pointId));
+  clearNormalizationMotionSelection(root);
+  clearNormalizationFeatureSelection(root);
+  root.dataset.normalizationFeatureSelected = `${orbit}:${pointId}`;
+
+  root.querySelectorAll(normalizationFeatureSelector(orbit, pointId)).forEach((feature) => {
+    feature.classList.add("is-feature-selected");
+  });
+
+  root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
+    const elementId = control.dataset.normalizationElementControl || "e";
+    const isFixer = fixedElements.has(elementId);
+    control.classList.toggle("is-feature-fixer", isFixer);
+    control.classList.toggle("is-feature-dimmed", !isFixer);
+  });
+
+  const status = root.querySelector("[data-normalization-element-status]");
+  if (status) {
+    const fixedLabels = Array.from(fixedElements)
+      .map((elementId) => normalizationElementDisplayLabels[elementId] || elementId)
+      .join(", ");
+    status.textContent = `fixers of ${normalizationFeatureLabel(orbit, pointId)}: ${fixedLabels}`;
+  }
+}
+
 function setNormalizationActionSelection(root, selectedAction) {
   const stabilizers = normalizationStabilizerList(selectedAction);
   const highlighted = new Set(stabilizers);
+  clearNormalizationFeatureSelection(root);
+  clearNormalizationMotionSelection(root);
   root.dataset.normalizationActionSelected = stabilizers.join(" ");
   delete root.dataset.normalizationSelected;
 
@@ -8945,6 +9516,32 @@ function initializeNormalizationFigure(root, options = {}) {
       setNormalizationActionSelection(root, action);
     });
   });
+
+  root
+    .querySelectorAll(
+      "[data-normalization-face-cell], [data-normalization-boundary-edge], [data-normalization-orbit=\"vertex\"], [data-normalization-orbit=\"edge\"]"
+    )
+    .forEach((feature) => {
+      const { orbit, pointId } = normalizationFeatureTargetInfo(feature);
+      if (!orbit || !pointId) return;
+      const isPointerHitArea = feature.classList.contains("normalization-square-edge-hit");
+      if (!isPointerHitArea) {
+        feature.setAttribute("role", "button");
+        feature.setAttribute("tabindex", "0");
+        feature.setAttribute("aria-label", `Highlight D4 elements fixing ${normalizationFeatureLabel(orbit, pointId)}`);
+      }
+      feature.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setNormalizationFeatureSelection(root, orbit, pointId);
+      });
+      if (isPointerHitArea) return;
+      feature.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        event.stopPropagation();
+        setNormalizationFeatureSelection(root, orbit, pointId);
+      });
+    });
 
   root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
     const elementId = control.dataset.normalizationElementControl || "e";
