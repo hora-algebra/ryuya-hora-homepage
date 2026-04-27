@@ -1607,15 +1607,15 @@ a.position-link:hover {
 }
 
 .tag-icon {
-  width: 14px;
-  height: 14px;
-  opacity: 0.78;
+  width: 17px;
+  height: 17px;
+  opacity: 0.9;
 }
 
 .paper-tag-icon,
 .publication-tag-icon {
-  width: 14px;
-  height: 14px;
+  width: 17px;
+  height: 17px;
 }
 
 .publication-meta .publication-tag-theme .tag-icon {
@@ -1810,9 +1810,9 @@ a.position-link:hover {
 }
 
 .web-app-tag-icon {
-  width: 12px;
-  height: 12px;
-  opacity: 0.82;
+  width: 15px;
+  height: 15px;
+  opacity: 0.9;
 }
 
 .web-app-title {
@@ -4140,6 +4140,22 @@ a.position-link:hover {
   stroke: rgba(154, 87, 63, 0.45);
 }
 
+.normalization-stabilizer-link[data-normalization-link-subgroup="ref1"] {
+  stroke: rgba(91, 112, 70, 0.46);
+}
+
+.normalization-stabilizer-link[data-normalization-link-subgroup="ref3"] {
+  stroke: rgba(109, 91, 142, 0.46);
+}
+
+.normalization-stabilizer-link[data-normalization-link-subgroup="d4"] {
+  stroke: rgba(43, 52, 43, 0.34);
+}
+
+.normalization-figure.is-transporting .normalization-stabilizer-link {
+  stroke-width: 2;
+}
+
 .normalization-subgroup {
   outline: none;
   transition: opacity 180ms ease, filter 180ms ease;
@@ -5376,33 +5392,14 @@ a.position-link:hover {
   stroke: rgba(43, 52, 43, 0.08);
 }
 
-.tensor-card-title,
-.tensor-chip text,
-.tensor-value text,
-.tensor-pair text,
-.tensor-image-node text,
 .tensor-left-a-node text,
 .tensor-right-a-node text,
 .tensor-s-node text,
-.tensor-a-node text,
 .tensor-x-node text,
-.tensor-result-pill text,
 .tensor-map-symbol,
-.tensor-side-label,
-.tensor-source-label,
-.tensor-equation,
-.tensor-length,
-.tensor-arrow-label,
-.tensor-axis-label,
-.tensor-set-label {
+.tensor-side-label {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   text-anchor: middle;
-}
-
-.tensor-card-title {
-  fill: #1f2721;
-  font-size: 21px;
-  font-weight: 900;
 }
 
 .tensor-side-label {
@@ -5423,40 +5420,10 @@ a.position-link:hover {
   transform-origin: center;
 }
 
-.tensor-set-label {
-  fill: rgba(31, 39, 33, 0.7);
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.tensor-axis-label {
-  fill: rgba(31, 39, 33, 0.55);
-  font-size: 13px;
-  font-weight: 850;
-}
-
-.tensor-chip circle {
-  fill: #f5dcc6;
-  stroke: #b66737;
-  stroke-width: 2;
-}
-
-.tensor-chip.muted circle {
-  fill: rgba(248, 246, 238, 0.86);
-  stroke: rgba(43, 52, 43, 0.18);
-}
-
-.tensor-chip text,
-.tensor-value text,
-.tensor-pair text,
 .tensor-left-a-node text,
 .tensor-right-a-node text,
 .tensor-s-node text,
-.tensor-a-node text,
-.tensor-x-node text,
-.tensor-result-pill text,
-.tensor-image-node text,
-.tensor-source-label {
+.tensor-x-node text {
   fill: #24312a;
   font-size: 15px;
   font-weight: 900;
@@ -5465,65 +5432,27 @@ a.position-link:hover {
 .tensor-left-a-node text,
 .tensor-right-a-node text,
 .tensor-s-node text,
-.tensor-a-node text,
 .tensor-x-node text {
   font-size: 22px;
 }
 
-.tensor-cord {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 4.6;
-}
-
-.tensor-cord.selected {
-  --tensor-active: #b66737;
-  stroke: #b66737;
-}
-
-.tensor-cord.green {
-  --tensor-active: #3f8568;
-  stroke: #3f8568;
-}
-
-.tensor-cord.muted {
-  stroke: rgba(43, 52, 43, 0.18);
-  stroke-dasharray: 5 9;
-  stroke-width: 2.8;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.tensor-animation-figure {
-  --tensor-cycle: 7.2s;
-}
-
-.tensor-a-node circle,
 .tensor-x-node circle {
   fill: rgba(255, 253, 248, 0.96);
   stroke: rgba(43, 52, 43, 0.28);
   stroke-width: 2;
 }
 
-.tensor-a-node.selected circle,
 .tensor-x-node.selected circle {
-  --tensor-node-fill: #f5dcc6;
-  --tensor-node-stroke: #b66737;
   fill: #f5dcc6;
   stroke: #b66737;
   stroke-width: 2.6;
 }
 
-.tensor-a-node.green circle,
 .tensor-x-node.green circle {
-  --tensor-node-fill: #dfeee5;
-  --tensor-node-stroke: #3f8568;
   fill: #dfeee5;
   stroke: #3f8568;
 }
 
-.tensor-a-node.muted circle,
 .tensor-x-node.muted circle {
   fill: rgba(248, 246, 238, 0.82);
   stroke: rgba(43, 52, 43, 0.18);
@@ -5531,243 +5460,14 @@ a.position-link:hover {
   transform-origin: center;
 }
 
-.tensor-a-node.muted text,
 .tensor-x-node.muted text {
   fill: rgba(36, 49, 42, 0.42);
-}
-
-.tensor-animation-figure .tensor-cord.selected {
-  animation: tensor-selected-cord var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-cord.muted {
-  animation: tensor-muted-cord var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-map-symbol {
-  animation: tensor-map-symbol var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-s-label {
-  animation: tensor-s-label var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-a-node.selected circle {
-  animation: tensor-source-node var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-x-node.selected circle {
-  animation: tensor-target-node var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-a-node.muted,
-.tensor-animation-figure .tensor-x-node.muted {
-  animation: tensor-muted-node var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-a-node.muted circle,
-.tensor-animation-figure .tensor-x-node.muted circle {
-  animation: tensor-muted-circle var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-a-node.muted text,
-.tensor-animation-figure .tensor-x-node.muted text {
-  animation: tensor-muted-text var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-animation-figure .tensor-length {
-  animation: tensor-result-copy var(--tensor-cycle) ease-in-out infinite;
-}
-
-@keyframes tensor-selected-cord {
-  0% {
-    opacity: 0;
-    stroke: rgba(43, 52, 43, 0.46);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    stroke-width: 2.8;
-  }
-
-  11%,
-  23% {
-    opacity: 0.5;
-    stroke: rgba(43, 52, 43, 0.46);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    stroke-width: 2.8;
-  }
-
-  34%,
-  100% {
-    opacity: 1;
-    stroke: var(--tensor-active);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    stroke-width: 5.2;
-  }
-}
-
-@keyframes tensor-muted-cord {
-  0% {
-    opacity: 0;
-    stroke: rgba(43, 52, 43, 0.38);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    stroke-width: 2.6;
-    transform: scaleX(1);
-  }
-
-  11%,
-  48% {
-    opacity: 0.42;
-    stroke: rgba(43, 52, 43, 0.34);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    stroke-width: 2.6;
-    transform: scaleX(1);
-  }
-
-  62% {
-    opacity: 0.18;
-    stroke: rgba(43, 52, 43, 0.18);
-    stroke-dasharray: 0.14 0.86;
-    stroke-dashoffset: -0.72;
-    stroke-width: 1.8;
-    transform: scaleX(0.18);
-  }
-
-  74%,
-  100% {
-    opacity: 0.01;
-    stroke: rgba(43, 52, 43, 0.2);
-    stroke-dasharray: 0.02 0.98;
-    stroke-dashoffset: -0.96;
-    stroke-width: 1;
-    transform: scaleX(0.02);
-  }
-}
-
-@keyframes tensor-map-symbol {
-  0% {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-
-  12%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes tensor-s-label {
-  0%,
-  23% {
-    fill: rgba(31, 39, 33, 0.54);
-  }
-
-  34%,
-  100% {
-    fill: #2c6f63;
-  }
-}
-
-@keyframes tensor-source-node {
-  0%,
-  23% {
-    fill: rgba(255, 253, 248, 0.96);
-    stroke: rgba(43, 52, 43, 0.3);
-    stroke-width: 2;
-  }
-
-  34%,
-  100% {
-    fill: var(--tensor-node-fill);
-    stroke: var(--tensor-node-stroke);
-    stroke-width: 3.2;
-  }
-}
-
-@keyframes tensor-target-node {
-  0%,
-  42% {
-    fill: rgba(255, 253, 248, 0.96);
-    stroke: rgba(43, 52, 43, 0.3);
-    stroke-width: 2;
-  }
-
-  52%,
-  100% {
-    fill: var(--tensor-node-fill);
-    stroke: var(--tensor-node-stroke);
-    stroke-width: 3.4;
-  }
-}
-
-@keyframes tensor-muted-node {
-  0%,
-  50% {
-    opacity: 1;
-  }
-
-  66% {
-    opacity: 0.24;
-  }
-
-  76%,
-  100% {
-    opacity: 0.04;
-  }
-}
-
-@keyframes tensor-muted-circle {
-  0%,
-  50% {
-    transform: scale(1);
-  }
-
-  66% {
-    transform: scale(0.36);
-  }
-
-  76%,
-  100% {
-    transform: scale(0.16);
-  }
-}
-
-@keyframes tensor-muted-text {
-  0%,
-  48% {
-    opacity: 1;
-  }
-
-  64%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes tensor-result-copy {
-  0%,
-  58% {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-
-  70%,
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .tensor-factorization-figure {
   --tensor-cycle: 10s;
   --tensor-map: #2c6f63;
   --tensor-map-fill: #dfeee5;
-  --tensor-map-faint: rgba(44, 111, 99, 0.38);
-  --tensor-map-ghost: rgba(44, 111, 99, 0.12);
   --tensor-subset: #b66737;
   --tensor-subset-fill: #f5dcc6;
 }
@@ -5784,27 +5484,7 @@ a.position-link:hover {
   box-shadow: 0 12px 22px rgba(38, 46, 39, 0.08);
   color: #24312a;
   font-size: clamp(0.76rem, 1.75vw, 1.16rem);
-  opacity: 0;
   pointer-events: none;
-  animation-duration: var(--tensor-cycle);
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
-
-.tensor-formula-stage-1 {
-  animation-name: tensor-formula-stage-1;
-}
-
-.tensor-formula-stage-2 {
-  animation-name: tensor-formula-stage-2;
-}
-
-.tensor-formula-stage-3 {
-  animation-name: tensor-formula-stage-3;
-}
-
-.tensor-formula-stage-4 {
-  animation-name: tensor-formula-stage-4;
 }
 
 .tensor-formula-stage .katex {
@@ -5843,24 +5523,6 @@ a.position-link:hover {
   justify-content: center;
 }
 
-.tensor-formula-with-result {
-  row-gap: 6px;
-}
-
-.tensor-formula-result {
-  grid-column: 1 / -1;
-  justify-self: center;
-  font-size: 0.84em;
-  line-height: 1;
-}
-
-.tensor-factorization-figure .tensor-image-label,
-.tensor-factorization-figure .tensor-factor-label {
-  opacity: 0;
-  animation: tensor-factor-copy var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-image-label,
 .tensor-factorization-figure .tensor-map-symbol {
   fill: var(--tensor-map);
 }
@@ -5891,15 +5553,6 @@ a.position-link:hover {
   fill: rgba(44, 111, 99, 0.72);
 }
 
-.tensor-factorization-figure .tensor-left-map-arrow {
-  fill: none;
-  stroke: var(--tensor-map);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 4.4;
-  vector-effect: non-scaling-stroke;
-}
-
 .tensor-factorization-figure .tensor-left-map-cord {
   fill: none;
   stroke: var(--tensor-map);
@@ -5921,6 +5574,15 @@ a.position-link:hover {
   vector-effect: non-scaling-stroke;
 }
 
+.tensor-factorization-figure .tensor-split-divider {
+  stroke: rgba(36, 49, 42, 0.26);
+  stroke-dasharray: 7 8;
+  stroke-linecap: round;
+  stroke-width: 2;
+  opacity: 0;
+  animation: tensor-split-divider-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
 .tensor-factorization-figure .tensor-subset-extension {
   fill: none;
   stroke: var(--tensor-subset);
@@ -5940,8 +5602,7 @@ a.position-link:hover {
   stroke-width: 0.85;
 }
 
-.tensor-factorization-figure .tensor-iota-arrow,
-.tensor-factorization-figure .tensor-composite-cord {
+.tensor-factorization-figure .tensor-iota-arrow {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -5959,44 +5620,22 @@ a.position-link:hover {
   animation: tensor-iota-local-arrow-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
-.tensor-factorization-figure .tensor-iota-cross-arrow {
-  animation: tensor-iota-cross-arrow-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-s-self-pulse {
-  fill: rgba(245, 220, 198, 0.18);
-  stroke: rgba(182, 103, 55, 0.58);
-  stroke-dasharray: 7 7;
-  stroke-width: 2.2;
+.tensor-factorization-figure .tensor-iota-domain-node {
   opacity: 0;
-  animation: tensor-s-self-stage var(--tensor-cycle) ease-in-out infinite;
+  animation: tensor-iota-domain-node-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
-.tensor-factorization-figure .tensor-s-self-extension {
-  fill: none;
-  stroke: var(--tensor-subset);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 4.4;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  opacity: 0;
-  vector-effect: non-scaling-stroke;
-  animation: tensor-s-self-extension-stage var(--tensor-cycle) ease-in-out infinite;
+.tensor-factorization-figure .tensor-iota-domain-node circle {
+  fill: rgba(255, 253, 248, 0.96);
+  stroke: rgba(99, 102, 96, 0.72);
+  stroke-width: 2.4;
 }
 
-.tensor-factorization-figure .tensor-s-self-end {
-  fill: var(--tensor-subset-fill);
-  stroke: var(--tensor-subset);
-  stroke-width: 2.3;
-  opacity: 0;
-  animation: tensor-s-self-end-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-composite-cord {
-  stroke: var(--tensor-map);
-  stroke-width: 4.2;
-  animation: tensor-composite-cord-stage var(--tensor-cycle) ease-in-out infinite;
+.tensor-factorization-figure .tensor-iota-domain-node text {
+  fill: #24312a;
+  font-size: 20px;
+  font-weight: 900;
+  text-anchor: middle;
 }
 
 .tensor-factorization-figure .tensor-operator-label {
@@ -6007,8 +5646,7 @@ a.position-link:hover {
   text-anchor: middle;
 }
 
-.tensor-factorization-figure .tensor-iota-label,
-.tensor-factorization-figure .tensor-iota-cross-label {
+.tensor-factorization-figure .tensor-iota-label {
   fill: rgba(82, 86, 80, 0.9);
 }
 
@@ -6016,220 +5654,11 @@ a.position-link:hover {
   animation: tensor-iota-label-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
-.tensor-factorization-figure .tensor-iota-cross-label {
-  animation: tensor-iota-cross-label-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-s-self-label {
-  fill: var(--tensor-subset);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 13px;
-  letter-spacing: 0;
-  animation: tensor-s-self-label-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-composite-label {
-  fill: var(--tensor-map);
-  font-size: 21px;
-  animation: tensor-composite-label-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-press-layer {
-  opacity: 0;
-  animation: tensor-press-layer-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
 .tensor-factorization-figure .tensor-tensor-divider {
   stroke: rgba(67, 72, 64, 0.32);
   stroke-dasharray: 6 8;
   stroke-linecap: round;
   stroke-width: 2.2;
-}
-
-.tensor-factorization-figure .tensor-press-flow,
-.tensor-factorization-figure .tensor-press-arrow,
-.tensor-factorization-figure .tensor-mini-map-arrow {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.tensor-factorization-figure .tensor-press-flow,
-.tensor-factorization-figure .tensor-press-arrow {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-
-.tensor-factorization-figure .tensor-press-flow {
-  stroke-width: 18;
-  stroke-dasharray: none;
-  stroke-dashoffset: 0;
-  opacity: 0.14;
-}
-
-.tensor-factorization-figure .tensor-press-flow-map {
-  stroke: var(--tensor-map);
-}
-
-.tensor-factorization-figure .tensor-press-flow-subset {
-  stroke: var(--tensor-subset);
-}
-
-.tensor-factorization-figure .tensor-press-arrow {
-  stroke-width: 3.2;
-  animation: tensor-press-arrow-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-press-arrow-map {
-  stroke: var(--tensor-map);
-}
-
-.tensor-factorization-figure .tensor-press-arrow-subset {
-  stroke: var(--tensor-subset);
-}
-
-.tensor-factorization-figure .tensor-input-sketch {
-  opacity: 0.9;
-}
-
-.tensor-factorization-figure .tensor-mini-node,
-.tensor-factorization-figure .tensor-mini-set,
-.tensor-factorization-figure .tensor-mini-dot {
-  vector-effect: non-scaling-stroke;
-}
-
-.tensor-factorization-figure .tensor-mini-x {
-  fill: var(--tensor-map-fill);
-  stroke: var(--tensor-map);
-  stroke-width: 1.6;
-}
-
-.tensor-factorization-figure .tensor-mini-a {
-  fill: rgba(255, 253, 248, 0.92);
-  stroke: rgba(44, 111, 99, 0.38);
-  stroke-width: 1.45;
-}
-
-.tensor-factorization-figure .tensor-mini-map-arrow {
-  stroke: var(--tensor-map);
-  stroke-width: 2.4;
-}
-
-.tensor-factorization-figure .tensor-mini-set-a {
-  fill: rgba(255, 253, 248, 0.72);
-  stroke: rgba(182, 103, 55, 0.36);
-  stroke-width: 1.45;
-}
-
-.tensor-factorization-figure .tensor-mini-set-s {
-  fill: rgba(245, 220, 198, 0.42);
-  stroke: rgba(182, 103, 55, 0.72);
-  stroke-dasharray: 4 4;
-  stroke-width: 1.6;
-}
-
-.tensor-factorization-figure .tensor-mini-dot-in {
-  fill: var(--tensor-subset-fill);
-  stroke: var(--tensor-subset);
-  stroke-width: 1.2;
-}
-
-.tensor-factorization-figure .tensor-mini-dot-out {
-  fill: rgba(248, 246, 238, 0.88);
-  stroke: rgba(43, 52, 43, 0.22);
-  stroke-width: 1.1;
-}
-
-.tensor-factorization-figure .tensor-mini-node-text,
-.tensor-factorization-figure .tensor-mini-set-label,
-.tensor-factorization-figure .tensor-mini-caption {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 900;
-  text-anchor: middle;
-}
-
-.tensor-factorization-figure .tensor-mini-node-text {
-  fill: #24312a;
-  font-size: 11px;
-}
-
-.tensor-factorization-figure .tensor-mini-set-label {
-  fill: rgba(36, 49, 42, 0.68);
-  font-size: 10px;
-}
-
-.tensor-factorization-figure .tensor-mini-caption {
-  font-size: 13px;
-  letter-spacing: 0;
-}
-
-.tensor-factorization-figure .tensor-mini-caption-map {
-  fill: var(--tensor-map);
-  font-size: 18px;
-}
-
-.tensor-factorization-figure .tensor-mini-caption-subset {
-  fill: var(--tensor-subset);
-  font-size: 12px;
-}
-
-.tensor-factorization-figure .tensor-press-pad {
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation-duration: var(--tensor-cycle);
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
-
-.tensor-factorization-figure .tensor-press-pad-map {
-  fill: rgba(44, 111, 99, 0.13);
-  stroke: rgba(44, 111, 99, 0.32);
-  stroke-width: 1.7;
-  animation-name: tensor-press-pad-map-stage;
-}
-
-.tensor-factorization-figure .tensor-press-pad-subset {
-  fill: rgba(245, 220, 198, 0.34);
-  stroke: rgba(182, 103, 55, 0.36);
-  stroke-width: 1.7;
-  animation-name: tensor-press-pad-subset-stage;
-}
-
-.tensor-factorization-figure .tensor-press-core {
-  opacity: 0;
-  animation: tensor-press-core-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-press-core circle {
-  fill: rgba(255, 253, 248, 0.9);
-  stroke: rgba(44, 111, 99, 0.28);
-  stroke-width: 1.7;
-}
-
-.tensor-factorization-figure .tensor-press-core text {
-  fill: #6d6543;
-  font-family: ui-serif, Georgia, serif;
-  font-size: 27px;
-  font-weight: 850;
-  text-anchor: middle;
-}
-
-.tensor-factorization-figure .tensor-factor-label {
-  fill: rgba(44, 111, 99, 0.82);
-  font-size: 12px;
-  font-weight: 950;
-  letter-spacing: 0.08em;
-  text-anchor: middle;
-  text-transform: uppercase;
-}
-
-.tensor-factorization-figure .tensor-e-label {
-  fill: rgba(44, 111, 99, 0.86);
-}
-
-.tensor-factorization-figure .tensor-i-label {
-  fill: rgba(44, 111, 99, 0.86);
 }
 
 .tensor-factorization-figure .tensor-s-envelope {
@@ -6240,78 +5669,11 @@ a.position-link:hover {
   opacity: 1;
 }
 
-.tensor-factorization-figure .tensor-factor-cord {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3.8;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  opacity: 0;
-  animation: tensor-factor-cord-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-f-arrow-head-warm {
-  fill: var(--tensor-map);
-  stroke: rgba(255, 253, 248, 0.96);
-  stroke-linejoin: round;
-  stroke-width: 0.9;
-}
-
 .tensor-factorization-figure .tensor-f-arrow-head-green {
   fill: var(--tensor-map);
   stroke: rgba(255, 253, 248, 0.96);
   stroke-linejoin: round;
   stroke-width: 0.9;
-}
-
-.tensor-factorization-figure .tensor-f-arrow-head-muted {
-  fill: rgba(44, 111, 99, 0.38);
-  stroke: rgba(255, 253, 248, 0.9);
-  stroke-linejoin: round;
-  stroke-width: 0.8;
-}
-
-.tensor-factorization-figure .tensor-subset-pressure-arrow-head {
-  fill: var(--tensor-subset);
-  stroke: rgba(255, 253, 248, 0.94);
-  stroke-linejoin: round;
-  stroke-width: 0.85;
-}
-
-.tensor-factorization-figure .tensor-factor-cord.warm {
-  stroke: var(--tensor-map);
-}
-
-.tensor-factorization-figure .tensor-factor-cord.green {
-  stroke: var(--tensor-map);
-}
-
-.tensor-factorization-figure .tensor-mono-cord {
-  stroke-width: 4.8;
-}
-
-.tensor-factorization-figure .tensor-image-node.factor {
-  opacity: 0;
-  animation: tensor-image-node-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-image-node.factor circle {
-  fill: var(--tensor-map-fill);
-  stroke: var(--tensor-map);
-  stroke-width: 2.8;
-}
-
-.tensor-factorization-figure .tensor-image-node.factor.green circle {
-  fill: var(--tensor-map-fill);
-  stroke: var(--tensor-map);
-}
-
-.tensor-factorization-figure .tensor-image-node.factor text {
-  fill: #24312a;
-  font-size: 19px;
-  font-weight: 950;
-  text-anchor: middle;
 }
 
 .tensor-factorization-figure .tensor-left-a-node circle {
@@ -6372,189 +5734,28 @@ a.position-link:hover {
   fill: #24312a;
 }
 
-.tensor-factorization-figure .tensor-cord.selected {
-  --tensor-active: var(--tensor-map);
-  stroke: var(--tensor-map);
-  animation: tensor-factor-selected-cord var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-cord.selected.green {
-  --tensor-active: var(--tensor-map);
-  stroke: var(--tensor-map);
-}
-
-.tensor-factorization-figure .tensor-cord.muted {
-  stroke: var(--tensor-map-faint);
-  animation: tensor-factor-muted-cord var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-a-node.selected circle {
-  --tensor-node-fill: var(--tensor-subset-fill);
-  --tensor-node-stroke: var(--tensor-subset);
-  fill: var(--tensor-subset-fill);
-  stroke: var(--tensor-subset);
-  animation: tensor-factor-source-node var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-a-node.selected.green circle {
-  --tensor-node-fill: var(--tensor-subset-fill);
-  --tensor-node-stroke: var(--tensor-subset);
-  fill: var(--tensor-subset-fill);
-  stroke: var(--tensor-subset);
-}
-
 .tensor-factorization-figure .tensor-x-node.selected circle {
-  --tensor-node-fill: var(--tensor-map-fill);
-  --tensor-node-stroke: var(--tensor-map);
-  fill: var(--tensor-map-fill);
-  stroke: var(--tensor-map);
-  animation: tensor-factor-target-node var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-x-node.selected.green circle {
-  --tensor-node-fill: var(--tensor-map-fill);
-  --tensor-node-stroke: var(--tensor-map);
   fill: var(--tensor-map-fill);
   stroke: var(--tensor-map);
 }
 
-.tensor-factorization-figure .tensor-a-node.muted,
-.tensor-factorization-figure .tensor-x-node.muted {
-  animation: tensor-factor-muted-node var(--tensor-cycle) ease-in-out infinite;
+.tensor-factorization-figure .tensor-subset-extension,
+.tensor-factorization-figure .tensor-split-divider,
+.tensor-factorization-figure .tensor-iota-domain-node,
+.tensor-factorization-figure .tensor-iota-local-arrow,
+.tensor-factorization-figure .tensor-iota-label {
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 
-.tensor-factorization-figure .tensor-a-node.muted circle,
-.tensor-factorization-figure .tensor-x-node.muted circle {
-  animation: tensor-factor-muted-circle var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-a-node.muted text,
-.tensor-factorization-figure .tensor-x-node.muted text {
-  animation: tensor-factor-muted-text var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-length {
-  opacity: 0;
-  animation: tensor-cycle-caption-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-step-label {
-  opacity: 0;
-}
-
-.tensor-factorization-figure .tensor-step-label rect {
-  fill: rgba(255, 253, 248, 0.9);
-  stroke: rgba(36, 49, 42, 0.16);
-  stroke-width: 1.1;
-}
-
-.tensor-factorization-figure .tensor-step-label text {
-  fill: rgba(36, 49, 42, 0.72);
-  font-size: 12px;
-  font-weight: 950;
-  letter-spacing: 0.08em;
-  text-anchor: middle;
-}
-
-.tensor-factorization-figure .tensor-step-label-1 {
-  animation: tensor-step-label-1 var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-step-label-2 {
-  animation: tensor-step-label-2 var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-step-label-3 {
-  animation: tensor-step-label-3 var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-composite-cord,
-.tensor-factorization-figure .tensor-composite-label,
-.tensor-factorization-figure .tensor-step-label-2,
-.tensor-factorization-figure .tensor-step-label-3 {
-  animation: none;
-  opacity: 0;
-}
-
-@keyframes tensor-formula-stage-1 {
+@keyframes tensor-split-divider-stage {
   0%,
-  38% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-
-  46%,
-  100% {
-    opacity: 0;
-    transform: translate(-50%, calc(-50% + 6px));
-  }
-}
-
-@keyframes tensor-formula-stage-2 {
-  0%,
-  42% {
-    opacity: 0;
-    transform: translate(-50%, calc(-50% + 6px));
-  }
-
-  54%,
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes tensor-formula-stage-3 {
-  0%,
-  100% {
-    opacity: 0;
-    transform: translate(-50%, calc(-50% + 6px));
-  }
-}
-
-@keyframes tensor-formula-stage-4 {
-  0%,
-  100% {
-    opacity: 0;
-    transform: translate(-50%, calc(-50% + 6px));
-  }
-}
-
-@keyframes tensor-step-label-1 {
-  0%,
-  42% {
+  46% {
     opacity: 0;
   }
 
-  54%,
+  62%,
   100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-step-label-2 {
-  0%,
-  44%,
-  76%,
-  100% {
-    opacity: 0;
-  }
-
-  50%,
-  72% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-step-label-3 {
-  0%,
-  74%,
-  100% {
-    opacity: 0;
-  }
-
-  80%,
-  96% {
     opacity: 1;
   }
 }
@@ -6573,17 +5774,15 @@ a.position-link:hover {
   }
 }
 
-@keyframes tensor-s-self-stage {
+@keyframes tensor-iota-domain-node-stage {
   0%,
-  42% {
+  38% {
     opacity: 0;
-    stroke-dashoffset: 18;
   }
 
-  56%,
+  46%,
   100% {
     opacity: 1;
-    stroke-dashoffset: 0;
   }
 }
 
@@ -6599,18 +5798,6 @@ a.position-link:hover {
   }
 }
 
-@keyframes tensor-s-self-label-stage {
-  0%,
-  46% {
-    opacity: 0;
-  }
-
-  58%,
-  100% {
-    opacity: 1;
-  }
-}
-
 @keyframes tensor-subset-extension-split {
   0%,
   42% {
@@ -6620,554 +5807,9 @@ a.position-link:hover {
 
   58%,
   100% {
-    opacity: 0.28;
+    opacity: 0.1;
     stroke-dashoffset: 0;
   }
-}
-
-@keyframes tensor-s-self-extension-stage {
-  0%,
-  44% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-
-  60%,
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-s-self-end-stage {
-  0%,
-  52% {
-    opacity: 0;
-  }
-
-  64%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-iota-cross-arrow-stage {
-  0%,
-  42% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-
-  50%,
-  66% {
-    opacity: 0.94;
-    stroke-dashoffset: 0;
-  }
-
-  76%,
-  100% {
-    opacity: 0;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-iota-cross-label-stage {
-  0%,
-  43%,
-  76%,
-  100% {
-    opacity: 0;
-  }
-
-  51%,
-  66% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-composite-cord-stage {
-  0%,
-  72% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-
-  80%,
-  96% {
-    opacity: 0.96;
-    stroke-dashoffset: 0;
-  }
-
-  100% {
-    opacity: 0;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-composite-label-stage {
-  0%,
-  72%,
-  100% {
-    opacity: 0;
-  }
-
-  80%,
-  96% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-cycle-caption-stage {
-  0%,
-  48%,
-  100% {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-
-  58%,
-  96% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes tensor-a-reference-line-stage {
-  0% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-
-  8%,
-  100% {
-    opacity: 0.88;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-subset-extension-stage {
-  0%,
-  20% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-
-  32%,
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-right-a-node-stage {
-  0%,
-  4% {
-    opacity: 0;
-  }
-
-  12%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-s-node-stage {
-  0%,
-  24% {
-    opacity: 0;
-  }
-
-  36%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-press-layer-stage {
-  0%,
-  8% {
-    opacity: 0;
-  }
-
-  16%,
-  50% {
-    opacity: 1;
-  }
-
-  64%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes tensor-press-arrow-stage {
-  0% {
-    stroke-dashoffset: 1;
-  }
-
-  16%,
-  38% {
-    stroke-dashoffset: 0;
-  }
-
-  52%,
-  100% {
-    stroke-dashoffset: -0.26;
-  }
-}
-
-@keyframes tensor-press-pad-map-stage {
-  0%,
-  10% {
-    opacity: 0;
-    transform: translateX(-18px) scaleX(0.7);
-  }
-
-  22%,
-  42% {
-    opacity: 0.88;
-    transform: translateX(18px) scaleX(1.04);
-  }
-
-  56%,
-  100% {
-    opacity: 0;
-    transform: translateX(28px) scaleX(0.76);
-  }
-}
-
-@keyframes tensor-press-pad-subset-stage {
-  0%,
-  10% {
-    opacity: 0;
-    transform: translateX(18px) scaleX(0.7);
-  }
-
-  22%,
-  42% {
-    opacity: 0.88;
-    transform: translateX(-18px) scaleX(1.04);
-  }
-
-  56%,
-  100% {
-    opacity: 0;
-    transform: translateX(-28px) scaleX(0.76);
-  }
-}
-
-@keyframes tensor-press-core-stage {
-  0%,
-  12% {
-    opacity: 0;
-  }
-
-  20%,
-  46% {
-    opacity: 0.86;
-  }
-
-  58%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes tensor-factor-selected-cord {
-  0% {
-    opacity: 0;
-    stroke: var(--tensor-map-faint);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    stroke-width: 2.6;
-  }
-
-  10%,
-  24% {
-    opacity: 0.48;
-    stroke: var(--tensor-map-faint);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    stroke-width: 2.6;
-  }
-
-  34%,
-  46% {
-    opacity: 0.88;
-    stroke: var(--tensor-active);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    stroke-width: 4.4;
-  }
-
-  58%,
-  100% {
-    opacity: 0.025;
-    stroke: var(--tensor-map-ghost);
-    stroke-dasharray: 0.04 0.96;
-    stroke-dashoffset: -0.9;
-    stroke-width: 1;
-  }
-}
-
-@keyframes tensor-factor-muted-cord {
-  0% {
-    opacity: 0;
-    stroke: var(--tensor-map-faint);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    stroke-width: 2.4;
-    transform: scaleX(1);
-  }
-
-  10%,
-  42% {
-    opacity: 0.32;
-    stroke: var(--tensor-map-faint);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    stroke-width: 2.4;
-    transform: scaleX(1);
-  }
-
-  58%,
-  100% {
-    opacity: 0.02;
-    stroke-dasharray: 0.02 0.98;
-    stroke-dashoffset: -0.94;
-    stroke-width: 1;
-    transform: scaleX(0.03);
-  }
-}
-
-@keyframes tensor-factor-cord-stage {
-  0%,
-  38% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-
-  50%,
-  100% {
-    opacity: 0.96;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-factor-copy {
-  0%,
-  36% {
-    opacity: 0;
-  }
-
-  48%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-s-envelope-stage {
-  0%,
-  18% {
-    opacity: 0;
-    stroke-dashoffset: 18;
-  }
-
-  28%,
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-image-node-stage {
-  0%,
-  38% {
-    opacity: 0;
-  }
-
-  52%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-factor-source-node {
-  0%,
-  22% {
-    fill: rgba(255, 253, 248, 0.96);
-    stroke: rgba(43, 52, 43, 0.3);
-    stroke-width: 2;
-  }
-
-  34%,
-  100% {
-    fill: var(--tensor-node-fill);
-    stroke: var(--tensor-node-stroke);
-    stroke-width: 3;
-  }
-}
-
-@keyframes tensor-factor-target-node {
-  0%,
-  56% {
-    fill: rgba(255, 253, 248, 0.96);
-    stroke: rgba(43, 52, 43, 0.3);
-    stroke-width: 2;
-  }
-
-  68%,
-  100% {
-    fill: var(--tensor-node-fill);
-    stroke: var(--tensor-node-stroke);
-    stroke-width: 3.2;
-  }
-}
-
-@keyframes tensor-factor-muted-node {
-  0%,
-  48% {
-    opacity: 1;
-  }
-
-  62%,
-  100% {
-    opacity: 0.08;
-  }
-}
-
-@keyframes tensor-factor-muted-circle {
-  0%,
-  48% {
-    transform: scale(1);
-  }
-
-  62%,
-  100% {
-    transform: scale(0.18);
-  }
-}
-
-@keyframes tensor-factor-muted-text {
-  0%,
-  46% {
-    opacity: 1;
-  }
-
-  58%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes tensor-factor-result-copy {
-  0%,
-  62% {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-
-  72%,
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.tensor-result-pill rect {
-  fill: rgba(232, 240, 234, 0.92);
-  stroke: rgba(44, 111, 99, 0.3);
-  stroke-width: 1.5;
-}
-
-.tensor-result-pill text {
-  font-size: 15px;
-  font-weight: 900;
-}
-
-.tensor-chip.muted text,
-.tensor-value.muted text {
-  fill: rgba(36, 49, 42, 0.42);
-}
-
-.tensor-map-line {
-  stroke: rgba(43, 52, 43, 0.16);
-  stroke-linecap: round;
-  stroke-width: 2;
-}
-
-.tensor-value rect {
-  fill: #f5dcc6;
-  stroke: #b66737;
-  stroke-width: 1.8;
-}
-
-.tensor-value.muted rect {
-  fill: rgba(248, 246, 238, 0.68);
-  stroke: rgba(43, 52, 43, 0.14);
-}
-
-.tensor-pair rect {
-  fill: #f5dcc6;
-  stroke: #b66737;
-  stroke-width: 1.8;
-}
-
-.tensor-pair.warm rect {
-  fill: #dfeee5;
-  stroke: #3f8568;
-}
-
-.tensor-main-arrow {
-  stroke: rgba(43, 52, 43, 0.85);
-  stroke-width: 3;
-}
-
-.tensor-arrow-label,
-.tensor-length {
-  fill: #8a4d34;
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.tensor-length {
-  fill: #2c6f63;
-}
-
-.tensor-merge-line {
-  fill: none;
-  stroke: #b66737;
-  stroke-linecap: round;
-  stroke-width: 3.2;
-}
-
-.tensor-merge-line.warm {
-  stroke: #3f8568;
-}
-
-.tensor-image-node circle {
-  fill: #f5dcc6;
-  stroke: #b66737;
-  stroke-width: 2.4;
-}
-
-.tensor-image-node.warm circle {
-  fill: #dfeee5;
-  stroke: #3f8568;
-}
-
-.tensor-equation-band {
-  fill: rgba(247, 244, 235, 0.86);
-  stroke: rgba(138, 77, 52, 0.22);
-  stroke-width: 1.6;
-}
-
-.tensor-equation {
-  fill: #24312a;
-  font-size: 17px;
-  font-weight: 820;
 }
 
 .c-red {
@@ -7776,6 +6418,7 @@ a.position-link:hover {
 .diagram-keywords span {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   min-height: 30px;
   padding: 4px 10px;
   border: 1px solid rgba(44, 111, 99, 0.25);
@@ -10102,42 +8745,16 @@ a.position-link:hover {
   .grundy-transfer-ball,
   .grundy-node.is-receiving .grundy-node-shell,
   .grundy-node.is-receiving .grundy-value-label,
-  .tensor-animation-figure .tensor-cord,
-  .tensor-animation-figure .tensor-map-symbol,
-  .tensor-animation-figure .tensor-s-label,
-  .tensor-animation-figure .tensor-a-node.selected circle,
-  .tensor-animation-figure .tensor-x-node.selected circle,
-  .tensor-animation-figure .tensor-a-node.muted,
-  .tensor-animation-figure .tensor-x-node.muted,
-  .tensor-animation-figure .tensor-a-node.muted circle,
-  .tensor-animation-figure .tensor-x-node.muted circle,
-  .tensor-animation-figure .tensor-a-node.muted text,
-  .tensor-animation-figure .tensor-x-node.muted text,
-  .tensor-factorization-figure .tensor-factor-cord,
-  .tensor-factorization-figure .tensor-image-label,
-  .tensor-factorization-figure .tensor-factor-label,
-  .tensor-factorization-figure .tensor-s-envelope,
-  .tensor-factorization-figure .tensor-a-reference-line,
   .tensor-factorization-figure .tensor-subset-extension,
+  .tensor-factorization-figure .tensor-split-divider,
   .tensor-factorization-figure .tensor-iota-arrow,
-  .tensor-factorization-figure .tensor-s-self-pulse,
+  .tensor-factorization-figure .tensor-iota-domain-node,
   .tensor-factorization-figure .tensor-operator-label,
-  .tensor-factorization-figure .tensor-composite-cord,
-  .tensor-factorization-figure .tensor-step-label,
-  .tensor-factorization-figure .tensor-tensor-divider,
-  .tensor-factorization-figure .tensor-right-a-node,
-  .tensor-factorization-figure .tensor-s-node,
-  .tensor-factorization-figure .tensor-press-layer,
-  .tensor-factorization-figure .tensor-press-arrow,
-  .tensor-factorization-figure .tensor-press-pad,
-  .tensor-factorization-figure .tensor-press-core,
-  .tensor-factorization-figure .tensor-image-node.factor,
   .tensor-formula-stage,
   .games-rb-cell.is-row-read,
   .games-rb-cell.is-col-read,
   .games-rb-cell.is-lhs,
-  .games-rb-answer circle,
-  .tensor-animation-figure .tensor-length {
+  .games-rb-answer circle {
     animation: none;
   }
 
@@ -10166,47 +8783,22 @@ a.position-link:hover {
     opacity: 0.24;
   }
 
-  .tensor-factorization-figure .tensor-factor-cord,
-  .tensor-factorization-figure .tensor-image-label,
-  .tensor-factorization-figure .tensor-factor-label,
   .tensor-factorization-figure .tensor-s-envelope,
   .tensor-factorization-figure .tensor-a-reference-line,
   .tensor-factorization-figure .tensor-subset-extension,
   .tensor-factorization-figure .tensor-right-a-node,
-  .tensor-factorization-figure .tensor-s-node,
-  .tensor-factorization-figure .tensor-composite-cord,
-  .tensor-factorization-figure .tensor-composite-label,
-  .tensor-factorization-figure .tensor-step-label-3,
-  .tensor-factorization-figure .tensor-image-node.factor,
-  .tensor-formula-stage-4 {
+  .tensor-factorization-figure .tensor-s-node {
     opacity: 1;
   }
 
-  .tensor-factorization-figure .tensor-press-layer {
-    opacity: 0;
-  }
-
-  .tensor-factorization-figure .tensor-factor-cord {
-    stroke-dashoffset: 0;
-  }
-
   .tensor-factorization-figure .tensor-a-reference-line,
-  .tensor-factorization-figure .tensor-subset-extension,
-  .tensor-factorization-figure .tensor-composite-cord {
+  .tensor-factorization-figure .tensor-subset-extension {
     stroke-dashoffset: 0;
   }
 
   .tensor-factorization-figure .tensor-iota-local-arrow,
-  .tensor-factorization-figure .tensor-iota-cross-arrow,
-  .tensor-factorization-figure .tensor-iota-label,
-  .tensor-factorization-figure .tensor-iota-cross-label,
-  .tensor-factorization-figure .tensor-s-self-pulse,
-  .tensor-factorization-figure .tensor-s-self-label {
+  .tensor-factorization-figure .tensor-iota-label {
     opacity: 0;
-  }
-
-  .tensor-formula-stage-4 {
-    transform: translate(-50%, -50%);
   }
 
   .automata-input-symbol {

@@ -119,7 +119,7 @@ const siteData = {
   topics: [
     ["Category theory", "https://ncatlab.org/nlab/show/category+theory"],
     ["Topos theory", "https://ncatlab.org/nlab/show/topos"],
-    ["Coalgebras", "https://ncatlab.org/nlab/show/coalgebra"],
+    ["Coalgebras", "https://ncatlab.org/nlab/show/coalgebra+of+an+endofunctor"],
     ["Profinite combinatorics", "https://ncatlab.org/nlab/show/profinite+set"],
     ["Combinatorial game theory", "https://en.wikipedia.org/wiki/Combinatorial_game_theory"],
     ["Semiring theory", "https://ncatlab.org/nlab/show/semiring"],
@@ -257,7 +257,7 @@ const siteData = {
           "Classifies classes of discrete dynamical systems closed under finite limits and small colimits."
       },
       {
-        title: "Grothendieck topos with a left adjoint to a left adjoint to a left adjoint to the global sections functor",
+        title: "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor",
         venue: "Proceedings of the American Mathematical Society 154, 567-584",
         year: "2026",
         preprintDate: "2025-03",
@@ -1296,7 +1296,7 @@ const i18nText = {
     "Type to search the site.": "検索語を入力してください。",
     "No public site results match this search.": "この検索に合う公開ページはありません。",
     "No linked items yet.": "関連項目はまだありません。",
-    "Site search. Last updated: 22 April 2026.": "サイト内検索。最終更新: 2026年4月22日",
+    "Site search. Last updated: 27 April 2026.": "サイト内検索。最終更新: 2026年4月27日",
     "Search notes": "ノート内検索",
     "Note filters": "ノートの絞り込み",
     "Language": "言語",
@@ -1369,6 +1369,7 @@ const i18nText = {
     "Last updated: 22 April 2026.": "最終更新: 2026年4月22日",
     "Last updated: 23 April 2026.": "最終更新: 2026年4月23日",
     "Last updated: 24 April 2026.": "最終更新: 2026年4月24日",
+    "Last updated: 27 April 2026.": "最終更新: 2026年4月27日",
     "Back to top": "上に戻る",
     "Home": "ホーム",
     "More": "さらに見る",
@@ -1404,12 +1405,12 @@ const i18nText = {
     "Preprint": "Preprint",
     "In preparation": "In preparation",
     "Manuscripts": "Manuscripts",
-    "Synced Paper Metadata": "同期された論文メタデータ",
+    "Paper Metadata": "論文メタデータ",
     "Powered by researchmap": "researchmap に基づく",
     "Misc": "その他",
     "Other Writing": "その他の文章",
-    "Research papers, preprints, and related writing. Last updated: 22 April 2026.":
-      "Research papers, preprints, related writing. 最終更新: 2026年4月22日",
+    "Research papers, preprints, and related writing. Last updated: 27 April 2026.":
+      "Research papers, preprints, related writing. 最終更新: 2026年4月27日",
     "Conference talks, seminars, workshop presentations, and available slides.":
       "Conference talks, seminars, workshop presentations とスライドをまとめています。",
     "Talks and slides.": "Talks and slides.",
@@ -1445,21 +1446,21 @@ const i18nText = {
     "Archive": "アーカイブ",
     "Talk List": "発表一覧",
     "Filter talks": "発表を絞り込む",
-    "Talks, seminars, and presentation material. Last updated: 22 April 2026.":
-      "Talks, seminars, presentation material. 最終更新: 2026年4月22日",
+    "Talks, seminars, and presentation material. Last updated: 27 April 2026.":
+      "Talks, seminars, presentation material. 最終更新: 2026年4月27日",
     "Notes and Slides": "ノートとスライド",
     "Lecture notes, slides, speculative notes, and teaching material. ☁︎ marked notes are speculative; 🖊️ marked notes are under construction.":
       "Lecture notes, slides, speculative notes, teaching material をまとめています。☁︎ は speculative、🖊️ は under construction を表します。",
     "Notes and slides.": "Notes and slides.",
     "Slides and teaching material.": "Slides and teaching material.",
-    "Notes, slides, and teaching material. Last updated: 22 April 2026.":
-      "Notes, slides, teaching material. 最終更新: 2026年4月22日",
+    "Notes, slides, and teaching material. Last updated: 27 April 2026.":
+      "Notes, slides, teaching material. 最終更新: 2026年4月27日",
     "Academic Activity": "研究活動",
     "Research visits, organizing work, seminars, public writing, and academic events.":
       "Research visits, organizing work, seminars, public writing, academic events をまとめています。",
     "Activities and plans.": "活動と予定。",
-    "Academic activities, visits, and organizing work. Last updated: 22 April 2026.":
-      "Academic activities, visits, organizing work. 最終更新: 2026年4月22日",
+    "Academic activities, visits, and organizing work. Last updated: 27 April 2026.":
+      "Academic activities, visits, organizing work. 最終更新: 2026年4月27日",
     "Profile Details": "プロフィール詳細",
     "CV": "CV",
     "CV and awards.": "CV と受賞。",
@@ -1472,12 +1473,10 @@ const i18nText = {
     "Awards": "受賞",
     "Teaching": "教育",
     "Education and Outreach": "教育とアウトリーチ",
-    "Synced Awards": "同期された受賞",
-    "Synced Education": "同期された教育歴",
     "Source": "出典",
     "Credit": "謝辞",
-    "CV, awards, positions, and education. Last updated: 22 April 2026.":
-      "CV, awards, positions, education. 最終更新: 2026年4月22日",
+    "CV, awards, positions, and education. Last updated: 27 April 2026.":
+      "CV, awards, positions, education. 最終更新: 2026年4月27日",
     "Open Problems and Questions": "Open Problems and Questions",
     "Open problems and trails.": "Open problems and trails.",
     "Open questions and trails.": "Open questions and trails.",
@@ -1510,21 +1509,21 @@ const i18nText = {
     "Filter problems": "問題を絞り込む",
     "Index": "索引",
     "All Entries": "全項目",
-    "Open problems, questions, and reference trails. Last updated: 22 April 2026.":
-      "Open problems, questions, reference trails. 最終更新: 2026年4月22日",
+    "Open problems, questions, and reference trails. Last updated: 27 April 2026.":
+      "Open problems, questions, reference trails. 最終更新: 2026年4月27日",
     "People, Friends' Papers, Books, Events": "人物・友人の論文・本・イベント",
     "Profiles and references.": "プロフィールと資料。",
     "External references, profile pages, friends' papers, books, and events.":
       "外部資料、プロフィールページ、友人の論文、本、イベントへのリンクです。",
-    "External links and reference pages. Last updated: 22 April 2026.":
-      "External links and reference pages. 最終更新: 2026年4月22日",
+    "External links and reference pages. Last updated: 27 April 2026.":
+      "External links and reference pages. 最終更新: 2026年4月27日",
     "☁︎ Log": "☁︎ Log",
     "思弁的なノート": "思弁的なノート",
     "Short draft fragments, questions, and half-formed mathematical pictures before they become papers, talks, or polished notes.":
       "papers, talks, polished notes になる前の短い草稿、問い、まだ形になりきっていない数学的イメージです。",
     "Draft fragments.": "草稿断片。",
     "Entries": "項目",
-    "Speculative notes. Last updated: 22 April 2026.": "Speculative notes. 最終更新: 2026年4月22日",
+    "Speculative notes. Last updated: 27 April 2026.": "Speculative notes. 最終更新: 2026年4月27日",
     "Published papers, preprints, manuscripts in preparation, and related references.":
       "published papers, preprints, manuscripts in preparation と関連資料をまとめています。",
     "Conference talks, seminars, workshop presentations, and selected recordings.":
@@ -1881,6 +1880,29 @@ function slugify(value) {
 
 function normalizedUiText(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function cleanPublicationTitle(value) {
+  const text = normalizedUiText(value);
+  if (text === "Grothendieck topos with a left adjoint to a left adjoint to a left adjoint to the global sections functor") {
+    return "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor";
+  }
+  return text;
+}
+
+function cleanPresentationTitle(value) {
+  const text = normalizedUiText(value);
+  if (text === "Connecteness and full subcategories of topoi") return "Connectedness and full subcategories of topoi";
+  if (text === "Topoi of automata,") return "Topoi of automata";
+  return text;
+}
+
+function presentationDisplayRecord(record) {
+  return record ? { ...record, title: cleanPresentationTitle(record.title), rawTitle: record.title } : record;
+}
+
+function researchmapPresentationRecords() {
+  return (researchmapData?.presentations || []).map(presentationDisplayRecord);
 }
 
 function readStoredLanguage() {
@@ -2488,7 +2510,7 @@ function overleafActionLinks(record, kinds = []) {
 function overleafNoteRecords() {
   return overleafArtifacts(["slide", "note"]).map((artifact) => ({
     title: artifact.title,
-    description: artifact.description || "Synced from an Overleaf-backed GitHub repository.",
+    description: artifact.description || "Overleaf-backed GitHub repository.",
     date: artifact.date || artifact.updated || "",
     language: artifact.language || "Document",
     theme: artifact.theme || "",
@@ -3194,6 +3216,7 @@ function presentationSearchText(record) {
   return compactText([
     record.year,
     record.title,
+    record.rawTitle,
     record.presenters?.join(" "),
     record.event,
     staticTalk?.venue,
@@ -3209,7 +3232,7 @@ function presentationSearchText(record) {
 }
 
 function visiblePresentationRecords() {
-  return (researchmapData?.presentations || []).filter((record) => matchesQuery(presentationSearchText(record), state.talkQuery));
+  return researchmapPresentationRecords().filter((record) => matchesQuery(presentationSearchText(record), state.talkQuery));
 }
 
 function tokenOverlapScore(left, right) {
@@ -3288,9 +3311,10 @@ function talkLocationLabel(location) {
 function findResearchmapPresentationForTalk(talk) {
   const title = simplified(talk?.title);
   if (!title) return null;
-  const candidates = (researchmapData?.presentations || []).filter((record) => {
+  const candidates = researchmapPresentationRecords().filter((record) => {
     const recordTitle = simplified(record.title);
-    return recordTitle === title || recordTitle.includes(title) || title.includes(recordTitle);
+    const rawTitle = simplified(record.rawTitle);
+    return recordTitle === title || rawTitle === title || recordTitle.includes(title) || title.includes(recordTitle);
   });
   if (!candidates.length) return null;
   if (candidates.length === 1) return candidates[0];
@@ -3487,7 +3511,7 @@ function siteSearchRecords() {
     });
   });
 
-  siteData.papers.misc.forEach((paper) => {
+  miscPaperRecords().forEach((paper) => {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: paper.title,
@@ -3513,19 +3537,19 @@ function siteSearchRecords() {
     });
   });
 
-  (researchmapData?.papers || []).forEach((record) => {
+  (researchmapData?.papers || []).map(researchmapPaperRecord).forEach((record) => {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: record.title,
       href: record.link || localHref(`papers/index.html#${paperAnchor(record)}`),
-      summary: record.venue || record.type || "Synced paper metadata",
+      summary: record.venue || record.type || "Paper metadata",
       meta: compactText([paperPeopleText(record), record.year, record.publicationDate]).join(" / "),
       keywords: compactText([record.type, record.openAccess ? "open access" : "researchmap"]),
       icon: "paper"
     });
   });
 
-  const researchmapTalks = researchmapData?.presentations || [];
+  const researchmapTalks = researchmapPresentationRecords();
   if (researchmapTalks.length) {
     researchmapTalks.forEach((record) => {
       pushSiteSearchRecord(records, {
@@ -4024,7 +4048,7 @@ function canonicalVisitLocation(location) {
 }
 
 function presentationVisitRecords() {
-  return sortedPresentations(researchmapData?.presentations || [])
+  return sortedPresentations(researchmapPresentationRecords())
     .map((record) => {
       const originalLocation = talkLocationForRecord(record);
       const location = canonicalVisitLocation(originalLocation);
@@ -5987,14 +6011,6 @@ function uiIconSvg(key) {
       shape("path", {
         d: "M12 20.1C8.5 17.3 5.7 14.8 4.4 12.7C3 10.4 3.4 7.7 5.4 6.3C7 5.2 9.2 5.5 10.7 7.1L12 8.5L13.3 7.1C14.8 5.5 17 5.2 18.6 6.3C20.6 7.7 21 10.4 19.6 12.7C18.3 14.8 15.5 17.3 12 20.1Z",
         fill: "currentColor"
-      }),
-      shape("path", {
-        d: "M7.5 8.8C8.5 8.1 9.7 8.3 10.6 9.3",
-        fill: "none",
-        stroke: "var(--paper)",
-        "stroke-linecap": "round",
-        "stroke-width": "1.15",
-        "stroke-opacity": "0.72"
       })
     );
     return svg;
@@ -6002,92 +6018,56 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "torus") {
     svg.append(
-      shape("ellipse", { cx: "12", cy: "12", rx: "8.4", ry: "4.7", fill: "none", stroke: "currentColor", "stroke-width": "1.75" }),
-      shape("path", {
-        d: "M4.2 12C5.6 8.6 8.4 6.7 12 6.7C15.6 6.7 18.4 8.6 19.8 12",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-linecap": "round",
-        "stroke-width": "1.45",
-        "stroke-opacity": "0.52"
-      }),
-      shape("path", {
-        d: "M4.4 12C6.2 15.3 8.7 17.1 12 17.1C15.3 17.1 17.8 15.3 19.6 12",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-linecap": "round",
-        "stroke-width": "1.45"
-      }),
-      shape("ellipse", { cx: "12", cy: "12", rx: "3.25", ry: "1.65", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.55" }),
-      shape("path", {
-        d: "M8.8 12C9.5 11 10.6 10.5 12 10.5C13.4 10.5 14.5 11 15.2 12",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-linecap": "round",
-        "stroke-width": "1.1",
-        "stroke-opacity": "0.58"
-      })
+      shape("ellipse", { cx: "12", cy: "12", rx: "8.8", ry: "5", fill: "none", stroke: "currentColor", "stroke-width": "2.35" }),
+      shape("ellipse", { cx: "12", cy: "12", rx: "3.35", ry: "1.85", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "2" })
     );
     return svg;
   }
 
   if (normalizedKey === "plus") {
     svg.append(
-      line({ d: "M12 5.6V18.4", "stroke-width": "2.35" }),
-      line({ d: "M5.6 12H18.4", "stroke-width": "2.35" })
+      line({ d: "M12 5V19", "stroke-width": "3" }),
+      line({ d: "M5 12H19", "stroke-width": "3" })
     );
     return svg;
   }
 
   if (normalizedKey === "arrow") {
     svg.append(
-      line({ d: "M4.7 12H18.2", "stroke-width": "2.2" }),
-      line({ d: "M13.1 6.9L18.2 12L13.1 17.1", "stroke-width": "2.2" })
+      line({ d: "M4.5 12H19", "stroke-width": "2.8" }),
+      line({ d: "M13.5 6.5L19 12L13.5 17.5", "stroke-width": "2.8" })
     );
     return svg;
   }
 
   if (normalizedKey === "automaton-piece") {
     svg.append(
-      shape("circle", { cx: "7.8", cy: "12", r: "3.2", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.8" }),
-      line({ d: "M11.2 12H18.1", "stroke-width": "1.9" }),
-      line({ d: "M15.6 9.5L18.1 12L15.6 14.5", "stroke-width": "1.9" }),
-      shape("circle", { cx: "7.8", cy: "12", r: "0.95", fill: "currentColor" })
+      shape("circle", { cx: "7.5", cy: "12", r: "3.65", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "2.15" }),
+      line({ d: "M11.4 12H19", "stroke-width": "2.35" }),
+      line({ d: "M15.9 8.9L19 12L15.9 15.1", "stroke-width": "2.35" })
     );
     return svg;
   }
 
   if (normalizedKey === "pawn") {
     svg.append(
-      shape("circle", { cx: "12", cy: "6.7", r: "2.25", fill: "none", stroke: "currentColor", "stroke-width": "1.85" }),
+      shape("circle", { cx: "12", cy: "6.5", r: "2.65", fill: "currentColor" }),
       shape("path", {
-        d: "M9.2 10.5H14.8L15.7 14.1C16 15.3 17 16.2 18.2 16.6L17.5 19.2H6.5L5.8 16.6C7 16.2 8 15.3 8.3 14.1Z",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-linejoin": "round",
-        "stroke-width": "1.85"
+        d: "M8.8 10.2H15.2L16.4 17H18.1V20H5.9V17H7.6Z",
+        fill: "currentColor"
       }),
-      line({ d: "M7.1 19.2H16.9" }),
-      line({ d: "M8.6 10.5H15.4", "stroke-width": "1.55" })
+      shape("rect", { x: "7.2", y: "14.8", width: "9.6", height: "2.4", rx: "1.2", fill: "currentColor" })
     );
     return svg;
   }
 
   if (normalizedKey === "binary-tree") {
     svg.append(
-      line({ d: "M12 6.1L7.4 12.2" }),
-      line({ d: "M12 6.1L16.6 12.2" }),
-      line({ d: "M7.4 12.2L5.2 18" }),
-      line({ d: "M7.4 12.2L9.6 18" }),
-      line({ d: "M16.6 12.2L14.4 18" }),
-      line({ d: "M16.6 12.2L18.8 18" }),
-      shape("circle", { cx: "12", cy: "6.1", r: "1.85", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.65" }),
-      shape("circle", { cx: "7.4", cy: "12.2", r: "1.65", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.55" }),
-      shape("circle", { cx: "16.6", cy: "12.2", r: "1.65", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.55" }),
-      shape("circle", { cx: "5.2", cy: "18", r: "1.45", fill: "currentColor" }),
-      shape("circle", { cx: "9.6", cy: "18", r: "1.45", fill: "currentColor" }),
-      shape("circle", { cx: "14.4", cy: "18", r: "1.45", fill: "currentColor" }),
-      shape("circle", { cx: "18.8", cy: "18", r: "1.45", fill: "currentColor" })
+      line({ d: "M12 6.2L7.2 17.2", "stroke-width": "2.1" }),
+      line({ d: "M12 6.2L16.8 17.2", "stroke-width": "2.1" }),
+      shape("circle", { cx: "12", cy: "6.2", r: "2.45", fill: "currentColor" }),
+      shape("circle", { cx: "7.2", cy: "17.2", r: "2.45", fill: "currentColor" }),
+      shape("circle", { cx: "16.8", cy: "17.2", r: "2.45", fill: "currentColor" })
     );
     return svg;
   }
@@ -6095,31 +6075,22 @@ function uiIconSvg(key) {
   if (normalizedKey === "river") {
     svg.append(
       shape("path", {
-        d: "M5.2 5.8C8.1 4.2 10.6 4.2 12.8 5.8C14.9 7.3 17.1 7.3 19.2 5.8",
+        d: "M4.8 8.3C7.7 6.3 10.4 6.3 13 8.3C15.3 10.1 17.6 10.1 19.4 8.3",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
-        "stroke-width": "1.8"
+        "stroke-width": "2.45"
       }),
       shape("path", {
-        d: "M4.6 11.5C7.4 9.7 10 9.7 12.5 11.5C15 13.3 17.3 13.3 19.4 11.5",
+        d: "M4.8 15.6C7.7 13.6 10.4 13.6 13 15.6C15.3 17.4 17.6 17.4 19.4 15.6",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
-        "stroke-width": "2.05"
+        "stroke-width": "2.45"
       }),
-      shape("path", {
-        d: "M5.2 17.2C8.1 15.7 10.7 15.7 13 17.2C15.2 18.7 17.3 18.7 19.2 17.2",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        "stroke-width": "1.8",
-        "stroke-opacity": "0.66"
-      }),
-      line({ d: "M16.3 9.2L19.4 11.5L16.3 13.8", "stroke-width": "1.65" })
+      line({ d: "M16.4 12.9L19.4 15.6L16.4 18.1", "stroke-width": "2" })
     );
     return svg;
   }
@@ -6719,7 +6690,7 @@ function themedPaperRecords() {
         ...paperThemeScore(paper)
       };
     }),
-    ...siteData.papers.misc.map((paper) => {
+    ...miscPaperRecords().map((paper) => {
       const text = compactText([paper.title, paper.authors, paper.tags?.join(" ")]).join(" ");
       return {
         type: "paper",
@@ -6729,7 +6700,7 @@ function themedPaperRecords() {
         ...scoreThemeRecord(text)
       };
     }),
-    ...(researchmapData?.papers || []).map((paper) => {
+    ...(researchmapData?.papers || []).map(researchmapPaperRecord).map((paper) => {
       const text = compactText([
         paper.title,
         paper.authors
@@ -6779,7 +6750,7 @@ function themedNoteRecords() {
 }
 
 function themedTalkRecords() {
-  const synced = researchmapData?.presentations || [];
+  const synced = researchmapPresentationRecords();
   if (synced.length) {
     return synced
       .map((record) => {
@@ -7672,10 +7643,15 @@ function normalizationFigureTemplate() {
       <text class="normalization-status" data-normalization-status x="330" y="49">H = D4</text>
 
       <g class="normalization-stabilizer-links" data-normalization-stabilizer-links aria-hidden="true">
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-point="v0" d="M47 232 C171.16 198, 310.84 149.2, 435 115.2"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-point="v1" d="M107 232 C269.75 198, 452.85 149.2, 615.6 115.2"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-point="v2" d="M47 232 C228.95 266, 433.65 261.8, 615.6 295.8"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-point="v3" d="M107 232 C211.96 266, 330.04 261.8, 435 295.8"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="d4" data-normalization-link-orbit="fixed" data-normalization-link-point="p0" d="M162 80 C278.26 114, 409.04 171.5, 525.3 205.5"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-orbit="vertex" data-normalization-link-point="v0" d="M47 232 C171.16 198, 310.84 149.2, 435 115.2"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-orbit="vertex" data-normalization-link-point="v1" d="M107 232 C269.75 198, 452.85 149.2, 615.6 115.2"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-orbit="vertex" data-normalization-link-point="v2" d="M47 232 C228.95 266, 433.65 261.8, 615.6 295.8"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-orbit="vertex" data-normalization-link-point="v3" d="M107 232 C211.96 266, 330.04 261.8, 435 295.8"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref1" data-normalization-link-orbit="edge" data-normalization-link-point="e0" d="M217 232 C315.66 198, 426.64 149.2, 525.3 115.2"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref3" data-normalization-link-orbit="edge" data-normalization-link-point="e1" d="M277 232 C385.35 198, 507.25 239.5, 615.6 205.5"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref1" data-normalization-link-orbit="edge" data-normalization-link-point="e2" d="M217 232 C315.66 266, 426.64 261.8, 525.3 295.8"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref3" data-normalization-link-orbit="edge" data-normalization-link-point="e3" d="M277 232 C327.56 198, 384.44 239.5, 435 205.5"></path>
       </g>
 
       <g class="normalization-lattice" transform="translate(12 42)">
@@ -8445,30 +8421,19 @@ const paperFigureTemplates = {
     </svg>`,
   "completely-connected": completelyConnectedFigureTemplate(),
   "lawvere-first": `
-    <svg class="tensor-animation-figure tensor-factorization-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
+    <svg class="tensor-factorization-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-lawvere-first-title fig-lawvere-first-desc">
       <title id="fig-lawvere-first-title">Power set tensor calculation through image factorization</title>
       <desc id="fig-lawvere-first-desc">A concrete calculation for the covariant power set functor: the restricted map from S factors as an epimorphism onto f(S) followed by the inclusion into X, giving the minimal expression.</desc>
       <defs>
-        <marker id="tensor-f-arrow-warm" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4.4" markerHeight="4.4" orient="auto">
-          <path class="tensor-f-arrow-head tensor-f-arrow-head-warm" d="M 1 1 L 9 5 L 1 9 z"></path>
-        </marker>
         <marker id="tensor-f-arrow-green" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4.4" markerHeight="4.4" orient="auto">
           <path class="tensor-f-arrow-head tensor-f-arrow-head-green" d="M 1 1 L 9 5 L 1 9 z"></path>
-        </marker>
-        <marker id="tensor-f-arrow-muted" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="3.6" markerHeight="3.6" orient="auto">
-          <path class="tensor-f-arrow-head tensor-f-arrow-head-muted" d="M 1 1 L 9 5 L 1 9 z"></path>
         </marker>
         <marker id="tensor-iota-arrow-gray" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4" markerHeight="4" orient="auto">
           <path class="tensor-iota-arrow-head" d="M 1 1 L 9 5 L 1 9 z"></path>
         </marker>
-        <marker id="tensor-subset-pressure-arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto">
-          <path class="tensor-subset-pressure-arrow-head" d="M 1 1 L 9 5 L 1 9 z"></path>
-        </marker>
       </defs>
-      <text class="figure-small lawvere-caption" x="380" y="30">power set tensor: image factorization gives the minimal expression</text>
 
       <g transform="translate(42 56)">
-        <rect class="tensor-string-card" x="0" y="0" width="676" height="270" rx="14"></rect>
         <rect class="tensor-set-envelope tensor-x-envelope" x="30" y="42" width="164" height="190" rx="48"></rect>
         <rect class="tensor-set-envelope tensor-left-a-envelope" x="264" y="58" width="104" height="170" rx="38"></rect>
         <rect class="tensor-set-envelope tensor-a-envelope" x="424" y="58" width="114" height="170" rx="38"></rect>
@@ -8479,6 +8444,7 @@ const paperFigureTemplates = {
 
         <rect class="tensor-s-envelope tensor-s-choice-envelope" x="552" y="70" width="94" height="146" rx="36"></rect>
         <line class="tensor-tensor-divider" x1="394" y1="48" x2="394" y2="238"></line>
+        <line class="tensor-split-divider" x1="574" y1="58" x2="574" y2="226"></line>
 
         <g class="tensor-x-node selected" transform="translate(112 92)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
         <g class="tensor-x-node selected green" transform="translate(112 146)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
@@ -8513,62 +8479,27 @@ const paperFigureTemplates = {
         <g class="tensor-right-a-node" transform="translate(481 202)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
         <g class="tensor-s-node" transform="translate(600 88)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
         <g class="tensor-s-node" transform="translate(600 164)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+        <g class="tensor-iota-domain-node" transform="translate(600 88)">
+          <animateTransform attributeName="transform" type="translate" values="600 88;600 88;558 88;558 88" keyTimes="0;0.4;0.66;1" dur="10s" fill="freeze"></animateTransform>
+          <circle cx="0" cy="0" r="16"></circle><text x="0" y="6">a</text>
+        </g>
+        <g class="tensor-iota-domain-node" transform="translate(600 164)">
+          <animateTransform attributeName="transform" type="translate" values="600 164;600 164;558 164;558 164" keyTimes="0;0.4;0.66;1" dur="10s" fill="freeze"></animateTransform>
+          <circle cx="0" cy="0" r="16"></circle><text x="0" y="6">c</text>
+        </g>
 
         <g class="tensor-iota-decompose-layer">
-          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M582 88 C552 88, 526 88, 499 88"></path>
-          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M582 164 C552 164, 526 164, 499 164"></path>
-          <rect class="tensor-s-self-pulse" x="558" y="76" width="84" height="132" rx="32"></rect>
-          <g class="tensor-s-self-extension-layer">
-            <path class="tensor-s-self-extension" pathLength="1" d="M618 88 C628 88, 635 88, 642 88"></path>
-            <path class="tensor-s-self-extension" pathLength="1" d="M618 164 C628 164, 635 164, 642 164"></path>
-            <circle class="tensor-s-self-end" cx="642" cy="88" r="7"></circle>
-            <circle class="tensor-s-self-end" cx="642" cy="164" r="7"></circle>
-          </g>
+          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M542 88 C528 88, 514 88, 499 88"></path>
+          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M542 164 C528 164, 514 164, 499 164"></path>
           <text class="tensor-operator-label tensor-iota-label" x="538" y="79">&#953;</text>
-          <text class="tensor-operator-label tensor-s-self-label" x="624" y="134">S&#8835;S</text>
-        </g>
-        <g class="tensor-composite-layer">
-          <path class="tensor-composite-cord" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M582 88 C476 60, 262 68, 132 92"></path>
-          <path class="tensor-composite-cord" marker-end="url(#tensor-f-arrow-green)" pathLength="1" d="M582 164 C474 174, 262 164, 132 146"></path>
-          <text class="tensor-operator-label tensor-composite-label" x="340" y="66">f&#8728;&#953;</text>
         </g>
 
-        <g class="tensor-step-labels" aria-hidden="true">
-          <g class="tensor-step-label tensor-step-label-1" transform="translate(384 247)">
-            <rect x="-92" y="-16" width="184" height="24" rx="12"></rect>
-            <text x="0" y="2">Step 1: split A&#8835;S</text>
-          </g>
-          <g class="tensor-step-label tensor-step-label-2" transform="translate(384 247)">
-            <rect x="-104" y="-16" width="208" height="24" rx="12"></rect>
-            <text x="0" y="2">Step 2: move tensor line</text>
-          </g>
-          <g class="tensor-step-label tensor-step-label-3" transform="translate(384 247)">
-            <rect x="-110" y="-16" width="220" height="24" rx="12"></rect>
-            <text x="0" y="2">Step 3: compose f with &#953;</text>
-          </g>
-        </g>
       </g>
     </svg>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-1 tensor-formula-split">
+    <span class="figure-math tensor-formula-stage tensor-formula-split">
       <span class="tensor-formula-left">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f}A})\\)</span>
       <span class="tensor-formula-operator">\\(\\otimes\\)</span>
       <span class="tensor-formula-right">\\((\\textcolor{#b66737}{A\\supset S})\\)</span>
-    </span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-2 tensor-formula-split">
-      <span class="tensor-formula-left">\\(\\textcolor{#b66737}{A\\supset S}\\leadsto \\textcolor{#7b7f78}{A\\xleftarrow{\\iota}S}\\)</span>
-      <span class="tensor-formula-operator">\\(\\otimes\\)</span>
-      <span class="tensor-formula-right">\\((\\textcolor{#b66737}{S\\supset S})\\)</span>
-    </span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-3 tensor-formula-split">
-      <span class="tensor-formula-left">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f}A}\\textcolor{#7b7f78}{\\xleftarrow{\\iota}S})\\)</span>
-      <span class="tensor-formula-operator">\\(\\otimes\\)</span>
-      <span class="tensor-formula-right">\\((\\textcolor{#b66737}{S\\supset S})\\)</span>
-    </span>
-    <span class="figure-math tensor-formula-stage tensor-formula-stage-4 tensor-formula-split tensor-formula-with-result">
-      <span class="tensor-formula-left">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f\\circ\\iota}S})\\)</span>
-      <span class="tensor-formula-operator">\\(\\otimes\\)</span>
-      <span class="tensor-formula-right">\\((\\textcolor{#b66737}{S\\supset S})\\)</span>
-      <span class="tensor-formula-result">\\(\\textcolor{#2c6f63}{f\\circ\\iota}:\\textcolor{#b66737}{S}\\to X\\)</span>
     </span>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
@@ -9305,8 +9236,13 @@ function normalizationSubgroupGlobalPoint(conjugator, subgroupId) {
   ];
 }
 
-function normalizationVertexGlobalPoint(actionState, pointId) {
-  const coordinate = normalizationOrbitCoordinates.vertex?.[pointId];
+function normalizationLinkCoordinate(orbit, pointId) {
+  if (orbit === "fixed" && pointId === "p0") return [0, 0];
+  return normalizationOrbitCoordinates[orbit]?.[pointId] || null;
+}
+
+function normalizationLinkGlobalPoint(actionState, orbit, pointId) {
+  const coordinate = normalizationLinkCoordinate(orbit, pointId);
   if (!coordinate) return null;
   const [x, y] = normalizationTargetCoordinate(actionState, coordinate);
   return [
@@ -9337,8 +9273,8 @@ function normalizationInterpolatePoint(from, to, progress) {
   ];
 }
 
-function normalizationVertexLocalPoint(pointId) {
-  const coordinate = normalizationOrbitCoordinates.vertex?.[pointId];
+function normalizationLinkLocalPoint(orbit, pointId) {
+  const coordinate = normalizationLinkCoordinate(orbit, pointId);
   if (!coordinate) return null;
   return [
     normalizationSquareBodyCenter[0] + 21 * coordinate[0],
@@ -9376,8 +9312,8 @@ function normalizationAnimatedActionMatrix(fromActionState, toActionState, acted
   return targetMatrix.map((targetValue, index) => fromMatrix[index] + (targetValue - fromMatrix[index]) * progress);
 }
 
-function normalizationAnimatedVertexGlobalPoint(fromActionState, toActionState, actedElement, pointId, progress) {
-  const localPoint = normalizationVertexLocalPoint(pointId);
+function normalizationAnimatedLinkGlobalPoint(fromActionState, toActionState, actedElement, orbit, pointId, progress) {
+  const localPoint = normalizationLinkLocalPoint(orbit, pointId);
   if (!localPoint) return null;
   const transformedPoint = normalizationApplyMatrixToPoint(
     normalizationAnimatedActionMatrix(fromActionState, toActionState, actedElement, progress),
@@ -9398,9 +9334,10 @@ function normalizationAnimatedSubgroupGlobalPoint(fromSubgroupActionState, toSub
 
 function normalizationStabilizerLinkEndpoints(actionState, subgroupActionState, link) {
   const subgroupId = link.dataset.normalizationLinkSubgroup || "";
+  const orbit = link.dataset.normalizationLinkOrbit || "vertex";
   const pointId = link.dataset.normalizationLinkPoint || "";
   const from = normalizationSubgroupGlobalPoint(subgroupActionState, subgroupId);
-  const to = normalizationVertexGlobalPoint(actionState, pointId);
+  const to = normalizationLinkGlobalPoint(actionState, orbit, pointId);
   return from && to ? { from, to } : null;
 }
 
@@ -9412,6 +9349,7 @@ function setNormalizationStabilizerLinkPath(link, endpoints) {
 function updateNormalizationStabilizerLinks(root) {
   const state = normalizationStabilizerLinkMotionState.get(root);
   if (state?.frame) cancelAnimationFrame(state.frame);
+  root.classList.remove("is-transporting");
   const actionState = normalizationCurrentActionState(root);
   const subgroupActionState = normalizationCurrentSubgroupActionState(root);
   const linksByKey = new Map();
@@ -9454,10 +9392,11 @@ function animateNormalizationStabilizerLinks(root, fromActionState, toActionStat
 
     links.forEach((link) => {
       const subgroupId = link.dataset.normalizationLinkSubgroup || "";
+      const orbit = link.dataset.normalizationLinkOrbit || "vertex";
       const pointId = link.dataset.normalizationLinkPoint || "";
       const endpoints = {
         from: normalizationAnimatedSubgroupGlobalPoint(fromSubgroupActionState, toSubgroupActionState, subgroupId, subgroupProgress),
-        to: normalizationAnimatedVertexGlobalPoint(fromActionState, toActionState, actedElement, pointId, actionProgress)
+        to: normalizationAnimatedLinkGlobalPoint(fromActionState, toActionState, actedElement, orbit, pointId, actionProgress)
       };
       if (!endpoints.from || !endpoints.to) return;
       setNormalizationStabilizerLinkPath(link, endpoints);
@@ -9858,9 +9797,10 @@ function normalizationStabilizerList(action) {
 function setNormalizationElementSelection(root, elementId) {
   const selectedElement = normalizationElementLabels[elementId] ? elementId : "e";
   clearNormalizationFeatureSelection(root);
-  const { fromState, toState } = setNormalizationActionMotion(root, selectedElement);
+  const fromSubgroupState = normalizationCurrentSubgroupActionState(root);
+  const { actedElement, fromState, toState } = setNormalizationActionMotion(root, selectedElement);
   setNormalizationSubgroupMotion(root, toState);
-  updateNormalizationStabilizerLinks(root);
+  animateNormalizationStabilizerLinks(root, fromState, toState, fromSubgroupState, toState, actedElement);
   root.dataset.normalizationElementSelected = selectedElement;
   pulseNormalizationElementControl(root, selectedElement);
 
@@ -10723,7 +10663,7 @@ function renderDiagramNotes(panel, paper) {
   if (people) panel.append(el("p", "diagram-paper-people", people));
 
   const keywordList = el("div", "diagram-keywords");
-  paperDisplayTagRecords(paper, notes.keywords || []).forEach((tag) => keywordList.append(el("span", null, tag.label)));
+  paperDisplayTagRecords(paper, notes.keywords || []).forEach((tag) => keywordList.append(renderTagPill(tag.label)));
   if (keywordList.children.length) panel.append(keywordList);
 
   if (notes.concepts?.length) {
@@ -11157,7 +11097,7 @@ function renderPaperRecord(paper, options = {}) {
   paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
   if (meta.children.length) item.append(meta);
   if (paper.summary) item.append(el("p", "publication-summary", paper.summary));
-  appendActionLinks(item, [...(paper.links || []), ...overleafActionLinks(paper, ["paper", "preprint"])]);
+  appendActionLinks(item, [...normalizedPublicationLinks(paper.links || []), ...overleafActionLinks(paper, ["paper", "preprint"])]);
   return item;
 }
 
@@ -11169,14 +11109,55 @@ function updatePaperViewButtons() {
   });
 }
 
+function canonicalArxivHref(href) {
+  const text = String(href || "").trim();
+  const match = text.match(/^https?:\/\/arxiv\.org\/(abs|pdf)\/([^?#]+?)(?:\.pdf)?(?:[?#].*)?$/i);
+  if (!match) return text;
+  const kind = match[1].toLowerCase();
+  const id = match[2].replace(/v\d+$/i, "");
+  return `https://arxiv.org/${kind}/${id}`;
+}
+
+function normalizedPublicationLinks(links = []) {
+  const seen = new Set();
+  return (links || [])
+    .map(([label, href]) => {
+      const cleanHref = canonicalArxivHref(href);
+      if (!cleanHref) return null;
+      let cleanLabel = normalizedUiText(label || "Link");
+      if (/^url$/i.test(cleanLabel) && /arxiv\.org\/abs\//i.test(cleanHref)) cleanLabel = "arXiv";
+      if (/^url$/i.test(cleanLabel) && /arxiv\.org\/pdf\//i.test(cleanHref)) cleanLabel = "PDF";
+      return [cleanLabel, cleanHref];
+    })
+    .filter(Boolean)
+    .filter(([label, href]) => {
+      const key = `${simplified(label)}:${href}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+}
+
+function paperListingTime(paper) {
+  const researchmapPaper = findResearchmapPaper(paper);
+  return [
+    timelineTimeFromValue(paper.publicationDate),
+    timelineTimeFromValue(researchmapPaper?.publicationDate),
+    timelineTimeFromValue(paper.preprintDate),
+    arxivDateFromId(researchmapPaper?.arxivId),
+    arxivDateFromId(String(paper.link || "").match(/arxiv\.org\/abs\/([^/?#]+)/i)?.[1]),
+    timelineTimeFromValue(paper.year)
+  ].find(Number.isFinite) || 0;
+}
+
 function paperListingRecords() {
   return [
     ...siteData.papers.published.map((paper) => ({ ...paper, publicationStatus: "Published" })),
     ...siteData.papers.preprints.map((paper) => ({ ...paper, publicationStatus: "Preprint" }))
   ].sort((a, b) => {
-    const yearA = Number(String(a.year || "").match(/\d{4}/)?.[0] || 0);
-    const yearB = Number(String(b.year || "").match(/\d{4}/)?.[0] || 0);
-    return yearB - yearA || a.title.localeCompare(b.title);
+    const timeA = paperListingTime(a);
+    const timeB = paperListingTime(b);
+    return timeB - timeA || a.title.localeCompare(b.title);
   });
 }
 
@@ -11399,37 +11380,89 @@ function renderMiscPapers() {
   const root = document.querySelector("#misc-paper-list");
   if (!root) return;
   root.replaceChildren();
-  const records = siteData.papers.misc.filter(paperMatchesActiveFilters);
+  const records = miscPaperRecords().filter(paperMatchesActiveFilters);
   if (!records.length) {
     root.append(el("p", "empty-state", "No papers match this filter."));
     return;
   }
-  records.forEach((paper) => {
-    const item = el("article", "publication-item");
-    const row = el("div", "publication-title");
-    const heading = el("h3");
-    heading.append(link(paper.title, paper.link));
-    row.append(heading);
-    item.append(row);
-    const details = renderPublicationDetails(paper);
-    if (details) item.append(details);
-    const meta = el("div", "publication-meta");
-    paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
-    if (meta.children.length) item.append(meta);
-    item.append(el("p", "publication-summary", paper.venue));
-    root.append(item);
-  });
+  records.forEach((paper) => root.append(renderPaperRecord(paper, { showFigure: false })));
+  typesetMath(root);
 }
 
 function researchmapPaperRecord(record) {
   return {
-    title: record.title,
+    title: cleanPublicationTitle(record.title),
     authors: record.authors,
     venue: record.venue || "researchmap",
     year: record.year,
-    link: record.link,
-    links: record.links
+    type: record.type,
+    openAccess: record.openAccess,
+    arxivId: record.arxivId,
+    publicationDate: record.publicationDate,
+    link: canonicalArxivHref(record.link),
+    links: normalizedPublicationLinks(record.links || [])
   };
+}
+
+function researchmapMiscPaperRecord(record) {
+  return {
+    title: cleanPublicationTitle(record.title),
+    authors: record.authors,
+    venue: record.venue || "researchmap misc",
+    year: record.year,
+    publicationDate: record.publicationDate,
+    link: canonicalArxivHref(record.link),
+    links: normalizedPublicationLinks(record.links || []),
+    tags: compactText([record.type])
+  };
+}
+
+function recordLinkSet(record) {
+  return new Set(compactText([
+    record.link,
+    ...(record.links || []).map((entry) => entry?.[1])
+  ]).map(canonicalArxivHref));
+}
+
+function miscRecordsOverlap(left, right) {
+  const leftLinks = recordLinkSet(left);
+  const rightLinks = recordLinkSet(right);
+  if ([...leftLinks].some((href) => rightLinks.has(href))) return true;
+  const leftTitle = simplified(left.title);
+  const rightTitle = simplified(right.title);
+  return Boolean(leftTitle && rightTitle && (leftTitle.includes(rightTitle) || rightTitle.includes(leftTitle)));
+}
+
+function mergeMiscRecord(base, extra) {
+  const baseTitle = normalizedUiText(base.title);
+  const extraTitle = normalizedUiText(extra.title);
+  return {
+    ...base,
+    ...extra,
+    title: extraTitle.length > baseTitle.length ? extraTitle : baseTitle,
+    authors: extra.authors || base.authors,
+    venue: base.venue && base.venue !== "researchmap misc" ? base.venue : extra.venue || base.venue,
+    publicationDate: base.publicationDate || extra.publicationDate,
+    link: base.link || extra.link,
+    links: normalizedPublicationLinks([...(base.links || []), ...(extra.links || []), extra.link ? ["researchmap", extra.link] : null].filter(Boolean)),
+    tags: [...new Set(compactText([...(base.tags || []), ...(extra.tags || [])]))]
+  };
+}
+
+function miscPaperRecords() {
+  const records = (researchmapData?.misc || []).map(researchmapMiscPaperRecord);
+  siteData.papers.misc.forEach((paper) => {
+    const candidate = {
+      ...paper,
+      title: cleanPublicationTitle(paper.title),
+      link: canonicalArxivHref(paper.link),
+      links: normalizedPublicationLinks(paper.links || [])
+    };
+    const index = records.findIndex((record) => miscRecordsOverlap(record, candidate));
+    if (index >= 0) records[index] = mergeMiscRecord(records[index], candidate);
+    else records.push(candidate);
+  });
+  return records.sort((a, b) => paperListingTime(b) - paperListingTime(a) || String(a.title).localeCompare(String(b.title)));
 }
 
 function renderResearchmapPapers() {
@@ -11520,17 +11553,97 @@ function renderResearchmapPresentations() {
   scrollToHashTarget();
 }
 
+function profileDuplicateText(...values) {
+  return simplified(compactText(values).join(" "))
+    .replace(/東京大学/gu, "university tokyo")
+    .replace(/理学部/gu, "faculty science")
+    .replace(/学修奨励賞/gu, "encouragement award")
+    .replace(/発表賞/gu, "presentation award")
+    .replace(/記号論理と情報科学研究集会/gu, "slacs")
+    .replace(/\bthe university of tokyo\b/gu, "university tokyo")
+    .replace(/\bgraduate school of mathematical sciences\b/gu, "graduate school mathematical sciences")
+    .replace(/\bfaculty of science\b/gu, "faculty science")
+    .replace(/\bph d\b/gu, "phd")
+    .replace(/\bmaster s\b/gu, "master");
+}
+
+function profileDuplicateYears(...values) {
+  return new Set(compactText(values).join(" ").match(/(?:19|20)\d{2}/gu) || []);
+}
+
+function profileDuplicateKeysWithYears(base, years) {
+  return [...years].map((year) => `${base}:${year}`);
+}
+
+function profileAwardDuplicateKeys(...values) {
+  const text = profileDuplicateText(...values);
+  const years = profileDuplicateYears(...values);
+  const keys = [];
+  if (text.includes("dean") && text.includes("award") && text.includes("graduate school mathematical sciences")) {
+    keys.push(...profileDuplicateKeysWithYears("award:dean:gsm", years));
+  }
+  if (text.includes("slacs") && text.includes("presentation award")) {
+    keys.push(...profileDuplicateKeysWithYears("award:slacs:presentation", years));
+  }
+  if (text.includes("faculty science") && text.includes("encouragement award")) {
+    keys.push(...profileDuplicateKeysWithYears("award:faculty-science:encouragement", years));
+  }
+  return keys;
+}
+
+function researchmapAwardDuplicateKeys(record) {
+  return profileAwardDuplicateKeys(record.date, record.year, record.title, record.association, record.description);
+}
+
+function nonResearchmapAwardDuplicateKeys() {
+  return new Set(siteData.awards.flatMap((record) => profileAwardDuplicateKeys(record.text)));
+}
+
+function profileEducationDuplicateKeys(...values) {
+  const text = profileDuplicateText(...values);
+  const yearsKey = [...profileDuplicateYears(...values)].sort().join("-");
+  if (!yearsKey) return [];
+  const keys = [];
+  if (text.includes("university tokyo") && text.includes("graduate school mathematical sciences")) {
+    keys.push(`education:utokyo:gsm:${yearsKey}`);
+  }
+  if (text.includes("university tokyo") && text.includes("faculty science")) {
+    keys.push(`education:utokyo:faculty-science:${yearsKey}`);
+  }
+  return keys;
+}
+
+function researchmapEducationDuplicateKeys(record) {
+  return profileEducationDuplicateKeys(record.period, record.affiliation, record.department, record.course);
+}
+
+function nonResearchmapEducationDuplicateKeys() {
+  const sources = [
+    ...siteData.education.map((record) => record.text),
+    ...siteData.currentPositions.map((record) => record.text),
+    ...siteData.pastPositions.map((record) => record.text)
+  ];
+  return new Set(sources.flatMap((text) => profileEducationDuplicateKeys(text)));
+}
+
+function hideProfileDataContainerWhenEmpty(root, isEmpty) {
+  const container = root.closest("div");
+  if (container) container.hidden = isEmpty;
+}
+
 function renderResearchmapAwards() {
   const root = document.querySelector("#researchmap-award-list");
   if (!root) return;
   root.replaceChildren();
   root.classList.add("icon-list");
   const records = researchmapData?.awards || [];
-  if (!records.length) {
-    root.append(el("li", "empty-state", "No generated researchmap award data is available yet."));
+  const sourceKeys = nonResearchmapAwardDuplicateKeys();
+  const visibleRecords = records.filter((record) => !researchmapAwardDuplicateKeys(record).some((key) => sourceKeys.has(key)));
+  hideProfileDataContainerWhenEmpty(root, !visibleRecords.length);
+  if (!visibleRecords.length) {
     return;
   }
-  records.forEach((record) => {
+  visibleRecords.forEach((record) => {
     const item = el("li", "icon-list-item");
     item.append(uiIcon("award", "list-item-icon"));
     const body = el("div", "icon-list-body");
@@ -11547,11 +11660,13 @@ function renderResearchmapEducation() {
   root.replaceChildren();
   root.classList.add("icon-list");
   const records = researchmapData?.education || [];
-  if (!records.length) {
-    root.append(el("li", "empty-state", "No generated researchmap education data is available yet."));
+  const sourceKeys = nonResearchmapEducationDuplicateKeys();
+  const visibleRecords = records.filter((record) => !researchmapEducationDuplicateKeys(record).some((key) => sourceKeys.has(key)));
+  hideProfileDataContainerWhenEmpty(root, !visibleRecords.length);
+  if (!visibleRecords.length) {
     return;
   }
-  records.forEach((record) => {
+  visibleRecords.forEach((record) => {
     const item = el("li", "icon-list-item");
     item.append(uiIcon("education", "list-item-icon"));
     const body = el("div", "icon-list-body");
