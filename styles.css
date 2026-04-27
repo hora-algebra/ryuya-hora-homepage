@@ -1585,10 +1585,10 @@ a.position-link:hover {
   margin-top: 14px;
 }
 
-.tag-cloud span,
-.tag-cloud a,
-.publication-meta .publication-tag,
-.publication-meta span {
+.tag-cloud > span,
+.tag-cloud > a,
+.publication-meta > .publication-tag,
+.publication-meta > span {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1607,8 +1607,13 @@ a.position-link:hover {
 }
 
 .tag-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
   width: 17px;
   height: 17px;
+  color: currentColor;
   opacity: 0.9;
 }
 
@@ -1643,12 +1648,12 @@ a.position-link:hover {
   font-weight: 850;
 }
 
-.tag-cloud a {
+.tag-cloud > a {
   color: #31463d;
   text-decoration: none;
 }
 
-.tag-cloud a:hover {
+.tag-cloud > a:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -2166,6 +2171,7 @@ a.position-link:hover {
 }
 
 .games-rb-table-figure {
+  --games-rb-cycle: 12s;
   --games-rb-green: #2c6f63;
   --games-rb-orange: #b66737;
   --games-rb-blue: #2f536f;
@@ -2233,56 +2239,63 @@ a.position-link:hover {
   font-weight: 780;
 }
 
-.games-rb-cell {
+.games-rb-table-bg {
   fill: rgba(255, 253, 248, 0.92);
   stroke: rgba(43, 52, 43, 0.18);
-  stroke-width: 1;
+  stroke-width: 1.2;
 }
 
-.games-rb-cell.is-head,
-.games-rb-cell.is-corner {
+.games-rb-table-head-row,
+.games-rb-table-head-col {
   fill: rgba(236, 231, 241, 0.72);
-  stroke: rgba(87, 75, 104, 0.2);
 }
 
-.games-rb-cell.is-s {
-  fill: rgba(231, 239, 232, 0.9);
-  stroke: rgba(44, 111, 99, 0.32);
-}
-
-.games-rb-cell.is-t {
-  fill: rgba(231, 239, 232, 0.9);
-  stroke: rgba(44, 111, 99, 0.32);
-}
-
-.games-rb-cell.is-mex-s,
-.games-rb-cell.is-mex-t {
+.games-rb-table-mex-head {
   fill: rgba(243, 230, 216, 0.95);
-  stroke: rgba(182, 103, 55, 0.42);
-  stroke-width: 1.5;
+  opacity: 0.24;
+  animation: games-rb-step-mex var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-cell {
+  stroke: none;
+  opacity: 0.18;
+}
+
+.games-rb-cell.is-s-def,
+.games-rb-cell.is-t-def {
+  fill: rgba(44, 111, 99, 0.18);
+  animation: games-rb-step-define var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-cell.is-t-def {
+  fill: rgba(47, 83, 111, 0.16);
 }
 
 .games-rb-cell.is-row-read {
   fill: rgba(44, 111, 99, 0.18);
-  stroke: rgba(44, 111, 99, 0.54);
-  stroke-width: 1.7;
-  animation: games-rb-table-cell-pulse 6.4s ease-in-out infinite;
+  animation: games-rb-step-rhs var(--games-rb-cycle) ease-in-out infinite;
 }
 
 .games-rb-cell.is-col-read {
   fill: rgba(47, 83, 111, 0.16);
-  stroke: rgba(47, 83, 111, 0.52);
-  stroke-width: 1.7;
-  animation: games-rb-table-cell-pulse 6.4s ease-in-out infinite;
-  animation-delay: 0.45s;
+  animation: games-rb-step-rhs var(--games-rb-cycle) ease-in-out infinite;
 }
 
 .games-rb-cell.is-lhs {
   fill: #fff0ed;
-  stroke: #b64a3d;
-  stroke-width: 2;
-  animation: games-rb-table-cell-pulse 6.4s ease-in-out infinite;
-  animation-delay: 0.9s;
+  animation: games-rb-step-lhs var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-table-lines {
+  fill: none;
+  stroke: rgba(43, 52, 43, 0.22);
+  stroke-linecap: square;
+  stroke-width: 1;
+}
+
+.games-rb-table-lines.is-major {
+  stroke: rgba(43, 52, 43, 0.34);
+  stroke-width: 1.35;
 }
 
 .games-rb-cell-text {
@@ -2300,6 +2313,28 @@ a.position-link:hover {
   fill: var(--games-rb-red);
   font-size: 14px;
   font-weight: 950;
+}
+
+.games-rb-cell-text.is-s-entry {
+  fill: var(--games-rb-green);
+}
+
+.games-rb-cell-text.is-t-entry {
+  fill: var(--games-rb-blue);
+}
+
+.games-rb-cell-text.is-mex-s-text,
+.games-rb-cell-text.is-mex-t-text {
+  fill: var(--games-rb-orange);
+  font-weight: 950;
+}
+
+.games-rb-cell-text.is-row-value {
+  fill: var(--games-rb-green);
+}
+
+.games-rb-cell-text.is-col-value {
+  fill: var(--games-rb-blue);
 }
 
 .games-rb-legend text {
@@ -2333,17 +2368,34 @@ a.position-link:hover {
   font-weight: 860;
 }
 
+.games-rb-mex-lines {
+  opacity: 0.42;
+  animation: games-rb-step-mex var(--games-rb-cycle) ease-in-out infinite;
+}
+
 .games-rb-readout rect {
   fill: rgba(255, 253, 248, 0.94);
   stroke-width: 1.45;
+}
+
+.games-rb-readout {
+  opacity: 0.34;
 }
 
 .games-rb-readout.is-lhs rect {
   stroke: rgba(182, 103, 55, 0.38);
 }
 
+.games-rb-readout.is-lhs {
+  animation: games-rb-step-lhs var(--games-rb-cycle) ease-in-out infinite;
+}
+
 .games-rb-readout.is-rhs rect {
   stroke: rgba(47, 83, 111, 0.34);
+}
+
+.games-rb-readout.is-rhs {
+  animation: games-rb-step-rhs var(--games-rb-cycle) ease-in-out infinite;
 }
 
 .games-rb-readout-label {
@@ -2365,12 +2417,123 @@ a.position-link:hover {
   font-weight: 850;
 }
 
+.games-rb-step-item {
+  opacity: 0.28;
+}
+
+.games-rb-step-item circle {
+  fill: rgba(255, 253, 248, 0.94);
+  stroke: rgba(43, 52, 43, 0.28);
+  stroke-width: 1.3;
+}
+
+.games-rb-step-number {
+  fill: rgba(36, 49, 42, 0.7);
+  font-size: 9px;
+  font-weight: 950;
+}
+
+.games-rb-step-title,
+.games-rb-step-detail {
+  letter-spacing: 0;
+}
+
+.games-rb-step-title {
+  fill: var(--games-rb-ink);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.games-rb-step-detail {
+  fill: rgba(36, 49, 42, 0.64);
+  font-size: 10.3px;
+  font-weight: 780;
+}
+
+.games-rb-term-s,
+.games-rb-term-row {
+  fill: var(--games-rb-green);
+  font-weight: 920;
+}
+
+.games-rb-term-t,
+.games-rb-term-col {
+  fill: var(--games-rb-blue);
+  font-weight: 920;
+}
+
+.games-rb-term-mex-s,
+.games-rb-term-mex-t {
+  fill: var(--games-rb-orange);
+  font-weight: 940;
+}
+
+.games-rb-term-set {
+  fill: var(--games-rb-purple);
+  font-weight: 940;
+}
+
+.games-rb-term-result {
+  fill: var(--games-rb-red);
+  font-weight: 960;
+}
+
+.games-rb-step-item.step-define {
+  animation: games-rb-step-define var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-step-item.step-mex {
+  animation: games-rb-step-mex var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-step-item.step-lhs {
+  animation: games-rb-step-lhs var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-step-item.step-rhs {
+  animation: games-rb-step-rhs var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-step-item.step-result {
+  animation: games-rb-step-result-text var(--games-rb-cycle) ease-in-out infinite;
+}
+
+.games-rb-step-item.step-define circle {
+  stroke: rgba(44, 111, 99, 0.5);
+}
+
+.games-rb-step-item.step-mex circle {
+  stroke: rgba(182, 103, 55, 0.5);
+}
+
+.games-rb-step-item.step-lhs circle {
+  stroke: rgba(155, 58, 48, 0.5);
+}
+
+.games-rb-step-item.step-rhs circle {
+  stroke: rgba(47, 83, 111, 0.5);
+}
+
+.games-rb-step-item.step-result circle {
+  stroke: rgba(44, 111, 99, 0.58);
+}
+
 .games-rb-answer circle {
   fill: rgba(231, 239, 232, 0.96);
   stroke: rgba(44, 111, 99, 0.58);
   stroke-width: 2;
-  animation: games-rb-table-answer-pulse 6.4s ease-in-out infinite;
-  animation-delay: 1.05s;
+}
+
+.games-rb-answer {
+  opacity: 0.28;
+  animation: games-rb-step-result var(--games-rb-cycle) ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.games-rb-same-result {
+  opacity: 0.28;
+  animation: games-rb-step-result-text var(--games-rb-cycle) ease-in-out infinite;
 }
 
 .games-rb-answer-note {
@@ -2383,6 +2546,14 @@ a.position-link:hover {
   fill: var(--games-rb-green);
   font-size: 30px;
   font-weight: 950;
+}
+
+.games-rb-same-result {
+  fill: rgba(44, 111, 99, 0.72);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-anchor: middle;
 }
 
 .games-rb-table-tex {
@@ -2403,38 +2574,124 @@ a.position-link:hover {
   left: 50%;
   top: 89.9%;
   color: #574b68;
+  opacity: 0.42;
+  animation: games-rb-step-lhs var(--games-rb-cycle) ease-in-out infinite;
 }
 
 .games-rb-table-tex-rhs {
   left: 50%;
   top: 95.2%;
+  opacity: 0.42;
+  animation: games-rb-step-rhs-tex var(--games-rb-cycle) ease-in-out infinite;
 }
 
-@keyframes games-rb-table-cell-pulse {
+@keyframes games-rb-step-define {
   0%,
-  100% {
-    fill-opacity: 0.76;
-    stroke-opacity: 0.72;
+  14% {
+    opacity: 1;
   }
 
-  36%,
+  24%,
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes games-rb-step-mex {
+  0%,
+  16% {
+    opacity: 0.26;
+  }
+
+  24%,
+  36% {
+    opacity: 1;
+  }
+
+  46%,
+  100% {
+    opacity: 0.34;
+  }
+}
+
+@keyframes games-rb-step-lhs {
+  0%,
+  34% {
+    opacity: 0.28;
+  }
+
+  43%,
+  55% {
+    opacity: 1;
+  }
+
+  66%,
+  100% {
+    opacity: 0.36;
+  }
+}
+
+@keyframes games-rb-step-rhs {
+  0%,
+  52% {
+    opacity: 0.24;
+  }
+
+  61%,
+  77% {
+    opacity: 1;
+  }
+
+  88%,
+  100% {
+    opacity: 0.34;
+  }
+}
+
+@keyframes games-rb-step-rhs-tex {
+  0%,
+  56% {
+    opacity: 0.34;
+  }
+
+  66%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes games-rb-step-result {
+  0%,
   76% {
-    fill-opacity: 1;
-    stroke-opacity: 1;
+    opacity: 0.26;
+    transform: scale(1);
+  }
+
+  84%,
+  94% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  100% {
+    opacity: 0.34;
+    transform: scale(1);
   }
 }
 
-@keyframes games-rb-table-answer-pulse {
+@keyframes games-rb-step-result-text {
   0%,
-  100% {
-    fill-opacity: 0.88;
-    stroke-opacity: 0.76;
+  76% {
+    opacity: 0.26;
   }
 
-  48%,
-  80% {
-    fill-opacity: 1;
-    stroke-opacity: 1;
+  84%,
+  94% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.34;
   }
 }
 
@@ -3103,6 +3360,81 @@ a.position-link:hover {
   height: 5px;
 }
 
+@media (max-width: 640px) {
+  .publication-figure-games-coalgebras .grundy-title {
+    font-size: 28px;
+  }
+
+  .publication-figure-games-coalgebras .grundy-value-label {
+    font-size: 19px;
+  }
+
+  .publication-figure-games-coalgebras .grundy-algebra-panel {
+    --grundy-panel-pad-x: clamp(4px, 1.8vw, 8px);
+    --grundy-panel-pad-y: clamp(4px, 1.8vw, 8px);
+    top: 13.8%;
+    right: clamp(18px, 6.5%, 46px);
+    bottom: 9.8%;
+    width: clamp(64px, 24%, 120px);
+    padding: var(--grundy-panel-pad-y) var(--grundy-panel-pad-x);
+    border-radius: 6px;
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-line {
+    --grundy-axis-pad: clamp(12px, 5vw, 20px);
+    --grundy-valve-width: calc(clamp(64px, 24vw, 120px) + (var(--grundy-panel-pad-x) * 2));
+    gap: clamp(1px, 0.8vw, 5px);
+    padding: clamp(3px, 1vw, 6px) 0;
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-line::before {
+    top: clamp(10px, 3.4vw, 18px);
+    bottom: clamp(10px, 3.4vw, 18px);
+    width: 2px;
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-number {
+    width: clamp(20px, 6.5vw, 30px);
+    height: clamp(20px, 6.5vw, 30px);
+    font-size: clamp(0.62rem, 2.4vw, 0.86rem);
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-core {
+    border-width: 1.5px;
+    box-shadow:
+      0 0 0 2px rgba(20, 25, 22, 0.1),
+      0 5px 9px rgba(20, 25, 22, 0.1);
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-number::after {
+    height: 2px;
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-number.is-excluded::after {
+    left: 5px;
+    right: 5px;
+    height: 2px;
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-number.is-mex {
+    transform: scale(1.07);
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-number.is-mex::before {
+    inset: -4px;
+    border-width: 1.5px;
+  }
+
+  .publication-figure-games-coalgebras .grundy-natural-number.is-mex::after {
+    height: 4px;
+  }
+
+  .publication-figure-games-coalgebras .grundy-transfer-ball {
+    --grundy-transfer-size: clamp(20px, 6.6vw, 28px) !important;
+    border-width: 1.5px;
+  }
+}
+
 .lawvere-pullback-figure {
   position: relative;
   width: 100%;
@@ -3626,6 +3958,7 @@ a.position-link:hover {
 }
 
 .automata-cantor-figure {
+  --cantor-cover-cycle: 12s;
   --cantor-ink: #1f2721;
   --cantor-muted: #626b62;
   --cantor-green: #2c6f63;
@@ -3642,6 +3975,18 @@ a.position-link:hover {
 .automata-cantor-main-arrow {
   stroke: var(--cantor-muted);
   stroke-width: 2.1;
+}
+
+.automata-etale-arrow,
+.automata-etale-label {
+  opacity: 0;
+  animation: automata-etale-stage var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-sublocale-arrow,
+.automata-sublocale-label {
+  opacity: 0;
+  animation: automata-sublocale-stage var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
 .automata-cantor-arrow-label {
@@ -3662,33 +4007,55 @@ a.position-link:hover {
   font-size: 18px;
   font-weight: 880;
   text-anchor: middle;
+  opacity: 0;
+  animation: automata-cantor-label-stage var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
 .automata-cantor-interval,
 .automata-cantor-dot {
   fill: var(--cantor-purple);
+  opacity: 0;
 }
 
 .automata-cantor-interval.stage-0 {
-  opacity: 0.58;
+  animation: automata-cantor-stage-0 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
 .automata-cantor-interval.stage-1 {
-  opacity: 0.74;
+  animation: automata-cantor-stage-1 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
-.automata-cantor-interval.stage-2,
-.automata-cantor-interval.stage-3,
+.automata-cantor-interval.stage-2 {
+  animation: automata-cantor-stage-2 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-interval.stage-3 {
+  animation: automata-cantor-stage-3 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
 .automata-cantor-dot {
-  opacity: 0.95;
+  animation: automata-cantor-stage-4 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
 .automata-cantor-connector {
   fill: none;
+  opacity: 0;
   stroke: rgba(143, 58, 216, 0.24);
   stroke-linecap: round;
   stroke-width: 2;
   vector-effect: non-scaling-stroke;
+}
+
+.automata-cantor-connector.cantor-stage-1 {
+  animation: automata-cantor-connector-stage-1 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-connector.cantor-stage-2 {
+  animation: automata-cantor-connector-stage-2 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-connector.cantor-stage-3 {
+  animation: automata-cantor-connector-stage-3 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
 .automata-cantor-ray,
@@ -3710,15 +4077,109 @@ a.position-link:hover {
   stroke-width: 4.6;
 }
 
+.automata-prefix-poset .automata-cantor-tree-edge {
+  opacity: 0;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.automata-prefix-poset .automata-cantor-tree-edge.level-1 {
+  animation: automata-tree-edge-level-1 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-prefix-poset .automata-cantor-tree-edge.level-2 {
+  animation: automata-tree-edge-level-2 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-prefix-poset .automata-cantor-tree-edge.level-3 {
+  animation: automata-tree-edge-level-3 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-bouquet-loop {
+  animation: automata-bouquet-loop-unfold var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-bouquet-direction,
+.automata-unfold-reverse-cover {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-bouquet-direction {
+  opacity: 0.82;
+  stroke-width: 2.5;
+}
+
+.automata-unfold-reverse-cover {
+  opacity: 0;
+  stroke: var(--cantor-muted);
+  stroke-dasharray: 8 7;
+  stroke-width: 2.45;
+  animation: automata-unfold-reverse-cover var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cover-unfolding {
+  pointer-events: none;
+}
+
+.automata-unfold-node-pulse {
+  fill: none;
+  stroke-width: 2.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-unfold-node-pulse.neutral {
+  stroke: rgba(44, 111, 99, 0.5);
+}
+
+.automata-unfold-node-pulse.blue {
+  stroke: rgba(47, 106, 163, 0.52);
+}
+
+.automata-unfold-node-pulse.red {
+  stroke: rgba(184, 79, 60, 0.52);
+}
+
+.automata-rolling-bouquet {
+  pointer-events: none;
+}
+
+.automata-rolling-bouquet-loop {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.8;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-rolling-bouquet-loop.blue {
+  stroke: var(--cantor-blue);
+}
+
+.automata-rolling-bouquet-loop.red {
+  stroke: var(--cantor-red);
+}
+
+.automata-rolling-bouquet-node {
+  fill: var(--cantor-ink);
+  stroke: #fffdf8;
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+}
+
 .automata-cantor-ray.red,
 .automata-cantor-tree-edge.red,
-.automata-cantor-bouquet-loop.red {
+.automata-cantor-bouquet-loop.red,
+.automata-bouquet-direction.red {
   stroke: var(--cantor-red);
 }
 
 .automata-cantor-ray.blue,
 .automata-cantor-tree-edge.blue,
-.automata-cantor-bouquet-loop.blue {
+.automata-cantor-bouquet-loop.blue,
+.automata-bouquet-direction.blue {
   stroke: var(--cantor-blue);
 }
 
@@ -3727,6 +4188,28 @@ a.position-link:hover {
   stroke: #fffdf8;
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
+}
+
+.automata-prefix-poset .automata-cantor-node {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.automata-prefix-poset .tree-depth-0 {
+  animation: automata-tree-node-depth-0 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-prefix-poset .tree-depth-1 {
+  animation: automata-tree-node-depth-1 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-prefix-poset .tree-depth-2 {
+  animation: automata-tree-node-depth-2 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-prefix-poset .tree-depth-3 {
+  animation: automata-tree-node-depth-3 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
 .automata-cantor-node.small {
@@ -3763,6 +4246,292 @@ a.position-link:hover {
 .diagram-expanded svg .automata-cantor-marker-purple path,
 .automata-cantor-marker-purple path {
   fill: var(--cantor-purple);
+}
+
+@keyframes automata-bouquet-loop-unfold {
+  0%,
+  100% {
+    opacity: 1;
+    stroke-width: 4.6;
+  }
+
+  8%,
+  28% {
+    opacity: 1;
+    stroke-width: 5.9;
+  }
+
+  42%,
+  50% {
+    opacity: 0.68;
+    stroke-width: 3.7;
+  }
+
+  58% {
+    opacity: 1;
+    stroke-width: 4.6;
+  }
+}
+
+@keyframes automata-unfold-reverse-cover {
+  0%,
+  15%,
+  66%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 18;
+  }
+
+  20%,
+  49% {
+    opacity: 0.78;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes automata-etale-stage {
+  0%,
+  10% {
+    opacity: 0;
+  }
+
+  18%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-sublocale-stage {
+  0%,
+  52% {
+    opacity: 0;
+  }
+
+  62%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-tree-edge-level-1 {
+  0%,
+  16% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  18% {
+    opacity: 1;
+    stroke-dashoffset: 1;
+  }
+
+  25%,
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes automata-tree-edge-level-2 {
+  0%,
+  26% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  28% {
+    opacity: 1;
+    stroke-dashoffset: 1;
+  }
+
+  37%,
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes automata-tree-edge-level-3 {
+  0%,
+  37% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  39% {
+    opacity: 1;
+    stroke-dashoffset: 1;
+  }
+
+  49%,
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes automata-tree-node-depth-0 {
+  0%,
+  13% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+
+  17%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes automata-tree-node-depth-1 {
+  0%,
+  23% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+
+  27%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes automata-tree-node-depth-2 {
+  0%,
+  34% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+
+  38%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes automata-tree-node-depth-3 {
+  0%,
+  45% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes automata-cantor-label-stage {
+  0%,
+  53% {
+    opacity: 0;
+  }
+
+  62%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-cantor-stage-0 {
+  0%,
+  52% {
+    opacity: 0;
+  }
+
+  60%,
+  100% {
+    opacity: 0.58;
+  }
+}
+
+@keyframes automata-cantor-stage-1 {
+  0%,
+  60% {
+    opacity: 0;
+  }
+
+  68%,
+  100% {
+    opacity: 0.74;
+  }
+}
+
+@keyframes automata-cantor-stage-2 {
+  0%,
+  68% {
+    opacity: 0;
+  }
+
+  76%,
+  100% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes automata-cantor-stage-3 {
+  0%,
+  76% {
+    opacity: 0;
+  }
+
+  84%,
+  100% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes automata-cantor-stage-4 {
+  0%,
+  84% {
+    opacity: 0;
+  }
+
+  90%,
+  100% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes automata-cantor-connector-stage-1 {
+  0%,
+  59% {
+    opacity: 0;
+  }
+
+  68%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-cantor-connector-stage-2 {
+  0%,
+  67% {
+    opacity: 0;
+  }
+
+  76%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-cantor-connector-stage-3 {
+  0%,
+  75% {
+    opacity: 0;
+  }
+
+  84%,
+  100% {
+    opacity: 1;
+  }
 }
 
 .automata-cover-figure .automata-panel {
@@ -3843,11 +4612,19 @@ a.position-link:hover {
 }
 
 .automata-lift-label {
-  fill: #626b62;
-  font-size: 14px;
-  font-weight: 860;
+  fill: #3c473e;
+  font-size: 18px;
+  font-weight: 920;
   letter-spacing: 0;
   text-anchor: middle;
+}
+
+.automata-input-start-link {
+  fill: none;
+  stroke: rgba(98, 107, 98, 0.24);
+  stroke-linecap: round;
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
 }
 
 .automata-input-panel {
@@ -3863,36 +4640,18 @@ a.position-link:hover {
   text-anchor: start;
 }
 
-.automata-input-label {
-  fill: #1f2721;
-  font-size: 15px;
-  font-weight: 820;
-}
-
-.automata-input-symbol rect {
-  fill: #fffdf8;
-  stroke-width: 1.8;
-}
-
-.automata-input-symbol-a rect {
-  stroke: #b84f3c;
-}
-
-.automata-input-symbol-b rect {
-  stroke: #2f6aa3;
-}
-
-.automata-input-symbol text {
+.automata-input-word {
   font-size: 16px;
   font-weight: 850;
   letter-spacing: 0;
+  text-anchor: start;
 }
 
-.automata-input-symbol-a text {
+.automata-word-a {
   fill: #9f3f31;
 }
 
-.automata-input-symbol-b text {
+.automata-word-b {
   fill: #2f5d8e;
 }
 
@@ -4053,32 +4812,21 @@ a.position-link:hover {
 }
 
 .automata-moving-dot-halo {
-  fill: rgba(255, 253, 248, 0.78);
-  stroke: rgba(31, 39, 33, 0.32);
-  stroke-width: 1.2;
+  display: none;
 }
 
 .automata-moving-dot-core {
-  fill: #b84f3c;
-  stroke: #fffdf8;
-  stroke-width: 2;
+  fill: rgba(98, 107, 98, 0.56);
+  stroke: none;
 }
 
 .automata-moving-dot-reject .automata-moving-dot-halo {
-  fill: rgba(255, 253, 248, 0.68);
-  stroke: rgba(138, 77, 52, 0.44);
+  display: none;
 }
 
 .normalization-caption {
   fill: var(--muted);
   text-anchor: start;
-}
-
-.normalization-status {
-  fill: #8a4d34;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 12px;
-  font-weight: 800;
 }
 
 .figure-math-label {
@@ -4102,30 +4850,40 @@ a.position-link:hover {
 }
 
 .normalization-subgroup .figure-math-label.large {
-  font-size: 24px;
+  font-size: 21px;
 }
 
 .normalization-subgroup .figure-math-label.small {
-  font-size: 16px;
+  font-size: 14.5px;
 }
 
 .normalization-subgroup .figure-math-label.tiny {
-  font-size: 12.5px;
+  font-size: 11.2px;
 }
 
-.normalization-map-arrow {
+.normalization-map-arrow,
+.normalization-operator-link {
   stroke: #2c6f63;
   stroke-width: 2.3;
 }
 
-.normalization-stabilizer-links {
+.normalization-operator-link {
+  fill: none;
+  stroke-dasharray: 1 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.normalization-stabilizer-links,
+.normalization-operator-links {
   pointer-events: none;
 }
 
 .normalization-stabilizer-link {
   fill: none;
-  stroke: rgba(47, 83, 111, 0.4);
-  stroke-width: 1.8;
+  stroke: rgba(47, 83, 111, 0.52);
+  stroke-width: 2.05;
   stroke-dasharray: 1 6;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -4133,27 +4891,27 @@ a.position-link:hover {
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="ref0"] {
-  stroke: rgba(47, 83, 111, 0.45);
+  stroke: rgba(47, 83, 111, 0.56);
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="ref2"] {
-  stroke: rgba(154, 87, 63, 0.45);
+  stroke: rgba(154, 87, 63, 0.56);
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="ref1"] {
-  stroke: rgba(91, 112, 70, 0.46);
+  stroke: rgba(91, 112, 70, 0.58);
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="ref3"] {
-  stroke: rgba(109, 91, 142, 0.46);
+  stroke: rgba(109, 91, 142, 0.58);
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="d4"] {
-  stroke: rgba(43, 52, 43, 0.34);
+  stroke: rgba(31, 39, 33, 0.58);
 }
 
 .normalization-figure.is-transporting .normalization-stabilizer-link {
-  stroke-width: 2;
+  stroke-width: 2.25;
 }
 
 .normalization-subgroup {
@@ -4175,13 +4933,6 @@ a.position-link:hover {
   --normalization-subgroup-highlight-stroke: #9a573f;
 }
 
-.normalization-subgroup[data-normalization-face-colors="blue-red"] {
-  --normalization-subgroup-fill: url("#normalization-face-blue-red-fill");
-  --normalization-subgroup-stroke: #705e65;
-  --normalization-subgroup-highlight-fill: url("#normalization-face-blue-red-fill");
-  --normalization-subgroup-highlight-stroke: #705e65;
-}
-
 .normalization-subgroup[data-normalization-edge-colors="green"] {
   --normalization-subgroup-fill: #e6efdf;
   --normalization-subgroup-stroke: #5b7046;
@@ -4199,7 +4950,6 @@ a.position-link:hover {
 .normalization-figure.is-interactive .normalization-subgroup,
 .normalization-figure.is-interactive .normalization-action,
 .normalization-figure.is-interactive .normalization-element-control,
-.normalization-figure.is-interactive .normalization-square-cell,
 .normalization-figure.is-interactive .normalization-square-edge-segment,
 .normalization-figure.is-interactive .normalization-square-edge-hit,
 .normalization-figure.is-interactive .normalization-action-place {
@@ -4287,34 +5037,6 @@ a.position-link:hover {
   vector-effect: non-scaling-stroke;
 }
 
-.normalization-square-cell {
-  opacity: 0.78;
-  transition: opacity 180ms ease, filter 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
-}
-
-.normalization-square-cell-a {
-  fill: #e4edf4;
-}
-
-.normalization-square-cell-b {
-  fill: #f3e3dc;
-}
-
-.normalization-square-cell-c {
-  fill: #e4edf4;
-}
-
-.normalization-square-cell-d {
-  fill: #f3e3dc;
-}
-
-.normalization-square-fold {
-  fill: none;
-  stroke: rgba(31, 39, 33, 0.16);
-  stroke-width: 1.1;
-  vector-effect: non-scaling-stroke;
-}
-
 .normalization-square-frame {
   stroke: rgba(31, 39, 33, 0.48);
   stroke-width: 2.1;
@@ -4356,29 +5078,9 @@ a.position-link:hover {
   transition: opacity 180ms ease, fill 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
 }
 
-.normalization-figure[data-normalization-element-selected] .normalization-square-cell.is-fixed {
-  opacity: 0.96;
-  filter: saturate(1.16);
-  stroke: #8a4d34;
-  stroke-width: 0.85;
-}
-
-.normalization-figure[data-normalization-element-selected] .normalization-square-edge-segment.is-fixed {
-  opacity: 1;
-  stroke: #8a4d34;
-  stroke-width: 2.65;
-}
-
-.normalization-figure[data-normalization-feature-selected] .normalization-square-cell:not(.is-feature-selected),
 .normalization-figure[data-normalization-feature-selected] .normalization-square-edge-segment:not(.is-feature-selected),
 .normalization-figure[data-normalization-feature-selected] .normalization-action-place:not(.is-feature-selected) {
   opacity: 0.18;
-}
-
-.normalization-figure[data-normalization-feature-selected] .normalization-square-cell.is-feature-selected {
-  opacity: 0.98;
-  stroke: #8a4d34;
-  stroke-width: 0.8;
 }
 
 .normalization-figure[data-normalization-feature-selected] .normalization-square-edge-segment.is-feature-selected {
@@ -4438,18 +5140,20 @@ a.position-link:hover {
   vector-effect: non-scaling-stroke;
 }
 
-.normalization-action-dot.ghost {
-  fill: rgba(232, 240, 234, 0.44);
-  stroke: rgba(44, 111, 99, 0.36);
-}
-
-.normalization-action-dot.filled {
-  fill: #2f536f;
-  stroke: #2f536f;
-}
-
 .normalization-vertex-point {
   filter: drop-shadow(0 2px 3px rgba(31, 39, 33, 0.14));
+}
+
+.normalization-center-point {
+  fill: #e7e7e2;
+  stroke: #747872;
+  stroke-width: 1.7;
+}
+
+.normalization-figure[data-normalization-element-selected] .normalization-center-point.is-fixed,
+.normalization-figure[data-normalization-feature-selected] .normalization-center-point.is-feature-selected {
+  fill: #e7e7e2;
+  stroke: #747872;
 }
 
 .normalization-edge-point {
@@ -4458,13 +5162,11 @@ a.position-link:hover {
 
 .normalization-action-dot.normalization-edge-point[data-normalization-place-stabilizer="ref1"] {
   --normalization-token-fill: #e6efdf;
-  --normalization-token-ghost: rgba(230, 239, 223, 0.68);
   --normalization-token-stroke: #5b7046;
 }
 
 .normalization-action-dot.normalization-edge-point[data-normalization-place-stabilizer="ref3"] {
   --normalization-token-fill: #e9e4f2;
-  --normalization-token-ghost: rgba(233, 228, 242, 0.7);
   --normalization-token-stroke: #6d5b8e;
 }
 
@@ -4491,49 +5193,41 @@ a.position-link:hover {
 
 .normalization-action-place[data-normalization-token="a"] {
   --normalization-token-fill: #e4edf4;
-  --normalization-token-ghost: rgba(228, 237, 244, 0.62);
   --normalization-token-stroke: #2f536f;
 }
 
 .normalization-action-place[data-normalization-token="b"] {
   --normalization-token-fill: #f3e3dc;
-  --normalization-token-ghost: rgba(243, 227, 220, 0.62);
   --normalization-token-stroke: #9a573f;
 }
 
 .normalization-action-place[data-normalization-token="c"] {
   --normalization-token-fill: #e4edf4;
-  --normalization-token-ghost: rgba(228, 237, 244, 0.62);
   --normalization-token-stroke: #2f536f;
 }
 
 .normalization-action-place[data-normalization-token="d"] {
   --normalization-token-fill: #f3e3dc;
-  --normalization-token-ghost: rgba(243, 227, 220, 0.62);
   --normalization-token-stroke: #9a573f;
 }
 
 .normalization-action-place[data-normalization-token="e"] {
   --normalization-token-fill: #f1e7d8;
-  --normalization-token-ghost: rgba(241, 231, 216, 0.62);
   --normalization-token-stroke: #8b6535;
 }
 
 .normalization-action-place[data-normalization-token="f"] {
   --normalization-token-fill: #e2eef2;
-  --normalization-token-ghost: rgba(226, 238, 242, 0.62);
   --normalization-token-stroke: #476c82;
 }
 
 .normalization-action-place[data-normalization-token="g"] {
   --normalization-token-fill: #eee5d7;
-  --normalization-token-ghost: rgba(238, 229, 215, 0.62);
   --normalization-token-stroke: #765d3b;
 }
 
 .normalization-action-place[data-normalization-token="h"] {
   --normalization-token-fill: #e6eddf;
-  --normalization-token-ghost: rgba(230, 237, 223, 0.62);
   --normalization-token-stroke: #5c6b4a;
 }
 
@@ -4547,22 +5241,8 @@ a.position-link:hover {
   stroke: var(--normalization-token-stroke, #2c6f63);
 }
 
-.normalization-action-dot.ghost.normalization-action-place {
-  fill: var(--normalization-token-ghost, rgba(232, 240, 234, 0.44));
-  stroke: var(--normalization-token-stroke, rgba(44, 111, 99, 0.36));
-}
-
-.normalization-element-status,
 .normalization-element-control text {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.normalization-element-status {
-  fill: var(--muted);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .normalization-element-button {
@@ -5531,6 +6211,12 @@ a.position-link:hover {
   fill: var(--tensor-subset);
 }
 
+.tensor-factorization-figure .tensor-s-new-label {
+  fill: rgba(82, 86, 80, 0.76);
+  opacity: 0;
+  animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
 .tensor-factorization-figure .tensor-set-envelope {
   fill: rgba(255, 253, 248, 0.34);
   stroke: rgba(31, 39, 33, 0.18);
@@ -5542,7 +6228,7 @@ a.position-link:hover {
 }
 
 .tensor-factorization-figure .tensor-a-envelope {
-  stroke: rgba(138, 77, 52, 0.2);
+  stroke: rgba(99, 102, 96, 0.24);
 }
 
 .tensor-factorization-figure .tensor-left-a-envelope {
@@ -5574,15 +6260,6 @@ a.position-link:hover {
   vector-effect: non-scaling-stroke;
 }
 
-.tensor-factorization-figure .tensor-split-divider {
-  stroke: rgba(36, 49, 42, 0.26);
-  stroke-dasharray: 7 8;
-  stroke-linecap: round;
-  stroke-width: 2;
-  opacity: 0;
-  animation: tensor-split-divider-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
 .tensor-factorization-figure .tensor-subset-extension {
   fill: none;
   stroke: var(--tensor-subset);
@@ -5593,6 +6270,17 @@ a.position-link:hover {
   stroke-dashoffset: 0;
   vector-effect: non-scaling-stroke;
   animation: tensor-subset-extension-split var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-s-copy-link {
+  fill: none;
+  stroke: var(--tensor-subset);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.4;
+  opacity: 0;
+  vector-effect: non-scaling-stroke;
+  animation: tensor-s-copy-link-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
 .tensor-factorization-figure .tensor-iota-arrow-head {
@@ -5669,6 +6357,15 @@ a.position-link:hover {
   opacity: 1;
 }
 
+.tensor-factorization-figure .tensor-s-new-envelope {
+  fill: rgba(255, 253, 248, 0.28);
+  stroke: rgba(99, 102, 96, 0.34);
+  stroke-dasharray: 8 8;
+  stroke-width: 2;
+  opacity: 0;
+  animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
 .tensor-factorization-figure .tensor-f-arrow-head-green {
   fill: var(--tensor-map);
   stroke: rgba(255, 253, 248, 0.96);
@@ -5712,10 +6409,6 @@ a.position-link:hover {
   stroke-width: 2;
 }
 
-.tensor-factorization-figure .tensor-right-a-node.in-s circle {
-  stroke: rgba(182, 103, 55, 0.52);
-}
-
 .tensor-factorization-figure .tensor-right-a-node text {
   fill: rgba(36, 49, 42, 0.68);
 }
@@ -5740,24 +6433,18 @@ a.position-link:hover {
 }
 
 .tensor-factorization-figure .tensor-subset-extension,
-.tensor-factorization-figure .tensor-split-divider,
+.tensor-factorization-figure .tensor-s-copy-link,
+.tensor-factorization-figure .tensor-s-new-label,
+.tensor-factorization-figure .tensor-s-new-envelope,
+.tensor-factorization-figure .tensor-merge-away,
 .tensor-factorization-figure .tensor-iota-domain-node,
 .tensor-factorization-figure .tensor-iota-local-arrow,
 .tensor-factorization-figure .tensor-iota-label {
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
 }
 
-@keyframes tensor-split-divider-stage {
-  0%,
-  46% {
-    opacity: 0;
-  }
-
-  62%,
-  100% {
-    opacity: 1;
-  }
+.tensor-factorization-figure .tensor-merge-away {
+  animation: tensor-merge-away-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
 @keyframes tensor-iota-local-arrow-stage {
@@ -5786,6 +6473,18 @@ a.position-link:hover {
   }
 }
 
+@keyframes tensor-s-new-stage {
+  0%,
+  40% {
+    opacity: 0;
+  }
+
+  52%,
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes tensor-iota-label-stage {
   0%,
   44% {
@@ -5809,6 +6508,29 @@ a.position-link:hover {
   100% {
     opacity: 0.1;
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes tensor-s-copy-link-stage {
+  0%,
+  40% {
+    opacity: 0;
+  }
+
+  52%,
+  100% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes tensor-merge-away-stage {
+  0%,
+  88% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 
@@ -6305,7 +7027,8 @@ a.position-link:hover {
   -webkit-line-clamp: 4;
 }
 
-.problem-card .publication-meta span {
+.problem-card .publication-meta > span,
+.problem-card .publication-meta > .publication-tag {
   font-size: 0.76rem;
 }
 
@@ -6415,7 +7138,7 @@ a.position-link:hover {
   gap: 8px;
 }
 
-.diagram-keywords span {
+.diagram-keywords > span {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -8023,7 +8746,7 @@ a.position-link:hover {
   margin-top: 12px;
 }
 
-.speculative-meta span {
+.speculative-meta > span {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -8751,11 +9474,50 @@ a.position-link:hover {
   .tensor-factorization-figure .tensor-iota-domain-node,
   .tensor-factorization-figure .tensor-operator-label,
   .tensor-formula-stage,
+  .games-rb-table-mex-head,
+  .games-rb-cell.is-s-def,
+  .games-rb-cell.is-t-def,
   .games-rb-cell.is-row-read,
   .games-rb-cell.is-col-read,
   .games-rb-cell.is-lhs,
-  .games-rb-answer circle {
+  .games-rb-mex-lines,
+  .games-rb-readout.is-lhs,
+  .games-rb-readout.is-rhs,
+  .games-rb-step-item,
+  .games-rb-answer,
+  .games-rb-same-result,
+  .games-rb-table-tex-lhs,
+  .games-rb-table-tex-rhs,
+  .automata-cantor-bouquet-loop,
+  .automata-bouquet-direction,
+  .automata-unfold-reverse-cover,
+  .automata-etale-arrow,
+  .automata-etale-label,
+  .automata-sublocale-arrow,
+  .automata-sublocale-label,
+  .automata-prefix-poset .automata-cantor-tree-edge,
+  .automata-prefix-poset .automata-cantor-node,
+  .automata-cantor-space-label,
+  .automata-cantor-interval,
+  .automata-cantor-connector,
+  .automata-cantor-dot {
     animation: none;
+  }
+
+  .games-rb-table-mex-head,
+  .games-rb-cell.is-s-def,
+  .games-rb-cell.is-t-def,
+  .games-rb-cell.is-row-read,
+  .games-rb-cell.is-col-read,
+  .games-rb-cell.is-lhs,
+  .games-rb-mex-lines,
+  .games-rb-readout,
+  .games-rb-step-item,
+  .games-rb-answer,
+  .games-rb-same-result,
+  .games-rb-table-tex-lhs,
+  .games-rb-table-tex-rhs {
+    opacity: 1;
   }
 
   .internal-piece {
@@ -8773,6 +9535,46 @@ a.position-link:hover {
 
   .automata-moving-dot {
     display: none;
+  }
+
+  .automata-rolling-bouquet,
+  .automata-unfold-node-pulse {
+    display: none;
+  }
+
+  .automata-cantor-bouquet-loop,
+  .automata-bouquet-direction,
+  .automata-etale-arrow,
+  .automata-etale-label,
+  .automata-sublocale-arrow,
+  .automata-sublocale-label,
+  .automata-prefix-poset .automata-cantor-tree-edge,
+  .automata-prefix-poset .automata-cantor-node,
+  .automata-cantor-space-label,
+  .automata-cantor-connector {
+    opacity: 1;
+  }
+
+  .automata-prefix-poset .automata-cantor-tree-edge {
+    stroke-dashoffset: 0;
+  }
+
+  .automata-cantor-interval.stage-0 {
+    opacity: 0.58;
+  }
+
+  .automata-cantor-interval.stage-1 {
+    opacity: 0.74;
+  }
+
+  .automata-cantor-interval.stage-2,
+  .automata-cantor-interval.stage-3,
+  .automata-cantor-dot {
+    opacity: 0.95;
+  }
+
+  .automata-unfold-reverse-cover {
+    opacity: 0;
   }
 
   .quotient-moving-light {
@@ -8801,7 +9603,7 @@ a.position-link:hover {
     opacity: 0;
   }
 
-  .automata-input-symbol {
+  .automata-input-word tspan {
     opacity: 1 !important;
   }
 

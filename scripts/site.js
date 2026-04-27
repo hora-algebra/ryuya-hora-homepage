@@ -1329,6 +1329,7 @@ const i18nText = {
     "Link": "リンク",
     "Award": "受賞",
     "Education": "教育歴",
+    "Academic Background": "学歴",
     "Focus": "Focus",
     "Why it is good": "好きな理由",
     "Basic dictionary": "Basic dictionary",
@@ -1473,6 +1474,7 @@ const i18nText = {
     "Awards": "受賞",
     "Teaching": "教育",
     "Education and Outreach": "教育とアウトリーチ",
+    "Teaching and Outreach": "教育・アウトリーチ",
     "Source": "出典",
     "Credit": "謝辞",
     "CV, awards, positions, and education. Last updated: 27 April 2026.":
@@ -6018,8 +6020,22 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "torus") {
     svg.append(
-      shape("ellipse", { cx: "12", cy: "12", rx: "8.8", ry: "5", fill: "none", stroke: "currentColor", "stroke-width": "2.35" }),
-      shape("ellipse", { cx: "12", cy: "12", rx: "3.35", ry: "1.85", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "2" })
+      shape("path", {
+        d: "M3.2 12.15C3.2 9.1 7.1 6.75 12 6.75C16.9 6.75 20.8 9.1 20.8 12.15C20.8 15.2 16.9 17.55 12 17.55C7.1 17.55 3.2 15.2 3.2 12.15ZM8.55 11.3C8.55 12.45 10.1 13.3 12 13.3C13.9 13.3 15.45 12.45 15.45 11.3C15.45 10.15 13.9 9.3 12 9.3C10.1 9.3 8.55 10.15 8.55 11.3Z",
+        fill: "currentColor",
+        "fill-rule": "evenodd",
+        "clip-rule": "evenodd",
+        "fill-opacity": "0.24"
+      }),
+      shape("path", {
+        d: "M3.85 12.6C4.55 15.45 7.95 17.4 12 17.4C16.05 17.4 19.45 15.45 20.15 12.6C18.85 15.05 15.7 16.45 12 16.45C8.3 16.45 5.15 15.05 3.85 12.6Z",
+        fill: "currentColor",
+        "fill-opacity": "0.22"
+      }),
+      shape("ellipse", { cx: "12", cy: "12.15", rx: "8.8", ry: "5.4", fill: "none", stroke: "currentColor", "stroke-width": "2.1" }),
+      shape("ellipse", { cx: "12", cy: "11.3", rx: "3.45", ry: "2", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.8" }),
+      line({ d: "M5.3 10.25C6.7 8.55 9.15 7.65 12 7.65C14.85 7.65 17.3 8.55 18.7 10.25", "stroke-width": "1.2", "stroke-opacity": "0.48" }),
+      line({ d: "M8.9 12.65C9.65 13.35 10.75 13.75 12 13.75C13.25 13.75 14.35 13.35 15.1 12.65", "stroke-width": "1.15", "stroke-opacity": "0.58" })
     );
     return svg;
   }
@@ -6032,10 +6048,33 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "tensor") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "12", r: "7.25", fill: "none", stroke: "currentColor", "stroke-width": "2.15" }),
+      line({ d: "M8.3 8.3L15.7 15.7", "stroke-width": "2.45" }),
+      line({ d: "M15.7 8.3L8.3 15.7", "stroke-width": "2.45" })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "arrow") {
     svg.append(
       line({ d: "M4.5 12H19", "stroke-width": "2.8" }),
       line({ d: "M13.5 6.5L19 12L13.5 17.5", "stroke-width": "2.8" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "category") {
+    svg.append(
+      line({ d: "M7.15 6.4H14.35", "stroke-width": "1.85" }),
+      line({ d: "M12.65 4.75L14.35 6.4L12.65 8.05", "stroke-width": "1.85" }),
+      line({ d: "M9.65 17.6H16.85", "stroke-width": "1.85" }),
+      line({ d: "M15.15 15.95L16.85 17.6L15.15 19.25", "stroke-width": "1.85" }),
+      line({ d: "M6.4 9.65V16.85", "stroke-width": "1.85" }),
+      line({ d: "M4.75 15.15L6.4 16.85L8.05 15.15", "stroke-width": "1.85" }),
+      line({ d: "M17.6 7.15V14.35", "stroke-width": "1.85" }),
+      line({ d: "M15.95 12.65L17.6 14.35L19.25 12.65", "stroke-width": "1.85" })
     );
     return svg;
   }
@@ -6394,12 +6433,12 @@ function tagIconKey(label = "") {
   if (text.includes("geometric morphism")) return "topos";
   if (text.includes("geometry") || text.includes("dynamical") || text.includes("space time")) return "torus";
   if (text.includes("topos") || text.includes("topoi") || text.includes("sheaf") || text.includes("site") || text.includes("locale") || text.includes("geometric morphism") || text.includes("hyperconnected") || text.includes("cohesive")) return "topos";
-  if (text.includes("category") || text.includes("categorical")) return "arrow";
+  if (text.includes("category") || text.includes("categorical")) return "category";
   if (text.includes("kan") || text.includes("yoneda") || text.includes("slice") || text.includes("pullback")) return "kan-extension";
   if (text.includes("automata") || text.includes("automaton") || text.includes("regular language") || text.includes("sigma sets") || text.includes("state")) return "automaton-piece";
   if (text.includes("coalgebra")) return "river";
   if (text.includes("game") || text.includes("nim") || text.includes("grundy") || text.includes("wythoff") || text.includes("winning") || text.includes("bouton")) return "pawn";
-  if (text.includes("algebra") || text.includes("semiring") || text.includes("monoid") || text.includes("ring") || text.includes("rieg") || text.includes("module") || text.includes("normalization") || text.includes("rota baxter")) return "plus";
+  if (text.includes("algebra") || text.includes("semiring") || text.includes("monoid") || text.includes("ring") || text.includes("rieg") || text.includes("module") || text.includes("normalization") || text.includes("rota baxter")) return "tensor";
   if (text.includes("combinatorics") || text.includes("species") || text.includes("profinite") || text.includes("finite presheaf")) return "binary-tree";
   if (text.includes("number") || text.includes("integer") || text.includes("natural") || text.includes("rational")) return "timeline";
   if (text.includes("logic") || text.includes("boolean") || text.includes("constructive")) return "problem";
@@ -6407,7 +6446,8 @@ function tagIconKey(label = "") {
 }
 
 function appendTagParts(parent, label, iconClassName = "tag-icon", labelClassName = "tag-label") {
-  parent.append(uiIcon(tagIconKey(label), iconClassName), el("span", labelClassName, label));
+  const iconClasses = iconClassName.includes("ui-icon") ? iconClassName : `ui-icon ${iconClassName}`;
+  parent.append(uiIcon(tagIconKey(label), iconClasses), el("span", labelClassName, label));
 }
 
 function renderTagPill(label, className = "") {
@@ -7623,105 +7663,78 @@ function completelyConnectedFigureTemplate() {
     </div>`;
 }
 
-function normalizationFigureTemplate() {
+function normalizationLatticeTemplate(role, x, y) {
   return `
-    <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 760 430" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
-      <title id="fig-normalization-title">Subgroups and D4-actions</title>
-      <desc id="fig-normalization-desc">A subgroup lattice for D4 on the left and a D4-action on a square on the right. Dotted links connect each square vertex to its stabilizer subgroup. Selecting a subgroup filters by stabilizer containment; selecting a D4 element conjugates the subgroup labels, moves the square, and highlights fixed places.</desc>
-      <defs>
-        <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
-        <linearGradient id="normalization-face-blue-red-fill" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#e4edf4"></stop>
-          <stop offset="49%" stop-color="#e4edf4"></stop>
-          <stop offset="51%" stop-color="#f3e3dc"></stop>
-          <stop offset="100%" stop-color="#f3e3dc"></stop>
-        </linearGradient>
-      </defs>
-
-      <text class="figure-small normalization-caption" x="28" y="28">normalizer on subgroups</text>
-      <text class="figure-small normalization-caption" x="330" y="28">D<tspan baseline-shift="sub" font-size="68%">4</tspan>-actions</text>
-      <text class="normalization-status" data-normalization-status x="330" y="49">H = D4</text>
-
-      <g class="normalization-stabilizer-links" data-normalization-stabilizer-links aria-hidden="true">
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="d4" data-normalization-link-orbit="fixed" data-normalization-link-point="p0" d="M162 80 C278.26 114, 409.04 171.5, 525.3 205.5"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-orbit="vertex" data-normalization-link-point="v0" d="M47 232 C171.16 198, 310.84 149.2, 435 115.2"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-orbit="vertex" data-normalization-link-point="v1" d="M107 232 C269.75 198, 452.85 149.2, 615.6 115.2"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-orbit="vertex" data-normalization-link-point="v2" d="M47 232 C228.95 266, 433.65 261.8, 615.6 295.8"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-orbit="vertex" data-normalization-link-point="v3" d="M107 232 C211.96 266, 330.04 261.8, 435 295.8"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref1" data-normalization-link-orbit="edge" data-normalization-link-point="e0" d="M217 232 C315.66 198, 426.64 149.2, 525.3 115.2"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref3" data-normalization-link-orbit="edge" data-normalization-link-point="e1" d="M277 232 C385.35 198, 507.25 239.5, 615.6 205.5"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref1" data-normalization-link-orbit="edge" data-normalization-link-point="e2" d="M217 232 C315.66 266, 426.64 261.8, 525.3 295.8"></path>
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref3" data-normalization-link-orbit="edge" data-normalization-link-point="e3" d="M277 232 C327.56 198, 384.44 239.5, 435 205.5"></path>
-      </g>
-
-      <g class="normalization-lattice" transform="translate(12 42)">
-        <path class="figure-line" d="M150 50 L70 88 M150 50 L150 88 M150 50 L230 88"></path>
-        <path class="figure-line" d="M70 124 L35 168 M70 124 L95 168 M70 124 L150 168"></path>
-        <path class="figure-line" d="M150 124 L150 168"></path>
-        <path class="figure-line" d="M230 124 L150 168 M230 124 L205 168 M230 124 L265 168"></path>
-        <path class="figure-line" d="M150 273 L35 210 M150 273 L95 210 M150 273 L150 210 M150 273 L205 210 M150 273 L265 210"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M35 168 C20 116, 44 96, 58 106"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M95 168 C98 128, 90 115, 84 112"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M205 168 C202 128, 210 115, 216 112"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M265 168 C280 116, 256 96, 242 106"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M150 88 V55"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M150 168 C120 136, 116 75, 134 55"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M70 88 C90 58, 122 45, 134 46"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M230 88 C210 58, 178 45, 166 46"></path>
-        <path class="figure-arrow dashed normalization-map-arrow" d="M150 273 C205 230, 205 108, 166 55"></path>
+      <g class="normalization-lattice" data-normalization-lattice-role="${role}" transform="translate(${x} ${y})">
+        <path class="figure-line" d="M150 52 L70 93 M150 52 L150 93 M150 52 L230 93"></path>
+        <path class="figure-line" d="M70 119 L35 177 M70 119 L95 177 M70 119 L150 177"></path>
+        <path class="figure-line" d="M150 119 L150 177"></path>
+        <path class="figure-line" d="M230 119 L150 177 M230 119 L205 177 M230 119 L265 177"></path>
+        <path class="figure-line" d="M150 277 L35 203 M150 277 L95 203 M150 277 L150 203 M150 277 L205 203 M150 277 L265 203"></path>
 
         <g class="normalization-subgroup" data-normalization-subgroup="d4" data-subgroup-label="D4" transform="translate(150 38)">
-          <rect class="figure-node soft" x="-28" y="-16" width="56" height="32" rx="6"></rect>
+          <rect class="figure-node soft" x="-24" y="-14" width="48" height="28" rx="5"></rect>
           <text class="figure-math-label large" y="1">D<tspan baseline-shift="sub" font-size="68%">4</tspan></text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="v0" data-subgroup-label="&lt;tau,sigma^2&gt;" transform="translate(70 106)">
-          <rect class="figure-node pale" x="-38" y="-15" width="76" height="30" rx="6"></rect>
+          <rect class="figure-node pale" x="-34" y="-13" width="68" height="26" rx="5"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="rot" data-subgroup-label="&lt;sigma&gt;" transform="translate(150 106)">
-          <rect class="figure-node pale" x="-27" y="-15" width="54" height="30" rx="6"></rect>
+          <rect class="figure-node pale" x="-23" y="-13" width="46" height="26" rx="5"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="v1" data-subgroup-label="&lt;sigma tau,sigma^2&gt;" transform="translate(230 106)">
-          <rect class="figure-node pale" x="-41" y="-15" width="82" height="30" rx="6"></rect>
+          <rect class="figure-node pale" x="-37" y="-13" width="74" height="26" rx="5"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="ref0" data-normalization-face-colors="blue" data-subgroup-label="&lt;tau&gt;" transform="translate(35 190)">
-          <rect class="figure-node" x="-24" y="-15" width="48" height="30" rx="6"></rect>
+          <rect class="figure-node" x="-21" y="-13" width="42" height="26" rx="5"></rect>
           <text class="figure-math-label small" y="1">&#10216;&tau;&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="ref2" data-normalization-face-colors="red" data-subgroup-label="&lt;sigma^2 tau&gt;" transform="translate(95 190)">
-          <rect class="figure-node" x="-29" y="-15" width="58" height="30" rx="6"></rect>
+          <rect class="figure-node" x="-25" y="-13" width="50" height="26" rx="5"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&tau;&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="r2" data-subgroup-label="&lt;sigma^2&gt;" transform="translate(150 190)">
-          <rect class="figure-node warm" x="-27" y="-15" width="54" height="30" rx="6"></rect>
+          <rect class="figure-node warm" x="-23" y="-13" width="46" height="26" rx="5"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="ref1" data-normalization-edge-colors="green" data-subgroup-label="&lt;sigma tau&gt;" transform="translate(205 190)">
-          <rect class="figure-node" x="-29" y="-15" width="58" height="30" rx="6"></rect>
+          <rect class="figure-node" x="-25" y="-13" width="50" height="26" rx="5"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;&tau;&#10217;</text>
         </g>
         <g class="normalization-subgroup" data-normalization-subgroup="ref3" data-normalization-edge-colors="purple" data-subgroup-label="&lt;sigma^3 tau&gt;" transform="translate(265 190)">
-          <rect class="figure-node" x="-29" y="-15" width="58" height="30" rx="6"></rect>
+          <rect class="figure-node" x="-25" y="-13" width="50" height="26" rx="5"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">3</tspan>&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="one" data-normalization-face-colors="blue-red" data-subgroup-label="&lt;1&gt;" transform="translate(150 290)">
-          <rect class="figure-node soft" x="-25" y="-15" width="50" height="30" rx="6"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="one" data-subgroup-label="&lt;1&gt;" transform="translate(150 290)">
+          <rect class="figure-node soft" x="-21" y="-13" width="42" height="26" rx="5"></rect>
           <text class="figure-math-label small" y="1">&#10216;1&#10217;</text>
         </g>
-      </g>
+      </g>`;
+}
 
-      <g class="normalization-action-atlas" transform="translate(330 64)">
-        <rect class="normalization-action-stage-bg" width="390" height="282" rx="10"></rect>
-        <g class="normalization-square-stage" transform="translate(105 34) scale(4.3)">
+function normalizationFigureTemplate() {
+  return `
+    <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 900 430" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
+      <title id="fig-normalization-title">Subgroups and D4-actions</title>
+      <desc id="fig-normalization-desc">A D4-action on a square on the left, an old subgroup lattice in the middle, and a new subgroup lattice on the right. Dotted links connect each square point to its stabilizer in the old lattice. Green dotted links connect each old subgroup to its normalized subgroup in the new lattice.</desc>
+      <defs>
+        <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+      </defs>
+
+      <text class="figure-small normalization-caption" x="446" y="28">old</text>
+      <text class="figure-small normalization-caption" x="736" y="28">new</text>
+
+      ${normalizationLatticeTemplate("old", 300, 42)}
+      ${normalizationLatticeTemplate("new", 590, 42)}
+
+      <g class="normalization-action-atlas" transform="translate(10 64)">
+        <rect class="normalization-action-stage-bg" width="280" height="282" rx="10"></rect>
+        <g class="normalization-square-stage" transform="translate(48 34) scale(4.3)">
           <g class="normalization-square-body" data-normalization-square-body>
             <path class="normalization-square-shadow" d="M0 4 H42 V46 H0 Z"></path>
-            <rect class="normalization-square-cell normalization-square-cell-a" data-normalization-face-cell="f0" x="0" y="4" width="21" height="21"></rect>
-            <rect class="normalization-square-cell normalization-square-cell-b" data-normalization-face-cell="f1" x="21" y="4" width="21" height="21"></rect>
-            <rect class="normalization-square-cell normalization-square-cell-c" data-normalization-face-cell="f2" x="21" y="25" width="21" height="21"></rect>
-            <rect class="normalization-square-cell normalization-square-cell-d" data-normalization-face-cell="f3" x="0" y="25" width="21" height="21"></rect>
-            <path class="normalization-square-fold" d="M21 4 V46 M0 25 H42"></path>
             <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e0" d="M0 4 H42"></path>
             <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e1" d="M42 4 V46"></path>
             <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e2" d="M42 46 H0"></path>
@@ -7731,30 +7744,20 @@ function normalizationFigureTemplate() {
             <path class="normalization-action-line normalization-square-frame normalization-square-edge-segment" data-normalization-boundary-edge="e2" d="M42 46 H0"></path>
             <path class="normalization-action-line normalization-square-frame normalization-square-edge-segment" data-normalization-boundary-edge="e3" d="M0 46 V4"></path>
           </g>
-          <g class="normalization-action" data-normalization-stabilizers="v0">
-            <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v0" data-normalization-orbit="diagonal" data-normalization-point="d0" data-normalization-token="a" d="M0 4 L42 46"></path>
-            <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v0" data-normalization-orbit="diagonal" data-normalization-point="d1" data-normalization-token="b" d="M42 4 L0 46"></path>
-          </g>
-          <g class="normalization-action" data-normalization-stabilizers="v1">
-            <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v1" data-normalization-orbit="axis" data-normalization-point="a0" data-normalization-token="c" d="M21 4 V46"></path>
-            <path class="normalization-action-line normalization-action-place" data-normalization-place-stabilizer="v1" data-normalization-orbit="axis" data-normalization-point="a1" data-normalization-token="d" d="M0 25 H42"></path>
-          </g>
           <g class="normalization-action" data-normalization-stabilizers="ref1 ref3">
-            <circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref1" data-normalization-orbit="edge" data-normalization-point="e0" data-normalization-token="a" cx="21" cy="4" r="2.25"></circle><circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref3" data-normalization-orbit="edge" data-normalization-point="e1" data-normalization-token="b" cx="42" cy="25" r="2.25"></circle>
-            <circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref1" data-normalization-orbit="edge" data-normalization-point="e2" data-normalization-token="c" cx="21" cy="46" r="2.25"></circle><circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref3" data-normalization-orbit="edge" data-normalization-point="e3" data-normalization-token="d" cx="0" cy="25" r="2.25"></circle>
+            <circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref1" data-normalization-orbit="edge" data-normalization-point="e0" data-normalization-token="a" cx="21" cy="4" r="3.2"></circle><circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref3" data-normalization-orbit="edge" data-normalization-point="e1" data-normalization-token="b" cx="42" cy="25" r="3.2"></circle>
+            <circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref1" data-normalization-orbit="edge" data-normalization-point="e2" data-normalization-token="c" cx="21" cy="46" r="3.2"></circle><circle class="normalization-action-dot normalization-edge-point normalization-action-place" data-normalization-place-stabilizer="ref3" data-normalization-orbit="edge" data-normalization-point="e3" data-normalization-token="d" cx="0" cy="25" r="3.2"></circle>
           </g>
           <g class="normalization-action" data-normalization-stabilizers="ref0 ref2">
             <circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref0" data-normalization-orbit="vertex" data-normalization-point="v0" data-normalization-token="a" cx="0" cy="4" r="3.2"></circle><circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref2" data-normalization-orbit="vertex" data-normalization-point="v1" data-normalization-token="b" cx="42" cy="4" r="3.2"></circle>
             <circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref0" data-normalization-orbit="vertex" data-normalization-point="v2" data-normalization-token="c" cx="42" cy="46" r="3.2"></circle><circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref2" data-normalization-orbit="vertex" data-normalization-point="v3" data-normalization-token="d" cx="0" cy="46" r="3.2"></circle>
           </g>
           <g class="normalization-action" data-normalization-stabilizers="d4">
-            <circle class="normalization-action-dot ghost" cx="21" cy="25" r="5.4"></circle>
-            <circle class="normalization-action-dot filled normalization-action-place" data-normalization-place-stabilizer="d4" data-normalization-orbit="fixed" data-normalization-point="p0" data-normalization-token="a" cx="21" cy="25" r="2.55"></circle>
+            <circle class="normalization-action-dot normalization-center-point normalization-action-place" data-normalization-place-stabilizer="d4" data-normalization-orbit="center" data-normalization-point="p0" cx="21" cy="25" r="3.2"></circle>
           </g>
         </g>
       </g>
-      <g class="normalization-element-controls" transform="translate(330 360)">
-        <text class="normalization-element-status" data-normalization-element-status x="0" y="9">act by a D4 element</text>
+      <g class="normalization-element-controls" transform="translate(10 360) scale(0.75)">
         <g class="normalization-element-control" data-normalization-element-control="e" transform="translate(0 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">1</text></g>
         <g class="normalization-element-control" data-normalization-element-control="s" transform="translate(45 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;</text></g>
         <g class="normalization-element-control" data-normalization-element-control="s2" transform="translate(90 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan></text></g>
@@ -7763,6 +7766,29 @@ function normalizationFigureTemplate() {
         <g class="normalization-element-control" data-normalization-element-control="st" transform="translate(225 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;&tau;</text></g>
         <g class="normalization-element-control" data-normalization-element-control="s2t" transform="translate(270 17)"><rect class="normalization-element-button" width="43" height="24" rx="7"></rect><text x="21.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan>&tau;</text></g>
         <g class="normalization-element-control" data-normalization-element-control="s3t" transform="translate(319 17)"><rect class="normalization-element-button" width="43" height="24" rx="7"></rect><text x="21.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan>&tau;</text></g>
+      </g>
+      <g class="normalization-stabilizer-links" data-normalization-stabilizer-links aria-hidden="true">
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="d4" data-normalization-link-orbit="center" data-normalization-link-point="p0" d="M580 80 C463.3 114, 332 171.5, 215.3 205.5"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-orbit="vertex" data-normalization-link-point="v0" d="M47 232 C171.16 198, 310.84 149.2, 435 115.2"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-orbit="vertex" data-normalization-link-point="v1" d="M107 232 C269.75 198, 452.85 149.2, 615.6 115.2"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-orbit="vertex" data-normalization-link-point="v2" d="M47 232 C228.95 266, 433.65 261.8, 615.6 295.8"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-orbit="vertex" data-normalization-link-point="v3" d="M107 232 C211.96 266, 330.04 261.8, 435 295.8"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref1" data-normalization-link-orbit="edge" data-normalization-link-point="e0" d="M217 232 C315.66 198, 426.64 149.2, 525.3 115.2"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref3" data-normalization-link-orbit="edge" data-normalization-link-point="e1" d="M277 232 C385.35 198, 507.25 239.5, 615.6 205.5"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref1" data-normalization-link-orbit="edge" data-normalization-link-point="e2" d="M217 232 C315.66 266, 426.64 261.8, 525.3 295.8"></path>
+        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref3" data-normalization-link-orbit="edge" data-normalization-link-point="e3" d="M277 232 C327.56 198, 384.44 239.5, 435 205.5"></path>
+      </g>
+      <g class="normalization-operator-links" data-normalization-operator-links aria-hidden="true">
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="d4" data-normalization-operator-target="d4"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="v0" data-normalization-operator-target="d4"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="rot" data-normalization-operator-target="d4"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="v1" data-normalization-operator-target="d4"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref0" data-normalization-operator-target="v0"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref2" data-normalization-operator-target="v0"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="r2" data-normalization-operator-target="d4"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref1" data-normalization-operator-target="v1"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref3" data-normalization-operator-target="v1"></path>
+        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="one" data-normalization-operator-target="d4"></path>
       </g>
     </svg>`;
 }
@@ -8010,6 +8036,85 @@ function quotientTurnLights(paths, color = "green") {
   }).join("\n");
 }
 
+function automataCoverKey(value) {
+  return Number(value.toFixed(3)).toString();
+}
+
+function automataCoverNodePulse({ x, y, color = "neutral", start, radius = 8 }) {
+  const peak = Math.min(start + 0.025, 0.98);
+  const end = Math.min(start + 0.095, 0.99);
+  const keyTimes = [0, start, peak, end, 1].map(automataCoverKey).join(";");
+  return `
+          <circle class="automata-unfold-node-pulse ${color}" cx="${x}" cy="${y}" r="2" opacity="0">
+            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="${keyTimes}"></animate>
+            <animate attributeName="r" dur="12s" repeatCount="indefinite" values="2;2;${radius};${radius + 5};2" keyTimes="${keyTimes}"></animate>
+          </circle>`;
+}
+
+function automataCoverRollingBouquet({ path, start, end, scale = 1 }) {
+  const fadeIn = Math.min(start + 0.012, end);
+  const fadeOut = Math.min(end + 0.018, 0.98);
+  const keyTimes = [0, start, end, 1].map(automataCoverKey).join(";");
+  const opacityTimes = [0, start, fadeIn, end, fadeOut, 1].map(automataCoverKey).join(";");
+  return `
+          <g class="automata-rolling-bouquet" opacity="0">
+            <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="${keyTimes}" path="${path}"></animateMotion>
+            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="${opacityTimes}"></animate>
+            <g transform="scale(${scale})">
+              <g class="automata-rolling-bouquet-spinner">
+                <animateTransform attributeName="transform" type="rotate" dur="860ms" repeatCount="indefinite" from="0 0 0" to="-360 0 0"></animateTransform>
+                <path class="automata-rolling-bouquet-loop blue" d="M0 0 C-19 -12, -17 -38, 0 -38 C17 -38, 19 -12, 0 0"></path>
+                <path class="automata-rolling-bouquet-loop red" d="M0 0 C-19 12, -17 38, 0 38 C17 38, 19 12, 0 0"></path>
+                <circle class="automata-rolling-bouquet-node" cx="0" cy="0" r="5.2"></circle>
+              </g>
+            </g>
+          </g>`;
+}
+
+function automataCoverUnfoldingTemplate() {
+  const rollingBouquets = [
+    { start: 0.08, end: 0.16, scale: 0.78, path: "M650 195 H486" },
+    { start: 0.17, end: 0.25, scale: 0.62, path: "M486 195 L408 151" },
+    { start: 0.17, end: 0.25, scale: 0.62, path: "M486 195 L408 239" },
+    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 151 L336 121" },
+    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 151 L336 151" },
+    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 239 L336 239" },
+    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 239 L336 269" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 121 L286 106" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 121 L286 132" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 151 L286 140" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 151 L286 166" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 239 L286 224" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 239 L286 250" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 269 L286 258" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 269 L286 284" },
+  ];
+  const pulses = [
+    { color: "neutral", x: 650, y: 195, start: 0.02, radius: 11 },
+    { color: "neutral", x: 486, y: 195, start: 0.16, radius: 16 },
+    { color: "blue", x: 408, y: 151, start: 0.25, radius: 12 },
+    { color: "red", x: 408, y: 239, start: 0.25, radius: 12 },
+    { color: "blue", x: 336, y: 121, start: 0.36, radius: 9 },
+    { color: "red", x: 336, y: 151, start: 0.36, radius: 9 },
+    { color: "blue", x: 336, y: 239, start: 0.36, radius: 9 },
+    { color: "red", x: 336, y: 269, start: 0.36, radius: 9 },
+    { color: "blue", x: 286, y: 106, start: 0.48, radius: 7 },
+    { color: "red", x: 286, y: 132, start: 0.48, radius: 7 },
+    { color: "blue", x: 286, y: 140, start: 0.48, radius: 7 },
+    { color: "red", x: 286, y: 166, start: 0.48, radius: 7 },
+    { color: "blue", x: 286, y: 224, start: 0.48, radius: 7 },
+    { color: "red", x: 286, y: 250, start: 0.48, radius: 7 },
+    { color: "blue", x: 286, y: 258, start: 0.48, radius: 7 },
+    { color: "red", x: 286, y: 284, start: 0.48, radius: 7 },
+  ];
+  return `
+        <g class="automata-cover-unfolding" aria-hidden="true">
+          <path class="automata-unfold-reverse-cover" data-cantor-arrow="neutral" d="M606 195 H498"></path>
+${pulses.map(automataCoverNodePulse).join("\n")}
+${rollingBouquets.map(automataCoverRollingBouquet).join("\n")}
+        </g>`;
+}
+
 const paperFigureTemplates = {
   "games-integral-calculus": `
     <svg class="games-rb-table-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
@@ -8035,62 +8140,52 @@ const paperFigureTemplates = {
         <text class="games-rb-panel-label" x="22" y="31">Nim-sum table</text>
         <text class="games-rb-panel-note" x="22" y="51">entries are a ⊕ b</text>
 
-        <g class="games-rb-grid" transform="translate(75 58)">
-          <rect class="games-rb-cell is-corner" x="0" y="0" width="42" height="32" rx="6"></rect>
+        <g class="games-rb-grid" transform="translate(76 58)">
+          <rect class="games-rb-table-bg" x="0" y="0" width="210" height="160" rx="0"></rect>
+          <rect class="games-rb-table-head-row" x="0" y="0" width="210" height="32"></rect>
+          <rect class="games-rb-table-head-col" x="0" y="0" width="42" height="160"></rect>
+          <rect class="games-rb-cell is-t-def" x="42" y="0" width="126" height="32"></rect>
+          <rect class="games-rb-cell is-s-def" x="0" y="32" width="42" height="32"></rect>
+          <rect class="games-rb-cell is-s-def" x="0" y="64" width="42" height="32"></rect>
+          <rect class="games-rb-cell is-s-def" x="0" y="128" width="42" height="32"></rect>
+          <rect class="games-rb-cell is-row-read" x="42" y="96" width="126" height="32"></rect>
+          <rect class="games-rb-cell is-col-read" x="168" y="32" width="42" height="96"></rect>
+          <rect class="games-rb-cell is-lhs" x="168" y="96" width="42" height="32"></rect>
+          <rect class="games-rb-table-mex-head is-mex-s" x="0" y="96" width="42" height="32"></rect>
+          <rect class="games-rb-table-mex-head is-mex-t" x="168" y="0" width="42" height="32"></rect>
+
+          <path class="games-rb-table-lines is-major" d="M0 0 H210 M0 32 H210 M0 160 H210 M0 0 V160 M42 0 V160 M210 0 V160"></path>
+          <path class="games-rb-table-lines" d="M0 64 H210 M0 96 H210 M0 128 H210 M84 0 V160 M126 0 V160 M168 0 V160"></path>
+
           <text class="games-rb-cell-text is-head" x="21" y="21" text-anchor="middle">⊕</text>
+          <text class="games-rb-cell-text is-head is-t-entry" x="63" y="21" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text is-head is-t-entry" x="105" y="21" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text is-head is-t-entry" x="147" y="21" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text is-head is-mex-t-text" x="189" y="21" text-anchor="middle">3</text>
 
-          <rect class="games-rb-cell is-head" x="42" y="0" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text is-head" x="63" y="21" text-anchor="middle">0</text>
-          <rect class="games-rb-cell is-head" x="84" y="0" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text is-head" x="105" y="21" text-anchor="middle">1</text>
-          <rect class="games-rb-cell is-head is-t" x="126" y="0" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text is-head" x="147" y="21" text-anchor="middle">2</text>
-          <rect class="games-rb-cell is-head is-mex-t" x="168" y="0" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text is-head" x="189" y="21" text-anchor="middle">3</text>
-
-          <rect class="games-rb-cell is-head is-s" x="0" y="32" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text is-head" x="21" y="53" text-anchor="middle">0</text>
-          <rect class="games-rb-cell" x="42" y="32" width="42" height="32" rx="6"></rect>
+          <text class="games-rb-cell-text is-head is-s-entry" x="21" y="53" text-anchor="middle">0</text>
           <text class="games-rb-cell-text" x="63" y="53" text-anchor="middle">0</text>
-          <rect class="games-rb-cell" x="84" y="32" width="42" height="32" rx="6"></rect>
           <text class="games-rb-cell-text" x="105" y="53" text-anchor="middle">1</text>
-          <rect class="games-rb-cell" x="126" y="32" width="42" height="32" rx="6"></rect>
           <text class="games-rb-cell-text" x="147" y="53" text-anchor="middle">2</text>
-          <rect class="games-rb-cell is-col-read" x="168" y="32" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text" x="189" y="53" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text is-col-value" x="189" y="53" text-anchor="middle">3</text>
 
-          <rect class="games-rb-cell is-head is-s" x="0" y="64" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text is-head" x="21" y="85" text-anchor="middle">1</text>
-          <rect class="games-rb-cell" x="42" y="64" width="42" height="32" rx="6"></rect>
+          <text class="games-rb-cell-text is-head is-s-entry" x="21" y="85" text-anchor="middle">1</text>
           <text class="games-rb-cell-text" x="63" y="85" text-anchor="middle">1</text>
-          <rect class="games-rb-cell" x="84" y="64" width="42" height="32" rx="6"></rect>
           <text class="games-rb-cell-text" x="105" y="85" text-anchor="middle">0</text>
-          <rect class="games-rb-cell" x="126" y="64" width="42" height="32" rx="6"></rect>
           <text class="games-rb-cell-text" x="147" y="85" text-anchor="middle">3</text>
-          <rect class="games-rb-cell is-col-read" x="168" y="64" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text" x="189" y="85" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text is-col-value" x="189" y="85" text-anchor="middle">2</text>
 
-          <rect class="games-rb-cell is-head is-mex-s" x="0" y="96" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text is-head" x="21" y="117" text-anchor="middle">2</text>
-          <rect class="games-rb-cell is-row-read" x="42" y="96" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text" x="63" y="117" text-anchor="middle">2</text>
-          <rect class="games-rb-cell is-row-read" x="84" y="96" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text" x="105" y="117" text-anchor="middle">3</text>
-          <rect class="games-rb-cell is-row-read" x="126" y="96" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text" x="147" y="117" text-anchor="middle">0</text>
-          <rect class="games-rb-cell is-lhs" x="168" y="96" width="42" height="32" rx="6"></rect>
+          <text class="games-rb-cell-text is-head is-mex-s-text" x="21" y="117" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text is-row-value" x="63" y="117" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text is-row-value" x="105" y="117" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text is-row-value" x="147" y="117" text-anchor="middle">0</text>
           <text class="games-rb-cell-text is-lhs" x="189" y="117" text-anchor="middle">1</text>
 
-          <rect class="games-rb-cell is-head is-s" x="0" y="128" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text is-head" x="21" y="149" text-anchor="middle">3</text>
-          <rect class="games-rb-cell" x="42" y="128" width="42" height="32" rx="6"></rect>
+          <text class="games-rb-cell-text is-head is-s-entry" x="21" y="149" text-anchor="middle">3</text>
           <text class="games-rb-cell-text" x="63" y="149" text-anchor="middle">3</text>
-          <rect class="games-rb-cell" x="84" y="128" width="42" height="32" rx="6"></rect>
           <text class="games-rb-cell-text" x="105" y="149" text-anchor="middle">2</text>
-          <rect class="games-rb-cell" x="126" y="128" width="42" height="32" rx="6"></rect>
           <text class="games-rb-cell-text" x="147" y="149" text-anchor="middle">1</text>
-          <rect class="games-rb-cell is-col-read" x="168" y="128" width="42" height="32" rx="6"></rect>
-          <text class="games-rb-cell-text" x="189" y="149" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text is-col-value" x="189" y="149" text-anchor="middle">0</text>
         </g>
 
         <g class="games-rb-legend" transform="translate(24 223)">
@@ -8106,35 +8201,44 @@ const paperFigureTemplates = {
       <g class="games-rb-table-panel" transform="translate(438 76)">
         <rect class="games-rb-panel-bg" width="284" height="246" rx="12"></rect>
         <text class="games-rb-panel-label is-right" x="22" y="31">Rota-Baxter check</text>
-        <text class="games-rb-panel-note" x="22" y="51">S={0,1,3}, T={0,1,2}</text>
+        <text class="games-rb-panel-note" x="22" y="51">one pass through the table</text>
 
-        <g class="games-rb-mex-lines" transform="translate(22 73)">
-          <text x="0" y="0">mex(S)=2</text>
-          <text x="132" y="0">mex(T)=3</text>
-        </g>
-
-        <g class="games-rb-readout is-lhs" transform="translate(22 91)">
-          <rect width="240" height="42" rx="10"></rect>
-          <text class="games-rb-readout-label" x="16" y="17">left side</text>
-          <text class="games-rb-readout-main" x="138" y="27" text-anchor="middle">2 ⊕ 3 = 1</text>
-        </g>
-
-        <g class="games-rb-readout is-rhs" transform="translate(22 143)">
-          <rect width="240" height="78" rx="10"></rect>
-          <text class="games-rb-readout-label" x="16" y="18">right side from the table</text>
-          <text class="games-rb-readout-small" x="18" y="40">2⊕T = {2,3,0}</text>
-          <text class="games-rb-readout-small" x="18" y="60">S⊕3 = {3,2,0}</text>
-        </g>
-
-        <g class="games-rb-answer" transform="translate(180 181)">
-          <circle r="32"></circle>
-          <text class="games-rb-answer-note" y="-5" text-anchor="middle">mex</text>
-          <text class="games-rb-answer-value" y="18" text-anchor="middle">1</text>
+        <g class="games-rb-step-list" transform="translate(18 72)">
+          <g class="games-rb-step-item step-define" transform="translate(0 0)">
+            <circle cx="10" cy="0" r="9"></circle>
+            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">1</text>
+            <text class="games-rb-step-title" x="28" y="4">Define S,T</text>
+            <text class="games-rb-step-detail" x="28" y="20"><tspan class="games-rb-term-s">S={0,1,3}</tspan><tspan>, </tspan><tspan class="games-rb-term-t">T={0,1,2}</tspan></text>
+          </g>
+          <g class="games-rb-step-item step-mex" transform="translate(0 43)">
+            <circle cx="10" cy="0" r="9"></circle>
+            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">2</text>
+            <text class="games-rb-step-title" x="28" y="4">Take mex</text>
+            <text class="games-rb-step-detail" x="28" y="20">mex(<tspan class="games-rb-term-s">S</tspan>)=<tspan class="games-rb-term-mex-s">2</tspan><tspan>, mex(</tspan><tspan class="games-rb-term-t">T</tspan><tspan>)=</tspan><tspan class="games-rb-term-mex-t">3</tspan></text>
+          </g>
+          <g class="games-rb-step-item step-lhs" transform="translate(0 86)">
+            <circle cx="10" cy="0" r="9"></circle>
+            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">3</text>
+            <text class="games-rb-step-title" x="28" y="4">Left side</text>
+            <text class="games-rb-step-detail" x="28" y="20"><tspan class="games-rb-term-mex-s">2</tspan><tspan> ⊕ </tspan><tspan class="games-rb-term-mex-t">3</tspan><tspan> = </tspan><tspan class="games-rb-term-result">1</tspan></text>
+          </g>
+          <g class="games-rb-step-item step-rhs" transform="translate(0 129)">
+            <circle cx="10" cy="0" r="9"></circle>
+            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">4</text>
+            <text class="games-rb-step-title" x="28" y="4">Read RHS set</text>
+            <text class="games-rb-step-detail" x="28" y="20"><tspan class="games-rb-term-row">2⊕T</tspan><tspan> ∪ </tspan><tspan class="games-rb-term-col">S⊕3</tspan><tspan> = </tspan><tspan class="games-rb-term-set">{0,2,3}</tspan></text>
+          </g>
+          <g class="games-rb-step-item step-result" transform="translate(0 178)">
+            <circle cx="10" cy="0" r="9"></circle>
+            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">5</text>
+            <text class="games-rb-step-title" x="28" y="4">Take mex again</text>
+            <text class="games-rb-step-detail" x="28" y="20">mex<tspan class="games-rb-term-set">{0,2,3}</tspan><tspan>=</tspan><tspan class="games-rb-term-result">1</tspan></text>
+          </g>
         </g>
       </g>
     </svg>
-    <span class="figure-math games-rb-table-tex games-rb-table-tex-lhs">\\(\\operatorname{mex}(S)\\oplus\\operatorname{mex}(T)=2\\oplus3=1\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-table-tex-rhs">\\(\\operatorname{mex}((2\\oplus T)\\cup(S\\oplus3))=\\operatorname{mex}\\{0,2,3\\}=1\\)</span>`,
+    <span class="figure-math games-rb-table-tex games-rb-table-tex-lhs">\\(\\operatorname{mex}(\\textcolor{#2c6f63}{S})\\oplus\\operatorname{mex}(\\textcolor{#2f536f}{T})=\\textcolor{#b66737}{2}\\oplus\\textcolor{#b66737}{3}=\\textcolor{#9b3a30}{1}\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-table-tex-rhs">\\(\\operatorname{mex}((\\textcolor{#2c6f63}{2\\oplus T})\\cup(\\textcolor{#2f536f}{S\\oplus3}))=\\operatorname{mex}\\textcolor{#574b68}{\\{0,2,3\\}}=\\textcolor{#9b3a30}{1}\\)</span>`,
   "automata-cantor-morphism": `
     <svg class="automata-cantor-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-cantor-title fig-automata-cantor-desc">
       <title id="fig-automata-cantor-title">Canonical geometric morphism from Cantor space to Sigma-sets</title>
@@ -8167,83 +8271,86 @@ const paperFigureTemplates = {
             <rect class="automata-cantor-interval stage-3" x="160.9" y="180.5" width="6.5" height="7" rx="3.5"></rect>
             <rect class="automata-cantor-interval stage-3" x="187.3" y="180.5" width="6.5" height="7" rx="3.5"></rect>
             <rect class="automata-cantor-interval stage-3" x="200.5" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <path class="automata-cantor-connector" d="M118 93.5 L58.7 114.5"></path>
-            <path class="automata-cantor-connector" d="M118 93.5 L177.3 114.5"></path>
-            <path class="automata-cantor-connector" d="M58.7 125.5 L38.9 146.5"></path>
-            <path class="automata-cantor-connector" d="M58.7 125.5 L78.4 146.5"></path>
-            <path class="automata-cantor-connector" d="M177.3 125.5 L157.6 146.5"></path>
-            <path class="automata-cantor-connector" d="M177.3 125.5 L197.1 146.5"></path>
-            <path class="automata-cantor-connector" d="M38.9 157.5 L32.3 178.5"></path>
-            <path class="automata-cantor-connector" d="M38.9 157.5 L45.5 178.5"></path>
-            <path class="automata-cantor-connector" d="M78.4 157.5 L71.9 178.5"></path>
-            <path class="automata-cantor-connector" d="M78.4 157.5 L85.1 178.5"></path>
-            <path class="automata-cantor-connector" d="M157.6 157.5 L150.9 178.5"></path>
-            <path class="automata-cantor-connector" d="M157.6 157.5 L164.1 178.5"></path>
-            <path class="automata-cantor-connector" d="M197.1 157.5 L190.5 178.5"></path>
-            <path class="automata-cantor-connector" d="M197.1 157.5 L203.7 178.5"></path>
-            <circle class="automata-cantor-dot" cx="30.1" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="34.6" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="43.3" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="47.8" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="69.7" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="74" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="82.9" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="87.2" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="148.8" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="153.1" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="162" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="166.3" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="188.3" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="192.7" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="201.4" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot" cx="205.9" cy="216" r="2.1"></circle>
+            <path class="automata-cantor-connector cantor-stage-1" d="M118 93.5 L58.7 114.5"></path>
+            <path class="automata-cantor-connector cantor-stage-1" d="M118 93.5 L177.3 114.5"></path>
+            <path class="automata-cantor-connector cantor-stage-2" d="M58.7 125.5 L38.9 146.5"></path>
+            <path class="automata-cantor-connector cantor-stage-2" d="M58.7 125.5 L78.4 146.5"></path>
+            <path class="automata-cantor-connector cantor-stage-2" d="M177.3 125.5 L157.6 146.5"></path>
+            <path class="automata-cantor-connector cantor-stage-2" d="M177.3 125.5 L197.1 146.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M38.9 157.5 L32.3 178.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M38.9 157.5 L45.5 178.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M78.4 157.5 L71.9 178.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M78.4 157.5 L85.1 178.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M157.6 157.5 L150.9 178.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M157.6 157.5 L164.1 178.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M197.1 157.5 L190.5 178.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M197.1 157.5 L203.7 178.5"></path>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="30.1" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="34.6" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="43.3" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="47.8" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="69.7" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="74" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="82.9" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="87.2" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="148.8" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="153.1" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="162" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="166.3" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="188.3" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="192.7" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="201.4" cy="216" r="2.1"></circle>
+            <circle class="automata-cantor-dot cantor-stage-4" cx="205.9" cy="216" r="2.1"></circle>
             </g>
           </g>
         </g>
 
-        <path class="figure-arrow automata-cantor-main-arrow" data-cantor-arrow="neutral" d="M205 195 H264"></path>
-        <text class="automata-cantor-arrow-label large" x="240" y="180">sublocale</text>
+        <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M205 195 H264"></path>
+        <text class="automata-cantor-arrow-label large automata-sublocale-label" x="240" y="180">sublocale</text>
 
         <g class="automata-prefix-poset">
-          <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 106.9 L329.1 118.9"></path>
-          <path class="automata-cantor-tree-edge child red" data-cantor-arrow="red" d="M289.1 131.3 L329 122.5"></path>
-          <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 140.7 L329 149.5"></path>
-          <path class="automata-cantor-tree-edge child red" data-cantor-arrow="red" d="M289.1 165.1 L329.1 153.1"></path>
-          <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 224.9 L329.1 236.9"></path>
-          <path class="automata-cantor-tree-edge child red" data-cantor-arrow="red" d="M289.1 249.3 L329 240.5"></path>
-          <path class="automata-cantor-tree-edge child blue" data-cantor-arrow="blue" d="M289.1 258.7 L329 267.5"></path>
-          <path class="automata-cantor-tree-edge child red" data-cantor-arrow="red" d="M289.1 283.1 L329.1 271.1"></path>
-          <path class="automata-cantor-tree-edge blue" data-cantor-arrow="blue" d="M339.9 122.6 L398.6 147.1"></path>
-          <path class="automata-cantor-tree-edge red" data-cantor-arrow="red" d="M340.2 151 L397.8 151"></path>
-          <path class="automata-cantor-tree-edge blue" data-cantor-arrow="blue" d="M413.4 154 L472.1 187.1"></path>
-          <path class="automata-cantor-tree-edge blue" data-cantor-arrow="blue" d="M340.2 239 L397.8 239"></path>
-          <path class="automata-cantor-tree-edge red" data-cantor-arrow="red" d="M339.9 267.4 L398.6 242.9"></path>
-          <path class="automata-cantor-tree-edge red" data-cantor-arrow="red" d="M413.4 236 L472.1 202.9"></path>
-          <circle class="automata-cantor-node tiny" cx="286" cy="106" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny" cx="286" cy="132" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny" cx="286" cy="140" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny" cx="286" cy="166" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny" cx="286" cy="224" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny" cx="286" cy="250" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny" cx="286" cy="258" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny" cx="286" cy="284" r="3.2"></circle>
-          <circle class="automata-cantor-node small" cx="336" cy="121" r="4.2"></circle>
-          <circle class="automata-cantor-node small" cx="336" cy="151" r="4.2"></circle>
-          <circle class="automata-cantor-node small" cx="336" cy="239" r="4.2"></circle>
-          <circle class="automata-cantor-node small" cx="336" cy="269" r="4.2"></circle>
-          <circle class="automata-cantor-node" cx="408" cy="151" r="6.2"></circle>
-          <circle class="automata-cantor-node" cx="408" cy="239" r="6.2"></circle>
-          <circle class="automata-cantor-node large" cx="486" cy="195" r="12"></circle>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 106.9 L329.1 118.9"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 131.3 L329 122.5"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 140.7 L329 149.5"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 165.1 L329.1 153.1"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 224.9 L329.1 236.9"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 249.3 L329 240.5"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 258.7 L329 267.5"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 283.1 L329.1 271.1"></path>
+          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M339.9 122.6 L398.6 147.1"></path>
+          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M340.2 151 L397.8 151"></path>
+          <path class="automata-cantor-tree-edge level-1 blue" pathLength="1" data-cantor-arrow="blue" d="M413.4 154 L472.1 187.1"></path>
+          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M340.2 239 L397.8 239"></path>
+          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M339.9 267.4 L398.6 242.9"></path>
+          <path class="automata-cantor-tree-edge level-1 red" pathLength="1" data-cantor-arrow="red" d="M413.4 236 L472.1 202.9"></path>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="106" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="132" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="140" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="166" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="224" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="250" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="258" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="284" r="3.2"></circle>
+          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="121" r="4.2"></circle>
+          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="151" r="4.2"></circle>
+          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="239" r="4.2"></circle>
+          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="269" r="4.2"></circle>
+          <circle class="automata-cantor-node tree-depth-1" cx="408" cy="151" r="6.2"></circle>
+          <circle class="automata-cantor-node tree-depth-1" cx="408" cy="239" r="6.2"></circle>
+          <circle class="automata-cantor-node large tree-depth-0" cx="486" cy="195" r="12"></circle>
         </g>
 
-        <path class="figure-arrow automata-cantor-main-arrow" data-cantor-arrow="neutral" d="M522 195 H606"></path>
-        <text class="automata-cantor-arrow-label large" x="564" y="170">&eacute;tale cover</text>
+        <path class="figure-arrow automata-cantor-main-arrow automata-etale-arrow" data-cantor-arrow="neutral" d="M522 195 H606"></path>
+        <text class="automata-cantor-arrow-label large automata-etale-label" x="564" y="170">&eacute;tale cover</text>
 
         <g class="automata-bouquet-space" transform="translate(650 195)">
           <path class="automata-cantor-bouquet-loop blue" data-cantor-arrow="blue" d="M0 0 C-40 -24, -36 -92, 0 -92 C36 -92, 40 -24, 0 0"></path>
           <path class="automata-cantor-bouquet-loop red" data-cantor-arrow="red" d="M0 0 C-40 24, -36 92, 0 92 C36 92, 40 24, 0 0"></path>
+          <path class="automata-bouquet-direction blue" data-cantor-arrow="blue" d="M18 -86 C39 -68, 36 -33, 9 -12"></path>
+          <path class="automata-bouquet-direction red" data-cantor-arrow="red" d="M18 86 C39 68, 36 33, 9 12"></path>
           <circle class="automata-cantor-node large" cx="0" cy="0" r="10"></circle>
         </g>
+${automataCoverUnfoldingTemplate()}
       </g>
     </svg>`,
   "internal-parameterizations": `
@@ -8434,64 +8541,90 @@ const paperFigureTemplates = {
       </defs>
 
       <g transform="translate(42 56)">
-        <rect class="tensor-set-envelope tensor-x-envelope" x="30" y="42" width="164" height="190" rx="48"></rect>
-        <rect class="tensor-set-envelope tensor-left-a-envelope" x="264" y="58" width="104" height="170" rx="38"></rect>
-        <rect class="tensor-set-envelope tensor-a-envelope" x="424" y="58" width="114" height="170" rx="38"></rect>
-        <text class="tensor-side-label" x="74" y="48">X</text>
-        <text class="tensor-side-label tensor-left-a-label" x="316" y="48">A</text>
-        <text class="tensor-side-label" x="481" y="48">A</text>
-        <text class="tensor-side-label tensor-s-label" x="602" y="48">S</text>
-
-        <rect class="tensor-s-envelope tensor-s-choice-envelope" x="552" y="70" width="94" height="146" rx="36"></rect>
-        <line class="tensor-tensor-divider" x1="394" y1="48" x2="394" y2="238"></line>
-        <line class="tensor-split-divider" x1="574" y1="58" x2="574" y2="226"></line>
-
-        <g class="tensor-x-node selected" transform="translate(112 92)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
-        <g class="tensor-x-node selected green" transform="translate(112 146)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
-        <g class="tensor-x-node muted" transform="translate(112 200)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
-
-        <g class="tensor-left-a-node selected" transform="translate(316 88)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-        <g class="tensor-left-a-node muted" transform="translate(316 126)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-        <g class="tensor-left-a-node selected green" transform="translate(316 164)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-        <g class="tensor-left-a-node muted" transform="translate(316 202)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
-
-        <g class="tensor-left-map-cords">
-          <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M298 88 C244 78, 184 80, 132 92"></path>
-          <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M298 126 C244 118, 184 130, 132 140"></path>
-          <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M298 164 C244 174, 184 164, 132 152"></path>
-          <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M298 202 C244 212, 184 210, 132 200"></path>
+        <g>
+          <rect class="tensor-set-envelope tensor-x-envelope" x="30" y="42" width="164" height="190" rx="48">
+            <animate attributeName="x" values="30;30;10;10" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
+          </rect>
+          <rect class="tensor-set-envelope tensor-left-a-envelope" x="235" y="58" width="104" height="170" rx="38">
+            <animate attributeName="x" values="235;235;177;177" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
+          </rect>
+          <rect class="tensor-set-envelope tensor-a-envelope tensor-merge-away" x="405" y="58" width="114" height="170" rx="38">
+            <animate attributeName="x" values="405;405;309;309;177" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate>
+          </rect>
+          <text class="tensor-side-label" x="112" y="48">X<animate attributeName="x" values="112;112;92;92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-left-a-label" x="287" y="48">A<animate attributeName="x" values="287;287;229;229" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-merge-away" x="462" y="48">A<animate attributeName="x" values="462;462;366;366;229" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></text>
         </g>
-        <text class="tensor-map-symbol tensor-f-label" x="220" y="136">f</text>
+        <text class="tensor-side-label tensor-s-new-label" x="503" y="48">S</text>
+        <text class="tensor-side-label tensor-s-label" x="640" y="48">S</text>
 
-        <g class="tensor-a-reference-lines">
-          <path class="tensor-a-reference-line" pathLength="1" d="M334 88 C366 88, 426 88, 481 88"></path>
-          <path class="tensor-a-reference-line" pathLength="1" d="M334 126 C366 126, 426 126, 481 126"></path>
-          <path class="tensor-a-reference-line" pathLength="1" d="M334 164 C366 164, 426 164, 481 164"></path>
-          <path class="tensor-a-reference-line" pathLength="1" d="M334 202 C366 202, 426 202, 481 202"></path>
+        <rect class="tensor-s-new-envelope" x="469" y="70" width="68" height="146" rx="30"></rect>
+        <rect class="tensor-s-envelope tensor-s-choice-envelope" x="610" y="70" width="60" height="146" rx="30"></rect>
+        <line class="tensor-tensor-divider" x1="374.5" y1="48" x2="374.5" y2="238">
+          <animate attributeName="x1" values="374.5;374.5;295;295;446;375" keyTimes="0;0.4;0.66;0.72;0.88;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="x2" values="374.5;374.5;295;295;446;375" keyTimes="0;0.4;0.66;0.72;0.88;1" dur="10s" repeatCount="indefinite"></animate>
+        </line>
+
+        <g>
+          <g class="tensor-x-node selected" transform="translate(112 92)"><animateTransform attributeName="transform" type="translate" values="112 92;112 92;92 92;92 92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
+          <g class="tensor-x-node selected green" transform="translate(112 146)"><animateTransform attributeName="transform" type="translate" values="112 146;112 146;92 146;92 146" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
+          <g class="tensor-x-node muted" transform="translate(112 200)"><animateTransform attributeName="transform" type="translate" values="112 200;112 200;92 200;92 200" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
+
+          <g class="tensor-left-a-node selected" transform="translate(287 88)"><animateTransform attributeName="transform" type="translate" values="287 88;287 88;229 88;229 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-left-a-node muted" transform="translate(287 126)"><animateTransform attributeName="transform" type="translate" values="287 126;287 126;229 126;229 126" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-left-a-node selected green" transform="translate(287 164)"><animateTransform attributeName="transform" type="translate" values="287 164;287 164;229 164;229 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-left-a-node muted" transform="translate(287 202)"><animateTransform attributeName="transform" type="translate" values="287 202;287 202;229 202;229 202" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+
+          <g class="tensor-left-map-cords">
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M269 88 C222 78, 174 80, 130 92"><animate attributeName="d" values="M269 88 C222 78, 174 80, 130 92;M269 88 C222 78, 174 80, 130 92;M211 88 C175 78, 140 80, 110 92;M211 88 C175 78, 140 80, 110 92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M269 126 C222 118, 174 130, 130 140"><animate attributeName="d" values="M269 126 C222 118, 174 130, 130 140;M269 126 C222 118, 174 130, 130 140;M211 126 C175 118, 140 130, 110 140;M211 126 C175 118, 140 130, 110 140" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M269 164 C222 174, 174 164, 130 152"><animate attributeName="d" values="M269 164 C222 174, 174 164, 130 152;M269 164 C222 174, 174 164, 130 152;M211 164 C175 174, 140 164, 110 152;M211 164 C175 174, 140 164, 110 152" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M269 202 C222 212, 174 210, 130 200"><animate attributeName="d" values="M269 202 C222 212, 174 210, 130 200;M269 202 C222 212, 174 210, 130 200;M211 202 C175 212, 140 210, 110 200;M211 202 C175 212, 140 210, 110 200" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+          </g>
+          <text class="tensor-map-symbol tensor-f-label" x="200" y="136">f<animate attributeName="x" values="200;200;161;161" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
+
+          <g class="tensor-a-reference-lines">
+            <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 88 C340 88, 398 88, 444 88"><animate attributeName="d" values="M305 88 C340 88, 398 88, 444 88;M305 88 C340 88, 398 88, 444 88;M247 88 C278 88, 318 88, 348 88;M247 88 C278 88, 318 88, 348 88;M247 88 C247 88, 247 88, 247 88" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 126 C340 126, 398 126, 444 126"><animate attributeName="d" values="M305 126 C340 126, 398 126, 444 126;M305 126 C340 126, 398 126, 444 126;M247 126 C278 126, 318 126, 348 126;M247 126 C278 126, 318 126, 348 126;M247 126 C247 126, 247 126, 247 126" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 164 C340 164, 398 164, 444 164"><animate attributeName="d" values="M305 164 C340 164, 398 164, 444 164;M305 164 C340 164, 398 164, 444 164;M247 164 C278 164, 318 164, 348 164;M247 164 C278 164, 318 164, 348 164;M247 164 C247 164, 247 164, 247 164" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 202 C340 202, 398 202, 444 202"><animate attributeName="d" values="M305 202 C340 202, 398 202, 444 202;M305 202 C340 202, 398 202, 444 202;M247 202 C278 202, 318 202, 348 202;M247 202 C278 202, 318 202, 348 202;M247 202 C247 202, 247 202, 247 202" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
+          </g>
+          <g class="tensor-subset-extensions">
+            <path class="tensor-subset-extension" pathLength="1" d="M480 88 C530 88, 586 88, 622 88"><animate attributeName="d" values="M480 88 C530 88, 586 88, 622 88;M480 88 C530 88, 586 88, 622 88;M384 88 C420 88, 456 88, 487 88;M384 88 C420 88, 456 88, 487 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-extension" pathLength="1" d="M480 164 C530 164, 586 164, 622 164"><animate attributeName="d" values="M480 164 C530 164, 586 164, 622 164;M480 164 C530 164, 586 164, 622 164;M384 164 C420 164, 456 164, 487 164;M384 164 C420 164, 456 164, 487 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+          </g>
+          <g class="tensor-right-a-node tensor-merge-away in-s" transform="translate(462 88)"><animateTransform attributeName="transform" type="translate" values="462 88;462 88;366 88;366 88;229 88" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-right-a-node tensor-merge-away" transform="translate(462 126)"><animateTransform attributeName="transform" type="translate" values="462 126;462 126;366 126;366 126;229 126" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-right-a-node tensor-merge-away in-s" transform="translate(462 164)"><animateTransform attributeName="transform" type="translate" values="462 164;462 164;366 164;366 164;229 164" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-right-a-node tensor-merge-away" transform="translate(462 202)"><animateTransform attributeName="transform" type="translate" values="462 202;462 202;366 202;366 202;229 202" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
         </g>
-        <g class="tensor-subset-extensions">
-          <path class="tensor-subset-extension" pathLength="1" d="M499 88 C526 88, 552 88, 582 88"></path>
-          <path class="tensor-subset-extension" pathLength="1" d="M499 164 C526 164, 552 164, 582 164"></path>
+        <g class="tensor-s-copy-links">
+          <path class="tensor-s-copy-link" d="M519 88 C555 88, 590 88, 622 88">
+            <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
+          </path>
+          <path class="tensor-s-copy-link" d="M519 164 C555 164, 590 164, 622 164">
+            <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
+          </path>
         </g>
-        <g class="tensor-right-a-node in-s" transform="translate(481 88)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-        <g class="tensor-right-a-node" transform="translate(481 126)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-        <g class="tensor-right-a-node in-s" transform="translate(481 164)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-        <g class="tensor-right-a-node" transform="translate(481 202)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
-        <g class="tensor-s-node" transform="translate(600 88)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-        <g class="tensor-s-node" transform="translate(600 164)"><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-        <g class="tensor-iota-domain-node" transform="translate(600 88)">
-          <animateTransform attributeName="transform" type="translate" values="600 88;600 88;558 88;558 88" keyTimes="0;0.4;0.66;1" dur="10s" fill="freeze"></animateTransform>
+        <g class="tensor-s-node" transform="translate(640 88)">
+          <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
+        </g>
+        <g class="tensor-s-node" transform="translate(640 164)">
+          <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
+        </g>
+        <g class="tensor-iota-domain-node" transform="translate(462 88)">
+          <animateTransform attributeName="transform" type="translate" values="462 88;462 88;503 88;503 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="16"></circle><text x="0" y="6">a</text>
         </g>
-        <g class="tensor-iota-domain-node" transform="translate(600 164)">
-          <animateTransform attributeName="transform" type="translate" values="600 164;600 164;558 164;558 164" keyTimes="0;0.4;0.66;1" dur="10s" fill="freeze"></animateTransform>
+        <g class="tensor-iota-domain-node" transform="translate(462 164)">
+          <animateTransform attributeName="transform" type="translate" values="462 164;462 164;503 164;503 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="16"></circle><text x="0" y="6">c</text>
         </g>
 
         <g class="tensor-iota-decompose-layer">
-          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M542 88 C528 88, 514 88, 499 88"></path>
-          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M542 164 C528 164, 514 164, 499 164"></path>
-          <text class="tensor-operator-label tensor-iota-label" x="538" y="79">&#953;</text>
+          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M487 88 C458 88, 424 88, 384 88"></path>
+          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M487 164 C458 164, 424 164, 384 164"></path>
+          <text class="tensor-operator-label tensor-iota-label" x="477" y="79">&#953;</text>
         </g>
 
       </g>
@@ -8515,58 +8648,14 @@ const paperFigureTemplates = {
         <g class="automata-input-tape" transform="translate(36 8)">
           <rect class="automata-input-panel" x="0" y="0" width="188" height="132" rx="12"></rect>
           <text class="figure-small automata-input-heading" x="18" y="24">Input</text>
-          <text class="figure-small automata-input-label" x="28" y="52">u =</text>
-          <g transform="translate(62 52)">
-            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0083;0.0208;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">a</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(16 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0583;0.0708;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">b</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(32 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.1083;0.1208;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">a</text>
-            </g>
-          </g>
-          <text class="figure-small automata-input-label" x="28" y="84">v =</text>
-          <g transform="translate(62 84)">
-            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3417;0.3542;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">a</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(16 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3917;0.4042;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">b</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(32 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.4417;0.4542;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">b</text>
-            </g>
-          </g>
-          <text class="figure-small automata-input-label" x="28" y="116">w =</text>
-          <g transform="translate(62 116)">
-            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(0 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.675;0.6875;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">a</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-a" transform="translate(16 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.725;0.7375;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">a</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(32 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.775;0.7875;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">b</text>
-            </g>
-            <g class="automata-input-symbol automata-input-symbol-b" transform="translate(48 0)">
-              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.825;0.8375;0.995;1"></animate>
-              <text class="figure-small" x="0" y="5">b</text>
-            </g>
-          </g>
+          <text class="figure-small automata-input-word" x="28" y="57"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0083;0.0208;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0583;0.0708;0.995;1"></animate></tspan><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.1083;0.1208;0.995;1"></animate></tspan></text>
+          <text class="figure-small automata-input-word" x="28" y="89"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3417;0.3542;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3917;0.4042;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.4417;0.4542;0.995;1"></animate></tspan></text>
+          <text class="figure-small automata-input-word" x="28" y="121"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.675;0.6875;0.995;1"></animate></tspan><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.725;0.7375;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.775;0.7875;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.825;0.8375;0.995;1"></animate></tspan></text>
         </g>
 
-        <text class="figure-small automata-lift-label" x="638" y="72">lift</text>
+        <text class="figure-small automata-lift-label" x="604" y="72">Automaton as a Path Lift</text>
+
+        <path class="automata-input-start-link" d="M96 140 V232"></path>
 
         <g class="automata-dot-links">
           <line class="automata-dot-link" x1="95.8" y1="248.6" x2="616.7" y2="248.6">
@@ -8609,39 +8698,45 @@ const paperFigureTemplates = {
           <g class="automata-state" transform="translate(176 132)">
             <circle class="figure-node" cx="0" cy="0" r="17"></circle>
           </g>
-          <g class="automata-state automata-state-accepting" transform="translate(280 132)">
-            <circle class="figure-node" cx="0" cy="0" r="21"></circle>
-            <circle class="automata-accept-ring" cx="0" cy="0" r="14.5"></circle>
-            <path class="automata-state-mark automata-state-check" d="M-7 -1 L-2 5 L8 -7"></path>
+          <g class="automata-state" transform="translate(280 132)">
+            <circle class="figure-node" cx="0" cy="0" r="17"></circle>
           </g>
           <g class="automata-state" transform="translate(384 132)">
             <circle class="figure-node" cx="0" cy="0" r="17"></circle>
-            <path class="automata-state-mark automata-state-cross" d="M-6 -6 L6 6 M6 -6 L-6 6"></path>
           </g>
 
           <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-u">
             <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;300 122;319.1 81.5;335.5 68;351.2 81.5;368 122;384 132;384 132;72 132;72 132" keyTimes="0;0.0083;0.0167;0.025;0.0333;0.0417;0.05;0.0583;0.0667;0.075;0.0833;0.0917;0.1;0.1083;0.1167;0.125;0.1333;0.1417;0.15;0.3333;0.3337;1"></animateTransform>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.325;0.3333;1"></animate>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
-            <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.4">
-              <animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c" keyTimes="0;0.05;0.0501;0.1;0.1001;1"></animate>
-            </circle>
+            <circle class="automata-moving-dot-core" cx="0" cy="0" r="9.6"></circle>
           </g>
           <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-v">
             <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;260 142;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132;72 132;72 132" keyTimes="0;0.3332;0.3333;0.3417;0.35;0.3583;0.3667;0.375;0.3833;0.3917;0.4;0.4083;0.4167;0.425;0.4333;0.4417;0.45;0.4583;0.4667;0.475;0.4833;0.6667;0.6671;1"></animateTransform>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3332;0.3333;0.6583;0.6667;1"></animate>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
-            <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.4">
-              <animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3" keyTimes="0;0.3833;0.3834;1"></animate>
-            </circle>
+            <circle class="automata-moving-dot-core" cx="0" cy="0" r="9.6"></circle>
           </g>
           <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-w">
             <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;160 122;153.2 81.5;176 68;198.8 81.5;192 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;260 142;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132" keyTimes="0;0.6666;0.6667;0.675;0.6833;0.6917;0.7;0.7083;0.7167;0.725;0.7333;0.7417;0.75;0.7583;0.7667;0.775;0.7833;0.7917;0.8;0.8083;0.8167;0.825;0.8333;0.8417;0.85;0.8583;0.8667;1"></animateTransform>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.6666;0.6667;0.9958;1"></animate>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
-            <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.4">
-              <animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3" keyTimes="0;0.7667;0.7668;1"></animate>
-            </circle>
+            <circle class="automata-moving-dot-core" cx="0" cy="0" r="9.6"></circle>
+          </g>
+
+          <g class="automata-state-mark-layer">
+            <g transform="translate(72 132)">
+              <path class="automata-state-mark automata-state-cross" d="M-6 -6 L6 6 M6 -6 L-6 6"></path>
+            </g>
+            <g transform="translate(176 132)">
+              <path class="automata-state-mark automata-state-check" d="M-7 -1 L-2 5 L8 -7"></path>
+            </g>
+            <g transform="translate(280 132)">
+              <path class="automata-state-mark automata-state-check" d="M-7 -1 L-2 5 L8 -7"></path>
+            </g>
+            <g transform="translate(384 132)">
+              <path class="automata-state-mark automata-state-cross" d="M-6 -6 L6 6 M6 -6 L-6 6"></path>
+            </g>
           </g>
 
         </g>
@@ -8654,9 +8749,7 @@ const paperFigureTemplates = {
             <g class="automata-moving-dot automata-moving-dot-base">
               <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;-12 -11;-21.2 -55.7;0 -70.5;21.2 -55.7;12 -11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;12 11;21.2 53.2;0 67.2;-21.2 53.2;-12 11;0 0;0 0" keyTimes="0;0.0083;0.0167;0.025;0.0333;0.0417;0.05;0.0583;0.0667;0.075;0.0833;0.0917;0.1;0.1083;0.1167;0.125;0.1333;0.1417;0.15;0.3333;0.3417;0.35;0.3583;0.3667;0.375;0.3833;0.3917;0.4;0.4083;0.4167;0.425;0.4333;0.4417;0.45;0.4583;0.4667;0.475;0.4833;0.6667;0.675;0.6833;0.6917;0.7;0.7083;0.7167;0.725;0.7333;0.7417;0.75;0.7583;0.7667;0.775;0.7833;0.7917;0.8;0.8083;0.8167;0.825;0.8333;0.8417;0.85;0.8583;0.8667;1"></animateTransform>
               <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
-              <circle class="automata-moving-dot-core" cx="0" cy="0" r="5.6">
-                <animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c;#2f6aa3;#2f6aa3;#b84f3c;#b84f3c;#2f6aa3;#2f6aa3" keyTimes="0;0.05;0.0501;0.1;0.1001;0.3833;0.3834;0.6667;0.6668;0.7667;0.7668;1"></animate>
-              </circle>
+              <circle class="automata-moving-dot-core" cx="0" cy="0" r="9.6"></circle>
             </g>
           </g>
         </g>
@@ -8696,52 +8789,52 @@ const paperFigureTemplates = {
         </g>
         <g class="automata-consuming-letters">
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M98 60 C112 130, 156 214, 208.1 248.6" keyTimes="0;0.0083;0.05;0.0583;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 60 C92 130, 150 214, 208.1 248.6" keyTimes="0;0.0083;0.05;0.0583;1" keyPoints="0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;1;0;0" keyTimes="0;0.0083;0.05;0.0583;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M112 60 C162 134, 254 214, 320.4 248.6" keyTimes="0;0.0521;0.0583;0.1;0.1083;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 60 C136 134, 248 214, 320.4 248.6" keyTimes="0;0.0521;0.0583;0.1;0.1083;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0521;0.0583;0.1;0.1083;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M126 60 C220 128, 356 214, 432.7 248.6" keyTimes="0;0.1021;0.1083;0.15;0.1583;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 60 C200 128, 350 214, 432.7 248.6" keyTimes="0;0.1021;0.1083;0.15;0.1583;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.1021;0.1083;0.15;0.1583;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M98 92 C114 148, 158 220, 208.1 248.6" keyTimes="0;0.3354;0.3417;0.3833;0.3917;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 92 C92 148, 150 220, 208.1 248.6" keyTimes="0;0.3354;0.3417;0.3833;0.3917;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3354;0.3417;0.3833;0.3917;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M112 92 C162 154, 252 222, 320.4 248.6" keyTimes="0;0.3854;0.3917;0.4333;0.4417;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 92 C136 154, 246 222, 320.4 248.6" keyTimes="0;0.3854;0.3917;0.4333;0.4417;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3854;0.3917;0.4333;0.4417;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M126 92 C204 158, 292 220, 320.4 248.6" keyTimes="0;0.4354;0.4417;0.4833;0.4917;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 92 C190 158, 286 220, 320.4 248.6" keyTimes="0;0.4354;0.4417;0.4833;0.4917;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.4354;0.4417;0.4833;0.4917;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M98 124 C118 166, 160 224, 208.1 248.6" keyTimes="0;0.6688;0.675;0.7167;0.725;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 124 C94 166, 152 224, 208.1 248.6" keyTimes="0;0.6688;0.675;0.7167;0.725;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6688;0.675;0.7167;0.725;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M112 124 C146 166, 184 224, 208.1 248.6" keyTimes="0;0.7188;0.725;0.7667;0.775;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 124 C124 166, 178 224, 208.1 248.6" keyTimes="0;0.7188;0.725;0.7667;0.775;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7188;0.725;0.7667;0.775;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M126 124 C178 174, 256 224, 320.4 248.6" keyTimes="0;0.7688;0.775;0.8167;0.825;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 124 C162 174, 250 224, 320.4 248.6" keyTimes="0;0.7688;0.775;0.8167;0.825;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7688;0.775;0.8167;0.825;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M140 124 C214 178, 292 224, 320.4 248.6" keyTimes="0;0.8188;0.825;0.8667;0.875;1" keyPoints="0;0;0;1;1;0"></animateMotion>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M88 124 C204 178, 286 224, 320.4 248.6" keyTimes="0;0.8188;0.825;0.8667;0.875;1" keyPoints="0;0;0;1;1;0"></animateMotion>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.8188;0.825;0.8667;0.875;1"></animate>
             <text x="0" y="5">b</text>
           </g>
@@ -9027,6 +9120,19 @@ const normalizationSubgroupCoordinates = {
   one: [150, 290]
 };
 
+const normalizationNormalizerTargets = {
+  d4: "d4",
+  v0: "d4",
+  rot: "d4",
+  v1: "d4",
+  ref0: "v0",
+  ref2: "v0",
+  r2: "d4",
+  ref1: "v1",
+  ref3: "v1",
+  one: "d4"
+};
+
 const normalizationElementOrder = Object.keys(normalizationElementLabels);
 
 const normalizationElementCoordinates = {
@@ -9050,9 +9156,6 @@ const normalizationElementCoordinates = {
     s2t: [-1, 21],
     s3t: [5, 5]
   },
-  fixed: {
-    p0: [17, 16]
-  }
 };
 
 const normalizationElementTuples = {
@@ -9091,13 +9194,14 @@ const normalizationRotationStepDegrees = {
 const normalizationGeometricMotion = {
   vertex: [21, 25],
   edge: [21, 25],
-  diagonal: [21, 25],
-  axis: [21, 25]
+  center: [21, 25]
 };
 
 const normalizationSquareBodyCenter = [21, 25];
-const normalizationLatticeGlobalOffset = [12, 42];
-const normalizationSquareStageGlobalOrigin = [435, 98];
+const normalizationOldLatticeGlobalOffset = [300, 42];
+const normalizationNewLatticeGlobalOffset = [590, 42];
+const normalizationLatticeGlobalOffset = normalizationOldLatticeGlobalOffset;
+const normalizationSquareStageGlobalOrigin = [58, 98];
 const normalizationSquareStageScale = 4.3;
 
 const normalizationOrbitCoordinates = {
@@ -9113,17 +9217,15 @@ const normalizationOrbitCoordinates = {
     e2: [0, 1],
     e3: [-1, 0]
   },
-  face: {
-    f0: [-1, -1],
-    f1: [1, -1],
-    f2: [1, 1],
-    f3: [-1, 1]
+  center: {
+    p0: [0, 0]
   }
 };
 
 const normalizationMotionState = new WeakMap();
 const normalizationSubgroupMotionState = new WeakMap();
 const normalizationStabilizerLinkMotionState = new WeakMap();
+const normalizationOperatorLinkMotionState = new WeakMap();
 
 function normalizationMultiplyElements(left, right) {
   const leftTuple = normalizationElementTuples[left] || normalizationElementTuples.e;
@@ -9181,17 +9283,6 @@ function normalizationTargetCoordinate(elementId, coordinate) {
   return [a * x + c * y, b * x + d * y];
 }
 
-function normalizationLineTargetPoint(orbit, elementId, pointId) {
-  const lineVectors = orbit === "diagonal"
-    ? { d0: [1, 1], d1: [1, -1] }
-    : { a0: [0, 1], a1: [1, 0] };
-  const vector = lineVectors[pointId];
-  if (!vector) return pointId;
-  const [x, y] = normalizationTargetCoordinate(elementId, vector);
-  if (orbit === "diagonal") return x * y > 0 ? "d0" : "d1";
-  return x === 0 ? "a0" : "a1";
-}
-
 function normalizationHalfturnTargetPoint(elementId, pointId) {
   const representatives = {
     h0: "e",
@@ -9206,12 +9297,11 @@ function normalizationHalfturnTargetPoint(elementId, pointId) {
 }
 
 function normalizationTargetPoint(orbit, elementId, pointId) {
-  if (orbit === "vertex" || orbit === "edge" || orbit === "face") {
+  if (orbit === "vertex" || orbit === "edge" || orbit === "center") {
     const coordinate = normalizationOrbitCoordinates[orbit]?.[pointId];
     if (!coordinate) return pointId;
     return normalizationPointByCoordinate(orbit, normalizationTargetCoordinate(elementId, coordinate)) || pointId;
   }
-  if (orbit === "diagonal" || orbit === "axis") return normalizationLineTargetPoint(orbit, elementId, pointId);
   if (orbit === "free") return normalizationMultiplyElements(elementId, pointId);
   if (orbit === "halfturn") return normalizationHalfturnTargetPoint(elementId, pointId);
   if (orbit === "orientation") {
@@ -9227,17 +9317,20 @@ function normalizationFormatPoint(point) {
 }
 
 function normalizationSubgroupGlobalPoint(conjugator, subgroupId) {
+  return normalizationSubgroupGlobalPointInLattice(normalizationLatticeGlobalOffset, conjugator, subgroupId);
+}
+
+function normalizationSubgroupGlobalPointInLattice(offset, conjugator, subgroupId) {
   const targetSubgroupId = normalizationConjugateSubgroup(conjugator, subgroupId);
   const point = normalizationSubgroupCoordinates[targetSubgroupId] || normalizationSubgroupCoordinates[subgroupId];
   if (!point) return null;
   return [
-    normalizationLatticeGlobalOffset[0] + point[0],
-    normalizationLatticeGlobalOffset[1] + point[1]
+    offset[0] + point[0],
+    offset[1] + point[1]
   ];
 }
 
 function normalizationLinkCoordinate(orbit, pointId) {
-  if (orbit === "fixed" && pointId === "p0") return [0, 0];
   return normalizationOrbitCoordinates[orbit]?.[pointId] || null;
 }
 
@@ -9326,8 +9419,24 @@ function normalizationAnimatedLinkGlobalPoint(fromActionState, toActionState, ac
 }
 
 function normalizationAnimatedSubgroupGlobalPoint(fromSubgroupActionState, toSubgroupActionState, subgroupId, progress) {
-  const from = normalizationSubgroupGlobalPoint(fromSubgroupActionState, subgroupId);
-  const to = normalizationSubgroupGlobalPoint(toSubgroupActionState, subgroupId);
+  return normalizationAnimatedSubgroupGlobalPointInLattice(
+    normalizationLatticeGlobalOffset,
+    fromSubgroupActionState,
+    toSubgroupActionState,
+    subgroupId,
+    progress
+  );
+}
+
+function normalizationAnimatedSubgroupGlobalPointInLattice(
+  offset,
+  fromSubgroupActionState,
+  toSubgroupActionState,
+  subgroupId,
+  progress
+) {
+  const from = normalizationSubgroupGlobalPointInLattice(offset, fromSubgroupActionState, subgroupId);
+  const to = normalizationSubgroupGlobalPointInLattice(offset, toSubgroupActionState, subgroupId);
   if (!from || !to) return null;
   return normalizationInterpolatePoint(from, to, progress);
 }
@@ -9346,6 +9455,26 @@ function setNormalizationStabilizerLinkPath(link, endpoints) {
   link.setAttribute("d", normalizationStabilizerLinkPath(endpoints.from, endpoints.to));
 }
 
+function normalizationOperatorLinkEndpoints(subgroupActionState, link) {
+  const sourceId = link.dataset.normalizationOperatorSource || "";
+  const targetId = link.dataset.normalizationOperatorTarget || normalizationNormalizerTargets[sourceId] || "";
+  const from = normalizationSubgroupGlobalPointInLattice(normalizationOldLatticeGlobalOffset, subgroupActionState, sourceId);
+  const to = normalizationSubgroupGlobalPointInLattice(normalizationNewLatticeGlobalOffset, subgroupActionState, targetId);
+  return from && to ? { from, to } : null;
+}
+
+function normalizationOperatorLinkPath(from, to) {
+  const dx = to[0] - from[0];
+  const controlA = [from[0] + dx * 0.42, from[1]];
+  const controlB = [from[0] + dx * 0.58, to[1]];
+  return `M${normalizationFormatPoint(from)} C${normalizationFormatPoint(controlA)}, ${normalizationFormatPoint(controlB)}, ${normalizationFormatPoint(to)}`;
+}
+
+function setNormalizationOperatorLinkPath(link, endpoints) {
+  if (!endpoints) return;
+  link.setAttribute("d", normalizationOperatorLinkPath(endpoints.from, endpoints.to));
+}
+
 function updateNormalizationStabilizerLinks(root) {
   const state = normalizationStabilizerLinkMotionState.get(root);
   if (state?.frame) cancelAnimationFrame(state.frame);
@@ -9361,6 +9490,21 @@ function updateNormalizationStabilizerLinks(root) {
   });
 
   normalizationStabilizerLinkMotionState.set(root, { frame: null, linksByKey });
+}
+
+function updateNormalizationOperatorLinks(root) {
+  const state = normalizationOperatorLinkMotionState.get(root);
+  if (state?.frame) cancelAnimationFrame(state.frame);
+  const subgroupActionState = normalizationCurrentSubgroupActionState(root);
+  const linksByKey = new Map();
+
+  root.querySelectorAll("[data-normalization-operator-link]").forEach((link) => {
+    const endpoints = normalizationOperatorLinkEndpoints(subgroupActionState, link);
+    setNormalizationOperatorLinkPath(link, endpoints);
+    if (endpoints) linksByKey.set(link.dataset.normalizationOperatorSource || "", endpoints);
+  });
+
+  normalizationOperatorLinkMotionState.set(root, { frame: null, linksByKey });
 }
 
 function animateNormalizationStabilizerLinks(root, fromActionState, toActionState, fromSubgroupActionState, toSubgroupActionState, actedElement) {
@@ -9414,6 +9558,68 @@ function animateNormalizationStabilizerLinks(root, fromActionState, toActionStat
       const endpoints = normalizationStabilizerLinkEndpoints(toActionState, toSubgroupActionState, link);
       setNormalizationStabilizerLinkPath(link, endpoints);
       if (endpoints) linksByKey.set(`${link.dataset.normalizationLinkSubgroup}:${link.dataset.normalizationLinkPoint}`, endpoints);
+    });
+  };
+
+  state.frame = requestAnimationFrame(step);
+}
+
+function animateNormalizationOperatorLinks(root, fromSubgroupActionState, toSubgroupActionState) {
+  const previousState = normalizationOperatorLinkMotionState.get(root);
+  if (previousState?.frame) cancelAnimationFrame(previousState.frame);
+  const links = Array.from(root.querySelectorAll("[data-normalization-operator-link]"));
+  if (!links.length) return;
+
+  const duration = 360;
+  const linksByKey = new Map();
+
+  if (!normalizationCanAnimate()) {
+    updateNormalizationOperatorLinks(root);
+    return;
+  }
+
+  const startedAt = performance.now();
+  const state = { frame: null, linksByKey };
+  normalizationOperatorLinkMotionState.set(root, state);
+
+  const step = (now) => {
+    const elapsed = now - startedAt;
+    const progress = normalizationEase(Math.min(1, elapsed / duration));
+
+    links.forEach((link) => {
+      const sourceId = link.dataset.normalizationOperatorSource || "";
+      const targetId = link.dataset.normalizationOperatorTarget || normalizationNormalizerTargets[sourceId] || "";
+      const endpoints = {
+        from: normalizationAnimatedSubgroupGlobalPointInLattice(
+          normalizationOldLatticeGlobalOffset,
+          fromSubgroupActionState,
+          toSubgroupActionState,
+          sourceId,
+          progress
+        ),
+        to: normalizationAnimatedSubgroupGlobalPointInLattice(
+          normalizationNewLatticeGlobalOffset,
+          fromSubgroupActionState,
+          toSubgroupActionState,
+          targetId,
+          progress
+        )
+      };
+      if (!endpoints.from || !endpoints.to) return;
+      setNormalizationOperatorLinkPath(link, endpoints);
+      linksByKey.set(sourceId, endpoints);
+    });
+
+    if (elapsed < duration) {
+      state.frame = requestAnimationFrame(step);
+      return;
+    }
+
+    state.frame = null;
+    links.forEach((link) => {
+      const endpoints = normalizationOperatorLinkEndpoints(toSubgroupActionState, link);
+      setNormalizationOperatorLinkPath(link, endpoints);
+      if (endpoints) linksByKey.set(link.dataset.normalizationOperatorSource || "", endpoints);
     });
   };
 
@@ -9694,12 +9900,10 @@ function normalizationElementsFixingFeature(orbit, pointId) {
 function normalizationFeatureLabel(orbit, pointId) {
   if (orbit === "vertex") return `vertex ${pointId.replace("v", "")}`;
   if (orbit === "edge") return `edge ${pointId.replace("e", "")}`;
-  if (orbit === "face") return `face ${pointId.replace("f", "")}`;
   return pointId || orbit;
 }
 
 function normalizationFeatureSelector(orbit, pointId) {
-  if (orbit === "face") return `[data-normalization-face-cell="${pointId}"]`;
   if (orbit === "edge") {
     return [
       `[data-normalization-boundary-edge="${pointId}"]`,
@@ -9710,9 +9914,6 @@ function normalizationFeatureSelector(orbit, pointId) {
 }
 
 function normalizationFeatureTargetInfo(feature) {
-  if (feature.dataset.normalizationFaceCell) {
-    return { orbit: "face", pointId: feature.dataset.normalizationFaceCell };
-  }
   if (feature.dataset.normalizationBoundaryEdge) {
     return { orbit: "edge", pointId: feature.dataset.normalizationBoundaryEdge };
   }
@@ -9778,8 +9979,6 @@ function setNormalizationSelection(root, subgroupId = "d4") {
     if (root.classList.contains("is-interactive")) action.setAttribute("aria-pressed", "false");
   });
 
-  const status = root.querySelector("[data-normalization-status]");
-  if (status) status.textContent = `H = ${normalizationSubgroupLabels[selected] || "D4"}`;
 }
 
 function normalizationPlaceStabilizers(place) {
@@ -9801,16 +10000,12 @@ function setNormalizationElementSelection(root, elementId) {
   const { actedElement, fromState, toState } = setNormalizationActionMotion(root, selectedElement);
   setNormalizationSubgroupMotion(root, toState);
   animateNormalizationStabilizerLinks(root, fromState, toState, fromSubgroupState, toState, actedElement);
+  animateNormalizationOperatorLinks(root, fromSubgroupState, toState);
   root.dataset.normalizationElementSelected = selectedElement;
   pulseNormalizationElementControl(root, selectedElement);
 
   root.querySelectorAll("[data-normalization-place-stabilizer]").forEach((place) => {
     setNormalizationMotionClass(place, normalizationPlaceStayedPut(place, fromState, toState));
-  });
-
-  root.querySelectorAll("[data-normalization-face-cell]").forEach((cell) => {
-    const faceId = cell.dataset.normalizationFaceCell || "";
-    setNormalizationMotionClass(cell, normalizationFeatureStayedPut("face", faceId, fromState, toState));
   });
 
   root.querySelectorAll("[data-normalization-boundary-edge]").forEach((edge) => {
@@ -9823,8 +10018,6 @@ function setNormalizationElementSelection(root, elementId) {
     action.classList.toggle("has-fixed-place", hasFixedPlace);
   });
 
-  const status = root.querySelector("[data-normalization-element-status]");
-  if (status) status.textContent = `acted by ${normalizationElementDisplayLabels[selectedElement] || selectedElement}: one step`;
 }
 
 function setNormalizationFeatureSelection(root, orbit, pointId) {
@@ -9844,13 +10037,6 @@ function setNormalizationFeatureSelection(root, orbit, pointId) {
     control.classList.toggle("is-feature-dimmed", !isFixer);
   });
 
-  const status = root.querySelector("[data-normalization-element-status]");
-  if (status) {
-    const fixedLabels = Array.from(fixedElements)
-      .map((elementId) => normalizationElementDisplayLabels[elementId] || elementId)
-      .join(", ");
-    status.textContent = `fixers of ${normalizationFeatureLabel(orbit, pointId)}: ${fixedLabels}`;
-  }
 }
 
 function setNormalizationActionSelection(root, selectedAction) {
@@ -9878,14 +10064,13 @@ function setNormalizationActionSelection(root, selectedAction) {
     if (root.classList.contains("is-interactive")) action.setAttribute("aria-pressed", isSelected ? "true" : "false");
   });
 
-  const status = root.querySelector("[data-normalization-status]");
-  if (status) status.textContent = "stabilizers highlighted";
 }
 
 function initializeNormalizationFigure(root, options = {}) {
   root.classList.toggle("is-interactive", Boolean(options.controls));
   setNormalizationSelection(root, root.dataset.normalizationSelected || "d4");
   updateNormalizationStabilizerLinks(root);
+  updateNormalizationOperatorLinks(root);
   if (!options.controls || root.dataset.normalizationInitialized) return;
   root.dataset.normalizationInitialized = "true";
 
@@ -9929,7 +10114,7 @@ function initializeNormalizationFigure(root, options = {}) {
 
   root
     .querySelectorAll(
-      "[data-normalization-face-cell], [data-normalization-boundary-edge], [data-normalization-orbit=\"vertex\"], [data-normalization-orbit=\"edge\"]"
+      "[data-normalization-boundary-edge], [data-normalization-orbit=\"vertex\"], [data-normalization-orbit=\"edge\"]"
     )
     .forEach((feature) => {
       const { orbit, pointId } = normalizationFeatureTargetInfo(feature);
