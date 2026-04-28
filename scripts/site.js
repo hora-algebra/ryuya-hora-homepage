@@ -6976,10 +6976,8 @@ function renderThemeChoice(label, selection = "") {
   button.dataset.themeChoice = themeIds.join(" ");
   button.setAttribute("aria-pressed", "false");
   button.setAttribute("aria-label", `${label}, ${countLabel}`);
-  button.append(
-    el("span", "theme-choice-label", label),
-    el("span", "theme-choice-count", countLabel)
-  );
+  appendTagParts(button, label, "theme-choice-icon tag-icon", "theme-choice-label");
+  button.append(el("span", "theme-choice-count", countLabel));
   button.addEventListener("click", () => {
     if (themeIds.length) toggleResearchThemeSelection(themeIds);
     else setResearchThemeSelection("");
@@ -7717,7 +7715,7 @@ function normalizationLatticeTemplate(role, x, y) {
 
 function normalizationFigureTemplate() {
   return `
-    <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 900 430" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
+    <svg class="normalization-figure" data-normalization-figure data-normalization-selected="d4" viewBox="0 0 900 470" role="img" aria-labelledby="fig-normalization-title fig-normalization-desc">
       <title id="fig-normalization-title">Subgroups and D4-actions</title>
       <desc id="fig-normalization-desc">A D4-action on a square on the left, an old subgroup lattice in the middle, and a new subgroup lattice on the right. Dotted links connect each square point to its stabilizer in the old lattice. Green dotted links connect each old subgroup to its normalized subgroup in the new lattice.</desc>
       <defs>
@@ -7757,15 +7755,15 @@ function normalizationFigureTemplate() {
           </g>
         </g>
       </g>
-      <g class="normalization-element-controls" transform="translate(10 360) scale(0.75)">
-        <g class="normalization-element-control" data-normalization-element-control="e" transform="translate(0 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">1</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s" transform="translate(45 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s2" transform="translate(90 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan></text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s3" transform="translate(135 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan></text></g>
-        <g class="normalization-element-control" data-normalization-element-control="t" transform="translate(180 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&tau;</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="st" transform="translate(225 17)"><rect class="normalization-element-button" width="39" height="24" rx="7"></rect><text x="19.5" y="16">&sigma;&tau;</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s2t" transform="translate(270 17)"><rect class="normalization-element-button" width="43" height="24" rx="7"></rect><text x="21.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan>&tau;</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s3t" transform="translate(319 17)"><rect class="normalization-element-button" width="43" height="24" rx="7"></rect><text x="21.5" y="16">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan>&tau;</text></g>
+      <g class="normalization-element-controls" transform="translate(60 410)">
+        <g class="normalization-element-control" data-normalization-element-control="e" transform="translate(0 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">1</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s" transform="translate(92 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&sigma;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s2" transform="translate(184 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan></text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s3" transform="translate(276 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan></text></g>
+        <g class="normalization-element-control" data-normalization-element-control="t" transform="translate(368 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="st" transform="translate(460 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&sigma;&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s2t" transform="translate(552 0)"><rect class="normalization-element-button" width="84" height="38" rx="10"></rect><text x="42" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan>&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s3t" transform="translate(652 0)"><rect class="normalization-element-button" width="84" height="38" rx="10"></rect><text x="42" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan>&tau;</text></g>
       </g>
       <g class="normalization-stabilizer-links" data-normalization-stabilizer-links aria-hidden="true">
         <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="d4" data-normalization-link-orbit="center" data-normalization-link-point="p0" d="M580 80 C463.3 114, 332 171.5, 215.3 205.5"></path>
@@ -8558,11 +8556,28 @@ ${automataCoverUnfoldingTemplate()}
         <text class="tensor-side-label tensor-s-new-label" x="503" y="48">S</text>
         <text class="tensor-side-label tensor-s-label" x="640" y="48">S</text>
 
+        <rect class="tensor-group-block tensor-block-xa" x="50" y="66" width="300" height="154" rx="34">
+          <animate attributeName="x" values="50;50;30;30;30" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="width" values="300;300;250;250;250" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="opacity" values="1;1;1;1;0;0" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
+        </rect>
+        <rect class="tensor-group-block tensor-block-as" x="402" y="66" width="268" height="154" rx="34">
+          <animate attributeName="x" values="402;402;306;306;306" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="width" values="268;268;231;231;231" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="opacity" values="1;1;1;1;0;0" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
+        </rect>
+        <rect class="tensor-group-block tensor-block-ss" x="463" y="66" width="217" height="154" rx="34">
+          <animate attributeName="opacity" values="0;0;1;1;1;1" keyTimes="0;0.24;0.36;0.72;0.86;1" dur="10s" repeatCount="indefinite"></animate>
+        </rect>
+        <rect class="tensor-group-block tensor-block-xs" x="30" y="66" width="507" height="154" rx="34">
+          <animate attributeName="opacity" values="0;0;0;0;1;1" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
+        </rect>
+
         <rect class="tensor-s-new-envelope" x="469" y="70" width="68" height="146" rx="30"></rect>
         <rect class="tensor-s-envelope tensor-s-choice-envelope" x="610" y="70" width="60" height="146" rx="30"></rect>
         <line class="tensor-tensor-divider" x1="374.5" y1="48" x2="374.5" y2="238">
-          <animate attributeName="x1" values="374.5;374.5;295;295;446;375" keyTimes="0;0.4;0.66;0.72;0.88;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="x2" values="374.5;374.5;295;295;446;375" keyTimes="0;0.4;0.66;0.72;0.88;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="x1" values="374.5;374.5;297.5;297.5;571.5;571.5;434.5;434.5" keyTimes="0;0.24;0.36;0.48;0.62;0.72;0.86;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="x2" values="374.5;374.5;297.5;297.5;571.5;571.5;434.5;434.5" keyTimes="0;0.24;0.36;0.48;0.62;0.72;0.86;1" dur="10s" repeatCount="indefinite"></animate>
         </line>
 
         <g>
@@ -8629,10 +8644,11 @@ ${automataCoverUnfoldingTemplate()}
 
       </g>
     </svg>
-    <span class="figure-math tensor-formula-stage tensor-formula-split">
-      <span class="tensor-formula-left">\\(t=(\\textcolor{#2c6f63}{X\\xleftarrow{f}A})\\)</span>
-      <span class="tensor-formula-operator">\\(\\otimes\\)</span>
-      <span class="tensor-formula-right">\\((\\textcolor{#b66737}{A\\supset S})\\)</span>
+    <span class="figure-math tensor-formula-stage tensor-formula-sequence" aria-label="(XA)|(AS) to (XA)|(AS)(SS) to (XA)(AS)|(SS) to (XS)|(SS)">
+      <span class="tensor-sequence-step tensor-sequence-step-1">\\((XA)\\mid(AS)\\)</span>
+      <span class="tensor-sequence-step tensor-sequence-step-2">\\((XA)\\mid(AS)(SS)\\)</span>
+      <span class="tensor-sequence-step tensor-sequence-step-3">\\((XA)(AS)\\mid(SS)\\)</span>
+      <span class="tensor-sequence-step tensor-sequence-step-4">\\((XS)\\mid(SS)\\)</span>
     </span>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
@@ -8789,53 +8805,53 @@ ${automataCoverUnfoldingTemplate()}
         </g>
         <g class="automata-consuming-letters">
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 60 C92 130, 150 214, 208.1 248.6" keyTimes="0;0.0083;0.05;0.0583;1" keyPoints="0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;1;0;0" keyTimes="0;0.0083;0.05;0.0583;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 60 C74 116, 86 192, 95.8 248.6" keyTimes="0;0.0083;0.0208;1" keyPoints="0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.0083;0.0208;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 60 C136 134, 248 214, 320.4 248.6" keyTimes="0;0.0521;0.0583;0.1;0.1083;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0521;0.0583;0.1;0.1083;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 60 C108 120, 160 202, 208.1 248.6" keyTimes="0;0.0521;0.0583;0.0708;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.0521;0.0583;0.0708;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 60 C200 128, 350 214, 432.7 248.6" keyTimes="0;0.1021;0.1083;0.15;0.1583;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.1021;0.1083;0.15;0.1583;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 60 C156 128, 252 212, 320.4 248.6" keyTimes="0;0.1021;0.1083;0.1208;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.1021;0.1083;0.1208;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 92 C92 148, 150 220, 208.1 248.6" keyTimes="0;0.3354;0.3417;0.3833;0.3917;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3354;0.3417;0.3833;0.3917;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 92 C76 138, 88 200, 95.8 248.6" keyTimes="0;0.3354;0.3417;0.3542;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.3354;0.3417;0.3542;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 92 C136 154, 246 222, 320.4 248.6" keyTimes="0;0.3854;0.3917;0.4333;0.4417;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3854;0.3917;0.4333;0.4417;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 92 C110 146, 162 214, 208.1 248.6" keyTimes="0;0.3854;0.3917;0.4042;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.3854;0.3917;0.4042;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 92 C190 158, 286 220, 320.4 248.6" keyTimes="0;0.4354;0.4417;0.4833;0.4917;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.4354;0.4417;0.4833;0.4917;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 92 C156 152, 252 218, 320.4 248.6" keyTimes="0;0.4354;0.4417;0.4542;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.4354;0.4417;0.4542;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 124 C94 166, 152 224, 208.1 248.6" keyTimes="0;0.6688;0.675;0.7167;0.725;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6688;0.675;0.7167;0.725;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M64 124 C78 158, 90 208, 95.8 248.6" keyTimes="0;0.6688;0.675;0.6875;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.6688;0.675;0.6875;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-a">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 124 C124 166, 178 224, 208.1 248.6" keyTimes="0;0.7188;0.725;0.7667;0.775;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7188;0.725;0.7667;0.775;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M72 124 C112 160, 164 218, 208.1 248.6" keyTimes="0;0.7188;0.725;0.7375;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.7188;0.725;0.7375;1"></animate>
             <text x="0" y="5">a</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 124 C162 174, 250 224, 320.4 248.6" keyTimes="0;0.7688;0.775;0.8167;0.825;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7688;0.775;0.8167;0.825;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M80 124 C120 166, 166 224, 208.1 248.6" keyTimes="0;0.7688;0.775;0.7875;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.7688;0.775;0.7875;1"></animate>
             <text x="0" y="5">b</text>
           </g>
           <g class="automata-consumed-letter automata-consumed-letter-b">
-            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M88 124 C204 178, 286 224, 320.4 248.6" keyTimes="0;0.8188;0.825;0.8667;0.875;1" keyPoints="0;0;0;1;1;0"></animateMotion>
-            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.8188;0.825;0.8667;0.875;1"></animate>
+            <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M88 124 C166 170, 260 224, 320.4 248.6" keyTimes="0;0.8188;0.825;0.8375;1" keyPoints="0;0;1;1;0"></animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="0;0.8188;0.825;0.8375;1"></animate>
             <text x="0" y="5">b</text>
           </g>
         </g>
@@ -10221,10 +10237,6 @@ function updateGrundyAlgebraPanel(root, state, activeIds) {
 
   if (water) {
     const line = water.closest(".grundy-natural-line");
-    const computedStyle = line && typeof window !== "undefined" ? window.getComputedStyle(line) : null;
-    const axisPad = Number.parseFloat(computedStyle?.getPropertyValue("--grundy-axis-pad")) || 28;
-    const mexLevel = isReady && grundyNumberLineMax ? Math.max(0, Math.min(1, mexValue / grundyNumberLineMax)) : 0;
-    const waterHeight = `calc(${mexLevel * 100}% + ${axisPad * (1 - 2 * mexLevel)}px)`;
     const previousTransition = water.style.transition;
     water.style.transition = "none";
     water.classList.remove("is-ready");
@@ -10232,6 +10244,12 @@ function updateGrundyAlgebraPanel(root, state, activeIds) {
     void water.offsetHeight;
     water.style.transition = previousTransition;
     if (isReady) {
+      const mexNumber = line?.querySelector(`[data-grundy-natural="${mexValue}"]`);
+      const lineRect = line?.getBoundingClientRect();
+      const mexRect = mexNumber?.getBoundingClientRect();
+      const waterHeight = lineRect && mexRect
+        ? `${Math.max(0, lineRect.bottom - (mexRect.top + mexRect.height / 2))}px`
+        : "0px";
       water.style.setProperty("--grundy-mex-water-height", waterHeight);
       water.classList.add("is-ready");
     }
