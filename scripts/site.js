@@ -116,15 +116,6 @@ const siteData = {
     { text: "Graduate student supported by FoPM, October 2022 to March 2024.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
     { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", href: "https://www.nii.ac.jp/en/" }
   ],
-  topics: [
-    ["Category theory", "https://ncatlab.org/nlab/show/category+theory"],
-    ["Topos theory", "https://ncatlab.org/nlab/show/topos"],
-    ["Coalgebras", "https://ncatlab.org/nlab/show/coalgebra+of+an+endofunctor"],
-    ["Profinite combinatorics", "https://ncatlab.org/nlab/show/profinite+set"],
-    ["Combinatorial game theory", "https://en.wikipedia.org/wiki/Combinatorial_game_theory"],
-    ["Semiring theory", "https://ncatlab.org/nlab/show/semiring"],
-    ["Algebraic language theory", "https://en.wikipedia.org/wiki/Algebraic_language_theory"]
-  ],
   webApps: [
     {
       title: "GenericAlgoid",
@@ -451,72 +442,6 @@ const siteData = {
     { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", theme: "number", date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
     { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", theme: "topos", date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
     { title: "Older notes", description: "Older documents are collected on Notion.", language: "Japanese", file: "Notion archive", href: "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b" }
-  ],
-  speculativeNotes: [
-    {
-      slug: "about-this-stream",
-      date: "2026-04-22",
-      updated: "2026-04-22",
-      title: "思弁的なノートの置き場",
-      status: "cloud",
-      tags: ["meta", "draft", "research log"],
-      abstract:
-        "☁︎ notes and ideas that are still conjectural, half-shaped, or waiting for a better formulation.",
-      paragraphs: [
-        "This page is a small working stream for notes that are useful to keep alive, but too speculative to present as papers or polished lecture notes.",
-        "The intended unit is a short mathematical fragment: a question, a dictionary, a diagrammatic intuition, or a tentative slogan that may later become a note, talk, problem entry, or preprint.",
-        "A typical entry may contain TeX such as \\(\\Sigma\\)-sets, \\(\\Psi\\), \\(N_G(H)\\), or \\(\\mathbf{Set}\\), and can link back to the more stable notes page."
-      ],
-      questions: [
-        "Which fragments are worth turning into Problems entries?",
-        "Which fragments should remain deliberately cloud-like?"
-      ],
-      links: [["Notes", "notes/index.html"]]
-    },
-    {
-      slug: "winning-games-rota-baxter",
-      date: "2026-04-05",
-      updated: "2026-04-22",
-      title: "A Rota-Baxter equation for winning games",
-      status: "speculative",
-      tags: ["games", "Rota-Baxter", "algebra", "coalgebras"],
-      noteFile: "RYUYA,HORA.pdf",
-      abstract:
-        "A working fragment around winning positions, coalgebraic recursion, and Rota-Baxter-like operations.",
-      paragraphs: [
-        "The guiding question is whether a useful operation on impartial games can behave like a Rota-Baxter operator while remembering the separation between winning and losing positions.",
-        "A good version should not merely encode Sprague-Grundy values; it should explain why the winning predicate interacts well with recursive structure.",
-        "One possible slogan is that the algebra of games wants an operator whose fixed points, kernels, or normal forms see the same geometry as the usual \\(\\mathcal{P}\\)-positions."
-      ],
-      questions: [
-        "Is there a natural Rota-Baxter identity attached to disjoint sum, option formation, or a derivative of games?",
-        "Can the construction be stated inside recursive coalgebras rather than on a chosen concrete class of games?"
-      ],
-      links: [
-        ["Games as recursive coalgebras", "https://arxiv.org/abs/2510.22886"],
-        ["Problem 5.0.3", "problems/index.html#problem-5.0.3"]
-      ]
-    },
-    {
-      slug: "space-time-game-of-life",
-      date: "2026-03-17",
-      updated: "2026-04-22",
-      title: "Space-Time for Conway's Game of Life",
-      status: "speculative",
-      tags: ["topos", "dynamics", "Game of Life"],
-      noteFile: "Space⋊Time for Conway's Game of Life.pdf",
-      abstract:
-        "A tentative geometric vocabulary for treating a cellular automaton as a space-time object.",
-      paragraphs: [
-        "For Conway's Game of Life, the configuration space and the time evolution are usually kept conceptually separate. The speculative direction is to package them into a single space-time object.",
-        "The attractive part is that local rules, observables, and quotient behavior may become geometric rather than purely operational.",
-        "The present question is how much of this can be expressed through a relative topos or a pretopological space without losing the computational content."
-      ],
-      questions: [
-        "What is the correct notion of open set or observable for a space-time of Life?",
-        "Can gliders, still lifes, and finite support conditions be seen as geometric subobjects?"
-      ]
-    }
   ],
   activities: [
     {
@@ -1110,7 +1035,7 @@ const state = {
     europe: null,
     japan: null
   },
-  researchTheme: "",
+  researchTheme: initialUrlParams.get("theme") || "",
   problemQuery: "",
   problemStatus: "all",
   selectedProblemId: "",
@@ -1282,7 +1207,6 @@ const i18nText = {
     "Problems by Ryuya Hora.": "Ryuya Hora の Problems。",
     "Links.": "リンク。",
     "Search.": "検索。",
-    "Speculative notes.": "思弁的なノート。",
     "Map": "見取り図",
     "Quick Comparison": "Quick Comparison",
     "Site Search": "サイト内検索",
@@ -1525,7 +1449,6 @@ const i18nText = {
       "papers, talks, polished notes になる前の短い草稿、問い、まだ形になりきっていない数学的イメージです。",
     "Draft fragments.": "草稿断片。",
     "Entries": "項目",
-    "Speculative notes. Last updated: 27 April 2026.": "Speculative notes. 最終更新: 2026年4月27日",
     "Published papers, preprints, manuscripts in preparation, and related references.":
       "published papers, preprints, manuscripts in preparation と関連資料をまとめています。",
     "Conference talks, seminars, workshop presentations, and selected recordings.":
@@ -3489,13 +3412,13 @@ function siteSearchRecords() {
     });
   });
 
-  siteData.topics.forEach(([title, href]) => {
+  researchThemes.forEach((theme) => {
     pushSiteSearchRecord(records, {
       type: "Profile",
-      title,
-      href,
+      title: theme.label,
+      href: researchThemeHref(theme.id),
       summary: "Research interest",
-      icon: "topos"
+      icon: tagIconKey(theme.label)
     });
   });
 
@@ -5823,20 +5746,20 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "note") {
     svg.append(
-      shape("rect", { x: "5.3", y: "4.1", width: "12.4", height: "15.9", rx: "1.8", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
-      line({ d: "M9.2 4.4V19.7" }),
-      shape("circle", { cx: "7.25", cy: "8.2", r: "0.75", fill: "currentColor" }),
-      shape("circle", { cx: "7.25", cy: "12", r: "0.75", fill: "currentColor" }),
-      shape("circle", { cx: "7.25", cy: "15.8", r: "0.75", fill: "currentColor" }),
-      line({ d: "M11.3 8.4H15.2" }),
-      line({ d: "M11.3 11.4H15.2" }),
+      shape("rect", { x: "3.9", y: "5.1", width: "16.2", height: "10.4", rx: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+      line({ d: "M8.4 18.8H15.6" }),
+      line({ d: "M12 15.6V18.8" }),
+      shape("rect", { x: "6.1", y: "7.5", width: "4.6", height: "3.2", rx: "0.65", fill: "currentColor", "fill-opacity": "0.18", stroke: "currentColor", "stroke-width": "1.15" }),
+      line({ d: "M12.4 8.1H17.4", "stroke-width": "1.45" }),
+      line({ d: "M12.4 10.4H16.1", "stroke-width": "1.45" }),
+      line({ d: "M6.2 13.2H17.7", "stroke-width": "1.45" }),
       shape("path", {
-        d: "M14.8 18.6L19.4 14L21 15.6L16.4 20.2L14.2 20.8Z",
+        d: "M17.5 15.2L20 12.7L21.1 13.8L18.6 16.3L17.2 16.6Z",
         fill: "currentColor",
         "fill-opacity": "0.7"
       }),
       shape("path", {
-        d: "M18.9 14.5L20.5 16.1",
+        d: "M19.6 13.1L20.7 14.2",
         fill: "none",
         stroke: "var(--paper)",
         "stroke-linecap": "round",
@@ -5926,6 +5849,15 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "clock") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "12", r: "7.4", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M12 7.6V12.2L15.1 14.1", "stroke-width": "2.1" }),
+      shape("circle", { cx: "12", cy: "12", r: "0.85", fill: "currentColor" })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "mail") {
     svg.append(
       shape("rect", { x: "4.2", y: "6.6", width: "15.6", height: "10.8", rx: "2", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
@@ -6011,8 +5943,26 @@ function uiIconSvg(key) {
   if (normalizedKey === "topos") {
     svg.append(
       shape("path", {
-        d: "M12 20.1C8.5 17.3 5.7 14.8 4.4 12.7C3 10.4 3.4 7.7 5.4 6.3C7 5.2 9.2 5.5 10.7 7.1L12 8.5L13.3 7.1C14.8 5.5 17 5.2 18.6 6.3C20.6 7.7 21 10.4 19.6 12.7C18.3 14.8 15.5 17.3 12 20.1Z",
-        fill: "currentColor"
+        d: "M3.5 11.1L8.3 5.3L11 8.6L14.4 4.5L20.5 11.1L18.9 20.4H5.1Z",
+        fill: "var(--paper)",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.85"
+      }),
+      shape("path", {
+        d: "M12.6 8.4C11.4 9.8 11.9 11.2 13.2 12.8C15.2 15.2 16.2 17.7 15.2 20.4H8.8C11 18.7 11 16.5 9.9 14.7C8.8 13 9.2 11.2 10.8 10C11.4 9.5 12 8.9 12.6 8.4Z",
+        fill: "currentColor",
+        "fill-opacity": "0.84"
+      }),
+      shape("path", {
+        d: "M7.7 6.1L9.5 8.7L10.8 7.8",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.25",
+        "stroke-opacity": "0.45"
       })
     );
     return svg;
@@ -6114,22 +6064,29 @@ function uiIconSvg(key) {
   if (normalizedKey === "river") {
     svg.append(
       shape("path", {
-        d: "M4.8 8.3C7.7 6.3 10.4 6.3 13 8.3C15.3 10.1 17.6 10.1 19.4 8.3",
+        d: "M4.4 7.2C6.6 5.8 8.7 5.8 10.9 7.2C13.1 8.6 15.4 8.6 19.6 6.8",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
-        "stroke-width": "2.45"
+        "stroke-width": "2.15"
       }),
       shape("path", {
-        d: "M4.8 15.6C7.7 13.6 10.4 13.6 13 15.6C15.3 17.4 17.6 17.4 19.4 15.6",
+        d: "M4.4 12C7.1 10.2 9.7 10.2 12.1 12C14.4 13.7 16.7 13.7 19.6 12",
         fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
-        "stroke-width": "2.45"
+        "stroke-width": "2.15"
       }),
-      line({ d: "M16.4 12.9L19.4 15.6L16.4 18.1", "stroke-width": "2" })
+      shape("path", {
+        d: "M4.4 16.8C6.6 15 8.9 15 11.1 16.8C13.3 18.6 15.6 18.6 19.6 16.4",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "2.15"
+      })
     );
     return svg;
   }
@@ -6466,6 +6423,9 @@ function navIconKey(label = "", href = "") {
   const text = simplified(label);
   const url = String(href || "").toLowerCase();
   if (text.includes("profile") || text.includes("プロフィール")) return "profile";
+  if (text.includes("research timeline") || text.includes("yearly record") || url.includes("#research-timeline") || url.includes("#yearly-records")) return "timeline";
+  if (text.includes("interest") || url.includes("#interests")) return "topos";
+  if (text.includes("preparation") || url.includes("#in-preparation")) return "clock";
   if (text.includes("documents") || text.includes("資料")) return "paper";
   if (text.includes("papers") || url.includes("/papers/")) return "paper";
   if (text.includes("notes") || url.includes("/notes/")) return "note";
@@ -6586,6 +6546,10 @@ function themeById(themeId) {
   return researchThemes.find((theme) => theme.id === themeId);
 }
 
+function researchThemeHref(themeId = "") {
+  return localHref(`index.html${themeId ? `?theme=${encodeURIComponent(themeId)}` : ""}#research-map`);
+}
+
 function themeScore(text, theme) {
   return theme.keywords.reduce((score, keyword) => {
     const needle = simplified(keyword);
@@ -6622,7 +6586,112 @@ function paperThemeIds(paper) {
 const differentialGamesPreparationTitle = "Differential calculus of impartial combinatorial games (with Ryo Suzuki)";
 const topoiAutomataIIIPreparationTitle = "Topoi of automata III: Geometry of \\(\\Sigma\\)-sets";
 
+const preparationSlideMatches = [
+  {
+    title: "Topoi of automata II: Hyperconnected geometric morphisms, syntactic monoids, and language classes",
+    slides: [
+      ["Topoi of automata slides", "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf"],
+      ["IRIF slides", "IRIFtoday.pdf"]
+    ]
+  },
+  {
+    title: "Subtopoi of free monoid actions (with Morgan Rogers)",
+    slides: [
+      ["Topoi of automata slides", "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf"]
+    ]
+  },
+  {
+    title: "Demystifying local state classifiers: local state classifier in a total category with a factorization system (with Yuto Ikeda)",
+    slides: [
+      ["Local state classifier slides", "Local state classifier for algebraic language theory.pdf"],
+      ["Automata LSC slides", "IRIF20250527_ver1.pdf"]
+    ]
+  },
+  {
+    title: "Notes on Rieg theory: semiring with exponentials in logic, profinite arithmetic, enumerative combinatorics, and category theory",
+    slides: [
+      ["Counting with exponentiation", "counting-with-exponential-of-groups.pdf"]
+    ]
+  },
+  {
+    title: "Dynamical systems on pretopological spaces",
+    slides: [
+      ["Conway pretopology slides", "Adv20241210_Dynamical_system_on_a_pretopological_space.pdf"],
+      ["Space-Time slides", "Space⋊Time for Conway's Game of Life.pdf"]
+    ]
+  },
+  {
+    title: "An enriched-categorical origin of \\(\\varepsilon\\)-transition",
+    slides: [
+      ["Topoi of automata slides", "IRIFtoday.pdf"],
+      ["Automata LSC slides", "IRIF20250527_ver1.pdf"]
+    ]
+  },
+  {
+    title: "A topos-theoretic view on Gabriel's theorem",
+    slides: [
+      ["Representation theory slides", "A_topos_theoretic_view_of_Gabriel_s_theorem-12.pdf"]
+    ]
+  },
+  {
+    title: "The lattice of hyperconnected quotients is a module of the semiring of productive weak topologies",
+    slides: [
+      ["Local state classifier slides", "Local state classifier for algebraic language theory.pdf"]
+    ]
+  },
+  {
+    title: "On limits in \\(\\mathbf{FinSet}\\)",
+    slides: [
+      ["Set-operation slides", "圏論のToy_Exampleとしての集合演算__Ver2_.pdf"]
+    ]
+  },
+  {
+    title: "Twisted Regular Tetrahedra and Eisenstein Integers",
+    slides: [
+      ["Eisenstein integer slides", "2024Topos新歓202405-6.pdf"]
+    ]
+  },
+  {
+    title: "When do finite presheaves form a topos? (with Jeremie Marques)",
+    slides: [
+      ["Topoi of automata slides", "CSCAT_2025-3.pdf"]
+    ]
+  },
+  {
+    title: "Local state classifier, permutation model, and the internal axiom of choice",
+    slides: [
+      ["Automata LSC slides", "IRIF20250527_ver1.pdf"],
+      ["Algebraic-language LSC slides", "Local state classifier for algebraic language theory.pdf"]
+    ]
+  }
+];
+
+function preparationSlideLinks(title) {
+  const match = preparationSlideMatches.find((record) => record.title === title);
+  if (!match) return [];
+  return match.slides
+    .map(([label, file]) => {
+      const href = noteHrefByFile(file);
+      return href ? [label, href] : null;
+    })
+    .filter(Boolean);
+}
+
+function mergeActionLinks(...groups) {
+  const seen = new Set();
+  return groups
+    .flat()
+    .filter(Boolean)
+    .filter(([label, href]) => {
+      const key = `${label}:${href}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+}
+
 function preparationPaperDetails(title) {
+  const relatedSlides = preparationSlideLinks(title);
   if (title === differentialGamesPreparationTitle) {
     const slidesHref = noteHrefByFile("RYUYA,HORA.pdf");
     return {
@@ -6631,10 +6700,12 @@ function preparationPaperDetails(title) {
     tags: ["differential calculus", "Rota-Baxter", "integration", "impartial games"],
     summary:
       "Visual proposal: follow the slide dichotomy with a vertical split. The left side treats games and differentiation through the Leibniz rule for box product; the right side checks the mex Rota-Baxter equation on concrete finite sets.",
-      links: compactText([
-        slidesHref ? ["Rota-Baxter slides", slidesHref] : null,
-        ["Speculative note", localHref("speculative-notes/index.html#winning-games-rota-baxter")]
-      ])
+      links: mergeActionLinks(
+        compactText([
+          slidesHref ? ["Rota-Baxter slides", slidesHref] : null
+        ]),
+        relatedSlides
+      )
     };
   }
   if (title === topoiAutomataIIIPreparationTitle) {
@@ -6645,11 +6716,15 @@ function preparationPaperDetails(title) {
       tags: ["Cantor space", "geometric morphism", "Sigma-sets", "infinite words"],
       summary:
         "Visual proposal: reproduce the CTTA slide where the Cantor space of infinite words maps by a canonical geometric morphism through the prefix-poset slice and then by the etale-cover picture to \\(\\Sigma\\)-sets.",
-      links: compactText([
-        slidesHref ? ["CTTA slides", slidesHref] : null
-      ])
+      links: mergeActionLinks(
+        compactText([
+          slidesHref ? ["CTTA slides", slidesHref] : null
+        ]),
+        relatedSlides
+      )
     };
   }
+  if (relatedSlides.length) return { links: relatedSlides };
   return {};
 }
 
@@ -6859,6 +6934,19 @@ function themeSelectionScore(record, themeIds) {
   return themeIds.reduce((score, themeId) => score + (record.scores[themeId] || 0), 0);
 }
 
+function renderThemeResultIcons(themeIds = []) {
+  const themes = normalizeThemeSelection(themeIds);
+  const strip = el("div", "theme-result-icons");
+  strip.setAttribute("aria-hidden", "true");
+  themes.forEach((themeId) => {
+    const label = themeTagLabel(themeId);
+    const icon = uiIcon(tagIconKey(label), "theme-result-icon tag-icon");
+    icon.title = label;
+    strip.append(icon);
+  });
+  return strip;
+}
+
 function topThemeRecords(kind, selection = "") {
   const themeIds = normalizeThemeSelection(selection);
   return themedRecords(kind)
@@ -6876,7 +6964,7 @@ function renderThemeResult(record, selection = "") {
   item.dataset.themes = record.themes.join(" ");
   const heading = el("h4");
   heading.append(link(record.title, record.href));
-  item.append(heading);
+  item.append(renderThemeResultIcons(record.themes), heading);
   if (record.meta) item.append(el("p", "theme-result-meta", record.meta));
   return item;
 }
@@ -7175,7 +7263,7 @@ function renderResearchMap() {
   panel.append(columns);
   layout.append(mapColumn, panel);
   root.append(layout);
-  setResearchTheme("");
+  setResearchTheme(currentResearchThemeSelection());
 }
 
 const grundyGameNodes = [
@@ -7661,14 +7749,26 @@ function completelyConnectedFigureTemplate() {
     </div>`;
 }
 
-function normalizationLatticeTemplate(role, x, y) {
+function normalizationLatticeTemplate(role, x, y, scale = 1) {
   return `
-      <g class="normalization-lattice" data-normalization-lattice-role="${role}" transform="translate(${x} ${y})">
-        <path class="figure-line" d="M150 52 L70 93 M150 52 L150 93 M150 52 L230 93"></path>
-        <path class="figure-line" d="M70 119 L35 177 M70 119 L95 177 M70 119 L150 177"></path>
-        <path class="figure-line" d="M150 119 L150 177"></path>
-        <path class="figure-line" d="M230 119 L150 177 M230 119 L205 177 M230 119 L265 177"></path>
-        <path class="figure-line" d="M150 277 L35 203 M150 277 L95 203 M150 277 L150 203 M150 277 L205 203 M150 277 L265 203"></path>
+      <g class="normalization-lattice" data-normalization-lattice-role="${role}" transform="translate(${x} ${y}) scale(${scale})">
+        <g class="normalization-hasse-edges" data-normalization-hasse-edges>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v0" d="M150 52 L70 93"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="rot" d="M150 52 L150 93"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v1" d="M150 52 L230 93"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref0" d="M70 119 L35 177"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref2" d="M70 119 L95 177"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="r2" d="M70 119 L150 177"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="rot" data-normalization-hasse-to="r2" d="M150 119 L150 177"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="r2" d="M230 119 L150 177"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref1" d="M230 119 L205 177"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref3" d="M230 119 L265 177"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref0" d="M150 277 L35 203"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref2" d="M150 277 L95 203"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="r2" d="M150 277 L150 203"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref1" d="M150 277 L205 203"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref3" d="M150 277 L265 203"></path>
+        </g>
 
         <g class="normalization-subgroup" data-normalization-subgroup="d4" data-subgroup-label="D4" transform="translate(150 38)">
           <rect class="figure-node soft" x="-24" y="-14" width="48" height="28" rx="5"></rect>
@@ -7722,15 +7822,12 @@ function normalizationFigureTemplate() {
         <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
       </defs>
 
-      <text class="figure-small normalization-caption" x="446" y="28">old</text>
-      <text class="figure-small normalization-caption" x="736" y="28">new</text>
+      ${normalizationLatticeTemplate("old", 315, 54, 0.88)}
+      ${normalizationLatticeTemplate("new", 620, 54, 0.88)}
 
-      ${normalizationLatticeTemplate("old", 300, 42)}
-      ${normalizationLatticeTemplate("new", 590, 42)}
-
-      <g class="normalization-action-atlas" transform="translate(10 64)">
-        <rect class="normalization-action-stage-bg" width="280" height="282" rx="10"></rect>
-        <g class="normalization-square-stage" transform="translate(48 34) scale(4.3)">
+      <g class="normalization-action-atlas" transform="translate(28 64)">
+        <rect class="normalization-action-stage-bg" width="230" height="260" rx="10"></rect>
+        <g class="normalization-square-stage" transform="translate(35 34) scale(3.8)">
           <g class="normalization-square-body" data-normalization-square-body>
             <path class="normalization-square-shadow" d="M0 4 H42 V46 H0 Z"></path>
             <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e0" d="M0 4 H42"></path>
@@ -7778,15 +7875,10 @@ function normalizationFigureTemplate() {
       </g>
       <g class="normalization-operator-links" data-normalization-operator-links aria-hidden="true">
         <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="d4" data-normalization-operator-target="d4"></path>
-        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="v0" data-normalization-operator-target="d4"></path>
-        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="rot" data-normalization-operator-target="d4"></path>
-        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="v1" data-normalization-operator-target="d4"></path>
         <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref0" data-normalization-operator-target="v0"></path>
         <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref2" data-normalization-operator-target="v0"></path>
-        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="r2" data-normalization-operator-target="d4"></path>
         <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref1" data-normalization-operator-target="v1"></path>
         <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref3" data-normalization-operator-target="v1"></path>
-        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="one" data-normalization-operator-target="d4"></path>
       </g>
     </svg>`;
 }
@@ -8086,6 +8178,22 @@ function automataCoverUnfoldingTemplate() {
     { start: 0.38, end: 0.48, scale: 0.36, path: "M336 239 L286 250" },
     { start: 0.38, end: 0.48, scale: 0.36, path: "M336 269 L286 258" },
     { start: 0.38, end: 0.48, scale: 0.36, path: "M336 269 L286 284" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 106 L252 103" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 106 L252 109" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 132 L252 129" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 132 L252 135" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 140 L252 137" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 140 L252 143" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 166 L252 163" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 166 L252 169" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 224 L252 221" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 224 L252 227" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 250 L252 247" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 250 L252 253" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 258 L252 255" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 258 L252 261" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 284 L252 281" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 284 L252 287" },
   ];
   const pulses = [
     { color: "neutral", x: 650, y: 195, start: 0.02, radius: 11 },
@@ -8104,6 +8212,22 @@ function automataCoverUnfoldingTemplate() {
     { color: "red", x: 286, y: 250, start: 0.48, radius: 7 },
     { color: "blue", x: 286, y: 258, start: 0.48, radius: 7 },
     { color: "red", x: 286, y: 284, start: 0.48, radius: 7 },
+    { color: "blue", x: 252, y: 103, start: 0.56, radius: 5.5 },
+    { color: "red", x: 252, y: 109, start: 0.56, radius: 5.5 },
+    { color: "blue", x: 252, y: 129, start: 0.56, radius: 5.5 },
+    { color: "red", x: 252, y: 135, start: 0.56, radius: 5.5 },
+    { color: "blue", x: 252, y: 137, start: 0.56, radius: 5.5 },
+    { color: "red", x: 252, y: 143, start: 0.56, radius: 5.5 },
+    { color: "blue", x: 252, y: 163, start: 0.56, radius: 5.5 },
+    { color: "red", x: 252, y: 169, start: 0.56, radius: 5.5 },
+    { color: "blue", x: 252, y: 221, start: 0.56, radius: 5.5 },
+    { color: "red", x: 252, y: 227, start: 0.56, radius: 5.5 },
+    { color: "blue", x: 252, y: 247, start: 0.56, radius: 5.5 },
+    { color: "red", x: 252, y: 253, start: 0.56, radius: 5.5 },
+    { color: "blue", x: 252, y: 255, start: 0.56, radius: 5.5 },
+    { color: "red", x: 252, y: 261, start: 0.56, radius: 5.5 },
+    { color: "blue", x: 252, y: 281, start: 0.56, radius: 5.5 },
+    { color: "red", x: 252, y: 287, start: 0.56, radius: 5.5 },
   ];
   return `
         <g class="automata-cover-unfolding" aria-hidden="true">
@@ -8115,11 +8239,14 @@ ${rollingBouquets.map(automataCoverRollingBouquet).join("\n")}
 
 const paperFigureTemplates = {
   "games-integral-calculus": `
-    <svg class="games-rb-table-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
-      <title id="fig-games-rb-table-title">The mex Rota-Baxter equation read from the Nim-sum table</title>
-      <desc id="fig-games-rb-table-desc">The Nim-sum operation table for 0, 1, 2, and 3 highlights the entries used to check the mex Rota-Baxter equation for S={0,1,3} and T={0,1,2}.</desc>
+    <svg class="games-rb-table-figure games-rb-dual-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
+      <title id="fig-games-rb-table-title">Checking the mex Rota-Baxter equation with two Nim-sum tables</title>
+      <desc id="fig-games-rb-table-desc">Two Nim-sum operation tables compute the two sides of the mex Rota-Baxter equation for S={0,1,3} and T={0,1,2}, then compare the common value 1.</desc>
       <defs>
-        <marker id="games-rb-table-arrow" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="5.4" markerHeight="5.4" orient="auto-start-reverse">
+        <marker id="games-rb-mex-arrow-orange" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z"></path>
+        </marker>
+        <marker id="games-rb-mex-arrow-red" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M 0 0 L 10 5 L 0 10 z"></path>
         </marker>
         <linearGradient id="games-rb-table-paper" x1="0" x2="1" y1="0" y2="1">
@@ -8127,116 +8254,88 @@ const paperFigureTemplates = {
           <stop offset="0.6" stop-color="#f7f1e7"></stop>
           <stop offset="1" stop-color="#e8eef1"></stop>
         </linearGradient>
+        <g id="games-nim-table-base">
+          <rect class="games-rb-table-bg" x="0" y="0" width="180" height="140" rx="0"></rect>
+          <rect class="games-rb-table-head-row" x="0" y="0" width="180" height="28"></rect>
+          <rect class="games-rb-table-head-col" x="0" y="0" width="36" height="140"></rect>
+          <path class="games-rb-table-lines is-major" d="M0 0 H180 M0 28 H180 M0 140 H180 M0 0 V140 M36 0 V140 M180 0 V140"></path>
+          <path class="games-rb-table-lines" d="M0 56 H180 M0 84 H180 M0 112 H180 M72 0 V140 M108 0 V140 M144 0 V140"></path>
+          <text class="games-rb-cell-text is-head" x="18" y="19" text-anchor="middle">⊕</text>
+          <text class="games-rb-cell-text is-head" x="54" y="19" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text is-head" x="90" y="19" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text is-head" x="126" y="19" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text is-head" x="162" y="19" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text is-head" x="18" y="47" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text" x="54" y="47" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text" x="90" y="47" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="126" y="47" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="162" y="47" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text is-head" x="18" y="75" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="54" y="75" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="90" y="75" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text" x="126" y="75" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="162" y="75" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text is-head" x="18" y="103" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="54" y="103" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="90" y="103" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="126" y="103" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text is-lhs" x="162" y="103" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text is-head" x="18" y="131" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="54" y="131" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="90" y="131" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="126" y="131" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="162" y="131" text-anchor="middle">0</text>
+        </g>
       </defs>
 
       <rect class="games-rb-table-paper" width="760" height="390" rx="0"></rect>
       <text class="games-rb-table-title" x="380" y="31">mex Rota-Baxter equation</text>
-      <text class="games-rb-table-subtitle" x="380" y="54">read directly from the Nim-sum table</text>
+      <text class="games-rb-table-subtitle" x="380" y="54">compute both sides in parallel from the same table</text>
+      <text class="games-rb-dual-main-equals" x="380" y="190" text-anchor="middle">=</text>
 
-      <g class="games-rb-table-panel" transform="translate(38 76)">
-        <rect class="games-rb-panel-bg" width="374" height="246" rx="12"></rect>
-        <text class="games-rb-panel-label" x="22" y="31">Nim-sum table</text>
-        <text class="games-rb-panel-note" x="22" y="51">entries are a ⊕ b</text>
-
-        <g class="games-rb-grid" transform="translate(76 58)">
-          <rect class="games-rb-table-bg" x="0" y="0" width="210" height="160" rx="0"></rect>
-          <rect class="games-rb-table-head-row" x="0" y="0" width="210" height="32"></rect>
-          <rect class="games-rb-table-head-col" x="0" y="0" width="42" height="160"></rect>
-          <rect class="games-rb-cell is-t-def" x="42" y="0" width="126" height="32"></rect>
-          <rect class="games-rb-cell is-s-def" x="0" y="32" width="42" height="32"></rect>
-          <rect class="games-rb-cell is-s-def" x="0" y="64" width="42" height="32"></rect>
-          <rect class="games-rb-cell is-s-def" x="0" y="128" width="42" height="32"></rect>
-          <rect class="games-rb-cell is-row-read" x="42" y="96" width="126" height="32"></rect>
-          <rect class="games-rb-cell is-col-read" x="168" y="32" width="42" height="96"></rect>
-          <rect class="games-rb-cell is-lhs" x="168" y="96" width="42" height="32"></rect>
-          <rect class="games-rb-table-mex-head is-mex-s" x="0" y="96" width="42" height="32"></rect>
-          <rect class="games-rb-table-mex-head is-mex-t" x="168" y="0" width="42" height="32"></rect>
-
-          <path class="games-rb-table-lines is-major" d="M0 0 H210 M0 32 H210 M0 160 H210 M0 0 V160 M42 0 V160 M210 0 V160"></path>
-          <path class="games-rb-table-lines" d="M0 64 H210 M0 96 H210 M0 128 H210 M84 0 V160 M126 0 V160 M168 0 V160"></path>
-
-          <text class="games-rb-cell-text is-head" x="21" y="21" text-anchor="middle">⊕</text>
-          <text class="games-rb-cell-text is-head is-t-entry" x="63" y="21" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text is-head is-t-entry" x="105" y="21" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text is-head is-t-entry" x="147" y="21" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text is-head is-mex-t-text" x="189" y="21" text-anchor="middle">3</text>
-
-          <text class="games-rb-cell-text is-head is-s-entry" x="21" y="53" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="63" y="53" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="105" y="53" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="147" y="53" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text is-col-value" x="189" y="53" text-anchor="middle">3</text>
-
-          <text class="games-rb-cell-text is-head is-s-entry" x="21" y="85" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="63" y="85" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="105" y="85" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="147" y="85" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text is-col-value" x="189" y="85" text-anchor="middle">2</text>
-
-          <text class="games-rb-cell-text is-head is-mex-s-text" x="21" y="117" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text is-row-value" x="63" y="117" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text is-row-value" x="105" y="117" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text is-row-value" x="147" y="117" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text is-lhs" x="189" y="117" text-anchor="middle">1</text>
-
-          <text class="games-rb-cell-text is-head is-s-entry" x="21" y="149" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="63" y="149" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="105" y="149" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="147" y="149" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text is-col-value" x="189" y="149" text-anchor="middle">0</text>
+      <g class="games-rb-dual-panel is-expanded-side" transform="translate(36 76)">
+        <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
+        <g class="games-rb-dual-table is-expanded-table" transform="translate(70 76)">
+          <use href="#games-nim-table-base"></use>
+          <rect class="games-rb-dual-highlight is-mex-s-head" x="0" y="84" width="36" height="28"></rect>
+          <rect class="games-rb-dual-highlight is-mex-t-head" x="144" y="0" width="36" height="28"></rect>
+          <rect class="games-rb-dual-highlight is-row-product" x="36" y="84" width="108" height="28"></rect>
+          <rect class="games-rb-dual-highlight is-col-product" x="144" y="28" width="36" height="28"></rect>
+          <rect class="games-rb-dual-highlight is-col-product" x="144" y="56" width="36" height="28"></rect>
+          <rect class="games-rb-dual-highlight is-col-product" x="144" y="112" width="36" height="28"></rect>
+          <path class="games-rb-mex-arrow is-result-arrow" d="M104 158 C142 176, 184 158, 165 111"></path>
         </g>
-
-        <g class="games-rb-legend" transform="translate(24 223)">
-          <rect class="games-rb-legend-swatch is-row-read" x="0" y="-11" width="12" height="12" rx="3"></rect>
-          <text x="18" y="-1">2⊕T</text>
-          <rect class="games-rb-legend-swatch is-col-read" x="78" y="-11" width="12" height="12" rx="3"></rect>
-          <text x="96" y="-1">S⊕3</text>
-          <rect class="games-rb-legend-swatch is-lhs" x="156" y="-11" width="12" height="12" rx="3"></rect>
-          <text x="174" y="-1">2⊕3</text>
+        <g class="games-rb-result-chip is-left-result" transform="translate(160 224)">
+          <circle r="17"></circle>
+          <text y="6" text-anchor="middle">1</text>
         </g>
       </g>
 
-      <g class="games-rb-table-panel" transform="translate(438 76)">
-        <rect class="games-rb-panel-bg" width="284" height="246" rx="12"></rect>
-        <text class="games-rb-panel-label is-right" x="22" y="31">Rota-Baxter check</text>
-        <text class="games-rb-panel-note" x="22" y="51">one pass through the table</text>
-
-        <g class="games-rb-step-list" transform="translate(18 72)">
-          <g class="games-rb-step-item step-define" transform="translate(0 0)">
-            <circle cx="10" cy="0" r="9"></circle>
-            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">1</text>
-            <text class="games-rb-step-title" x="28" y="4">Define S,T</text>
-            <text class="games-rb-step-detail" x="28" y="20"><tspan class="games-rb-term-s">S={0,1,3}</tspan><tspan>, </tspan><tspan class="games-rb-term-t">T={0,1,2}</tspan></text>
-          </g>
-          <g class="games-rb-step-item step-mex" transform="translate(0 43)">
-            <circle cx="10" cy="0" r="9"></circle>
-            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">2</text>
-            <text class="games-rb-step-title" x="28" y="4">Take mex</text>
-            <text class="games-rb-step-detail" x="28" y="20">mex(<tspan class="games-rb-term-s">S</tspan>)=<tspan class="games-rb-term-mex-s">2</tspan><tspan>, mex(</tspan><tspan class="games-rb-term-t">T</tspan><tspan>)=</tspan><tspan class="games-rb-term-mex-t">3</tspan></text>
-          </g>
-          <g class="games-rb-step-item step-lhs" transform="translate(0 86)">
-            <circle cx="10" cy="0" r="9"></circle>
-            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">3</text>
-            <text class="games-rb-step-title" x="28" y="4">Left side</text>
-            <text class="games-rb-step-detail" x="28" y="20"><tspan class="games-rb-term-mex-s">2</tspan><tspan> ⊕ </tspan><tspan class="games-rb-term-mex-t">3</tspan><tspan> = </tspan><tspan class="games-rb-term-result">1</tspan></text>
-          </g>
-          <g class="games-rb-step-item step-rhs" transform="translate(0 129)">
-            <circle cx="10" cy="0" r="9"></circle>
-            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">4</text>
-            <text class="games-rb-step-title" x="28" y="4">Read RHS set</text>
-            <text class="games-rb-step-detail" x="28" y="20"><tspan class="games-rb-term-row">2⊕T</tspan><tspan> ∪ </tspan><tspan class="games-rb-term-col">S⊕3</tspan><tspan> = </tspan><tspan class="games-rb-term-set">{0,2,3}</tspan></text>
-          </g>
-          <g class="games-rb-step-item step-result" transform="translate(0 178)">
-            <circle cx="10" cy="0" r="9"></circle>
-            <text class="games-rb-step-number" x="10" y="4" text-anchor="middle">5</text>
-            <text class="games-rb-step-title" x="28" y="4">Take mex again</text>
-            <text class="games-rb-step-detail" x="28" y="20">mex<tspan class="games-rb-term-set">{0,2,3}</tspan><tspan>=</tspan><tspan class="games-rb-term-result">1</tspan></text>
-          </g>
+      <g class="games-rb-dual-panel is-product-side" transform="translate(404 76)">
+        <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
+        <g class="games-rb-dual-table is-product-table" transform="translate(70 76)">
+          <use href="#games-nim-table-base"></use>
+          <rect class="games-rb-dual-highlight is-mex-s-head" x="0" y="84" width="36" height="28"></rect>
+          <rect class="games-rb-dual-highlight is-mex-t-head" x="144" y="0" width="36" height="28"></rect>
+          <rect class="games-rb-dual-highlight is-product-cell" x="144" y="84" width="36" height="28"></rect>
+          <path class="games-rb-mex-arrow is-mex-product-arrow" d="M18 123 C42 152, 134 151, 162 112"></path>
         </g>
+        <g class="games-rb-result-chip is-right-result" transform="translate(160 224)">
+          <circle r="17"></circle>
+          <text y="6" text-anchor="middle">1</text>
+        </g>
+      </g>
+
+      <g class="games-rb-equality-check" transform="translate(380 316)">
+        <circle class="is-left" cx="-32" cy="0" r="16"></circle>
+        <text x="-32" y="6" text-anchor="middle">1</text>
+        <text class="equals" x="0" y="6" text-anchor="middle">=</text>
+        <circle class="is-right" cx="32" cy="0" r="16"></circle>
+        <text x="32" y="6" text-anchor="middle">1</text>
       </g>
     </svg>
-    <span class="figure-math games-rb-table-tex games-rb-table-tex-lhs">\\(\\operatorname{mex}(\\textcolor{#2c6f63}{S})\\oplus\\operatorname{mex}(\\textcolor{#2f536f}{T})=\\textcolor{#b66737}{2}\\oplus\\textcolor{#b66737}{3}=\\textcolor{#9b3a30}{1}\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-table-tex-rhs">\\(\\operatorname{mex}((\\textcolor{#2c6f63}{2\\oplus T})\\cup(\\textcolor{#2f536f}{S\\oplus3}))=\\operatorname{mex}\\textcolor{#574b68}{\\{0,2,3\\}}=\\textcolor{#9b3a30}{1}\\)</span>`,
+    <span class="figure-math games-rb-table-tex games-rb-dual-tex-left">\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(S)\\oplus T)\\cup(S\\oplus\\operatorname{mex}(T))\\bigr)\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-dual-tex-right">\\(\\operatorname{mex}(S)\\oplus\\operatorname{mex}(T)\\)</span>`,
   "automata-cantor-morphism": `
     <svg class="automata-cantor-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-cantor-title fig-automata-cantor-desc">
       <title id="fig-automata-cantor-title">Canonical geometric morphism from Cantor space to Sigma-sets</title>
@@ -8250,63 +8349,28 @@ const paperFigureTemplates = {
 
       <rect class="automata-cantor-paper" width="760" height="390"></rect>
       <g class="automata-cantor-layout">
-        <g class="automata-cantor-space">
-          <text class="automata-cantor-space-label" x="118" y="96">Cantor space</text>
-          <g class="automata-cantor-fractal" transform="translate(0 44.75)">
-            <g transform="rotate(-90 118 150.25)">
-            <rect class="automata-cantor-interval stage-0" x="29" y="84.5" width="178" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-1" x="29" y="116.5" width="59.3" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-1" x="147.7" y="116.5" width="59.3" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-2" x="29" y="148.5" width="19.7" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-2" x="68.6" y="148.5" width="19.7" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-2" x="147.7" y="148.5" width="19.7" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-2" x="187.3" y="148.5" width="19.7" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="29" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="42.2" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="68.6" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="81.8" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="147.7" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="160.9" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="187.3" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <rect class="automata-cantor-interval stage-3" x="200.5" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-            <path class="automata-cantor-connector cantor-stage-1" d="M118 93.5 L58.7 114.5"></path>
-            <path class="automata-cantor-connector cantor-stage-1" d="M118 93.5 L177.3 114.5"></path>
-            <path class="automata-cantor-connector cantor-stage-2" d="M58.7 125.5 L38.9 146.5"></path>
-            <path class="automata-cantor-connector cantor-stage-2" d="M58.7 125.5 L78.4 146.5"></path>
-            <path class="automata-cantor-connector cantor-stage-2" d="M177.3 125.5 L157.6 146.5"></path>
-            <path class="automata-cantor-connector cantor-stage-2" d="M177.3 125.5 L197.1 146.5"></path>
-            <path class="automata-cantor-connector cantor-stage-3" d="M38.9 157.5 L32.3 178.5"></path>
-            <path class="automata-cantor-connector cantor-stage-3" d="M38.9 157.5 L45.5 178.5"></path>
-            <path class="automata-cantor-connector cantor-stage-3" d="M78.4 157.5 L71.9 178.5"></path>
-            <path class="automata-cantor-connector cantor-stage-3" d="M78.4 157.5 L85.1 178.5"></path>
-            <path class="automata-cantor-connector cantor-stage-3" d="M157.6 157.5 L150.9 178.5"></path>
-            <path class="automata-cantor-connector cantor-stage-3" d="M157.6 157.5 L164.1 178.5"></path>
-            <path class="automata-cantor-connector cantor-stage-3" d="M197.1 157.5 L190.5 178.5"></path>
-            <path class="automata-cantor-connector cantor-stage-3" d="M197.1 157.5 L203.7 178.5"></path>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="30.1" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="34.6" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="43.3" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="47.8" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="69.7" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="74" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="82.9" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="87.2" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="148.8" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="153.1" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="162" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="166.3" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="188.3" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="192.7" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="201.4" cy="216" r="2.1"></circle>
-            <circle class="automata-cantor-dot cantor-stage-4" cx="205.9" cy="216" r="2.1"></circle>
-            </g>
-          </g>
-        </g>
+        <text class="automata-cantor-space-label" x="382" y="92">Cantor space</text>
 
         <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M205 195 H264"></path>
         <text class="automata-cantor-arrow-label large automata-sublocale-label" x="240" y="180">sublocale</text>
 
         <g class="automata-prefix-poset">
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 103.3 L282.8 105.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 108.7 L282.8 106.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 129.3 L282.8 131.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 134.7 L282.8 132.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 137.3 L282.8 139.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 142.7 L282.8 140.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 163.3 L282.8 165.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 168.7 L282.8 166.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 221.3 L282.8 223.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 226.7 L282.8 224.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 247.3 L282.8 249.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 252.7 L282.8 250.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 255.3 L282.8 257.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 260.7 L282.8 258.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 281.3 L282.8 283.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 286.7 L282.8 284.3"></path>
           <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 106.9 L329.1 118.9"></path>
           <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 131.3 L329 122.5"></path>
           <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 140.7 L329 149.5"></path>
@@ -8321,6 +8385,55 @@ const paperFigureTemplates = {
           <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M340.2 239 L397.8 239"></path>
           <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M339.9 267.4 L398.6 242.9"></path>
           <path class="automata-cantor-tree-edge level-1 red" pathLength="1" data-cantor-arrow="red" d="M413.4 236 L472.1 202.9"></path>
+          <g class="automata-cantor-partitions" aria-hidden="true">
+            <path class="automata-cantor-partition partition-stage-0" pathLength="1" d="M486 106 L486 284"></path>
+            <path class="automata-cantor-partition partition-stage-1" pathLength="1" d="M408 121.3 L408 180.7"></path>
+            <path class="automata-cantor-partition partition-stage-1" pathLength="1" d="M408 209.3 L408 268.7"></path>
+            <path class="automata-cantor-partition partition-stage-2" pathLength="1" d="M336 111.1 L336 130.9"></path>
+            <path class="automata-cantor-partition partition-stage-2" pathLength="1" d="M336 141.1 L336 160.9"></path>
+            <path class="automata-cantor-partition partition-stage-2" pathLength="1" d="M336 229.1 L336 248.9"></path>
+            <path class="automata-cantor-partition partition-stage-2" pathLength="1" d="M336 259.1 L336 278.9"></path>
+            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 102.7 L286 109.3"></path>
+            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 128.7 L286 135.3"></path>
+            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 136.7 L286 143.3"></path>
+            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 162.7 L286 169.3"></path>
+            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 220.7 L286 227.3"></path>
+            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 246.7 L286 253.3"></path>
+            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 254.7 L286 261.3"></path>
+            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 280.7 L286 287.3"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 101.9 L252 104.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 107.9 L252 110.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 127.9 L252 130.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 133.9 L252 136.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 135.9 L252 138.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 141.9 L252 144.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 161.9 L252 164.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 167.9 L252 170.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 219.9 L252 222.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 225.9 L252 228.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 245.9 L252 248.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 251.9 L252 254.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 253.9 L252 256.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 259.9 L252 262.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 279.9 L252 282.1"></path>
+            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 285.9 L252 288.1"></path>
+          </g>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="103" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="109" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="129" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="135" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="137" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="143" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="163" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="169" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="221" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="227" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="247" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="253" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="255" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="261" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="281" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="287" r="2.35"></circle>
           <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="106" r="3.2"></circle>
           <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="132" r="3.2"></circle>
           <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="140" r="3.2"></circle>
@@ -8555,30 +8668,27 @@ ${automataCoverUnfoldingTemplate()}
         </g>
         <text class="tensor-side-label tensor-s-new-label" x="503" y="48">S</text>
         <text class="tensor-side-label tensor-s-label" x="640" y="48">S</text>
+        <text class="tensor-side-label tensor-s-label tensor-s-duplicate-label" x="700" y="48">S</text>
 
         <rect class="tensor-group-block tensor-block-xa" x="50" y="66" width="300" height="154" rx="34">
-          <animate attributeName="x" values="50;50;30;30;30" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="width" values="300;300;250;250;250" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="x" values="50;50;50;50;50" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="width" values="300;300;300;300;300" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
           <animate attributeName="opacity" values="1;1;1;1;0;0" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
         </rect>
         <rect class="tensor-group-block tensor-block-as" x="402" y="66" width="268" height="154" rx="34">
-          <animate attributeName="x" values="402;402;306;306;306" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="width" values="268;268;231;231;231" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="x" values="402;402;390;390;390" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="width" values="268;268;150;150;150" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
           <animate attributeName="opacity" values="1;1;1;1;0;0" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
         </rect>
-        <rect class="tensor-group-block tensor-block-ss" x="463" y="66" width="217" height="154" rx="34">
+        <rect class="tensor-group-block tensor-block-ss" x="602" y="66" width="116" height="154" rx="34">
           <animate attributeName="opacity" values="0;0;1;1;1;1" keyTimes="0;0.24;0.36;0.72;0.86;1" dur="10s" repeatCount="indefinite"></animate>
         </rect>
-        <rect class="tensor-group-block tensor-block-xs" x="30" y="66" width="507" height="154" rx="34">
+        <rect class="tensor-group-block tensor-block-xs" x="50" y="66" width="490" height="154" rx="34">
           <animate attributeName="opacity" values="0;0;0;0;1;1" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
         </rect>
 
         <rect class="tensor-s-new-envelope" x="469" y="70" width="68" height="146" rx="30"></rect>
         <rect class="tensor-s-envelope tensor-s-choice-envelope" x="610" y="70" width="60" height="146" rx="30"></rect>
-        <line class="tensor-tensor-divider" x1="374.5" y1="48" x2="374.5" y2="238">
-          <animate attributeName="x1" values="374.5;374.5;297.5;297.5;571.5;571.5;434.5;434.5" keyTimes="0;0.24;0.36;0.48;0.62;0.72;0.86;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="x2" values="374.5;374.5;297.5;297.5;571.5;571.5;434.5;434.5" keyTimes="0;0.24;0.36;0.48;0.62;0.72;0.86;1" dur="10s" repeatCount="indefinite"></animate>
-        </line>
 
         <g>
           <g class="tensor-x-node selected" transform="translate(112 92)"><animateTransform attributeName="transform" type="translate" values="112 92;112 92;92 92;92 92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
@@ -8620,11 +8730,23 @@ ${automataCoverUnfoldingTemplate()}
           <path class="tensor-s-copy-link" d="M519 164 C555 164, 590 164, 622 164">
             <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
           </path>
+          <path class="tensor-s-copy-link tensor-s-duplicate-link" d="M658 88 C668 88, 672 88, 682 88">
+            <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
+          </path>
+          <path class="tensor-s-copy-link tensor-s-duplicate-link" d="M658 164 C668 164, 672 164, 682 164">
+            <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
+          </path>
         </g>
         <g class="tensor-s-node" transform="translate(640 88)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
         <g class="tensor-s-node" transform="translate(640 164)">
+          <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
+        </g>
+        <g class="tensor-s-node tensor-s-duplicate-node" transform="translate(700 88)">
+          <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
+        </g>
+        <g class="tensor-s-node tensor-s-duplicate-node" transform="translate(700 164)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
         <g class="tensor-iota-domain-node" transform="translate(462 88)">
@@ -8643,13 +8765,7 @@ ${automataCoverUnfoldingTemplate()}
         </g>
 
       </g>
-    </svg>
-    <span class="figure-math tensor-formula-stage tensor-formula-sequence" aria-label="(XA)|(AS) to (XA)|(AS)(SS) to (XA)(AS)|(SS) to (XS)|(SS)">
-      <span class="tensor-sequence-step tensor-sequence-step-1">\\((XA)\\mid(AS)\\)</span>
-      <span class="tensor-sequence-step tensor-sequence-step-2">\\((XA)\\mid(AS)(SS)\\)</span>
-      <span class="tensor-sequence-step tensor-sequence-step-3">\\((XA)(AS)\\mid(SS)\\)</span>
-      <span class="tensor-sequence-step tensor-sequence-step-4">\\((XS)\\mid(SS)\\)</span>
-    </span>`,
+    </svg>`,
   "lawvere-fourth": lawvereFourthFigureTemplate(),
   "topoi-automata": `
     <svg class="automata-cover-figure" viewBox="0 0 760 456" role="img" aria-labelledby="fig-automata-title fig-automata-desc">
@@ -8708,6 +8824,72 @@ ${automataCoverUnfoldingTemplate()}
           <path class="figure-arrow automata-edge automata-edge-b" d="M260 142 C226 210, 334 210, 300 142"></path>
           <path class="figure-arrow automata-edge automata-edge-b" d="M368 145 C344 218, 318 216, 291 151"></path>
 
+          <g class="automata-consume-effects">
+            <g class="automata-consume-effect automata-consume-effect-a">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.0083;0.0091;0.0255;0.026;1"></animate>
+              <circle cx="72" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.0083;0.0091;0.0255;0.026;1"></animate></circle>
+              <path d="M72 132 C78 126, 87 119, 98 115"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-b">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.0583;0.0591;0.0755;0.076;1"></animate>
+              <circle cx="176" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.0583;0.0591;0.0755;0.076;1"></animate></circle>
+              <path d="M176 132 C184 138, 193 145, 204 151"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-a">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.1083;0.1091;0.1255;0.126;1"></animate>
+              <circle cx="280" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.1083;0.1091;0.1255;0.126;1"></animate></circle>
+              <path d="M280 132 C288 126, 297 119, 308 115"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-a">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.3417;0.3425;0.3589;0.3594;1"></animate>
+              <circle cx="72" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.3417;0.3425;0.3589;0.3594;1"></animate></circle>
+              <path d="M72 132 C78 126, 87 119, 98 115"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-b">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.3917;0.3925;0.4089;0.4094;1"></animate>
+              <circle cx="176" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.3917;0.3925;0.4089;0.4094;1"></animate></circle>
+              <path d="M176 132 C184 138, 193 145, 204 151"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-b">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.4417;0.4425;0.4589;0.4594;1"></animate>
+              <circle cx="280" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.4417;0.4425;0.4589;0.4594;1"></animate></circle>
+              <path d="M280 132 C288 138, 297 145, 308 151"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-a">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.675;0.6758;0.6922;0.6927;1"></animate>
+              <circle cx="72" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.675;0.6758;0.6922;0.6927;1"></animate></circle>
+              <path d="M72 132 C78 126, 87 119, 98 115"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-a">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.725;0.7258;0.7422;0.7427;1"></animate>
+              <circle cx="176" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.725;0.7258;0.7422;0.7427;1"></animate></circle>
+              <path d="M176 132 C170 126, 161 119, 150 115"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-b">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.775;0.7758;0.7922;0.7927;1"></animate>
+              <circle cx="176" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.775;0.7758;0.7922;0.7927;1"></animate></circle>
+              <path d="M176 132 C184 138, 193 145, 204 151"></path>
+            </g>
+            <g class="automata-consume-effect automata-consume-effect-b">
+              <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;0;0;0" keyTimes="0;0.825;0.8258;0.8422;0.8427;1"></animate>
+              <circle cx="280" cy="132" r="10"><animate attributeName="r" dur="24s" repeatCount="indefinite" values="10;10;13;27;27;10" keyTimes="0;0.825;0.8258;0.8422;0.8427;1"></animate></circle>
+              <path d="M280 132 C288 138, 297 145, 308 151"></path>
+            </g>
+          </g>
+
+          <g class="automata-edge-highlights">
+            <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M88 122 C114 50, 134 50, 160 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0042;0.0083;0.05;0.0583;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C218 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0542;0.0583;0.1;0.1083;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M300 122 C328 50, 344 50, 368 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.1042;0.1083;0.15;0.1583;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M88 122 C114 50, 134 50, 160 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3375;0.3417;0.3833;0.3917;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C218 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3875;0.3917;0.4333;0.4417;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M260 142 C226 210, 334 210, 300 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.4375;0.4417;0.4833;0.4917;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M88 122 C114 50, 134 50, 160 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6708;0.675;0.7167;0.725;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M160 122 C118 50, 234 50, 192 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7208;0.725;0.7667;0.775;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C218 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7708;0.775;0.8167;0.825;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M260 142 C226 210, 334 210, 300 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.8208;0.825;0.8667;0.875;1"></animate></path>
+          </g>
+
           <g class="automata-state" transform="translate(72 132)">
             <circle class="figure-node" cx="0" cy="0" r="17"></circle>
           </g>
@@ -8722,22 +8904,38 @@ ${automataCoverUnfoldingTemplate()}
           </g>
 
           <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-u">
-            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;300 122;319.1 81.5;335.5 68;351.2 81.5;368 122;384 132;384 132;72 132;72 132" keyTimes="0;0.0083;0.0167;0.025;0.0333;0.0417;0.05;0.0583;0.0667;0.075;0.0833;0.0917;0.1;0.1083;0.1167;0.125;0.1333;0.1417;0.15;0.3333;0.3337;1"></animateTransform>
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;106.6 81.5;124 68;141.4 81.5;160 122;176 132;176 132;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;280 132;319.1 81.5;335.5 68;351.2 81.5;368 122;384 132;384 132;72 132;72 132" keyTimes="0;0.0083;0.0167;0.025;0.0333;0.0417;0.05;0.0583;0.0667;0.075;0.0833;0.0917;0.1;0.1083;0.1167;0.125;0.1333;0.1417;0.15;0.3333;0.3337;1"></animateTransform>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.325;0.3333;1"></animate>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
             <circle class="automata-moving-dot-core" cx="0" cy="0" r="9.6"></circle>
           </g>
           <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-v">
-            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;260 142;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132;72 132;72 132" keyTimes="0;0.3332;0.3333;0.3417;0.35;0.3583;0.3667;0.375;0.3833;0.3917;0.4;0.4083;0.4167;0.425;0.4333;0.4417;0.45;0.4583;0.4667;0.475;0.4833;0.6667;0.6671;1"></animateTransform>
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;72 132;106.6 81.5;124 68;141.4 81.5;160 122;176 132;176 132;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;280 132;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132;72 132;72 132" keyTimes="0;0.3332;0.3333;0.3417;0.35;0.3583;0.3667;0.375;0.3833;0.3917;0.4;0.4083;0.4167;0.425;0.4333;0.4417;0.45;0.4583;0.4667;0.475;0.4833;0.6667;0.6671;1"></animateTransform>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3332;0.3333;0.6583;0.6667;1"></animate>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
             <circle class="automata-moving-dot-core" cx="0" cy="0" r="9.6"></circle>
           </g>
           <g class="automata-moving-dot automata-moving-dot-cover automata-moving-dot-word-w">
-            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;88 122;106.6 81.5;124 68;141.4 81.5;160 122;176 132;160 122;153.2 81.5;176 68;198.8 81.5;192 122;176 132;192 142;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;260 142;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132" keyTimes="0;0.6666;0.6667;0.675;0.6833;0.6917;0.7;0.7083;0.7167;0.725;0.7333;0.7417;0.75;0.7583;0.7667;0.775;0.7833;0.7917;0.8;0.8083;0.8167;0.825;0.8333;0.8417;0.85;0.8583;0.8667;1"></animateTransform>
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;72 132;106.6 81.5;124 68;141.4 81.5;160 122;176 132;176 132;153.2 81.5;176 68;198.8 81.5;192 122;176 132;176 132;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;280 132;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132" keyTimes="0;0.6666;0.6667;0.675;0.6833;0.6917;0.7;0.7083;0.7167;0.725;0.7333;0.7417;0.75;0.7583;0.7667;0.775;0.7833;0.7917;0.8;0.8083;0.8167;0.825;0.8333;0.8417;0.85;0.8583;0.8667;1"></animateTransform>
             <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.6666;0.6667;0.9958;1"></animate>
             <circle class="automata-moving-dot-halo" cx="0" cy="0" r="11"></circle>
             <circle class="automata-moving-dot-core" cx="0" cy="0" r="9.6"></circle>
+          </g>
+
+          <g class="automata-moving-word automata-moving-word-u">
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;106.6 81.5;124 68;141.4 81.5;160 122;176 132;176 132;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;280 132;319.1 81.5;335.5 68;351.2 81.5;368 122;384 132;384 132;72 132;72 132" keyTimes="0;0.0083;0.0167;0.025;0.0333;0.0417;0.05;0.0583;0.0667;0.075;0.0833;0.0917;0.1;0.1083;0.1167;0.125;0.1333;0.1417;0.15;0.3333;0.3337;1"></animateTransform>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.1458;0.1542;1"></animate>
+            <text x="14" y="-14"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.0083;0.0208;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#9f3f31;#ffd866;#fff6bf;#9f3f31;#9f3f31" keyTimes="0;0.0083;0.0146;0.0208;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.0583;0.0708;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#2f5d8e;#d8eeff;#ffffff;#2f5d8e;#2f5d8e" keyTimes="0;0.0583;0.0646;0.0708;1"></animate></tspan><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.1083;0.1208;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#9f3f31;#ffd866;#fff6bf;#9f3f31;#9f3f31" keyTimes="0;0.1083;0.1146;0.1208;1"></animate></tspan></text>
+          </g>
+          <g class="automata-moving-word automata-moving-word-v">
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;72 132;106.6 81.5;124 68;141.4 81.5;160 122;176 132;176 132;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;280 132;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132;72 132;72 132" keyTimes="0;0.3332;0.3333;0.3417;0.35;0.3583;0.3667;0.375;0.3833;0.3917;0.4;0.4083;0.4167;0.425;0.4333;0.4417;0.45;0.4583;0.4667;0.475;0.4833;0.6667;0.6671;1"></animateTransform>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3332;0.3333;0.4792;0.4875;1"></animate>
+            <text x="14" y="-14"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.3417;0.3542;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#9f3f31;#ffd866;#fff6bf;#9f3f31;#9f3f31" keyTimes="0;0.3417;0.3479;0.3542;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.3917;0.4042;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#2f5d8e;#d8eeff;#ffffff;#2f5d8e;#2f5d8e" keyTimes="0;0.3917;0.3979;0.4042;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.4417;0.4542;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#2f5d8e;#d8eeff;#ffffff;#2f5d8e;#2f5d8e" keyTimes="0;0.4417;0.4479;0.4542;1"></animate></tspan></text>
+          </g>
+          <g class="automata-moving-word automata-moving-word-w">
+            <animateTransform attributeName="transform" type="translate" dur="24s" repeatCount="indefinite" calcMode="linear" values="72 132;72 132;72 132;72 132;106.6 81.5;124 68;141.4 81.5;160 122;176 132;176 132;153.2 81.5;176 68;198.8 81.5;192 122;176 132;176 132;210.2 180.3;226.8 193;242.9 180.3;260 142;280 132;280 132;256.7 180.3;280 193;303.3 180.3;300 142;280 132;280 132" keyTimes="0;0.6666;0.6667;0.675;0.6833;0.6917;0.7;0.7083;0.7167;0.725;0.7333;0.7417;0.75;0.7583;0.7667;0.775;0.7833;0.7917;0.8;0.8083;0.8167;0.825;0.8333;0.8417;0.85;0.8583;0.8667;1"></animateTransform>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6666;0.6667;0.8625;0.8708;1"></animate>
+            <text x="14" y="-14"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.675;0.6875;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#9f3f31;#ffd866;#fff6bf;#9f3f31;#9f3f31" keyTimes="0;0.675;0.6813;0.6875;1"></animate></tspan><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.725;0.7375;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#9f3f31;#ffd866;#fff6bf;#9f3f31;#9f3f31" keyTimes="0;0.725;0.7313;0.7375;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.775;0.7875;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#2f5d8e;#d8eeff;#ffffff;#2f5d8e;#2f5d8e" keyTimes="0;0.775;0.7813;0.7875;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.15;0.15;1" keyTimes="0;0.825;0.8375;0.995;1"></animate><animate attributeName="fill" dur="24s" repeatCount="indefinite" values="#2f5d8e;#d8eeff;#ffffff;#2f5d8e;#2f5d8e" keyTimes="0;0.825;0.8313;0.8375;1"></animate></tspan></text>
           </g>
 
           <g class="automata-state-mark-layer">
@@ -9136,6 +9334,37 @@ const normalizationSubgroupCoordinates = {
   one: [150, 290]
 };
 
+const normalizationSubgroupNodeHalfExtents = {
+  d4: [24, 14],
+  v0: [34, 13],
+  rot: [23, 13],
+  v1: [37, 13],
+  ref0: [21, 13],
+  ref2: [25, 13],
+  r2: [23, 13],
+  ref1: [25, 13],
+  ref3: [25, 13],
+  one: [21, 13]
+};
+
+const normalizationHasseEdges = [
+  ["d4", "v0"],
+  ["d4", "rot"],
+  ["d4", "v1"],
+  ["v0", "ref0"],
+  ["v0", "ref2"],
+  ["v0", "r2"],
+  ["rot", "r2"],
+  ["v1", "r2"],
+  ["v1", "ref1"],
+  ["v1", "ref3"],
+  ["one", "ref0"],
+  ["one", "ref2"],
+  ["one", "r2"],
+  ["one", "ref1"],
+  ["one", "ref3"]
+];
+
 const normalizationNormalizerTargets = {
   d4: "d4",
   v0: "d4",
@@ -9214,11 +9443,14 @@ const normalizationGeometricMotion = {
 };
 
 const normalizationSquareBodyCenter = [21, 25];
-const normalizationOldLatticeGlobalOffset = [300, 42];
-const normalizationNewLatticeGlobalOffset = [590, 42];
+const normalizationOldLatticeGlobalOffset = [315, 54];
+const normalizationNewLatticeGlobalOffset = [620, 54];
+const normalizationLatticeGlobalScale = 0.88;
 const normalizationLatticeGlobalOffset = normalizationOldLatticeGlobalOffset;
-const normalizationSquareStageGlobalOrigin = [58, 98];
-const normalizationSquareStageScale = 4.3;
+const normalizationSquareStageGlobalOrigin = [63, 98];
+const normalizationSquareStageScale = 3.8;
+const normalizationActionDotRadius = 3.2;
+const normalizationActionPointGlobalRadius = normalizationActionDotRadius * normalizationSquareStageScale;
 
 const normalizationOrbitCoordinates = {
   vertex: {
@@ -9240,6 +9472,7 @@ const normalizationOrbitCoordinates = {
 
 const normalizationMotionState = new WeakMap();
 const normalizationSubgroupMotionState = new WeakMap();
+const normalizationHasseEdgeMotionState = new WeakMap();
 const normalizationStabilizerLinkMotionState = new WeakMap();
 const normalizationOperatorLinkMotionState = new WeakMap();
 
@@ -9332,8 +9565,71 @@ function normalizationFormatPoint(point) {
   return point.map((value) => Number(value.toFixed(2))).join(" ");
 }
 
+function normalizationBoundaryPointOnCircle(center, toward, radius) {
+  const dx = toward[0] - center[0];
+  const dy = toward[1] - center[1];
+  const length = Math.hypot(dx, dy);
+  if (!length) return center;
+  return [
+    center[0] + (dx / length) * radius,
+    center[1] + (dy / length) * radius
+  ];
+}
+
+function normalizationBoundaryPointOnRect(center, toward, halfExtents) {
+  const dx = toward[0] - center[0];
+  const dy = toward[1] - center[1];
+  if (!dx && !dy) return center;
+  const [halfWidth, halfHeight] = halfExtents;
+  const scale = Math.min(
+    dx ? halfWidth / Math.abs(dx) : Infinity,
+    dy ? halfHeight / Math.abs(dy) : Infinity
+  );
+  return [
+    center[0] + dx * scale,
+    center[1] + dy * scale
+  ];
+}
+
+function normalizationSubgroupBoundaryPoint(center, subgroupId, toward) {
+  const halfExtents = normalizationSubgroupNodeHalfExtents[subgroupId] || [24, 13];
+  return normalizationBoundaryPointOnRect(
+    center,
+    toward,
+    [halfExtents[0] * normalizationLatticeGlobalScale, halfExtents[1] * normalizationLatticeGlobalScale]
+  );
+}
+
+function normalizationSubgroupLocalBoundaryPoint(center, subgroupId, toward) {
+  const halfExtents = normalizationSubgroupNodeHalfExtents[subgroupId] || [24, 13];
+  return normalizationBoundaryPointOnRect(center, toward, halfExtents);
+}
+
+function normalizationActionBoundaryPoint(center, toward) {
+  return normalizationBoundaryPointOnCircle(center, toward, normalizationActionPointGlobalRadius);
+}
+
+function normalizationStabilizerBoundaryEndpoints(fromCenter, toCenter, subgroupId) {
+  return {
+    from: normalizationSubgroupBoundaryPoint(fromCenter, subgroupId, toCenter),
+    to: normalizationActionBoundaryPoint(toCenter, fromCenter)
+  };
+}
+
+function normalizationOperatorBoundaryEndpoints(fromCenter, toCenter, sourceId, targetId) {
+  return {
+    from: normalizationSubgroupBoundaryPoint(fromCenter, sourceId, toCenter),
+    to: normalizationSubgroupBoundaryPoint(toCenter, targetId, fromCenter)
+  };
+}
+
 function normalizationSubgroupGlobalPoint(conjugator, subgroupId) {
   return normalizationSubgroupGlobalPointInLattice(normalizationLatticeGlobalOffset, conjugator, subgroupId);
+}
+
+function normalizationSubgroupLocalPoint(conjugator, subgroupId) {
+  const targetSubgroupId = normalizationConjugateSubgroup(conjugator, subgroupId);
+  return normalizationSubgroupCoordinates[targetSubgroupId] || normalizationSubgroupCoordinates[subgroupId] || null;
 }
 
 function normalizationSubgroupGlobalPointInLattice(offset, conjugator, subgroupId) {
@@ -9341,8 +9637,8 @@ function normalizationSubgroupGlobalPointInLattice(offset, conjugator, subgroupI
   const point = normalizationSubgroupCoordinates[targetSubgroupId] || normalizationSubgroupCoordinates[subgroupId];
   if (!point) return null;
   return [
-    offset[0] + point[0],
-    offset[1] + point[1]
+    offset[0] + point[0] * normalizationLatticeGlobalScale,
+    offset[1] + point[1] * normalizationLatticeGlobalScale
   ];
 }
 
@@ -9393,7 +9689,7 @@ function normalizationLinkLocalPoint(orbit, pointId) {
 
 function normalizationActionMotionDuration(actedElement) {
   const rotationDegrees = normalizationRotationStepDegrees[actedElement];
-  return Math.abs(rotationDegrees || 0) === 180 ? 460 : 360;
+  return Math.abs(rotationDegrees || 0) === 180 ? 920 : 720;
 }
 
 function normalizationCanAnimate() {
@@ -9434,6 +9730,48 @@ function normalizationAnimatedLinkGlobalPoint(fromActionState, toActionState, ac
   ];
 }
 
+function normalizationAnimatedLinkBoundaryGlobalPoint(
+  fromActionState,
+  toActionState,
+  actedElement,
+  orbit,
+  pointId,
+  progress,
+  toward
+) {
+  const localPoint = normalizationLinkLocalPoint(orbit, pointId);
+  if (!localPoint) return null;
+  const matrix = normalizationAnimatedActionMatrix(fromActionState, toActionState, actedElement, progress);
+  const transformedPoint = normalizationApplyMatrixToPoint(matrix, localPoint);
+  const center = [
+    normalizationSquareStageGlobalOrigin[0] + transformedPoint[0] * normalizationSquareStageScale,
+    normalizationSquareStageGlobalOrigin[1] + transformedPoint[1] * normalizationSquareStageScale
+  ];
+  const dx = toward[0] - center[0];
+  const dy = toward[1] - center[1];
+  const length = Math.hypot(dx, dy);
+  if (!length) return center;
+
+  const [a, b, c, d] = matrix;
+  const scaledA = a * normalizationSquareStageScale;
+  const scaledB = b * normalizationSquareStageScale;
+  const scaledC = c * normalizationSquareStageScale;
+  const scaledD = d * normalizationSquareStageScale;
+  const ellipseXX = scaledA * scaledA + scaledC * scaledC;
+  const ellipseXY = scaledA * scaledB + scaledC * scaledD;
+  const ellipseYY = scaledB * scaledB + scaledD * scaledD;
+  const ux = dx / length;
+  const uy = dy / length;
+  const supportX = ellipseXX * ux + ellipseXY * uy;
+  const supportY = ellipseXY * ux + ellipseYY * uy;
+  const supportLength = Math.sqrt(Math.max(0.0001, ux * supportX + uy * supportY));
+
+  return [
+    center[0] + (normalizationActionDotRadius * supportX) / supportLength,
+    center[1] + (normalizationActionDotRadius * supportY) / supportLength
+  ];
+}
+
 function normalizationAnimatedSubgroupGlobalPoint(fromSubgroupActionState, toSubgroupActionState, subgroupId, progress) {
   return normalizationAnimatedSubgroupGlobalPointInLattice(
     normalizationLatticeGlobalOffset,
@@ -9457,13 +9795,20 @@ function normalizationAnimatedSubgroupGlobalPointInLattice(
   return normalizationInterpolatePoint(from, to, progress);
 }
 
+function normalizationAnimatedSubgroupLocalPoint(fromSubgroupActionState, toSubgroupActionState, subgroupId, progress) {
+  const from = normalizationSubgroupLocalPoint(fromSubgroupActionState, subgroupId);
+  const to = normalizationSubgroupLocalPoint(toSubgroupActionState, subgroupId);
+  if (!from || !to) return null;
+  return normalizationInterpolatePoint(from, to, progress);
+}
+
 function normalizationStabilizerLinkEndpoints(actionState, subgroupActionState, link) {
   const subgroupId = link.dataset.normalizationLinkSubgroup || "";
   const orbit = link.dataset.normalizationLinkOrbit || "vertex";
   const pointId = link.dataset.normalizationLinkPoint || "";
   const from = normalizationSubgroupGlobalPoint(subgroupActionState, subgroupId);
   const to = normalizationLinkGlobalPoint(actionState, orbit, pointId);
-  return from && to ? { from, to } : null;
+  return from && to ? normalizationStabilizerBoundaryEndpoints(from, to, subgroupId) : null;
 }
 
 function setNormalizationStabilizerLinkPath(link, endpoints) {
@@ -9476,7 +9821,7 @@ function normalizationOperatorLinkEndpoints(subgroupActionState, link) {
   const targetId = link.dataset.normalizationOperatorTarget || normalizationNormalizerTargets[sourceId] || "";
   const from = normalizationSubgroupGlobalPointInLattice(normalizationOldLatticeGlobalOffset, subgroupActionState, sourceId);
   const to = normalizationSubgroupGlobalPointInLattice(normalizationNewLatticeGlobalOffset, subgroupActionState, targetId);
-  return from && to ? { from, to } : null;
+  return from && to ? normalizationOperatorBoundaryEndpoints(from, to, sourceId, targetId) : null;
 }
 
 function normalizationOperatorLinkPath(from, to) {
@@ -9489,6 +9834,85 @@ function normalizationOperatorLinkPath(from, to) {
 function setNormalizationOperatorLinkPath(link, endpoints) {
   if (!endpoints) return;
   link.setAttribute("d", normalizationOperatorLinkPath(endpoints.from, endpoints.to));
+}
+
+function normalizationHasseEdgePath(from, to) {
+  return `M${normalizationFormatPoint(from)} L${normalizationFormatPoint(to)}`;
+}
+
+function normalizationHasseEdgeEndpoints(subgroupActionState, edge) {
+  const fromId = edge.dataset.normalizationHasseFrom || "";
+  const toId = edge.dataset.normalizationHasseTo || "";
+  const fromCenter = normalizationSubgroupLocalPoint(subgroupActionState, fromId);
+  const toCenter = normalizationSubgroupLocalPoint(subgroupActionState, toId);
+  if (!fromCenter || !toCenter) return null;
+  return {
+    from: normalizationSubgroupLocalBoundaryPoint(fromCenter, fromId, toCenter),
+    to: normalizationSubgroupLocalBoundaryPoint(toCenter, toId, fromCenter)
+  };
+}
+
+function setNormalizationHasseEdgePath(edge, endpoints) {
+  if (!endpoints) return;
+  edge.setAttribute("d", normalizationHasseEdgePath(endpoints.from, endpoints.to));
+}
+
+function updateNormalizationHasseEdges(root) {
+  const state = normalizationHasseEdgeMotionState.get(root);
+  if (state?.frame) cancelAnimationFrame(state.frame);
+  const subgroupActionState = normalizationCurrentSubgroupActionState(root);
+
+  root.querySelectorAll("[data-normalization-hasse-edge]").forEach((edge) => {
+    setNormalizationHasseEdgePath(edge, normalizationHasseEdgeEndpoints(subgroupActionState, edge));
+  });
+
+  normalizationHasseEdgeMotionState.set(root, { frame: null });
+}
+
+function animateNormalizationHasseEdges(root, fromSubgroupActionState, toSubgroupActionState) {
+  const previousState = normalizationHasseEdgeMotionState.get(root);
+  if (previousState?.frame) cancelAnimationFrame(previousState.frame);
+  const edges = Array.from(root.querySelectorAll("[data-normalization-hasse-edge]"));
+  if (!edges.length) return;
+
+  const duration = 720;
+  if (!normalizationCanAnimate()) {
+    updateNormalizationHasseEdges(root);
+    return;
+  }
+
+  const startedAt = performance.now();
+  const state = { frame: null };
+  normalizationHasseEdgeMotionState.set(root, state);
+
+  const step = (now) => {
+    const elapsed = now - startedAt;
+    const progress = normalizationEase(Math.min(1, elapsed / duration));
+
+    edges.forEach((edge) => {
+      const fromId = edge.dataset.normalizationHasseFrom || "";
+      const toId = edge.dataset.normalizationHasseTo || "";
+      const fromCenter = normalizationAnimatedSubgroupLocalPoint(fromSubgroupActionState, toSubgroupActionState, fromId, progress);
+      const toCenter = normalizationAnimatedSubgroupLocalPoint(fromSubgroupActionState, toSubgroupActionState, toId, progress);
+      if (!fromCenter || !toCenter) return;
+      setNormalizationHasseEdgePath(edge, {
+        from: normalizationSubgroupLocalBoundaryPoint(fromCenter, fromId, toCenter),
+        to: normalizationSubgroupLocalBoundaryPoint(toCenter, toId, fromCenter)
+      });
+    });
+
+    if (elapsed < duration) {
+      state.frame = requestAnimationFrame(step);
+      return;
+    }
+
+    state.frame = null;
+    edges.forEach((edge) => {
+      setNormalizationHasseEdgePath(edge, normalizationHasseEdgeEndpoints(toSubgroupActionState, edge));
+    });
+  };
+
+  state.frame = requestAnimationFrame(step);
 }
 
 function updateNormalizationStabilizerLinks(root) {
@@ -9531,7 +9955,7 @@ function animateNormalizationStabilizerLinks(root, fromActionState, toActionStat
 
   const canAnimate = normalizationCanAnimate();
   const actionDuration = normalizationActionMotionDuration(actedElement);
-  const subgroupDuration = 360;
+  const subgroupDuration = 720;
   const duration = Math.max(actionDuration, subgroupDuration);
   const linksByKey = new Map();
 
@@ -9554,11 +9978,14 @@ function animateNormalizationStabilizerLinks(root, fromActionState, toActionStat
       const subgroupId = link.dataset.normalizationLinkSubgroup || "";
       const orbit = link.dataset.normalizationLinkOrbit || "vertex";
       const pointId = link.dataset.normalizationLinkPoint || "";
+      const fromCenter = normalizationAnimatedSubgroupGlobalPoint(fromSubgroupActionState, toSubgroupActionState, subgroupId, subgroupProgress);
+      if (!fromCenter) return;
+      const to = normalizationAnimatedLinkBoundaryGlobalPoint(fromActionState, toActionState, actedElement, orbit, pointId, actionProgress, fromCenter);
+      if (!to) return;
       const endpoints = {
-        from: normalizationAnimatedSubgroupGlobalPoint(fromSubgroupActionState, toSubgroupActionState, subgroupId, subgroupProgress),
-        to: normalizationAnimatedLinkGlobalPoint(fromActionState, toActionState, actedElement, orbit, pointId, actionProgress)
+        from: normalizationSubgroupBoundaryPoint(fromCenter, subgroupId, to),
+        to
       };
-      if (!endpoints.from || !endpoints.to) return;
       setNormalizationStabilizerLinkPath(link, endpoints);
       linksByKey.set(`${subgroupId}:${pointId}`, endpoints);
     });
@@ -9586,7 +10013,7 @@ function animateNormalizationOperatorLinks(root, fromSubgroupActionState, toSubg
   const links = Array.from(root.querySelectorAll("[data-normalization-operator-link]"));
   if (!links.length) return;
 
-  const duration = 360;
+  const duration = 720;
   const linksByKey = new Map();
 
   if (!normalizationCanAnimate()) {
@@ -9605,23 +10032,22 @@ function animateNormalizationOperatorLinks(root, fromSubgroupActionState, toSubg
     links.forEach((link) => {
       const sourceId = link.dataset.normalizationOperatorSource || "";
       const targetId = link.dataset.normalizationOperatorTarget || normalizationNormalizerTargets[sourceId] || "";
-      const endpoints = {
-        from: normalizationAnimatedSubgroupGlobalPointInLattice(
-          normalizationOldLatticeGlobalOffset,
-          fromSubgroupActionState,
-          toSubgroupActionState,
-          sourceId,
-          progress
-        ),
-        to: normalizationAnimatedSubgroupGlobalPointInLattice(
-          normalizationNewLatticeGlobalOffset,
-          fromSubgroupActionState,
-          toSubgroupActionState,
-          targetId,
-          progress
-        )
-      };
-      if (!endpoints.from || !endpoints.to) return;
+      const fromCenter = normalizationAnimatedSubgroupGlobalPointInLattice(
+        normalizationOldLatticeGlobalOffset,
+        fromSubgroupActionState,
+        toSubgroupActionState,
+        sourceId,
+        progress
+      );
+      const toCenter = normalizationAnimatedSubgroupGlobalPointInLattice(
+        normalizationNewLatticeGlobalOffset,
+        fromSubgroupActionState,
+        toSubgroupActionState,
+        targetId,
+        progress
+      );
+      if (!fromCenter || !toCenter) return;
+      const endpoints = normalizationOperatorBoundaryEndpoints(fromCenter, toCenter, sourceId, targetId);
       setNormalizationOperatorLinkPath(link, endpoints);
       linksByKey.set(sourceId, endpoints);
     });
@@ -9699,7 +10125,7 @@ function animateNormalizationTransform(element, targetMatrix) {
   }
 
   const startedAt = performance.now();
-  const duration = 360;
+  const duration = 720;
   const state = { matrix: fromMatrix, frame: null };
   normalizationMotionState.set(element, state);
 
@@ -9746,7 +10172,7 @@ function animateNormalizationSubgroupTransform(element, targetPoint) {
   }
 
   const startedAt = performance.now();
-  const duration = 360;
+  const duration = 720;
   const state = { point: fromPoint, frame: null };
   normalizationSubgroupMotionState.set(element, state);
 
@@ -9797,7 +10223,7 @@ function animateNormalizationRotationTransform(element, targetMatrix, center, de
   }
 
   const startedAt = performance.now();
-  const duration = Math.abs(degrees) === 180 ? 460 : 360;
+  const duration = Math.abs(degrees) === 180 ? 920 : 720;
   const state = { matrix: fromMatrix, frame: null };
   normalizationMotionState.set(element, state);
 
@@ -10015,6 +10441,7 @@ function setNormalizationElementSelection(root, elementId) {
   const fromSubgroupState = normalizationCurrentSubgroupActionState(root);
   const { actedElement, fromState, toState } = setNormalizationActionMotion(root, selectedElement);
   setNormalizationSubgroupMotion(root, toState);
+  animateNormalizationHasseEdges(root, fromSubgroupState, toState);
   animateNormalizationStabilizerLinks(root, fromState, toState, fromSubgroupState, toState, actedElement);
   animateNormalizationOperatorLinks(root, fromSubgroupState, toState);
   root.dataset.normalizationElementSelected = selectedElement;
@@ -10085,6 +10512,7 @@ function setNormalizationActionSelection(root, selectedAction) {
 function initializeNormalizationFigure(root, options = {}) {
   root.classList.toggle("is-interactive", Boolean(options.controls));
   setNormalizationSelection(root, root.dataset.normalizationSelected || "d4");
+  updateNormalizationHasseEdges(root);
   updateNormalizationStabilizerLinks(root);
   updateNormalizationOperatorLinks(root);
   if (!options.controls || root.dataset.normalizationInitialized) return;
@@ -11163,7 +11591,16 @@ function renderProfileLinks() {
 function renderTopics() {
   document.querySelectorAll("[data-topics]").forEach((root) => {
     root.replaceChildren();
-    siteData.topics.forEach(([label, href]) => root.append(tagLink(label, href)));
+    researchThemes.forEach((theme) => {
+      const tag = tagLink(theme.label, researchThemeHref(theme.id));
+      tag.dataset.topicTheme = theme.id;
+      tag.addEventListener("click", (event) => {
+        event.preventDefault();
+        setResearchThemeSelection(theme.id);
+        document.querySelector("#research-map")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      root.append(tag);
+    });
   });
 }
 
@@ -12032,123 +12469,6 @@ function renderNotes() {
   scrollToHashTarget();
 }
 
-function speculativePostAnchor(post) {
-  return `speculative-${slugify(post.slug || post.title)}`;
-}
-
-function speculativePostStatus(status) {
-  if (status === "cloud" || status === "speculative") return "☁︎ Speculative";
-  if (status === "draft") return "Draft";
-  return status || "Note";
-}
-
-function sortedSpeculativePosts() {
-  return [...(siteData.speculativeNotes || [])].sort((a, b) => {
-    return String(b.date || "").localeCompare(String(a.date || "")) || String(a.title).localeCompare(String(b.title));
-  });
-}
-
-function speculativePostSearchText(post) {
-  return compactText([
-    post.slug,
-    post.date,
-    post.updated,
-    post.title,
-    post.status,
-    post.abstract,
-    ...(post.tags || []),
-    ...(post.paragraphs || []),
-    ...(post.questions || []),
-    ...(post.links || []).map(([label]) => label)
-  ]).join(" ");
-}
-
-function visibleSpeculativePosts() {
-  const tokens = siteSearchTokens(state.speculativeQuery);
-  if (!tokens.length) return sortedSpeculativePosts();
-  return sortedSpeculativePosts().filter((post) => {
-    const text = simplified(speculativePostSearchText(post));
-    return tokens.every((token) => text.includes(token));
-  });
-}
-
-function renderSpeculativeIndex(posts) {
-  const root = document.querySelector("#speculative-index");
-  if (!root) return;
-  root.replaceChildren();
-  if (!posts.length) {
-    root.append(el("p", "empty-state", state.speculativeQuery ? "No speculative notes match this search." : "No speculative notes yet."));
-    return;
-  }
-
-  const list = el("ol", "speculative-index-list");
-  posts.forEach((post) => {
-    const item = el("li");
-    item.append(link(post.title, `#${speculativePostAnchor(post)}`), el("span", null, post.date || "Undated"));
-    list.append(item);
-  });
-  root.append(list);
-}
-
-function renderSpeculativePost(post) {
-  const article = el("article", "speculative-post");
-  article.id = speculativePostAnchor(post);
-
-  const head = el("div", "speculative-post-head");
-  const title = el("h2");
-  title.append(link(post.title, `#${article.id}`));
-  head.append(el("p", "speculative-date", post.date || "Undated"), title);
-
-  const meta = el("div", "speculative-meta");
-  meta.append(el("span", "speculative-status", speculativePostStatus(post.status)));
-  if (post.updated) meta.append(el("span", null, `updated ${post.updated}`));
-  (post.tags || []).forEach((tag) => meta.append(renderTagPill(tag, "speculative-tag")));
-
-  article.append(head, meta);
-  if (post.abstract) article.append(el("p", "speculative-abstract", post.abstract));
-
-  const body = el("div", "speculative-body");
-  (post.paragraphs || []).forEach((paragraph) => body.append(el("p", null, paragraph)));
-  if (post.questions?.length) {
-    const questions = el("div", "speculative-questions");
-    questions.append(el("h3", null, "Questions"));
-    const list = el("ul");
-    post.questions.forEach((question) => list.append(el("li", null, question)));
-    questions.append(list);
-    body.append(questions);
-  }
-  article.append(body);
-
-  const actions = [];
-  if (post.noteFile) {
-    const noteHref = noteHrefByFile(post.noteFile);
-    if (noteHref) actions.push(["Related note", noteHref]);
-  }
-  (post.links || []).forEach(([label, href]) => actions.push([label, localHref(href)]));
-  appendActionLinks(article, actions);
-
-  return article;
-}
-
-function renderSpeculativeNotes() {
-  const root = document.querySelector("#speculative-posts");
-  const input = document.querySelector("#speculative-filter");
-  if (input && input.value !== state.speculativeQuery) input.value = state.speculativeQuery;
-  const posts = visibleSpeculativePosts();
-  renderSpeculativeIndex(posts);
-  if (!root) return;
-  root.replaceChildren();
-  if (!posts.length) {
-    root.append(el("p", "empty-state", state.speculativeQuery ? "No speculative notes match this search." : "No speculative notes yet."));
-    applyLanguage(root);
-    return;
-  }
-  posts.forEach((post) => root.append(renderSpeculativePost(post)));
-  typesetMath(root);
-  applyLanguage(root);
-  scrollToHashTarget();
-}
-
 function activityAnchor(group, record, index) {
   return `activity-${slugify(compactText([group.title, index + 1, record.text]).join(" "))}`;
 }
@@ -12674,14 +12994,6 @@ function setupInteractions() {
     });
   }
 
-  const speculativeFilter = document.querySelector("#speculative-filter");
-  if (speculativeFilter) {
-    speculativeFilter.addEventListener("input", (event) => {
-      state.speculativeQuery = event.target.value;
-      renderSpeculativeNotes();
-    });
-  }
-
   document.querySelectorAll("[data-problem-random]").forEach((button) => {
     button.addEventListener("click", () => randomProblem(button.dataset.problemRandom));
   });
@@ -12762,8 +13074,6 @@ function renderInitialPage() {
     renderWebApps();
   } else if (page === "search") {
     renderSiteSearch();
-  } else if (page === "speculative-notes") {
-    renderSpeculativeNotes();
   } else {
     renderProfileSections();
     renderExplore();
@@ -12784,7 +13094,6 @@ function renderInitialPage() {
     renderTalkMap();
     renderResearchmapPresentations();
     renderNotes();
-    renderSpeculativeNotes();
     renderActivities();
     renderPlans();
     renderProblems();

@@ -1084,6 +1084,24 @@ h3 {
   box-shadow: 0 0 0 1px rgba(199, 120, 61, 0.18), 0 14px 30px rgba(120, 81, 36, 0.12);
 }
 
+.theme-result-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0 0 7px;
+  color: var(--accent-3);
+}
+
+.theme-result-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.92;
+}
+
+.theme-result.is-active .theme-result-icons {
+  color: var(--accent-2);
+}
+
 .theme-result h4 {
   margin: 0;
   font-size: 0.9rem;
@@ -2179,11 +2197,11 @@ a.position-link:hover {
 
 .games-rb-table-figure {
   --games-rb-cycle: 12s;
-  --games-rb-green: #2c6f63;
-  --games-rb-orange: #b66737;
-  --games-rb-blue: #2f536f;
-  --games-rb-purple: #574b68;
-  --games-rb-red: #9b3a30;
+  --games-rb-green: #147c5a;
+  --games-rb-orange: #c65f17;
+  --games-rb-blue: #2563eb;
+  --games-rb-purple: #7c3aed;
+  --games-rb-red: #c82727;
   --games-rb-ink: #24312a;
   color: var(--games-rb-ink);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -2195,6 +2213,14 @@ a.position-link:hover {
 
 .games-rb-table-figure marker path {
   fill: var(--games-rb-green);
+}
+
+.games-rb-table-figure #games-rb-mex-arrow-orange path {
+  fill: var(--games-rb-orange);
+}
+
+.games-rb-table-figure #games-rb-mex-arrow-red path {
+  fill: var(--games-rb-red);
 }
 
 .games-rb-table-title,
@@ -2258,9 +2284,9 @@ a.position-link:hover {
 }
 
 .games-rb-table-mex-head {
-  fill: rgba(243, 230, 216, 0.95);
+  fill: rgba(198, 95, 23, 0.34);
   opacity: 0.24;
-  animation: games-rb-step-mex var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-mex var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-cell {
@@ -2270,27 +2296,27 @@ a.position-link:hover {
 
 .games-rb-cell.is-s-def,
 .games-rb-cell.is-t-def {
-  fill: rgba(44, 111, 99, 0.18);
-  animation: games-rb-step-define var(--games-rb-cycle) ease-in-out infinite;
+  fill: rgba(20, 124, 90, 0.42);
+  animation: games-rb-step-define var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-cell.is-t-def {
-  fill: rgba(47, 83, 111, 0.16);
+  fill: rgba(37, 99, 235, 0.38);
 }
 
 .games-rb-cell.is-row-read {
-  fill: rgba(44, 111, 99, 0.18);
-  animation: games-rb-step-rhs var(--games-rb-cycle) ease-in-out infinite;
+  fill: rgba(20, 124, 90, 0.46);
+  animation: games-rb-step-rhs var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-cell.is-col-read {
-  fill: rgba(47, 83, 111, 0.16);
-  animation: games-rb-step-rhs var(--games-rb-cycle) ease-in-out infinite;
+  fill: rgba(37, 99, 235, 0.42);
+  animation: games-rb-step-rhs var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-cell.is-lhs {
-  fill: #fff0ed;
-  animation: games-rb-step-lhs var(--games-rb-cycle) ease-in-out infinite;
+  fill: rgba(200, 39, 39, 0.38);
+  animation: games-rb-step-lhs var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-table-lines {
@@ -2338,10 +2364,82 @@ a.position-link:hover {
 
 .games-rb-cell-text.is-row-value {
   fill: var(--games-rb-green);
+  font-weight: 940;
 }
 
 .games-rb-cell-text.is-col-value {
   fill: var(--games-rb-blue);
+  font-weight: 940;
+}
+
+.games-rb-grid-label {
+  fill: var(--games-rb-ink);
+  font-size: 10.5px;
+  font-weight: 950;
+  letter-spacing: 0;
+  opacity: 0;
+  paint-order: stroke;
+  stroke: rgba(255, 253, 248, 0.96);
+  stroke-linejoin: round;
+  stroke-width: 3px;
+}
+
+.games-rb-mex-arrow {
+  fill: none;
+  opacity: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.games-rb-mex-arrow.is-mex-s-arrow,
+.games-rb-mex-arrow.is-mex-t-arrow {
+  marker-end: url("#games-rb-mex-arrow-orange");
+  stroke: var(--games-rb-orange);
+  animation: games-rb-label-mex var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-mex-arrow.is-result-arrow {
+  marker-end: url("#games-rb-mex-arrow-red");
+  stroke: var(--games-rb-red);
+  animation: games-rb-label-result var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-grid-label.is-s-label {
+  fill: var(--games-rb-green);
+  animation: games-rb-label-define var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-grid-label.is-t-label {
+  fill: var(--games-rb-blue);
+  animation: games-rb-label-define var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-grid-label.is-mex-s-label,
+.games-rb-grid-label.is-mex-t-label {
+  fill: var(--games-rb-orange);
+  animation: games-rb-label-mex var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-grid-label.is-lhs-label {
+  fill: var(--games-rb-red);
+  animation: games-rb-label-lhs var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-grid-label.is-row-label {
+  fill: var(--games-rb-green);
+  animation: games-rb-label-rhs var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-grid-label.is-col-label {
+  fill: var(--games-rb-blue);
+  animation: games-rb-label-rhs var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-grid-label.is-result-label {
+  fill: var(--games-rb-red);
+  animation: games-rb-label-result var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-legend text {
@@ -2377,7 +2475,7 @@ a.position-link:hover {
 
 .games-rb-mex-lines {
   opacity: 0.42;
-  animation: games-rb-step-mex var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-mex var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-readout rect {
@@ -2394,7 +2492,7 @@ a.position-link:hover {
 }
 
 .games-rb-readout.is-lhs {
-  animation: games-rb-step-lhs var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-lhs var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-readout.is-rhs rect {
@@ -2402,7 +2500,7 @@ a.position-link:hover {
 }
 
 .games-rb-readout.is-rhs {
-  animation: games-rb-step-rhs var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-rhs var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-readout-label {
@@ -2486,23 +2584,23 @@ a.position-link:hover {
 }
 
 .games-rb-step-item.step-define {
-  animation: games-rb-step-define var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-define var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-step-item.step-mex {
-  animation: games-rb-step-mex var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-mex var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-step-item.step-lhs {
-  animation: games-rb-step-lhs var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-lhs var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-step-item.step-rhs {
-  animation: games-rb-step-rhs var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-rhs var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-step-item.step-result {
-  animation: games-rb-step-result-text var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-result-text var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-step-item.step-define circle {
@@ -2533,14 +2631,12 @@ a.position-link:hover {
 
 .games-rb-answer {
   opacity: 0.28;
-  animation: games-rb-step-result var(--games-rb-cycle) ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
+  animation: games-rb-step-result var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-same-result {
   opacity: 0.28;
-  animation: games-rb-step-result-text var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-result-text var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-answer-note {
@@ -2582,14 +2678,14 @@ a.position-link:hover {
   top: 89.9%;
   color: #574b68;
   opacity: 0.42;
-  animation: games-rb-step-lhs var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-lhs var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-table-tex-rhs {
   left: 50%;
   top: 95.2%;
   opacity: 0.42;
-  animation: games-rb-step-rhs-tex var(--games-rb-cycle) ease-in-out infinite;
+  animation: games-rb-step-rhs-tex var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 @keyframes games-rb-step-define {
@@ -2671,18 +2767,15 @@ a.position-link:hover {
   0%,
   76% {
     opacity: 0.26;
-    transform: scale(1);
   }
 
   84%,
   94% {
     opacity: 1;
-    transform: scale(1.04);
   }
 
   100% {
     opacity: 0.34;
-    transform: scale(1);
   }
 }
 
@@ -2699,6 +2792,258 @@ a.position-link:hover {
 
   100% {
     opacity: 0.34;
+  }
+}
+
+@keyframes games-rb-label-define {
+  0%,
+  14% {
+    opacity: 1;
+  }
+
+  24%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes games-rb-label-mex {
+  0%,
+  16% {
+    opacity: 0;
+  }
+
+  24%,
+  36% {
+    opacity: 1;
+  }
+
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes games-rb-label-lhs {
+  0%,
+  34% {
+    opacity: 0;
+  }
+
+  43%,
+  55% {
+    opacity: 1;
+  }
+
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes games-rb-label-rhs {
+  0%,
+  52% {
+    opacity: 0;
+  }
+
+  61%,
+  77% {
+    opacity: 1;
+  }
+
+  88%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes games-rb-label-result {
+  0%,
+  76% {
+    opacity: 0;
+  }
+
+  84%,
+  94% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.games-rb-dual-figure .games-rb-panel-bg {
+  fill: rgba(255, 253, 248, 0.88);
+}
+
+.games-rb-dual-table {
+  color: var(--games-rb-ink);
+}
+
+.games-rb-dual-highlight {
+  opacity: 0.2;
+  stroke: none;
+}
+
+.games-rb-dual-highlight.is-mex-s-head,
+.games-rb-dual-highlight.is-mex-t-head {
+  fill: rgba(198, 95, 23, 0.48);
+  animation: games-rb-dual-mex var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-dual-highlight.is-row-product {
+  fill: rgba(20, 124, 90, 0.46);
+  animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-dual-highlight.is-col-product {
+  fill: rgba(37, 99, 235, 0.42);
+  animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-dual-highlight.is-product-cell {
+  fill: rgba(200, 39, 39, 0.4);
+  animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-dual-label {
+  font-size: 10.2px;
+  font-weight: 950;
+  letter-spacing: 0;
+  opacity: 0;
+  paint-order: stroke;
+  stroke: rgba(255, 253, 248, 0.96);
+  stroke-linejoin: round;
+  stroke-width: 3px;
+}
+
+.games-rb-dual-label.is-row-label {
+  fill: var(--games-rb-green);
+  animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-dual-label.is-col-label {
+  fill: var(--games-rb-blue);
+  animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-dual-label.is-product-label {
+  fill: var(--games-rb-red);
+  animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-dual-label.is-result-label {
+  fill: var(--games-rb-red);
+  animation: games-rb-dual-result var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-mex-arrow.is-mex-product-arrow {
+  marker-end: url("#games-rb-mex-arrow-red");
+  stroke: var(--games-rb-red);
+  animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-dual-table .games-rb-mex-arrow.is-result-arrow {
+  animation: games-rb-dual-result var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-result-chip,
+.games-rb-equality-check {
+  opacity: 0.24;
+  animation: games-rb-dual-result var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-result-chip circle,
+.games-rb-equality-check circle {
+  fill: rgba(255, 240, 237, 0.96);
+  stroke: var(--games-rb-red);
+  stroke-width: 2;
+}
+
+.games-rb-result-chip text,
+.games-rb-equality-check text {
+  fill: var(--games-rb-red);
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.games-rb-equality-check .equals {
+  fill: var(--games-rb-purple);
+  font-size: 22px;
+}
+
+.games-rb-dual-main-equals {
+  fill: var(--games-rb-purple);
+  font-size: 44px;
+  font-weight: 950;
+  letter-spacing: 0;
+  paint-order: stroke;
+  stroke: rgba(255, 253, 248, 0.96);
+  stroke-linejoin: round;
+  stroke-width: 5px;
+}
+
+.games-rb-dual-tex-left {
+  left: 25.8%;
+  top: 30%;
+  color: #24312a;
+  font-size: clamp(0.5rem, 1.02vw, 0.78rem);
+  width: 38%;
+  white-space: normal;
+  line-height: 1.08;
+}
+
+.games-rb-dual-tex-right {
+  left: 74.2%;
+  top: 30%;
+  color: #24312a;
+  font-size: clamp(0.56rem, 1.08vw, 0.84rem);
+  width: 34%;
+  white-space: normal;
+  line-height: 1.08;
+}
+
+@keyframes games-rb-dual-mex {
+  0%,
+  28% {
+    opacity: 1;
+  }
+
+  36%,
+  100% {
+    opacity: 0.28;
+  }
+}
+
+@keyframes games-rb-dual-products {
+  0%,
+  32% {
+    opacity: 0.2;
+  }
+
+  40%,
+  68% {
+    opacity: 1;
+  }
+
+  76%,
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes games-rb-dual-result {
+  0%,
+  70% {
+    opacity: 0;
+  }
+
+  78%,
+  100% {
+    opacity: 1;
   }
 }
 
@@ -4018,51 +4363,37 @@ a.position-link:hover {
   animation: automata-cantor-label-stage var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
-.automata-cantor-interval,
-.automata-cantor-dot {
-  fill: var(--cantor-purple);
-  opacity: 0;
+.automata-cantor-partitions {
+  pointer-events: none;
 }
 
-.automata-cantor-interval.stage-0 {
-  animation: automata-cantor-stage-0 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-cantor-interval.stage-1 {
-  animation: automata-cantor-stage-1 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-cantor-interval.stage-2 {
-  animation: automata-cantor-stage-2 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-cantor-interval.stage-3 {
-  animation: automata-cantor-stage-3 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-cantor-dot {
-  animation: automata-cantor-stage-4 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-cantor-connector {
+.automata-cantor-partition {
   fill: none;
   opacity: 0;
-  stroke: rgba(143, 58, 216, 0.24);
+  stroke: var(--cantor-purple);
   stroke-linecap: round;
-  stroke-width: 2;
+  stroke-width: 7;
   vector-effect: non-scaling-stroke;
 }
 
-.automata-cantor-connector.cantor-stage-1 {
-  animation: automata-cantor-connector-stage-1 var(--cantor-cover-cycle) ease-in-out infinite;
+.automata-cantor-partition.partition-stage-0 {
+  animation: automata-cantor-partition-stage-0 var(--cantor-cover-cycle) steps(1, end) infinite;
 }
 
-.automata-cantor-connector.cantor-stage-2 {
-  animation: automata-cantor-connector-stage-2 var(--cantor-cover-cycle) ease-in-out infinite;
+.automata-cantor-partition.partition-stage-1 {
+  animation: automata-cantor-partition-stage-1 var(--cantor-cover-cycle) steps(1, end) infinite;
 }
 
-.automata-cantor-connector.cantor-stage-3 {
-  animation: automata-cantor-connector-stage-3 var(--cantor-cover-cycle) ease-in-out infinite;
+.automata-cantor-partition.partition-stage-2 {
+  animation: automata-cantor-partition-stage-2 var(--cantor-cover-cycle) steps(1, end) infinite;
+}
+
+.automata-cantor-partition.partition-stage-3 {
+  animation: automata-cantor-partition-stage-3 var(--cantor-cover-cycle) steps(1, end) infinite;
+}
+
+.automata-cantor-partition.partition-stage-4 {
+  animation: automata-cantor-partition-stage-4 var(--cantor-cover-cycle) steps(1, end) infinite;
 }
 
 .automata-cantor-ray,
@@ -4100,6 +4431,10 @@ a.position-link:hover {
 
 .automata-prefix-poset .automata-cantor-tree-edge.level-3 {
   animation: automata-tree-edge-level-3 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-prefix-poset .automata-cantor-tree-edge.level-4 {
+  animation: automata-tree-edge-level-4 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
 .automata-cantor-bouquet-loop {
@@ -4219,12 +4554,20 @@ a.position-link:hover {
   animation: automata-tree-node-depth-3 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
+.automata-prefix-poset .tree-depth-4 {
+  animation: automata-tree-node-depth-4 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
 .automata-cantor-node.small {
   stroke-width: 1;
 }
 
 .automata-cantor-node.tiny {
   stroke-width: 0.9;
+}
+
+.automata-cantor-node.micro {
+  stroke-width: 0.75;
 }
 
 .automata-cantor-node.large {
@@ -4377,6 +4720,25 @@ a.position-link:hover {
   }
 }
 
+@keyframes automata-tree-edge-level-4 {
+  0%,
+  48% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  50% {
+    opacity: 1;
+    stroke-dashoffset: 1;
+  }
+
+  58%,
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
 @keyframes automata-tree-node-depth-0 {
   0%,
   13% {
@@ -4433,111 +4795,89 @@ a.position-link:hover {
   }
 }
 
-@keyframes automata-cantor-label-stage {
+@keyframes automata-tree-node-depth-4 {
   0%,
-  53% {
+  55% {
     opacity: 0;
+    transform: scale(0.72);
   }
 
-  62%,
+  59%,
   100% {
     opacity: 1;
+    transform: scale(1);
   }
 }
 
-@keyframes automata-cantor-stage-0 {
-  0%,
-  52% {
-    opacity: 0;
-  }
-
-  60%,
-  100% {
-    opacity: 0.58;
-  }
-}
-
-@keyframes automata-cantor-stage-1 {
+@keyframes automata-cantor-label-stage {
   0%,
   60% {
     opacity: 0;
   }
 
-  68%,
+  66%,
   100% {
-    opacity: 0.74;
+    opacity: 1;
   }
 }
 
-@keyframes automata-cantor-stage-2 {
+@keyframes automata-cantor-partition-stage-0 {
   0%,
-  68% {
+  60% {
+    opacity: 0;
+  }
+
+  64%,
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes automata-cantor-partition-stage-1 {
+  0%,
+  66% {
+    opacity: 0;
+  }
+
+  70%,
+  100% {
+    opacity: 0.78;
+  }
+}
+
+@keyframes automata-cantor-partition-stage-2 {
+  0%,
+  72% {
     opacity: 0;
   }
 
   76%,
   100% {
-    opacity: 0.95;
+    opacity: 0.88;
   }
 }
 
-@keyframes automata-cantor-stage-3 {
+@keyframes automata-cantor-partition-stage-3 {
   0%,
-  76% {
+  78% {
     opacity: 0;
   }
 
-  84%,
+  82%,
   100% {
     opacity: 0.95;
   }
 }
 
-@keyframes automata-cantor-stage-4 {
+@keyframes automata-cantor-partition-stage-4 {
   0%,
   84% {
     opacity: 0;
   }
 
-  90%,
+  88%,
   100% {
-    opacity: 0.95;
-  }
-}
-
-@keyframes automata-cantor-connector-stage-1 {
-  0%,
-  59% {
-    opacity: 0;
-  }
-
-  68%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes automata-cantor-connector-stage-2 {
-  0%,
-  67% {
-    opacity: 0;
-  }
-
-  76%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes automata-cantor-connector-stage-3 {
-  0%,
-  75% {
-    opacity: 0;
-  }
-
-  84%,
-  100% {
-    opacity: 1;
+    opacity: 0.98;
   }
 }
 
@@ -4662,6 +5002,67 @@ a.position-link:hover {
   fill: #2f5d8e;
 }
 
+.automata-consume-effects {
+  display: none;
+  pointer-events: none;
+}
+
+.automata-consume-effect {
+  opacity: 0;
+}
+
+.automata-consume-effect circle {
+  stroke-width: 4.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-consume-effect path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 7.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-consume-effect-a circle,
+.automata-consume-effect-a path {
+  stroke: rgba(184, 79, 60, 0.92);
+}
+
+.automata-consume-effect-a circle {
+  fill: rgba(184, 79, 60, 0.12);
+}
+
+.automata-consume-effect-b circle,
+.automata-consume-effect-b path {
+  stroke: rgba(47, 106, 163, 0.92);
+}
+
+.automata-consume-effect-b circle {
+  fill: rgba(47, 106, 163, 0.12);
+}
+
+.automata-edge-highlights {
+  display: none;
+  pointer-events: none;
+}
+
+.automata-edge-highlight {
+  fill: none;
+  opacity: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 7;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-edge-highlight-a {
+  stroke: rgba(241, 86, 62, 0.82);
+}
+
+.automata-edge-highlight-b {
+  stroke: rgba(42, 127, 203, 0.82);
+}
+
 .automata-output-panel-bg {
   fill: rgba(255, 253, 248, 0.92);
   stroke: rgba(43, 52, 43, 0.14);
@@ -4744,6 +5145,7 @@ a.position-link:hover {
 }
 
 .automata-consuming-letters {
+  display: none;
   pointer-events: none;
 }
 
@@ -4768,6 +5170,32 @@ a.position-link:hover {
 
 .automata-consumed-letter-b text {
   fill: #2f5d8e;
+}
+
+.automata-moving-word {
+  pointer-events: none;
+}
+
+.automata-moving-word text {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0;
+  paint-order: stroke;
+  stroke: rgba(255, 253, 248, 0.9);
+  stroke-linejoin: round;
+  stroke-width: 4px;
+  text-anchor: start;
+}
+
+.automata-moving-word .automata-word-a {
+  stroke: rgba(241, 86, 62, 0.58);
+  stroke-width: 2.4px;
+}
+
+.automata-moving-word .automata-word-b {
+  stroke: rgba(42, 127, 203, 0.58);
+  stroke-width: 2.4px;
 }
 
 .automata-language-accept {
@@ -4879,6 +5307,26 @@ a.position-link:hover {
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
+}
+
+.normalization-operator-link[data-normalization-operator-source="d4"] {
+  stroke: rgba(44, 111, 99, 0.36);
+}
+
+.normalization-operator-link[data-normalization-operator-source="ref0"] {
+  stroke: rgba(47, 83, 111, 0.36);
+}
+
+.normalization-operator-link[data-normalization-operator-source="ref2"] {
+  stroke: rgba(154, 87, 63, 0.36);
+}
+
+.normalization-operator-link[data-normalization-operator-source="ref1"] {
+  stroke: rgba(91, 112, 70, 0.38);
+}
+
+.normalization-operator-link[data-normalization-operator-source="ref3"] {
+  stroke: rgba(109, 91, 142, 0.38);
 }
 
 .normalization-stabilizer-links,
@@ -5244,6 +5692,11 @@ a.position-link:hover {
 .normalization-action-dot.normalization-action-place:not(.filled) {
   fill: var(--normalization-token-fill, #fffdf8);
   stroke: var(--normalization-token-stroke, #2c6f63);
+}
+
+.normalization-action-dot.normalization-center-point.normalization-action-place {
+  fill: #e7e7e2;
+  stroke: #747872;
 }
 
 .normalization-element-control text {
@@ -6264,24 +6717,21 @@ a.position-link:hover {
 }
 
 .tensor-factorization-figure .tensor-group-block {
-  fill: rgba(255, 253, 248, 0.3);
-  stroke: rgba(44, 111, 99, 0.24);
-  stroke-dasharray: 8 8;
-  stroke-width: 2;
+  fill: none;
+  stroke: rgba(44, 111, 99, 0.4);
+  stroke-width: 2.4;
 }
 
 .tensor-factorization-figure .tensor-block-as {
-  stroke: rgba(182, 103, 55, 0.32);
+  stroke: rgba(182, 103, 55, 0.5);
 }
 
 .tensor-factorization-figure .tensor-block-ss {
-  fill: rgba(245, 220, 198, 0.16);
-  stroke: rgba(182, 103, 55, 0.38);
+  stroke: rgba(182, 103, 55, 0.62);
 }
 
 .tensor-factorization-figure .tensor-block-xs {
-  fill: rgba(223, 238, 229, 0.2);
-  stroke: rgba(44, 111, 99, 0.38);
+  stroke: rgba(44, 111, 99, 0.62);
 }
 
 .tensor-factorization-figure .tensor-x-envelope {
@@ -6478,6 +6928,12 @@ a.position-link:hover {
   opacity: 1;
 }
 
+.tensor-factorization-figure .tensor-s-duplicate-label,
+.tensor-factorization-figure .tensor-s-duplicate-node {
+  opacity: 0;
+  animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
 .tensor-factorization-figure .tensor-s-node circle {
   fill: var(--tensor-subset-fill);
   stroke: var(--tensor-subset);
@@ -6497,6 +6953,8 @@ a.position-link:hover {
 .tensor-factorization-figure .tensor-s-copy-link,
 .tensor-factorization-figure .tensor-s-new-label,
 .tensor-factorization-figure .tensor-s-new-envelope,
+.tensor-factorization-figure .tensor-s-duplicate-label,
+.tensor-factorization-figure .tensor-s-duplicate-node,
 .tensor-factorization-figure .tensor-merge-away,
 .tensor-factorization-figure .tensor-iota-domain-node,
 .tensor-factorization-figure .tensor-iota-local-arrow,
@@ -9603,10 +10061,16 @@ a.position-link:hover {
   .games-rb-readout.is-lhs,
   .games-rb-readout.is-rhs,
   .games-rb-step-item,
+  .games-rb-grid-label,
+  .games-rb-mex-arrow,
   .games-rb-answer,
   .games-rb-same-result,
   .games-rb-table-tex-lhs,
   .games-rb-table-tex-rhs,
+  .games-rb-dual-highlight,
+  .games-rb-dual-label,
+  .games-rb-result-chip,
+  .games-rb-equality-check,
   .automata-cantor-bouquet-loop,
   .automata-bouquet-direction,
   .automata-unfold-reverse-cover,
@@ -9616,10 +10080,8 @@ a.position-link:hover {
   .automata-sublocale-label,
   .automata-prefix-poset .automata-cantor-tree-edge,
   .automata-prefix-poset .automata-cantor-node,
-  .automata-cantor-space-label,
-  .automata-cantor-interval,
-  .automata-cantor-connector,
-  .automata-cantor-dot {
+  .automata-cantor-partition,
+  .automata-cantor-space-label {
     animation: none;
   }
 
@@ -9632,10 +10094,19 @@ a.position-link:hover {
   .games-rb-mex-lines,
   .games-rb-readout,
   .games-rb-step-item,
+  .games-rb-grid-label,
+  .games-rb-mex-arrow,
   .games-rb-answer,
   .games-rb-same-result,
   .games-rb-table-tex-lhs,
   .games-rb-table-tex-rhs {
+    opacity: 1;
+  }
+
+  .games-rb-dual-highlight,
+  .games-rb-dual-label,
+  .games-rb-result-chip,
+  .games-rb-equality-check {
     opacity: 1;
   }
 
@@ -9669,27 +10140,13 @@ a.position-link:hover {
   .automata-sublocale-label,
   .automata-prefix-poset .automata-cantor-tree-edge,
   .automata-prefix-poset .automata-cantor-node,
-  .automata-cantor-space-label,
-  .automata-cantor-connector {
+  .automata-cantor-partition,
+  .automata-cantor-space-label {
     opacity: 1;
   }
 
   .automata-prefix-poset .automata-cantor-tree-edge {
     stroke-dashoffset: 0;
-  }
-
-  .automata-cantor-interval.stage-0 {
-    opacity: 0.58;
-  }
-
-  .automata-cantor-interval.stage-1 {
-    opacity: 0.74;
-  }
-
-  .automata-cantor-interval.stage-2,
-  .automata-cantor-interval.stage-3,
-  .automata-cantor-dot {
-    opacity: 0.95;
   }
 
   .automata-unfold-reverse-cover {

@@ -74,11 +74,11 @@
       if (typeof renderHomeTimeline === "function") renderHomeTimeline();
       if (typeof renderHomePapers === "function") renderHomePapers();
     }
-    if (page === "papers") {
+    if (page === "papers" || page === "documents") {
       if (globalThis.state) state.paperView = "diagram";
       if (typeof renderPapers === "function") renderPapers();
       if (typeof renderPreparationPapers === "function") renderPreparationPapers();
-      if (typeof renderMiscPapers === "function") renderMiscPapers();
+      if (page === "papers" && typeof renderMiscPapers === "function") renderMiscPapers();
     }
     if (page === "activities" && typeof renderActivities === "function") renderActivities();
     if (page === "links" && typeof renderLinks === "function") renderLinks();

@@ -21,8 +21,7 @@ const pages = [
   ["problems", "problems/index.html"],
   ["links", "links/index.html"],
   ["web-apps", "web-apps/index.html"],
-  ["search", "search/index.html"],
-  ["speculative", "speculative-notes/index.html"]
+  ["search", "search/index.html"]
 ];
 
 const viewports = [
