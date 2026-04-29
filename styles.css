@@ -356,6 +356,7 @@ input {
   padding: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
+  appearance: none;
   background: var(--paper);
 }
 
@@ -2882,29 +2883,46 @@ a.position-link:hover {
   color: var(--games-rb-ink);
 }
 
+.games-rb-dual-table .games-rb-cell-text {
+  font-size: 11.6px;
+}
+
+.games-rb-set-highlight {
+  stroke: none;
+}
+
+.games-rb-set-highlight.is-s-entry {
+  fill: rgba(37, 99, 235, 0.26);
+}
+
+.games-rb-set-highlight.is-t-entry {
+  fill: rgba(200, 39, 39, 0.22);
+}
+
 .games-rb-dual-highlight {
   opacity: 0.2;
   stroke: none;
 }
 
 .games-rb-dual-highlight.is-mex-s-head,
-.games-rb-dual-highlight.is-mex-t-head {
-  fill: rgba(198, 95, 23, 0.48);
+.games-rb-dual-highlight.is-col-product {
+  fill: rgba(37, 99, 235, 0.42);
   animation: games-rb-dual-mex var(--games-rb-cycle) steps(1, end) infinite;
 }
 
+.games-rb-dual-highlight.is-mex-t-head,
 .games-rb-dual-highlight.is-row-product {
-  fill: rgba(20, 124, 90, 0.46);
-  animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
+  fill: rgba(200, 39, 39, 0.38);
+  animation: games-rb-dual-mex var(--games-rb-cycle) steps(1, end) infinite;
 }
 
+.games-rb-dual-highlight.is-row-product,
 .games-rb-dual-highlight.is-col-product {
-  fill: rgba(37, 99, 235, 0.42);
   animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
 }
 
 .games-rb-dual-highlight.is-product-cell {
-  fill: rgba(200, 39, 39, 0.4);
+  fill: rgba(124, 58, 237, 0.34);
   animation: games-rb-dual-products var(--games-rb-cycle) steps(1, end) infinite;
 }
 
@@ -3004,6 +3022,23 @@ a.position-link:hover {
   width: 34%;
   white-space: normal;
   line-height: 1.08;
+}
+
+.games-rb-set-def {
+  top: 16.8%;
+  font-size: clamp(0.7rem, 1.14vw, 0.92rem);
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.games-rb-set-def-s {
+  left: 42%;
+  color: var(--games-rb-blue);
+}
+
+.games-rb-set-def-t {
+  left: 58%;
+  color: var(--games-rb-red);
 }
 
 @keyframes games-rb-dual-mex {
@@ -4358,42 +4393,56 @@ a.position-link:hover {
   fill: var(--cantor-green);
   font-size: 18px;
   font-weight: 880;
-  text-anchor: middle;
+  text-anchor: start;
   opacity: 0;
   animation: automata-cantor-label-stage var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
-.automata-cantor-partitions {
-  pointer-events: none;
+.automata-cantor-interval,
+.automata-cantor-dot {
+  fill: var(--cantor-purple);
+  opacity: 0;
 }
 
-.automata-cantor-partition {
+.automata-cantor-interval.stage-0 {
+  animation: automata-cantor-stage-0 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-interval.stage-1 {
+  animation: automata-cantor-stage-1 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-interval.stage-2 {
+  animation: automata-cantor-stage-2 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-interval.stage-3 {
+  animation: automata-cantor-stage-3 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-dot {
+  animation: automata-cantor-stage-4 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-connector {
   fill: none;
   opacity: 0;
-  stroke: var(--cantor-purple);
+  stroke: rgba(143, 58, 216, 0.24);
   stroke-linecap: round;
-  stroke-width: 7;
+  stroke-width: 2;
   vector-effect: non-scaling-stroke;
 }
 
-.automata-cantor-partition.partition-stage-0 {
-  animation: automata-cantor-partition-stage-0 var(--cantor-cover-cycle) steps(1, end) infinite;
+.automata-cantor-connector.cantor-stage-1 {
+  animation: automata-cantor-connector-stage-1 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
-.automata-cantor-partition.partition-stage-1 {
-  animation: automata-cantor-partition-stage-1 var(--cantor-cover-cycle) steps(1, end) infinite;
+.automata-cantor-connector.cantor-stage-2 {
+  animation: automata-cantor-connector-stage-2 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
-.automata-cantor-partition.partition-stage-2 {
-  animation: automata-cantor-partition-stage-2 var(--cantor-cover-cycle) steps(1, end) infinite;
-}
-
-.automata-cantor-partition.partition-stage-3 {
-  animation: automata-cantor-partition-stage-3 var(--cantor-cover-cycle) steps(1, end) infinite;
-}
-
-.automata-cantor-partition.partition-stage-4 {
-  animation: automata-cantor-partition-stage-4 var(--cantor-cover-cycle) steps(1, end) infinite;
+.automata-cantor-connector.cantor-stage-3 {
+  animation: automata-cantor-connector-stage-3 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
 .automata-cantor-ray,
@@ -4441,17 +4490,11 @@ a.position-link:hover {
   animation: automata-bouquet-loop-unfold var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
-.automata-bouquet-direction,
 .automata-unfold-reverse-cover {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
-}
-
-.automata-bouquet-direction {
-  opacity: 0.82;
-  stroke-width: 2.5;
 }
 
 .automata-unfold-reverse-cover {
@@ -4464,24 +4507,6 @@ a.position-link:hover {
 
 .automata-cover-unfolding {
   pointer-events: none;
-}
-
-.automata-unfold-node-pulse {
-  fill: none;
-  stroke-width: 2.2;
-  vector-effect: non-scaling-stroke;
-}
-
-.automata-unfold-node-pulse.neutral {
-  stroke: rgba(44, 111, 99, 0.5);
-}
-
-.automata-unfold-node-pulse.blue {
-  stroke: rgba(47, 106, 163, 0.52);
-}
-
-.automata-unfold-node-pulse.red {
-  stroke: rgba(184, 79, 60, 0.52);
 }
 
 .automata-rolling-bouquet {
@@ -4513,15 +4538,13 @@ a.position-link:hover {
 
 .automata-cantor-ray.red,
 .automata-cantor-tree-edge.red,
-.automata-cantor-bouquet-loop.red,
-.automata-bouquet-direction.red {
+.automata-cantor-bouquet-loop.red {
   stroke: var(--cantor-red);
 }
 
 .automata-cantor-ray.blue,
 .automata-cantor-tree-edge.blue,
-.automata-cantor-bouquet-loop.blue,
-.automata-bouquet-direction.blue {
+.automata-cantor-bouquet-loop.blue {
   stroke: var(--cantor-blue);
 }
 
@@ -4811,73 +4834,109 @@ a.position-link:hover {
 
 @keyframes automata-cantor-label-stage {
   0%,
-  60% {
+  13% {
     opacity: 0;
   }
 
-  66%,
+  17%,
   100% {
     opacity: 1;
   }
 }
 
-@keyframes automata-cantor-partition-stage-0 {
+@keyframes automata-cantor-stage-0 {
   0%,
-  60% {
+  13% {
     opacity: 0;
   }
 
-  64%,
+  17%,
   100% {
-    opacity: 0.7;
+    opacity: 0.58;
   }
 }
 
-@keyframes automata-cantor-partition-stage-1 {
+@keyframes automata-cantor-stage-1 {
   0%,
-  66% {
+  23% {
     opacity: 0;
   }
 
-  70%,
+  27%,
   100% {
-    opacity: 0.78;
+    opacity: 0.74;
   }
 }
 
-@keyframes automata-cantor-partition-stage-2 {
+@keyframes automata-cantor-stage-2 {
   0%,
-  72% {
+  34% {
     opacity: 0;
   }
 
-  76%,
-  100% {
-    opacity: 0.88;
-  }
-}
-
-@keyframes automata-cantor-partition-stage-3 {
-  0%,
-  78% {
-    opacity: 0;
-  }
-
-  82%,
+  38%,
   100% {
     opacity: 0.95;
   }
 }
 
-@keyframes automata-cantor-partition-stage-4 {
+@keyframes automata-cantor-stage-3 {
   0%,
-  84% {
+  45% {
     opacity: 0;
   }
 
-  88%,
+  50%,
   100% {
-    opacity: 0.98;
+    opacity: 0.95;
+  }
+}
+
+@keyframes automata-cantor-stage-4 {
+  0%,
+  55% {
+    opacity: 0;
+  }
+
+  59%,
+  100% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes automata-cantor-connector-stage-1 {
+  0%,
+  23% {
+    opacity: 0;
+  }
+
+  27%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-cantor-connector-stage-2 {
+  0%,
+  34% {
+    opacity: 0;
+  }
+
+  38%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-cantor-connector-stage-3 {
+  0%,
+  45% {
+    opacity: 0;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
   }
 }
 
@@ -5318,16 +5377,24 @@ a.position-link:hover {
   background: rgba(255, 253, 248, 0.92);
   border: 1px solid rgba(43, 52, 43, 0.12);
   border-radius: 9px;
-  bottom: 10px;
   box-shadow: 0 8px 24px rgba(43, 52, 43, 0.08);
   display: flex;
   gap: 8px;
   justify-content: center;
-  left: 25%;
   padding: 6px;
   position: absolute;
   transform: translateX(-50%);
   z-index: 2;
+}
+
+.automata-interactive-controls-input {
+  left: 20%;
+  top: 24%;
+}
+
+.automata-interactive-controls-actions {
+  bottom: 10px;
+  left: 25%;
 }
 
 .automata-button {
@@ -5393,7 +5460,7 @@ a.position-link:hover {
 }
 
 .normalization-subgroup .figure-math-label.large {
-  font-size: 21px;
+  font-size: 18px;
 }
 
 .normalization-subgroup .figure-math-label.small {
@@ -5402,6 +5469,10 @@ a.position-link:hover {
 
 .normalization-subgroup .figure-math-label.tiny {
   font-size: 11.2px;
+}
+
+.normalization-subgroup .figure-math-label {
+  opacity: 0;
 }
 
 .normalization-object-label {
@@ -5427,6 +5498,38 @@ a.position-link:hover {
   vector-effect: non-scaling-stroke;
 }
 
+.normalization-tex-object,
+.normalization-tex-morphism {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.normalization-tex-label {
+  align-items: center;
+  color: rgba(31, 39, 33, 0.86);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+}
+
+.normalization-tex-object .normalization-tex-label {
+  font-size: 22px;
+  font-weight: 650;
+}
+
+.normalization-tex-morphism .normalization-tex-label {
+  color: rgba(31, 39, 33, 0.78);
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.normalization-tex-label .katex {
+  line-height: 1;
+}
+
 .normalization-morphism-label {
   fill: rgba(31, 39, 33, 0.78);
   font-family: Georgia, "Times New Roman", serif;
@@ -5436,14 +5539,30 @@ a.position-link:hover {
   text-anchor: middle;
 }
 
+.normalization-arrow-caption {
+  fill: rgba(31, 39, 33, 0.66);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 760;
+  letter-spacing: 0;
+  text-anchor: middle;
+}
+
+.normalization-hasse-edge {
+  stroke: rgba(93, 97, 92, 0.28);
+  stroke-width: 2;
+}
+
 .normalization-map-arrow,
 .normalization-operator-link {
   stroke: rgba(44, 111, 99, 0.34);
-  stroke-width: 2.2;
+  stroke-width: 2.55;
 }
 
 .normalization-operator-link {
   fill: none;
+  marker-mid: url("#normalization-link-arrow-d4");
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
@@ -5454,19 +5573,48 @@ a.position-link:hover {
 }
 
 .normalization-operator-link[data-normalization-operator-source="ref0"] {
-  stroke: rgba(31, 111, 178, 0.7);
+  marker-mid: url("#normalization-link-arrow-ref0");
+  stroke: rgba(31, 111, 178, 0.9);
 }
 
 .normalization-operator-link[data-normalization-operator-source="ref2"] {
-  stroke: rgba(214, 90, 58, 0.7);
+  marker-mid: url("#normalization-link-arrow-ref2");
+  stroke: rgba(214, 90, 58, 0.9);
 }
 
 .normalization-operator-link[data-normalization-operator-source="ref1"] {
-  stroke: rgba(81, 145, 47, 0.72);
+  marker-mid: url("#normalization-link-arrow-ref1");
+  stroke: rgba(81, 145, 47, 0.92);
 }
 
 .normalization-operator-link[data-normalization-operator-source="ref3"] {
-  stroke: rgba(124, 87, 194, 0.72);
+  marker-mid: url("#normalization-link-arrow-ref3");
+  stroke: rgba(124, 87, 194, 0.92);
+}
+
+.normalization-figure #normalization-link-arrow-d4 path {
+  fill: #5d615c;
+  fill-opacity: 0.58;
+}
+
+.normalization-figure #normalization-link-arrow-ref0 path {
+  fill: #1f6fb2;
+  fill-opacity: 0.9;
+}
+
+.normalization-figure #normalization-link-arrow-ref2 path {
+  fill: #d65a3a;
+  fill-opacity: 0.9;
+}
+
+.normalization-figure #normalization-link-arrow-ref1 path {
+  fill: #51912f;
+  fill-opacity: 0.92;
+}
+
+.normalization-figure #normalization-link-arrow-ref3 path {
+  fill: #7c57c2;
+  fill-opacity: 0.92;
 }
 
 .normalization-stabilizer-links,
@@ -5476,27 +5624,32 @@ a.position-link:hover {
 
 .normalization-stabilizer-link {
   fill: none;
+  marker-mid: url("#normalization-link-arrow-d4");
   stroke: rgba(47, 83, 111, 0.48);
-  stroke-width: 2.15;
+  stroke-width: 2.45;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="ref0"] {
-  stroke: rgba(31, 111, 178, 0.66);
+  marker-mid: url("#normalization-link-arrow-ref0");
+  stroke: rgba(31, 111, 178, 0.88);
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="ref2"] {
-  stroke: rgba(214, 90, 58, 0.66);
+  marker-mid: url("#normalization-link-arrow-ref2");
+  stroke: rgba(214, 90, 58, 0.88);
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="ref1"] {
-  stroke: rgba(81, 145, 47, 0.68);
+  marker-mid: url("#normalization-link-arrow-ref1");
+  stroke: rgba(81, 145, 47, 0.9);
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="ref3"] {
-  stroke: rgba(124, 87, 194, 0.68);
+  marker-mid: url("#normalization-link-arrow-ref3");
+  stroke: rgba(124, 87, 194, 0.9);
 }
 
 .normalization-stabilizer-link[data-normalization-link-subgroup="d4"] {
@@ -5504,7 +5657,7 @@ a.position-link:hover {
 }
 
 .normalization-figure.is-transporting .normalization-stabilizer-link {
-  stroke-width: 2.35;
+  stroke-width: 2.65;
 }
 
 .normalization-subgroup {
@@ -5538,6 +5691,13 @@ a.position-link:hover {
   --normalization-subgroup-stroke: #6d5b8e;
   --normalization-subgroup-highlight-fill: #dfd7ee;
   --normalization-subgroup-highlight-stroke: #6d5b8e;
+}
+
+.normalization-subgroup:not([data-normalization-face-colors]):not([data-normalization-edge-colors]) {
+  --normalization-subgroup-fill: #e7e7e2;
+  --normalization-subgroup-stroke: #747872;
+  --normalization-subgroup-highlight-fill: #e7e7e2;
+  --normalization-subgroup-highlight-stroke: #747872;
 }
 
 .normalization-subgroup[data-normalization-subgroup="d4"] {
@@ -5631,8 +5791,8 @@ a.position-link:hover {
 }
 
 .normalization-square-shadow {
-  fill: rgba(255, 253, 248, 0.9);
-  stroke: rgba(43, 52, 43, 0.13);
+  fill: none;
+  stroke: none;
   stroke-width: 1.4;
   vector-effect: non-scaling-stroke;
 }
@@ -5863,8 +6023,9 @@ a.position-link:hover {
 
 .normalization-element-control text {
   fill: #1f2721;
-  font-size: 17px;
+  font-size: 16.5px;
   font-weight: 850;
+  letter-spacing: 0;
   pointer-events: none;
   text-anchor: middle;
 }
@@ -6286,13 +6447,26 @@ a.position-link:hover {
   fill: #2c6f63;
 }
 
+.internal-classifier-symbol-box {
+  overflow: visible;
+}
+
 .internal-classifier-symbol {
-  fill: #1f2721;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: 700;
-  text-anchor: middle;
+  align-items: center;
+  color: #1f2721;
+  display: flex;
+  font-size: 21px;
+  font-weight: 400;
+  height: 30px;
+  justify-content: center;
+  line-height: 1;
+  width: 38px;
+}
+
+.internal-classifier-symbol .katex {
+  color: inherit;
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .internal-piece {
@@ -6699,8 +6873,8 @@ a.position-link:hover {
 
 .tensor-map-symbol {
   fill: rgba(138, 77, 52, 0.82);
-  font-size: 30px;
-  font-weight: 950;
+  font-size: 22px;
+  font-weight: 900;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -6755,86 +6929,8 @@ a.position-link:hover {
   --tensor-map-fill: #dfeee5;
   --tensor-subset: #b66737;
   --tensor-subset-fill: #f5dcc6;
-}
-
-.tensor-formula-stage {
-  left: 57.37%;
-  top: 84%;
-  z-index: 3;
-  max-width: calc(100% - 34px);
-  padding: 8px 14px;
-  border: 1px solid rgba(44, 111, 99, 0.2);
-  border-radius: 14px;
-  background: rgba(255, 253, 248, 0.9);
-  box-shadow: 0 12px 22px rgba(38, 46, 39, 0.08);
-  color: #24312a;
-  font-size: clamp(0.76rem, 1.75vw, 1.16rem);
-  pointer-events: none;
-}
-
-.tensor-formula-stage .katex {
-  font-size: 1em;
-  white-space: nowrap;
-}
-
-.tensor-formula-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  column-gap: 12px;
-  align-items: center;
-  width: min(76%, 690px);
-}
-
-.tensor-formula-sequence {
-  display: grid;
-  place-items: center;
-  width: min(72%, 620px);
-  min-height: 2.35em;
-}
-
-.tensor-sequence-step {
-  grid-area: 1 / 1;
-  opacity: 0;
-  white-space: nowrap;
-}
-
-.tensor-sequence-step-1 {
-  animation: tensor-sequence-step-1 var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-sequence-step-2 {
-  animation: tensor-sequence-step-2 var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-sequence-step-3 {
-  animation: tensor-sequence-step-3 var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-sequence-step-4 {
-  animation: tensor-sequence-step-4 var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-formula-left {
-  justify-self: end;
-  text-align: right;
-}
-
-.tensor-formula-operator {
-  justify-self: center;
-  color: #26342b;
-  font-size: 1.18em;
-  line-height: 1;
-}
-
-.tensor-formula-right {
-  justify-self: start;
-  text-align: left;
-}
-
-.tensor-formula-free {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  --tensor-neutral: #666a64;
+  --tensor-neutral-fill: #ededdf;
 }
 
 .tensor-factorization-figure .tensor-map-symbol {
@@ -6845,56 +6941,17 @@ a.position-link:hover {
   fill: var(--tensor-subset);
 }
 
+.tensor-factorization-figure .tensor-neutral-label {
+  fill: var(--tensor-neutral);
+}
+
 .tensor-factorization-figure .tensor-s-new-label {
-  fill: rgba(82, 86, 80, 0.76);
   opacity: 0;
   animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
-.tensor-factorization-figure .tensor-set-envelope {
-  fill: rgba(255, 253, 248, 0.34);
-  stroke: rgba(31, 39, 33, 0.18);
-  stroke-width: 1.8;
-}
-
-.tensor-factorization-figure .tensor-set-envelope,
-.tensor-factorization-figure .tensor-s-new-envelope,
-.tensor-factorization-figure .tensor-s-envelope {
-  display: none;
-}
-
-.tensor-factorization-figure .tensor-group-block {
-  fill: none;
-  stroke: rgba(44, 111, 99, 0.4);
-  stroke-width: 2.4;
-}
-
-.tensor-factorization-figure .tensor-block-as {
-  stroke: rgba(182, 103, 55, 0.5);
-}
-
-.tensor-factorization-figure .tensor-block-ss {
-  stroke: rgba(182, 103, 55, 0.62);
-}
-
-.tensor-factorization-figure .tensor-block-xs {
-  stroke: rgba(44, 111, 99, 0.62);
-}
-
-.tensor-factorization-figure .tensor-x-envelope {
-  stroke: rgba(44, 111, 99, 0.2);
-}
-
-.tensor-factorization-figure .tensor-a-envelope {
-  stroke: rgba(99, 102, 96, 0.24);
-}
-
-.tensor-factorization-figure .tensor-left-a-envelope {
-  stroke: rgba(44, 111, 99, 0.24);
-}
-
 .tensor-factorization-figure .tensor-left-a-label {
-  fill: rgba(44, 111, 99, 0.72);
+  fill: rgba(82, 86, 80, 0.76);
 }
 
 .tensor-factorization-figure .tensor-left-map-cord {
@@ -6907,121 +6964,53 @@ a.position-link:hover {
   vector-effect: non-scaling-stroke;
 }
 
-.tensor-factorization-figure .tensor-a-reference-line {
-  fill: none;
-  stroke: rgba(67, 72, 64, 0.22);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.4;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 0;
-  vector-effect: non-scaling-stroke;
-}
-
-.tensor-factorization-figure .tensor-subset-extension {
-  fill: none;
-  stroke: var(--tensor-subset);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 4.4;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 0;
-  vector-effect: non-scaling-stroke;
-  animation: tensor-subset-extension-split var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-s-copy-link {
+.tensor-factorization-figure .tensor-subset-link {
   fill: none;
   stroke: var(--tensor-subset);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 3.4;
-  opacity: 0;
+  opacity: 0.92;
   vector-effect: non-scaling-stroke;
-  animation: tensor-s-copy-link-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
-.tensor-factorization-figure .tensor-iota-arrow-head {
-  fill: rgba(99, 102, 96, 0.88);
-  stroke: rgba(255, 253, 248, 0.94);
-  stroke-linejoin: round;
-  stroke-width: 0.85;
-}
-
-.tensor-factorization-figure .tensor-iota-arrow {
+.tensor-factorization-figure .tensor-neutral-link {
   fill: none;
+  stroke: var(--tensor-neutral);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
+  stroke-width: 3.2;
+  opacity: 0;
   vector-effect: non-scaling-stroke;
 }
 
-.tensor-factorization-figure .tensor-iota-arrow {
-  stroke: rgba(99, 102, 96, 0.84);
-  stroke-width: 3.2;
-}
-
-.tensor-factorization-figure .tensor-iota-local-arrow {
-  animation: tensor-iota-local-arrow-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-iota-domain-node {
-  opacity: 0;
-  animation: tensor-iota-domain-node-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-iota-domain-node circle {
-  fill: rgba(255, 253, 248, 0.96);
-  stroke: rgba(99, 102, 96, 0.72);
-  stroke-width: 2.4;
-}
-
-.tensor-factorization-figure .tensor-iota-domain-node text {
-  fill: #24312a;
-  font-size: 20px;
-  font-weight: 900;
-  text-anchor: middle;
-}
-
-.tensor-factorization-figure .tensor-operator-label {
-  font-family: ui-serif, Georgia, serif;
-  font-size: 23px;
-  font-weight: 900;
-  opacity: 0;
-  text-anchor: middle;
-}
-
-.tensor-factorization-figure .tensor-iota-label {
-  fill: rgba(82, 86, 80, 0.9);
-}
-
-.tensor-factorization-figure .tensor-iota-label {
-  animation: tensor-iota-label-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-tensor-divider {
-  stroke: rgba(67, 72, 64, 0.32);
-  stroke-dasharray: 6 8;
+.tensor-factorization-figure .tensor-a-copy-link {
+  fill: none;
+  stroke: var(--tensor-neutral);
+  stroke-dasharray: 5 7;
   stroke-linecap: round;
-  stroke-width: 2.2;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+  opacity: 0.55;
+  vector-effect: non-scaling-stroke;
 }
 
-.tensor-factorization-figure .tensor-s-envelope {
-  fill: rgba(245, 220, 198, 0.24);
-  stroke: rgba(182, 103, 55, 0.42);
-  stroke-dasharray: 8 8;
-  stroke-width: 2;
-  opacity: 1;
-}
-
-.tensor-factorization-figure .tensor-s-new-envelope {
-  fill: rgba(255, 253, 248, 0.28);
-  stroke: rgba(99, 102, 96, 0.34);
-  stroke-dasharray: 8 8;
-  stroke-width: 2;
+.tensor-factorization-figure .tensor-s-new-node {
   opacity: 0;
-  animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
+  animation: tensor-s-new-node-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-s-new-node circle {
+  fill: var(--tensor-neutral-fill);
+  stroke: var(--tensor-neutral);
+  stroke-width: 2.6;
+}
+
+.tensor-factorization-figure .tensor-s-new-node text {
+  fill: var(--tensor-neutral);
+  font-size: 22px;
+  font-weight: 900;
+  text-anchor: middle;
 }
 
 .tensor-factorization-figure .tensor-f-arrow-head-green {
@@ -7071,6 +7060,16 @@ a.position-link:hover {
   fill: rgba(36, 49, 42, 0.68);
 }
 
+.tensor-factorization-figure .tensor-neutral-node circle {
+  fill: var(--tensor-neutral-fill);
+  stroke: var(--tensor-neutral);
+  stroke-width: 2.6;
+}
+
+.tensor-factorization-figure .tensor-neutral-node text {
+  fill: var(--tensor-neutral);
+}
+
 .tensor-factorization-figure .tensor-s-node {
   opacity: 1;
 }
@@ -7096,38 +7095,14 @@ a.position-link:hover {
   stroke: var(--tensor-map);
 }
 
-.tensor-factorization-figure .tensor-subset-extension,
-.tensor-factorization-figure .tensor-s-copy-link,
 .tensor-factorization-figure .tensor-s-new-label,
-.tensor-factorization-figure .tensor-s-new-envelope,
 .tensor-factorization-figure .tensor-s-duplicate-label,
 .tensor-factorization-figure .tensor-s-duplicate-node,
-.tensor-factorization-figure .tensor-merge-away,
-.tensor-factorization-figure .tensor-iota-domain-node,
-.tensor-factorization-figure .tensor-iota-local-arrow,
-.tensor-factorization-figure .tensor-iota-label {
+.tensor-factorization-figure .tensor-s-new-node {
   animation-iteration-count: infinite;
 }
 
-.tensor-factorization-figure .tensor-merge-away {
-  animation: tensor-merge-away-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-@keyframes tensor-iota-local-arrow-stage {
-  0%,
-  42% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-
-  56%,
-  100% {
-    opacity: 0.96;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-iota-domain-node-stage {
+@keyframes tensor-s-new-node-stage {
   0%,
   38% {
     opacity: 0;
@@ -7146,113 +7121,6 @@ a.position-link:hover {
   }
 
   52%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-iota-label-stage {
-  0%,
-  44% {
-    opacity: 0;
-  }
-
-  56%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-subset-extension-split {
-  0%,
-  42% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-
-  58%,
-  100% {
-    opacity: 0.1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tensor-s-copy-link-stage {
-  0%,
-  40% {
-    opacity: 0;
-  }
-
-  52%,
-  100% {
-    opacity: 0.95;
-  }
-}
-
-@keyframes tensor-merge-away-stage {
-  0%,
-  88% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes tensor-sequence-step-1 {
-  0%,
-  24% {
-    opacity: 1;
-  }
-
-  32%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes tensor-sequence-step-2 {
-  0%,
-  24% {
-    opacity: 0;
-  }
-
-  34%,
-  48% {
-    opacity: 1;
-  }
-
-  56%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes tensor-sequence-step-3 {
-  0%,
-  48% {
-    opacity: 0;
-  }
-
-  58%,
-  72% {
-    opacity: 1;
-  }
-
-  80%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes tensor-sequence-step-4 {
-  0%,
-  72% {
-    opacity: 0;
-  }
-
-  84%,
   100% {
     opacity: 1;
   }
@@ -7295,6 +7163,69 @@ a.position-link:hover {
 .publication-title a:hover {
   color: var(--accent);
   text-decoration: underline;
+}
+
+.title-copy-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 2px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  appearance: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.title-copy-link.is-copied,
+.title-copy-link.is-failed {
+  width: auto;
+  gap: 6px;
+  padding: 0 9px;
+}
+
+.title-copy-link-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.title-copy-link-status {
+  display: none;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.title-copy-link.is-copied .title-copy-link-status,
+.title-copy-link.is-failed .title-copy-link-status {
+  display: inline;
+}
+
+.title-copy-link:hover,
+.title-copy-link:focus-visible {
+  border-color: rgba(44, 111, 99, 0.28);
+  background: rgba(44, 111, 99, 0.08);
+  color: var(--accent);
+  outline: 0;
+}
+
+.title-copy-link.is-copied {
+  background: rgba(44, 111, 99, 0.14);
+  color: var(--accent);
+}
+
+.title-copy-link.is-failed {
+  background: rgba(166, 72, 55, 0.12);
+  color: #a64837;
 }
 
 .publication-venue {
@@ -7415,11 +7346,14 @@ a.position-link:hover {
   padding: 5px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
+  appearance: none;
   background: var(--paper);
   color: var(--ink);
+  cursor: pointer;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.84rem;
   font-weight: 700;
+  line-height: 1.2;
   text-decoration: none;
 }
 
@@ -9049,6 +8983,10 @@ a.position-link:hover {
   font-weight: 700;
 }
 
+.talk-title .title-copy-link {
+  margin-top: -5px;
+}
+
 .talk-title-icon {
   width: 16px;
   height: 16px;
@@ -9348,7 +9286,14 @@ a.position-link:hover {
 }
 
 .note-item h3 {
+  display: flex;
+  align-items: start;
+  gap: 6px;
   margin-bottom: 8px;
+}
+
+.note-item h3 .title-copy-link {
+  margin-top: -3px;
 }
 
 .note-item p {
@@ -10192,12 +10137,7 @@ a.position-link:hover {
   .grundy-transfer-ball,
   .grundy-node.is-receiving .grundy-node-shell,
   .grundy-node.is-receiving .grundy-value-label,
-  .tensor-factorization-figure .tensor-subset-extension,
-  .tensor-factorization-figure .tensor-split-divider,
-  .tensor-factorization-figure .tensor-iota-arrow,
-  .tensor-factorization-figure .tensor-iota-domain-node,
-  .tensor-factorization-figure .tensor-operator-label,
-  .tensor-formula-stage,
+  .tensor-factorization-figure .tensor-s-new-node,
   .games-rb-table-mex-head,
   .games-rb-cell.is-s-def,
   .games-rb-cell.is-t-def,
@@ -10219,7 +10159,6 @@ a.position-link:hover {
   .games-rb-result-chip,
   .games-rb-equality-check,
   .automata-cantor-bouquet-loop,
-  .automata-bouquet-direction,
   .automata-unfold-reverse-cover,
   .automata-etale-arrow,
   .automata-etale-label,
@@ -10227,8 +10166,10 @@ a.position-link:hover {
   .automata-sublocale-label,
   .automata-prefix-poset .automata-cantor-tree-edge,
   .automata-prefix-poset .automata-cantor-node,
-  .automata-cantor-partition,
-  .automata-cantor-space-label {
+  .automata-cantor-space-label,
+  .automata-cantor-interval,
+  .automata-cantor-connector,
+  .automata-cantor-dot {
     animation: none;
   }
 
@@ -10274,21 +10215,19 @@ a.position-link:hover {
     display: none;
   }
 
-  .automata-rolling-bouquet,
-  .automata-unfold-node-pulse {
+  .automata-rolling-bouquet {
     display: none;
   }
 
   .automata-cantor-bouquet-loop,
-  .automata-bouquet-direction,
   .automata-etale-arrow,
   .automata-etale-label,
   .automata-sublocale-arrow,
   .automata-sublocale-label,
   .automata-prefix-poset .automata-cantor-tree-edge,
   .automata-prefix-poset .automata-cantor-node,
-  .automata-cantor-partition,
-  .automata-cantor-space-label {
+  .automata-cantor-space-label,
+  .automata-cantor-connector {
     opacity: 1;
   }
 
@@ -10308,22 +10247,10 @@ a.position-link:hover {
     opacity: 0.24;
   }
 
-  .tensor-factorization-figure .tensor-s-envelope,
-  .tensor-factorization-figure .tensor-a-reference-line,
-  .tensor-factorization-figure .tensor-subset-extension,
   .tensor-factorization-figure .tensor-right-a-node,
+  .tensor-factorization-figure .tensor-s-new-node,
   .tensor-factorization-figure .tensor-s-node {
     opacity: 1;
-  }
-
-  .tensor-factorization-figure .tensor-a-reference-line,
-  .tensor-factorization-figure .tensor-subset-extension {
-    stroke-dashoffset: 0;
-  }
-
-  .tensor-factorization-figure .tensor-iota-local-arrow,
-  .tensor-factorization-figure .tensor-iota-label {
-    opacity: 0;
   }
 
   .automata-input-word tspan {

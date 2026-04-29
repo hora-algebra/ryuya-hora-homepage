@@ -14,6 +14,7 @@ function notePdfAsset(id, slug, thumbnail) {
 }
 
 const problemListUpdated = "30 March 2026";
+const publicSiteUrl = "https://hora-algebra.github.io/ryuya-hora-homepage/";
 
 const problemRefs = {
   tac: ["Local state classifier paper", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
@@ -1413,6 +1414,9 @@ const i18nText = {
     "Small deployed tools and experiments.": "公開中の小さな tools と experiments。",
     "Small Vercel-hosted tools and experiments.": "Vercel で公開している小さな tools と experiments。",
     "Open app": "アプリを開く",
+    "Copy link": "リンクをコピー",
+    "Copied": "コピーしました",
+    "Copy failed": "コピー失敗",
     "Guide": "Guide",
     "Dev": "Dev",
     "Workbench": "Workbench",
@@ -1526,6 +1530,9 @@ const i18nContextText = {
     action: {
       Open: "開く",
       Download: "ダウンロード",
+      "Copy link": "リンクをコピー",
+      Copied: "コピーしました",
+      "Copy failed": "コピー失敗",
       Slides: "スライド",
       PDF: "PDF",
       "Open paper": "論文を開く",
@@ -2399,6 +2406,61 @@ function getPathPrefix() {
 function localHref(href) {
   if (/^(https?:|mailto:|#)/.test(href)) return href;
   return `${getPathPrefix()}${href}`;
+}
+
+function publicHref(href) {
+  const text = String(href || "").trim();
+  if (!text) return publicSiteUrl;
+  if (/^https?:/i.test(text)) return text;
+  const clean = text.replace(/^(\.\/|\.\.\/)+/u, "").replace(/^\//u, "");
+  return new URL(clean, publicSiteUrl).href;
+}
+
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+  document.body.append(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+}
+
+function titleCopyButton(href, title = "") {
+  const button = el("button", "title-copy-link");
+  const url = publicHref(href);
+  button.type = "button";
+  button.dataset.copyHref = url;
+  button.setAttribute("aria-label", title ? `Copy link to ${title}` : "Copy link");
+  button.title = "Copy link";
+  button.append(uiIcon("link", "title-copy-link-icon"), el("span", "title-copy-link-status", "Copied!"));
+  button.addEventListener("click", async () => {
+    try {
+      await copyTextToClipboard(url);
+      button.classList.add("is-copied");
+      button.classList.remove("is-failed");
+      button.querySelector(".title-copy-link-status").textContent = "Copied!";
+      button.setAttribute("aria-label", "Copied!");
+      setTimeout(() => {
+        button.classList.remove("is-copied");
+        button.setAttribute("aria-label", title ? `Copy link to ${title}` : "Copy link");
+      }, 1400);
+    } catch (_error) {
+      button.classList.add("is-failed");
+      button.classList.remove("is-copied");
+      button.querySelector(".title-copy-link-status").textContent = "Failed";
+      button.setAttribute("aria-label", activeLanguage === "ja" ? "コピー失敗" : "Copy failed");
+      setTimeout(() => button.classList.remove("is-failed"), 1400);
+    }
+  });
+  return button;
 }
 
 function overleafArtifacts(kinds = []) {
@@ -3933,6 +3995,7 @@ function renderTalkTimeline() {
     el("p", "talk-timeline-meta", presentationMeta(selected)),
     el("p", "talk-timeline-count", `${selectedIndex + 1} / ${records.length}`)
   );
+  title.append(titleCopyButton(`talks/index.html#${talkRecordAnchor(selected)}`, selected.title));
   appendActionLinks(card, slideLinksForTalk(selected));
 
   root.append(timelineScrollFrame(track, selectedPosition), card);
@@ -5919,9 +5982,9 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "link" || normalizedKey === "external") {
     svg.append(
-      line({ d: "M10.2 13.8L13.8 10.2" }),
-      shape("path", { d: "M8.3 15.7l-1.2 1.2a3.1 3.1 0 0 1-4.4-4.4l3-3a3.1 3.1 0 0 1 4.4 0l1.2 1.2", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linecap": "round", "stroke-linejoin": "round" }),
-      shape("path", { d: "M15.7 8.3l1.2-1.2a3.1 3.1 0 0 1 4.4 4.4l-3 3a3.1 3.1 0 0 1-4.4 0l-1.2-1.2", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linecap": "round", "stroke-linejoin": "round" })
+      shape("path", { d: "M9.8 13.9A4.2 4.2 0 0 0 16 14.3L18.7 11.6A4.2 4.2 0 1 0 12.8 5.7L11.3 7.2", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      line({ d: "M9.6 14.4L14.4 9.6", "stroke-width": "2.05" }),
+      shape("path", { d: "M14.2 10.1A4.2 4.2 0 0 0 8 9.7L5.3 12.4A4.2 4.2 0 1 0 11.2 18.3L12.7 16.8", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" })
     );
     return svg;
   }
@@ -5948,6 +6011,11 @@ function uiIconSvg(key) {
       shape("path", {
         d: "M3.5 11.1L8.3 5.3L11 8.6L14.4 4.5L20.5 11.1L18.9 20.4H5.1Z",
         fill: "var(--paper)",
+        stroke: "none"
+      }),
+      shape("path", {
+        d: "M3.5 11.1L8.3 5.3L11 8.6L14.4 4.5L20.5 11.1",
+        fill: "none",
         stroke: "currentColor",
         "stroke-linecap": "round",
         "stroke-linejoin": "round",
@@ -6357,6 +6425,7 @@ function iconKeyForLink(label = "", href = "", context = "") {
 
 function iconKeyForAction(label = "", href = "") {
   const text = simplified(label);
+  if (text.includes("copy")) return "link";
   if (text.includes("download")) return "download";
   if (text.includes("slide")) return "talk";
   if (text.includes("arxiv")) return "arxiv";
@@ -6390,6 +6459,7 @@ function tagIconKey(label = "") {
   if (text.includes("simulation") || text.includes("experiment") || text.includes("workbench") || text.includes("editor")) return "webapp";
   if (text.includes("draft") || text.includes("meta") || text.includes("research log")) return "note";
   if (text.includes("formal") || text.includes("informal") || text.includes("question") || text.includes("problem")) return "problem";
+  if (text.includes("classifier")) return "category";
   if (text.includes("geometric morphism")) return "topos";
   if (text.includes("geometry") || text.includes("dynamical") || text.includes("space time")) return "torus";
   if (text.includes("topos") || text.includes("topoi") || text.includes("sheaf") || text.includes("site") || text.includes("locale") || text.includes("geometric morphism") || text.includes("hyperconnected") || text.includes("cohesive")) return "topos";
@@ -6745,36 +6815,12 @@ function themeTagLabel(themeId) {
   return themeById(themeId)?.label || themeId;
 }
 
-function isThemeEquivalentTag(tag, themeIds) {
-  const normalizedTag = simplified(tag);
-  return normalizeThemeSelection(themeIds).some((themeId) => {
-    const label = themeTagLabel(themeId);
-    return [
-      themeId,
-      label,
-      `${themeId} theory`,
-      `${label} theory`
-    ].map(simplified).includes(normalizedTag);
-  });
-}
-
-function paperDisplayTagRecords(paper, extraTags = []) {
-  const themeIds = paperThemeIds(paper);
-  const records = themeIds.map((themeId) => ({
+function paperDisplayTagRecords(paper) {
+  return paperThemeIds(paper).map((themeId) => ({
     label: themeTagLabel(themeId),
     themeId,
     kind: "theme"
   }));
-  const seen = new Set(records.map((record) => `theme:${record.themeId}`));
-  compactText([...(paper.tags || []), ...(extraTags || [])]).forEach((tag) => {
-    const label = String(tag || "").trim();
-    if (!label || isThemeEquivalentTag(label, themeIds)) return;
-    const key = `tag:${simplified(label)}`;
-    if (seen.has(key)) return;
-    seen.add(key);
-    records.push({ label, query: label, kind: "tag" });
-  });
-  return records;
 }
 
 function dedupeThemeRecords(records) {
@@ -7708,61 +7754,61 @@ function normalizationLatticeTemplate(role, x, y, scale = 1) {
   return `
       <g class="normalization-lattice" data-normalization-lattice-role="${role}" transform="translate(${x} ${y}) scale(${scale})">
         <g class="normalization-hasse-edges" data-normalization-hasse-edges>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v0" d="M150 52 L70 93"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="rot" d="M150 52 L150 93"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v1" d="M150 52 L230 93"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref0" d="M70 119 L35 177"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref2" d="M70 119 L95 177"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="r2" d="M70 119 L150 177"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="rot" data-normalization-hasse-to="r2" d="M150 119 L150 177"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="r2" d="M230 119 L150 177"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref1" d="M230 119 L205 177"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref3" d="M230 119 L265 177"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref0" d="M150 277 L35 203"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref2" d="M150 277 L95 203"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="r2" d="M150 277 L150 203"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref1" d="M150 277 L205 203"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref3" d="M150 277 L265 203"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v0" d="M150 52 L70 109"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="rot" d="M150 52 L150 109"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v1" d="M150 52 L230 109"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref0" d="M70 135 L35 209"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref2" d="M70 135 L95 209"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="r2" d="M70 135 L150 209"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="rot" data-normalization-hasse-to="r2" d="M150 135 L150 209"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="r2" d="M230 135 L150 209"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref1" d="M230 135 L205 209"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref3" d="M230 135 L265 209"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref0" d="M150 327 L35 235"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref2" d="M150 327 L95 235"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="r2" d="M150 327 L150 235"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref1" d="M150 327 L205 235"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref3" d="M150 327 L265 235"></path>
         </g>
 
         <g class="normalization-subgroup" data-normalization-subgroup="d4" data-subgroup-label="D4" transform="translate(150 38)">
-          <rect class="figure-node soft" x="-24" y="-14" width="48" height="28" rx="5"></rect>
+          <rect class="figure-node soft" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label large" y="1">D<tspan baseline-shift="sub" font-size="68%">4</tspan></text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="v0" data-subgroup-label="&lt;tau,sigma^2&gt;" transform="translate(70 106)">
-          <rect class="figure-node pale" x="-34" y="-13" width="68" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="v0" data-subgroup-label="&lt;tau,sigma^2&gt;" transform="translate(70 122)">
+          <rect class="figure-node pale" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="rot" data-subgroup-label="&lt;sigma&gt;" transform="translate(150 106)">
-          <rect class="figure-node pale" x="-23" y="-13" width="46" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="rot" data-subgroup-label="&lt;sigma&gt;" transform="translate(150 122)">
+          <rect class="figure-node pale" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="v1" data-subgroup-label="&lt;sigma tau,sigma^2&gt;" transform="translate(230 106)">
-          <rect class="figure-node pale" x="-37" y="-13" width="74" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="v1" data-subgroup-label="&lt;sigma tau,sigma^2&gt;" transform="translate(230 122)">
+          <rect class="figure-node pale" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="ref0" data-normalization-face-colors="blue" data-subgroup-label="&lt;tau&gt;" transform="translate(35 190)">
-          <rect class="figure-node" x="-21" y="-13" width="42" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-face-colors="blue" data-normalization-subgroup="ref0" data-subgroup-label="&lt;tau&gt;" transform="translate(35 222)">
+          <rect class="figure-node" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="ref2" data-normalization-face-colors="red" data-subgroup-label="&lt;sigma^2 tau&gt;" transform="translate(95 190)">
-          <rect class="figure-node" x="-25" y="-13" width="50" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-face-colors="red" data-normalization-subgroup="ref2" data-subgroup-label="&lt;sigma^2 tau&gt;" transform="translate(95 222)">
+          <rect class="figure-node" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="r2" data-subgroup-label="&lt;sigma^2&gt;" transform="translate(150 190)">
-          <rect class="figure-node warm" x="-23" y="-13" width="46" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="r2" data-subgroup-label="&lt;sigma^2&gt;" transform="translate(150 222)">
+          <rect class="figure-node warm" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="ref1" data-normalization-edge-colors="green" data-subgroup-label="&lt;sigma tau&gt;" transform="translate(205 190)">
-          <rect class="figure-node" x="-25" y="-13" width="50" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-edge-colors="green" data-normalization-subgroup="ref1" data-subgroup-label="&lt;sigma tau&gt;" transform="translate(205 222)">
+          <rect class="figure-node" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="ref3" data-normalization-edge-colors="purple" data-subgroup-label="&lt;sigma^3 tau&gt;" transform="translate(265 190)">
-          <rect class="figure-node" x="-25" y="-13" width="50" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-edge-colors="purple" data-normalization-subgroup="ref3" data-subgroup-label="&lt;sigma^3 tau&gt;" transform="translate(265 222)">
+          <rect class="figure-node" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">3</tspan>&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="one" data-subgroup-label="&lt;1&gt;" transform="translate(150 290)">
-          <rect class="figure-node soft" x="-21" y="-13" width="42" height="26" rx="5"></rect>
+        <g class="normalization-subgroup" data-normalization-subgroup="one" data-subgroup-label="&lt;1&gt;" transform="translate(150 340)">
+          <rect class="figure-node soft" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;1&#10217;</text>
         </g>
       </g>`;
@@ -7775,21 +7821,38 @@ function normalizationFigureTemplate() {
       <desc id="fig-normalization-desc">A D4-action on a square on the left, an old subgroup lattice in the middle, and a new subgroup lattice on the right. Dotted links connect each square point to its stabilizer in the old lattice. Green dotted links connect each old subgroup to its normalized subgroup in the new lattice.</desc>
       <defs>
         <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+        <marker id="normalization-link-arrow-d4" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#5d615c" fill-opacity="0.58"></path></marker>
+        <marker id="normalization-link-arrow-ref0" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#1f6fb2" fill-opacity="0.9"></path></marker>
+        <marker id="normalization-link-arrow-ref2" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#d65a3a" fill-opacity="0.9"></path></marker>
+        <marker id="normalization-link-arrow-ref1" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#51912f" fill-opacity="0.92"></path></marker>
+        <marker id="normalization-link-arrow-ref3" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#7c57c2" fill-opacity="0.92"></path></marker>
       </defs>
 
       ${normalizationLatticeTemplate("old", 315, 54, 0.88)}
       ${normalizationLatticeTemplate("new", 620, 54, 0.88)}
 
-      <text class="normalization-object-label" x="143" y="40">X</text>
-      <text class="normalization-object-label normalization-xi-label" x="447" y="40">&Xi;</text>
-      <text class="normalization-object-label normalization-xi-label" x="752" y="40">&Xi;</text>
+      <foreignObject class="normalization-tex-object" x="118" y="21" width="50" height="30">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="normalization-tex-label">\\(X\\)</div>
+      </foreignObject>
+      <foreignObject class="normalization-tex-object" x="422" y="21" width="50" height="30">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="normalization-tex-label">\\(\\mathrm{\\Xi}\\)</div>
+      </foreignObject>
+      <foreignObject class="normalization-tex-object" x="727" y="21" width="50" height="30">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="normalization-tex-label">\\(\\mathrm{\\Xi}\\)</div>
+      </foreignObject>
       <path class="figure-arrow normalization-object-arrow" d="M172 32 H418" marker-end="url(#arrow-f)"></path>
-      <text class="normalization-morphism-label" x="295" y="23">&xi;<tspan baseline-shift="sub" font-size="68%">X</tspan></text>
+      <foreignObject class="normalization-tex-morphism" x="263" y="8" width="64" height="24">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="normalization-tex-label">\\(\\xi_X\\)</div>
+      </foreignObject>
+      <text class="normalization-arrow-caption" x="295" y="53">stabilizer</text>
       <path class="figure-arrow normalization-object-arrow" d="M476 32 H723" marker-end="url(#arrow-f)"></path>
-      <text class="normalization-morphism-label" x="600" y="23">&xi;<tspan baseline-shift="sub" font-size="68%">&Xi;</tspan></text>
-      <g class="normalization-action-atlas" transform="translate(28 64)">
-        <rect class="normalization-action-stage-bg" width="230" height="260" rx="10"></rect>
-        <g class="normalization-square-stage" transform="translate(35 34) scale(3.8)">
+      <foreignObject class="normalization-tex-morphism" x="568" y="8" width="64" height="24">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="normalization-tex-label">\\(\\xi_{\\mathrm{\\Xi}}\\)</div>
+      </foreignObject>
+      <text class="normalization-arrow-caption" x="600" y="53">Normalizer</text>
+      <g class="normalization-action-atlas" transform="translate(22 58)">
+        <rect class="normalization-action-stage-bg" width="254" height="292" rx="10"></rect>
+        <g class="normalization-square-stage" transform="translate(28 32) scale(4.6)">
           <g class="normalization-square-body" data-normalization-square-body>
             <path class="normalization-square-shadow" d="M0 4 H42 V46 H0 Z"></path>
             <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e0" d="M0 4 H42"></path>
@@ -7809,23 +7872,19 @@ function normalizationFigureTemplate() {
             <circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref0" data-normalization-orbit="vertex" data-normalization-point="v0" data-normalization-token="a" cx="0" cy="4" r="3.2"></circle><circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref2" data-normalization-orbit="vertex" data-normalization-point="v1" data-normalization-token="b" cx="42" cy="4" r="3.2"></circle>
             <circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref0" data-normalization-orbit="vertex" data-normalization-point="v2" data-normalization-token="c" cx="42" cy="46" r="3.2"></circle><circle class="normalization-action-dot normalization-vertex-point normalization-action-place" data-normalization-place-stabilizer="ref2" data-normalization-orbit="vertex" data-normalization-point="v3" data-normalization-token="d" cx="0" cy="46" r="3.2"></circle>
           </g>
-          <g class="normalization-action" data-normalization-stabilizers="d4">
-            <circle class="normalization-action-dot normalization-center-point normalization-action-place" data-normalization-place-stabilizer="d4" data-normalization-orbit="center" data-normalization-point="p0" cx="21" cy="25" r="3.2"></circle>
-          </g>
         </g>
       </g>
-      <g class="normalization-element-controls" transform="translate(60 410)">
-        <g class="normalization-element-control" data-normalization-element-control="e" transform="translate(0 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">1</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s" transform="translate(92 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&sigma;</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s2" transform="translate(184 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan></text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s3" transform="translate(276 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan></text></g>
-        <g class="normalization-element-control" data-normalization-element-control="t" transform="translate(368 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&tau;</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="st" transform="translate(460 0)"><rect class="normalization-element-button" width="76" height="38" rx="10"></rect><text x="38" y="25">&sigma;&tau;</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s2t" transform="translate(552 0)"><rect class="normalization-element-button" width="84" height="38" rx="10"></rect><text x="42" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan>&tau;</text></g>
-        <g class="normalization-element-control" data-normalization-element-control="s3t" transform="translate(652 0)"><rect class="normalization-element-button" width="84" height="38" rx="10"></rect><text x="42" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan>&tau;</text></g>
+      <g class="normalization-element-controls" transform="translate(60 424)">
+        <g class="normalization-element-control" data-normalization-element-control="e" transform="translate(0 0)"><rect class="normalization-element-button" width="80" height="38" rx="10"></rect><text x="40" y="25">1</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s" transform="translate(100 0)"><rect class="normalization-element-button" width="80" height="38" rx="10"></rect><text x="40" y="25">&sigma;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s2" transform="translate(200 0)"><rect class="normalization-element-button" width="80" height="38" rx="10"></rect><text x="40" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan></text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s3" transform="translate(300 0)"><rect class="normalization-element-button" width="80" height="38" rx="10"></rect><text x="40" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan></text></g>
+        <g class="normalization-element-control" data-normalization-element-control="t" transform="translate(400 0)"><rect class="normalization-element-button" width="80" height="38" rx="10"></rect><text x="40" y="25">&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="st" transform="translate(500 0)"><rect class="normalization-element-button" width="80" height="38" rx="10"></rect><text x="40" y="25">&sigma;&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s2t" transform="translate(600 0)"><rect class="normalization-element-button" width="80" height="38" rx="10"></rect><text x="40" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">2</tspan>&tau;</text></g>
+        <g class="normalization-element-control" data-normalization-element-control="s3t" transform="translate(700 0)"><rect class="normalization-element-button" width="80" height="38" rx="10"></rect><text x="40" y="25">&sigma;<tspan baseline-shift="super" font-size="70%">3</tspan>&tau;</text></g>
       </g>
       <g class="normalization-stabilizer-links" data-normalization-stabilizer-links aria-hidden="true">
-        <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="d4" data-normalization-link-orbit="center" data-normalization-link-point="p0" d="M580 80 C463.3 114, 332 171.5, 215.3 205.5"></path>
         <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-orbit="vertex" data-normalization-link-point="v0" d="M47 232 C171.16 198, 310.84 149.2, 435 115.2"></path>
         <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref2" data-normalization-link-orbit="vertex" data-normalization-link-point="v1" d="M107 232 C269.75 198, 452.85 149.2, 615.6 115.2"></path>
         <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref0" data-normalization-link-orbit="vertex" data-normalization-link-point="v2" d="M47 232 C228.95 266, 433.65 261.8, 615.6 295.8"></path>
@@ -7836,7 +7895,6 @@ function normalizationFigureTemplate() {
         <path class="normalization-stabilizer-link" data-normalization-stabilizer-link data-normalization-link-subgroup="ref3" data-normalization-link-orbit="edge" data-normalization-link-point="e3" d="M277 232 C327.56 198, 384.44 239.5, 435 205.5"></path>
       </g>
       <g class="normalization-operator-links" data-normalization-operator-links aria-hidden="true">
-        <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="d4" data-normalization-operator-target="d4"></path>
         <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref0" data-normalization-operator-target="v0"></path>
         <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref2" data-normalization-operator-target="v0"></path>
         <path class="normalization-operator-link" data-normalization-operator-link data-normalization-operator-source="ref1" data-normalization-operator-target="v1"></path>
@@ -8092,17 +8150,6 @@ function automataCoverKey(value) {
   return Number(value.toFixed(3)).toString();
 }
 
-function automataCoverNodePulse({ x, y, color = "neutral", start, radius = 8 }) {
-  const peak = Math.min(start + 0.025, 0.98);
-  const end = Math.min(start + 0.095, 0.99);
-  const keyTimes = [0, start, peak, end, 1].map(automataCoverKey).join(";");
-  return `
-          <circle class="automata-unfold-node-pulse ${color}" cx="${x}" cy="${y}" r="2" opacity="0">
-            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;1;0;0" keyTimes="${keyTimes}"></animate>
-            <animate attributeName="r" dur="12s" repeatCount="indefinite" values="2;2;${radius};${radius + 5};2" keyTimes="${keyTimes}"></animate>
-          </circle>`;
-}
-
 function automataCoverRollingBouquet({ path, start, end, scale = 1 }) {
   const fadeIn = Math.min(start + 0.012, end);
   const fadeOut = Math.min(end + 0.018, 0.98);
@@ -8157,44 +8204,8 @@ function automataCoverUnfoldingTemplate() {
     { start: 0.49, end: 0.56, scale: 0.27, path: "M286 284 L252 281" },
     { start: 0.49, end: 0.56, scale: 0.27, path: "M286 284 L252 287" },
   ];
-  const pulses = [
-    { color: "neutral", x: 650, y: 195, start: 0.02, radius: 11 },
-    { color: "neutral", x: 486, y: 195, start: 0.16, radius: 16 },
-    { color: "blue", x: 408, y: 151, start: 0.25, radius: 12 },
-    { color: "red", x: 408, y: 239, start: 0.25, radius: 12 },
-    { color: "blue", x: 336, y: 121, start: 0.36, radius: 9 },
-    { color: "red", x: 336, y: 151, start: 0.36, radius: 9 },
-    { color: "blue", x: 336, y: 239, start: 0.36, radius: 9 },
-    { color: "red", x: 336, y: 269, start: 0.36, radius: 9 },
-    { color: "blue", x: 286, y: 106, start: 0.48, radius: 7 },
-    { color: "red", x: 286, y: 132, start: 0.48, radius: 7 },
-    { color: "blue", x: 286, y: 140, start: 0.48, radius: 7 },
-    { color: "red", x: 286, y: 166, start: 0.48, radius: 7 },
-    { color: "blue", x: 286, y: 224, start: 0.48, radius: 7 },
-    { color: "red", x: 286, y: 250, start: 0.48, radius: 7 },
-    { color: "blue", x: 286, y: 258, start: 0.48, radius: 7 },
-    { color: "red", x: 286, y: 284, start: 0.48, radius: 7 },
-    { color: "blue", x: 252, y: 103, start: 0.56, radius: 5.5 },
-    { color: "red", x: 252, y: 109, start: 0.56, radius: 5.5 },
-    { color: "blue", x: 252, y: 129, start: 0.56, radius: 5.5 },
-    { color: "red", x: 252, y: 135, start: 0.56, radius: 5.5 },
-    { color: "blue", x: 252, y: 137, start: 0.56, radius: 5.5 },
-    { color: "red", x: 252, y: 143, start: 0.56, radius: 5.5 },
-    { color: "blue", x: 252, y: 163, start: 0.56, radius: 5.5 },
-    { color: "red", x: 252, y: 169, start: 0.56, radius: 5.5 },
-    { color: "blue", x: 252, y: 221, start: 0.56, radius: 5.5 },
-    { color: "red", x: 252, y: 227, start: 0.56, radius: 5.5 },
-    { color: "blue", x: 252, y: 247, start: 0.56, radius: 5.5 },
-    { color: "red", x: 252, y: 253, start: 0.56, radius: 5.5 },
-    { color: "blue", x: 252, y: 255, start: 0.56, radius: 5.5 },
-    { color: "red", x: 252, y: 261, start: 0.56, radius: 5.5 },
-    { color: "blue", x: 252, y: 281, start: 0.56, radius: 5.5 },
-    { color: "red", x: 252, y: 287, start: 0.56, radius: 5.5 },
-  ];
   return `
         <g class="automata-cover-unfolding" aria-hidden="true">
-          <path class="automata-unfold-reverse-cover" data-cantor-arrow="neutral" d="M606 195 H498"></path>
-${pulses.map(automataCoverNodePulse).join("\n")}
 ${rollingBouquets.map(automataCoverRollingBouquet).join("\n")}
         </g>`;
 }
@@ -8217,59 +8228,64 @@ const paperFigureTemplates = {
           <stop offset="1" stop-color="#e8eef1"></stop>
         </linearGradient>
         <g id="games-nim-table-base">
-          <rect class="games-rb-table-bg" x="0" y="0" width="180" height="140" rx="0"></rect>
-          <rect class="games-rb-table-head-row" x="0" y="0" width="180" height="28"></rect>
-          <rect class="games-rb-table-head-col" x="0" y="0" width="36" height="140"></rect>
-          <path class="games-rb-table-lines is-major" d="M0 0 H180 M0 28 H180 M0 140 H180 M0 0 V140 M36 0 V140 M180 0 V140"></path>
-          <path class="games-rb-table-lines" d="M0 56 H180 M0 84 H180 M0 112 H180 M72 0 V140 M108 0 V140 M144 0 V140"></path>
-          <text class="games-rb-cell-text is-head" x="18" y="19" text-anchor="middle">⊕</text>
-          <text class="games-rb-cell-text is-head" x="54" y="19" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text is-head" x="90" y="19" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text is-head" x="126" y="19" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text is-head" x="162" y="19" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text is-head" x="18" y="47" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="54" y="47" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="90" y="47" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="126" y="47" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="162" y="47" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text is-head" x="18" y="75" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="54" y="75" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="90" y="75" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="126" y="75" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="162" y="75" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text is-head" x="18" y="103" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="54" y="103" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="90" y="103" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="126" y="103" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text is-lhs" x="162" y="103" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text is-head" x="18" y="131" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="54" y="131" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="90" y="131" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="126" y="131" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="162" y="131" text-anchor="middle">0</text>
+          <rect class="games-rb-table-bg" x="0" y="0" width="186" height="144" rx="0"></rect>
+          <rect class="games-rb-table-head-row" x="0" y="0" width="186" height="24"></rect>
+          <rect class="games-rb-table-head-col" x="0" y="0" width="31" height="144"></rect>
+          <path class="games-rb-table-lines is-major" d="M0 0 H186 M0 24 H186 M0 144 H186 M0 0 V144 M31 0 V144 M186 0 V144"></path>
+          <path class="games-rb-table-lines" d="M0 48 H186 M0 72 H186 M0 96 H186 M0 120 H186 M62 0 V144 M93 0 V144 M124 0 V144 M155 0 V144"></path>
+          <text class="games-rb-cell-text is-head" x="15.5" y="17" text-anchor="middle">⊕</text>
+          <text class="games-rb-cell-text is-head" x="46.5" y="17" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text is-head" x="77.5" y="17" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text is-head" x="108.5" y="17" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text is-head" x="139.5" y="17" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text is-head" x="170.5" y="17" text-anchor="middle">4</text>
+          <text class="games-rb-cell-text is-head" x="15.5" y="41" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text" x="46.5" y="41" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text" x="77.5" y="41" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="108.5" y="41" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="139.5" y="41" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="170.5" y="41" text-anchor="middle">4</text>
+          <text class="games-rb-cell-text is-head" x="15.5" y="65" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="46.5" y="65" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="77.5" y="65" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text" x="108.5" y="65" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="139.5" y="65" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="170.5" y="65" text-anchor="middle">5</text>
+          <text class="games-rb-cell-text is-head" x="15.5" y="89" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="46.5" y="89" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="77.5" y="89" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="108.5" y="89" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text is-lhs" x="139.5" y="89" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="170.5" y="89" text-anchor="middle">6</text>
+          <text class="games-rb-cell-text is-head" x="15.5" y="113" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="46.5" y="113" text-anchor="middle">3</text>
+          <text class="games-rb-cell-text" x="77.5" y="113" text-anchor="middle">2</text>
+          <text class="games-rb-cell-text" x="108.5" y="113" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="139.5" y="113" text-anchor="middle">0</text>
+          <text class="games-rb-cell-text" x="170.5" y="113" text-anchor="middle">7</text>
+          <text class="games-rb-cell-text is-head" x="15.5" y="137" text-anchor="middle">4</text>
+          <text class="games-rb-cell-text" x="46.5" y="137" text-anchor="middle">4</text>
+          <text class="games-rb-cell-text" x="77.5" y="137" text-anchor="middle">5</text>
+          <text class="games-rb-cell-text" x="108.5" y="137" text-anchor="middle">6</text>
+          <text class="games-rb-cell-text" x="139.5" y="137" text-anchor="middle">7</text>
+          <text class="games-rb-cell-text" x="170.5" y="137" text-anchor="middle">0</text>
         </g>
       </defs>
 
       <rect class="games-rb-table-paper" width="760" height="390" rx="0"></rect>
       <text class="games-rb-table-title" x="380" y="31">mex Rota-Baxter equation</text>
-      <text class="games-rb-table-subtitle" x="380" y="54">compute both sides in parallel from the same table</text>
       <text class="games-rb-dual-main-equals" x="380" y="190" text-anchor="middle">=</text>
 
       <g class="games-rb-dual-panel is-expanded-side" transform="translate(36 76)">
         <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
         <g class="games-rb-dual-table is-expanded-table" transform="translate(70 76)">
           <use href="#games-nim-table-base"></use>
-          <rect class="games-rb-dual-highlight is-mex-s-head" x="0" y="84" width="36" height="28"></rect>
-          <rect class="games-rb-dual-highlight is-mex-t-head" x="144" y="0" width="36" height="28"></rect>
-          <rect class="games-rb-dual-highlight is-row-product" x="36" y="84" width="108" height="28"></rect>
-          <rect class="games-rb-dual-highlight is-col-product" x="144" y="28" width="36" height="28"></rect>
-          <rect class="games-rb-dual-highlight is-col-product" x="144" y="56" width="36" height="28"></rect>
-          <rect class="games-rb-dual-highlight is-col-product" x="144" y="112" width="36" height="28"></rect>
-          <path class="games-rb-mex-arrow is-result-arrow" d="M104 158 C142 176, 184 158, 165 111"></path>
-        </g>
-        <g class="games-rb-result-chip is-left-result" transform="translate(160 224)">
-          <circle r="17"></circle>
-          <text y="6" text-anchor="middle">1</text>
+          <rect class="games-rb-set-highlight is-s-entry" x="0" y="24" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-s-entry" x="0" y="48" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-s-entry" x="0" y="96" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-t-entry" x="31" y="0" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-t-entry" x="62" y="0" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-t-entry" x="93" y="0" width="31" height="24"></rect>
         </g>
       </g>
 
@@ -8277,27 +8293,19 @@ const paperFigureTemplates = {
         <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
         <g class="games-rb-dual-table is-product-table" transform="translate(70 76)">
           <use href="#games-nim-table-base"></use>
-          <rect class="games-rb-dual-highlight is-mex-s-head" x="0" y="84" width="36" height="28"></rect>
-          <rect class="games-rb-dual-highlight is-mex-t-head" x="144" y="0" width="36" height="28"></rect>
-          <rect class="games-rb-dual-highlight is-product-cell" x="144" y="84" width="36" height="28"></rect>
-          <path class="games-rb-mex-arrow is-mex-product-arrow" d="M18 123 C42 152, 134 151, 162 112"></path>
+          <rect class="games-rb-set-highlight is-s-entry" x="0" y="24" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-s-entry" x="0" y="48" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-s-entry" x="0" y="96" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-t-entry" x="31" y="0" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-t-entry" x="62" y="0" width="31" height="24"></rect>
+          <rect class="games-rb-set-highlight is-t-entry" x="93" y="0" width="31" height="24"></rect>
         </g>
-        <g class="games-rb-result-chip is-right-result" transform="translate(160 224)">
-          <circle r="17"></circle>
-          <text y="6" text-anchor="middle">1</text>
-        </g>
-      </g>
-
-      <g class="games-rb-equality-check" transform="translate(380 316)">
-        <circle class="is-left" cx="-32" cy="0" r="16"></circle>
-        <text x="-32" y="6" text-anchor="middle">1</text>
-        <text class="equals" x="0" y="6" text-anchor="middle">=</text>
-        <circle class="is-right" cx="32" cy="0" r="16"></circle>
-        <text x="32" y="6" text-anchor="middle">1</text>
       </g>
     </svg>
-    <span class="figure-math games-rb-table-tex games-rb-dual-tex-left">\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(S)\\oplus T)\\cup(S\\oplus\\operatorname{mex}(T))\\bigr)\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-dual-tex-right">\\(\\operatorname{mex}(S)\\oplus\\operatorname{mex}(T)\\)</span>`,
+    <span class="figure-math games-rb-table-tex games-rb-set-def games-rb-set-def-s">\\(S=\\{0,1,3\\}\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-set-def games-rb-set-def-t">\\(T=\\{0,1,2\\}\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-dual-tex-left">\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-dual-tex-right">\\(\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T})\\)</span>`,
   "automata-cantor-morphism": `
     <svg class="automata-cantor-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-cantor-title fig-automata-cantor-desc">
       <title id="fig-automata-cantor-title">Canonical geometric morphism from Cantor space to Sigma-sets</title>
@@ -8311,10 +8319,61 @@ const paperFigureTemplates = {
 
       <rect class="automata-cantor-paper" width="760" height="390"></rect>
       <g class="automata-cantor-layout">
-        <text class="automata-cantor-space-label" x="382" y="92">Cantor space</text>
+        <g class="automata-cantor-space">
+          <text class="automata-cantor-space-label" x="34" y="72">Cantor space</text>
+          <g class="automata-cantor-fractal" transform="translate(0 44.75)">
+            <g transform="rotate(-90 118 150.25)">
+              <rect class="automata-cantor-interval stage-0" x="29" y="84.5" width="178" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-1" x="44.35" y="116.5" width="59.3" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-1" x="132.35" y="116.5" width="59.3" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-2" x="34.15" y="148.5" width="19.7" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-2" x="64.15" y="148.5" width="19.7" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-2" x="152.15" y="148.5" width="19.7" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-2" x="182.15" y="148.5" width="19.7" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-3" x="25.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-3" x="51.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-3" x="59.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-3" x="85.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-3" x="143.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-3" x="169.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-3" x="177.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+              <rect class="automata-cantor-interval stage-3" x="203.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
+              <path class="automata-cantor-connector cantor-stage-1" d="M118 93.5 L74 114.5"></path>
+              <path class="automata-cantor-connector cantor-stage-1" d="M118 93.5 L162 114.5"></path>
+              <path class="automata-cantor-connector cantor-stage-2" d="M74 125.5 L44 146.5"></path>
+              <path class="automata-cantor-connector cantor-stage-2" d="M74 125.5 L74 146.5"></path>
+              <path class="automata-cantor-connector cantor-stage-2" d="M162 125.5 L162 146.5"></path>
+              <path class="automata-cantor-connector cantor-stage-2" d="M162 125.5 L192 146.5"></path>
+              <path class="automata-cantor-connector cantor-stage-3" d="M44 157.5 L29 178.5"></path>
+              <path class="automata-cantor-connector cantor-stage-3" d="M44 157.5 L55 178.5"></path>
+              <path class="automata-cantor-connector cantor-stage-3" d="M74 157.5 L63 178.5"></path>
+              <path class="automata-cantor-connector cantor-stage-3" d="M74 157.5 L89 178.5"></path>
+              <path class="automata-cantor-connector cantor-stage-3" d="M162 157.5 L147 178.5"></path>
+              <path class="automata-cantor-connector cantor-stage-3" d="M162 157.5 L173 178.5"></path>
+              <path class="automata-cantor-connector cantor-stage-3" d="M192 157.5 L181 178.5"></path>
+              <path class="automata-cantor-connector cantor-stage-3" d="M192 157.5 L207 178.5"></path>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="26" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="32" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="52" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="58" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="60" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="66" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="86" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="92" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="144" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="150" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="170" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="176" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="178" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="184" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="204" cy="216" r="2.1"></circle>
+              <circle class="automata-cantor-dot cantor-stage-4" cx="210" cy="216" r="2.1"></circle>
+            </g>
+          </g>
+        </g>
 
-        <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M205 195 H264"></path>
-        <text class="automata-cantor-arrow-label large automata-sublocale-label" x="240" y="180">sublocale</text>
+        <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M205 195 H238"></path>
+        <text class="automata-cantor-arrow-label large automata-sublocale-label" x="222" y="180">sublocale</text>
 
         <g class="automata-prefix-poset">
           <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 103.3 L282.8 105.7"></path>
@@ -8347,39 +8406,6 @@ const paperFigureTemplates = {
           <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M340.2 239 L397.8 239"></path>
           <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M339.9 267.4 L398.6 242.9"></path>
           <path class="automata-cantor-tree-edge level-1 red" pathLength="1" data-cantor-arrow="red" d="M413.4 236 L472.1 202.9"></path>
-          <g class="automata-cantor-partitions" aria-hidden="true">
-            <path class="automata-cantor-partition partition-stage-0" pathLength="1" d="M486 106 L486 284"></path>
-            <path class="automata-cantor-partition partition-stage-1" pathLength="1" d="M408 121.3 L408 180.7"></path>
-            <path class="automata-cantor-partition partition-stage-1" pathLength="1" d="M408 209.3 L408 268.7"></path>
-            <path class="automata-cantor-partition partition-stage-2" pathLength="1" d="M336 111.1 L336 130.9"></path>
-            <path class="automata-cantor-partition partition-stage-2" pathLength="1" d="M336 141.1 L336 160.9"></path>
-            <path class="automata-cantor-partition partition-stage-2" pathLength="1" d="M336 229.1 L336 248.9"></path>
-            <path class="automata-cantor-partition partition-stage-2" pathLength="1" d="M336 259.1 L336 278.9"></path>
-            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 102.7 L286 109.3"></path>
-            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 128.7 L286 135.3"></path>
-            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 136.7 L286 143.3"></path>
-            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 162.7 L286 169.3"></path>
-            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 220.7 L286 227.3"></path>
-            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 246.7 L286 253.3"></path>
-            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 254.7 L286 261.3"></path>
-            <path class="automata-cantor-partition partition-stage-3" pathLength="1" d="M286 280.7 L286 287.3"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 101.9 L252 104.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 107.9 L252 110.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 127.9 L252 130.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 133.9 L252 136.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 135.9 L252 138.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 141.9 L252 144.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 161.9 L252 164.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 167.9 L252 170.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 219.9 L252 222.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 225.9 L252 228.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 245.9 L252 248.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 251.9 L252 254.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 253.9 L252 256.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 259.9 L252 262.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 279.9 L252 282.1"></path>
-            <path class="automata-cantor-partition partition-stage-4" pathLength="1" d="M252 285.9 L252 288.1"></path>
-          </g>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="103" r="2.35"></circle>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="109" r="2.35"></circle>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="129" r="2.35"></circle>
@@ -8419,8 +8445,6 @@ const paperFigureTemplates = {
         <g class="automata-bouquet-space" transform="translate(650 195)">
           <path class="automata-cantor-bouquet-loop blue" data-cantor-arrow="blue" d="M0 0 C-40 -24, -36 -92, 0 -92 C36 -92, 40 -24, 0 0"></path>
           <path class="automata-cantor-bouquet-loop red" data-cantor-arrow="red" d="M0 0 C-40 24, -36 92, 0 92 C36 92, 40 24, 0 0"></path>
-          <path class="automata-bouquet-direction blue" data-cantor-arrow="blue" d="M18 -86 C39 -68, 36 -33, 9 -12"></path>
-          <path class="automata-bouquet-direction red" data-cantor-arrow="red" d="M18 86 C39 68, 36 33, 9 12"></path>
           <circle class="automata-cantor-node large" cx="0" cy="0" r="10"></circle>
         </g>
 ${automataCoverUnfoldingTemplate()}
@@ -8468,7 +8492,9 @@ ${automataCoverUnfoldingTemplate()}
       </g>
       <g transform="translate(584 76)">
         <rect class="internal-panel-bg" x="0" y="0" width="142" height="232" rx="8"></rect>
-        <text class="internal-classifier-symbol" x="73" y="52">&Xi;</text>
+        <foreignObject class="internal-classifier-symbol-box" x="54" y="38" width="38" height="30">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="internal-classifier-symbol">\\(\\mathrm{\\Xi}\\)</div>
+        </foreignObject>
         <path class="figure-arrow internal-classifier-loop internal-loop-l" d="${internalClassifierLoopPath}"></path>
         <path class="figure-arrow internal-classifier-loop internal-loop-n" d="${internalClassifierNonLoopPath}"></path>
         <circle class="internal-classifier-node" cx="73" cy="118" r="${internalClassifierVertexRadius}"></circle>
@@ -8608,122 +8634,75 @@ ${automataCoverUnfoldingTemplate()}
         <marker id="tensor-f-arrow-green" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4.4" markerHeight="4.4" orient="auto">
           <path class="tensor-f-arrow-head tensor-f-arrow-head-green" d="M 1 1 L 9 5 L 1 9 z"></path>
         </marker>
-        <marker id="tensor-iota-arrow-gray" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4" markerHeight="4" orient="auto">
-          <path class="tensor-iota-arrow-head" d="M 1 1 L 9 5 L 1 9 z"></path>
-        </marker>
       </defs>
 
       <g transform="translate(42 56)">
         <g>
-          <rect class="tensor-set-envelope tensor-x-envelope" x="30" y="42" width="164" height="190" rx="48">
-            <animate attributeName="x" values="30;30;10;10" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
-          </rect>
-          <rect class="tensor-set-envelope tensor-left-a-envelope" x="235" y="58" width="104" height="170" rx="38">
-            <animate attributeName="x" values="235;235;177;177" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
-          </rect>
-          <rect class="tensor-set-envelope tensor-a-envelope tensor-merge-away" x="405" y="58" width="114" height="170" rx="38">
-            <animate attributeName="x" values="405;405;309;309;177" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate>
-          </rect>
-          <text class="tensor-side-label" x="112" y="48">X1<animate attributeName="x" values="112;112;92;92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-left-a-label" x="287" y="48">A1<animate attributeName="x" values="287;287;229;229" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-merge-away" x="462" y="48">A2<animate attributeName="x" values="462;462;366;366;229" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label" x="70" y="48">X1<animate attributeName="x" values="70;70;70;70;70" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-neutral-label" x="250" y="48">A1<animate attributeName="x" values="250;250;178;178;178" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-neutral-label" x="430" y="48">A2<animate attributeName="x" values="430;430;286;178;178" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;1;0;0" keyTimes="0;0.66;0.82;0.92;1" dur="10s" repeatCount="indefinite"></animate></text>
         </g>
-        <text class="tensor-side-label tensor-s-new-label" x="503" y="48">S1</text>
-        <text class="tensor-side-label tensor-s-label tensor-s-duplicate-label" x="640" y="48">S2</text>
-        <text class="tensor-side-label tensor-s-label" x="700" y="48">S3</text>
-
-        <rect class="tensor-group-block tensor-block-xa" x="50" y="66" width="300" height="154" rx="34">
-          <animate attributeName="x" values="50;50;50;50;50" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="width" values="300;300;300;300;300" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="opacity" values="1;1" keyTimes="0;1" dur="10s" repeatCount="indefinite"></animate>
-        </rect>
-        <rect class="tensor-group-block tensor-block-as" x="402" y="66" width="316" height="154" rx="34">
-          <animate attributeName="x" values="402;402;342;342;342" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="width" values="316;316;198;198;198" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="opacity" values="1;1;1;1;1" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-        </rect>
-        <rect class="tensor-group-block tensor-block-ss" x="602" y="66" width="116" height="154" rx="34">
-          <animate attributeName="opacity" values="0;0;1;1;1;1" keyTimes="0;0.24;0.36;0.72;0.86;1" dur="10s" repeatCount="indefinite"></animate>
-        </rect>
-        <rect class="tensor-group-block tensor-block-xs" x="50" y="66" width="490" height="154" rx="34">
-          <animate attributeName="opacity" values="0;0" keyTimes="0;1" dur="10s" repeatCount="indefinite"></animate>
-        </rect>
-
-        <rect class="tensor-s-new-envelope" x="469" y="70" width="68" height="146" rx="30"></rect>
-        <rect class="tensor-s-envelope tensor-s-choice-envelope" x="610" y="70" width="60" height="146" rx="30"></rect>
+        <text class="tensor-side-label tensor-neutral-label tensor-s-new-label tensor-step2-absorbed" x="430" y="48">S1<animate attributeName="x" values="430;430;394;178;178" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-side-label tensor-neutral-label tensor-s-duplicate-label" x="430" y="48">S2<animate attributeName="x" values="430;430;502;502;502" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-side-label tensor-s-label" x="610" y="48">S3</text>
 
         <g>
-          <g class="tensor-x-node selected" transform="translate(112 92)"><animateTransform attributeName="transform" type="translate" values="112 92;112 92;92 92;92 92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
-          <g class="tensor-x-node selected green" transform="translate(112 146)"><animateTransform attributeName="transform" type="translate" values="112 146;112 146;92 146;92 146" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
-          <g class="tensor-x-node muted" transform="translate(112 200)"><animateTransform attributeName="transform" type="translate" values="112 200;112 200;92 200;92 200" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
+          <g class="tensor-x-node selected" transform="translate(70 92)"><animateTransform attributeName="transform" type="translate" values="70 92;70 92;70 92;70 92;70 92" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
+          <g class="tensor-x-node selected green" transform="translate(70 146)"><animateTransform attributeName="transform" type="translate" values="70 146;70 146;70 146;70 146;70 146" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
+          <g class="tensor-x-node selected green" transform="translate(70 200)"><animateTransform attributeName="transform" type="translate" values="70 200;70 200;70 200;70 200;70 200" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
 
-          <g class="tensor-left-a-node selected" transform="translate(287 88)"><animateTransform attributeName="transform" type="translate" values="287 88;287 88;229 88;229 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-          <g class="tensor-left-a-node muted" transform="translate(287 126)"><animateTransform attributeName="transform" type="translate" values="287 126;287 126;229 126;229 126" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-          <g class="tensor-left-a-node selected green" transform="translate(287 164)"><animateTransform attributeName="transform" type="translate" values="287 164;287 164;229 164;229 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-          <g class="tensor-left-a-node muted" transform="translate(287 202)"><animateTransform attributeName="transform" type="translate" values="287 202;287 202;229 202;229 202" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 88)"><animateTransform attributeName="transform" type="translate" values="250 88;250 88;178 88;178 88;178 88" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(250 126)"><animateTransform attributeName="transform" type="translate" values="250 126;250 126;178 126;70 146;70 146" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 164)"><animateTransform attributeName="transform" type="translate" values="250 164;250 164;178 164;178 164;178 164" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(250 202)"><animateTransform attributeName="transform" type="translate" values="250 202;250 202;178 202;70 200;70 200" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
 
           <g class="tensor-left-map-cords">
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M269 88 C222 78, 174 80, 130 92"><animate attributeName="d" values="M269 88 C222 78, 174 80, 130 92;M269 88 C222 78, 174 80, 130 92;M211 88 C175 78, 140 80, 110 92;M211 88 C175 78, 140 80, 110 92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M269 126 C222 118, 174 130, 130 140"><animate attributeName="d" values="M269 126 C222 118, 174 130, 130 140;M269 126 C222 118, 174 130, 130 140;M211 126 C175 118, 140 130, 110 140;M211 126 C175 118, 140 130, 110 140" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M269 164 C222 174, 174 164, 130 152"><animate attributeName="d" values="M269 164 C222 174, 174 164, 130 152;M269 164 C222 174, 174 164, 130 152;M211 164 C175 174, 140 164, 110 152;M211 164 C175 174, 140 164, 110 152" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M269 202 C222 212, 174 210, 130 200"><animate attributeName="d" values="M269 202 C222 212, 174 210, 130 200;M269 202 C222 212, 174 210, 130 200;M211 202 C175 212, 140 210, 110 200;M211 202 C175 212, 140 210, 110 200" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M232 88 C190 78, 130 80, 88 92"><animate attributeName="d" values="M232 88 C190 78, 130 80, 88 92;M232 88 C190 78, 130 80, 88 92;M160 88 C132 78, 108 80, 88 92;M160 88 C132 78, 108 80, 88 92;M160 88 C132 78, 108 80, 88 92" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M232 126 C190 118, 130 130, 88 140"><animate attributeName="d" values="M232 126 C190 118, 130 130, 88 140;M232 126 C190 118, 130 130, 88 140;M160 126 C132 118, 108 130, 88 140;M88 146 C86 146, 84 146, 88 146;M88 146 C86 146, 84 146, 88 146" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0;0" keyTimes="0;0.66;0.8;0.9;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M232 164 C190 174, 130 164, 88 152"><animate attributeName="d" values="M232 164 C190 174, 130 164, 88 152;M232 164 C190 174, 130 164, 88 152;M160 164 C132 174, 108 164, 88 152;M160 164 C132 174, 108 164, 88 152;M160 164 C132 174, 108 164, 88 152" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M232 202 C190 212, 130 210, 88 200"><animate attributeName="d" values="M232 202 C190 212, 130 210, 88 200;M232 202 C190 212, 130 210, 88 200;M160 202 C132 212, 108 210, 88 200;M88 200 C86 200, 84 200, 88 200;M88 200 C86 200, 84 200, 88 200" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0;0" keyTimes="0;0.66;0.8;0.9;1" dur="10s" repeatCount="indefinite"></animate></path>
           </g>
-          <text class="tensor-map-symbol tensor-f-label" x="200" y="136">f<animate attributeName="x" values="200;200;161;161" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-map-symbol tensor-f-label" x="160" y="136">f<animate attributeName="x" values="160;160;124;124;124" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
 
-          <g class="tensor-a-reference-lines">
-            <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 88 C340 88, 398 88, 444 88"><animate attributeName="d" values="M305 88 C340 88, 398 88, 444 88;M305 88 C340 88, 398 88, 444 88;M247 88 C278 88, 318 88, 348 88;M247 88 C278 88, 318 88, 348 88;M247 88 C247 88, 247 88, 247 88" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 126 C340 126, 398 126, 444 126"><animate attributeName="d" values="M305 126 C340 126, 398 126, 444 126;M305 126 C340 126, 398 126, 444 126;M247 126 C278 126, 318 126, 348 126;M247 126 C278 126, 318 126, 348 126;M247 126 C247 126, 247 126, 247 126" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 164 C340 164, 398 164, 444 164"><animate attributeName="d" values="M305 164 C340 164, 398 164, 444 164;M305 164 C340 164, 398 164, 444 164;M247 164 C278 164, 318 164, 348 164;M247 164 C278 164, 318 164, 348 164;M247 164 C247 164, 247 164, 247 164" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 202 C340 202, 398 202, 444 202"><animate attributeName="d" values="M305 202 C340 202, 398 202, 444 202;M305 202 C340 202, 398 202, 444 202;M247 202 C278 202, 318 202, 348 202;M247 202 C278 202, 318 202, 348 202;M247 202 C247 202, 247 202, 247 202" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
+          <g class="tensor-subset-links">
+            <path class="tensor-a-copy-link" d="M268 88 H412"><animate attributeName="d" values="M268 88 H412;M268 88 H412;M196 88 H268;M196 88 H268" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M268 126 H412"><animate attributeName="d" values="M268 126 H412;M268 126 H412;M196 126 H268;M196 126 H268" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M268 164 H412"><animate attributeName="d" values="M268 164 H412;M268 164 H412;M196 164 H268;M196 164 H268" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M268 202 H412"><animate attributeName="d" values="M268 202 H412;M268 202 H412;M196 202 H268;M196 202 H268" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-neutral-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M304 88 H376;M304 88 H376" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0.9" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-neutral-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M304 164 H376;M304 164 H376" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0.9" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M412 88 H484;M412 88 H484" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.55;0.55" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M412 164 H484;M412 164 H484" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.55;0.55" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-link" d="M448 88 H592"><animate attributeName="d" values="M448 88 H592;M448 88 H592;M520 88 H592;M520 88 H592" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-link" d="M448 164 H592"><animate attributeName="d" values="M448 164 H592;M448 164 H592;M520 164 H592;M520 164 H592" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
           </g>
-          <g class="tensor-subset-extensions">
-            <path class="tensor-subset-extension" pathLength="1" d="M480 88 C548 88, 630 88, 682 88"><animate attributeName="d" values="M480 88 C548 88, 630 88, 682 88;M480 88 C548 88, 630 88, 682 88;M384 88 C420 88, 456 88, 487 88;M384 88 C420 88, 456 88, 487 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-subset-extension" pathLength="1" d="M480 164 C548 164, 630 164, 682 164"><animate attributeName="d" values="M480 164 C548 164, 630 164, 682 164;M480 164 C548 164, 630 164, 682 164;M384 164 C420 164, 456 164, 487 164;M384 164 C420 164, 456 164, 487 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-          </g>
-          <g class="tensor-right-a-node tensor-merge-away in-s" transform="translate(462 88)"><animateTransform attributeName="transform" type="translate" values="462 88;462 88;366 88;366 88;229 88" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-          <g class="tensor-right-a-node tensor-merge-away" transform="translate(462 126)"><animateTransform attributeName="transform" type="translate" values="462 126;462 126;366 126;366 126;229 126" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-          <g class="tensor-right-a-node tensor-merge-away in-s" transform="translate(462 164)"><animateTransform attributeName="transform" type="translate" values="462 164;462 164;366 164;366 164;229 164" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-          <g class="tensor-right-a-node tensor-merge-away" transform="translate(462 202)"><animateTransform attributeName="transform" type="translate" values="462 202;462 202;366 202;366 202;229 202" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+
+          <g class="tensor-right-a-node tensor-neutral-node in-s" transform="translate(430 88)"><animateTransform attributeName="transform" type="translate" values="430 88;430 88;286 88;286 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node" transform="translate(430 126)"><animateTransform attributeName="transform" type="translate" values="430 126;430 126;286 126;286 126" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node in-s" transform="translate(430 164)"><animateTransform attributeName="transform" type="translate" values="430 164;430 164;286 164;286 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node" transform="translate(430 202)"><animateTransform attributeName="transform" type="translate" values="430 202;430 202;286 202;286 202" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
         </g>
-        <g class="tensor-s-copy-links">
-          <path class="tensor-s-copy-link" d="M519 88 C555 88, 590 88, 622 88">
-            <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
-          </path>
-          <path class="tensor-s-copy-link" d="M519 164 C555 164, 590 164, 622 164">
-            <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
-          </path>
-          <path class="tensor-s-copy-link tensor-s-duplicate-link" d="M658 88 C668 88, 672 88, 682 88">
-            <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
-          </path>
-          <path class="tensor-s-copy-link tensor-s-duplicate-link" d="M658 164 C668 164, 672 164, 682 164">
-            <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
-          </path>
-        </g>
-        <g class="tensor-s-node tensor-s-duplicate-node" transform="translate(640 88)">
+        <g class="tensor-s-node tensor-neutral-node tensor-s-duplicate-node" transform="translate(430 88)">
+          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;502 88;502 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
-        <g class="tensor-s-node tensor-s-duplicate-node" transform="translate(640 164)">
+        <g class="tensor-s-node tensor-neutral-node tensor-s-duplicate-node" transform="translate(430 164)">
+          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;502 164;502 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
-        <g class="tensor-s-node" transform="translate(700 88)">
+        <g class="tensor-s-node" transform="translate(610 88)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
-        <g class="tensor-s-node" transform="translate(700 164)">
+        <g class="tensor-s-node" transform="translate(610 164)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
-        <g class="tensor-iota-domain-node" transform="translate(462 88)">
-          <animateTransform attributeName="transform" type="translate" values="462 88;462 88;503 88;503 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
-          <circle cx="0" cy="0" r="16"></circle><text x="0" y="6">a</text>
+        <g class="tensor-s-new-node tensor-neutral-node" transform="translate(430 88)">
+          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;394 88;394 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
-        <g class="tensor-iota-domain-node" transform="translate(462 164)">
-          <animateTransform attributeName="transform" type="translate" values="462 164;462 164;503 164;503 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
-          <circle cx="0" cy="0" r="16"></circle><text x="0" y="6">c</text>
-        </g>
-
-        <g class="tensor-iota-decompose-layer">
-          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M487 88 C458 88, 424 88, 384 88"></path>
-          <path class="tensor-iota-arrow tensor-iota-local-arrow" marker-end="url(#tensor-iota-arrow-gray)" pathLength="1" d="M487 164 C458 164, 424 164, 384 164"></path>
-          <text class="tensor-operator-label tensor-iota-label" x="477" y="79">&#953;</text>
+        <g class="tensor-s-new-node tensor-neutral-node" transform="translate(430 164)">
+          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;394 164;394 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
 
       </g>
@@ -9285,28 +9264,28 @@ const normalizationSubgroupElements = {
 
 const normalizationSubgroupCoordinates = {
   d4: [150, 38],
-  v0: [70, 106],
-  rot: [150, 106],
-  v1: [230, 106],
-  ref0: [35, 190],
-  ref2: [95, 190],
-  r2: [150, 190],
-  ref1: [205, 190],
-  ref3: [265, 190],
-  one: [150, 290]
+  v0: [70, 122],
+  rot: [150, 122],
+  v1: [230, 122],
+  ref0: [35, 222],
+  ref2: [95, 222],
+  r2: [150, 222],
+  ref1: [205, 222],
+  ref3: [265, 222],
+  one: [150, 340]
 };
 
 const normalizationSubgroupNodeHalfExtents = {
-  d4: [24, 14],
-  v0: [34, 13],
-  rot: [23, 13],
-  v1: [37, 13],
-  ref0: [21, 13],
-  ref2: [25, 13],
-  r2: [23, 13],
-  ref1: [25, 13],
-  ref3: [25, 13],
-  one: [21, 13]
+  d4: [11, 11],
+  v0: [11, 11],
+  rot: [11, 11],
+  v1: [11, 11],
+  ref0: [11, 11],
+  ref2: [11, 11],
+  r2: [11, 11],
+  ref1: [11, 11],
+  ref3: [11, 11],
+  one: [11, 11]
 };
 
 const normalizationHasseEdges = [
@@ -9409,8 +9388,8 @@ const normalizationOldLatticeGlobalOffset = [315, 54];
 const normalizationNewLatticeGlobalOffset = [620, 54];
 const normalizationLatticeGlobalScale = 0.88;
 const normalizationLatticeGlobalOffset = normalizationOldLatticeGlobalOffset;
-const normalizationSquareStageGlobalOrigin = [63, 98];
-const normalizationSquareStageScale = 3.8;
+const normalizationSquareStageGlobalOrigin = [50, 90];
+const normalizationSquareStageScale = 4.6;
 const normalizationActionDotRadius = 3.2;
 const normalizationActionPointGlobalRadius = normalizationActionDotRadius * normalizationSquareStageScale;
 
@@ -9573,8 +9552,8 @@ function normalizationActionBoundaryPoint(center, toward) {
 
 function normalizationStabilizerBoundaryEndpoints(fromCenter, toCenter, subgroupId) {
   return {
-    from: normalizationSubgroupBoundaryPoint(fromCenter, subgroupId, toCenter),
-    to: normalizationActionBoundaryPoint(toCenter, fromCenter)
+    from: normalizationActionBoundaryPoint(toCenter, fromCenter),
+    to: normalizationSubgroupBoundaryPoint(fromCenter, subgroupId, toCenter)
   };
 }
 
@@ -9624,7 +9603,17 @@ function normalizationStabilizerLinkPath(from, to) {
   const bend = dy < 0 ? -34 : 34;
   const controlA = [from[0] + dx * 0.32, from[1] + bend];
   const controlB = [from[0] + dx * 0.68, to[1] - bend];
-  return `M${normalizationFormatPoint(from)} C${normalizationFormatPoint(controlA)}, ${normalizationFormatPoint(controlB)}, ${normalizationFormatPoint(to)}`;
+  return normalizationCubicPathWithMiddleVertex(from, controlA, controlB, to);
+}
+
+function normalizationCubicPathWithMiddleVertex(from, controlA, controlB, to) {
+  const leftA = normalizationInterpolatePoint(from, controlA, 0.5);
+  const middleControl = normalizationInterpolatePoint(controlA, controlB, 0.5);
+  const rightB = normalizationInterpolatePoint(controlB, to, 0.5);
+  const leftB = normalizationInterpolatePoint(leftA, middleControl, 0.5);
+  const rightA = normalizationInterpolatePoint(middleControl, rightB, 0.5);
+  const middle = normalizationInterpolatePoint(leftB, rightA, 0.5);
+  return `M${normalizationFormatPoint(from)} C${normalizationFormatPoint(leftA)}, ${normalizationFormatPoint(leftB)}, ${normalizationFormatPoint(middle)} C${normalizationFormatPoint(rightA)}, ${normalizationFormatPoint(rightB)}, ${normalizationFormatPoint(to)}`;
 }
 
 function normalizationApplyMatrixToPoint(matrix, point) {
@@ -9790,7 +9779,7 @@ function normalizationOperatorLinkPath(from, to) {
   const dx = to[0] - from[0];
   const controlA = [from[0] + dx * 0.42, from[1]];
   const controlB = [from[0] + dx * 0.58, to[1]];
-  return `M${normalizationFormatPoint(from)} C${normalizationFormatPoint(controlA)}, ${normalizationFormatPoint(controlB)}, ${normalizationFormatPoint(to)}`;
+  return normalizationCubicPathWithMiddleVertex(from, controlA, controlB, to);
 }
 
 function setNormalizationOperatorLinkPath(link, endpoints) {
@@ -9945,8 +9934,8 @@ function animateNormalizationStabilizerLinks(root, fromActionState, toActionStat
       const to = normalizationAnimatedLinkBoundaryGlobalPoint(fromActionState, toActionState, actedElement, orbit, pointId, actionProgress, fromCenter);
       if (!to) return;
       const endpoints = {
-        from: normalizationSubgroupBoundaryPoint(fromCenter, subgroupId, to),
-        to
+        from: to,
+        to: normalizationSubgroupBoundaryPoint(fromCenter, subgroupId, to)
       };
       setNormalizationStabilizerLinkPath(link, endpoints);
       linksByKey.set(`${subgroupId}:${pointId}`, endpoints);
@@ -10477,6 +10466,7 @@ function initializeNormalizationFigure(root, options = {}) {
   updateNormalizationHasseEdges(root);
   updateNormalizationStabilizerLinks(root);
   updateNormalizationOperatorLinks(root);
+  typesetMath(root);
   if (!options.controls || root.dataset.normalizationInitialized) return;
   root.dataset.normalizationInitialized = "true";
 
@@ -11346,11 +11336,24 @@ function initializeAutomataInteractiveFigure(figure) {
     renderWord();
   };
   const sleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
-  const flashConsumedLetter = async (letter) => {
+  const flashConsumedLetter = async (letter, index) => {
+    let x = 14;
+    let y = -14;
+    if (typeof liveWordShadow.getStartPositionOfChar === "function" && index >= 0) {
+      try {
+        const position = liveWordShadow.getStartPositionOfChar(index);
+        x = Number(position.x.toFixed(2));
+        y = Number(position.y.toFixed(2));
+      } catch (_error) {
+        x = 14 + index * 8.4;
+      }
+    } else {
+      x = 14 + index * 8.4;
+    }
     const text = makeSvg("text", {
       class: `automata-consume-letter-flash ${letter === "a" ? "automata-word-a" : "automata-word-b"}`,
-      x: "14",
-      y: "-14"
+      x: String(x),
+      y: String(y)
     });
     text.textContent = letter;
     const group = makeSvg("g", { transform: `translate(${state.cover[0]} ${state.cover[1]})` });
@@ -11403,7 +11406,7 @@ function initializeAutomataInteractiveFigure(figure) {
     renderWord();
     const from = state.q;
     const next = transitions[from][letter];
-    await flashConsumedLetter(letter);
+    await flashConsumedLetter(letter, state.word.length - 1);
     await animateAlong(coverPathNodes[`${from}${letter}`], basePathNodes[letter], next);
     state.busy = false;
   };
@@ -11421,18 +11424,24 @@ function initializeAutomataInteractiveFigure(figure) {
     renderResult(acceptStates.has(state.q) ? "accept" : "reject");
   };
 
-  let controls = figure.querySelector(".automata-interactive-controls");
-  if (!controls) {
-    controls = el("div", "automata-interactive-controls");
+  let inputControls = figure.querySelector(".automata-interactive-controls-input");
+  let actionControls = figure.querySelector(".automata-interactive-controls-actions");
+  if (!inputControls || !actionControls) {
+    inputControls = el("div", "automata-interactive-controls automata-interactive-controls-input");
+    actionControls = el("div", "automata-interactive-controls automata-interactive-controls-actions");
     const aButton = el("button", "automata-button automata-button-a", "a");
     const bButton = el("button", "automata-button automata-button-b", "b");
     const judgeButton = el("button", "automata-button automata-button-judge", "判定");
     const resetButton = el("button", "automata-button automata-button-reset", "Reset");
-    [aButton, bButton, judgeButton, resetButton].forEach((button) => {
+    [aButton, bButton].forEach((button) => {
       button.type = "button";
-      controls.append(button);
+      inputControls.append(button);
     });
-    figure.append(controls);
+    [judgeButton, resetButton].forEach((button) => {
+      button.type = "button";
+      actionControls.append(button);
+    });
+    figure.append(inputControls, actionControls);
     aButton.addEventListener("click", () => consume("a"));
     bButton.addEventListener("click", () => consume("b"));
     judgeButton.addEventListener("click", judge);
@@ -11493,7 +11502,7 @@ function renderDiagramNotes(panel, paper) {
   if (people) panel.append(el("p", "diagram-paper-people", people));
 
   const keywordList = el("div", "diagram-keywords");
-  paperDisplayTagRecords(paper, notes.keywords || []).forEach((tag) => keywordList.append(renderTagPill(tag.label)));
+  paperDisplayTagRecords(paper).forEach((tag) => keywordList.append(renderTagPill(tag.label)));
   if (keywordList.children.length) panel.append(keywordList);
 
   if (notes.concepts?.length) {
@@ -11544,7 +11553,10 @@ function openPaperDiagram(paper) {
 function appendActionLinks(parent, records) {
   if (!records || !records.length) return;
   const actions = el("div", "action-links");
-  records.forEach(([label, href]) => actions.append(link(symbolicCloudPenLabel(label), href, "action-link")));
+  records.forEach((record) => {
+    const [label, href] = record;
+    actions.append(link(symbolicCloudPenLabel(label), href, "action-link"));
+  });
   parent.append(actions);
 }
 
@@ -11931,7 +11943,7 @@ function renderPaperRecord(paper, options = {}) {
   const titleRow = el("div", "publication-title");
   const title = el("h3");
   title.append(link(paper.title, paper.link));
-  titleRow.append(title);
+  titleRow.append(title, titleCopyButton(`papers/index.html#${paperAnchor(paper)}`, paper.title));
   item.append(titleRow);
 
   const details = renderPublicationDetails(paper);
@@ -11941,7 +11953,10 @@ function renderPaperRecord(paper, options = {}) {
   paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
   if (meta.children.length) item.append(meta);
   if (paper.summary) item.append(el("p", "publication-summary", paper.summary));
-  appendActionLinks(item, [...normalizedPublicationLinks(paper.links || []), ...overleafActionLinks(paper, ["paper", "preprint"])]);
+  appendActionLinks(item, [
+    ...normalizedPublicationLinks(paper.links || []),
+    ...overleafActionLinks(paper, ["paper", "preprint"])
+  ]);
   return item;
 }
 
@@ -12194,10 +12209,12 @@ function renderPreparationPapers() {
       initializeAutomataInteractiveFigures(figure);
       item.append(figure);
     }
+    const titleRow = el("div", "publication-title");
     const heading = el("h3");
     heading.innerHTML = paper.title;
     const details = renderPublicationDetails(paper);
-    item.append(heading);
+    titleRow.append(heading, titleCopyButton(`papers/index.html#${paperAnchor(paper)}`, paper.title));
+    item.append(titleRow);
     if (details) item.append(details);
     const meta = el("div", "publication-meta");
     paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
@@ -12352,6 +12369,7 @@ function renderTalkItem(record, href, metaText, actions = []) {
   title.append(uiIcon("talk", "talk-title-icon"));
   if (href) title.append(link(record.title, href));
   else title.append(el("span", null, record.title));
+  title.append(titleCopyButton(`talks/index.html#${talkRecordAnchor(record)}`, record.title));
   body.append(title, el("span", "talk-venue", metaText));
   if (actions.length) appendActionLinks(body, actions);
   shell.append(body);
@@ -12386,7 +12404,12 @@ function renderResearchmapPresentations() {
       sortedPresentations(items)
         .reverse()
         .forEach((record) => {
-        const item = renderTalkItem(record, record.link, presentationMeta(record), slideLinksForTalk(record));
+        const item = renderTalkItem(
+          record,
+          record.link,
+          presentationMeta(record),
+          slideLinksForTalk(record)
+        );
         const key = talkRecordKey(record);
         item.id = talkRecordAnchor(record);
         item.classList.toggle("is-current", key === state.talkTimelineKey);
@@ -12598,12 +12621,14 @@ function renderTalks(limitSelector = "#talk-list") {
     const list = el("ul", "talk-items");
     visible.forEach((talk) => {
       const presentationRecord = findResearchmapPresentationForTalk(talk);
+      const record = presentationRecord || talk;
       const item = renderTalkItem(
-        presentationRecord || talk,
+        record,
         talk.href,
-        compactText([presentationPeopleText(presentationRecord || talk), talk.venue]).join(" / "),
-        slideLinksForTalk(presentationRecord || talk)
+        compactText([presentationPeopleText(record), talk.venue]).join(" / "),
+        slideLinksForTalk(record)
       );
+      item.id = talkRecordAnchor(record);
       list.append(item);
     });
     wrapper.append(list);
@@ -12702,7 +12727,7 @@ function renderNotes() {
     item.id = noteAnchor(note);
     item.append(noteThumbnail(note));
     const heading = el("h3");
-    heading.append(link(shortNoteTitle(note), href));
+    heading.append(link(shortNoteTitle(note), href), titleCopyButton(`notes/index.html#${noteAnchor(note)}`, shortNoteTitle(note)));
     item.append(heading);
     if (note.description) item.append(el("p", null, note.description));
     const meta = el("div", "note-meta");
@@ -12874,7 +12899,14 @@ function renderProblemTrail(problem) {
 
 function renderProblemTags(problem) {
   const meta = el("div", "publication-meta");
-  [problem.theme, ...(problem.tags || [])].forEach((tag) => meta.append(renderTagPill(tag)));
+  const text = compactText([
+    problem.theme,
+    problem.title,
+    problem.statement,
+    problem.description,
+    ...(problem.tags || [])
+  ]).join(" ");
+  scoreThemeRecord(text).themes.forEach((themeId) => meta.append(renderTagPill(themeTagLabel(themeId))));
   return meta;
 }
 
