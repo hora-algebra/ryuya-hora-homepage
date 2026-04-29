@@ -225,7 +225,7 @@ const siteData = {
         links: [
           ["TAC", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
           ["arXiv", "https://arxiv.org/abs/2302.06851"],
-          ["Lawvere's open problems", "http://www.acsu.buffalo.edu/~wlawvere/Openproblemstopos.htm"]
+          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/William+Lawvere#OpenProblemsInToposTheory"]
         ],
         summary:
           "Introduces local state classifiers and uses them to establish an internal parameterization of hyperconnected quotients."
@@ -244,7 +244,7 @@ const siteData = {
           ["DOI", "https://doi.org/10.1016/j.jpaa.2024.107657"],
           ["arXiv", "https://arxiv.org/abs/2310.02647"],
           ["JPAA issue", "https://www.sciencedirect.com/journal/journal-of-pure-and-applied-algebra/vol/228/issue/8"],
-          ["Lawvere's open problems", "http://www.acsu.buffalo.edu/~wlawvere/Openproblemstopos.htm"]
+          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/William+Lawvere#OpenProblemsInToposTheory"]
         ],
         summary:
           "Classifies classes of discrete dynamical systems closed under finite limits and small colimits."
@@ -281,7 +281,7 @@ const siteData = {
           ["DOI", "https://doi.org/10.1016/j.aim.2025.110751"],
           ["arXiv", "https://arxiv.org/abs/2407.17105"],
           ["Advances in Mathematics", "https://www.sciencedirect.com/journal/advances-in-mathematics/vol/487/suppl/C"],
-          ["Lawvere's open problems", "http://www.acsu.buffalo.edu/~wlawvere/Openproblemstopos.htm"]
+          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/William+Lawvere#OpenProblemsInToposTheory"]
         ],
         summary: "Gives a solution to Lawvere's first open problem."
       }
@@ -418,6 +418,7 @@ const siteData = {
       title: "Counting with Exponential of Groups",
       description: "An introduction to rieg theory",
       theme: "algebra",
+      themes: ["algebra", "logic"],
       language: "English",
       file: "counting-with-exponential-of-groups.pdf",
       ...notePdfAsset("1fYwhDbfaeWG107Rf68yocjyJpEvOu8Q8", "counting-with-exponential-of-groups"),
@@ -1275,7 +1276,6 @@ const i18nText = {
     "All themes": "すべてのテーマ",
     "Current Positions": "現在の所属",
     "Interests": "関心",
-    "Topics": "トピック",
     "Contact": "連絡先",
     "Email": "メール",
     "Site Map": "サイトマップ",
@@ -1669,6 +1669,30 @@ const researchThemes = [
       "finset",
       "limits in finset",
       "圏論"
+    ]
+  },
+  {
+    id: "logic",
+    label: "Logic",
+    x: 378,
+    y: 150,
+    r: 50,
+    keywords: [
+      "logic",
+      "logical",
+      "constructive",
+      "constructive mathematics",
+      "axiom of choice",
+      "choice",
+      "boolean",
+      "boolean algebra",
+      "boolean ring",
+      "proof",
+      "model",
+      "semiring with exponentials",
+      "exponentials in logic",
+      "数学基礎論",
+      "構成的"
     ]
   },
   {
@@ -2105,6 +2129,7 @@ function setLanguage(language) {
   writeStoredLanguage(activeLanguage);
   syncLanguageUrl();
   applyLanguage();
+  renderCategoriesTokyoMap();
 }
 
 function setupLanguage() {
@@ -2416,6 +2441,12 @@ function publicHref(href) {
   return new URL(clean, publicSiteUrl).href;
 }
 
+function currentPagePublicPath() {
+  const page = document.body?.dataset?.page || "home";
+  if (page === "home") return "index.html";
+  return `${page}/index.html`;
+}
+
 async function copyTextToClipboard(text) {
   if (navigator.clipboard?.writeText) {
     await navigator.clipboard.writeText(text);
@@ -2440,7 +2471,7 @@ function titleCopyButton(href, title = "") {
   button.dataset.copyHref = url;
   button.setAttribute("aria-label", title ? `Copy link to ${title}` : "Copy link");
   button.title = "Copy link";
-  button.append(uiIcon("link", "title-copy-link-icon"), el("span", "title-copy-link-status", "Copied!"));
+  button.append(uiIcon("link", "title-copy-link-icon"), el("span", "title-copy-link-status"));
   button.addEventListener("click", async () => {
     try {
       await copyTextToClipboard(url);
@@ -2450,6 +2481,7 @@ function titleCopyButton(href, title = "") {
       button.setAttribute("aria-label", "Copied!");
       setTimeout(() => {
         button.classList.remove("is-copied");
+        button.querySelector(".title-copy-link-status").textContent = "";
         button.setAttribute("aria-label", title ? `Copy link to ${title}` : "Copy link");
       }, 1400);
     } catch (_error) {
@@ -2457,7 +2489,10 @@ function titleCopyButton(href, title = "") {
       button.classList.remove("is-copied");
       button.querySelector(".title-copy-link-status").textContent = "Failed";
       button.setAttribute("aria-label", activeLanguage === "ja" ? "コピー失敗" : "Copy failed");
-      setTimeout(() => button.classList.remove("is-failed"), 1400);
+      setTimeout(() => {
+        button.classList.remove("is-failed");
+        button.querySelector(".title-copy-link-status").textContent = "";
+      }, 1400);
     }
   });
   return button;
@@ -3857,6 +3892,23 @@ const contentThemeKeywords = {
     "eisenstein",
     "組合せ論",
     "母関数"
+  ],
+  logic: [
+    "logic",
+    "logical",
+    "constructive",
+    "constructive mathematics",
+    "axiom of choice",
+    "choice",
+    "boolean",
+    "boolean algebra",
+    "boolean ring",
+    "proof",
+    "model",
+    "semiring with exponentials",
+    "exponentials in logic",
+    "数学基礎論",
+    "構成的"
   ]
 };
 
@@ -3868,6 +3920,7 @@ function contentTheme(text) {
   if (hasTopicKeywords(text, contentThemeKeywords.automata)) return "automata";
   if (hasTopicKeywords(text, contentThemeKeywords.topos)) return "topos";
   if (hasTopicKeywords(text, contentThemeKeywords.geometry)) return "geometry";
+  if (hasTopicKeywords(text, contentThemeKeywords.logic)) return "logic";
   if (hasTopicKeywords(text, contentThemeKeywords.category)) return "category";
   if (hasTopicKeywords(text, contentThemeKeywords.combinatorics)) return "combinatorics";
   return "other";
@@ -4576,8 +4629,14 @@ const categoriesTokyoVenues = [
   {
     id: "komaba",
     label: "第0回 The University of Tokyo",
-    labelLines: ["第0回", "The University of Tokyo"],
-    name: "第0回 The University of Tokyo",
+    labelLines: {
+      en: ["Meeting 0", "The University of Tokyo"],
+      ja: ["第0回", "東京大学"]
+    },
+    name: {
+      en: "Meeting 0, The University of Tokyo",
+      ja: "第0回 東京大学"
+    },
     lon: 139.6847,
     lat: 35.6606,
     dx: -22.7,
@@ -4594,14 +4653,23 @@ const categoriesTokyoVenues = [
   {
     id: "nii",
     label: "第1回・第2回 National Institute of Informatics",
-    labelBlocks: [
-      { meetingIndex: 0, lines: ["第1回", "National Institute", "of Informatics"] },
-      { meetingIndex: 1, lines: ["第2回", "National Institute", "of Informatics"] }
-    ],
+    labelBlocks: {
+      en: [
+        { meetingIndex: 0, lines: ["Meeting 1", "National Institute", "of Informatics"] },
+        { meetingIndex: 1, lines: ["Meeting 2", "National Institute", "of Informatics"] }
+      ],
+      ja: [
+        { meetingIndex: 0, lines: ["第1回", "国立情報学研究所"] },
+        { meetingIndex: 1, lines: ["第2回", "国立情報学研究所"] }
+      ]
+    },
     labelLineGap: 1.04,
     labelBlockGap: 3.00,
     labelLeaderUnit: 1.34,
-    name: "第1回・第2回 National Institute of Informatics",
+    name: {
+      en: "Meeting 1 and Meeting 2, National Institute of Informatics",
+      ja: "第1回・第2回 国立情報学研究所"
+    },
     lon: 139.7585,
     lat: 35.6933,
     dx: 19.3,
@@ -4623,7 +4691,14 @@ const categoriesTokyoVenues = [
   {
     id: "kabukiza",
     label: "第3回 ZEN University",
-    name: "第3回 ZEN University",
+    labelLines: {
+      en: ["Meeting 3 ZEN University"],
+      ja: ["第3回 ZEN大学"]
+    },
+    name: {
+      en: "Meeting 3, ZEN University",
+      ja: "第3回 ZEN大学"
+    },
     lon: 139.7671,
     lat: 35.6695,
     dx: -3.2,
@@ -4637,6 +4712,11 @@ const categoriesTokyoVenues = [
     ]
   }
 ];
+
+function localizedMapValue(value, fallback = "") {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return value ?? fallback;
+  return value[activeLanguage] || value.en || value.ja || fallback;
+}
 
 function projectCategoriesPoint(projection, lon, lat) {
   if (!projection || !Number.isFinite(lon) || !Number.isFinite(lat)) return null;
@@ -4668,8 +4748,9 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
       "dominant-baseline": "middle"
     });
     const lineGap = venue.labelLineGap || 1.16;
-    const labelBlocks = Array.isArray(venue.labelBlocks) && venue.labelBlocks.length
-      ? venue.labelBlocks
+    const localizedLabelBlocks = localizedMapValue(venue.labelBlocks, venue.labelBlocks);
+    const labelBlocks = Array.isArray(localizedLabelBlocks) && localizedLabelBlocks.length
+      ? localizedLabelBlocks
       : null;
     let hasLinkedLabelSegments = false;
     let labelLeaderTargets = null;
@@ -4718,9 +4799,12 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
         if (blockLink) labelText.append(blockLink);
       });
     } else {
+      const localizedLabelLines = localizedMapValue(venue.labelLines, venue.labelLines);
       const labelRows = Array.isArray(venue.labelRows) && venue.labelRows.length
         ? venue.labelRows
-        : (Array.isArray(venue.labelLines) && venue.labelLines.length ? venue.labelLines : [venue.label]).map((line) => [line]);
+        : (Array.isArray(localizedLabelLines) && localizedLabelLines.length
+          ? localizedLabelLines
+          : [localizedMapValue(venue.label, venue.label)]).map((line) => [line]);
       hasLinkedLabelSegments = labelRows.some((row) => (
         Array.isArray(row) && row.some((segment) => typeof segment === "object" && Number.isInteger(segment.meetingIndex))
       ));
@@ -4771,7 +4855,7 @@ function appendCategoriesVenueDots(svg, projection, options = {}) {
       ))
       : [svgEl("path", { class: "categories-map-venue-leader", d: `M${x} ${y}L${labelX} ${labelY}` })];
     const markerNodes = [
-      svgEl("title", {}, venue.name),
+      svgEl("title", {}, localizedMapValue(venue.name, venue.name)),
       ...leaderNodes
     ];
     if (venue.showPoint !== false) {
@@ -4871,11 +4955,13 @@ function renderCategoriesTokyoMap() {
   appendCategoriesVenueDots(kantoMap, kanto.projection, { dotRadius: 1.05, haloRadius: 2.6 });
 
   svg.append(
-    svgEl("title", { id: "categories-map-title" }, "Categories in Tokyo map"),
-    svgEl("desc", { id: "categories-map-desc" }, "A Tokyo-area map with Categories in Tokyo venues, meeting links, and Tokyo ward boundaries."),
+    svgEl("title", { id: "categories-map-title" }, activeLanguage === "ja" ? "Categories in Tokyo の地図" : "Categories in Tokyo map"),
+    svgEl("desc", { id: "categories-map-desc" }, activeLanguage === "ja"
+      ? "Categories in Tokyo の開催地、各回へのリンク、東京23区の境界を示す地図です。"
+      : "A Tokyo-area map with Categories in Tokyo venues, meeting links, and Tokyo ward boundaries."),
     defs,
     svgEl("rect", { class: "categories-map-bg", x: 0, y: 0, width: 760, height: 440, rx: 8 }),
-    svgEl("text", { class: "categories-map-label", x: 32, y: 34 }, "Tokyo venues"),
+    svgEl("text", { class: "categories-map-label", x: 32, y: 34 }, activeLanguage === "ja" ? "東京の開催地" : "Tokyo venues"),
     kantoMap,
     svgEl("text", { class: "categories-map-credit", x: 736, y: 418, "text-anchor": "end" }, categoriesMapData.source?.note || "Natural Earth public domain data")
   );
@@ -5132,11 +5218,12 @@ const homeTimelineThemeLabels = {
   games: "Games",
   geometry: "Geometry / dynamics",
   combinatorics: "Combinatorics",
-  category: "Category / algebra / logic",
+  category: "Category / algebra",
+  logic: "Logic",
   other: "Other"
 };
 
-const homeTimelineThemeOrder = ["topos", "automata", "games", "geometry", "combinatorics", "category", "other"];
+const homeTimelineThemeOrder = ["topos", "automata", "games", "geometry", "combinatorics", "category", "logic", "other"];
 
 function homeTimelineThemeLabel(theme) {
   return homeTimelineThemeLabels[theme] || homeTimelineThemeLabels.other;
@@ -5488,7 +5575,7 @@ function noteKind(note) {
   const titleKind = noteTitlePrefixKind(note.title);
   const text = `${note.title} ${note.description || ""} ${note.file}`.toLowerCase();
   if (titleKind === "cloud") return ["cloud", "☁︎", "☁︎"];
-  if (titleKind === "pen") return ["pen", "🖊️", "🖊️"];
+  if (titleKind === "pen") return ["pen", "Pen", "pen"];
   if (note.file === "Notion archive") return ["archive", "Archive"];
   if (text.includes("slides") || text.includes("talk") || text.includes("cscat") || text.includes("seminar")) {
     return ["slides", "Slides"];
@@ -5498,7 +5585,7 @@ function noteKind(note) {
 
 const noteKindSymbols = {
   cloud: "☁︎",
-  pen: "🖊️"
+  pen: "Pen"
 };
 
 function noteTitlePrefixKind(value) {
@@ -5678,7 +5765,8 @@ function noteThumbnail(note) {
 
   const body = el("div", "note-thumb-body");
   const kindBadge = el("span", "note-thumb-kind", kindLabel);
-  if (kindIcon && kindIcon !== kindLabel) kindBadge.dataset.icon = kindIcon;
+  if (kindIcon === "pen") kindBadge.prepend(uiIcon("pen", "note-kind-icon"));
+  else if (kindIcon && kindIcon !== kindLabel) kindBadge.dataset.icon = kindIcon;
   if (kindIcon && kindIcon === kindLabel) kindBadge.classList.add("is-symbol");
   body.append(kindBadge, el("span", "note-thumb-title", shortNoteTitle(note)), el("span", "note-thumb-meta", note.language));
 
@@ -5932,6 +6020,23 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "pen") {
+    svg.append(
+      shape("path", {
+        d: "M5.2 18.8L6.4 14.1L15.1 5.4C16 4.5 17.4 4.5 18.3 5.4L18.6 5.7C19.5 6.6 19.5 8 18.6 8.9L9.9 17.6Z",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.9"
+      }),
+      line({ d: "M13.7 6.8L17.2 10.3", "stroke-width": "1.9" }),
+      line({ d: "M6.4 14.1L9.9 17.6", "stroke-width": "1.9" }),
+      line({ d: "M4.7 19.3L9.1 18.1", "stroke-width": "1.55" })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "tag") {
     svg.append(
       shape("path", {
@@ -6022,7 +6127,7 @@ function uiIconSvg(key) {
         "stroke-width": "1.85"
       }),
       shape("path", {
-        d: "M12.6 8.4C11.4 9.8 11.9 11.2 13.2 12.8C15.2 15.2 16.2 17.7 15.2 20.4H8.8C11 18.7 11 16.5 9.9 14.7C8.8 13 9.2 11.2 10.8 10C11.4 9.5 12 8.9 12.6 8.4Z",
+        d: "M12.1 8.2C10.8 9.2 10.5 10.7 11.7 12.3C13 14.1 13.4 15.6 12.2 17.3C11.5 18.3 10.4 19.3 9.1 20.4H15.1C16 19.1 16.4 17.8 15.9 16.4C15.4 15.1 14.3 14.1 13.6 12.9C12.7 11.4 13.4 10.1 15 8.2Z",
         fill: "currentColor",
         "fill-opacity": "0.84"
       }),
@@ -6349,14 +6454,35 @@ function headingSelfHref(heading) {
   return `#${heading.id}`;
 }
 
+function sectionIconHref(heading) {
+  const embeddedLink = heading?.querySelector?.("a[href]");
+  if (embeddedLink) return embeddedLink.getAttribute("href") || "";
+  const moreHref = sectionMoreLink(heading)?.getAttribute("href") || "";
+  if (moreHref) return moreHref;
+  const text = simplified(heading?.textContent || "");
+  if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("cv/index.html");
+  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("cv/index.html#awards");
+  if (text.includes("email") || text.includes("contact")) return "mailto:ryuya.hora@zen.ac.jp";
+  if (text.includes("interest")) return localHref("index.html#interests");
+  if (text.includes("categories in tokyo")) return "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0";
+  return "";
+}
+
 function sectionTitleIconLink(key, heading) {
-  const href = headingSelfHref(heading);
+  const href = sectionIconHref(heading);
   if (!href) return uiIcon(key, "section-title-icon");
   const anchor = link("", href, "section-title-link");
-  anchor.setAttribute("aria-label", `Link to ${heading.textContent.trim() || "this section"}`);
-  anchor.title = "Copy link to this section";
+  anchor.setAttribute("aria-label", `Open ${heading.textContent.trim() || "section link"}`);
   anchor.append(uiIcon(key, "section-title-icon"));
   return anchor;
+}
+
+function sectionSelfCopyButton(heading) {
+  const hash = headingSelfHref(heading);
+  if (!hash || heading.querySelector(".section-copy-link")) return null;
+  const button = titleCopyButton(`${currentPagePublicPath()}${hash}`, heading.textContent.trim());
+  button.classList.add("section-copy-link");
+  return button;
 }
 
 function sectionMoreLink(heading) {
@@ -6612,6 +6738,8 @@ function decorateUiIcons(root = document.body) {
     if (!key) return;
     if (!node.querySelector(".section-title-icon")) node.prepend(sectionTitleIconLink(key, node));
     node.classList.add("has-section-icon");
+    const copyButton = sectionSelfCopyButton(node);
+    if (copyButton) node.append(copyButton);
   });
 }
 
@@ -7205,8 +7333,6 @@ function setResearchThemeSelection(selection = "") {
   updateResearchThemeControls(root, themeIds);
   renderResearchThemeSimplex(root, themeIds, "active");
   renderResearchThemeSimplex(root, "", "preview");
-  const reset = document.querySelector("[data-theme-reset]");
-  if (reset) reset.classList.toggle("is-active", !themeIds.length);
   renderResearchMapResults(themeIds);
 }
 
@@ -7248,7 +7374,6 @@ function renderResearchMap() {
 
   const overview = el("div", "theme-overview");
   const choices = el("div", "theme-choice-list");
-  choices.append(renderThemeChoice("All themes"));
   researchThemes.forEach((theme) => choices.append(renderThemeChoice(theme.label, theme.id)));
   overview.append(choices);
   mapColumn.append(overview);
@@ -7925,9 +8050,9 @@ const internalClassifierVertexRadius = 9;
 const internalClassifierNonLoopPath = "M82 112 C112 100, 112 136, 82 124";
 const internalClassifierLoopPath = "M64 124 C34 136, 34 100, 64 112";
 const internalPieceBaseStroke = "#2c312d";
-const internalPieceVertexStroke = "#2f5f91";
-const internalPieceNonLoopStroke = "#2c6f63";
-const internalPieceLoopStroke = "#8a4d34";
+const internalPieceVertexStroke = "#1d6fd8";
+const internalPieceNonLoopStroke = "#008f63";
+const internalPieceLoopStroke = "#d66a1f";
 const internalSmoothTiming = `calcMode="spline" keySplines="${[
   "0.42 0 0.58 1",
   "0.33 0 0.2 1",
@@ -7980,7 +8105,7 @@ function internalParameterizationPiece({ type, start, decomposed, target, from, 
   const arrivalScale = finalScale ?? compactScale;
   let content = "";
   if (type === "vertex") {
-    content = `<circle class="internal-piece-dot internal-piece-dot-vertex" cx="0" cy="0" r="${internalVertexRadius}"><animate attributeName="stroke" attributeType="CSS" values="${internalPieceColorValues("#1f2721", internalPieceVertexStroke)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate><animate attributeName="fill" attributeType="CSS" values="#fffdf8; #fffdf8; #fffdf8; #eef5fb; #eef5fb; #eef5fb; #eef5fb; #eef5fb; #fffdf8" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate></circle>`;
+    content = `<circle class="internal-piece-dot internal-piece-dot-vertex" cx="0" cy="0" r="${internalVertexRadius}"><animate attributeName="stroke" attributeType="CSS" values="${internalPieceColorValues("#1f2721", internalPieceVertexStroke)}" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate><animate attributeName="fill" attributeType="CSS" values="#fffdf8; #fffdf8; #fffdf8; #e5f0ff; #e5f0ff; #e5f0ff; #e5f0ff; #e5f0ff; #fffdf8" keyTimes="${keyTimes}" dur="${duration}" repeatCount="indefinite"></animate></circle>`;
   } else if (type === "loop") {
     content = internalAnimatedPath(loopPath, finalPath, "internal-piece-arrow-l", keyTimes, duration, internalPieceLoopStroke, `piece-l-${staggerIndex}`);
   } else {
@@ -8173,36 +8298,36 @@ function automataCoverRollingBouquet({ path, start, end, scale = 1 }) {
 function automataCoverUnfoldingTemplate() {
   const rollingBouquets = [
     { start: 0.08, end: 0.16, scale: 0.78, path: "M650 195 H486" },
-    { start: 0.17, end: 0.25, scale: 0.62, path: "M486 195 L408 151" },
-    { start: 0.17, end: 0.25, scale: 0.62, path: "M486 195 L408 239" },
-    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 151 L336 121" },
-    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 151 L336 151" },
-    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 239 L336 239" },
-    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 239 L336 269" },
-    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 121 L286 106" },
-    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 121 L286 132" },
-    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 151 L286 140" },
-    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 151 L286 166" },
-    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 239 L286 224" },
-    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 239 L286 250" },
-    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 269 L286 258" },
-    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 269 L286 284" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 106 L252 103" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 106 L252 109" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 132 L252 129" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 132 L252 135" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 140 L252 137" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 140 L252 143" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 166 L252 163" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 166 L252 169" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 224 L252 221" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 224 L252 227" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 250 L252 247" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 250 L252 253" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 258 L252 255" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 258 L252 261" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 284 L252 281" },
-    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 284 L252 287" },
+    { start: 0.17, end: 0.25, scale: 0.62, path: "M486 195 L408 135.7" },
+    { start: 0.17, end: 0.25, scale: 0.62, path: "M486 195 L408 254.3" },
+    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 135.7 L336 115.9" },
+    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 135.7 L336 155.4" },
+    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 254.3 L336 234.6" },
+    { start: 0.27, end: 0.36, scale: 0.48, path: "M408 254.3 L336 274.1" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 115.9 L286 109.3" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 115.9 L286 122.5" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 155.4 L286 148.9" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 155.4 L286 162" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 234.6 L286 228" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 234.6 L286 241.1" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 274.1 L286 267.5" },
+    { start: 0.38, end: 0.48, scale: 0.36, path: "M336 274.1 L286 280.7" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 109.3 L252 107.1" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 109.3 L252 111.5" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 122.5 L252 120.3" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 122.5 L252 124.7" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 148.9 L252 146.7" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 148.9 L252 151" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 162 L252 159.8" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 162 L252 164.2" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 228 L252 225.8" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 228 L252 230.1" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 241.1 L252 238.9" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 241.1 L252 243.3" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 267.5 L252 265.3" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 267.5 L252 269.7" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 280.7 L252 278.5" },
+    { start: 0.49, end: 0.56, scale: 0.27, path: "M286 280.7 L252 282.9" },
   ];
   return `
         <g class="automata-cover-unfolding" aria-hidden="true">
@@ -8231,8 +8356,9 @@ const paperFigureTemplates = {
           <rect class="games-rb-table-bg" x="0" y="0" width="186" height="144" rx="0"></rect>
           <rect class="games-rb-table-head-row" x="0" y="0" width="186" height="24"></rect>
           <rect class="games-rb-table-head-col" x="0" y="0" width="31" height="144"></rect>
-          <path class="games-rb-table-lines is-major" d="M0 0 H186 M0 24 H186 M0 144 H186 M0 0 V144 M31 0 V144 M186 0 V144"></path>
+          <path class="games-rb-table-lines is-major" d="M0 0 H186 M0 144 H186 M0 0 V144 M186 0 V144"></path>
           <path class="games-rb-table-lines" d="M0 48 H186 M0 72 H186 M0 96 H186 M0 120 H186 M62 0 V144 M93 0 V144 M124 0 V144 M155 0 V144"></path>
+          <path class="games-rb-table-lines is-input-output" d="M0 24 H186 M31 0 V144"></path>
           <text class="games-rb-cell-text is-head" x="15.5" y="17" text-anchor="middle">⊕</text>
           <text class="games-rb-cell-text is-head" x="46.5" y="17" text-anchor="middle">0</text>
           <text class="games-rb-cell-text is-head" x="77.5" y="17" text-anchor="middle">1</text>
@@ -8255,7 +8381,7 @@ const paperFigureTemplates = {
           <text class="games-rb-cell-text" x="46.5" y="89" text-anchor="middle">2</text>
           <text class="games-rb-cell-text" x="77.5" y="89" text-anchor="middle">3</text>
           <text class="games-rb-cell-text" x="108.5" y="89" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text is-lhs" x="139.5" y="89" text-anchor="middle">1</text>
+          <text class="games-rb-cell-text" x="139.5" y="89" text-anchor="middle">1</text>
           <text class="games-rb-cell-text" x="170.5" y="89" text-anchor="middle">6</text>
           <text class="games-rb-cell-text is-head" x="15.5" y="113" text-anchor="middle">3</text>
           <text class="games-rb-cell-text" x="46.5" y="113" text-anchor="middle">3</text>
@@ -8288,6 +8414,10 @@ const paperFigureTemplates = {
           <rect class="games-rb-set-highlight is-t-entry" x="31" y="0" width="31" height="24"></rect>
           <rect class="games-rb-set-highlight is-t-entry" x="62" y="0" width="31" height="24"></rect>
           <rect class="games-rb-set-highlight is-t-entry" x="93" y="0" width="31" height="24"></rect>
+          <rect class="games-rb-mex-highlight is-mex-s-entry" x="0" y="72" width="31" height="24"></rect>
+          <rect class="games-rb-mex-highlight is-mex-t-entry" x="124" y="0" width="31" height="24"></rect>
+          <text class="games-rb-mex-axis-label is-mex-s-label" x="-33" y="88" text-anchor="middle">mex(S)</text>
+          <text class="games-rb-mex-axis-label is-mex-t-label" x="139.5" y="-23" text-anchor="middle">mex(T)</text>
         </g>
       </g>
 
@@ -8303,6 +8433,10 @@ const paperFigureTemplates = {
           <rect class="games-rb-set-highlight is-t-entry" x="31" y="0" width="31" height="24"></rect>
           <rect class="games-rb-set-highlight is-t-entry" x="62" y="0" width="31" height="24"></rect>
           <rect class="games-rb-set-highlight is-t-entry" x="93" y="0" width="31" height="24"></rect>
+          <rect class="games-rb-mex-highlight is-mex-s-entry" x="0" y="72" width="31" height="24"></rect>
+          <rect class="games-rb-mex-highlight is-mex-t-entry" x="124" y="0" width="31" height="24"></rect>
+          <text class="games-rb-mex-axis-label is-mex-s-label" x="-33" y="88" text-anchor="middle">mex(S)</text>
+          <text class="games-rb-mex-axis-label is-mex-t-label" x="139.5" y="-23" text-anchor="middle">mex(T)</text>
         </g>
       </g>
     </svg>
@@ -8325,54 +8459,52 @@ const paperFigureTemplates = {
       <g class="automata-cantor-layout">
         <g class="automata-cantor-space">
           <text class="automata-cantor-space-label" x="34" y="72">Cantor space</text>
-          <g class="automata-cantor-fractal" transform="translate(0 44.75)">
-            <g transform="rotate(-90 118 150.25)">
-              <rect class="automata-cantor-interval stage-0" x="29" y="84.5" width="178" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-1" x="44.35" y="116.5" width="59.3" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-1" x="132.35" y="116.5" width="59.3" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-2" x="34.15" y="148.5" width="19.7" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-2" x="64.15" y="148.5" width="19.7" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-2" x="152.15" y="148.5" width="19.7" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-2" x="182.15" y="148.5" width="19.7" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-3" x="25.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-3" x="51.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-3" x="59.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-3" x="85.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-3" x="143.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-3" x="169.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-3" x="177.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-              <rect class="automata-cantor-interval stage-3" x="203.75" y="180.5" width="6.5" height="7" rx="3.5"></rect>
-              <path class="automata-cantor-connector cantor-stage-1" d="M118 93.5 L74 114.5"></path>
-              <path class="automata-cantor-connector cantor-stage-1" d="M118 93.5 L162 114.5"></path>
-              <path class="automata-cantor-connector cantor-stage-2" d="M74 125.5 L44 146.5"></path>
-              <path class="automata-cantor-connector cantor-stage-2" d="M74 125.5 L74 146.5"></path>
-              <path class="automata-cantor-connector cantor-stage-2" d="M162 125.5 L162 146.5"></path>
-              <path class="automata-cantor-connector cantor-stage-2" d="M162 125.5 L192 146.5"></path>
-              <path class="automata-cantor-connector cantor-stage-3" d="M44 157.5 L29 178.5"></path>
-              <path class="automata-cantor-connector cantor-stage-3" d="M44 157.5 L55 178.5"></path>
-              <path class="automata-cantor-connector cantor-stage-3" d="M74 157.5 L63 178.5"></path>
-              <path class="automata-cantor-connector cantor-stage-3" d="M74 157.5 L89 178.5"></path>
-              <path class="automata-cantor-connector cantor-stage-3" d="M162 157.5 L147 178.5"></path>
-              <path class="automata-cantor-connector cantor-stage-3" d="M162 157.5 L173 178.5"></path>
-              <path class="automata-cantor-connector cantor-stage-3" d="M192 157.5 L181 178.5"></path>
-              <path class="automata-cantor-connector cantor-stage-3" d="M192 157.5 L207 178.5"></path>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="26" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="32" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="52" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="58" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="60" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="66" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="86" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="92" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="144" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="150" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="170" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="176" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="178" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="184" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="204" cy="216" r="2.1"></circle>
-              <circle class="automata-cantor-dot cantor-stage-4" cx="210" cy="216" r="2.1"></circle>
-            </g>
+          <g class="automata-cantor-fractal">
+            <path class="automata-cantor-interval stage-0" d="M56 106 L56 284"></path>
+            <path class="automata-cantor-interval stage-1" d="M88 106 L88 165.3"></path>
+            <path class="automata-cantor-interval stage-1" d="M88 224.7 L88 284"></path>
+            <path class="automata-cantor-interval stage-2" d="M120 106 L120 125.8"></path>
+            <path class="automata-cantor-interval stage-2" d="M120 145.6 L120 165.3"></path>
+            <path class="automata-cantor-interval stage-2" d="M120 224.7 L120 244.4"></path>
+            <path class="automata-cantor-interval stage-2" d="M120 264.2 L120 284"></path>
+            <path class="automata-cantor-interval stage-3" d="M152 106 L152 112.6"></path>
+            <path class="automata-cantor-interval stage-3" d="M152 119.2 L152 125.8"></path>
+            <path class="automata-cantor-interval stage-3" d="M152 145.6 L152 152.1"></path>
+            <path class="automata-cantor-interval stage-3" d="M152 158.7 L152 165.3"></path>
+            <path class="automata-cantor-interval stage-3" d="M152 224.7 L152 231.3"></path>
+            <path class="automata-cantor-interval stage-3" d="M152 237.9 L152 244.4"></path>
+            <path class="automata-cantor-interval stage-3" d="M152 264.2 L152 270.8"></path>
+            <path class="automata-cantor-interval stage-3" d="M152 277.4 L152 284"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 106 L184 108.2"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 110.4 L184 112.6"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 119.2 L184 121.4"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 123.6 L184 125.8"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 145.6 L184 147.8"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 150 L184 152.1"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 158.7 L184 160.9"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 163.1 L184 165.3"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 224.7 L184 226.9"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 229.1 L184 231.3"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 237.9 L184 240"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 242.2 L184 244.4"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 264.2 L184 266.4"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 268.6 L184 270.8"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 277.4 L184 279.6"></path>
+            <path class="automata-cantor-interval stage-4" d="M184 281.8 L184 284"></path>
+            <path class="automata-cantor-connector cantor-stage-1" d="M56 195 L88 135.7"></path>
+            <path class="automata-cantor-connector cantor-stage-1" d="M56 195 L88 254.3"></path>
+            <path class="automata-cantor-connector cantor-stage-2" d="M88 135.7 L120 115.9"></path>
+            <path class="automata-cantor-connector cantor-stage-2" d="M88 135.7 L120 155.4"></path>
+            <path class="automata-cantor-connector cantor-stage-2" d="M88 254.3 L120 234.6"></path>
+            <path class="automata-cantor-connector cantor-stage-2" d="M88 254.3 L120 274.1"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M120 115.9 L152 109.3"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M120 115.9 L152 122.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M120 155.4 L152 148.9"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M120 155.4 L152 162"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M120 234.6 L152 228"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M120 234.6 L152 241.1"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M120 274.1 L152 267.5"></path>
+            <path class="automata-cantor-connector cantor-stage-3" d="M120 274.1 L152 280.7"></path>
           </g>
         </g>
 
@@ -8380,66 +8512,66 @@ const paperFigureTemplates = {
         <text class="automata-cantor-arrow-label large automata-sublocale-label" x="222" y="180">sublocale</text>
 
         <g class="automata-prefix-poset">
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 103.3 L282.8 105.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 108.7 L282.8 106.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 129.3 L282.8 131.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 134.7 L282.8 132.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 137.3 L282.8 139.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 142.7 L282.8 140.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 163.3 L282.8 165.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 168.7 L282.8 166.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 221.3 L282.8 223.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 226.7 L282.8 224.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 247.3 L282.8 249.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 252.7 L282.8 250.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 255.3 L282.8 257.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 260.7 L282.8 258.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M254.8 281.3 L282.8 283.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M254.8 286.7 L282.8 284.3"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 106.9 L329.1 118.9"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 131.3 L329 122.5"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 140.7 L329 149.5"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 165.1 L329.1 153.1"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 224.9 L329.1 236.9"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 249.3 L329 240.5"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M289.1 258.7 L329 267.5"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M289.1 283.1 L329.1 271.1"></path>
-          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M339.9 122.6 L398.6 147.1"></path>
-          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M340.2 151 L397.8 151"></path>
-          <path class="automata-cantor-tree-edge level-1 blue" pathLength="1" data-cantor-arrow="blue" d="M413.4 154 L472.1 187.1"></path>
-          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M340.2 239 L397.8 239"></path>
-          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M339.9 267.4 L398.6 242.9"></path>
-          <path class="automata-cantor-tree-edge level-1 red" pathLength="1" data-cantor-arrow="red" d="M413.4 236 L472.1 202.9"></path>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="103" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="109" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="129" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="135" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="137" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="143" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="163" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="169" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="221" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="227" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="247" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="253" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="255" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="261" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="281" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="287" r="2.35"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="106" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="132" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="140" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="166" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="224" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="250" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="258" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="284" r="3.2"></circle>
-          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="121" r="4.2"></circle>
-          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="151" r="4.2"></circle>
-          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="239" r="4.2"></circle>
-          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="269" r="4.2"></circle>
-          <circle class="automata-cantor-node tree-depth-1" cx="408" cy="151" r="6.2"></circle>
-          <circle class="automata-cantor-node tree-depth-1" cx="408" cy="239" r="6.2"></circle>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 107.1 L286 109.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 111.5 L286 109.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 120.3 L286 122.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 124.7 L286 122.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 146.7 L286 148.9"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 151 L286 148.9"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 159.8 L286 162"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 164.2 L286 162"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 225.8 L286 228"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 230.1 L286 228"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 238.9 L286 241.1"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 243.3 L286 241.1"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 265.3 L286 267.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 269.7 L286 267.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 278.5 L286 280.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 282.9 L286 280.7"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M286 109.3 L336 115.9"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M286 122.5 L336 115.9"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M286 148.9 L336 155.4"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M286 162 L336 155.4"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M286 228 L336 234.6"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M286 241.1 L336 234.6"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M286 267.5 L336 274.1"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M286 280.7 L336 274.1"></path>
+          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M336 115.9 L408 135.7"></path>
+          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M336 155.4 L408 135.7"></path>
+          <path class="automata-cantor-tree-edge level-1 blue" pathLength="1" data-cantor-arrow="blue" d="M408 135.7 L486 195"></path>
+          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M336 234.6 L408 254.3"></path>
+          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M336 274.1 L408 254.3"></path>
+          <path class="automata-cantor-tree-edge level-1 red" pathLength="1" data-cantor-arrow="red" d="M408 254.3 L486 195"></path>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="107.1" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="111.5" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="120.3" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="124.7" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="146.7" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="151" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="159.8" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="164.2" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="225.8" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="230.1" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="238.9" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="243.3" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="265.3" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="269.7" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="278.5" r="2.35"></circle>
+          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="282.9" r="2.35"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="109.3" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="122.5" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="148.9" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="162" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="228" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="241.1" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="267.5" r="3.2"></circle>
+          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="280.7" r="3.2"></circle>
+          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="115.9" r="4.2"></circle>
+          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="155.4" r="4.2"></circle>
+          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="234.6" r="4.2"></circle>
+          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="274.1" r="4.2"></circle>
+          <circle class="automata-cantor-node tree-depth-1" cx="408" cy="135.7" r="6.2"></circle>
+          <circle class="automata-cantor-node tree-depth-1" cx="408" cy="254.3" r="6.2"></circle>
           <circle class="automata-cantor-node large tree-depth-0" cx="486" cy="195" r="12"></circle>
         </g>
 
@@ -8485,7 +8617,7 @@ ${automataCoverUnfoldingTemplate()}
         <path class="figure-arrow internal-edge-base" d="M360.4 76.8 L417.6 119.2"></path>
         <path class="figure-arrow internal-edge-base" d="M268.5 131.8 L195.5 210.2"></path>
         <path class="figure-arrow internal-edge-base" d="M110 208.7 L182 215.3"></path>
-        <path class="figure-arrow internal-edge-base" d="M198 216 L284 216"></path>
+        <path class="figure-arrow internal-edge-base" d="M200 216 L284 216"></path>
         <path class="figure-arrow internal-edge-base" d="M298.6 211.4 L417.4 128.6"></path>
         <path class="figure-arrow internal-edge-base" d="M300 215.7 L396 212.3"></path>
         <path class="figure-arrow internal-edge-base internal-self-loop" d="M431 119 C459 106, 459 142, 431 129"></path>
@@ -8641,57 +8773,59 @@ ${automataCoverUnfoldingTemplate()}
       </defs>
 
       <g transform="translate(42 56)">
+        <text class="tensor-step-title" x="70" y="18">Step 1<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.24;0.25;1" dur="10s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-step-title tensor-step-title-two" x="70" y="18">Step 2<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.26;0.49;0.50;1" dur="10s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-step-title tensor-step-title-three" x="70" y="18">Step 3<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.50;0.51;0.74;0.75;1" dur="10s" repeatCount="indefinite"></animate></text>
         <g>
-          <text class="tensor-side-label" x="70" y="48">X1<animate attributeName="x" values="70;70;70;70;70" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-neutral-label" x="250" y="48">A1<animate attributeName="x" values="250;250;178;178;178" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-neutral-label" x="430" y="48">A2<animate attributeName="x" values="430;430;286;178;178" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;1;0;0" keyTimes="0;0.66;0.82;0.92;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label" x="70" y="48">X1<animate attributeName="x" values="70;70;70;70;70" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-neutral-label" x="250" y="48">A1<animate attributeName="x" values="250;178;178;250;250" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-neutral-label tensor-b1-label" x="250" y="48">B1<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-neutral-label" x="430" y="48">A2<animate attributeName="x" values="430;286;286;250;250" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;1;0;0" keyTimes="0;0.25;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></text>
         </g>
-        <text class="tensor-side-label tensor-neutral-label tensor-s-new-label tensor-step2-absorbed" x="430" y="48">S1<animate attributeName="x" values="430;430;394;178;178" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
-        <text class="tensor-side-label tensor-neutral-label tensor-s-duplicate-label" x="430" y="48">S2<animate attributeName="x" values="430;430;502;502;502" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-side-label tensor-neutral-label tensor-s-new-label tensor-step2-absorbed" x="430" y="48">S1<animate attributeName="x" values="430;394;394;250;250" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-side-label tensor-neutral-label tensor-s-duplicate-label" x="430" y="48">S2<animate attributeName="x" values="430;502;502;430;430" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></text>
         <text class="tensor-side-label tensor-s-label" x="610" y="48">S3</text>
 
         <g>
-          <g class="tensor-x-node selected" transform="translate(70 92)"><animateTransform attributeName="transform" type="translate" values="70 92;70 92;70 92;70 92;70 92" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
-          <g class="tensor-x-node selected green" transform="translate(70 146)"><animateTransform attributeName="transform" type="translate" values="70 146;70 146;70 146;70 146;70 146" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
-          <g class="tensor-x-node selected green" transform="translate(70 200)"><animateTransform attributeName="transform" type="translate" values="70 200;70 200;70 200;70 200;70 200" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
+          <g class="tensor-x-node selected" transform="translate(70 92)"><animateTransform attributeName="transform" type="translate" values="70 92;70 92;70 92;70 92;70 92" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
+          <g class="tensor-x-node selected green" transform="translate(70 146)"><animateTransform attributeName="transform" type="translate" values="70 146;70 146;70 146;70 146;70 146" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
+          <g class="tensor-x-node selected green" transform="translate(70 200)"><animateTransform attributeName="transform" type="translate" values="70 200;70 200;70 200;70 200;70 200" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
 
-          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 88)"><animateTransform attributeName="transform" type="translate" values="250 88;250 88;178 88;178 88;178 88" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(250 126)"><animateTransform attributeName="transform" type="translate" values="250 126;250 126;178 126;70 146;70 146" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 164)"><animateTransform attributeName="transform" type="translate" values="250 164;250 164;178 164;178 164;178 164" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(250 202)"><animateTransform attributeName="transform" type="translate" values="250 202;250 202;178 202;70 200;70 200" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 88)"><animateTransform attributeName="transform" type="translate" values="250 88;178 88;178 88;250 88;250 88" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-late-absorbed-node" transform="translate(250 126)"><animateTransform attributeName="transform" type="translate" values="250 126;178 126;178 126;250 126;70 146;70 146" keyTimes="0;0.25;0.26;0.50;0.75;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 164)"><animateTransform attributeName="transform" type="translate" values="250 164;178 164;178 164;250 164;250 164" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-late-absorbed-node" transform="translate(250 202)"><animateTransform attributeName="transform" type="translate" values="250 202;178 202;178 202;250 202;70 200;70 200" keyTimes="0;0.25;0.26;0.50;0.75;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
 
           <g class="tensor-left-map-cords">
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M232 88 C190 78, 130 80, 88 92"><animate attributeName="d" values="M232 88 C190 78, 130 80, 88 92;M232 88 C190 78, 130 80, 88 92;M160 88 C132 78, 108 80, 88 92;M160 88 C132 78, 108 80, 88 92;M160 88 C132 78, 108 80, 88 92" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M232 126 C190 118, 130 130, 88 140"><animate attributeName="d" values="M232 126 C190 118, 130 130, 88 140;M232 126 C190 118, 130 130, 88 140;M160 126 C132 118, 108 130, 88 140;M88 146 C86 146, 84 146, 88 146;M88 146 C86 146, 84 146, 88 146" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0;0" keyTimes="0;0.66;0.8;0.9;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M232 164 C190 174, 130 164, 88 152"><animate attributeName="d" values="M232 164 C190 174, 130 164, 88 152;M232 164 C190 174, 130 164, 88 152;M160 164 C132 174, 108 164, 88 152;M160 164 C132 174, 108 164, 88 152;M160 164 C132 174, 108 164, 88 152" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M232 202 C190 212, 130 210, 88 200"><animate attributeName="d" values="M232 202 C190 212, 130 210, 88 200;M232 202 C190 212, 130 210, 88 200;M160 202 C132 212, 108 210, 88 200;M88 200 C86 200, 84 200, 88 200;M88 200 C86 200, 84 200, 88 200" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0;0" keyTimes="0;0.66;0.8;0.9;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 88 L88 92"><animate attributeName="d" values="M230 88 L88 92;M158 88 L88 92;M158 88 L88 92;M230 88 L88 92;M230 88 L88 92" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 126 L88 140"><animate attributeName="d" values="M230 126 L88 140;M158 126 L88 140;M158 126 L88 140;M230 126 L88 140;M50 146 L88 146;M50 146 L88 146" keyTimes="0;0.25;0.26;0.50;0.75;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0;0" keyTimes="0;0.50;0.62;0.75;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 164 L88 152"><animate attributeName="d" values="M230 164 L88 152;M158 164 L88 152;M158 164 L88 152;M230 164 L88 152;M230 164 L88 152" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 202 L88 200"><animate attributeName="d" values="M230 202 L88 200;M158 202 L88 200;M158 202 L88 200;M230 202 L88 200;M50 200 L88 200;M50 200 L88 200" keyTimes="0;0.25;0.26;0.50;0.75;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0;0" keyTimes="0;0.50;0.62;0.75;1" dur="10s" repeatCount="indefinite"></animate></path>
           </g>
-          <text class="tensor-map-symbol tensor-f-label" x="160" y="136">f<animate attributeName="x" values="160;160;124;124;124" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
-
           <g class="tensor-subset-links">
-            <path class="tensor-a-copy-link" d="M268 88 H412"><animate attributeName="d" values="M268 88 H412;M268 88 H412;M196 88 H268;M196 88 H160;M196 88 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0;0" keyTimes="0;0.66;0.8;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M268 126 H412"><animate attributeName="d" values="M268 126 H412;M268 126 H412;M196 126 H268;M88 146 H160;M88 146 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0;0" keyTimes="0;0.66;0.8;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M268 164 H412"><animate attributeName="d" values="M268 164 H412;M268 164 H412;M196 164 H268;M196 164 H160;M196 164 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0;0" keyTimes="0;0.66;0.8;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M268 202 H412"><animate attributeName="d" values="M268 202 H412;M268 202 H412;M196 202 H268;M88 200 H160;M88 200 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0;0" keyTimes="0;0.66;0.8;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-neutral-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M304 88 H376;M196 88 H160;M196 88 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.4;0.66;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-neutral-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M304 164 H376;M196 164 H160;M196 164 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.4;0.66;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M412 88 H484;M196 88 H484;M196 88 H484" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.55;0;0" keyTimes="0;0.4;0.66;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M412 164 H484;M196 164 H484;M196 164 H484" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.55;0;0" keyTimes="0;0.4;0.66;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-subset-link" d="M448 88 H592"><animate attributeName="d" values="M448 88 H592;M448 88 H592;M520 88 H592;M520 88 H592;M520 88 H592" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-subset-link" d="M448 164 H592"><animate attributeName="d" values="M448 164 H592;M448 164 H592;M520 164 H592;M520 164 H592;M520 164 H592" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M272 88 H408"><animate attributeName="d" values="M272 88 H408;M200 88 H264;M200 88 H264;M242 88 H243;M242 88 H243;M242 88 H243;M242 88 H243" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M272 126 C312 126, 368 126, 410 126"><animate attributeName="d" values="M272 126 C312 126, 368 126, 410 126;M200 126 C220 126, 244 126, 266 126;M200 126 C220 126, 244 126, 266 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M272 164 H408"><animate attributeName="d" values="M272 164 H408;M200 164 H264;M200 164 H264;M242 164 H243;M242 164 H243;M242 164 H243;M242 164 H243" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M272 202 C312 202, 368 202, 410 202"><animate attributeName="d" values="M272 202 C312 202, 368 202, 410 202;M200 202 C220 202, 244 202, 266 202;M200 202 C220 202, 244 202, 266 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-neutral-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M304 88 H376;M304 88 H376;M268 88 H232;M268 88 H232" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0.9;0;0" keyTimes="0;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-neutral-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M304 164 H376;M304 164 H376;M268 164 H232;M268 164 H232" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0.9;0;0" keyTimes="0;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M412 88 H484;M412 88 H484;M268 88 H412;M268 88 H412" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M412 164 H484;M412 164 H484;M268 164 H412;M268 164 H412" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-link" d="M448 88 H592"><animate attributeName="d" values="M448 88 H592;M520 88 H592;M520 88 H592;M448 88 H592;M448 88 H592" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-link" d="M448 164 H592"><animate attributeName="d" values="M448 164 H592;M520 164 H592;M520 164 H592;M448 164 H592;M448 164 H592" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
           </g>
 
-          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 88)"><animateTransform attributeName="transform" type="translate" values="430 88;430 88;286 88;178 88;178 88" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 126)"><animateTransform attributeName="transform" type="translate" values="430 126;430 126;286 126;178 126;178 126" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 164)"><animateTransform attributeName="transform" type="translate" values="430 164;430 164;286 164;178 164;178 164" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 202)"><animateTransform attributeName="transform" type="translate" values="430 202;430 202;286 202;178 202;178 202" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 88)"><animateTransform attributeName="transform" type="translate" values="430 88;286 88;286 88;250 88;250 88" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 126)"><animateTransform attributeName="transform" type="translate" values="430 126;286 126;286 126;250 126;250 126" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 164)"><animateTransform attributeName="transform" type="translate" values="430 164;286 164;286 164;250 164;250 164" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 202)"><animateTransform attributeName="transform" type="translate" values="430 202;286 202;286 202;250 202;250 202" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
         </g>
         <g class="tensor-s-node tensor-neutral-node tensor-s-duplicate-node" transform="translate(430 88)">
-          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;502 88;502 88;502 88" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="translate" values="430 88;502 88;502 88;430 88;430 88" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
         <g class="tensor-s-node tensor-neutral-node tensor-s-duplicate-node" transform="translate(430 164)">
-          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;502 164;502 164;502 164" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="translate" values="430 164;502 164;502 164;430 164;430 164" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
         <g class="tensor-s-node" transform="translate(610 88)">
@@ -8700,12 +8834,12 @@ ${automataCoverUnfoldingTemplate()}
         <g class="tensor-s-node" transform="translate(610 164)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
-        <g class="tensor-s-new-node tensor-neutral-node tensor-step2-absorbed" transform="translate(430 88)">
-          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;394 88;178 88;178 88" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform>
+        <g class="tensor-s-new-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 88)">
+          <animateTransform attributeName="transform" type="translate" values="430 88;394 88;394 88;250 88;250 88" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
-        <g class="tensor-s-new-node tensor-neutral-node tensor-step2-absorbed" transform="translate(430 164)">
-          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;394 164;178 164;178 164" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform>
+        <g class="tensor-s-new-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 164)">
+          <animateTransform attributeName="transform" type="translate" values="430 164;394 164;394 164;250 164;250 164" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
 
@@ -8765,7 +8899,7 @@ ${automataCoverUnfoldingTemplate()}
           <path class="figure-arrow automata-edge automata-edge-a" d="M368 122 C326 50, 438 50, 400 122"></path>
 
           <path class="figure-arrow automata-edge automata-edge-b" d="M88 142 C126 210, 18 210, 56 142"></path>
-          <path class="figure-arrow automata-edge automata-edge-b" d="M192 142 C218 210, 236 210, 260 142"></path>
+          <path class="figure-arrow automata-edge automata-edge-b" d="M192 142 C220 210, 236 210, 260 142"></path>
           <path class="figure-arrow automata-edge automata-edge-b" d="M260 142 C226 210, 334 210, 300 142"></path>
           <path class="figure-arrow automata-edge automata-edge-b" d="M368 145 C344 218, 318 216, 291 151"></path>
 
@@ -8824,14 +8958,14 @@ ${automataCoverUnfoldingTemplate()}
 
           <g class="automata-edge-highlights">
             <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M88 122 C114 50, 134 50, 160 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0042;0.0083;0.05;0.0583;1"></animate></path>
-            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C218 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0542;0.0583;0.1;0.1083;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C220 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.0542;0.0583;0.1;0.1083;1"></animate></path>
             <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M300 122 C328 50, 344 50, 368 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.1042;0.1083;0.15;0.1583;1"></animate></path>
             <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M88 122 C114 50, 134 50, 160 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3375;0.3417;0.3833;0.3917;1"></animate></path>
-            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C218 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3875;0.3917;0.4333;0.4417;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C220 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.3875;0.3917;0.4333;0.4417;1"></animate></path>
             <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M260 142 C226 210, 334 210, 300 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.4375;0.4417;0.4833;0.4917;1"></animate></path>
             <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M88 122 C114 50, 134 50, 160 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.6708;0.675;0.7167;0.725;1"></animate></path>
             <path class="automata-edge-highlight automata-edge-highlight-a" marker-end="url(#arrow-automata-cover-a)" d="M160 122 C118 50, 234 50, 192 122"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7208;0.725;0.7667;0.775;1"></animate></path>
-            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C218 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7708;0.775;0.8167;0.825;1"></animate></path>
+            <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M192 142 C220 210, 236 210, 260 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.7708;0.775;0.8167;0.825;1"></animate></path>
             <path class="automata-edge-highlight automata-edge-highlight-b" marker-end="url(#arrow-automata-cover-b)" d="M260 142 C226 210, 334 210, 300 142"><animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.8208;0.825;0.8667;0.875;1"></animate></path>
           </g>
 
@@ -10274,20 +10408,6 @@ function normalizationFeatureStayedPut(orbit, pointId, fromState, toState) {
   return normalizationTargetPoint(orbit, fromState, pointId) === normalizationTargetPoint(orbit, toState, pointId);
 }
 
-function normalizationPlaceStayedPut(place, fromState, toState) {
-  return normalizationFeatureStayedPut(
-    place.dataset.normalizationOrbit || "",
-    place.dataset.normalizationPoint || "",
-    fromState,
-    toState
-  );
-}
-
-function setNormalizationMotionClass(element, isFixed) {
-  element.classList.toggle("is-fixed", isFixed);
-  element.classList.toggle("is-moving", !isFixed);
-}
-
 function normalizationElementsFixingFeature(orbit, pointId) {
   return Object.keys(normalizationElementLabels).filter((elementId) =>
     normalizationFeatureStayedPut(orbit, pointId, "e", elementId)
@@ -10330,13 +10450,6 @@ function clearNormalizationFeatureSelection(root) {
   });
 }
 
-function clearNormalizationMotionSelection(root) {
-  delete root.dataset.normalizationElementSelected;
-  root.querySelectorAll(".is-fixed, .is-moving").forEach((feature) => {
-    feature.classList.remove("is-fixed", "is-moving");
-  });
-}
-
 function pulseNormalizationElementControl(root, elementId) {
   root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
     const isActed = control.dataset.normalizationElementControl === elementId;
@@ -10353,7 +10466,6 @@ function setNormalizationSelection(root, subgroupId = "d4") {
   const allowed = new Set(normalizationContainment[selected]);
   const highlighted = new Set(normalizationConjugateDownsets[selected] || normalizationContainment[selected]);
   clearNormalizationFeatureSelection(root);
-  clearNormalizationMotionSelection(root);
   root.dataset.normalizationSelected = selected;
   delete root.dataset.normalizationActionSelected;
 
@@ -10399,28 +10511,11 @@ function setNormalizationElementSelection(root, elementId) {
   animateNormalizationHasseEdges(root, fromSubgroupState, toState);
   animateNormalizationStabilizerLinks(root, fromState, toState, fromSubgroupState, toState, actedElement);
   animateNormalizationOperatorLinks(root, fromSubgroupState, toState);
-  root.dataset.normalizationElementSelected = selectedElement;
   pulseNormalizationElementControl(root, selectedElement);
-
-  root.querySelectorAll("[data-normalization-place-stabilizer]").forEach((place) => {
-    setNormalizationMotionClass(place, normalizationPlaceStayedPut(place, fromState, toState));
-  });
-
-  root.querySelectorAll("[data-normalization-boundary-edge]").forEach((edge) => {
-    const edgeId = edge.dataset.normalizationBoundaryEdge || "";
-    setNormalizationMotionClass(edge, normalizationFeatureStayedPut("edge", edgeId, fromState, toState));
-  });
-
-  root.querySelectorAll("[data-normalization-stabilizers]").forEach((action) => {
-    const hasFixedPlace = Boolean(action.querySelector("[data-normalization-place-stabilizer].is-fixed"));
-    action.classList.toggle("has-fixed-place", hasFixedPlace);
-  });
-
 }
 
 function setNormalizationFeatureSelection(root, orbit, pointId) {
   const fixedElements = new Set(normalizationElementsFixingFeature(orbit, pointId));
-  clearNormalizationMotionSelection(root);
   clearNormalizationFeatureSelection(root);
   root.dataset.normalizationFeatureSelected = `${orbit}:${pointId}`;
 
@@ -10441,7 +10536,6 @@ function setNormalizationActionSelection(root, selectedAction) {
   const stabilizers = normalizationStabilizerList(selectedAction);
   const highlighted = new Set(stabilizers);
   clearNormalizationFeatureSelection(root);
-  clearNormalizationMotionSelection(root);
   root.dataset.normalizationActionSelected = stabilizers.join(" ");
   delete root.dataset.normalizationSelected;
 
@@ -11247,7 +11341,7 @@ function initializeAutomataInteractiveFigure(figure) {
     "0a": "M72 132 L88 122 C114 50, 134 50, 160 122 L176 132",
     "0b": "M72 132 L56 142 C18 210, 126 210, 88 142 L72 132",
     "1a": "M176 132 L160 122 C118 50, 234 50, 192 122 L176 132",
-    "1b": "M176 132 L192 142 C218 210, 236 210, 260 142 L280 132",
+    "1b": "M176 132 L192 142 C220 210, 236 210, 260 142 L280 132",
     "2a": "M280 132 L300 122 C328 50, 344 50, 368 122 L384 132",
     "2b": "M280 132 L260 142 C226 210, 334 210, 300 142 L280 132",
     "3a": "M384 132 L368 122 C326 50, 438 50, 400 122 L384 132",
@@ -11328,11 +11422,12 @@ function initializeAutomataInteractiveFigure(figure) {
     renderInto(liveWord);
     renderInto(liveWordShadow);
   };
-  const renderResult = (value = "") => {
+  const evaluatedStateForWord = (word) => [...word].reduce((q, letter) => transitions[q][letter], 0);
+  const renderResult = () => {
+    const value = acceptStates.has(evaluatedStateForWord(state.word)) ? "accept" : "reject";
     resultText.textContent = "";
     outputPanel.classList.toggle("is-accept", value === "accept");
     outputPanel.classList.toggle("is-reject", value === "reject");
-    if (!value) return;
     resultText.setAttribute("y", value === "accept" ? "53" : "88");
     resultText.textContent = value === "accept" ? "✓" : "×";
   };
@@ -11342,6 +11437,7 @@ function initializeAutomataInteractiveFigure(figure) {
     setTransform(baseDot, state.base);
     updateLink();
     renderWord();
+    renderResult();
   };
   const sleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
   const flashTransitionEdge = (pathKey, letter) => {
@@ -11430,9 +11526,9 @@ function initializeAutomataInteractiveFigure(figure) {
   const consume = async (letter) => {
     if (state.busy) return;
     state.busy = true;
-    renderResult("");
     state.word += letter;
     renderWord();
+    renderResult();
     const from = state.q;
     const next = transitions[from][letter];
     await Promise.all([flashConsumedLetter(letter, state.word.length - 1), flashTransitionEdge(`${from}${letter}`, letter)]);
@@ -11445,35 +11541,23 @@ function initializeAutomataInteractiveFigure(figure) {
     state.word = "";
     state.cover = coverNodes[0];
     state.base = [0, 0];
-    renderResult("");
     render();
-  };
-  const judge = () => {
-    if (state.busy) return;
-    renderResult(acceptStates.has(state.q) ? "accept" : "reject");
   };
 
   let inputControls = figure.querySelector(".automata-interactive-controls-input");
-  let actionControls = figure.querySelector(".automata-interactive-controls-actions");
-  if (!inputControls || !actionControls) {
+  figure.querySelectorAll(".automata-interactive-controls-actions, .automata-button-judge").forEach((node) => node.remove());
+  if (!inputControls) {
     inputControls = el("div", "automata-interactive-controls automata-interactive-controls-input");
-    actionControls = el("div", "automata-interactive-controls automata-interactive-controls-actions");
     const aButton = el("button", "automata-button automata-button-a", "a");
     const bButton = el("button", "automata-button automata-button-b", "b");
-    const judgeButton = el("button", "automata-button automata-button-judge", "判定");
     const resetButton = el("button", "automata-button automata-button-reset", "Reset");
-    [aButton, bButton].forEach((button) => {
+    [aButton, bButton, resetButton].forEach((button) => {
       button.type = "button";
       inputControls.append(button);
     });
-    [judgeButton, resetButton].forEach((button) => {
-      button.type = "button";
-      actionControls.append(button);
-    });
-    figure.append(inputControls, actionControls);
+    figure.append(inputControls);
     aButton.addEventListener("click", () => consume("a"));
     bButton.addEventListener("click", () => consume("b"));
-    judgeButton.addEventListener("click", judge);
     resetButton.addEventListener("click", reset);
   }
 
@@ -11828,22 +11912,6 @@ function renderProfileLinks() {
       const item = el("span", "profile-link-chip");
       item.append(uiIcon(iconKeyForLink(label, href, "profile"), "profile-link-icon"), link(label, href, "text-link"));
       root.append(item);
-    });
-  });
-}
-
-function renderTopics() {
-  document.querySelectorAll("[data-topics]").forEach((root) => {
-    root.replaceChildren();
-    researchThemes.forEach((theme) => {
-      const tag = tagLink(theme.label, researchThemeHref(theme.id));
-      tag.dataset.topicTheme = theme.id;
-      tag.addEventListener("click", (event) => {
-        event.preventDefault();
-        setResearchThemeSelection(theme.id);
-        document.querySelector("#research-map")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-      root.append(tag);
     });
   });
 }
@@ -12762,7 +12830,8 @@ function renderNotes() {
     const meta = el("div", "note-meta");
     if (kind === "cloud" || kind === "pen") {
       const badge = el("span", `note-kind-badge note-${kind}-badge`, kindLabel);
-      if (kindIcon && kindIcon !== kindLabel) badge.dataset.icon = kindIcon;
+      if (kindIcon === "pen") badge.prepend(uiIcon("pen", "note-kind-icon"));
+      else if (kindIcon && kindIcon !== kindLabel) badge.dataset.icon = kindIcon;
       if (kindIcon && kindIcon === kindLabel) badge.classList.add("is-symbol");
       meta.append(badge);
     }
@@ -13289,11 +13358,6 @@ function setupInteractions() {
     });
   });
 
-  const themeReset = document.querySelector("[data-theme-reset]");
-  if (themeReset) {
-    themeReset.addEventListener("click", () => setResearchTheme(""));
-  }
-
   const problemFilter = document.querySelector("#problem-filter");
   if (problemFilter) {
     problemFilter.addEventListener("input", (event) => {
@@ -13333,7 +13397,6 @@ function setupInteractions() {
 
 function renderProfileSections() {
   renderProfileLinks();
-  renderTopics();
   renderCurrentPositions();
   renderLinkedList("#past-position-list", siteData.pastPositions);
   renderLinkedList("#award-list", siteData.awards);

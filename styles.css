@@ -2281,7 +2281,7 @@ a.position-link:hover {
 
 .games-rb-table-head-row,
 .games-rb-table-head-col {
-  fill: rgba(236, 231, 241, 0.72);
+  fill: transparent;
 }
 
 .games-rb-table-mex-head {
@@ -2330,6 +2330,11 @@ a.position-link:hover {
 .games-rb-table-lines.is-major {
   stroke: rgba(43, 52, 43, 0.34);
   stroke-width: 1.35;
+}
+
+.games-rb-table-lines.is-input-output {
+  stroke: rgba(31, 39, 33, 0.68);
+  stroke-width: 2.2;
 }
 
 .games-rb-cell-text {
@@ -2917,6 +2922,42 @@ a.position-link:hover {
   fill: var(--games-rb-red);
 }
 
+.games-rb-mex-highlight,
+.games-rb-mex-axis-label {
+  opacity: 0;
+  animation: games-rb-mex-entry var(--games-rb-cycle) steps(1, end) infinite;
+}
+
+.games-rb-mex-highlight {
+  stroke: none;
+}
+
+.games-rb-mex-highlight.is-mex-s-entry {
+  fill: rgba(37, 99, 235, 0.14);
+}
+
+.games-rb-mex-highlight.is-mex-t-entry {
+  fill: rgba(200, 39, 39, 0.12);
+}
+
+.games-rb-mex-axis-label {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0;
+  paint-order: stroke;
+  stroke: rgba(255, 253, 248, 0.96);
+  stroke-linejoin: round;
+  stroke-width: 3px;
+}
+
+.games-rb-mex-axis-label.is-mex-s-label {
+  fill: var(--games-rb-blue);
+}
+
+.games-rb-mex-axis-label.is-mex-t-label {
+  fill: var(--games-rb-red);
+}
+
 .games-rb-dual-highlight {
   opacity: 0.2;
   stroke: none;
@@ -3068,6 +3109,18 @@ a.position-link:hover {
   36%,
   100% {
     opacity: 0.28;
+  }
+}
+
+@keyframes games-rb-mex-entry {
+  0%,
+  38% {
+    opacity: 0;
+  }
+
+  42%,
+  100% {
+    opacity: 1;
   }
 }
 
@@ -4316,11 +4369,11 @@ a.position-link:hover {
 }
 
 .internal-parameterization-figure .internal-marker-n path {
-  fill: #2c6f63;
+  fill: #008f63;
 }
 
 .internal-parameterization-figure .internal-marker-l path {
-  fill: #8a4d34;
+  fill: #d66a1f;
 }
 
 .normalization-figure marker path {
@@ -4416,10 +4469,13 @@ a.position-link:hover {
   animation: automata-cantor-label-stage var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
-.automata-cantor-interval,
-.automata-cantor-dot {
-  fill: var(--cantor-purple);
+.automata-cantor-interval {
+  fill: none;
   opacity: 0;
+  stroke: var(--cantor-purple);
+  stroke-linecap: round;
+  stroke-width: 7;
+  vector-effect: non-scaling-stroke;
 }
 
 .automata-cantor-interval.stage-0 {
@@ -4438,7 +4494,7 @@ a.position-link:hover {
   animation: automata-cantor-stage-3 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
-.automata-cantor-dot {
+.automata-cantor-interval.stage-4 {
   animation: automata-cantor-stage-4 var(--cantor-cover-cycle) ease-in-out infinite;
 }
 
@@ -5059,7 +5115,7 @@ a.position-link:hover {
 
 .automata-input-heading {
   fill: #626b62;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 860;
   text-anchor: start;
 }
@@ -5428,13 +5484,8 @@ a.position-link:hover {
 }
 
 .automata-interactive-controls-input {
-  left: 20%;
-  top: 24%;
-}
-
-.automata-interactive-controls-actions {
-  bottom: 10px;
-  left: 25%;
+  left: 27.5%;
+  top: 12%;
 }
 
 .automata-button {
@@ -5458,8 +5509,7 @@ a.position-link:hover {
   outline: none;
 }
 
-.automata-interactive-controls-input .automata-button,
-.automata-interactive-controls-actions .automata-button {
+.automata-interactive-controls-input .automata-button {
   font-size: 16px;
   min-width: 56px;
   padding: 10px 15px;
@@ -5487,10 +5537,6 @@ a.position-link:hover {
 .automata-button-b:focus-visible {
   border-color: rgba(47, 93, 142, 0.45);
   box-shadow: 0 0 0 3px rgba(47, 93, 142, 0.12);
-}
-
-.automata-button-judge {
-  color: #2c6f63;
 }
 
 .automata-moving-dot-reject .automata-moving-dot-halo {
@@ -5885,8 +5931,7 @@ a.position-link:hover {
 }
 
 .normalization-action.is-matched .normalization-action-hit,
-.normalization-action.is-selected .normalization-action-hit,
-.normalization-action.has-fixed-place .normalization-action-hit {
+.normalization-action.is-selected .normalization-action-hit {
   fill: rgba(244, 230, 215, 0.36);
   stroke: rgba(138, 77, 52, 0.35);
   stroke-width: 1.45;
@@ -5895,10 +5940,6 @@ a.position-link:hover {
 .normalization-action:focus-visible .normalization-action-hit {
   stroke: #1f5c54;
   stroke-width: 1.8;
-}
-
-.normalization-figure[data-normalization-element-selected] .normalization-action-place {
-  transition: opacity 180ms ease, fill 180ms ease, stroke 180ms ease, stroke-width 180ms ease;
 }
 
 .normalization-figure[data-normalization-feature-selected] .normalization-square-edge-segment:not(.is-feature-selected),
@@ -5917,23 +5958,6 @@ a.position-link:hover {
   fill: var(--normalization-token-fill, #f4e6d7);
   stroke: var(--normalization-token-stroke, #8a4d34);
   stroke-width: 2.6;
-}
-
-.normalization-figure[data-normalization-element-selected] .normalization-action-dot.is-fixed {
-  fill: var(--normalization-token-fill, #f4e6d7);
-  stroke: var(--normalization-token-stroke, #8a4d34);
-  stroke-width: 2.45;
-}
-
-.normalization-figure[data-normalization-element-selected] .normalization-action-line.is-fixed,
-.normalization-figure[data-normalization-element-selected] .normalization-cycle-arrow.is-fixed {
-  opacity: 1;
-  stroke: #2c6f63;
-  stroke-width: 2.45;
-}
-
-.normalization-action.has-fixed-place .normalization-action-card {
-  stroke: rgba(138, 77, 52, 0.34);
 }
 
 .normalization-action-line,
@@ -5973,7 +5997,6 @@ a.position-link:hover {
   stroke-width: 1.7;
 }
 
-.normalization-figure[data-normalization-element-selected] .normalization-center-point.is-fixed,
 .normalization-figure[data-normalization-feature-selected] .normalization-center-point.is-feature-selected {
   fill: #e7e7e2;
   stroke: #747872;
@@ -6405,8 +6428,8 @@ a.position-link:hover {
 }
 
 .internal-classifier-node {
-  fill: rgba(47, 95, 145, 0.12);
-  stroke: #2f5f91;
+  fill: #e5f0ff;
+  stroke: #1d6fd8;
 }
 
 .internal-edge-base,
@@ -6420,11 +6443,11 @@ a.position-link:hover {
 }
 
 .internal-loop-l {
-  stroke: rgba(138, 77, 52, 0.55);
+  stroke: #d66a1f;
 }
 
 .internal-loop-n {
-  stroke: rgba(44, 111, 99, 0.55);
+  stroke: #008f63;
 }
 
 .internal-highlight-n,
@@ -6435,12 +6458,12 @@ a.position-link:hover {
 
 .internal-highlight-n {
   animation: internal-n-state 5.2s ease-in-out infinite;
-  stroke: #2c6f63;
+  stroke: #008f63;
 }
 
 .internal-highlight-l {
   animation: internal-l-state 5.2s ease-in-out infinite;
-  stroke: #8a4d34;
+  stroke: #d66a1f;
 }
 
 .internal-self-loop.internal-highlight-l,
@@ -6474,25 +6497,25 @@ a.position-link:hover {
 
 .internal-edge-label-n,
 .internal-loop-label-n {
-  fill: #2c6f63;
+  fill: #008f63;
 }
 
 .internal-edge-label-l,
 .internal-loop-label-l {
-  fill: #8a4d34;
+  fill: #d66a1f;
 }
 
 .internal-edge-label.internal-highlight-n,
 .internal-map-label.internal-highlight-n,
 .internal-loop-label.internal-highlight-n {
-  fill: #2c6f63;
+  fill: #008f63;
   stroke: none;
 }
 
 .internal-edge-label.internal-highlight-l,
 .internal-map-label.internal-highlight-l,
 .internal-loop-label.internal-highlight-l {
-  fill: #8a4d34;
+  fill: #d66a1f;
   stroke: none;
 }
 
@@ -6503,11 +6526,11 @@ a.position-link:hover {
 }
 
 .internal-classifier-caption-loop {
-  fill: #8a4d34;
+  fill: #d66a1f;
 }
 
 .internal-classifier-caption-nonloop {
-  fill: #2c6f63;
+  fill: #008f63;
 }
 
 .internal-classifier-symbol-box {
@@ -6569,7 +6592,7 @@ a.position-link:hover {
 
   50%,
   86% {
-    stroke: #2f5f91;
+    stroke: #1d6fd8;
   }
 }
 
@@ -6582,7 +6605,7 @@ a.position-link:hover {
 
   50%,
   86% {
-    stroke: #2c6f63;
+    stroke: #008f63;
   }
 }
 
@@ -6595,7 +6618,7 @@ a.position-link:hover {
 
   50%,
   86% {
-    fill: #2c6f63;
+    fill: #008f63;
   }
 }
 
@@ -6608,7 +6631,7 @@ a.position-link:hover {
 
   50%,
   86% {
-    stroke: #8a4d34;
+    stroke: #d66a1f;
   }
 }
 
@@ -6621,7 +6644,7 @@ a.position-link:hover {
 
   50%,
   86% {
-    fill: #8a4d34;
+    fill: #d66a1f;
   }
 }
 
@@ -7008,6 +7031,21 @@ a.position-link:hover {
   fill: var(--tensor-neutral);
 }
 
+.tensor-factorization-figure .tensor-step-title {
+  fill: rgba(67, 72, 64, 0.82);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.tensor-factorization-figure .tensor-step-title-two {
+  fill: var(--tensor-map);
+}
+
+.tensor-factorization-figure .tensor-step-title-three {
+  fill: var(--tensor-subset);
+}
+
 .tensor-factorization-figure .tensor-s-new-label {
   opacity: 0;
   animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
@@ -7137,10 +7175,23 @@ a.position-link:hover {
   opacity: 1;
 }
 
-.tensor-factorization-figure .tensor-s-duplicate-label,
-.tensor-factorization-figure .tensor-s-duplicate-node {
+.tensor-factorization-figure .tensor-s-duplicate-label {
   opacity: 0;
   animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-s-duplicate-node {
+  opacity: 1;
+}
+
+.tensor-factorization-figure .tensor-s-node.tensor-s-duplicate-node circle {
+  fill: var(--tensor-neutral-fill);
+  stroke: var(--tensor-neutral);
+  stroke-width: 2.6;
+}
+
+.tensor-factorization-figure .tensor-s-node.tensor-s-duplicate-node text {
+  fill: var(--tensor-neutral);
 }
 
 .tensor-factorization-figure .tensor-s-node circle {
@@ -7173,13 +7224,29 @@ a.position-link:hover {
   animation: tensor-step2-absorbed-node-stage var(--tensor-cycle) ease-in-out infinite;
 }
 
+.tensor-factorization-figure .tensor-step2-late-absorbed-node {
+  animation: tensor-step2-late-absorbed-node-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
 @keyframes tensor-step2-absorbed-node-stage {
   0%,
-  82% {
+  50% {
     opacity: 1;
   }
 
-  92%,
+  54%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tensor-step2-late-absorbed-node-stage {
+  0%,
+  74% {
+    opacity: 1;
+  }
+
+  75%,
   100% {
     opacity: 0;
   }
@@ -7187,16 +7254,16 @@ a.position-link:hover {
 
 @keyframes tensor-step2-absorbed-stage {
   0%,
-  40% {
+  16% {
     opacity: 0;
   }
 
-  52%,
-  82% {
+  24%,
+  50% {
     opacity: 1;
   }
 
-  92%,
+  54%,
   100% {
     opacity: 0;
   }
@@ -7204,11 +7271,11 @@ a.position-link:hover {
 
 @keyframes tensor-s-new-node-stage {
   0%,
-  38% {
+  15% {
     opacity: 0;
   }
 
-  46%,
+  22%,
   100% {
     opacity: 1;
   }
@@ -7216,11 +7283,11 @@ a.position-link:hover {
 
 @keyframes tensor-s-new-stage {
   0%,
-  40% {
+  16% {
     opacity: 0;
   }
 
-  52%,
+  24%,
   100% {
     opacity: 1;
   }
@@ -7326,6 +7393,10 @@ a.position-link:hover {
 .title-copy-link.is-failed {
   background: rgba(166, 72, 55, 0.12);
   color: #a64837;
+}
+
+.section-copy-link {
+  margin-left: auto;
 }
 
 .publication-venue {
@@ -9340,6 +9411,12 @@ a.position-link:hover {
   line-height: 1;
 }
 
+.note-kind-icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: 0 0 auto;
+}
+
 .note-thumb-kind.is-symbol,
 .note-kind-badge.is-symbol {
   font-size: 1rem;
@@ -10268,8 +10345,7 @@ a.position-link:hover {
   .automata-prefix-poset .automata-cantor-node,
   .automata-cantor-space-label,
   .automata-cantor-interval,
-  .automata-cantor-connector,
-  .automata-cantor-dot {
+  .automata-cantor-connector {
     animation: none;
   }
 
@@ -10327,6 +10403,7 @@ a.position-link:hover {
   .automata-prefix-poset .automata-cantor-tree-edge,
   .automata-prefix-poset .automata-cantor-node,
   .automata-cantor-space-label,
+  .automata-cantor-interval,
   .automata-cantor-connector {
     opacity: 1;
   }
