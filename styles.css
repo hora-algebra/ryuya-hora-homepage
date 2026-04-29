@@ -2899,6 +2899,24 @@ a.position-link:hover {
   fill: rgba(200, 39, 39, 0.22);
 }
 
+.games-rb-set-axis-label {
+  font-size: 15px;
+  font-weight: 950;
+  letter-spacing: 0;
+  paint-order: stroke;
+  stroke: rgba(255, 253, 248, 0.95);
+  stroke-linejoin: round;
+  stroke-width: 4px;
+}
+
+.games-rb-set-axis-label.is-s-label {
+  fill: var(--games-rb-blue);
+}
+
+.games-rb-set-axis-label.is-t-label {
+  fill: var(--games-rb-red);
+}
+
 .games-rb-dual-highlight {
   opacity: 0.2;
   stroke: none;
@@ -5034,8 +5052,8 @@ a.position-link:hover {
 }
 
 .automata-input-panel {
-  fill: rgba(255, 253, 248, 0.9);
-  stroke: rgba(43, 52, 43, 0.14);
+  fill: none;
+  stroke: none;
   stroke-width: 1.5;
 }
 
@@ -5120,6 +5138,29 @@ a.position-link:hover {
 
 .automata-edge-highlight-b {
   stroke: rgba(42, 127, 203, 0.82);
+}
+
+.automata-interactive-edge-highlight-layer {
+  pointer-events: none;
+}
+
+.automata-interactive-edge-highlight {
+  fill: none;
+  opacity: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-interactive-edge-highlight-a {
+  filter: drop-shadow(0 0 4px rgba(184, 79, 60, 0.34));
+  stroke: rgba(241, 86, 62, 0.72);
+}
+
+.automata-interactive-edge-highlight-b {
+  filter: drop-shadow(0 0 4px rgba(42, 127, 203, 0.34));
+  stroke: rgba(42, 127, 203, 0.72);
 }
 
 .automata-output-panel-bg {
@@ -5335,9 +5376,9 @@ a.position-link:hover {
   font-weight: 900;
   letter-spacing: 0;
   paint-order: stroke;
-  stroke: rgba(255, 253, 248, 0.92);
+  stroke: rgba(255, 253, 248, 0.72);
   stroke-linejoin: round;
-  stroke-width: 4px;
+  stroke-width: 2px;
   text-anchor: start;
 }
 
@@ -5350,9 +5391,9 @@ a.position-link:hover {
   font-size: 18px;
   font-weight: 950;
   paint-order: stroke;
-  stroke: rgba(255, 253, 248, 0.95);
+  stroke: rgba(255, 253, 248, 0.78);
   stroke-linejoin: round;
-  stroke-width: 5px;
+  stroke-width: 2.5px;
   text-anchor: start;
   transform-box: fill-box;
   transform-origin: center;
@@ -5374,14 +5415,13 @@ a.position-link:hover {
 
 .automata-interactive-controls {
   align-items: center;
-  background: rgba(255, 253, 248, 0.92);
-  border: 1px solid rgba(43, 52, 43, 0.12);
-  border-radius: 9px;
-  box-shadow: 0 8px 24px rgba(43, 52, 43, 0.08);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   display: flex;
   gap: 8px;
   justify-content: center;
-  padding: 6px;
+  padding: 0;
   position: absolute;
   transform: translateX(-50%);
   z-index: 2;
@@ -5418,12 +5458,35 @@ a.position-link:hover {
   outline: none;
 }
 
+.automata-interactive-controls-input .automata-button,
+.automata-interactive-controls-actions .automata-button {
+  font-size: 16px;
+  min-width: 56px;
+  padding: 10px 15px;
+}
+
 .automata-button-a {
+  background: rgba(159, 63, 49, 0.09);
+  border-color: rgba(159, 63, 49, 0.24);
   color: #9f3f31;
 }
 
 .automata-button-b {
+  background: rgba(47, 93, 142, 0.09);
+  border-color: rgba(47, 93, 142, 0.24);
   color: #2f5d8e;
+}
+
+.automata-button-a:hover,
+.automata-button-a:focus-visible {
+  border-color: rgba(159, 63, 49, 0.45);
+  box-shadow: 0 0 0 3px rgba(159, 63, 49, 0.12);
+}
+
+.automata-button-b:hover,
+.automata-button-b:focus-visible {
+  border-color: rgba(47, 93, 142, 0.45);
+  box-shadow: 0 0 0 3px rgba(47, 93, 142, 0.12);
 }
 
 .automata-button-judge {
@@ -7100,6 +7163,43 @@ a.position-link:hover {
 .tensor-factorization-figure .tensor-s-duplicate-node,
 .tensor-factorization-figure .tensor-s-new-node {
   animation-iteration-count: infinite;
+}
+
+.tensor-factorization-figure .tensor-step2-absorbed {
+  animation: tensor-step2-absorbed-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+.tensor-factorization-figure .tensor-step2-absorbed-node {
+  animation: tensor-step2-absorbed-node-stage var(--tensor-cycle) ease-in-out infinite;
+}
+
+@keyframes tensor-step2-absorbed-node-stage {
+  0%,
+  82% {
+    opacity: 1;
+  }
+
+  92%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tensor-step2-absorbed-stage {
+  0%,
+  40% {
+    opacity: 0;
+  }
+
+  52%,
+  82% {
+    opacity: 1;
+  }
+
+  92%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes tensor-s-new-node-stage {

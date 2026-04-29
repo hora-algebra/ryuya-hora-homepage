@@ -8280,6 +8280,8 @@ const paperFigureTemplates = {
         <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
         <g class="games-rb-dual-table is-expanded-table" transform="translate(70 76)">
           <use href="#games-nim-table-base"></use>
+          <text class="games-rb-set-axis-label is-s-label" x="-14" y="64" text-anchor="middle">S</text>
+          <text class="games-rb-set-axis-label is-t-label" x="77.5" y="-8" text-anchor="middle">T</text>
           <rect class="games-rb-set-highlight is-s-entry" x="0" y="24" width="31" height="24"></rect>
           <rect class="games-rb-set-highlight is-s-entry" x="0" y="48" width="31" height="24"></rect>
           <rect class="games-rb-set-highlight is-s-entry" x="0" y="96" width="31" height="24"></rect>
@@ -8293,6 +8295,8 @@ const paperFigureTemplates = {
         <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
         <g class="games-rb-dual-table is-product-table" transform="translate(70 76)">
           <use href="#games-nim-table-base"></use>
+          <text class="games-rb-set-axis-label is-s-label" x="-14" y="64" text-anchor="middle">S</text>
+          <text class="games-rb-set-axis-label is-t-label" x="77.5" y="-8" text-anchor="middle">T</text>
           <rect class="games-rb-set-highlight is-s-entry" x="0" y="24" width="31" height="24"></rect>
           <rect class="games-rb-set-highlight is-s-entry" x="0" y="48" width="31" height="24"></rect>
           <rect class="games-rb-set-highlight is-s-entry" x="0" y="96" width="31" height="24"></rect>
@@ -8665,29 +8669,29 @@ ${automataCoverUnfoldingTemplate()}
           <text class="tensor-map-symbol tensor-f-label" x="160" y="136">f<animate attributeName="x" values="160;160;124;124;124" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></text>
 
           <g class="tensor-subset-links">
-            <path class="tensor-a-copy-link" d="M268 88 H412"><animate attributeName="d" values="M268 88 H412;M268 88 H412;M196 88 H268;M196 88 H268" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M268 126 H412"><animate attributeName="d" values="M268 126 H412;M268 126 H412;M196 126 H268;M196 126 H268" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M268 164 H412"><animate attributeName="d" values="M268 164 H412;M268 164 H412;M196 164 H268;M196 164 H268" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M268 202 H412"><animate attributeName="d" values="M268 202 H412;M268 202 H412;M196 202 H268;M196 202 H268" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-neutral-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M304 88 H376;M304 88 H376" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0.9" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-neutral-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M304 164 H376;M304 164 H376" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0.9" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M412 88 H484;M412 88 H484" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.55;0.55" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M412 164 H484;M412 164 H484" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.55;0.55" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-subset-link" d="M448 88 H592"><animate attributeName="d" values="M448 88 H592;M448 88 H592;M520 88 H592;M520 88 H592" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-subset-link" d="M448 164 H592"><animate attributeName="d" values="M448 164 H592;M448 164 H592;M520 164 H592;M520 164 H592" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M268 88 H412"><animate attributeName="d" values="M268 88 H412;M268 88 H412;M196 88 H268;M196 88 H160;M196 88 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0;0" keyTimes="0;0.66;0.8;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M268 126 H412"><animate attributeName="d" values="M268 126 H412;M268 126 H412;M196 126 H268;M88 146 H160;M88 146 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0;0" keyTimes="0;0.66;0.8;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M268 164 H412"><animate attributeName="d" values="M268 164 H412;M268 164 H412;M196 164 H268;M196 164 H160;M196 164 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0;0" keyTimes="0;0.66;0.8;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M268 202 H412"><animate attributeName="d" values="M268 202 H412;M268 202 H412;M196 202 H268;M88 200 H160;M88 200 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0;0" keyTimes="0;0.66;0.8;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-neutral-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M304 88 H376;M196 88 H160;M196 88 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.4;0.66;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-neutral-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M304 164 H376;M196 164 H160;M196 164 H160" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.4;0.66;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M412 88 H484;M196 88 H484;M196 88 H484" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.55;0;0" keyTimes="0;0.4;0.66;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M412 164 H484;M196 164 H484;M196 164 H484" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.55;0;0" keyTimes="0;0.4;0.66;0.92;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-link" d="M448 88 H592"><animate attributeName="d" values="M448 88 H592;M448 88 H592;M520 88 H592;M520 88 H592;M520 88 H592" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-link" d="M448 164 H592"><animate attributeName="d" values="M448 164 H592;M448 164 H592;M520 164 H592;M520 164 H592;M520 164 H592" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animate></path>
           </g>
 
-          <g class="tensor-right-a-node tensor-neutral-node in-s" transform="translate(430 88)"><animateTransform attributeName="transform" type="translate" values="430 88;430 88;286 88;286 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node" transform="translate(430 126)"><animateTransform attributeName="transform" type="translate" values="430 126;430 126;286 126;286 126" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node in-s" transform="translate(430 164)"><animateTransform attributeName="transform" type="translate" values="430 164;430 164;286 164;286 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node" transform="translate(430 202)"><animateTransform attributeName="transform" type="translate" values="430 202;430 202;286 202;286 202" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 88)"><animateTransform attributeName="transform" type="translate" values="430 88;430 88;286 88;178 88;178 88" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 126)"><animateTransform attributeName="transform" type="translate" values="430 126;430 126;286 126;178 126;178 126" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 164)"><animateTransform attributeName="transform" type="translate" values="430 164;430 164;286 164;178 164;178 164" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 202)"><animateTransform attributeName="transform" type="translate" values="430 202;430 202;286 202;178 202;178 202" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
         </g>
         <g class="tensor-s-node tensor-neutral-node tensor-s-duplicate-node" transform="translate(430 88)">
-          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;502 88;502 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;502 88;502 88;502 88" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
         <g class="tensor-s-node tensor-neutral-node tensor-s-duplicate-node" transform="translate(430 164)">
-          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;502 164;502 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;502 164;502 164;502 164" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
         <g class="tensor-s-node" transform="translate(610 88)">
@@ -8696,12 +8700,12 @@ ${automataCoverUnfoldingTemplate()}
         <g class="tensor-s-node" transform="translate(610 164)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
-        <g class="tensor-s-new-node tensor-neutral-node" transform="translate(430 88)">
-          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;394 88;394 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
+        <g class="tensor-s-new-node tensor-neutral-node tensor-step2-absorbed" transform="translate(430 88)">
+          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;394 88;178 88;178 88" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
-        <g class="tensor-s-new-node tensor-neutral-node" transform="translate(430 164)">
-          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;394 164;394 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animateTransform>
+        <g class="tensor-s-new-node tensor-neutral-node tensor-step2-absorbed" transform="translate(430 164)">
+          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;394 164;178 164;178 164" keyTimes="0;0.4;0.66;0.86;1" dur="10s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
 
@@ -11268,6 +11272,10 @@ function initializeAutomataInteractiveFigure(figure) {
   };
   const coverPathNodes = Object.fromEntries(Object.entries(coverPaths).map(([key, d]) => [key, makePath(d)]));
   const basePathNodes = Object.fromEntries(Object.entries(basePaths).map(([key, d]) => [key, makePath(d)]));
+  const coverEdgeHighlightLayer = makeSvg("g", { class: "automata-interactive-edge-highlight-layer" });
+  const baseEdgeHighlightLayer = makeSvg("g", { class: "automata-interactive-edge-highlight-layer" });
+  coverGroup.insertBefore(coverEdgeHighlightLayer, coverGroup.querySelector(".automata-state"));
+  baseGroup.insertBefore(baseEdgeHighlightLayer, baseGroup.querySelector(".figure-node"));
 
   const link = makeSvg("line", { class: "automata-dot-link automata-interactive-link" });
   outerGroup.insertBefore(link, outerGroup.querySelector(".automata-dot-links"));
@@ -11336,6 +11344,27 @@ function initializeAutomataInteractiveFigure(figure) {
     renderWord();
   };
   const sleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+  const flashTransitionEdge = (pathKey, letter) => {
+    const className = `automata-interactive-edge-highlight automata-interactive-edge-highlight-${letter}`;
+    const coverPath = makeSvg("path", { class: className, d: coverPaths[pathKey] });
+    const basePath = makeSvg("path", { class: className, d: basePaths[letter] });
+    coverEdgeHighlightLayer.append(coverPath);
+    baseEdgeHighlightLayer.append(basePath);
+    const animations = [coverPath, basePath].map((path) =>
+      path.animate(
+        [
+          { opacity: 0, strokeWidth: "3px" },
+          { opacity: 0.95, strokeWidth: "8px" },
+          { opacity: 0, strokeWidth: "5px" }
+        ],
+        { duration: 360, easing: "ease-out" }
+      )
+    );
+    return Promise.all(animations.map((animation) => animation.finished.catch(() => {}))).finally(() => {
+      coverPath.remove();
+      basePath.remove();
+    });
+  };
   const flashConsumedLetter = async (letter, index) => {
     let x = 14;
     let y = -14;
@@ -11406,7 +11435,7 @@ function initializeAutomataInteractiveFigure(figure) {
     renderWord();
     const from = state.q;
     const next = transitions[from][letter];
-    await flashConsumedLetter(letter, state.word.length - 1);
+    await Promise.all([flashConsumedLetter(letter, state.word.length - 1), flashTransitionEdge(`${from}${letter}`, letter)]);
     await animateAlong(coverPathNodes[`${from}${letter}`], basePathNodes[letter], next);
     state.busy = false;
   };
