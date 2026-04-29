@@ -105,7 +105,7 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", href: "https://zen.ac.jp", icon: "building" },
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building" },
     { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai" },
     { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", textJa: "2024年4月より日本学術振興会特別研究員（DC1）．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
     { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
@@ -1031,6 +1031,7 @@ const state = {
     europe: null,
     japan: null
   },
+  homeTimelineKey: "",
   researchTheme: initialUrlParams.get("theme") || "",
   researchMetaTag: initialUrlParams.get("meta") || "",
   problemQuery: "",
@@ -1202,6 +1203,7 @@ const i18nText = {
     "Activities by Ryuya Hora.": "洞龍弥の活動．",
     "CV by Ryuya Hora.": "洞龍弥の CV．",
     "Problems by Ryuya Hora.": "洞龍弥の Problems．",
+    "This page is still under construction.": "このページはまだ未完成です．",
     "Links.": "リンク．",
     "Search.": "検索．",
     "Map": "見取り図",
@@ -1391,7 +1393,7 @@ const i18nText = {
       "受賞，教育・アウトリーチ，現在と過去の所属をまとめています．",
     "Current": "現在",
     "Past": "過去",
-    "Past Positions": "過去の所属",
+    "Past Affiliations": "過去の所属",
     "Awards": "受賞",
     "Teaching": "教育",
     "Education and Outreach": "教育とアウトリーチ",
@@ -1778,7 +1780,7 @@ const researchMetaTags = [
   {
     id: "expository",
     label: "Expository",
-    icon: "education",
+    icon: "pencil",
     keywords: ["expository", "introduction", "intro", "toy example", "overview", "入門", "新歓", "解説"]
   }
 ];
@@ -2049,6 +2051,19 @@ function translatableElements(root = document.body) {
 }
 
 function translateElementText(element) {
+  if (element.classList?.contains("position-link") && element.dataset.i18nJaEmphasis) {
+    const original = element.dataset.i18nOriginalText || normalizedUiText(element.textContent);
+    if (original && !element.dataset.i18nOriginalText) element.dataset.i18nOriginalText = original;
+    const text = activeLanguage === "ja" ? element.dataset.i18nJa || original : original;
+    const emphasis = activeLanguage === "ja" ? element.dataset.i18nJaEmphasis : element.querySelector("strong")?.textContent || "";
+    if (emphasis && text.includes(emphasis)) {
+      const [before, after] = text.split(emphasis);
+      element.replaceChildren(document.createTextNode(before), el("strong", null, emphasis), document.createTextNode(after));
+    } else {
+      element.textContent = text;
+    }
+    return;
+  }
   if (element.children?.length) {
     Array.from(element.childNodes).forEach((node) => {
       if (node.nodeType !== Node.TEXT_NODE) return;
@@ -2185,12 +2200,23 @@ function setLanguage(language) {
   renderCategoriesTokyoMap();
 }
 
+function ensureDraftNotice() {
+  if (document.querySelector("[data-draft-notice]")) return;
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  const notice = el("div", "draft-notice", "This page is still under construction.");
+  notice.dataset.draftNotice = "";
+  notice.setAttribute("role", "status");
+  header.insertAdjacentElement("afterend", notice);
+}
+
 function setupLanguage() {
   activeLanguage = initialLanguage();
   if (!japaneseUiEnabled) writeStoredLanguage("en");
   syncLanguageUrl();
   const nav = document.querySelector(".site-nav");
   ensureSearchNavLink();
+  ensureDraftNotice();
   if (japaneseUiEnabled && nav && !nav.querySelector("[data-language-toggle]")) {
     const button = el("button", "language-toggle");
     button.type = "button";
@@ -5273,6 +5299,41 @@ function homeTimelineRecords() {
     .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title));
 }
 
+function homeTimelineRecordKey(record) {
+  return slugify(compactText([record.kind, record.dateLabel, record.title, record.href]).join(" "));
+}
+
+function homeTimelineSelectedIndex(records) {
+  const keyedIndex = records.findIndex((record) => homeTimelineRecordKey(record) === state.homeTimelineKey);
+  if (keyedIndex >= 0) return keyedIndex;
+  const latestActivityIndex = records.reduce((bestIndex, record, index) => {
+    if (record.kind !== "activity" || record.meta === "Plan") return bestIndex;
+    if (bestIndex < 0) return index;
+    return record.time > records[bestIndex].time ? index : bestIndex;
+  }, -1);
+  if (latestActivityIndex >= 0) {
+    state.homeTimelineKey = homeTimelineRecordKey(records[latestActivityIndex]);
+    return latestActivityIndex;
+  }
+  const fallbackIndex = Math.max(0, records.length - 1);
+  state.homeTimelineKey = homeTimelineRecordKey(records[fallbackIndex]);
+  return fallbackIndex;
+}
+
+function setHomeTimelineSelection(key) {
+  state.homeTimelineKey = key;
+  renderHomeTimeline();
+}
+
+function stepHomeTimelineSelection(delta) {
+  const records = homeTimelineRecords();
+  if (!records.length) return;
+  const currentIndex = homeTimelineSelectedIndex(records);
+  const nextIndex = Math.max(0, Math.min(records.length - 1, currentIndex + delta));
+  state.homeTimelineKey = homeTimelineRecordKey(records[nextIndex]);
+  renderHomeTimeline();
+}
+
 function homeTimelineKindLabel(kind) {
   if (kind === "paper") return "Paper";
   if (kind === "note") return "Note";
@@ -5347,6 +5408,7 @@ function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
 
 function renderHomeTimelinePaperSpan(record, position) {
   const span = link("", record.href, `home-timeline-paper-span theme-${record.theme} is-${record.paperStatus}`);
+  const key = homeTimelineRecordKey(record);
   const label = compactText([
     `Paper / ${homeTimelineThemeLabel(record.theme)} / ${record.dateLabel}: ${record.title}`,
     record.meta
@@ -5354,6 +5416,8 @@ function renderHomeTimelinePaperSpan(record, position) {
   span.style.setProperty("--x-start", position.start);
   span.style.setProperty("--x-end", position.end);
   span.style.setProperty("--offset", position.offset);
+  span.dataset.homeTimelineKey = key;
+  span.classList.toggle("is-selected", key === state.homeTimelineKey);
   span.setAttribute("aria-label", label);
   span.setAttribute("title", label);
   attachTimelineTooltip(span, record);
@@ -5362,6 +5426,7 @@ function renderHomeTimelinePaperSpan(record, position) {
 
 function renderHomeTimelineNode(record, position) {
   const node = link("", record.href, `home-timeline-node kind-${record.kind} theme-${record.theme}`);
+  const key = homeTimelineRecordKey(record);
   const label = compactText([
     `${homeTimelineKindLabel(record.kind)} / ${homeTimelineThemeLabel(record.theme)} / ${record.dateLabel}: ${record.title}`,
     record.meta
@@ -5370,10 +5435,44 @@ function renderHomeTimelineNode(record, position) {
   node.style.setProperty("--offset", position.offset);
   node.style.setProperty("--lane", position.lane ?? ["paper", "activity", "talk"].indexOf(record.kind));
   node.dataset.label = label;
+  node.dataset.homeTimelineKey = key;
+  node.classList.toggle("is-selected", key === state.homeTimelineKey);
   node.setAttribute("aria-label", label);
   node.setAttribute("title", label);
   attachTimelineTooltip(node, record);
   return node;
+}
+
+function renderHomeTimelineDetail(record, index, total) {
+  const card = el("aside", "home-timeline-detail");
+  const nav = el("div", "home-timeline-detail-nav");
+  const previous = el("button", "timeline-control");
+  previous.type = "button";
+  previous.dataset.homeTimelineStep = "-1";
+  previous.disabled = index <= 0;
+  previous.setAttribute("aria-label", "Previous timeline item");
+  previous.textContent = "←";
+  const next = el("button", "timeline-control");
+  next.type = "button";
+  next.dataset.homeTimelineStep = "1";
+  next.disabled = index >= total - 1;
+  next.setAttribute("aria-label", "Next timeline item");
+  next.textContent = "→";
+  nav.append(previous, next);
+
+  const body = el("div", "home-timeline-detail-body");
+  body.append(
+    el("span", `home-timeline-detail-kicker theme-${record.theme}`, compactText([
+      homeTimelineKindLabel(record.kind),
+      homeTimelineThemeLabel(record.theme),
+      record.dateLabel
+    ]).join(" / ")),
+    el("h3", null, record.title)
+  );
+  if (record.meta) body.append(el("p", "home-timeline-detail-meta", record.meta));
+  appendActionLinks(body, [["Open", record.href]]);
+  card.append(nav, body, el("span", "home-timeline-detail-count", `${index + 1} / ${total}`));
+  return card;
 }
 
 function renderHomeTimeline() {
@@ -5392,6 +5491,8 @@ function renderHomeTimeline() {
   );
   const firstTime = Math.min(...times);
   const lastTime = Math.max(...times);
+  const selectedIndex = homeTimelineSelectedIndex(records);
+  const selectedRecord = records[selectedIndex];
   const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime);
   const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime);
 
@@ -5439,7 +5540,10 @@ function renderHomeTimeline() {
       track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
   });
 
-  root.append(timelineScrollFrame(track));
+  root.append(renderHomeTimelineDetail(selectedRecord, selectedIndex, records.length), timelineScrollFrame(track));
+  root.querySelectorAll("[data-home-timeline-step]").forEach((button) => {
+    button.addEventListener("click", () => stepHomeTimelineSelection(Number(button.dataset.homeTimelineStep || 0)));
+  });
 }
 
 function activitiesTimelineRecords() {
@@ -6421,6 +6525,32 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "pencil") {
+    svg.append(
+      shape("path", {
+        d: "M5.1 17.8L6.2 13.6L15 4.8C15.9 3.9 17.3 3.9 18.2 4.8L19.1 5.7C20 6.6 20 8 19.1 8.9L10.3 17.7Z",
+        fill: "currentColor",
+        "fill-opacity": "0.22",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.8"
+      }),
+      shape("path", {
+        d: "M6.2 13.6L10.3 17.7L5.1 17.8Z",
+        fill: "var(--paper)",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.55"
+      }),
+      shape("path", { d: "M5.1 17.8L7 16.6L6.3 15.9Z", fill: "currentColor" }),
+      line({ d: "M13.8 6L17.9 10.1", "stroke-width": "1.75" }),
+      line({ d: "M15.5 4.9L19 8.4", "stroke-width": "1.45" })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "education" || normalizedKey === "book") {
     svg.append(
       shape("path", { d: "M5.5 6.6c0-1 .8-1.8 1.8-1.8h4.7c1.2 0 2.3.5 3 1.4c.7-.9 1.8-1.4 3-1.4h.7v13.7h-.7c-1.2 0-2.3.5-3 1.4c-.7-.9-1.8-1.4-3-1.4H7.3c-1 0-1.8-.8-1.8-1.8Z", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
@@ -6710,10 +6840,10 @@ function tagIconKey(label = "") {
   const text = simplified(label);
   if (!text || text === "all") return "tag";
   if (text.includes("award") || text.includes("grant") || text.includes("kakenhi")) return "award";
+  if (text.includes("expository") || text.includes("introduction") || text.includes("intro") || text.includes("toy example") || text.includes("入門") || text.includes("新歓") || text.includes("解説")) return "pencil";
   if (text.includes("education") || text.includes("book") || text.includes("teaching")) return "education";
   if (text.includes("simulation") || text.includes("experiment") || text.includes("workbench") || text.includes("editor")) return "webapp";
   if (text.includes("cloud") || text.includes("speculative")) return "cloud";
-  if (text.includes("expository") || text.includes("introduction") || text.includes("intro") || text.includes("toy example") || text.includes("入門") || text.includes("新歓") || text.includes("解説")) return "education";
   if (text.includes("draft") || text.includes("meta") || text.includes("research log")) return "note";
   if (text.includes("formal") || text.includes("informal") || text.includes("question") || text.includes("problem")) return "problem";
   if (text.includes("classifier")) return "category";
@@ -8643,7 +8773,7 @@ function automataCoverUnfoldingTemplate() {
     { start: 0.49, end: 0.56, scale: 0.27, path: "M286 280.7 L252 282.9" },
   ];
   return `
-        <g class="automata-cover-unfolding" aria-hidden="true">
+        <g class="automata-cover-unfolding" transform="translate(26 0)" aria-hidden="true">
 ${rollingBouquets.map(automataCoverRollingBouquet).join("\n")}
         </g>`;
 }
@@ -8793,10 +8923,10 @@ ${gamesRbNimTableBaseTemplate()}
 
       <rect class="automata-cantor-paper" width="760" height="390"></rect>
       <g class="automata-cantor-layout">
-        <text class="automata-topos-label automata-topos-label-left" x="112" y="68">Sh(Σ<tspan class="automata-topos-sup">ω</tspan>)</text>
-        <text class="automata-topos-label automata-topos-label-middle" x="370" y="68">PSh(Σ<tspan class="automata-topos-sup">*</tspan>)</text>
-        <text class="automata-topos-label automata-topos-label-right" x="650" y="68">Σ-Set</text>
-        <g class="automata-cantor-space">
+        <text class="automata-topos-label automata-topos-label-left" x="86" y="68">Sh(Σ<tspan class="automata-topos-sup">ω</tspan>)</text>
+        <text class="automata-topos-label automata-topos-label-middle" x="396" y="68">PSh(Σ<tspan class="automata-topos-sup">*</tspan>)</text>
+        <text class="automata-topos-label automata-topos-label-right" x="676" y="68">Σ-Set</text>
+        <g class="automata-cantor-space" transform="translate(-44 0)">
           <g class="automata-cantor-fractal">
             <path class="automata-cantor-interval stage-0" d="M56 106 L56 284"></path>
             <path class="automata-cantor-interval stage-1" d="M88 106 L88 165.3"></path>
@@ -8843,13 +8973,29 @@ ${gamesRbNimTableBaseTemplate()}
             <path class="automata-cantor-connector cantor-stage-3" d="M120 234.6 L152 241.1"></path>
             <path class="automata-cantor-connector cantor-stage-3" d="M120 274.1 L152 267.5"></path>
             <path class="automata-cantor-connector cantor-stage-3" d="M120 274.1 L152 280.7"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 109.3 L184 107.1"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 109.3 L184 111.5"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 122.5 L184 120.3"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 122.5 L184 124.7"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 148.9 L184 146.7"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 148.9 L184 151"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 162 L184 159.8"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 162 L184 164.2"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 228 L184 225.8"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 228 L184 230.1"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 241.1 L184 238.9"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 241.1 L184 243.3"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 267.5 L184 265.3"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 267.5 L184 269.7"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 280.7 L184 278.5"></path>
+            <path class="automata-cantor-connector cantor-stage-4" d="M152 280.7 L184 282.9"></path>
           </g>
         </g>
 
-        <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M204 195 H238"></path>
-        <text class="automata-cantor-arrow-label large automata-sublocale-label" x="221" y="214">sublocale</text>
+        <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M164 195 H248"></path>
+        <text class="automata-cantor-arrow-label large automata-sublocale-label" x="206" y="178">sublocale</text>
 
-        <g class="automata-prefix-poset">
+        <g class="automata-prefix-poset" transform="translate(26 0)">
           <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 109 L255.5 107.3"></path>
           <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 109.6 L255.5 111.3"></path>
           <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 122.2 L255.5 120.5"></path>
@@ -8913,10 +9059,10 @@ ${gamesRbNimTableBaseTemplate()}
           <circle class="automata-cantor-node large tree-depth-0" cx="486" cy="195" r="12"></circle>
         </g>
 
-        <path class="figure-arrow automata-cantor-main-arrow automata-etale-arrow" data-cantor-arrow="neutral" d="M522 195 H606"></path>
-        <text class="automata-cantor-arrow-label large automata-etale-label" x="564" y="170">&eacute;tale cover</text>
+        <path class="figure-arrow automata-cantor-main-arrow automata-etale-arrow" data-cantor-arrow="neutral" d="M548 195 H632"></path>
+        <text class="automata-cantor-arrow-label large automata-etale-label" x="590" y="170">&eacute;tale cover</text>
 
-        <g class="automata-bouquet-space" transform="translate(650 195)">
+        <g class="automata-bouquet-space" transform="translate(676 195)">
           <path class="automata-cantor-bouquet-loop blue" data-cantor-arrow="blue" d="M0 0 C-40 -24, -36 -92, 0 -92 C36 -92, 40 -24, 0 0"></path>
           <path class="automata-cantor-bouquet-loop red" data-cantor-arrow="red" d="M0 0 C-40 24, -36 92, 0 92 C36 92, 40 24, 0 0"></path>
           <circle class="automata-cantor-node large" cx="0" cy="0" r="10"></circle>
@@ -12243,8 +12389,26 @@ function renderCurrentPositions() {
         iconWrap.title = "Copy link";
       }
       iconWrap.append(currentPositionIcon(record.icon));
-      const content = record.href ? link(record.text, record.href, "position-link") : el("span", "position-link", record.text);
-      if (record.textJa) content.dataset.i18nJa = record.textJa;
+      const content = record.href ? link("", record.href, "position-link") : el("span", "position-link");
+      const addPositionText = (text, emphasis = "") => {
+        const source = String(text || "");
+        const bold = String(emphasis || "");
+        if (!bold || !source.includes(bold)) {
+          content.textContent = source;
+          return;
+        }
+        const [before, after] = source.split(bold);
+        content.replaceChildren(
+          document.createTextNode(before),
+          el("strong", null, bold),
+          document.createTextNode(after)
+        );
+      };
+      addPositionText(record.text, record.emphasis);
+      if (record.textJa) {
+        content.dataset.i18nJa = record.textJa;
+        content.dataset.i18nJaEmphasis = record.emphasisJa || "";
+      }
       item.append(iconWrap, content);
       root.append(item);
     });
