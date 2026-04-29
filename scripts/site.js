@@ -19,7 +19,7 @@ const publicSiteUrl = "https://hora-algebra.github.io/ryuya-hora-homepage/";
 const problemRefs = {
   tac: ["Local state classifier paper", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
   lawvereFirst: ["Lawvere's first problem", "https://ncatlab.org/nlab/show/William+Lawvere#FirstProblemInToposTheory"],
-  lawvereOpen: ["Lawvere-style open problems", "https://ncatlab.org/nlab/show/William+Lawvere#OpenProblemsInToposTheory"],
+  lawvereOpen: ["Lawvere-style open problems", "https://ncatlab.org/nlab/show/Open+problems+in+topos+theory"],
   kockMoerdijk: ["Kock-Moerdijk", "https://eudml.org/doc/91476"],
   normalizer: ["Normalizer preprint", "https://arxiv.org/abs/2511.05012"],
   menni: ["Menni: Non-singular maps", "https://arxiv.org/abs/2505.07131"],
@@ -105,18 +105,18 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", href: "https://zen.ac.jp", icon: "building" },
-    { text: "Researcher at the Humai Center since April 2026.", href: "https://zen.ac.jp/humai", icon: "humai" },
-    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
-    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
-    { text: "Tutor at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教。", href: "https://zen.ac.jp", icon: "building" },
+    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員。", href: "https://zen.ac.jp/humai", icon: "humai" },
+    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", textJa: "2024年4月より日本学術振興会特別研究員（DC1）。", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
+    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人。", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー。", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
+    { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター。", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
   ],
   pastPositions: [
-    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
-    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", href: "https://www.ms.u-tokyo.ac.jp/" },
-    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
-    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", href: "https://www.nii.ac.jp/en/" }
+    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", textJa: "2025年4月から7月まで、Centre for Topos Theory and its Applications（パリ）リサーチアソシエイト。", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
+    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", textJa: "2024年4月から2026年3月まで、東京大学大学院数理科学研究科 博士課程。", href: "https://www.ms.u-tokyo.ac.jp/" },
+    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", textJa: "2022年10月から2024年3月まで、変革を駆動する先端物理・数学プログラム（FoPM）支援学生。", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
+    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", textJa: "2020年11月から2021年3月まで、国立情報学研究所リサーチアシスタント。", href: "https://www.nii.ac.jp/en/" }
   ],
   webApps: [
     {
@@ -225,7 +225,7 @@ const siteData = {
         links: [
           ["TAC", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
           ["arXiv", "https://arxiv.org/abs/2302.06851"],
-          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/William+Lawvere#OpenProblemsInToposTheory"]
+          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/Open+problems+in+topos+theory"]
         ],
         summary:
           "Introduces local state classifiers and uses them to establish an internal parameterization of hyperconnected quotients."
@@ -239,12 +239,12 @@ const siteData = {
         publicationDate: "2024-08",
         link: "https://doi.org/10.1016/j.jpaa.2024.107657",
         figure: "quotient-toposes",
-        tags: ["discrete dynamical systems", "quotient toposes", "Lawvere problems"],
+        tags: ["discrete dynamical system", "quotient topos", "Lawvere problem"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.jpaa.2024.107657"],
           ["arXiv", "https://arxiv.org/abs/2310.02647"],
           ["JPAA issue", "https://www.sciencedirect.com/journal/journal-of-pure-and-applied-algebra/vol/228/issue/8"],
-          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/William+Lawvere#OpenProblemsInToposTheory"]
+          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/Open+problems+in+topos+theory"]
         ],
         summary:
           "Classifies classes of discrete dynamical systems closed under finite limits and small colimits."
@@ -258,7 +258,7 @@ const siteData = {
         link: "https://doi.org/10.1090/proc/17479",
         figure: "completely-connected",
         themes: ["topos", "geometry", "combinatorics"],
-        tags: ["completely connected topoi", "Grothendieck topoi"],
+        tags: ["completely connected topos", "Grothendieck topos"],
         links: [
           ["DOI", "https://doi.org/10.1090/proc/17479"],
           ["arXiv", "https://arxiv.org/abs/2503.04317"]
@@ -276,12 +276,12 @@ const siteData = {
         link: "https://doi.org/10.1016/j.aim.2025.110751",
         figure: "lawvere-first",
         themes: ["topos", "combinatorics"],
-        tags: ["Lawvere problems", "quotient topoi", "Grothendieck topoi"],
+        tags: ["Lawvere problem", "quotient topos", "Grothendieck topos"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.aim.2025.110751"],
           ["arXiv", "https://arxiv.org/abs/2407.17105"],
           ["Advances in Mathematics", "https://www.sciencedirect.com/journal/advances-in-mathematics/vol/487/suppl/C"],
-          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/William+Lawvere#OpenProblemsInToposTheory"]
+          ["Lawvere's open problems", "https://ncatlab.org/nlab/show/Open+problems+in+topos+theory"]
         ],
         summary: "Gives a solution to Lawvere's first open problem."
       }
@@ -294,7 +294,7 @@ const siteData = {
         year: "2025",
         link: "https://arxiv.org/abs/2503.03439",
         figure: "lawvere-fourth",
-        tags: ["Lawvere problems", "symmetric simplicial sets", "species"],
+        tags: ["Lawvere problem", "symmetric simplicial set", "species"],
         links: [["arXiv", "https://arxiv.org/abs/2503.03439"]],
         summary:
           "Solves one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
@@ -305,7 +305,7 @@ const siteData = {
         year: "2024",
         link: "https://arxiv.org/abs/2411.06358",
         figure: "topoi-automata",
-        tags: ["automata", "regular languages", "topos theory"],
+        tags: ["automaton", "regular language", "topos theory"],
         links: [["arXiv", "https://arxiv.org/abs/2411.06358"]],
         summary: "Introduces a topos-theoretic point of view on formal language theory."
       },
@@ -315,7 +315,7 @@ const siteData = {
         year: "2025",
         link: "https://arxiv.org/abs/2510.22886",
         figure: "games-coalgebras",
-        tags: ["coalgebras", "combinatorial games", "Nim"],
+        tags: ["coalgebra", "combinatorial game", "Nim"],
         links: [["arXiv", "https://arxiv.org/abs/2510.22886"]],
         summary:
           "Reinterprets impartial combinatorial games and the Nim-sum using recursive coalgebras."
@@ -353,11 +353,11 @@ const siteData = {
     ],
     misc: [
       {
-        title: "準完全情報ニムとして見たWythoffのゲーム",
+        title: "準完全情報ニム",
         authors: ["安福智明", "洞龍弥", "稲津大貴", "木谷裕紀", "末續鴻輝", "吉渡叶"],
         venue: "researchmap misc",
         year: "2026",
-        tags: ["combinatorial games", "Nim", "Wythoff game"],
+        tags: ["combinatorial game", "Nim"],
         link: "https://researchmap.jp/ryuyahora/misc/52084435"
       }
     ]
@@ -426,24 +426,24 @@ const siteData = {
       download: "assets/notes/counting-with-exponential-of-groups.pdf"
     },
     { title: "Combinatorial games as recursive coalgebras", description: "Slides at CSCAT 2024", theme: "games", date: "2024-03-15", language: "English", file: "Hora_CSCAT2024.pdf", ...notePdfAsset("12qTwg-9KFTLe-g4UGFtupJUas58U3Ib7", "combinatorial-games-recursive-coalgebras") },
-    { title: "Cloud: Topos theoretic approach to representation theory", language: "English", file: "A_topos_theoretic_view_of_Gabriel_s_theorem-12.pdf", ...notePdfAsset("1M-Rxp0KuFykfrJgCLTUo-DrM2XmrJkj4", "topos-representation-theory") },
-    { title: "Cloud: What is the geometry behind Conway's game of life?", description: "A first step with a relative topos", theme: "topos", date: "2024-12-10", language: "English", file: "Adv20241210_Dynamical_system_on_a_pretopological_space.pdf", ...notePdfAsset("1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl", "conway-game-of-life-geometry", "https://drive.google.com/thumbnail?id=1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl&sz=w339-h191-p-k-nu") },
+    { title: "Cloud: Topos theoretic approach to representation theory", themes: ["topos", "algebra"], metaTags: ["speculative"], language: "English", file: "A_topos_theoretic_view_of_Gabriel_s_theorem-12.pdf", ...notePdfAsset("1M-Rxp0KuFykfrJgCLTUo-DrM2XmrJkj4", "topos-representation-theory") },
+    { title: "Cloud: What is the geometry behind Conway's game of life?", description: "A first step with a relative topos", theme: "topos", themes: ["topos", "geometry", "dynamical"], metaTags: ["speculative"], date: "2024-12-10", language: "English", file: "Adv20241210_Dynamical_system_on_a_pretopological_space.pdf", ...notePdfAsset("1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl", "conway-game-of-life-geometry", "https://drive.google.com/thumbnail?id=1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl&sz=w339-h191-p-k-nu") },
     { title: "Topoi of automata", description: "CSCAT 2025", theme: "automata", date: "2025-03-12", language: "English", file: "CSCAT_2025-3.pdf", ...notePdfAsset("1WyOxS3qTZC5jar-nyg_yL7V1lZzJrNHI", "topoi-of-automata-cscat2025") },
     { title: "Topoi of automata", description: "Groupe de travail topossique, April 30, 2025", theme: "automata", date: "2025-04-30", language: "English", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf", ...notePdfAsset("1CZPU91ghZsBg5-ce8dEv8CKeZJVA4bbD", "topoi-of-automata-ctta") },
     { title: "Local state classifier for algebraic language theory", description: "Centre Lagrange, 16 May", theme: "topos", date: "2025-05-16", language: "English", file: "Local state classifier for algebraic language theory.pdf", ...notePdfAsset("1jwA88f7axVA_VmGsUasrudicI1OXMIPE", "local-state-classifier-algebraic-language") },
     { title: "Topoi of automata (IRIF)", description: "IRIF, 6 May", theme: "automata", date: "2025-05-06", language: "English", file: "IRIFtoday.pdf", ...notePdfAsset("1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU", "topoi-of-automata-irif") },
     { title: "Local state classifier for automata theory", description: "IRIF 26 May / LIPN 5 June", theme: "topos", date: "2025-05-26", language: "English", file: "IRIF20250527_ver1.pdf", ...notePdfAsset("1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF", "local-state-classifier-automata") },
     { title: "Pen: A note on language measurability", description: "March 8, 2026", theme: "automata", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
-    { title: "Cloud: A Rota-Baxter equation for winning games", description: "April 5, 2026", theme: "games", date: "2026-04-05", language: "English", file: "RYUYA,HORA.pdf", ...notePdfAsset("1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU", "rota-baxter-winning-games", "https://lh3.google.com/u/0/d/1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU=s2048?auditContext=thumbnail") },
-    { title: "順序集合で遊ぶKan拡張入門", theme: "category", language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
-    { title: "圏論のToy Exampleとしての集合演算", theme: "category", language: "Japanese", file: "圏論のToy_Exampleとしての集合演算__Ver2_.pdf", ...notePdfAsset("1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP", "toy-example-set-operations") },
-    { title: "Cloud: 構成的数学と表現論", description: "数学基礎論若手の会 2023", theme: "logic", date: "2023-12-10", language: "Japanese", file: "若手の会2023-8.pdf", ...notePdfAsset("1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-", "constructive-math-representation") },
+    { title: "Cloud: A Rota-Baxter equation for winning games", description: "April 5, 2026", theme: "games", themes: ["games", "algebra"], metaTags: ["speculative"], date: "2026-04-05", language: "English", file: "RYUYA,HORA.pdf", ...notePdfAsset("1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU", "rota-baxter-winning-games", "https://lh3.google.com/u/0/d/1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU=s2048?auditContext=thumbnail") },
+    { title: "順序集合で遊ぶKan拡張入門", theme: "category", metaTags: ["expository"], language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
+    { title: "圏論のToy Exampleとしての集合演算", theme: "category", metaTags: ["expository"], language: "Japanese", file: "圏論のToy_Exampleとしての集合演算__Ver2_.pdf", ...notePdfAsset("1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP", "toy-example-set-operations") },
+    { title: "Cloud: 構成的数学と表現論", description: "数学基礎論若手の会 2023", theme: "logic", themes: ["logic", "algebra"], metaTags: ["speculative", "expository"], date: "2023-12-10", language: "Japanese", file: "若手の会2023-8.pdf", ...notePdfAsset("1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-", "constructive-math-representation") },
     { title: "Turning lights out with the Snake Lemma", description: "CGP project, written with Kyosuke Higashida", theme: "games", date: "2026-02-22", language: "Japanese", file: "ライツアウトの代数的研究.pdf", ...notePdfAsset("1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp", "lights-out-snake-lemma", "https://lh3.google.com/u/0/d/1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp=s2048?auditContext=thumbnail") },
-    { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", theme: "number", date: "2021", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
-    { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", theme: "category", date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
-    { title: "母関数の種", description: "数理空間トポス 2023年新歓", theme: "combinatorics", date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
-    { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", theme: "number", date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
-    { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", theme: "topos", date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
+    { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", theme: "number", metaTags: ["expository"], date: "2021", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
+    { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", theme: "category", metaTags: ["expository"], date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
+    { title: "母関数の種", description: "数理空間トポス 2023年新歓", theme: "combinatorics", metaTags: ["expository"], date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
+    { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", theme: "number", metaTags: ["expository"], date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
+    { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", theme: "topos", themes: ["topos", "geometry", "dynamical"], metaTags: ["speculative"], date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
     { title: "Older notes", description: "Older documents are collected on Notion.", language: "Japanese", file: "Notion archive", href: "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b" }
   ],
   activities: [
@@ -530,7 +530,7 @@ const siteData = {
   education: [
     { text: "Worked as a tutor at SEG for several years around 2019.", textJa: "2019年前後から数年間、SEG で講師を担当。", href: "https://www.seg.co.jp/" },
     { text: "Private tutor for gifted elementary and junior high school students from February 2020 to September 2022.", textJa: "2020年2月から2022年9月まで、小中学生向けの個別指導を担当。" },
-    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から Math Space Topos で現代数学を指導。", href: "https://sites.google.com/view/mspacetopos/home" },
+    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から数理空間トポスで現代数学を指導。", href: "https://sites.google.com/view/mspacetopos/home" },
     { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月から角川ドワンゴ学園 研究部のアドバイザー。", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/" }
   ],
   problems: [
@@ -650,7 +650,7 @@ const siteData = {
         "How does the local state classifier of a topos of spaces look? For example, what is the local state classifier of the topos of simplicial sets?",
       description:
         "A related formulation asks for a characterization of local, hyperconnected, or cohesive topoi in terms of a local state classifier. This is partially answered by Menni's work on non-singular maps.",
-      tags: ["spaces", "simplicial sets", "cohesive topos"],
+      tags: ["space", "simplicial set", "cohesive topos"],
       links: [problemRefs.menni, problemRefs.tac]
     }),
     problemEntry({
@@ -742,7 +742,7 @@ const siteData = {
       statement: "Can we describe all points of the topos of regular languages?",
       description:
         "The points of the topos of \\(\\Sigma\\)-sets can be fully described: there is one canonical point, and noncanonical points correspond to infinite words up to finite edit distance. A more conceptual version asks what theory this topos classifies.",
-      tags: ["points", "regular language", "Sigma-sets", "classified theory"],
+      tags: ["point", "regular language", "Sigma-set", "classified theory"],
       links: [problemRefs.automata]
     }),
     problemEntry({
@@ -752,7 +752,7 @@ const siteData = {
       statement:
         "What are exponential objects in the topos of regular languages in automata-theoretic terms?",
       description: "This is possibly related to the syntactic construction problem in 2.0.1.",
-      tags: ["exponential object", "automata theory", "regular language"],
+      tags: ["exponential object", "automaton", "regular language"],
       links: [problemRefs.automata]
     }),
     problemEntry({
@@ -1199,15 +1199,15 @@ const i18nText = {
     "Problems": "Problems",
     "Search": "検索",
     "Links": "リンク",
-    "Ryuya Hora.": "Ryuya Hora.",
-    "Papers by Ryuya Hora.": "Ryuya Hora の論文。",
-    "Documents by Ryuya Hora.": "Ryuya Hora の資料。",
-    "Other projects and links by Ryuya Hora.": "Ryuya Hora のその他のプロジェクトとリンク。",
-    "Talks by Ryuya Hora.": "Ryuya Hora の発表。",
-    "Notes by Ryuya Hora.": "Ryuya Hora のノート。",
-    "Activities by Ryuya Hora.": "Ryuya Hora の活動。",
-    "CV by Ryuya Hora.": "Ryuya Hora の CV。",
-    "Problems by Ryuya Hora.": "Ryuya Hora の Problems。",
+    "Ryuya Hora.": "洞龍弥。",
+    "Papers by Ryuya Hora.": "洞龍弥の論文。",
+    "Documents by Ryuya Hora.": "洞龍弥の資料。",
+    "Other projects and links by Ryuya Hora.": "洞龍弥のその他のプロジェクトとリンク。",
+    "Talks by Ryuya Hora.": "洞龍弥の発表。",
+    "Notes by Ryuya Hora.": "洞龍弥のノート。",
+    "Activities by Ryuya Hora.": "洞龍弥の活動。",
+    "CV by Ryuya Hora.": "洞龍弥の CV。",
+    "Problems by Ryuya Hora.": "洞龍弥の Problems。",
     "Links.": "リンク。",
     "Search.": "検索。",
     "Map": "見取り図",
@@ -1241,6 +1241,7 @@ const i18nText = {
     "Algebra": "代数",
     "Logic": "論理",
     "Geometry": "幾何",
+    "Dynamical system": "力学系",
     "Combinatorics": "組合せ論",
     "Number theory": "数論",
     "General": "一般",
@@ -1260,13 +1261,13 @@ const i18nText = {
     "Focus": "Focus",
     "Why it is good": "好きな理由",
     "Basic dictionary": "Basic dictionary",
-    "Assistant Professor · ZEN University": "ZEN University Assistant Professor",
-    "Ryuya Hora": "Ryuya Hora",
+    "Assistant Professor · ZEN University": "ZEN大学助教",
+    "Ryuya Hora": "洞龍弥",
     "Category theory, topos theory, computation.": "Category theory, topos theory, computation.",
     "Ryuya Hora studies category theory, topos theory, and the geometry of computation.":
-      "Ryuya Hora は category theory, topos theory, and the geometry of computation を研究しています。",
+      "洞龍弥は category theory, topos theory, and the geometry of computation を研究しています。",
     "I am an assistant professor at ZEN University and a researcher at the Humai Center. My recent work explores how topos theory transfers ideas among algebra, geometry, logic, computation, and combinatorics.":
-      "ZEN University の助教、Humai Center の researcher です。最近は、topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています。",
+      "ZEN大学助教、HUMAIセンター研究員です。最近は、topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています。",
     "Research": "研究",
     "Papers, preprints, notes, and slides.": "論文、preprint、ノート、スライド。",
     "Preprints and related writing.": "Preprint と関連文書。",
@@ -1516,7 +1517,8 @@ const i18nText = {
     "Concepts": "Concepts",
     "Result": "Result",
     "Close": "閉じる",
-    "Speculative": "Speculative",
+    "Speculative": "空想的",
+    "Expository": "説明文書",
     "Draft": "Draft",
     "Note": "Note",
     "Questions": "Questions",
@@ -1589,7 +1591,7 @@ const researchThemes = [
   },
   {
     id: "automata",
-    label: "Automata",
+    label: "Automaton",
     x: 320,
     y: 342,
     r: 56,
@@ -1622,7 +1624,7 @@ const researchThemes = [
   },
   {
     id: "games",
-    label: "Games",
+    label: "Game",
     x: 146,
     y: 342,
     r: 54,
@@ -1644,7 +1646,7 @@ const researchThemes = [
   },
   {
     id: "coalgebras",
-    label: "Coalgebras",
+    label: "Coalgebra",
     x: 318,
     y: 150,
     r: 56,
@@ -1724,7 +1726,28 @@ const researchThemes = [
     x: 438,
     y: 150,
     r: 54,
-    keywords: ["geometry", "dynamical", "dynamical system", "dynamical systems", "pretopological", "space time", "discrete dynamical", "regular tetrahedra", "tetrahedra"]
+    keywords: ["geometry", "pretopological", "regular tetrahedra", "tetrahedra"]
+  },
+  {
+    id: "dynamical",
+    label: "Dynamical system",
+    x: 560,
+    y: 342,
+    r: 58,
+    keywords: [
+      "dynamical",
+      "dynamical system",
+      "dynamical systems",
+      "discrete dynamical",
+      "discrete dynamical system",
+      "discrete dynamical systems",
+      "space time",
+      "space-time",
+      "orbit",
+      "orbits",
+      "pretopological",
+      "conway's game of life"
+    ]
   },
   {
     id: "combinatorics",
@@ -1746,6 +1769,21 @@ const researchThemes = [
       "組合せ論",
       "母関数"
     ]
+  },
+];
+
+const researchMetaTags = [
+  {
+    id: "speculative",
+    label: "Speculative",
+    icon: "cloud",
+    keywords: ["cloud", "cloud:", "speculative", "speculative note"]
+  },
+  {
+    id: "expository",
+    label: "Expository",
+    icon: "education",
+    keywords: ["expository", "introduction", "intro", "toy example", "overview", "入門", "新歓", "解説"]
   }
 ];
 
@@ -1942,6 +1980,7 @@ const translatableTextSelector = [
   ".lead",
   ".section-head > .muted",
   ".categories-tokyo-lead",
+  ".categories-tokyo-schedule span",
   ".section-link",
   ".site-footer p",
   ".site-footer a",
@@ -2469,8 +2508,9 @@ function titleCopyButton(href, title = "") {
   const url = publicHref(href);
   button.type = "button";
   button.dataset.copyHref = url;
+  button.dataset.copyPreview = `copy: ${url}`;
   button.setAttribute("aria-label", title ? `Copy link to ${title}` : "Copy link");
-  button.title = "Copy link";
+  button.title = `copy: ${url}`;
   button.append(uiIcon("link", "title-copy-link-icon"), el("span", "title-copy-link-status"));
   button.addEventListener("click", async () => {
     try {
@@ -3475,9 +3515,10 @@ function siteSearchRecords() {
   siteData.currentPositions.forEach((record) => {
     pushSiteSearchRecord(records, {
       type: "Profile",
-      title: record.text,
+      title: activeLanguage === "ja" && record.textJa ? record.textJa : record.text,
       href: record.href || localHref("index.html#profile"),
       summary: "Current position",
+      keywords: compactText([record.text, record.textJa]),
       icon: record.icon || "profile"
     });
   });
@@ -3485,9 +3526,10 @@ function siteSearchRecords() {
   siteData.pastPositions.forEach((record) => {
     pushSiteSearchRecord(records, {
       type: "Profile",
-      title: record.text,
+      title: activeLanguage === "ja" && record.textJa ? record.textJa : record.text,
       href: record.href || localHref("cv/index.html"),
       summary: "Past position",
+      keywords: compactText([record.text, record.textJa]),
       icon: "building"
     });
   });
@@ -3869,13 +3911,22 @@ const contentThemeKeywords = {
   ],
   geometry: [
     "geometry",
+    "regular tetrahedra",
+    "tetrahedra"
+  ],
+  dynamical: [
     "dynamical",
     "dynamical system",
     "dynamical systems",
+    "discrete dynamical",
+    "discrete dynamical system",
+    "discrete dynamical systems",
     "pretopological",
     "space time",
-    "regular tetrahedra",
-    "tetrahedra"
+    "space-time",
+    "orbit",
+    "orbits",
+    "conway's game of life"
   ],
   combinatorics: [
     "combinatorics",
@@ -3909,7 +3960,7 @@ const contentThemeKeywords = {
     "exponentials in logic",
     "数学基礎論",
     "構成的"
-  ]
+  ],
 };
 
 function contentTheme(text) {
@@ -3919,6 +3970,7 @@ function contentTheme(text) {
   if (hasTopicKeywords(text, contentThemeKeywords.games)) return "games";
   if (hasTopicKeywords(text, contentThemeKeywords.automata)) return "automata";
   if (hasTopicKeywords(text, contentThemeKeywords.topos)) return "topos";
+  if (hasTopicKeywords(text, contentThemeKeywords.dynamical)) return "dynamical";
   if (hasTopicKeywords(text, contentThemeKeywords.geometry)) return "geometry";
   if (hasTopicKeywords(text, contentThemeKeywords.logic)) return "logic";
   if (hasTopicKeywords(text, contentThemeKeywords.category)) return "category";
@@ -3927,7 +3979,7 @@ function contentTheme(text) {
 }
 
 function talkTheme(record) {
-  return contentTheme(record.title);
+  return contentTheme(compactText([record.title, record.venue, record.event]).join(" "));
 }
 
 function formatTalkDate(record) {
@@ -4630,11 +4682,11 @@ const categoriesTokyoVenues = [
     id: "komaba",
     label: "第0回 The University of Tokyo",
     labelLines: {
-      en: ["Meeting 0", "The University of Tokyo"],
+      en: ["0th", "The University of Tokyo"],
       ja: ["第0回", "東京大学"]
     },
     name: {
-      en: "Meeting 0, The University of Tokyo",
+      en: "0th meeting, The University of Tokyo",
       ja: "第0回 東京大学"
     },
     lon: 139.6847,
@@ -4655,8 +4707,8 @@ const categoriesTokyoVenues = [
     label: "第1回・第2回 National Institute of Informatics",
     labelBlocks: {
       en: [
-        { meetingIndex: 0, lines: ["Meeting 1", "National Institute", "of Informatics"] },
-        { meetingIndex: 1, lines: ["Meeting 2", "National Institute", "of Informatics"] }
+        { meetingIndex: 0, lines: ["1st", "National Institute", "of Informatics"] },
+        { meetingIndex: 1, lines: ["2nd", "National Institute", "of Informatics"] }
       ],
       ja: [
         { meetingIndex: 0, lines: ["第1回", "国立情報学研究所"] },
@@ -4667,7 +4719,7 @@ const categoriesTokyoVenues = [
     labelBlockGap: 3.00,
     labelLeaderUnit: 1.34,
     name: {
-      en: "Meeting 1 and Meeting 2, National Institute of Informatics",
+      en: "1st and 2nd meetings, National Institute of Informatics",
       ja: "第1回・第2回 国立情報学研究所"
     },
     lon: 139.7585,
@@ -4692,11 +4744,11 @@ const categoriesTokyoVenues = [
     id: "kabukiza",
     label: "第3回 ZEN University",
     labelLines: {
-      en: ["Meeting 3 ZEN University"],
+      en: ["3rd ZEN University"],
       ja: ["第3回 ZEN大学"]
     },
     name: {
-      en: "Meeting 3, ZEN University",
+      en: "3rd meeting, ZEN University",
       ja: "第3回 ZEN大学"
     },
     lon: 139.7671,
@@ -4961,7 +5013,6 @@ function renderCategoriesTokyoMap() {
       : "A Tokyo-area map with Categories in Tokyo venues, meeting links, and Tokyo ward boundaries."),
     defs,
     svgEl("rect", { class: "categories-map-bg", x: 0, y: 0, width: 760, height: 440, rx: 8 }),
-    svgEl("text", { class: "categories-map-label", x: 32, y: 34 }, activeLanguage === "ja" ? "東京の開催地" : "Tokyo venues"),
     kantoMap,
     svgEl("text", { class: "categories-map-credit", x: 736, y: 418, "text-anchor": "end" }, categoriesMapData.source?.note || "Natural Earth public domain data")
   );
@@ -5214,16 +5265,17 @@ function homeTimelineKindLabel(kind) {
 
 const homeTimelineThemeLabels = {
   topos: "Topos theory",
-  automata: "Automata / languages",
+  automata: "Automaton / language",
   games: "Games",
   geometry: "Geometry / dynamics",
+  dynamical: "Dynamical system",
   combinatorics: "Combinatorics",
   category: "Category / algebra",
   logic: "Logic",
   other: "Other"
 };
 
-const homeTimelineThemeOrder = ["topos", "automata", "games", "geometry", "combinatorics", "category", "logic", "other"];
+const homeTimelineThemeOrder = ["topos", "automata", "games", "dynamical", "geometry", "combinatorics", "category", "logic", "other"];
 
 function homeTimelineThemeLabel(theme) {
   return homeTimelineThemeLabels[theme] || homeTimelineThemeLabels.other;
@@ -5574,7 +5626,7 @@ function renderPaperTimeline() {
 function noteKind(note) {
   const titleKind = noteTitlePrefixKind(note.title);
   const text = `${note.title} ${note.description || ""} ${note.file}`.toLowerCase();
-  if (titleKind === "cloud") return ["cloud", "☁︎", "☁︎"];
+  if (titleKind === "cloud") return ["cloud", "Speculative", "cloud"];
   if (titleKind === "pen") return ["pen", "Pen", "pen"];
   if (note.file === "Notion archive") return ["archive", "Archive"];
   if (text.includes("slides") || text.includes("talk") || text.includes("cscat") || text.includes("seminar")) {
@@ -5609,7 +5661,8 @@ function symbolicCloudPenLabel(value) {
 }
 
 function symbolicNoteTitle(note) {
-  return symbolicCloudPenLabel(note?.title || note);
+  const title = note?.title || note;
+  return noteTitlePrefixKind(title) === "cloud" ? stripNoteTitlePrefix(title) : symbolicCloudPenLabel(title);
 }
 
 function noteTheme(note) {
@@ -5620,25 +5673,27 @@ function noteTheme(note) {
   if (hasTopicKeywords(text, contentThemeKeywords.games)) return "games";
   if (hasTopicKeywords(text, contentThemeKeywords.topos)) return "topos";
   if (hasTopicKeywords(text, contentThemeKeywords.automata)) return "automata";
+  if (hasTopicKeywords(text, contentThemeKeywords.dynamical)) return "dynamical";
   if (hasTopicKeywords(text, ["kan", "kan extension", "kan extensions", "category", "categorical", "category theory", "圏論"])) return "category";
-  if (hasTopicKeywords(text, ["rieg", "riegs", "semiring", "algebra", "algebraic", "representation", "表現論"])) return "algebra";
   if (hasTopicKeywords(text, ["logic", "choice", "constructive", "constructive mathematics", "構成的", "数学基礎論"])) return "logic";
+  if (hasTopicKeywords(text, ["rieg", "riegs", "semiring", "algebra", "algebraic", "representation", "表現論"])) return "algebra";
   return "general";
 }
 
 const noteThemeLabels = {
   topos: "Topos",
-  automata: "Automata",
+  automata: "Automaton",
   games: "Games",
   category: "Category theory",
   algebra: "Algebra",
   logic: "Logic",
+  dynamical: "Dynamical system",
   combinatorics: "Combinatorics",
   number: "Number theory",
   general: "General"
 };
 
-const noteThemeOrder = ["topos", "automata", "games", "category", "algebra", "logic", "combinatorics", "number", "general"];
+const noteThemeOrder = ["topos", "automata", "games", "dynamical", "category", "algebra", "logic", "combinatorics", "number", "general"];
 
 function noteThemeLabel(theme) {
   return noteThemeLabels[theme] || theme || "General";
@@ -5766,6 +5821,7 @@ function noteThumbnail(note) {
   const body = el("div", "note-thumb-body");
   const kindBadge = el("span", "note-thumb-kind", kindLabel);
   if (kindIcon === "pen") kindBadge.prepend(uiIcon("pen", "note-kind-icon"));
+  else if (kindIcon === "cloud") kindBadge.prepend(uiIcon("cloud", "note-kind-icon"));
   else if (kindIcon && kindIcon !== kindLabel) kindBadge.dataset.icon = kindIcon;
   if (kindIcon && kindIcon === kindLabel) kindBadge.classList.add("is-symbol");
   body.append(kindBadge, el("span", "note-thumb-title", shortNoteTitle(note)), el("span", "note-thumb-meta", note.language));
@@ -6037,6 +6093,21 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "cloud") {
+    svg.append(
+      shape("path", {
+        d: "M7.1 17.4H17.2C19.3 17.4 20.8 16 20.8 14.2C20.8 12.4 19.5 11 17.7 10.9C17.1 8.3 14.9 6.5 12.3 6.5C10 6.5 8.1 7.8 7.2 9.9C4.9 10.1 3.2 11.7 3.2 13.8C3.2 15.9 4.9 17.4 7.1 17.4Z",
+        fill: "currentColor",
+        "fill-opacity": "0.82",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.25"
+      })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "tag") {
     svg.append(
       shape("path", {
@@ -6166,6 +6237,30 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "dynamical-system") {
+    svg.append(
+      shape("circle", { cx: "7.2", cy: "7.7", r: "2.05", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.9" }),
+      shape("circle", { cx: "16.8", cy: "8.8", r: "2.05", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.9" }),
+      shape("circle", { cx: "12.3", cy: "17", r: "2.05", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.9" }),
+      line({ d: "M9.3 7.8C11 7.2 13.1 7.3 14.8 8.1", "stroke-width": "1.85" }),
+      line({ d: "M14.3 6.1L16 8.6L13.2 9.7", "stroke-width": "1.85" }),
+      line({ d: "M16.1 11C15.6 13 14.5 14.6 13.2 15.6", "stroke-width": "1.85" }),
+      line({ d: "M15.6 14.8L12.9 15.9L13.5 13.1", "stroke-width": "1.85" }),
+      line({ d: "M10.6 15.7C8.9 14.4 7.8 12.5 7.4 9.9", "stroke-width": "1.85" }),
+      line({ d: "M5.7 11.8L7.3 9.4L9.3 11.5", "stroke-width": "1.85" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "logic") {
+    svg.append(
+      line({ d: "M7.8 5.2V18.8", "stroke-width": "2.35" }),
+      line({ d: "M7.9 9.1H18.3", "stroke-width": "2.35" }),
+      line({ d: "M7.9 14.9H18.3", "stroke-width": "2.35" })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "plus") {
     svg.append(
       line({ d: "M12 5V19", "stroke-width": "3" }),
@@ -6205,11 +6300,34 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "combinatorics") {
+    svg.append(
+      shape("path", {
+        d: "M6.5 7.2L17.5 5.1M6.5 7.2L17.5 12M6.5 7.2L17.5 18.9M6.5 16.8L17.5 5.1M6.5 16.8L17.5 12M6.5 16.8L17.5 18.9",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.55",
+        "stroke-opacity": "0.72"
+      }),
+      shape("circle", { cx: "6.5", cy: "7.2", r: "1.2", fill: "currentColor" }),
+      shape("circle", { cx: "6.5", cy: "16.8", r: "1.2", fill: "currentColor" }),
+      shape("circle", { cx: "17.5", cy: "5.1", r: "1.2", fill: "currentColor" }),
+      shape("circle", { cx: "17.5", cy: "12", r: "1.2", fill: "currentColor" }),
+      shape("circle", { cx: "17.5", cy: "18.9", r: "1.2", fill: "currentColor" })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "automaton-piece") {
     svg.append(
-      shape("circle", { cx: "7.5", cy: "12", r: "3.65", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "2.15" }),
-      line({ d: "M11.4 12H19", "stroke-width": "2.35" }),
-      line({ d: "M15.9 8.9L19 12L15.9 15.1", "stroke-width": "2.35" })
+      line({ d: "M9.6 7.65C11.05 6.55 12.95 6.55 14.4 7.65", "stroke-width": "1.9" }),
+      line({ d: "M11.9 7.15L14.4 7.65L13.8 5.2", "stroke-width": "1.9" }),
+      line({ d: "M14.4 16.35C12.95 17.45 11.05 17.45 9.6 16.35", "stroke-width": "1.9" }),
+      line({ d: "M12.1 16.85L9.6 16.35L10.2 18.8", "stroke-width": "1.9" }),
+      shape("circle", { cx: "6.55", cy: "12", r: "2.75", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.95" }),
+      shape("circle", { cx: "17.45", cy: "12", r: "2.75", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.95" })
     );
     return svg;
   }
@@ -6583,21 +6701,24 @@ function tagIconKey(label = "") {
   if (text.includes("award") || text.includes("grant") || text.includes("kakenhi")) return "award";
   if (text.includes("education") || text.includes("book") || text.includes("teaching")) return "education";
   if (text.includes("simulation") || text.includes("experiment") || text.includes("workbench") || text.includes("editor")) return "webapp";
+  if (text.includes("cloud") || text.includes("speculative")) return "cloud";
+  if (text.includes("expository") || text.includes("introduction") || text.includes("intro") || text.includes("toy example") || text.includes("入門") || text.includes("新歓") || text.includes("解説")) return "education";
   if (text.includes("draft") || text.includes("meta") || text.includes("research log")) return "note";
   if (text.includes("formal") || text.includes("informal") || text.includes("question") || text.includes("problem")) return "problem";
   if (text.includes("classifier")) return "category";
   if (text.includes("geometric morphism")) return "topos";
-  if (text.includes("geometry") || text.includes("dynamical") || text.includes("space time")) return "torus";
+  if (text.includes("dynamical") || text.includes("space time") || text.includes("space-time") || text.includes("orbit") || text.includes("pretopological")) return "dynamical-system";
+  if (text.includes("geometry")) return "torus";
   if (text.includes("topos") || text.includes("topoi") || text.includes("sheaf") || text.includes("site") || text.includes("locale") || text.includes("geometric morphism") || text.includes("hyperconnected") || text.includes("cohesive")) return "topos";
+  if (text.includes("logic") || text.includes("logical") || text.includes("boolean") || text.includes("constructive") || text.includes("choice")) return "logic";
   if (text.includes("category") || text.includes("categorical")) return "category";
   if (text.includes("kan") || text.includes("yoneda") || text.includes("slice") || text.includes("pullback")) return "kan-extension";
-  if (text.includes("automata") || text.includes("automaton") || text.includes("regular language") || text.includes("sigma sets") || text.includes("state")) return "automaton-piece";
+  if (text.includes("automata") || text.includes("automaton") || text.includes("regular language") || text.includes("sigma set") || text.includes("sigma sets") || text.includes("state")) return "automaton-piece";
   if (text.includes("coalgebra")) return "river";
   if (text.includes("game") || text.includes("nim") || text.includes("grundy") || text.includes("wythoff") || text.includes("winning") || text.includes("bouton")) return "pawn";
   if (text.includes("algebra") || text.includes("semiring") || text.includes("monoid") || text.includes("ring") || text.includes("rieg") || text.includes("module") || text.includes("normalization") || text.includes("rota baxter")) return "tensor";
-  if (text.includes("combinatorics") || text.includes("species") || text.includes("profinite") || text.includes("finite presheaf")) return "binary-tree";
+  if (text.includes("combinatorics") || text.includes("species") || text.includes("profinite") || text.includes("finite presheaf")) return "combinatorics";
   if (text.includes("number") || text.includes("integer") || text.includes("natural") || text.includes("rational")) return "timeline";
-  if (text.includes("logic") || text.includes("boolean") || text.includes("constructive")) return "problem";
   return "tag";
 }
 
@@ -6609,6 +6730,12 @@ function appendTagParts(parent, label, iconClassName = "tag-icon", labelClassNam
 function renderTagPill(label, className = "") {
   const tag = el("span", className);
   appendTagParts(tag, label);
+  return tag;
+}
+
+function renderMetaTagPill(tagId, className = "") {
+  const tag = el("span", `meta-tag-pill meta-tag-${tagId}${className ? ` ${className}` : ""}`);
+  tag.append(uiIcon(metaTagIconKey(tagId), "meta-tag-icon tag-icon"), el("span", "tag-label", metaTagLabel(tagId)));
   return tag;
 }
 
@@ -6747,6 +6874,10 @@ function themeById(themeId) {
   return researchThemes.find((theme) => theme.id === themeId);
 }
 
+function metaTagById(tagId) {
+  return researchMetaTags.find((tag) => tag.id === tagId);
+}
+
 function researchThemeHref(themeId = "") {
   return localHref(`index.html${themeId ? `?theme=${encodeURIComponent(themeId)}` : ""}#research-map`);
 }
@@ -6782,6 +6913,40 @@ function paperThemeScore(paper) {
 
 function paperThemeIds(paper) {
   return paperThemeScore(paper).themes;
+}
+
+function metaTagLabel(tagId) {
+  return metaTagById(tagId)?.label || tagId;
+}
+
+function metaTagIconKey(tagId) {
+  return metaTagById(tagId)?.icon || tagIconKey(metaTagLabel(tagId));
+}
+
+function normalizeMetaTagSelection(selection = "") {
+  const rawIds = Array.isArray(selection)
+    ? selection
+    : String(selection)
+      .split(/\s+/)
+      .map((tagId) => tagId.trim());
+  const seen = new Set();
+  return rawIds.filter((tagId) => {
+    if (!tagId || seen.has(tagId) || !metaTagById(tagId)) return false;
+    seen.add(tagId);
+    return true;
+  });
+}
+
+function metaTagIdsForText(text = "", explicitTags = []) {
+  const ids = new Set(normalizeMetaTagSelection(explicitTags));
+  researchMetaTags.forEach((tag) => {
+    if (hasTopicKeywords(text, tag.keywords)) ids.add(tag.id);
+  });
+  return [...ids];
+}
+
+function paperMetaTagIds(paper) {
+  return metaTagIdsForText(paperThemeText(paper), paper.metaTags || []);
 }
 
 const differentialGamesPreparationTitle = "Differential calculus of impartial combinatorial games (with Ryo Suzuki)";
@@ -6914,7 +7079,7 @@ function preparationPaperDetails(title) {
     return {
       figure: "automata-cantor-morphism",
       themes: ["automata", "topos", "geometry"],
-      tags: ["Cantor space", "geometric morphism", "Sigma-sets", "infinite words"],
+      tags: ["Cantor space", "geometric morphism", "Sigma-set", "infinite word"],
       summary:
         "Visual proposal: reproduce the CTTA slide where the Cantor space of infinite words maps by a canonical geometric morphism through the prefix-poset slice and then by the etale-cover picture to \\(\\Sigma\\)-sets.",
       links: mergeActionLinks(
@@ -6944,11 +7109,18 @@ function themeTagLabel(themeId) {
 }
 
 function paperDisplayTagRecords(paper) {
-  return paperThemeIds(paper).map((themeId) => ({
-    label: themeTagLabel(themeId),
-    themeId,
-    kind: "theme"
-  }));
+  return [
+    ...paperThemeIds(paper).map((themeId) => ({
+      label: themeTagLabel(themeId),
+      themeId,
+      kind: "theme"
+    })),
+    ...paperMetaTagIds(paper).map((metaTagId) => ({
+      label: metaTagLabel(metaTagId),
+      metaTagId,
+      kind: "meta"
+    }))
+  ];
 }
 
 function dedupeThemeRecords(records) {
@@ -6979,6 +7151,7 @@ function themedPaperRecords() {
         title: paper.title,
         href: localHref(`papers/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper, findResearchmapPaper(paper)), paper.year, paper.venue]).join(" / "),
+        metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
       };
     }),
@@ -6989,6 +7162,7 @@ function themedPaperRecords() {
         title: paper.title,
         href: paper.link,
         meta: compactText([paperPeopleText(paper), paper.year, paper.venue]).join(" / "),
+        metaTags: metaTagIdsForText(text, paper.metaTags || []),
         ...scoreThemeRecord(text)
       };
     }),
@@ -7002,6 +7176,7 @@ function themedPaperRecords() {
         title: paper.title,
         href: paper.link || localHref(`papers/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper), paper.year, paper.venue || paper.type]).join(" / "),
+        metaTags: metaTagIdsForText(text, paper.metaTags || []),
         ...scoreThemeRecord(text)
       };
     })
@@ -7019,6 +7194,7 @@ function themedPreparationRecords() {
         title: paper.title,
         href: localHref(`papers/index.html#${paperAnchor(paper)}`),
         meta: "In preparation",
+        metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
       };
     })
@@ -7030,13 +7206,24 @@ function themedNoteRecords() {
     .filter((note) => note.file !== "Notion archive")
     .map((note) => {
       const theme = noteTheme(note);
-      const text = compactText([note.title, note.description, note.language, note.file, theme, noteThemeLabel(theme)]).join(" ");
+      const themeHints = compactText([theme, ...(note.themes || [])]);
+      const text = compactText([
+        note.title,
+        note.description,
+        note.language,
+        note.file,
+        theme,
+        noteThemeLabel(theme),
+        ...(note.themes || []),
+        ...(note.keywords || [])
+      ]).join(" ");
       return {
         type: "note",
         title: symbolicNoteTitle(note),
         href: noteHref(note),
         meta: compactText([note.language, note.description || note.file]).join(" / "),
-        ...scoreThemeRecord(text)
+        metaTags: metaTagIdsForText(text, note.metaTags || []),
+        ...scoreThemeRecord(text, themeHints)
       };
     })).filter((record) => record.themes.length);
 }
@@ -7048,7 +7235,8 @@ function themedTalkRecords() {
       .map((record) => {
         const text = compactText([
           record.title,
-          record.presenters?.join(" ")
+          record.presenters?.join(" "),
+          presentationMeta(record)
         ]).join(" ");
         return {
           type: "talk",
@@ -7066,7 +7254,7 @@ function themedTalkRecords() {
       group.items.map((talk) => {
         const presentationRecord = findResearchmapPresentationForTalk(talk);
         const presenters = presentationPeopleText(presentationRecord || talk);
-        const text = compactText([talk.title, presenters]).join(" ");
+        const text = compactText([talk.title, presenters, talk.venue]).join(" ");
         return {
           type: "talk",
           title: talk.title,
@@ -7124,6 +7312,19 @@ function renderThemeResultIcons(themeIds = []) {
   return strip;
 }
 
+function renderMetaTagIcons(metaTagIds = []) {
+  const tags = normalizeMetaTagSelection(metaTagIds);
+  const strip = el("div", "theme-result-meta-icons");
+  strip.setAttribute("aria-hidden", "true");
+  tags.forEach((tagId) => {
+    const label = metaTagLabel(tagId);
+    const icon = uiIcon(metaTagIconKey(tagId), "theme-result-meta-icon tag-icon");
+    icon.title = label;
+    strip.append(icon);
+  });
+  return strip;
+}
+
 function topThemeRecords(kind, selection = "") {
   const themeIds = normalizeThemeSelection(selection);
   return themedRecords(kind)
@@ -7142,6 +7343,7 @@ function renderThemeResult(record, selection = "") {
   const heading = el("h4");
   heading.append(link(record.title, record.href));
   item.append(renderThemeResultIcons(record.themes), heading);
+  if (record.metaTags?.length) item.append(renderMetaTagIcons(record.metaTags));
   if (record.meta) item.append(el("p", "theme-result-meta", record.meta));
   return item;
 }
@@ -8773,59 +8975,79 @@ ${automataCoverUnfoldingTemplate()}
       </defs>
 
       <g transform="translate(42 56)">
-        <text class="tensor-step-title" x="70" y="18">Step 1<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.24;0.25;1" dur="10s" repeatCount="indefinite"></animate></text>
-        <text class="tensor-step-title tensor-step-title-two" x="70" y="18">Step 2<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.26;0.49;0.50;1" dur="10s" repeatCount="indefinite"></animate></text>
-        <text class="tensor-step-title tensor-step-title-three" x="70" y="18">Step 3<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.50;0.51;0.74;0.75;1" dur="10s" repeatCount="indefinite"></animate></text>
+        <rect class="tensor-step1-block tensor-step1-block-left" x="32" y="28" width="256" height="198" rx="12">
+          <animate attributeName="width" values="256;256;184;184;256;256" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate>
+          <animate attributeName="opacity" values="1;1;1" keyTimes="0;0.0806;1" dur="12.4s" repeatCount="indefinite"></animate>
+        </rect>
+        <rect class="tensor-step1-block tensor-step1-block-middle" x="392" y="28" width="128" height="198" rx="12">
+          <animate attributeName="x" values="392;392;392;286;246;246;210;210;210" keyTimes="0;0.0806;0.1775;0.2258;0.2823;0.3387;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate>
+          <animate attributeName="width" values="128;128;128;158;188;188;80;80;80" keyTimes="0;0.0806;0.1775;0.2258;0.2823;0.3387;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate>
+          <animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.0806;0.2258;0.2339;0.3807;0.3891;1" dur="12.4s" repeatCount="indefinite"></animate>
+        </rect>
+        <rect class="tensor-step1-block tensor-step1-block-subset" x="390" y="28" width="260" height="198" rx="12">
+          <animate attributeName="x" values="390;390;462;462;390;390" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate>
+          <animate attributeName="width" values="260;260;188;188;260;260" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate>
+          <animate attributeName="opacity" values="1;1;1" keyTimes="0;0.0806;1" dur="12.4s" repeatCount="indefinite"></animate>
+        </rect>
+        <text class="tensor-step-title" x="70" y="18">Step 1<animate attributeName="opacity" values="1;1;1;0;0" keyTimes="0;0.0806;0.2742;0.2823;1" dur="12.4s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-step-title tensor-step-title-two" x="70" y="18">Step 2<animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.0806;0.2823;0.3387;0.532;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-step-title tensor-step-title-three" x="70" y="18">Step 3<animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.0806;0.5403;0.5968;0.79;0.7984;1" dur="12.4s" repeatCount="indefinite"></animate></text>
         <g>
-          <text class="tensor-side-label" x="70" y="48">X1<animate attributeName="x" values="70;70;70;70;70" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-neutral-label" x="250" y="48">A1<animate attributeName="x" values="250;178;178;250;250" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-neutral-label tensor-b1-label" x="250" y="48">B1<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-neutral-label" x="430" y="48">A2<animate attributeName="x" values="430;286;286;250;250" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;1;0;0" keyTimes="0;0.25;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label" x="70" y="48">X1<animate attributeName="x" values="70;70;70;70;70;70" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-neutral-label" x="250" y="48">A1<animate attributeName="x" values="250;250;178;178;250;250" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;1;0;0" keyTimes="0;0.0806;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-neutral-label tensor-b1-label" x="250" y="48">B1<animate attributeName="opacity" values="0;0;0;1;1" keyTimes="0;0.0806;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-neutral-label" x="430" y="48">A2<animate attributeName="x" values="430;430;286;286;250;250" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;1;1;0;0" keyTimes="0;0.0806;0.2823;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate></text>
         </g>
-        <text class="tensor-side-label tensor-neutral-label tensor-s-new-label tensor-step2-absorbed" x="430" y="48">S1<animate attributeName="x" values="430;394;394;250;250" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></text>
-        <text class="tensor-side-label tensor-neutral-label tensor-s-duplicate-label" x="430" y="48">S2<animate attributeName="x" values="430;502;502;430;430" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-side-label tensor-neutral-label tensor-s-new-label tensor-step2-absorbed" x="430" y="48">S1<animate attributeName="x" values="430;430;394;394;250;250" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></text>
+        <text class="tensor-side-label tensor-neutral-label tensor-s-duplicate-label" x="430" y="48">S2<animate attributeName="x" values="430;430;502;502;430;430" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></text>
         <text class="tensor-side-label tensor-s-label" x="610" y="48">S3</text>
 
         <g>
-          <g class="tensor-x-node selected" transform="translate(70 92)"><animateTransform attributeName="transform" type="translate" values="70 92;70 92;70 92;70 92;70 92" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
-          <g class="tensor-x-node selected green" transform="translate(70 146)"><animateTransform attributeName="transform" type="translate" values="70 146;70 146;70 146;70 146;70 146" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
-          <g class="tensor-x-node selected green" transform="translate(70 200)"><animateTransform attributeName="transform" type="translate" values="70 200;70 200;70 200;70 200;70 200" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
+          <g class="tensor-x-node selected" transform="translate(70 92)"><animateTransform attributeName="transform" type="translate" values="70 92;70 92;70 92;70 92;70 92;70 92" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
+          <g class="tensor-x-node selected green" transform="translate(70 146)"><animateTransform attributeName="transform" type="translate" values="70 146;70 146;70 146;70 146;70 146;70 146" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
+          <g class="tensor-x-node selected green" transform="translate(70 200)"><animateTransform attributeName="transform" type="translate" values="70 200;70 200;70 200;70 200;70 200;70 200" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">z</text></g>
 
-          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 88)"><animateTransform attributeName="transform" type="translate" values="250 88;178 88;178 88;250 88;250 88" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-late-absorbed-node" transform="translate(250 126)"><animateTransform attributeName="transform" type="translate" values="250 126;178 126;178 126;250 126;70 146;70 146" keyTimes="0;0.25;0.26;0.50;0.75;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 164)"><animateTransform attributeName="transform" type="translate" values="250 164;178 164;178 164;250 164;250 164" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-late-absorbed-node" transform="translate(250 202)"><animateTransform attributeName="transform" type="translate" values="250 202;178 202;178 202;250 202;70 200;70 200" keyTimes="0;0.25;0.26;0.50;0.75;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 88)"><animateTransform attributeName="transform" type="translate" values="250 88;250 88;178 88;178 88;250 88;250 88" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-late-absorbed-node" transform="translate(250 126)"><animateTransform attributeName="transform" type="translate" values="250 126;250 126;178 126;178 126;250 126;250 126;70 146;70 146" keyTimes="0;0.0806;0.2823;0.3387;0.5403;0.5968;0.7984;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node" transform="translate(250 164)"><animateTransform attributeName="transform" type="translate" values="250 164;250 164;178 164;178 164;250 164;250 164" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-left-a-node tensor-neutral-node tensor-step2-late-absorbed-node" transform="translate(250 202)"><animateTransform attributeName="transform" type="translate" values="250 202;250 202;178 202;178 202;250 202;250 202;70 200;70 200" keyTimes="0;0.0806;0.2823;0.3387;0.5403;0.5968;0.7984;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
 
           <g class="tensor-left-map-cords">
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 88 L88 92"><animate attributeName="d" values="M230 88 L88 92;M158 88 L88 92;M158 88 L88 92;M230 88 L88 92;M230 88 L88 92" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 126 L88 140"><animate attributeName="d" values="M230 126 L88 140;M158 126 L88 140;M158 126 L88 140;M230 126 L88 140;M50 146 L88 146;M50 146 L88 146" keyTimes="0;0.25;0.26;0.50;0.75;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0;0" keyTimes="0;0.50;0.62;0.75;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 164 L88 152"><animate attributeName="d" values="M230 164 L88 152;M158 164 L88 152;M158 164 L88 152;M230 164 L88 152;M230 164 L88 152" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 202 L88 200"><animate attributeName="d" values="M230 202 L88 200;M158 202 L88 200;M158 202 L88 200;M230 202 L88 200;M50 200 L88 200;M50 200 L88 200" keyTimes="0;0.25;0.26;0.50;0.75;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0;0" keyTimes="0;0.50;0.62;0.75;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 88 L88 92"><animate attributeName="d" values="M230 88 L88 92;M230 88 L88 92;M158 88 L88 92;M158 88 L88 92;M230 88 L88 92;M230 88 L88 92" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <g class="tensor-edge-direction tensor-edge-direction-map" transform="translate(159 90)"><animateTransform attributeName="transform" type="translate" values="159 90;159 90;123 90;123 90;159 90;159 90" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><path d="M -6 0 L 5 -5 L 5 5 z"></path></g>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 126 L88 140"><animate attributeName="d" values="M230 126 L88 140;M230 126 L88 140;M158 126 L88 140;M158 126 L88 140;M230 126 L88 140;M230 126 L88 140;M50 146 L88 146;M50 146 L88 146" keyTimes="0;0.0806;0.2823;0.3387;0.5403;0.5968;0.7984;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0.82;0;0" keyTimes="0;0.0806;0.5968;0.6892;0.7984;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <g class="tensor-edge-direction tensor-edge-direction-map" transform="translate(159 133)"><animateTransform attributeName="transform" type="translate" values="159 133;159 133;123 133;123 133;159 133;159 133;69 146;69 146" keyTimes="0;0.0806;0.2823;0.3387;0.5403;0.5968;0.7984;1" dur="12.4s" repeatCount="indefinite"></animateTransform><animate attributeName="opacity" values="0.82;0.82;0.82;0.82;0;0" keyTimes="0;0.0806;0.5968;0.6892;0.7984;1" dur="12.4s" repeatCount="indefinite"></animate><path d="M -6 0 L 5 -5 L 5 5 z"></path></g>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 164 L88 152"><animate attributeName="d" values="M230 164 L88 152;M230 164 L88 152;M158 164 L88 152;M158 164 L88 152;M230 164 L88 152;M230 164 L88 152" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <g class="tensor-edge-direction tensor-edge-direction-map" transform="translate(159 158)"><animateTransform attributeName="transform" type="translate" values="159 158;159 158;123 158;123 158;159 158;159 158" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><path d="M -6 0 L 5 -5 L 5 5 z"></path></g>
+            <path class="tensor-left-map-cord" marker-end="url(#tensor-f-arrow-green)" d="M230 202 L88 200"><animate attributeName="d" values="M230 202 L88 200;M230 202 L88 200;M158 202 L88 200;M158 202 L88 200;M230 202 L88 200;M230 202 L88 200;M50 200 L88 200;M50 200 L88 200" keyTimes="0;0.0806;0.2823;0.3387;0.5403;0.5968;0.7984;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.82;0.82;0.82;0.82;0;0" keyTimes="0;0.0806;0.5968;0.6892;0.7984;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <g class="tensor-edge-direction tensor-edge-direction-map" transform="translate(159 201)"><animateTransform attributeName="transform" type="translate" values="159 201;159 201;123 201;123 201;159 201;159 201;69 200;69 200" keyTimes="0;0.0806;0.2823;0.3387;0.5403;0.5968;0.7984;1" dur="12.4s" repeatCount="indefinite"></animateTransform><animate attributeName="opacity" values="0.82;0.82;0.82;0.82;0;0" keyTimes="0;0.0806;0.5968;0.6892;0.7984;1" dur="12.4s" repeatCount="indefinite"></animate><path d="M -6 0 L 5 -5 L 5 5 z"></path></g>
           </g>
           <g class="tensor-subset-links">
-            <path class="tensor-a-copy-link" d="M272 88 H408"><animate attributeName="d" values="M272 88 H408;M200 88 H264;M200 88 H264;M242 88 H243;M242 88 H243;M242 88 H243;M242 88 H243" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M272 126 C312 126, 368 126, 410 126"><animate attributeName="d" values="M272 126 C312 126, 368 126, 410 126;M200 126 C220 126, 244 126, 266 126;M200 126 C220 126, 244 126, 266 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M272 164 H408"><animate attributeName="d" values="M272 164 H408;M200 164 H264;M200 164 H264;M242 164 H243;M242 164 H243;M242 164 H243;M242 164 H243" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M272 202 C312 202, 368 202, 410 202"><animate attributeName="d" values="M272 202 C312 202, 368 202, 410 202;M200 202 C220 202, 244 202, 266 202;M200 202 C220 202, 244 202, 266 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.25;0.26;0.40;0.41;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-neutral-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M304 88 H376;M304 88 H376;M268 88 H232;M268 88 H232" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0.9;0;0" keyTimes="0;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-neutral-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M304 164 H376;M304 164 H376;M268 164 H232;M268 164 H232" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0.9;0;0" keyTimes="0;0.50;0.54;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M412 88 H484;M412 88 H484;M268 88 H412;M268 88 H412" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-a-copy-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M412 164 H484;M412 164 H484;M268 164 H412;M268 164 H412" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-subset-link" d="M448 88 H592"><animate attributeName="d" values="M448 88 H592;M520 88 H592;M520 88 H592;M448 88 H592;M448 88 H592" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-subset-link" d="M448 164 H592"><animate attributeName="d" values="M448 164 H592;M520 164 H592;M520 164 H592;M448 164 H592;M448 164 H592" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M272 88 H408"><animate attributeName="d" values="M272 88 H408;M272 88 H408;M200 88 H264;M200 88 H264;M242 88 H243;M242 88 H243;M242 88 H243;M242 88 H243" keyTimes="0;0.0806;0.2823;0.3387;0.4563;0.4648;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.0806;0.2823;0.3387;0.4563;0.4648;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M272 126 C312 126, 368 126, 410 126"><animate attributeName="d" values="M272 126 C312 126, 368 126, 410 126;M272 126 C312 126, 368 126, 410 126;M200 126 C220 126, 244 126, 266 126;M200 126 C220 126, 244 126, 266 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126;M242 126 C242 126, 243 126, 243 126" keyTimes="0;0.0806;0.2823;0.3387;0.4563;0.4648;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.0806;0.2823;0.3387;0.4563;0.4648;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M272 164 H408"><animate attributeName="d" values="M272 164 H408;M272 164 H408;M200 164 H264;M200 164 H264;M242 164 H243;M242 164 H243;M242 164 H243;M242 164 H243" keyTimes="0;0.0806;0.2823;0.3387;0.4563;0.4648;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.0806;0.2823;0.3387;0.4563;0.4648;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M272 202 C312 202, 368 202, 410 202"><animate attributeName="d" values="M272 202 C312 202, 368 202, 410 202;M272 202 C312 202, 368 202, 410 202;M200 202 C220 202, 244 202, 266 202;M200 202 C220 202, 244 202, 266 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202;M242 202 C242 202, 243 202, 243 202" keyTimes="0;0.0806;0.2823;0.3387;0.4563;0.4648;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55;0;0;0" keyTimes="0;0.0806;0.2823;0.3387;0.4563;0.4648;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-neutral-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M304 88 H376;M304 88 H376;M268 88 H232;M268 88 H232" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.0806;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-neutral-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M304 164 H376;M304 164 H376;M268 164 H232;M268 164 H232" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.0806;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M448 88 H412"><animate attributeName="d" values="M448 88 H412;M448 88 H412;M412 88 H484;M412 88 H484;M268 88 H412;M268 88 H412" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55;0.55" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-a-copy-link" d="M448 164 H412"><animate attributeName="d" values="M448 164 H412;M448 164 H412;M412 164 H484;M412 164 H484;M268 164 H412;M268 164 H412" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="0.55;0.55;0.55;0.55;0.55;0.55" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-link" d="M448 88 H592"><animate attributeName="d" values="M448 88 H592;M448 88 H592;M520 88 H592;M520 88 H592;M448 88 H592;M448 88 H592" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <g class="tensor-edge-direction tensor-edge-direction-subset" transform="translate(520 88)"><animateTransform attributeName="transform" type="translate" values="520 88;520 88;556 88;556 88;520 88;520 88" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><path d="M -6 0 L 5 -5 L 5 5 z"></path></g>
+            <path class="tensor-subset-link" d="M448 164 H592"><animate attributeName="d" values="M448 164 H592;M448 164 H592;M520 164 H592;M520 164 H592;M448 164 H592;M448 164 H592" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></path>
+            <g class="tensor-edge-direction tensor-edge-direction-subset" transform="translate(520 164)"><animateTransform attributeName="transform" type="translate" values="520 164;520 164;556 164;556 164;520 164;520 164" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><path d="M -6 0 L 5 -5 L 5 5 z"></path></g>
           </g>
 
-          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 88)"><animateTransform attributeName="transform" type="translate" values="430 88;286 88;286 88;250 88;250 88" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 126)"><animateTransform attributeName="transform" type="translate" values="430 126;286 126;286 126;250 126;250 126" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 164)"><animateTransform attributeName="transform" type="translate" values="430 164;286 164;286 164;250 164;250 164" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
-          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 202)"><animateTransform attributeName="transform" type="translate" values="430 202;286 202;286 202;250 202;250 202" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 88)"><animateTransform attributeName="transform" type="translate" values="430 88;430 88;286 88;286 88;250 88;250 88" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 126)"><animateTransform attributeName="transform" type="translate" values="430 126;430 126;286 126;286 126;250 126;250 126" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node in-s" transform="translate(430 164)"><animateTransform attributeName="transform" type="translate" values="430 164;430 164;286 164;286 164;250 164;250 164" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text></g>
+          <g class="tensor-right-a-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 202)"><animateTransform attributeName="transform" type="translate" values="430 202;430 202;286 202;286 202;250 202;250 202" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">d</text></g>
         </g>
         <g class="tensor-s-node tensor-neutral-node tensor-s-duplicate-node" transform="translate(430 88)">
-          <animateTransform attributeName="transform" type="translate" values="430 88;502 88;502 88;430 88;430 88" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;502 88;502 88;430 88;430 88" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
         <g class="tensor-s-node tensor-neutral-node tensor-s-duplicate-node" transform="translate(430 164)">
-          <animateTransform attributeName="transform" type="translate" values="430 164;502 164;502 164;430 164;430 164" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;502 164;502 164;430 164;430 164" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
         <g class="tensor-s-node" transform="translate(610 88)">
@@ -8835,11 +9057,11 @@ ${automataCoverUnfoldingTemplate()}
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
         <g class="tensor-s-new-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 88)">
-          <animateTransform attributeName="transform" type="translate" values="430 88;394 88;394 88;250 88;250 88" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="translate" values="430 88;430 88;394 88;394 88;250 88;250 88" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
         <g class="tensor-s-new-node tensor-neutral-node tensor-step2-absorbed-node" transform="translate(430 164)">
-          <animateTransform attributeName="transform" type="translate" values="430 164;394 164;394 164;250 164;250 164" keyTimes="0;0.25;0.26;0.50;1" dur="10s" repeatCount="indefinite"></animateTransform>
+          <animateTransform attributeName="transform" type="translate" values="430 164;430 164;394 164;394 164;250 164;250 164" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform>
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
 
@@ -9350,19 +9572,6 @@ const normalizationConjugateDownsets = {
   ref2: ["ref0", "ref2", "one"],
   ref1: ["ref1", "ref3", "one"],
   ref3: ["ref1", "ref3", "one"]
-};
-
-const normalizationSubgroupLabels = {
-  d4: "D4",
-  v0: "<tau,sigma^2>",
-  v1: "<sigma tau,sigma^2>",
-  rot: "<sigma>",
-  r2: "<sigma^2>",
-  ref0: "<tau>",
-  ref1: "<sigma tau>",
-  ref2: "<sigma^2 tau>",
-  ref3: "<sigma^3 tau>",
-  one: "<1>"
 };
 
 const normalizationElementLabels = {
@@ -10403,53 +10612,6 @@ function setNormalizationSubgroupMotion(root, conjugator) {
   });
 }
 
-function normalizationFeatureStayedPut(orbit, pointId, fromState, toState) {
-  if (!orbit || !pointId) return false;
-  return normalizationTargetPoint(orbit, fromState, pointId) === normalizationTargetPoint(orbit, toState, pointId);
-}
-
-function normalizationElementsFixingFeature(orbit, pointId) {
-  return Object.keys(normalizationElementLabels).filter((elementId) =>
-    normalizationFeatureStayedPut(orbit, pointId, "e", elementId)
-  );
-}
-
-function normalizationFeatureLabel(orbit, pointId) {
-  if (orbit === "vertex") return `vertex ${pointId.replace("v", "")}`;
-  if (orbit === "edge") return `edge ${pointId.replace("e", "")}`;
-  return pointId || orbit;
-}
-
-function normalizationFeatureSelector(orbit, pointId) {
-  if (orbit === "edge") {
-    return [
-      `[data-normalization-boundary-edge="${pointId}"]`,
-      `[data-normalization-orbit="edge"][data-normalization-point="${pointId}"]`
-    ].join(", ");
-  }
-  return `[data-normalization-orbit="${orbit}"][data-normalization-point="${pointId}"]`;
-}
-
-function normalizationFeatureTargetInfo(feature) {
-  if (feature.dataset.normalizationBoundaryEdge) {
-    return { orbit: "edge", pointId: feature.dataset.normalizationBoundaryEdge };
-  }
-  const orbit = feature.dataset.normalizationOrbit || "";
-  const pointId = feature.dataset.normalizationPoint || "";
-  if (orbit === "vertex" || orbit === "edge") return { orbit, pointId };
-  return { orbit: "", pointId: "" };
-}
-
-function clearNormalizationFeatureSelection(root) {
-  delete root.dataset.normalizationFeatureSelected;
-  root.querySelectorAll(".is-feature-selected").forEach((feature) => {
-    feature.classList.remove("is-feature-selected");
-  });
-  root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
-    control.classList.remove("is-feature-fixer", "is-feature-dimmed");
-  });
-}
-
 function pulseNormalizationElementControl(root, elementId) {
   root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
     const isActed = control.dataset.normalizationElementControl === elementId;
@@ -10465,7 +10627,6 @@ function setNormalizationSelection(root, subgroupId = "d4") {
   const selected = normalizationContainment[subgroupId] ? subgroupId : "d4";
   const allowed = new Set(normalizationContainment[selected]);
   const highlighted = new Set(normalizationConjugateDownsets[selected] || normalizationContainment[selected]);
-  clearNormalizationFeatureSelection(root);
   root.dataset.normalizationSelected = selected;
   delete root.dataset.normalizationActionSelected;
 
@@ -10490,21 +10651,8 @@ function setNormalizationSelection(root, subgroupId = "d4") {
 
 }
 
-function normalizationPlaceStabilizers(place) {
-  return (place.dataset.normalizationPlaceStabilizer || "")
-    .split(/\s+/)
-    .filter((stabilizer) => Boolean(normalizationSubgroupElements[stabilizer]));
-}
-
-function normalizationStabilizerList(action) {
-  return (action.dataset.normalizationStabilizers || "")
-    .split(/\s+/)
-    .filter((stabilizer) => Boolean(normalizationContainment[stabilizer]));
-}
-
 function setNormalizationElementSelection(root, elementId) {
   const selectedElement = normalizationElementLabels[elementId] ? elementId : "e";
-  clearNormalizationFeatureSelection(root);
   const fromSubgroupState = normalizationCurrentSubgroupActionState(root);
   const { actedElement, fromState, toState } = setNormalizationActionMotion(root, selectedElement);
   setNormalizationSubgroupMotion(root, toState);
@@ -10512,50 +10660,6 @@ function setNormalizationElementSelection(root, elementId) {
   animateNormalizationStabilizerLinks(root, fromState, toState, fromSubgroupState, toState, actedElement);
   animateNormalizationOperatorLinks(root, fromSubgroupState, toState);
   pulseNormalizationElementControl(root, selectedElement);
-}
-
-function setNormalizationFeatureSelection(root, orbit, pointId) {
-  const fixedElements = new Set(normalizationElementsFixingFeature(orbit, pointId));
-  clearNormalizationFeatureSelection(root);
-  root.dataset.normalizationFeatureSelected = `${orbit}:${pointId}`;
-
-  root.querySelectorAll(normalizationFeatureSelector(orbit, pointId)).forEach((feature) => {
-    feature.classList.add("is-feature-selected");
-  });
-
-  root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
-    const elementId = control.dataset.normalizationElementControl || "e";
-    const isFixer = fixedElements.has(elementId);
-    control.classList.toggle("is-feature-fixer", isFixer);
-    control.classList.toggle("is-feature-dimmed", !isFixer);
-  });
-
-}
-
-function setNormalizationActionSelection(root, selectedAction) {
-  const stabilizers = normalizationStabilizerList(selectedAction);
-  const highlighted = new Set(stabilizers);
-  clearNormalizationFeatureSelection(root);
-  root.dataset.normalizationActionSelected = stabilizers.join(" ");
-  delete root.dataset.normalizationSelected;
-
-  root.querySelectorAll("[data-normalization-subgroup]").forEach((node) => {
-    const subgroup = node.dataset.normalizationSubgroup || "";
-    const isHighlighted = highlighted.has(subgroup);
-    node.classList.remove("is-selected");
-    node.classList.toggle("is-highlighted", isHighlighted);
-    node.classList.toggle("is-muted", !isHighlighted);
-    if (root.classList.contains("is-interactive")) node.setAttribute("aria-pressed", "false");
-  });
-
-  root.querySelectorAll("[data-normalization-stabilizers]").forEach((action) => {
-    const isSelected = action === selectedAction;
-    action.classList.toggle("is-selected", isSelected);
-    action.classList.toggle("is-matched", isSelected);
-    action.classList.toggle("is-dimmed", false);
-    if (root.classList.contains("is-interactive")) action.setAttribute("aria-pressed", isSelected ? "true" : "false");
-  });
-
 }
 
 function initializeNormalizationFigure(root, options = {}) {
@@ -10567,70 +10671,6 @@ function initializeNormalizationFigure(root, options = {}) {
   typesetMath(root);
   if (!options.controls || root.dataset.normalizationInitialized) return;
   root.dataset.normalizationInitialized = "true";
-
-  root.querySelectorAll("[data-normalization-subgroup]").forEach((node) => {
-    const subgroupId = node.dataset.normalizationSubgroup || "d4";
-    const label = normalizationSubgroupLabels[subgroupId] || node.dataset.subgroupLabel || subgroupId;
-    node.setAttribute("role", "button");
-    node.setAttribute("tabindex", "0");
-    node.setAttribute("aria-label", `Select subgroup ${label}`);
-    node.addEventListener("click", (event) => {
-      event.stopPropagation();
-      setNormalizationSelection(root, subgroupId);
-    });
-    node.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      event.preventDefault();
-      event.stopPropagation();
-      setNormalizationSelection(root, subgroupId);
-    });
-  });
-
-  root.querySelectorAll("[data-normalization-stabilizers]").forEach((action) => {
-    const stabilizers = normalizationStabilizerList(action)
-      .map((stabilizer) => normalizationSubgroupLabels[stabilizer] || stabilizer)
-      .join(", ");
-    action.setAttribute("role", "button");
-    action.setAttribute("tabindex", "0");
-    action.setAttribute("aria-label", `Highlight stabilizers ${stabilizers}`);
-    action.setAttribute("aria-pressed", "false");
-    action.addEventListener("click", (event) => {
-      event.stopPropagation();
-      setNormalizationActionSelection(root, action);
-    });
-    action.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      event.preventDefault();
-      event.stopPropagation();
-      setNormalizationActionSelection(root, action);
-    });
-  });
-
-  root
-    .querySelectorAll(
-      "[data-normalization-boundary-edge], [data-normalization-orbit=\"vertex\"], [data-normalization-orbit=\"edge\"]"
-    )
-    .forEach((feature) => {
-      const { orbit, pointId } = normalizationFeatureTargetInfo(feature);
-      if (!orbit || !pointId) return;
-      const isPointerHitArea = feature.classList.contains("normalization-square-edge-hit");
-      if (!isPointerHitArea) {
-        feature.setAttribute("role", "button");
-        feature.setAttribute("tabindex", "0");
-        feature.setAttribute("aria-label", `Highlight D4 elements fixing ${normalizationFeatureLabel(orbit, pointId)}`);
-      }
-      feature.addEventListener("click", (event) => {
-        event.stopPropagation();
-        setNormalizationFeatureSelection(root, orbit, pointId);
-      });
-      if (isPointerHitArea) return;
-      feature.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        event.preventDefault();
-        event.stopPropagation();
-        setNormalizationFeatureSelection(root, orbit, pointId);
-      });
-    });
 
   root.querySelectorAll("[data-normalization-element-control]").forEach((control) => {
     const elementId = control.dataset.normalizationElementControl || "e";
@@ -11877,9 +11917,11 @@ function renderCurrentPositions() {
       }
       iconWrap.append(currentPositionIcon(record.icon));
       const content = record.href ? link(record.text, record.href, "position-link") : el("span", "position-link", record.text);
+      if (record.textJa) content.dataset.i18nJa = record.textJa;
       item.append(iconWrap, content);
       root.append(item);
     });
+    applyLanguage(root);
   });
 }
 
@@ -12202,6 +12244,7 @@ function activatePublicationTag(tag) {
 
 function renderPublicationTag(tag) {
   const button = el("button", `publication-tag publication-tag-${tag.kind || "tag"}`);
+  if (tag.metaTagId) button.classList.add(`publication-tag-${tag.metaTagId}`);
   button.type = "button";
   appendTagParts(button, tag.label, "publication-tag-icon tag-icon");
   if (tag.themeId) button.dataset.paperTheme = tag.themeId;
@@ -12828,13 +12871,15 @@ function renderNotes() {
     item.append(heading);
     if (note.description) item.append(el("p", null, note.description));
     const meta = el("div", "note-meta");
-    if (kind === "cloud" || kind === "pen") {
+    if (kind === "pen") {
       const badge = el("span", `note-kind-badge note-${kind}-badge`, kindLabel);
       if (kindIcon === "pen") badge.prepend(uiIcon("pen", "note-kind-icon"));
       else if (kindIcon && kindIcon !== kindLabel) badge.dataset.icon = kindIcon;
       if (kindIcon && kindIcon === kindLabel) badge.classList.add("is-symbol");
       meta.append(badge);
     }
+    metaTagIdsForText(compactText([note.title, note.description, note.file]).join(" "), note.metaTags || [])
+      .forEach((tagId) => meta.append(renderMetaTagPill(tagId, "note-meta-tag")));
     const dateLabel = noteDateLabel(note);
     if (dateLabel) meta.append(el("span", null, dateLabel));
     meta.append(el("span", null, noteLanguageKey(note)));

@@ -907,6 +907,7 @@ h3 {
 .theme-choice {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
   max-width: 100%;
   min-height: 32px;
   gap: 8px;
@@ -919,6 +920,7 @@ h3 {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.8rem;
   text-align: left;
+  white-space: normal;
   transition: border-color 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
 }
 
@@ -998,6 +1000,7 @@ h3 {
   appearance: none;
   display: inline-flex;
   align-items: center;
+  min-width: 0;
   max-width: 100%;
   min-height: 32px;
   gap: 8px;
@@ -1010,6 +1013,7 @@ h3 {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.8rem;
   text-align: left;
+  white-space: normal;
   transition: border-color 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
 }
 
@@ -1093,7 +1097,21 @@ h3 {
   color: var(--accent-3);
 }
 
+.theme-result-meta-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: -3px 0 7px;
+  color: #7a4d2b;
+}
+
 .theme-result-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.92;
+}
+
+.theme-result-meta-icon {
   width: 18px;
   height: 18px;
   opacity: 0.92;
@@ -1436,6 +1454,15 @@ a.position-link:hover {
   font-size: clamp(1rem, 1.5vw, 1.12rem);
 }
 
+.categories-tokyo-schedule {
+  max-width: 34rem;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: clamp(0.96rem, 1.35vw, 1.06rem);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
 .categories-tokyo-map {
   min-width: 0;
   margin: 0;
@@ -1672,6 +1699,21 @@ a.position-link:hover {
   background: #edf6ef;
   color: var(--accent-3);
   font-weight: 850;
+}
+
+.meta-tag-pill,
+.publication-meta .publication-tag-meta {
+  border-color: rgba(115, 80, 45, 0.36);
+  background: #fff0df;
+  color: #7a4d2b;
+  font-weight: 850;
+}
+
+.meta-tag-pill.meta-tag-speculative,
+.publication-meta .publication-tag-speculative {
+  border-color: rgba(79, 111, 143, 0.38);
+  background: #e6f0f3;
+  color: #4f6f8f;
 }
 
 .tag-cloud > a {
@@ -5816,12 +5858,7 @@ a.position-link:hover {
   --normalization-subgroup-highlight-stroke: #747872;
 }
 
-.normalization-figure.is-interactive .normalization-subgroup,
-.normalization-figure.is-interactive .normalization-action,
-.normalization-figure.is-interactive .normalization-element-control,
-.normalization-figure.is-interactive .normalization-square-edge-segment,
-.normalization-figure.is-interactive .normalization-square-edge-hit,
-.normalization-figure.is-interactive .normalization-action-place {
+.normalization-figure.is-interactive .normalization-element-control {
   cursor: pointer;
 }
 
@@ -5942,24 +5979,6 @@ a.position-link:hover {
   stroke-width: 1.8;
 }
 
-.normalization-figure[data-normalization-feature-selected] .normalization-square-edge-segment:not(.is-feature-selected),
-.normalization-figure[data-normalization-feature-selected] .normalization-action-place:not(.is-feature-selected) {
-  opacity: 0.18;
-}
-
-.normalization-figure[data-normalization-feature-selected] .normalization-square-edge-segment.is-feature-selected {
-  opacity: 1;
-  stroke: #8a4d34;
-  stroke-width: 2.85;
-}
-
-.normalization-figure[data-normalization-feature-selected] .normalization-action-dot.is-feature-selected {
-  opacity: 1;
-  fill: var(--normalization-token-fill, #f4e6d7);
-  stroke: var(--normalization-token-stroke, #8a4d34);
-  stroke-width: 2.6;
-}
-
 .normalization-action-line,
 .normalization-cycle-arrow {
   fill: none;
@@ -5995,11 +6014,6 @@ a.position-link:hover {
   fill: #e7e7e2;
   stroke: #747872;
   stroke-width: 1.7;
-}
-
-.normalization-figure[data-normalization-feature-selected] .normalization-center-point.is-feature-selected {
-  fill: #e7e7e2;
-  stroke: #747872;
 }
 
 .normalization-edge-point {
@@ -6120,20 +6134,6 @@ a.position-link:hover {
   fill: #f4e6d7;
   stroke: #8a4d34;
   stroke-width: 2;
-}
-
-.normalization-element-control.is-feature-dimmed {
-  opacity: 0.3;
-}
-
-.normalization-element-control.is-feature-fixer .normalization-element-button {
-  fill: #e8f0ea;
-  stroke: #2c6f63;
-  stroke-width: 2.2;
-}
-
-.normalization-element-control.is-feature-fixer text {
-  fill: #1f5c54;
 }
 
 .normalization-element-control:focus-visible .normalization-element-button {
@@ -6953,6 +6953,19 @@ a.position-link:hover {
   font-weight: 900;
 }
 
+.tensor-factorization-figure .tensor-edge-direction {
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.tensor-factorization-figure .tensor-edge-direction-map {
+  fill: var(--tensor-map);
+}
+
+.tensor-factorization-figure .tensor-edge-direction-subset {
+  fill: var(--tensor-subset);
+}
+
 .tensor-s-label {
   fill: #2c6f63;
 }
@@ -6979,6 +6992,14 @@ a.position-link:hover {
 .tensor-s-node text,
 .tensor-x-node text {
   font-size: 22px;
+}
+
+.tensor-factorization-figure .tensor-left-a-node text,
+.tensor-factorization-figure .tensor-right-a-node text,
+.tensor-factorization-figure .tensor-s-node text,
+.tensor-factorization-figure .tensor-x-node text,
+.tensor-factorization-figure .tensor-s-new-node text {
+  display: none;
 }
 
 .tensor-x-node circle {
@@ -7010,7 +7031,7 @@ a.position-link:hover {
 }
 
 .tensor-factorization-figure {
-  --tensor-cycle: 10s;
+  --tensor-cycle: 12.4s;
   --tensor-map: #2c6f63;
   --tensor-map-fill: #dfeee5;
   --tensor-subset: #b66737;
@@ -7029,6 +7050,29 @@ a.position-link:hover {
 
 .tensor-factorization-figure .tensor-neutral-label {
   fill: var(--tensor-neutral);
+}
+
+.tensor-factorization-figure .tensor-step1-block {
+  fill: rgba(255, 253, 248, 0.18);
+  stroke: rgba(102, 106, 100, 0.38);
+  stroke-dasharray: 7 8;
+  stroke-width: 2.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.tensor-factorization-figure .tensor-step1-block-left {
+  fill: rgba(223, 238, 229, 0.28);
+  stroke: rgba(44, 111, 99, 0.38);
+}
+
+.tensor-factorization-figure .tensor-step1-block-middle {
+  fill: rgba(237, 237, 223, 0.18);
+  stroke: rgba(102, 106, 100, 0.46);
+}
+
+.tensor-factorization-figure .tensor-step1-block-subset {
+  fill: rgba(245, 220, 198, 0.28);
+  stroke: rgba(182, 103, 55, 0.48);
 }
 
 .tensor-factorization-figure .tensor-step-title {
@@ -7230,11 +7274,11 @@ a.position-link:hover {
 
 @keyframes tensor-step2-absorbed-node-stage {
   0%,
-  50% {
+  54.03% {
     opacity: 1;
   }
 
-  54%,
+  62.2%,
   100% {
     opacity: 0;
   }
@@ -7242,11 +7286,11 @@ a.position-link:hover {
 
 @keyframes tensor-step2-late-absorbed-node-stage {
   0%,
-  74% {
+  79% {
     opacity: 1;
   }
 
-  75%,
+  79.84%,
   100% {
     opacity: 0;
   }
@@ -7254,16 +7298,16 @@ a.position-link:hover {
 
 @keyframes tensor-step2-absorbed-stage {
   0%,
-  16% {
+  20.97% {
     opacity: 0;
   }
 
-  24%,
-  50% {
+  27.42%,
+  54.03% {
     opacity: 1;
   }
 
-  54%,
+  62.2%,
   100% {
     opacity: 0;
   }
@@ -7271,11 +7315,11 @@ a.position-link:hover {
 
 @keyframes tensor-s-new-node-stage {
   0%,
-  15% {
+  20.16% {
     opacity: 0;
   }
 
-  22%,
+  25.81%,
   100% {
     opacity: 1;
   }
@@ -7283,11 +7327,11 @@ a.position-link:hover {
 
 @keyframes tensor-s-new-stage {
   0%,
-  16% {
+  20.97% {
     opacity: 0;
   }
 
-  24%,
+  27.42%,
   100% {
     opacity: 1;
   }
@@ -7333,6 +7377,7 @@ a.position-link:hover {
 }
 
 .title-copy-link {
+  position: relative;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -7348,6 +7393,46 @@ a.position-link:hover {
   color: var(--muted);
   cursor: pointer;
   vertical-align: middle;
+}
+
+.title-copy-link::after {
+  position: absolute;
+  z-index: 40;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  display: block;
+  width: max-content;
+  max-width: min(520px, 72vw);
+  padding: 7px 9px;
+  border: 1px solid rgba(31, 39, 33, 0.16);
+  border-radius: 7px;
+  background: rgba(255, 253, 248, 0.97);
+  box-shadow: 0 10px 24px rgba(31, 39, 33, 0.14);
+  color: var(--ink);
+  content: attr(data-copy-preview);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+  transform: translate(-50%, 3px);
+  transition: opacity 0.14s ease, transform 0.14s ease;
+  white-space: normal;
+}
+
+.title-copy-link:hover::after,
+.title-copy-link:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.title-copy-link.is-copied::after,
+.title-copy-link.is-failed::after {
+  display: none;
 }
 
 .title-copy-link.is-copied,
@@ -7489,6 +7574,28 @@ a.position-link:hover {
   border-radius: 999px;
   color: var(--accent-3);
   font-weight: 850;
+}
+
+.note-meta .meta-tag-pill {
+  align-items: center;
+  gap: 5px;
+  padding: 1px 6px;
+  border: 1px solid rgba(115, 80, 45, 0.36);
+  border-radius: 999px;
+  background: #fff0df;
+  color: #7a4d2b;
+  font-weight: 850;
+}
+
+.note-meta .meta-tag-pill::before {
+  content: none;
+  margin: 0;
+}
+
+.note-meta .meta-tag-speculative {
+  border-color: rgba(79, 111, 143, 0.38);
+  background: #e6f0f3;
+  color: #4f6f8f;
 }
 
 .publication-meta .publication-status {
@@ -8213,9 +8320,19 @@ a.position-link:hover {
   border-color: #8a4d34;
 }
 
+.talk-timeline-node.theme-dynamical {
+  background: #eaf0dc;
+  border-color: #687b32;
+}
+
 .talk-timeline-node.theme-category {
   background: #eee9f0;
   border-color: #574b68;
+}
+
+.talk-timeline-node.theme-logic {
+  background: #f1e8ef;
+  border-color: #7a4d78;
 }
 
 .talk-timeline-node:hover,
@@ -8304,9 +8421,19 @@ a.position-link:hover {
   color: #7a4a2c;
 }
 
+.talk-timeline-theme.theme-dynamical {
+  background: #eaf0dc;
+  color: #687b32;
+}
+
 .talk-timeline-theme.theme-category {
   background: #eee9f0;
   color: #574b68;
+}
+
+.talk-timeline-theme.theme-logic {
+  background: #f1e8ef;
+  color: #7a4d78;
 }
 
 .talk-map {
@@ -8510,9 +8637,19 @@ a.position-link:hover {
   stroke: #8a4d34;
 }
 
+.talk-map-marker.theme-dynamical circle {
+  fill: #eaf0dc;
+  stroke: #687b32;
+}
+
 .talk-map-marker.theme-category circle {
   fill: #eee9f0;
   stroke: #574b68;
+}
+
+.talk-map-marker.theme-logic circle {
+  fill: #f1e8ef;
+  stroke: #7a4d78;
 }
 
 .talk-map-marker.theme-visit circle {
@@ -8784,6 +8921,11 @@ a.position-link:hover {
   --theme-bg: #f3eadc;
 }
 
+.home-timeline-theme-item.theme-dynamical {
+  --theme-stroke: #687b32;
+  --theme-bg: #eaf0dc;
+}
+
 .home-timeline-theme-item.theme-geometry {
   --theme-stroke: #5d6f3c;
   --theme-bg: #edf1e6;
@@ -8797,6 +8939,11 @@ a.position-link:hover {
 .home-timeline-theme-item.theme-category {
   --theme-stroke: #574b68;
   --theme-bg: #eee9f0;
+}
+
+.home-timeline-theme-item.theme-logic {
+  --theme-stroke: #7a4d78;
+  --theme-bg: #f1e8ef;
 }
 
 .home-timeline-theme-item.theme-other {
@@ -8978,6 +9125,11 @@ a.position-link:hover {
   --theme-bg: #f3eadc;
 }
 
+.home-timeline-paper-span.theme-dynamical {
+  --theme-stroke: #687b32;
+  --theme-bg: #eaf0dc;
+}
+
 .home-timeline-paper-span.theme-geometry {
   --theme-stroke: #5d6f3c;
   --theme-bg: #edf1e6;
@@ -8991,6 +9143,11 @@ a.position-link:hover {
 .home-timeline-paper-span.theme-category {
   --theme-stroke: #574b68;
   --theme-bg: #eee9f0;
+}
+
+.home-timeline-paper-span.theme-logic {
+  --theme-stroke: #7a4d78;
+  --theme-bg: #f1e8ef;
 }
 
 .home-timeline-paper-span.theme-other {
@@ -9060,6 +9217,11 @@ a.position-link:hover {
   --theme-bg: #f3eadc;
 }
 
+.home-timeline-node.theme-dynamical {
+  --theme-stroke: #687b32;
+  --theme-bg: #eaf0dc;
+}
+
 .home-timeline-node.theme-geometry {
   --theme-stroke: #5d6f3c;
   --theme-bg: #edf1e6;
@@ -9073,6 +9235,11 @@ a.position-link:hover {
 .home-timeline-node.theme-category {
   --theme-stroke: #574b68;
   --theme-bg: #eee9f0;
+}
+
+.home-timeline-node.theme-logic {
+  --theme-stroke: #7a4d78;
+  --theme-bg: #f1e8ef;
 }
 
 .home-timeline-node.theme-other {
@@ -9375,6 +9542,8 @@ a.position-link:hover {
   grid-template-columns: 1fr auto;
   align-items: end;
   gap: 4px 10px;
+  max-height: calc(100% - 24px);
+  overflow: hidden;
   padding: 10px 12px;
   border: 1px solid rgba(43, 52, 43, 0.1);
   border-radius: 6px;
@@ -9454,6 +9623,7 @@ a.position-link:hover {
 }
 
 .note-thumbnail.has-image .note-thumb-title {
+  min-width: 0;
   -webkit-line-clamp: 2;
   font-size: 0.9rem;
 }
