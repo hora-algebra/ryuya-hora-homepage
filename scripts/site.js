@@ -76,7 +76,8 @@ const siteData = {
       title: "Activities",
       href: "activities/index.html",
       description: "Visits, talks, plans.",
-      icon: "activity"
+      icon: "activity",
+      thumbnail: "assets/profile/ryuya-hora-mondovi.jpg"
     },
     {
       title: "Others",
@@ -517,18 +518,18 @@ const siteData = {
     }
   ],
   awards: [
-    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
-    { text: "SLACS 2025 presentation award, October 2025.", href: "https://sites.google.com/view/slacs2025akita/home" },
-    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
-    { text: "Faculty of Science encouragement award, The University of Tokyo, March 2022.", href: "https://warp.ndl.go.jp/info:ndljp/pid/12972979/www.s.u-tokyo.ac.jp/ja/awards/encouragement/R3.html" }
+    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 研究科長賞、博士課程、2026年3月。", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
+    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 修了式総代、博士課程、2026年3月。", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
+    { text: "SLACS 2025 presentation award, October 2025.", textJa: "第42回 記号論理と情報科学研究集会（SLACS 2025）発表賞、2025年10月。", href: "https://sites.google.com/view/slacs2025akita/home" },
+    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 研究科長賞、修士課程、2024年3月。", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
+    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 修了式総代、修士課程、2024年3月。", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
+    { text: "Faculty of Science encouragement award, The University of Tokyo, March 2022.", textJa: "東京大学理学部 学修奨励賞、2022年3月。", href: "https://warp.ndl.go.jp/info:ndljp/pid/12972979/www.s.u-tokyo.ac.jp/ja/awards/encouragement/R3.html" }
   ],
   education: [
-    { text: "Worked as a tutor at SEG for several years around 2019.", href: "https://www.seg.co.jp/" },
-    { text: "Private tutor for gifted elementary and junior high school students from February 2020 to September 2022." },
-    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", href: "https://sites.google.com/view/mspacetopos/home" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/" }
+    { text: "Worked as a tutor at SEG for several years around 2019.", textJa: "2019年前後から数年間、SEG で講師を担当。", href: "https://www.seg.co.jp/" },
+    { text: "Private tutor for gifted elementary and junior high school students from February 2020 to September 2022.", textJa: "2020年2月から2022年9月まで、小中学生向けの個別指導を担当。" },
+    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から Math Space Topos で現代数学を指導。", href: "https://sites.google.com/view/mspacetopos/home" },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月から角川ドワンゴ学園 研究部のアドバイザー。", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/" }
   ],
   problems: [
     problemEntry({
@@ -1960,6 +1961,8 @@ const translatableTextSelector = [
   ".web-app-summary",
   ".web-app-link",
   ".web-app-missing",
+  ".icon-list-body",
+  ".icon-list-body a",
   ".speculative-status",
   ".speculative-abstract",
   ".speculative-questions h3"
@@ -7196,61 +7199,13 @@ function renderResearchMap() {
 
   const layout = el("div", "research-map-layout");
   const mapColumn = el("div", "theme-map-column");
-  const graph = el("figure", "theme-graph");
-  const svg = svgEl("svg", {
-    viewBox: "0 0 640 470",
-    role: "img",
-    "aria-labelledby": "theme-map-svg-title theme-map-svg-desc"
-  });
-  svg.append(
-    svgEl("title", { id: "theme-map-svg-title" }, "Research theme map"),
-    svgEl(
-      "desc",
-      { id: "theme-map-svg-desc" },
-      "A network of research themes connected to papers, manuscripts in preparation, notes, and talks."
-    ),
-    svgEl("rect", { class: "theme-map-bg", x: 0, y: 0, width: 640, height: 470, rx: 0 })
-  );
-  renderResearchThemeLayers(svg);
-  const simplexLayer = svgEl("g", { class: "theme-simplex-layer", "aria-hidden": "true" });
-  simplexLayer.append(
-    svgEl("g", { class: "theme-simplex theme-simplex-active", "data-theme-simplex": "active" }),
-    svgEl("g", { class: "theme-simplex theme-simplex-preview", "data-theme-simplex": "preview" })
-  );
-  svg.append(simplexLayer);
-
-  researchThemes.forEach((theme) => {
-    const node = svgEl("g", {
-      class: "theme-node",
-      tabindex: "0",
-      role: "button",
-      "aria-label": theme.label,
-      "aria-pressed": "false",
-      "data-theme-node": theme.id
-    });
-    node.append(
-      svgEl("circle", { cx: theme.x, cy: theme.y, r: theme.r }),
-      svgEl("text", { x: theme.x, y: theme.y + 6 }, theme.label)
-    );
-    node.addEventListener("click", () => toggleResearchThemeSelection(theme.id));
-    node.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        toggleResearchThemeSelection(theme.id);
-      }
-    });
-    svg.append(node);
-  });
-  graph.append(svg);
 
   const overview = el("div", "theme-overview");
-  overview.append(el("div", "theme-status", null));
-  overview.firstElementChild.dataset.themeStatus = "";
   const choices = el("div", "theme-choice-list");
   choices.append(renderThemeChoice("All themes"));
   researchThemes.forEach((theme) => choices.append(renderThemeChoice(theme.label, theme.id)));
   overview.append(choices);
-  mapColumn.append(graph, overview);
+  mapColumn.append(overview);
 
   const panel = el("div", "theme-panel");
   const columns = el("div", "theme-result-grid");
@@ -7825,6 +7780,13 @@ function normalizationFigureTemplate() {
       ${normalizationLatticeTemplate("old", 315, 54, 0.88)}
       ${normalizationLatticeTemplate("new", 620, 54, 0.88)}
 
+      <text class="normalization-object-label" x="143" y="40">X</text>
+      <text class="normalization-object-label normalization-xi-label" x="447" y="40">&Xi;</text>
+      <text class="normalization-object-label normalization-xi-label" x="752" y="40">&Xi;</text>
+      <path class="figure-arrow normalization-object-arrow" d="M172 32 H418" marker-end="url(#arrow-f)"></path>
+      <text class="normalization-morphism-label" x="295" y="23">&xi;<tspan baseline-shift="sub" font-size="68%">X</tspan></text>
+      <path class="figure-arrow normalization-object-arrow" d="M476 32 H723" marker-end="url(#arrow-f)"></path>
+      <text class="normalization-morphism-label" x="600" y="23">&xi;<tspan baseline-shift="sub" font-size="68%">&Xi;</tspan></text>
       <g class="normalization-action-atlas" transform="translate(28 64)">
         <rect class="normalization-action-stage-bg" width="230" height="260" rx="10"></rect>
         <g class="normalization-square-stage" transform="translate(35 34) scale(3.8)">
@@ -8662,29 +8624,29 @@ ${automataCoverUnfoldingTemplate()}
           <rect class="tensor-set-envelope tensor-a-envelope tensor-merge-away" x="405" y="58" width="114" height="170" rx="38">
             <animate attributeName="x" values="405;405;309;309;177" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate>
           </rect>
-          <text class="tensor-side-label" x="112" y="48">X<animate attributeName="x" values="112;112;92;92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-left-a-label" x="287" y="48">A<animate attributeName="x" values="287;287;229;229" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-merge-away" x="462" y="48">A<animate attributeName="x" values="462;462;366;366;229" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label" x="112" y="48">X1<animate attributeName="x" values="112;112;92;92" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-left-a-label" x="287" y="48">A1<animate attributeName="x" values="287;287;229;229" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></text>
+          <text class="tensor-side-label tensor-merge-away" x="462" y="48">A2<animate attributeName="x" values="462;462;366;366;229" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></text>
         </g>
-        <text class="tensor-side-label tensor-s-new-label" x="503" y="48">S</text>
-        <text class="tensor-side-label tensor-s-label" x="640" y="48">S</text>
-        <text class="tensor-side-label tensor-s-label tensor-s-duplicate-label" x="700" y="48">S</text>
+        <text class="tensor-side-label tensor-s-new-label" x="503" y="48">S1</text>
+        <text class="tensor-side-label tensor-s-label tensor-s-duplicate-label" x="640" y="48">S2</text>
+        <text class="tensor-side-label tensor-s-label" x="700" y="48">S3</text>
 
         <rect class="tensor-group-block tensor-block-xa" x="50" y="66" width="300" height="154" rx="34">
           <animate attributeName="x" values="50;50;50;50;50" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
           <animate attributeName="width" values="300;300;300;300;300" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="opacity" values="1;1;1;1;0;0" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="opacity" values="1;1" keyTimes="0;1" dur="10s" repeatCount="indefinite"></animate>
         </rect>
-        <rect class="tensor-group-block tensor-block-as" x="402" y="66" width="268" height="154" rx="34">
-          <animate attributeName="x" values="402;402;390;390;390" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="width" values="268;268;150;150;150" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
-          <animate attributeName="opacity" values="1;1;1;1;0;0" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
+        <rect class="tensor-group-block tensor-block-as" x="402" y="66" width="316" height="154" rx="34">
+          <animate attributeName="x" values="402;402;342;342;342" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="width" values="316;316;198;198;198" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="opacity" values="1;1;1;1;1" keyTimes="0;0.24;0.36;0.72;1" dur="10s" repeatCount="indefinite"></animate>
         </rect>
         <rect class="tensor-group-block tensor-block-ss" x="602" y="66" width="116" height="154" rx="34">
           <animate attributeName="opacity" values="0;0;1;1;1;1" keyTimes="0;0.24;0.36;0.72;0.86;1" dur="10s" repeatCount="indefinite"></animate>
         </rect>
         <rect class="tensor-group-block tensor-block-xs" x="50" y="66" width="490" height="154" rx="34">
-          <animate attributeName="opacity" values="0;0;0;0;1;1" keyTimes="0;0.72;0.8;0.86;0.94;1" dur="10s" repeatCount="indefinite"></animate>
+          <animate attributeName="opacity" values="0;0" keyTimes="0;1" dur="10s" repeatCount="indefinite"></animate>
         </rect>
 
         <rect class="tensor-s-new-envelope" x="469" y="70" width="68" height="146" rx="30"></rect>
@@ -8715,8 +8677,8 @@ ${automataCoverUnfoldingTemplate()}
             <path class="tensor-a-reference-line tensor-merge-away" pathLength="1" d="M305 202 C340 202, 398 202, 444 202"><animate attributeName="d" values="M305 202 C340 202, 398 202, 444 202;M305 202 C340 202, 398 202, 444 202;M247 202 C278 202, 318 202, 348 202;M247 202 C278 202, 318 202, 348 202;M247 202 C247 202, 247 202, 247 202" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animate></path>
           </g>
           <g class="tensor-subset-extensions">
-            <path class="tensor-subset-extension" pathLength="1" d="M480 88 C530 88, 586 88, 622 88"><animate attributeName="d" values="M480 88 C530 88, 586 88, 622 88;M480 88 C530 88, 586 88, 622 88;M384 88 C420 88, 456 88, 487 88;M384 88 C420 88, 456 88, 487 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
-            <path class="tensor-subset-extension" pathLength="1" d="M480 164 C530 164, 586 164, 622 164"><animate attributeName="d" values="M480 164 C530 164, 586 164, 622 164;M480 164 C530 164, 586 164, 622 164;M384 164 C420 164, 456 164, 487 164;M384 164 C420 164, 456 164, 487 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-extension" pathLength="1" d="M480 88 C548 88, 630 88, 682 88"><animate attributeName="d" values="M480 88 C548 88, 630 88, 682 88;M480 88 C548 88, 630 88, 682 88;M384 88 C420 88, 456 88, 487 88;M384 88 C420 88, 456 88, 487 88" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
+            <path class="tensor-subset-extension" pathLength="1" d="M480 164 C548 164, 630 164, 682 164"><animate attributeName="d" values="M480 164 C548 164, 630 164, 682 164;M480 164 C548 164, 630 164, 682 164;M384 164 C420 164, 456 164, 487 164;M384 164 C420 164, 456 164, 487 164" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate></path>
           </g>
           <g class="tensor-right-a-node tensor-merge-away in-s" transform="translate(462 88)"><animateTransform attributeName="transform" type="translate" values="462 88;462 88;366 88;366 88;229 88" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text></g>
           <g class="tensor-right-a-node tensor-merge-away" transform="translate(462 126)"><animateTransform attributeName="transform" type="translate" values="462 126;462 126;366 126;366 126;229 126" keyTimes="0;0.4;0.66;0.88;1" dur="10s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">b</text></g>
@@ -8737,16 +8699,16 @@ ${automataCoverUnfoldingTemplate()}
             <animate attributeName="opacity" values="0;0;0.95;0.95" keyTimes="0;0.4;0.66;1" dur="10s" repeatCount="indefinite"></animate>
           </path>
         </g>
-        <g class="tensor-s-node" transform="translate(640 88)">
+        <g class="tensor-s-node tensor-s-duplicate-node" transform="translate(640 88)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
-        <g class="tensor-s-node" transform="translate(640 164)">
+        <g class="tensor-s-node tensor-s-duplicate-node" transform="translate(640 164)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
-        <g class="tensor-s-node tensor-s-duplicate-node" transform="translate(700 88)">
+        <g class="tensor-s-node" transform="translate(700 88)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">a</text>
         </g>
-        <g class="tensor-s-node tensor-s-duplicate-node" transform="translate(700 164)">
+        <g class="tensor-s-node" transform="translate(700 164)">
           <circle cx="0" cy="0" r="18"></circle><text x="0" y="7">c</text>
         </g>
         <g class="tensor-iota-domain-node" transform="translate(462 88)">
@@ -11243,6 +11205,243 @@ function stopConnectedCorrespondenceFigures(scope) {
   roots.forEach((root) => stopConnectedCorrespondenceFigure(root));
 }
 
+const automataSvgNs = "http://www.w3.org/2000/svg";
+
+function initializeAutomataInteractiveFigures(scope) {
+  const figures = scope.matches?.(".publication-figure-topoi-automata, .diagram-expanded")
+    ? [scope]
+    : Array.from(scope.querySelectorAll(".publication-figure-topoi-automata, .diagram-expanded"));
+  figures.forEach((figure) => initializeAutomataInteractiveFigure(figure));
+}
+
+function initializeAutomataInteractiveFigure(figure) {
+  const svg = figure.querySelector(".automata-cover-figure");
+  if (!svg || svg.dataset.automataInteractive === "true") return;
+  svg.dataset.automataInteractive = "true";
+  svg.classList.add("is-interactive-automaton");
+  svg.pauseAnimations?.();
+  svg.setCurrentTime?.(0);
+
+  svg.querySelectorAll(".automata-moving-dot, .automata-moving-word, .automata-result-output").forEach((node) => {
+    node.setAttribute("display", "none");
+  });
+  svg.querySelectorAll(".automata-input-word").forEach((node) => {
+    node.setAttribute("display", "none");
+  });
+
+  const coverGroup = svg.querySelector(".automata-state")?.parentElement;
+  const baseGroup = svg.querySelector(".automata-moving-dot-base")?.parentElement;
+  const inputTape = svg.querySelector(".automata-input-tape");
+  const outputPanel = svg.querySelector(".automata-output-panel");
+  const outerGroup = svg.querySelector(":scope > g");
+  if (!coverGroup || !baseGroup || !inputTape || !outputPanel || !outerGroup) return;
+
+  const coverNodes = [
+    [72, 132],
+    [176, 132],
+    [280, 132],
+    [384, 132]
+  ];
+  const acceptStates = new Set([1, 2]);
+  const transitions = {
+    0: { a: 1, b: 0 },
+    1: { a: 1, b: 2 },
+    2: { a: 3, b: 2 },
+    3: { a: 3, b: 2 }
+  };
+  const coverPaths = {
+    "0a": "M72 132 L88 122 C114 50, 134 50, 160 122 L176 132",
+    "0b": "M72 132 L56 142 C18 210, 126 210, 88 142 L72 132",
+    "1a": "M176 132 L160 122 C118 50, 234 50, 192 122 L176 132",
+    "1b": "M176 132 L192 142 C218 210, 236 210, 260 142 L280 132",
+    "2a": "M280 132 L300 122 C328 50, 344 50, 368 122 L384 132",
+    "2b": "M280 132 L260 142 C226 210, 334 210, 300 142 L280 132",
+    "3a": "M384 132 L368 122 C326 50, 438 50, 400 122 L384 132",
+    "3b": "M384 132 L368 145 C344 218, 318 216, 291 151 L280 132"
+  };
+  const basePaths = {
+    a: "M0 0 L-12 -11 C-58 -90.4, 58 -90.4, 12 -11 L0 0",
+    b: "M0 0 L12 11 C58 86, -58 86, -12 11 L0 0"
+  };
+
+  const makeSvg = (tag, attrs = {}) => {
+    const node = document.createElementNS(automataSvgNs, tag);
+    Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+    return node;
+  };
+  const makePath = (d) => {
+    const path = makeSvg("path", { d });
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "none");
+    svg.append(path);
+    return path;
+  };
+  const coverPathNodes = Object.fromEntries(Object.entries(coverPaths).map(([key, d]) => [key, makePath(d)]));
+  const basePathNodes = Object.fromEntries(Object.entries(basePaths).map(([key, d]) => [key, makePath(d)]));
+
+  const link = makeSvg("line", { class: "automata-dot-link automata-interactive-link" });
+  outerGroup.insertBefore(link, outerGroup.querySelector(".automata-dot-links"));
+
+  const coverDot = makeSvg("g", { class: "automata-moving-dot automata-interactive-dot" });
+  coverDot.append(makeSvg("circle", { class: "automata-moving-dot-core", cx: "0", cy: "0", r: "9.6" }));
+  coverGroup.append(coverDot);
+  const baseDot = makeSvg("g", { class: "automata-moving-dot automata-interactive-dot" });
+  baseDot.append(makeSvg("circle", { class: "automata-moving-dot-core", cx: "0", cy: "0", r: "9.6" }));
+  baseGroup.append(baseDot);
+
+  const liveWord = makeSvg("text", { class: "automata-live-word", x: "62", y: "58" });
+  inputTape.append(liveWord);
+  const liveWordShadow = makeSvg("text", { class: "automata-live-word automata-live-word-near-dot", x: "14", y: "-14" });
+  const liveWordGroup = makeSvg("g", { class: "automata-live-word-group" });
+  liveWordGroup.append(liveWordShadow);
+  coverGroup.append(liveWordGroup);
+
+  const resultText = makeSvg("text", { class: "automata-interactive-result", x: "136", y: "53" });
+  outputPanel.append(resultText);
+
+  const state = {
+    q: 0,
+    word: "",
+    busy: false,
+    cover: coverNodes[0],
+    base: [0, 0]
+  };
+
+  const outerCoverPoint = ([x, y]) => [18 + 1.08 * x, 106 + 1.08 * y];
+  const outerBasePoint = ([x, y]) => [506 + 0.98 * (113 + x), 178 + 0.98 * (72 + y)];
+  const setTransform = (node, [x, y]) => node.setAttribute("transform", `translate(${x} ${y})`);
+  const updateLink = () => {
+    const [x1, y1] = outerCoverPoint(state.cover);
+    const [x2, y2] = outerBasePoint(state.base);
+    link.setAttribute("x1", x1.toFixed(1));
+    link.setAttribute("y1", y1.toFixed(1));
+    link.setAttribute("x2", x2.toFixed(1));
+    link.setAttribute("y2", y2.toFixed(1));
+  };
+  const renderWord = () => {
+    const renderInto = (node) => {
+      node.textContent = "";
+      [...state.word].forEach((letter) => {
+        const tspan = makeSvg("tspan", { class: letter === "a" ? "automata-word-a" : "automata-word-b" });
+        tspan.textContent = letter;
+        node.append(tspan);
+      });
+    };
+    renderInto(liveWord);
+    renderInto(liveWordShadow);
+  };
+  const renderResult = (value = "") => {
+    resultText.textContent = "";
+    outputPanel.classList.toggle("is-accept", value === "accept");
+    outputPanel.classList.toggle("is-reject", value === "reject");
+    if (!value) return;
+    resultText.setAttribute("y", value === "accept" ? "53" : "88");
+    resultText.textContent = value === "accept" ? "✓" : "×";
+  };
+  const render = () => {
+    setTransform(coverDot, state.cover);
+    setTransform(liveWordGroup, state.cover);
+    setTransform(baseDot, state.base);
+    updateLink();
+    renderWord();
+  };
+  const sleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+  const flashConsumedLetter = async (letter) => {
+    const text = makeSvg("text", {
+      class: `automata-consume-letter-flash ${letter === "a" ? "automata-word-a" : "automata-word-b"}`,
+      x: "14",
+      y: "-14"
+    });
+    text.textContent = letter;
+    const group = makeSvg("g", { transform: `translate(${state.cover[0]} ${state.cover[1]})` });
+    group.append(text);
+    coverGroup.append(group);
+    text.animate(
+      [
+        { opacity: 1, fill: letter === "a" ? "#9f3f31" : "#2f5d8e", transform: "scale(1)" },
+        { opacity: 1, fill: "#fff6bf", transform: "scale(1.35)" },
+        { opacity: 0, fill: "#fff6bf", transform: "scale(0.9)" }
+      ],
+      { duration: 360, easing: "ease-out" }
+    ).finished.finally(() => group.remove());
+    await sleep(360);
+  };
+  const animateAlong = (coverPath, basePath, nextState) =>
+    new Promise((resolve) => {
+      const duration = 620;
+      const start = performance.now();
+      const coverLength = coverPath.getTotalLength();
+      const baseLength = basePath.getTotalLength();
+      const step = (now) => {
+        const progress = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const coverPoint = coverPath.getPointAtLength(coverLength * eased);
+        const basePoint = basePath.getPointAtLength(baseLength * eased);
+        state.cover = [Number(coverPoint.x.toFixed(1)), Number(coverPoint.y.toFixed(1))];
+        state.base = [Number(basePoint.x.toFixed(1)), Number(basePoint.y.toFixed(1))];
+        setTransform(coverDot, state.cover);
+        setTransform(liveWordGroup, state.cover);
+        setTransform(baseDot, state.base);
+        updateLink();
+        if (progress < 1) {
+          requestAnimationFrame(step);
+          return;
+        }
+        state.q = nextState;
+        state.cover = coverNodes[state.q];
+        state.base = [0, 0];
+        render();
+        resolve();
+      };
+      requestAnimationFrame(step);
+    });
+  const consume = async (letter) => {
+    if (state.busy) return;
+    state.busy = true;
+    renderResult("");
+    state.word += letter;
+    renderWord();
+    const from = state.q;
+    const next = transitions[from][letter];
+    await flashConsumedLetter(letter);
+    await animateAlong(coverPathNodes[`${from}${letter}`], basePathNodes[letter], next);
+    state.busy = false;
+  };
+  const reset = () => {
+    if (state.busy) return;
+    state.q = 0;
+    state.word = "";
+    state.cover = coverNodes[0];
+    state.base = [0, 0];
+    renderResult("");
+    render();
+  };
+  const judge = () => {
+    if (state.busy) return;
+    renderResult(acceptStates.has(state.q) ? "accept" : "reject");
+  };
+
+  let controls = figure.querySelector(".automata-interactive-controls");
+  if (!controls) {
+    controls = el("div", "automata-interactive-controls");
+    const aButton = el("button", "automata-button automata-button-a", "a");
+    const bButton = el("button", "automata-button automata-button-b", "b");
+    const judgeButton = el("button", "automata-button automata-button-judge", "判定");
+    const resetButton = el("button", "automata-button automata-button-reset", "Reset");
+    [aButton, bButton, judgeButton, resetButton].forEach((button) => {
+      button.type = "button";
+      controls.append(button);
+    });
+    figure.append(controls);
+    aButton.addEventListener("click", () => consume("a"));
+    bButton.addEventListener("click", () => consume("b"));
+    judgeButton.addEventListener("click", judge);
+    resetButton.addEventListener("click", reset);
+  }
+
+  render();
+}
+
 function ensureDiagramDialog() {
   let dialog = document.querySelector("#paper-diagram-dialog");
   if (dialog) return dialog;
@@ -11335,6 +11534,7 @@ function openPaperDiagram(paper) {
   initializeLawverePullbackFigures(figure, { controls: true, autoplay: true });
   initializeConnectedCorrespondenceFigures(figure, { controls: true, autoplay: true });
   initializeNormalizationFigures(figure, { controls: true });
+  initializeAutomataInteractiveFigures(figure);
   renderDiagramNotes(notes, paper);
   typesetMath(dialog);
   if (dialog.showModal) dialog.showModal();
@@ -11568,13 +11768,16 @@ function renderLinkedList(selector, records) {
     item.append(uiIcon(linkedListIconKey(selector, record), "list-item-icon"));
     const body = el("div", "icon-list-body");
     if (record.href) {
-      body.append(link(record.text, record.href));
+      const anchor = link(record.text, record.href);
+      if (record.textJa) anchor.dataset.i18nJa = record.textJa;
+      body.append(anchor);
     } else {
-      body.textContent = record.text;
+      body.append(localizedText("span", null, record.text, record.textJa));
     }
     item.append(body);
     root.append(item);
   });
+  applyLanguage(root);
 }
 
 function renderProfileLinks() {
@@ -11721,6 +11924,7 @@ function renderPaperRecord(paper, options = {}) {
     initializeLawverePullbackFigures(figure, { autoplay: true, controls: true });
     initializeConnectedCorrespondenceFigures(figure, { autoplay: true, controls: true });
     initializeNormalizationFigures(figure, { controls: true });
+    initializeAutomataInteractiveFigures(figure);
     item.append(figure);
   }
 
@@ -11987,6 +12191,7 @@ function renderPreparationPapers() {
       figure.setAttribute("aria-label", `${paper.title} visual proposal`);
       figure.innerHTML = template;
       applyFigureMarkerIds(figure, paper.figure, "preparation-arrow");
+      initializeAutomataInteractiveFigures(figure);
       item.append(figure);
     }
     const heading = el("h3");
@@ -12271,6 +12476,53 @@ function hideProfileDataContainerWhenEmpty(root, isEmpty) {
   if (container) container.hidden = isEmpty;
 }
 
+function profileDateJa(value = "") {
+  const text = String(value || "");
+  const match = text.match(/^(\d{4})-(\d{2})(?:\s*-\s*(\d{4})-(\d{2}))?$/);
+  if (!match) return text;
+  const start = `${match[1]}年${Number(match[2])}月`;
+  if (!match[3]) return start;
+  return `${start} - ${match[3]}年${Number(match[4])}月`;
+}
+
+function profileInstitutionJa(value = "") {
+  const text = String(value || "");
+  const dictionary = {
+    "Dean's award": "研究科長賞",
+    "Graduate School of Mathematical Sciences, The University of Tokyo": "東京大学大学院数理科学研究科",
+    "The University of Tokyo": "東京大学",
+    "Faculty of Science": "理学部",
+    "College of Arts and Sciences": "教養学部",
+    "Graduate School of Mathematical Sciences": "大学院数理科学研究科"
+  };
+  return dictionary[text] || text;
+}
+
+function researchmapAwardText(record) {
+  return compactText([record.date, record.title, record.association]).join(" - ");
+}
+
+function researchmapAwardTextJa(record) {
+  return compactText([
+    profileDateJa(record.date),
+    profileInstitutionJa(record.title),
+    profileInstitutionJa(record.association)
+  ]).join(" - ");
+}
+
+function researchmapEducationText(record) {
+  return compactText([record.period, record.affiliation, record.department, record.course]).join(" - ");
+}
+
+function researchmapEducationTextJa(record) {
+  return compactText([
+    profileDateJa(record.period),
+    profileInstitutionJa(record.affiliation),
+    profileInstitutionJa(record.department),
+    profileInstitutionJa(record.course)
+  ]).join(" - ");
+}
+
 function renderResearchmapAwards() {
   const root = document.querySelector("#researchmap-award-list");
   if (!root) return;
@@ -12287,11 +12539,13 @@ function renderResearchmapAwards() {
     const item = el("li", "icon-list-item");
     item.append(uiIcon("award", "list-item-icon"));
     const body = el("div", "icon-list-body");
-    const text = compactText([record.date, record.title, record.association]).join(" - ");
-    body.append(link(text, record.link));
+    const anchor = link(researchmapAwardText(record), record.link);
+    anchor.dataset.i18nJa = researchmapAwardTextJa(record);
+    body.append(anchor);
     item.append(body);
     root.append(item);
   });
+  applyLanguage(root);
 }
 
 function renderResearchmapEducation() {
@@ -12310,11 +12564,13 @@ function renderResearchmapEducation() {
     const item = el("li", "icon-list-item");
     item.append(uiIcon("education", "list-item-icon"));
     const body = el("div", "icon-list-body");
-    const text = compactText([record.period, record.affiliation, record.department, record.course]).join(" - ");
-    body.append(link(text, record.link));
+    const anchor = link(researchmapEducationText(record), record.link);
+    anchor.dataset.i18nJa = researchmapEducationTextJa(record);
+    body.append(anchor);
     item.append(body);
     root.append(item);
   });
+  applyLanguage(root);
 }
 
 function renderTalks(limitSelector = "#talk-list") {
