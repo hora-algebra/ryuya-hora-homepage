@@ -125,8 +125,8 @@ input {
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   color: currentColor;
 }
 
@@ -439,8 +439,8 @@ h2.has-section-icon[id] {
 
 .section-title-icon {
   flex: 0 0 auto;
-  width: clamp(20px, 0.72em, 32px);
-  height: clamp(20px, 0.72em, 32px);
+  width: clamp(28px, 1.05em, 44px);
+  height: clamp(28px, 1.05em, 44px);
   color: var(--accent);
 }
 
@@ -482,8 +482,8 @@ h2.has-section-icon[id] {
 }
 
 .profile-grid .section-title-icon {
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
   color: var(--accent-2);
 }
 
@@ -904,6 +904,11 @@ h3 {
   gap: 8px;
 }
 
+.meta-theme-choice-list {
+  padding-top: 10px;
+  border-top: 1px solid rgba(115, 80, 45, 0.18);
+}
+
 .theme-choice {
   display: inline-flex;
   align-items: center;
@@ -937,6 +942,25 @@ h3 {
   background: var(--accent);
   color: #fffdf8;
   box-shadow: 0 8px 18px rgba(44, 111, 99, 0.18);
+}
+
+.meta-theme-choice {
+  border-color: rgba(115, 80, 45, 0.34);
+  background: #fff0df;
+  color: #7a4d2b;
+}
+
+.meta-theme-choice:hover,
+.meta-theme-choice:focus-visible {
+  border-color: #a06131;
+  color: #7a4d2b;
+}
+
+.meta-theme-choice.is-active {
+  border-color: #a06131;
+  background: #a06131;
+  color: #fffdf8;
+  box-shadow: 0 8px 18px rgba(160, 97, 49, 0.18);
 }
 
 .theme-choice-label,
@@ -1436,7 +1460,11 @@ a.position-link:hover {
 
 .categories-tokyo-copy h2 a {
   color: inherit;
+  hyphens: manual;
+  overflow-wrap: normal;
   text-decoration: none;
+  text-wrap: balance;
+  word-break: normal;
 }
 
 .categories-tokyo-copy h2 a:hover,
@@ -1664,16 +1692,16 @@ a.position-link:hover {
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 17px;
-  height: 17px;
+  width: 19px;
+  height: 19px;
   color: currentColor;
   opacity: 0.9;
 }
 
 .paper-tag-icon,
 .publication-tag-icon {
-  width: 17px;
-  height: 17px;
+  width: 19px;
+  height: 19px;
 }
 
 .publication-meta .publication-tag-theme .tag-icon {
@@ -1707,13 +1735,6 @@ a.position-link:hover {
   background: #fff0df;
   color: #7a4d2b;
   font-weight: 850;
-}
-
-.meta-tag-pill.meta-tag-speculative,
-.publication-meta .publication-tag-speculative {
-  border-color: rgba(79, 111, 143, 0.38);
-  background: #e6f0f3;
-  color: #4f6f8f;
 }
 
 .tag-cloud > a {
@@ -1883,8 +1904,8 @@ a.position-link:hover {
 }
 
 .web-app-tag-icon {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   opacity: 0.9;
 }
 
@@ -2263,6 +2284,14 @@ a.position-link:hover {
 }
 
 .games-rb-table-figure #games-rb-mex-arrow-red path {
+  fill: var(--games-rb-red);
+}
+
+.games-rb-table-figure #games-rb-arrow-blue path {
+  fill: var(--games-rb-blue);
+}
+
+.games-rb-table-figure #games-rb-arrow-red path {
   fill: var(--games-rb-red);
 }
 
@@ -2930,6 +2959,11 @@ a.position-link:hover {
   color: var(--games-rb-ink);
 }
 
+.games-rb-dual-table .games-rb-table-bg,
+.games-rb-dual-table .games-rb-table-lines.is-major {
+  stroke: none;
+}
+
 .games-rb-dual-table .games-rb-cell-text {
   font-size: 11.6px;
 }
@@ -2964,22 +2998,25 @@ a.position-link:hover {
   fill: var(--games-rb-red);
 }
 
-.games-rb-mex-highlight,
+.games-rb-mex-cell-ring,
 .games-rb-mex-axis-label {
   opacity: 0;
   animation: games-rb-mex-entry var(--games-rb-cycle) steps(1, end) infinite;
 }
 
-.games-rb-mex-highlight {
-  stroke: none;
+.games-rb-mex-cell-ring {
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
 }
 
-.games-rb-mex-highlight.is-mex-s-entry {
+.games-rb-mex-cell-ring.is-mex-s-ring {
   fill: rgba(37, 99, 235, 0.14);
+  stroke: rgba(37, 99, 235, 0.58);
 }
 
-.games-rb-mex-highlight.is-mex-t-entry {
+.games-rb-mex-cell-ring.is-mex-t-ring {
   fill: rgba(200, 39, 39, 0.12);
+  stroke: rgba(200, 39, 39, 0.54);
 }
 
 .games-rb-mex-axis-label {
@@ -2998,6 +3035,41 @@ a.position-link:hover {
 
 .games-rb-mex-axis-label.is-mex-t-label {
   fill: var(--games-rb-red);
+}
+
+.games-rb-union-highlight {
+  fill: rgba(124, 58, 237, 0.3);
+  stroke: none;
+}
+
+.games-rb-product-highlight {
+  fill: rgba(124, 58, 237, 0.08);
+  stroke: rgba(124, 58, 237, 0.62);
+  stroke-width: 2.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.games-rb-product-arrow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 2.1;
+  vector-effect: non-scaling-stroke;
+}
+
+.games-rb-product-arrow.is-from-mex-s {
+  marker-end: url("#games-rb-arrow-blue");
+  stroke: rgba(37, 99, 235, 0.7);
+}
+
+.games-rb-product-arrow.is-from-mex-t {
+  marker-end: url("#games-rb-arrow-red");
+  stroke: rgba(200, 39, 39, 0.66);
+}
+
+.games-rb-dual-figure[data-games-rb-interactive] .games-rb-mex-axis-label,
+.games-rb-dual-figure[data-games-rb-interactive] .games-rb-mex-cell-ring {
+  animation: none;
+  opacity: 1;
 }
 
 .games-rb-dual-highlight {
@@ -3133,13 +3205,75 @@ a.position-link:hover {
 }
 
 .games-rb-set-def-s {
-  left: 42%;
+  left: 25.8%;
   color: var(--games-rb-blue);
 }
 
 .games-rb-set-def-t {
-  left: 58%;
+  left: 74.2%;
   color: var(--games-rb-red);
+}
+
+.games-rb-set-control {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  gap: 0.18rem;
+  justify-content: flex-start;
+  top: 16.8%;
+  width: 40%;
+  white-space: nowrap;
+}
+
+.games-rb-set-current {
+  font-size: 0.78rem;
+  font-weight: 850;
+  flex: 0 0 1.38rem;
+  text-align: right;
+}
+
+.games-rb-set-buttons {
+  align-items: center;
+  display: grid;
+  flex: 1 1 auto;
+  gap: 0.12rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.games-rb-set-button {
+  appearance: none;
+  background: rgba(255, 253, 248, 0.88);
+  border: 1px solid rgba(43, 52, 43, 0.2);
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: var(--games-rb-ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 850;
+  height: 1.68rem;
+  line-height: 1;
+  min-width: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.games-rb-set-control-s .games-rb-set-button[aria-pressed="true"] {
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(37, 99, 235, 0.56);
+  color: var(--games-rb-blue);
+}
+
+.games-rb-set-control-t .games-rb-set-button[aria-pressed="true"] {
+  background: rgba(200, 39, 39, 0.15);
+  border-color: rgba(200, 39, 39, 0.5);
+  color: var(--games-rb-red);
+}
+
+.games-rb-set-button:focus-visible {
+  outline: 2px solid rgba(31, 39, 33, 0.52);
+  outline-offset: 2px;
 }
 
 @keyframes games-rb-dual-mex {
@@ -4502,20 +4636,36 @@ a.position-link:hover {
   font-weight: 800;
 }
 
-.automata-cantor-space-label {
-  fill: var(--cantor-green);
+.automata-topos-label {
+  fill: var(--cantor-ink);
   font-size: 18px;
   font-weight: 880;
-  text-anchor: start;
+  text-anchor: middle;
   opacity: 0;
-  animation: automata-cantor-label-stage var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-topos-label-left {
+  animation: automata-topos-left-stage var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-topos-label-middle {
+  animation: automata-topos-middle-stage var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-topos-label-right {
+  animation: automata-topos-right-stage var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-topos-sup {
+  baseline-shift: super;
+  font-size: 12px;
 }
 
 .automata-cantor-interval {
   fill: none;
   opacity: 0;
   stroke: var(--cantor-purple);
-  stroke-linecap: round;
+  stroke-linecap: butt;
   stroke-width: 7;
   vector-effect: non-scaling-stroke;
 }
@@ -4538,6 +4688,7 @@ a.position-link:hover {
 
 .automata-cantor-interval.stage-4 {
   animation: automata-cantor-stage-4 var(--cantor-cover-cycle) ease-in-out infinite;
+  stroke-width: 3;
 }
 
 .automata-cantor-connector {
@@ -4600,6 +4751,31 @@ a.position-link:hover {
 
 .automata-prefix-poset .automata-cantor-tree-edge.level-4 {
   animation: automata-tree-edge-level-4 var(--cantor-cover-cycle) ease-in-out infinite;
+}
+
+.automata-cantor-tree-arrowhead {
+  fill: none;
+  opacity: 0;
+  pointer-events: none;
+  stroke: transparent;
+  stroke-width: 0.1;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-prefix-poset .automata-cantor-tree-arrowhead.level-1 {
+  animation: automata-tree-arrowhead-level-1 var(--cantor-cover-cycle) steps(1, end) infinite;
+}
+
+.automata-prefix-poset .automata-cantor-tree-arrowhead.level-2 {
+  animation: automata-tree-arrowhead-level-2 var(--cantor-cover-cycle) steps(1, end) infinite;
+}
+
+.automata-prefix-poset .automata-cantor-tree-arrowhead.level-3 {
+  animation: automata-tree-arrowhead-level-3 var(--cantor-cover-cycle) steps(1, end) infinite;
+}
+
+.automata-prefix-poset .automata-cantor-tree-arrowhead.level-4 {
+  animation: automata-tree-arrowhead-level-4 var(--cantor-cover-cycle) steps(1, end) infinite;
 }
 
 .automata-cantor-bouquet-loop {
@@ -4878,6 +5054,54 @@ a.position-link:hover {
   }
 }
 
+@keyframes automata-tree-arrowhead-level-1 {
+  0%,
+  24.9% {
+    opacity: 0;
+  }
+
+  25%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-tree-arrowhead-level-2 {
+  0%,
+  36.9% {
+    opacity: 0;
+  }
+
+  37%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-tree-arrowhead-level-3 {
+  0%,
+  48.9% {
+    opacity: 0;
+  }
+
+  49%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-tree-arrowhead-level-4 {
+  0%,
+  57.9% {
+    opacity: 0;
+  }
+
+  58%,
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes automata-tree-node-depth-0 {
   0%,
   13% {
@@ -4948,13 +5172,32 @@ a.position-link:hover {
   }
 }
 
-@keyframes automata-cantor-label-stage {
+@keyframes automata-topos-right-stage {
   0%,
-  13% {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-topos-middle-stage {
+  0%,
+  55% {
     opacity: 0;
   }
 
-  17%,
+  59%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes automata-topos-left-stage {
+  0%,
+  91.6% {
+    opacity: 0;
+  }
+
+  91.7%,
   100% {
     opacity: 1;
   }
@@ -5262,8 +5505,8 @@ a.position-link:hover {
 }
 
 .automata-output-panel-bg {
-  fill: rgba(255, 253, 248, 0.92);
-  stroke: rgba(43, 52, 43, 0.14);
+  fill: none;
+  stroke: none;
   stroke-width: 1.5;
 }
 
@@ -5272,6 +5515,23 @@ a.position-link:hover {
   font-size: 13px;
   font-weight: 860;
   text-anchor: start;
+}
+
+.automata-current-output-block {
+  fill: rgba(159, 63, 49, 0.12);
+  stroke: rgba(159, 63, 49, 0.32);
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.automata-output-panel.is-accept .automata-current-output-block {
+  fill: rgba(44, 111, 99, 0.15);
+  stroke: rgba(44, 111, 99, 0.36);
+}
+
+.automata-output-panel.is-reject .automata-current-output-block {
+  fill: rgba(159, 63, 49, 0.13);
+  stroke: rgba(159, 63, 49, 0.34);
 }
 
 .automata-output-cell rect {
@@ -5498,7 +5758,7 @@ a.position-link:hover {
 }
 
 .automata-interactive-result {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 950;
   text-anchor: middle;
 }
@@ -5561,12 +5821,14 @@ a.position-link:hover {
   background: rgba(159, 63, 49, 0.09);
   border-color: rgba(159, 63, 49, 0.24);
   color: #9f3f31;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .automata-button-b {
   background: rgba(47, 93, 142, 0.09);
   border-color: rgba(47, 93, 142, 0.24);
   color: #2f5d8e;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .automata-button-a:hover,
@@ -6940,17 +7202,42 @@ a.position-link:hover {
 .tensor-left-a-node text,
 .tensor-right-a-node text,
 .tensor-s-node text,
-.tensor-x-node text,
-.tensor-map-symbol,
-.tensor-side-label {
+.tensor-x-node text {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   text-anchor: middle;
 }
 
-.tensor-side-label {
-  fill: rgba(31, 39, 33, 0.54);
-  font-size: 22px;
-  font-weight: 900;
+.tensor-factorization-figure .tensor-tex-object {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.tensor-factorization-figure .tensor-tex-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(67, 72, 64, 0.82);
+  font-size: 21px;
+  line-height: 1;
+  text-align: center;
+}
+
+.tensor-factorization-figure .tensor-tex-object-left .tensor-tex-label {
+  color: var(--tensor-map);
+}
+
+.tensor-factorization-figure .tensor-tex-object-right .tensor-tex-label {
+  color: var(--tensor-subset);
+}
+
+.tensor-factorization-figure .tensor-tex-label .katex {
+  line-height: 1;
+}
+
+.tensor-factorization-figure .tensor-tex-object-product .katex {
+  font-size: 1.08em;
 }
 
 .tensor-factorization-figure .tensor-edge-direction {
@@ -6964,18 +7251,6 @@ a.position-link:hover {
 
 .tensor-factorization-figure .tensor-edge-direction-subset {
   fill: var(--tensor-subset);
-}
-
-.tensor-s-label {
-  fill: #2c6f63;
-}
-
-.tensor-map-symbol {
-  fill: rgba(138, 77, 52, 0.82);
-  font-size: 22px;
-  font-weight: 900;
-  transform-box: fill-box;
-  transform-origin: center;
 }
 
 .tensor-left-a-node text,
@@ -7040,22 +7315,9 @@ a.position-link:hover {
   --tensor-neutral-fill: #ededdf;
 }
 
-.tensor-factorization-figure .tensor-map-symbol {
-  fill: var(--tensor-map);
-}
-
-.tensor-factorization-figure .tensor-s-label {
-  fill: var(--tensor-subset);
-}
-
-.tensor-factorization-figure .tensor-neutral-label {
-  fill: var(--tensor-neutral);
-}
-
 .tensor-factorization-figure .tensor-step1-block {
   fill: rgba(255, 253, 248, 0.18);
   stroke: rgba(102, 106, 100, 0.38);
-  stroke-dasharray: 7 8;
   stroke-width: 2.2;
   vector-effect: non-scaling-stroke;
 }
@@ -7073,30 +7335,6 @@ a.position-link:hover {
 .tensor-factorization-figure .tensor-step1-block-subset {
   fill: rgba(245, 220, 198, 0.28);
   stroke: rgba(182, 103, 55, 0.48);
-}
-
-.tensor-factorization-figure .tensor-step-title {
-  fill: rgba(67, 72, 64, 0.82);
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 0;
-}
-
-.tensor-factorization-figure .tensor-step-title-two {
-  fill: var(--tensor-map);
-}
-
-.tensor-factorization-figure .tensor-step-title-three {
-  fill: var(--tensor-subset);
-}
-
-.tensor-factorization-figure .tensor-s-new-label {
-  opacity: 0;
-  animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
-.tensor-factorization-figure .tensor-left-a-label {
-  fill: rgba(82, 86, 80, 0.76);
 }
 
 .tensor-factorization-figure .tensor-left-map-cord {
@@ -7219,11 +7457,6 @@ a.position-link:hover {
   opacity: 1;
 }
 
-.tensor-factorization-figure .tensor-s-duplicate-label {
-  opacity: 0;
-  animation: tensor-s-new-stage var(--tensor-cycle) ease-in-out infinite;
-}
-
 .tensor-factorization-figure .tensor-s-duplicate-node {
   opacity: 1;
 }
@@ -7253,8 +7486,6 @@ a.position-link:hover {
   stroke: var(--tensor-map);
 }
 
-.tensor-factorization-figure .tensor-s-new-label,
-.tensor-factorization-figure .tensor-s-duplicate-label,
 .tensor-factorization-figure .tensor-s-duplicate-node,
 .tensor-factorization-figure .tensor-s-new-node {
   animation-iteration-count: infinite;
@@ -7320,18 +7551,6 @@ a.position-link:hover {
   }
 
   25.81%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes tensor-s-new-stage {
-  0%,
-  20.97% {
-    opacity: 0;
-  }
-
-  27.42%,
   100% {
     opacity: 1;
   }
@@ -7590,12 +7809,6 @@ a.position-link:hover {
 .note-meta .meta-tag-pill::before {
   content: none;
   margin: 0;
-}
-
-.note-meta .meta-tag-speculative {
-  border-color: rgba(79, 111, 143, 0.38);
-  background: #e6f0f3;
-  color: #4f6f8f;
 }
 
 .publication-meta .publication-status {
@@ -9581,8 +9794,8 @@ a.position-link:hover {
 }
 
 .note-kind-icon {
-  width: 1.05em;
-  height: 1.05em;
+  width: 1.15em;
+  height: 1.15em;
   flex: 0 0 auto;
 }
 
@@ -10512,8 +10725,9 @@ a.position-link:hover {
   .automata-sublocale-arrow,
   .automata-sublocale-label,
   .automata-prefix-poset .automata-cantor-tree-edge,
+  .automata-prefix-poset .automata-cantor-tree-arrowhead,
   .automata-prefix-poset .automata-cantor-node,
-  .automata-cantor-space-label,
+  .automata-topos-label,
   .automata-cantor-interval,
   .automata-cantor-connector {
     animation: none;
@@ -10571,8 +10785,9 @@ a.position-link:hover {
   .automata-sublocale-arrow,
   .automata-sublocale-label,
   .automata-prefix-poset .automata-cantor-tree-edge,
+  .automata-prefix-poset .automata-cantor-tree-arrowhead,
   .automata-prefix-poset .automata-cantor-node,
-  .automata-cantor-space-label,
+  .automata-topos-label,
   .automata-cantor-interval,
   .automata-cantor-connector {
     opacity: 1;

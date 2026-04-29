@@ -105,18 +105,18 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教。", href: "https://zen.ac.jp", icon: "building" },
-    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員。", href: "https://zen.ac.jp/humai", icon: "humai" },
-    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", textJa: "2024年4月より日本学術振興会特別研究員（DC1）。", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
-    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人。", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー。", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
-    { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター。", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", href: "https://zen.ac.jp", icon: "building" },
+    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai" },
+    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", textJa: "2024年4月より日本学術振興会特別研究員（DC1）．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
+    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
+    { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター．", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
   ],
   pastPositions: [
-    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", textJa: "2025年4月から7月まで、Centre for Topos Theory and its Applications（パリ）リサーチアソシエイト。", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
-    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", textJa: "2024年4月から2026年3月まで、東京大学大学院数理科学研究科 博士課程。", href: "https://www.ms.u-tokyo.ac.jp/" },
-    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", textJa: "2022年10月から2024年3月まで、変革を駆動する先端物理・数学プログラム（FoPM）支援学生。", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
-    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", textJa: "2020年11月から2021年3月まで、国立情報学研究所リサーチアシスタント。", href: "https://www.nii.ac.jp/en/" }
+    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", textJa: "2025年4月から7月まで，Centre for Topos Theory and its Applications（パリ）リサーチアソシエイト．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
+    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", textJa: "2024年4月から2026年3月まで，東京大学大学院数理科学研究科 博士課程．", href: "https://www.ms.u-tokyo.ac.jp/" },
+    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", textJa: "2022年10月から2024年3月まで，変革を駆動する先端物理・数学プログラム（FoPM）支援学生．", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
+    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", textJa: "2020年11月から2021年3月まで，国立情報学研究所リサーチアシスタント．", href: "https://www.nii.ac.jp/en/" }
   ],
   webApps: [
     {
@@ -125,7 +125,7 @@ const siteData = {
       thumbnail: "assets/web-apps/genericalgoid.png",
       tag: "simulation",
       description: "A toroidal evolution sandbox with organisms, resources, terrain, mutation, and visible lineages.",
-      descriptionJa: "organisms, resources, terrain, mutation, visible lineages を持つ toroidal evolution sandbox。",
+      descriptionJa: "organisms, resources, terrain, mutation, visible lineages を持つ toroidal evolution sandbox．",
       links: [
         ["Open app", "https://genericalgoid-ryuyahora.vercel.app"],
         ["Guide", "https://genericalgoid-ryuyahora.vercel.app/guide.html"],
@@ -139,7 +139,7 @@ const siteData = {
       thumbnail: "assets/web-apps/moser-worm.png",
       tag: "experiment",
       description: "Interactive pages for finite-worm experiments, search heuristics, growth, and theory notes.",
-      descriptionJa: "finite-worm experiments, search heuristics, growth, theory notes の interactive pages。",
+      descriptionJa: "finite-worm experiments, search heuristics, growth, theory notes の interactive pages．",
       links: [
         ["Open app", "https://results-fawn.vercel.app"],
         ["Search", "https://results-fawn.vercel.app/search/"],
@@ -154,7 +154,7 @@ const siteData = {
       thumbnail: "assets/web-apps/adjunction-reboot.png",
       tag: "workbench",
       description: "A diagram-first adjunction workbench for unit, counit, and snake moves.",
-      descriptionJa: "unit, counit, snake moves を扱う diagram-first adjunction workbench。",
+      descriptionJa: "unit, counit, snake moves を扱う diagram-first adjunction workbench．",
       links: [
         ["Workbench", "https://adjunction-reboot-v2-ryuyahora.vercel.app/workbench"],
         ["Guide", "https://adjunction-reboot-v2-ryuyahora.vercel.app/guide"],
@@ -168,7 +168,7 @@ const siteData = {
       thumbnail: "assets/web-apps/string-diagram.png",
       tag: "editor",
       description: "A typed 2-category editor for signature-based string diagram rewrites.",
-      descriptionJa: "signature-based string diagram rewrites のための typed 2-category editor。",
+      descriptionJa: "signature-based string diagram rewrites のための typed 2-category editor．",
       links: [
         ["Workbench", "https://adjoint-string-diagram-app-ryuyahor.vercel.app/workbench"],
         ["Tutorial", "https://adjoint-string-diagram-app-ryuyahor.vercel.app/workbench?tutorial=snake"],
@@ -182,7 +182,7 @@ const siteData = {
       thumbnail: "assets/web-apps/automaton-acceptance-game.png",
       tag: "game",
       description: "A browser game for reading automaton acceptance as an interactive process.",
-      descriptionJa: "automaton acceptance を interactive process として読む browser game。",
+      descriptionJa: "automaton acceptance を interactive process として読む browser game．",
       links: [["Open app", "https://automaton-acceptance-game-ryuyahora.vercel.app"]],
       keywords: ["automata", "acceptance", "game", "language theory"]
     },
@@ -192,7 +192,7 @@ const siteData = {
       thumbnail: "assets/web-apps/cfg-monoid-game.png",
       tag: "game",
       description: "A CFG-monoid variant of the automaton acceptance game.",
-      descriptionJa: "automaton acceptance game の CFG-monoid variant。",
+      descriptionJa: "automaton acceptance game の CFG-monoid variant．",
       links: [["Open app", "https://automaton-acceptance-game-cfg-monoi.vercel.app"]],
       keywords: ["automata", "CFG monoid", "acceptance game", "algebraic language theory"]
     }
@@ -239,7 +239,7 @@ const siteData = {
         publicationDate: "2024-08",
         link: "https://doi.org/10.1016/j.jpaa.2024.107657",
         figure: "quotient-toposes",
-        tags: ["discrete dynamical system", "quotient topos", "Lawvere problem"],
+        tags: ["Dynamics", "quotient topos", "Lawvere problem"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.jpaa.2024.107657"],
           ["arXiv", "https://arxiv.org/abs/2310.02647"],
@@ -351,16 +351,7 @@ const siteData = {
       "When do finite presheaves form a topos? (with Jeremie Marques)",
       "Local state classifier, permutation model, and the internal axiom of choice"
     ],
-    misc: [
-      {
-        title: "準完全情報ニム",
-        authors: ["安福智明", "洞龍弥", "稲津大貴", "木谷裕紀", "末續鴻輝", "吉渡叶"],
-        venue: "researchmap misc",
-        year: "2026",
-        tags: ["combinatorial game", "Nim"],
-        link: "https://researchmap.jp/ryuyahora/misc/52084435"
-      }
-    ]
+    misc: []
   },
   talks: [
     {
@@ -435,10 +426,12 @@ const siteData = {
     { title: "Local state classifier for automata theory", description: "IRIF 26 May / LIPN 5 June", theme: "topos", date: "2025-05-26", language: "English", file: "IRIF20250527_ver1.pdf", ...notePdfAsset("1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF", "local-state-classifier-automata") },
     { title: "Pen: A note on language measurability", description: "March 8, 2026", theme: "automata", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
     { title: "Cloud: A Rota-Baxter equation for winning games", description: "April 5, 2026", theme: "games", themes: ["games", "algebra"], metaTags: ["speculative"], date: "2026-04-05", language: "English", file: "RYUYA,HORA.pdf", ...notePdfAsset("1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU", "rota-baxter-winning-games", "https://lh3.google.com/u/0/d/1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU=s2048?auditContext=thumbnail") },
+    { title: "圏論に登場する矢印の意味は—特集 圏論の質問箱", description: "数学セミナー, 2025-11", theme: "category", metaTags: ["expository"], date: "2025-11", language: "Japanese", file: "数学セミナー", href: "https://cir.nii.ac.jp/crid/1520869150155438720?lang=ja" },
     { title: "順序集合で遊ぶKan拡張入門", theme: "category", metaTags: ["expository"], language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
     { title: "圏論のToy Exampleとしての集合演算", theme: "category", metaTags: ["expository"], language: "Japanese", file: "圏論のToy_Exampleとしての集合演算__Ver2_.pdf", ...notePdfAsset("1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP", "toy-example-set-operations") },
     { title: "Cloud: 構成的数学と表現論", description: "数学基礎論若手の会 2023", theme: "logic", themes: ["logic", "algebra"], metaTags: ["speculative", "expository"], date: "2023-12-10", language: "Japanese", file: "若手の会2023-8.pdf", ...notePdfAsset("1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-", "constructive-math-representation") },
     { title: "Turning lights out with the Snake Lemma", description: "CGP project, written with Kyosuke Higashida", theme: "games", date: "2026-02-22", language: "Japanese", file: "ライツアウトの代数的研究.pdf", ...notePdfAsset("1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp", "lights-out-snake-lemma", "https://lh3.google.com/u/0/d/1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp=s2048?auditContext=thumbnail") },
+    { title: "準完全情報ニム", description: "情報処理学会研究報告アルゴリズム（AL）, 2026-01", theme: "games", date: "2026-01", language: "Japanese", file: "情報処理学会研究報告アルゴリズム（AL）", href: "https://researchmap.jp/ryuyahora/misc/52084435" },
     { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", theme: "number", metaTags: ["expository"], date: "2021", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
     { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", theme: "category", metaTags: ["expository"], date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
     { title: "母関数の種", description: "数理空間トポス 2023年新歓", theme: "combinatorics", metaTags: ["expository"], date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
@@ -520,18 +513,18 @@ const siteData = {
     }
   ],
   awards: [
-    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 研究科長賞、博士課程、2026年3月。", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 修了式総代、博士課程、2026年3月。", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
-    { text: "SLACS 2025 presentation award, October 2025.", textJa: "第42回 記号論理と情報科学研究集会（SLACS 2025）発表賞、2025年10月。", href: "https://sites.google.com/view/slacs2025akita/home" },
-    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 研究科長賞、修士課程、2024年3月。", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 修了式総代、修士課程、2024年3月。", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
-    { text: "Faculty of Science encouragement award, The University of Tokyo, March 2022.", textJa: "東京大学理学部 学修奨励賞、2022年3月。", href: "https://warp.ndl.go.jp/info:ndljp/pid/12972979/www.s.u-tokyo.ac.jp/ja/awards/encouragement/R3.html" }
+    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 研究科長賞，博士課程，2026年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
+    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 修了式総代，博士課程，2026年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
+    { text: "SLACS 2025 presentation award, October 2025.", textJa: "第42回 記号論理と情報科学研究集会（SLACS 2025）発表賞，2025年10月．", href: "https://sites.google.com/view/slacs2025akita/home" },
+    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 研究科長賞，修士課程，2024年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
+    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 修了式総代，修士課程，2024年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
+    { text: "Faculty of Science encouragement award, The University of Tokyo, March 2022.", textJa: "東京大学理学部 学修奨励賞，2022年3月．", href: "https://warp.ndl.go.jp/info:ndljp/pid/12972979/www.s.u-tokyo.ac.jp/ja/awards/encouragement/R3.html" }
   ],
   education: [
-    { text: "Worked as a tutor at SEG for several years around 2019.", textJa: "2019年前後から数年間、SEG で講師を担当。", href: "https://www.seg.co.jp/" },
-    { text: "Private tutor for gifted elementary and junior high school students from February 2020 to September 2022.", textJa: "2020年2月から2022年9月まで、小中学生向けの個別指導を担当。" },
-    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から数理空間トポスで現代数学を指導。", href: "https://sites.google.com/view/mspacetopos/home" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月から角川ドワンゴ学園 研究部のアドバイザー。", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/" }
+    { text: "Worked as a tutor at SEG for several years around 2019.", textJa: "2019年前後から数年間，SEG でチューター．", href: "https://www.seg.co.jp/" },
+    { text: "Private tutor for gifted elementary and junior high school students from February 2020 to September 2022.", textJa: "2020年2月から2022年9月まで，現代数学やプログラミングの家庭教師．" },
+    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から数理空間トポスのチューター．", href: "https://sites.google.com/view/mspacetopos/home" },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月から角川ドワンゴ学園 研究部のアドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/" }
   ],
   problems: [
     problemEntry({
@@ -1039,6 +1032,7 @@ const state = {
     japan: null
   },
   researchTheme: initialUrlParams.get("theme") || "",
+  researchMetaTag: initialUrlParams.get("meta") || "",
   problemQuery: "",
   problemStatus: "all",
   selectedProblemId: "",
@@ -1199,31 +1193,31 @@ const i18nText = {
     "Problems": "Problems",
     "Search": "検索",
     "Links": "リンク",
-    "Ryuya Hora.": "洞龍弥。",
-    "Papers by Ryuya Hora.": "洞龍弥の論文。",
-    "Documents by Ryuya Hora.": "洞龍弥の資料。",
-    "Other projects and links by Ryuya Hora.": "洞龍弥のその他のプロジェクトとリンク。",
-    "Talks by Ryuya Hora.": "洞龍弥の発表。",
-    "Notes by Ryuya Hora.": "洞龍弥のノート。",
-    "Activities by Ryuya Hora.": "洞龍弥の活動。",
-    "CV by Ryuya Hora.": "洞龍弥の CV。",
-    "Problems by Ryuya Hora.": "洞龍弥の Problems。",
-    "Links.": "リンク。",
-    "Search.": "検索。",
+    "Ryuya Hora.": "洞龍弥．",
+    "Papers by Ryuya Hora.": "洞龍弥の論文．",
+    "Documents by Ryuya Hora.": "洞龍弥の資料．",
+    "Other projects and links by Ryuya Hora.": "洞龍弥のその他のプロジェクトとリンク．",
+    "Talks by Ryuya Hora.": "洞龍弥の発表．",
+    "Notes by Ryuya Hora.": "洞龍弥のノート．",
+    "Activities by Ryuya Hora.": "洞龍弥の活動．",
+    "CV by Ryuya Hora.": "洞龍弥の CV．",
+    "Problems by Ryuya Hora.": "洞龍弥の Problems．",
+    "Links.": "リンク．",
+    "Search.": "検索．",
     "Map": "見取り図",
     "Quick Comparison": "Quick Comparison",
     "Site Search": "サイト内検索",
-    "Search this site.": "サイト内検索。",
-    "Site index search.": "サイト内検索。",
+    "Search this site.": "サイト内検索．",
+    "Site index search.": "サイト内検索．",
     "Search public pages, papers, talks, notes, activities, problems, and links.":
-      "公開ページ、論文、発表、ノート、活動、Problems、リンクを検索します。",
+      "公開ページ，論文，発表，ノート，活動，Problems，リンクを検索します．",
     "Search the site": "サイト内を検索",
     "Query": "検索語",
     "topos, automata, Categories in Tokyo...": "topos, automata, Categories in Tokyo...",
-    "Type to search the site.": "検索語を入力してください。",
-    "No public site results match this search.": "この検索に合う公開ページはありません。",
-    "No linked items yet.": "関連項目はまだありません。",
-    "Site search. Last updated: 27 April 2026.": "サイト内検索。最終更新: 2026年4月27日",
+    "Type to search the site.": "検索語を入力してください．",
+    "No public site results match this search.": "この検索に合う公開ページはありません．",
+    "No linked items yet.": "関連項目はまだありません．",
+    "Site search. Last updated: 27 April 2026.": "サイト内検索．最終更新: 2026年4月27日",
     "Search notes": "ノート内検索",
     "Note filters": "ノートの絞り込み",
     "Language": "言語",
@@ -1241,12 +1235,12 @@ const i18nText = {
     "Algebra": "代数",
     "Logic": "論理",
     "Geometry": "幾何",
-    "Dynamical system": "力学系",
+    "Dynamics": "力学系",
     "Combinatorics": "組合せ論",
     "Number theory": "数論",
     "General": "一般",
     "topos, games, language...": "topos, games, language...",
-    "No speculative notes match this search.": "この検索に合う思弁的なノートはありません。",
+    "No speculative notes match this search.": "この検索に合う思弁的なノートはありません．",
     "Page": "ページ",
     "Paper": "論文",
     "Talk": "発表",
@@ -1265,14 +1259,14 @@ const i18nText = {
     "Ryuya Hora": "洞龍弥",
     "Category theory, topos theory, computation.": "Category theory, topos theory, computation.",
     "Ryuya Hora studies category theory, topos theory, and the geometry of computation.":
-      "洞龍弥は category theory, topos theory, and the geometry of computation を研究しています。",
+      "洞龍弥は category theory, topos theory, and the geometry of computation を研究しています．",
     "I am an assistant professor at ZEN University and a researcher at the Humai Center. My recent work explores how topos theory transfers ideas among algebra, geometry, logic, computation, and combinatorics.":
-      "ZEN大学助教、HUMAIセンター研究員です。最近は、topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています。",
+      "ZEN大学助教，HUMAIセンター研究員です．最近は，topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています．",
     "Research": "研究",
-    "Papers, preprints, notes, and slides.": "論文、preprint、ノート、スライド。",
-    "Preprints and related writing.": "Preprint と関連文書。",
-    "Web apps, problems, and links.": "Web apps、Problems、リンク。",
-    "Visits, talks, plans.": "訪問、発表、予定。",
+    "Papers, preprints, notes, and slides.": "論文，preprint，ノート，スライド．",
+    "Preprints and related writing.": "Preprint と関連文書．",
+    "Web apps, problems, and links.": "Web apps，Problems，リンク．",
+    "Visits, talks, plans.": "訪問，発表，予定．",
     "Research Interests": "研究関心",
     "All themes": "すべてのテーマ",
     "Current Positions": "現在の所属",
@@ -1289,9 +1283,9 @@ const i18nText = {
     "Recent Talks": "最近の発表",
     "All talks": "すべての発表",
     "Community": "コミュニティ",
-    "A category theory workshop in Tokyo that I founded and organize.": "私が発案し、運営している圏論集会です。",
+    "A category theory workshop in Tokyo that I founded and organize.": "私が発案し，運営している圏論集会です．",
     "A category theory workshop series and local research community around Tokyo. I am a founder and one of the organizers.":
-      "東京周辺の category theory workshop series / local research community です。私は founder かつ organizer の一人です。",
+      "東京周辺の category theory workshop series / local research community です．私は founder かつ organizer の一人です．",
     "Open Categories in Tokyo": "Categories in Tokyo を開く",
     "Related activities": "関連する活動",
     "Last updated: 22 April 2026.": "最終更新: 2026年4月22日",
@@ -1320,7 +1314,7 @@ const i18nText = {
     "year, venue, topic...": "year, venue, topic...",
     "Topos, 2.0.2, rieg...": "Topos, 2.0.2, rieg...",
     "Published papers, preprints, manuscripts in preparation, and related references.":
-      "published papers, preprints, manuscripts in preparation と関連資料をまとめています。",
+      "published papers, preprints, manuscripts in preparation と関連資料をまとめています．",
     "Papers and preprints.": "Papers and preprints.",
     "Bibliography": "文献",
     "Research Papers": "研究論文",
@@ -1340,7 +1334,7 @@ const i18nText = {
     "Research papers, preprints, and related writing. Last updated: 27 April 2026.":
       "Research papers, preprints, related writing. 最終更新: 2026年4月27日",
     "Conference talks, seminars, workshop presentations, and available slides.":
-      "Conference talks, seminars, workshop presentations とスライドをまとめています。",
+      "Conference talks, seminars, workshop presentations とスライドをまとめています．",
     "Talks and slides.": "Talks and slides.",
     "Slides and seminars.": "Slides and seminars.",
     "Timeline": "タイムライン",
@@ -1349,17 +1343,17 @@ const i18nText = {
     "Documents Timeline": "資料タイムライン",
     "Paper Timeline": "論文タイムライン",
     "Talk Timeline": "発表タイムライン",
-    "Activities by date.": "活動の時系列。",
-    "Activities and talks by date.": "活動と発表の時系列。",
+    "Activities by date.": "活動の時系列．",
+    "Activities and talks by date.": "活動と発表の時系列．",
     "Places": "場所",
     "Visits": "訪問",
     "Visit Map": "訪問地図",
-    "Visits by place.": "訪問地。",
-    "Talk locations by city. Click a marker to focus the list.": "訪問地図です。marker をクリックすると、その場所の訪問一覧に絞れます。",
+    "Visits by place.": "訪問地．",
+    "Talk locations by city. Click a marker to focus the list.": "訪問地図です．marker をクリックすると，その場所の訪問一覧に絞れます．",
     "Europe": "Europe",
     "Japan": "日本",
     "Mapped Visits": "地図上の訪問",
-    "No mapped visits yet.": "地図表示可能な訪問はまだありません。",
+    "No mapped visits yet.": "地図表示可能な訪問はまだありません．",
     "Talk": "発表",
     "Paper": "論文",
     "Activity": "活動",
@@ -1370,7 +1364,7 @@ const i18nText = {
     "Category / algebra / logic": "Category / algebra / logic",
     "Other": "その他",
     "Latest": "最近",
-    "No timeline entries yet.": "タイムライン項目はまだありません。",
+    "No timeline entries yet.": "タイムライン項目はまだありません．",
     "Archive": "アーカイブ",
     "Talk List": "発表一覧",
     "Filter talks": "発表を絞り込む",
@@ -1378,23 +1372,23 @@ const i18nText = {
       "Talks, seminars, presentation material. 最終更新: 2026年4月27日",
     "Notes and Slides": "ノートとスライド",
     "Lecture notes, slides, speculative notes, and teaching material. ☁︎ marked notes are speculative; 🖊️ marked notes are under construction.":
-      "Lecture notes, slides, speculative notes, teaching material をまとめています。☁︎ は speculative、🖊️ は under construction を表します。",
+      "Lecture notes, slides, speculative notes, teaching material をまとめています．☁︎ は speculative，🖊️ は under construction を表します．",
     "Notes and slides.": "Notes and slides.",
     "Slides and teaching material.": "Slides and teaching material.",
     "Notes, slides, and teaching material. Last updated: 27 April 2026.":
       "Notes, slides, teaching material. 最終更新: 2026年4月27日",
     "Academic Activity": "研究活動",
     "Research visits, organizing work, seminars, public writing, and academic events.":
-      "Research visits, organizing work, seminars, public writing, academic events をまとめています。",
-    "Activities and plans.": "活動と予定。",
+      "Research visits, organizing work, seminars, public writing, academic events をまとめています．",
+    "Activities and plans.": "活動と予定．",
     "Academic activities, visits, and organizing work. Last updated: 27 April 2026.":
       "Academic activities, visits, organizing work. 最終更新: 2026年4月27日",
     "Profile Details": "プロフィール詳細",
     "CV": "CV",
-    "CV and awards.": "CV と受賞。",
-    "Positions, awards, education.": "所属、受賞、教育。",
+    "CV and awards.": "CV と受賞．",
+    "Positions, awards, education.": "所属，受賞，教育．",
     "Awards, education and outreach, teaching, current positions, and past positions.":
-      "受賞、教育・アウトリーチ、現在と過去の所属をまとめています。",
+      "受賞，教育・アウトリーチ，現在と過去の所属をまとめています．",
     "Current": "現在",
     "Past": "過去",
     "Past Positions": "過去の所属",
@@ -1412,8 +1406,8 @@ const i18nText = {
     "Questions and Trails": "Questions and Trails",
     "Web Apps": "Web Apps",
     "Deployed Tools": "公開中のツール",
-    "Small deployed tools and experiments.": "公開中の小さな tools と experiments。",
-    "Small Vercel-hosted tools and experiments.": "Vercel で公開している小さな tools と experiments。",
+    "Small deployed tools and experiments.": "公開中の小さな tools と experiments．",
+    "Small Vercel-hosted tools and experiments.": "Vercel で公開している小さな tools と experiments．",
     "Open app": "アプリを開く",
     "Copy link": "リンクをコピー",
     "Copied": "コピーしました",
@@ -1430,7 +1424,7 @@ const i18nText = {
     "editor": "editor",
     "game": "game",
     "Personal open problems on local state classifiers, automata, quotient topoi, connectedness, games, elementary topoi, and riegs.":
-      "local state classifiers, automata, quotient topoi, connectedness, games, elementary topoi, riegs に関する個人的な open problems です。",
+      "local state classifiers, automata, quotient topoi, connectedness, games, elementary topoi, riegs に関する個人的な open problems です．",
     "Problem Database": "Problem Database",
     "Problems and Trails": "Problems and Trails",
     "Comments": "コメント",
@@ -1444,57 +1438,57 @@ const i18nText = {
     "Open problems, questions, and reference trails. Last updated: 27 April 2026.":
       "Open problems, questions, reference trails. 最終更新: 2026年4月27日",
     "People, Friends' Papers, Books, Events": "人物・友人の論文・本・イベント",
-    "Profiles and references.": "プロフィールと資料。",
+    "Profiles and references.": "プロフィールと資料．",
     "External references, profile pages, friends' papers, books, and events.":
-      "外部資料、プロフィールページ、友人の論文、本、イベントへのリンクです。",
+      "外部資料，プロフィールページ，友人の論文，本，イベントへのリンクです．",
     "External links and reference pages. Last updated: 27 April 2026.":
       "External links and reference pages. 最終更新: 2026年4月27日",
     "☁︎ Log": "☁︎ Log",
     "思弁的なノート": "思弁的なノート",
     "Short draft fragments, questions, and half-formed mathematical pictures before they become papers, talks, or polished notes.":
-      "papers, talks, polished notes になる前の短い草稿、問い、まだ形になりきっていない数学的イメージです。",
-    "Draft fragments.": "草稿断片。",
+      "papers, talks, polished notes になる前の短い草稿，問い，まだ形になりきっていない数学的イメージです．",
+    "Draft fragments.": "草稿断片．",
     "Entries": "項目",
     "Published papers, preprints, manuscripts in preparation, and related references.":
-      "published papers, preprints, manuscripts in preparation と関連資料をまとめています。",
+      "published papers, preprints, manuscripts in preparation と関連資料をまとめています．",
     "Conference talks, seminars, workshop presentations, and selected recordings.":
-      "Conference talks, seminars, workshop presentations と selected recordings をまとめています。",
+      "Conference talks, seminars, workshop presentations と selected recordings をまとめています．",
     "Lecture notes, slides, speculative notes, and teaching material.":
-      "Lecture notes, slides, speculative notes, teaching material をまとめています。",
+      "Lecture notes, slides, speculative notes, teaching material をまとめています．",
     "Research visits, organizing work, seminars, and academic activity by year.":
-      "Research visits, organizing work, seminars, academic activity を年ごとにまとめています。",
+      "Research visits, organizing work, seminars, academic activity を年ごとにまとめています．",
     "Awards, education and outreach, teaching, and profile links.":
-      "受賞、教育・アウトリーチ、プロフィールリンクをまとめています。",
+      "受賞，教育・アウトリーチ，プロフィールリンクをまとめています．",
     "Open questions and reference trails around topoi, automata, and games.":
-      "topoi, automata, games に関する open questions と reference trails です。",
+      "topoi, automata, games に関する open questions と reference trails です．",
     "Friends' pages, friends' papers, books, events, and external profile pages.":
-      "友人のページ、友人の論文、本、イベント、外部プロフィールへのリンクです。",
+      "友人のページ，友人の論文，本，イベント，外部プロフィールへのリンクです．",
     "Introduces local state classifiers and uses them to establish an internal parameterization of hyperconnected quotients.":
-      "local state classifier を導入し、それを用いて hyperconnected quotient の internal parameterization を与えます。",
+      "local state classifier を導入し，それを用いて hyperconnected quotient の internal parameterization を与えます．",
     "Classifies classes of discrete dynamical systems closed under finite limits and small colimits.":
-      "finite limits と small colimits で閉じた discrete dynamical systems のクラスを分類します。",
+      "finite limits と small colimits で閉じた discrete dynamical systems のクラスを分類します．",
     "Studies completely connected topoi and gives a site characterization with examples.":
-      "completely connected topoi を研究し、例とともに site characterization を与えます。",
+      "completely connected topoi を研究し，例とともに site characterization を与えます．",
     "Gives a solution to Lawvere's first open problem.":
-      "Lawvere's first open problem の解決を与えます。",
+      "Lawvere's first open problem の解決を与えます．",
     "Solves one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets.":
-      "symmetric simplicial sets の topos における levels を用いて、Lawvere の 7 つの open problems の一つを解決します。",
+      "symmetric simplicial sets の topos における levels を用いて，Lawvere の 7 つの open problems の一つを解決します．",
     "Introduces a topos-theoretic point of view on formal language theory.":
-      "formal language theory に対する topos-theoretic な見方を導入します。",
+      "formal language theory に対する topos-theoretic な見方を導入します．",
     "Reinterprets impartial combinatorial games and the Nim-sum using recursive coalgebras.":
-      "impartial combinatorial games と Nim-sum を recursive coalgebras によって捉え直します。",
+      "impartial combinatorial games と Nim-sum を recursive coalgebras によって捉え直します．",
     "Defines a generalized normalization operator motivated by topos theory and algebraic language theory.":
-      "topos theory と algebraic language theory に動機づけられた generalized normalization operator を定義します。",
-    "No papers match this filter.": "この条件に合う論文はありません。",
-    "No notes match this filter.": "この条件に合うノートはありません。",
-    "No generated researchmap paper data is available yet.": "researchmap から生成された論文データはまだありません。",
-    "No talks match this filter.": "この条件に合う発表はありません。",
-    "No generated researchmap award data is available yet.": "researchmap から生成された受賞データはまだありません。",
-    "No generated researchmap education data is available yet.": "researchmap から生成された教育歴データはまだありません。",
-    "No current plans listed.": "現在表示する予定はありません。",
-    "No problem matches the current filter.": "この条件に合う問題はありません。",
-    "No problems match this filter.": "この条件に合う問題はありません。",
-    "No speculative notes yet.": "思弁的なノートはまだありません。",
+      "topos theory と algebraic language theory に動機づけられた generalized normalization operator を定義します．",
+    "No papers match this filter.": "この条件に合う論文はありません．",
+    "No notes match this filter.": "この条件に合うノートはありません．",
+    "No generated researchmap paper data is available yet.": "researchmap から生成された論文データはまだありません．",
+    "No talks match this filter.": "この条件に合う発表はありません．",
+    "No generated researchmap award data is available yet.": "researchmap から生成された受賞データはまだありません．",
+    "No generated researchmap education data is available yet.": "researchmap から生成された教育歴データはまだありません．",
+    "No current plans listed.": "現在表示する予定はありません．",
+    "No problem matches the current filter.": "この条件に合う問題はありません．",
+    "No problems match this filter.": "この条件に合う問題はありません．",
+    "No speculative notes yet.": "思弁的なノートはまだありません．",
     "All themes": "すべてのテーマ",
     "papers": "論文",
     "notes": "ノート",
@@ -1554,6 +1548,8 @@ const i18nContextText = {
 let activeLanguage = "en";
 let isApplyingLanguage = false;
 let languageObserver = null;
+const i18nTextNodeOriginals = new WeakMap();
+const japaneseUiEnabled = false;
 
 const problemStatuses = {
   all: "All",
@@ -1730,7 +1726,7 @@ const researchThemes = [
   },
   {
     id: "dynamical",
-    label: "Dynamical system",
+    label: "Dynamics",
     x: 560,
     y: 342,
     r: 58,
@@ -1917,6 +1913,7 @@ function writeStoredLanguage(language) {
 }
 
 function initialLanguage() {
+  if (!japaneseUiEnabled) return "en";
   const params = new URLSearchParams(globalThis.location?.search || "");
   const fromUrl = params.get("lang");
   if (fromUrl === "ja" || fromUrl === "en") return fromUrl;
@@ -1999,6 +1996,9 @@ const translatableTextSelector = [
   ".theme-status-count",
   ".theme-choice-label",
   ".theme-choice-count",
+  ".paper-tag-label",
+  ".web-app-tag-label",
+  ".tag-label",
   ".theme-result-column h3",
   ".note-thumb-kind",
   ".note-kind-badge",
@@ -2027,12 +2027,15 @@ const translatableTextSelector = [
   ".site-search-type",
   ".site-search-summary",
   ".site-search-meta",
+  ".position-link",
   ".web-app-tag",
   ".web-app-summary",
   ".web-app-link",
   ".web-app-missing",
   ".icon-list-body",
   ".icon-list-body a",
+  ".icon-list-body span",
+  "[data-i18n-ja]",
   ".speculative-status",
   ".speculative-abstract",
   ".speculative-questions h3"
@@ -2046,6 +2049,17 @@ function translatableElements(root = document.body) {
 }
 
 function translateElementText(element) {
+  if (element.children?.length) {
+    Array.from(element.childNodes).forEach((node) => {
+      if (node.nodeType !== Node.TEXT_NODE) return;
+      const original = i18nTextNodeOriginals.get(node) || normalizedUiText(node.textContent);
+      if (!original) return;
+      if (!i18nTextNodeOriginals.has(node)) i18nTextNodeOriginals.set(node, original);
+      const translated = translatedPhrase(original, element);
+      if (normalizedUiText(node.textContent) !== translated) node.textContent = node.textContent.replace(/\S[\s\S]*\S|\S/u, translated);
+    });
+    return;
+  }
   if (!element.dataset.i18nOriginalText) {
     const original = normalizedUiText(element.textContent);
     if (!original) return;
@@ -2084,7 +2098,7 @@ function hrefWithLanguage(originalHref) {
   const path = queryIndex >= 0 ? withoutHash.slice(0, queryIndex) : withoutHash;
   const query = queryIndex >= 0 ? withoutHash.slice(queryIndex + 1) : "";
   const params = new URLSearchParams(query);
-  if (activeLanguage === "ja") params.set("lang", "ja");
+  if (japaneseUiEnabled && activeLanguage === "ja") params.set("lang", "ja");
   else params.delete("lang");
   const nextQuery = params.toString();
   return `${path}${nextQuery ? `?${nextQuery}` : ""}${hash}`;
@@ -2104,7 +2118,7 @@ function syncLanguageUrl() {
   if (!globalThis.history?.replaceState || !globalThis.location) return;
   try {
     const url = new URL(globalThis.location.href);
-    if (activeLanguage === "ja") url.searchParams.set("lang", "ja");
+    if (japaneseUiEnabled && activeLanguage === "ja") url.searchParams.set("lang", "ja");
     else url.searchParams.delete("lang");
     globalThis.history.replaceState(null, "", url.href);
   } catch {
@@ -2164,7 +2178,7 @@ function applyLanguage(root = document.body) {
 }
 
 function setLanguage(language) {
-  activeLanguage = language === "ja" ? "ja" : "en";
+  activeLanguage = japaneseUiEnabled && language === "ja" ? "ja" : "en";
   writeStoredLanguage(activeLanguage);
   syncLanguageUrl();
   applyLanguage();
@@ -2173,15 +2187,18 @@ function setLanguage(language) {
 
 function setupLanguage() {
   activeLanguage = initialLanguage();
+  if (!japaneseUiEnabled) writeStoredLanguage("en");
+  syncLanguageUrl();
   const nav = document.querySelector(".site-nav");
   ensureSearchNavLink();
-  if (nav && !nav.querySelector("[data-language-toggle]")) {
+  if (japaneseUiEnabled && nav && !nav.querySelector("[data-language-toggle]")) {
     const button = el("button", "language-toggle");
     button.type = "button";
     button.dataset.languageToggle = "";
     button.addEventListener("click", () => setLanguage(activeLanguage === "ja" ? "en" : "ja"));
     nav.append(button);
   }
+  if (!japaneseUiEnabled) nav?.querySelector("[data-language-toggle]")?.remove();
   applyLanguage();
   if (!languageObserver && globalThis.MutationObserver && document.body) {
     languageObserver = new MutationObserver((mutations) => {
@@ -5009,7 +5026,7 @@ function renderCategoriesTokyoMap() {
   svg.append(
     svgEl("title", { id: "categories-map-title" }, activeLanguage === "ja" ? "Categories in Tokyo の地図" : "Categories in Tokyo map"),
     svgEl("desc", { id: "categories-map-desc" }, activeLanguage === "ja"
-      ? "Categories in Tokyo の開催地、各回へのリンク、東京23区の境界を示す地図です。"
+      ? "Categories in Tokyo の開催地，各回へのリンク，東京23区の境界を示す地図です．"
       : "A Tokyo-area map with Categories in Tokyo venues, meeting links, and Tokyo ward boundaries."),
     defs,
     svgEl("rect", { class: "categories-map-bg", x: 0, y: 0, width: 760, height: 440, rx: 8 }),
@@ -5268,7 +5285,7 @@ const homeTimelineThemeLabels = {
   automata: "Automaton / language",
   games: "Games",
   geometry: "Geometry / dynamics",
-  dynamical: "Dynamical system",
+  dynamical: "Dynamics",
   combinatorics: "Combinatorics",
   category: "Category / algebra",
   logic: "Logic",
@@ -5687,7 +5704,7 @@ const noteThemeLabels = {
   category: "Category theory",
   algebra: "Algebra",
   logic: "Logic",
-  dynamical: "Dynamical system",
+  dynamical: "Dynamics",
   combinatorics: "Combinatorics",
   number: "Number theory",
   general: "General"
@@ -6239,15 +6256,11 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "dynamical-system") {
     svg.append(
-      shape("circle", { cx: "7.2", cy: "7.7", r: "2.05", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.9" }),
-      shape("circle", { cx: "16.8", cy: "8.8", r: "2.05", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.9" }),
-      shape("circle", { cx: "12.3", cy: "17", r: "2.05", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.9" }),
-      line({ d: "M9.3 7.8C11 7.2 13.1 7.3 14.8 8.1", "stroke-width": "1.85" }),
-      line({ d: "M14.3 6.1L16 8.6L13.2 9.7", "stroke-width": "1.85" }),
-      line({ d: "M16.1 11C15.6 13 14.5 14.6 13.2 15.6", "stroke-width": "1.85" }),
-      line({ d: "M15.6 14.8L12.9 15.9L13.5 13.1", "stroke-width": "1.85" }),
-      line({ d: "M10.6 15.7C8.9 14.4 7.8 12.5 7.4 9.9", "stroke-width": "1.85" }),
-      line({ d: "M5.7 11.8L7.3 9.4L9.3 11.5", "stroke-width": "1.85" })
+      line({ d: "M12 4.15C15.45 5.1 16.2 8.55 12 12", "stroke-width": "1.65" }),
+      line({ d: "M12 4.15C15.45 5.1 16.2 8.55 12 12", transform: "rotate(72 12 12)", "stroke-width": "1.65" }),
+      line({ d: "M12 4.15C15.45 5.1 16.2 8.55 12 12", transform: "rotate(144 12 12)", "stroke-width": "1.65" }),
+      line({ d: "M12 4.15C15.45 5.1 16.2 8.55 12 12", transform: "rotate(216 12 12)", "stroke-width": "1.65" }),
+      line({ d: "M12 4.15C15.45 5.1 16.2 8.55 12 12", transform: "rotate(288 12 12)", "stroke-width": "1.65" })
     );
     return svg;
   }
@@ -6288,14 +6301,12 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "category") {
     svg.append(
-      line({ d: "M7.15 6.4H14.35", "stroke-width": "1.85" }),
-      line({ d: "M12.65 4.75L14.35 6.4L12.65 8.05", "stroke-width": "1.85" }),
-      line({ d: "M9.65 17.6H16.85", "stroke-width": "1.85" }),
-      line({ d: "M15.15 15.95L16.85 17.6L15.15 19.25", "stroke-width": "1.85" }),
-      line({ d: "M6.4 9.65V16.85", "stroke-width": "1.85" }),
-      line({ d: "M4.75 15.15L6.4 16.85L8.05 15.15", "stroke-width": "1.85" }),
-      line({ d: "M17.6 7.15V14.35", "stroke-width": "1.85" }),
-      line({ d: "M15.95 12.65L17.6 14.35L19.25 12.65", "stroke-width": "1.85" })
+      line({ d: "M4.6 6.3H19.1", "stroke-width": "1.95" }),
+      line({ d: "M16.9 4.35L19.1 6.3L16.9 8.25", "stroke-width": "1.95" }),
+      line({ d: "M5.3 9.15L10.75 14.6", "stroke-width": "1.9" }),
+      line({ d: "M8.25 14.25L10.75 14.6L10.4 12.1", "stroke-width": "1.9" }),
+      line({ d: "M13.25 14.6L18.25 10.05", "stroke-width": "1.9" }),
+      line({ d: "M17.25 12.35L18.25 10.05L15.9 11", "stroke-width": "1.9" })
     );
     return svg;
   }
@@ -6707,7 +6718,7 @@ function tagIconKey(label = "") {
   if (text.includes("formal") || text.includes("informal") || text.includes("question") || text.includes("problem")) return "problem";
   if (text.includes("classifier")) return "category";
   if (text.includes("geometric morphism")) return "topos";
-  if (text.includes("dynamical") || text.includes("space time") || text.includes("space-time") || text.includes("orbit") || text.includes("pretopological")) return "dynamical-system";
+  if (text.includes("dynamics") || text.includes("dynamical") || text.includes("space time") || text.includes("space-time") || text.includes("orbit") || text.includes("pretopological")) return "dynamical-system";
   if (text.includes("geometry")) return "torus";
   if (text.includes("topos") || text.includes("topoi") || text.includes("sheaf") || text.includes("site") || text.includes("locale") || text.includes("geometric morphism") || text.includes("hyperconnected") || text.includes("cohesive")) return "topos";
   if (text.includes("logic") || text.includes("logical") || text.includes("boolean") || text.includes("constructive") || text.includes("choice")) return "logic";
@@ -6748,23 +6759,23 @@ function tagLink(label, href, className = "") {
 function navIconKey(label = "", href = "") {
   const text = simplified(label);
   const url = String(href || "").toLowerCase();
-  if (text.includes("profile") || text.includes("プロフィール")) return "profile";
-  if (text.includes("research timeline") || text.includes("yearly record") || url.includes("#research-timeline") || url.includes("#yearly-records")) return "timeline";
-  if (text.includes("interest") || url.includes("#interests")) return "topos";
+  if (text.includes("profile") || text.includes("プロフィール") || text.includes("概要")) return "profile";
+  if (text.includes("research timeline") || text.includes("yearly record") || text.includes("研究タイムライン") || text.includes("年次記録") || url.includes("#research-timeline") || url.includes("#yearly-records")) return "timeline";
+  if (text.includes("interest") || text.includes("関心") || url.includes("#interests")) return "topos";
   if (text.includes("preparation") || url.includes("#in-preparation")) return "clock";
   if (text.includes("documents") || text.includes("資料")) return "paper";
-  if (text.includes("papers") || url.includes("/papers/")) return "paper";
-  if (text.includes("notes") || url.includes("/notes/")) return "note";
-  if (text.includes("visit") || url.includes("#visits")) return "globe";
+  if (text.includes("papers") || text.includes("論文") || url.includes("/papers/")) return "paper";
+  if (text.includes("notes") || text.includes("ノート") || url.includes("/notes/")) return "note";
+  if (text.includes("visit") || text.includes("訪問") || url.includes("#visits")) return "globe";
   if (text.includes("activities") || text.includes("活動") || url.includes("/activities/")) return "activity";
-  if (text.includes("talks") || url.includes("/talks/")) return "talk";
+  if (text.includes("talks") || text.includes("発表") || url.includes("/talks/")) return "talk";
   if (text.includes("others") || text.includes("その他")) return "link";
   if (text.includes("web apps") || url.includes("/web-apps/")) return "webapp";
-  if (text.includes("links") || url.includes("/links/")) return "link";
+  if (text.includes("links") || text.includes("リンク") || url.includes("/links/")) return "link";
   if (text.includes("problems") || url.includes("/problems/")) return "problem";
-  if (text.includes("search") || url.includes("/search/")) return "search";
+  if (text.includes("search") || text.includes("検索") || url.includes("/search/")) return "search";
   if (text.includes("cv") || url.includes("/cv/")) return "cv";
-  if (text.includes("awards")) return "award";
+  if (text.includes("awards") || text.includes("受賞")) return "award";
   return "";
 }
 
@@ -6792,17 +6803,17 @@ function sectionHeadingIconKey(label = "") {
   if (text.includes("research timeline") || text.includes("timeline") || text.includes("タイムライン")) return "timeline";
   if (text.includes("upcoming") || text.includes("plan") || text.includes("予定")) return "activity";
   if (text.includes("visit") || text.includes("訪問")) return "globe";
-  if (text.includes("recent talks") || text.includes("talk list") || text.includes("archive") || text.includes("talk") || text.includes("発表")) return "talk";
-  if (text.includes("recent papers") || text.includes("bibliography") || text.includes("paper") || text.includes("writing") || text.includes("論文")) return "paper";
+  if (text.includes("recent talks") || text.includes("talk list") || text.includes("archive") || text.includes("アーカイブ") || text.includes("talk") || text.includes("発表")) return "talk";
+  if (text.includes("recent papers") || text.includes("bibliography") || text.includes("paper") || text.includes("writing") || text.includes("論文") || text.includes("文献") || text.includes("文章")) return "paper";
   if (text.includes("note") || text.includes("ノート")) return "note";
   if (text.includes("web app")) return "webapp";
-  if (text.includes("question") || text.includes("trail") || text.includes("problem") || text.includes("entry") || text.includes("entries")) return "problem";
-  if (text.includes("index") || text.includes("explore") || text.includes("search") || text.includes("検索")) return "search";
+  if (text.includes("question") || text.includes("trail") || text.includes("problem") || text.includes("entry") || text.includes("entries") || text.includes("全項目")) return "problem";
+  if (text.includes("index") || text.includes("explore") || text.includes("search") || text.includes("検索") || text.includes("一覧") || text.includes("索引")) return "search";
   if (text.includes("current position") || text.includes("past position") || text.includes("position") || text.includes("所属")) return "building";
   if (text.includes("topic") || text.includes("トピック")) return "tag";
   if (text.includes("email") || text.includes("メール")) return "mail";
   if (text.includes("award") || text.includes("受賞")) return "award";
-  if (text.includes("education") || text.includes("outreach") || text.includes("教育")) return "education";
+  if (text.includes("education") || text.includes("outreach") || text.includes("教育") || text.includes("学歴")) return "education";
   if (text.includes("interest") || text.includes("関心")) return "topos";
   if (text.includes("link") || text.includes("リンク")) return "link";
   return "";
@@ -6862,11 +6873,11 @@ function decorateUiIcons(root = document.body) {
   collect(".section-head h2, .profile-grid h2, .categories-tokyo-copy h2").forEach((node) => {
     const key = sectionHeadingIconKey(node.textContent);
     linkSectionHeadingText(node);
+    const copyButton = sectionSelfCopyButton(node);
+    if (copyButton) node.append(copyButton);
     if (!key) return;
     if (!node.querySelector(".section-title-icon")) node.prepend(sectionTitleIconLink(key, node));
     node.classList.add("has-section-icon");
-    const copyButton = sectionSelfCopyButton(node);
-    if (copyButton) node.append(copyButton);
   });
 }
 
@@ -7294,6 +7305,18 @@ function themeSelectionLabel(themeIds) {
   return themeIds.map((themeId) => themeById(themeId)?.label || themeId).join(" + ");
 }
 
+function metaTagSelectionLabel(metaTagIds) {
+  if (!metaTagIds.length) return "";
+  if (metaTagIds.length > 2) return `${metaTagIds.length} meta tags`;
+  return metaTagIds.map(metaTagLabel).join(" + ");
+}
+
+function researchSelectionLabel(themeIds, metaTagIds) {
+  const themeLabel = themeSelectionLabel(themeIds);
+  const metaLabel = metaTagSelectionLabel(metaTagIds);
+  return metaLabel ? `${themeLabel} / ${metaLabel}` : themeLabel;
+}
+
 function themeSelectionScore(record, themeIds) {
   if (!themeIds.length) return record.bestScore;
   return themeIds.reduce((score, themeId) => score + (record.scores[themeId] || 0), 0);
@@ -7325,10 +7348,12 @@ function renderMetaTagIcons(metaTagIds = []) {
   return strip;
 }
 
-function topThemeRecords(kind, selection = "") {
+function topThemeRecords(kind, selection = "", metaSelection = "") {
   const themeIds = normalizeThemeSelection(selection);
+  const metaTagIds = normalizeMetaTagSelection(metaSelection);
   return themedRecords(kind)
     .filter((record) => !themeIds.length || themeIds.every((themeId) => record.themes.includes(themeId)))
+    .filter((record) => !metaTagIds.length || metaTagIds.every((tagId) => (record.metaTags || []).includes(tagId)))
     .sort((a, b) => {
       const scoreA = themeSelectionScore(a, themeIds);
       const scoreB = themeSelectionScore(b, themeIds);
@@ -7336,10 +7361,12 @@ function topThemeRecords(kind, selection = "") {
     });
 }
 
-function renderThemeResult(record, selection = "") {
+function renderThemeResult(record, selection = "", metaSelection = "") {
   const themeIds = normalizeThemeSelection(selection);
-  const item = el("article", `theme-result${themeIds.length ? " is-active" : ""}`);
+  const metaTagIds = normalizeMetaTagSelection(metaSelection);
+  const item = el("article", `theme-result${themeIds.length || metaTagIds.length ? " is-active" : ""}`);
   item.dataset.themes = record.themes.join(" ");
+  item.dataset.metaTags = (record.metaTags || []).join(" ");
   const heading = el("h4");
   heading.append(link(record.title, record.href));
   item.append(renderThemeResultIcons(record.themes), heading);
@@ -7351,15 +7378,16 @@ function renderThemeResult(record, selection = "") {
 function renderResearchMapResults(selection = "", options = {}) {
   const root = document.querySelector("#research-map");
   if (!root) return;
-  const { updateStatus = true } = options;
+  const { updateStatus = true, metaSelection = currentResearchMetaTagSelection() } = options;
   const themeIds = normalizeThemeSelection(selection);
+  const metaTagIds = normalizeMetaTagSelection(metaSelection);
   const status = root.querySelector("[data-theme-status]");
   const groups = researchThemeGroups();
 
-  const counts = groups.map(([kind]) => topThemeRecords(kind, themeIds).length);
+  const counts = groups.map(([kind]) => topThemeRecords(kind, themeIds, metaTagIds).length);
   if (status && updateStatus) {
     status.replaceChildren(
-      el("span", "theme-status-label", themeSelectionLabel(themeIds)),
+      el("span", "theme-status-label", researchSelectionLabel(themeIds, metaTagIds)),
       el(
         "span",
         "theme-status-count",
@@ -7372,12 +7400,12 @@ function renderResearchMapResults(selection = "", options = {}) {
     const list = root.querySelector(`[data-theme-results="${kind}"]`);
     if (!list) return;
     list.replaceChildren();
-    const records = topThemeRecords(kind, themeIds);
+    const records = topThemeRecords(kind, themeIds, metaTagIds);
     if (!records.length) {
       list.append(el("p", "empty-state", "No linked items yet."));
       return;
     }
-    records.forEach((record) => list.append(renderThemeResult(record, themeIds)));
+    records.forEach((record) => list.append(renderThemeResult(record, themeIds, metaTagIds)));
   });
 }
 
@@ -7390,8 +7418,8 @@ function researchThemeGroups() {
   ];
 }
 
-function researchThemeItemCount(selection = "") {
-  return researchThemeGroups().reduce((total, [kind]) => total + topThemeRecords(kind, selection).length, 0);
+function researchThemeItemCount(selection = "", metaSelection = "") {
+  return researchThemeGroups().reduce((total, [kind]) => total + topThemeRecords(kind, selection, metaSelection).length, 0);
 }
 
 function themeChoiceCountLabel(count) {
@@ -7438,7 +7466,7 @@ function renderResearchThemeSimplex(root, selection = "", mode = "active") {
 function renderThemeChoice(label, selection = "") {
   const button = el("button", "theme-choice");
   const themeIds = normalizeThemeSelection(selection);
-  const countLabel = themeChoiceCountLabel(researchThemeItemCount(themeIds));
+  const countLabel = themeChoiceCountLabel(researchThemeItemCount(themeIds, currentResearchMetaTagSelection()));
   button.type = "button";
   button.dataset.themeChoice = themeIds.join(" ");
   button.setAttribute("aria-pressed", "false");
@@ -7452,8 +7480,26 @@ function renderThemeChoice(label, selection = "") {
   return button;
 }
 
+function renderMetaTagChoice(tag) {
+  const button = el("button", `theme-choice meta-theme-choice meta-theme-choice-${tag.id}`);
+  const metaTagIds = normalizeMetaTagSelection(tag.id);
+  const countLabel = themeChoiceCountLabel(researchThemeItemCount(currentResearchThemeSelection(), metaTagIds));
+  button.type = "button";
+  button.dataset.metaTagChoice = tag.id;
+  button.setAttribute("aria-pressed", "false");
+  button.setAttribute("aria-label", `${tag.label}, ${countLabel}`);
+  button.append(uiIcon(metaTagIconKey(tag.id), "theme-choice-icon tag-icon"), el("span", "theme-choice-label", tag.label));
+  button.append(el("span", "theme-choice-count", countLabel));
+  button.addEventListener("click", () => toggleResearchMetaTagSelection(tag.id));
+  return button;
+}
+
 function currentResearchThemeSelection() {
   return normalizeThemeSelection(state.researchTheme);
+}
+
+function currentResearchMetaTagSelection() {
+  return normalizeMetaTagSelection(state.researchMetaTag);
 }
 
 function themeEdgeTouchesSelection(edgeThemeIds, themeIds) {
@@ -7483,6 +7529,35 @@ function updateResearchThemeControls(root, themeIds, className = "is-active") {
       : !choiceThemeIds.length;
     choice.classList.toggle(className, isActive);
     if (className === "is-active") choice.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+  if (className === "is-active") {
+    const metaTagIds = currentResearchMetaTagSelection();
+    root.querySelectorAll("[data-meta-tag-choice]").forEach((choice) => {
+      const isActive = metaTagIds.includes(choice.dataset.metaTagChoice);
+      choice.classList.toggle("is-active", isActive);
+      choice.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+}
+
+function updateResearchChoiceCounts(root) {
+  const themeIds = currentResearchThemeSelection();
+  const metaTagIds = currentResearchMetaTagSelection();
+  root.querySelectorAll("[data-theme-choice]").forEach((choice) => {
+    const choiceThemeIds = normalizeThemeSelection(choice.dataset.themeChoice);
+    const countLabel = themeChoiceCountLabel(researchThemeItemCount(choiceThemeIds, metaTagIds));
+    const count = choice.querySelector(".theme-choice-count");
+    if (count) count.textContent = countLabel;
+    const label = choice.querySelector(".theme-choice-label")?.textContent || "Theme";
+    choice.setAttribute("aria-label", `${label}, ${countLabel}`);
+  });
+  root.querySelectorAll("[data-meta-tag-choice]").forEach((choice) => {
+    const choiceMetaTagIds = normalizeMetaTagSelection(choice.dataset.metaTagChoice);
+    const countLabel = themeChoiceCountLabel(researchThemeItemCount(themeIds, choiceMetaTagIds));
+    const count = choice.querySelector(".theme-choice-count");
+    if (count) count.textContent = countLabel;
+    const label = choice.querySelector(".theme-choice-label")?.textContent || "Meta tag";
+    choice.setAttribute("aria-label", `${label}, ${countLabel}`);
   });
 }
 
@@ -7524,18 +7599,51 @@ function toggleResearchThemeSelection(selection = "") {
   setResearchThemeSelection(researchThemes.map((theme) => theme.id).filter((themeId) => currentSet.has(themeId)));
 }
 
+function toggleResearchMetaTagSelection(selection = "") {
+  const toggledTagIds = normalizeMetaTagSelection(selection);
+  if (!toggledTagIds.length) {
+    setResearchMetaTagSelection("");
+    return;
+  }
+  const current = currentResearchMetaTagSelection();
+  const currentSet = new Set(current);
+  const shouldRemove = toggledTagIds.every((tagId) => currentSet.has(tagId));
+  if (shouldRemove) toggledTagIds.forEach((tagId) => currentSet.delete(tagId));
+  else toggledTagIds.forEach((tagId) => currentSet.add(tagId));
+  setResearchMetaTagSelection(researchMetaTags.map((tag) => tag.id).filter((tagId) => currentSet.has(tagId)));
+}
+
 function setResearchThemeSelection(selection = "") {
   const themeIds = normalizeThemeSelection(selection);
   state.researchTheme = themeIds.join(" ");
   const root = document.querySelector("#research-map");
   if (!root) return;
-  root.classList.toggle("has-active-theme", Boolean(themeIds.length));
+  const metaTagIds = currentResearchMetaTagSelection();
+  root.classList.toggle("has-active-theme", Boolean(themeIds.length || metaTagIds.length));
   root.classList.remove("is-previewing");
   clearResearchThemeControlClass(root, "is-preview");
   updateResearchThemeControls(root, themeIds);
+  updateResearchChoiceCounts(root);
   renderResearchThemeSimplex(root, themeIds, "active");
   renderResearchThemeSimplex(root, "", "preview");
-  renderResearchMapResults(themeIds);
+  renderResearchMapResults(themeIds, { metaSelection: metaTagIds });
+}
+
+function setResearchMetaTagSelection(selection = "") {
+  const metaTagIds = normalizeMetaTagSelection(selection);
+  state.researchMetaTag = metaTagIds.join(" ");
+  const root = document.querySelector("#research-map");
+  if (!root) return;
+  const themeIds = currentResearchThemeSelection();
+  root.classList.toggle("has-active-theme", Boolean(themeIds.length || metaTagIds.length));
+  root.querySelectorAll("[data-meta-tag-choice]").forEach((choice) => {
+    const isActive = metaTagIds.includes(choice.dataset.metaTagChoice);
+    choice.classList.toggle("is-active", isActive);
+    choice.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+  updateResearchThemeControls(root, themeIds);
+  updateResearchChoiceCounts(root);
+  renderResearchMapResults(themeIds, { metaSelection: metaTagIds });
 }
 
 function setResearchTheme(themeId = "") {
@@ -7577,7 +7685,9 @@ function renderResearchMap() {
   const overview = el("div", "theme-overview");
   const choices = el("div", "theme-choice-list");
   researchThemes.forEach((theme) => choices.append(renderThemeChoice(theme.label, theme.id)));
-  overview.append(choices);
+  const metaChoices = el("div", "theme-choice-list meta-theme-choice-list");
+  researchMetaTags.forEach((tag) => metaChoices.append(renderMetaTagChoice(tag)));
+  overview.append(choices, metaChoices);
   mapColumn.append(overview);
 
   const panel = el("div", "theme-panel");
@@ -7591,6 +7701,7 @@ function renderResearchMap() {
   panel.append(columns);
   layout.append(mapColumn, panel);
   root.append(layout);
+  setResearchMetaTagSelection(currentResearchMetaTagSelection());
   setResearchTheme(currentResearchThemeSelection());
 }
 
@@ -8081,60 +8192,60 @@ function normalizationLatticeTemplate(role, x, y, scale = 1) {
   return `
       <g class="normalization-lattice" data-normalization-lattice-role="${role}" transform="translate(${x} ${y}) scale(${scale})">
         <g class="normalization-hasse-edges" data-normalization-hasse-edges>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v0" d="M150 52 L70 109"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="rot" d="M150 52 L150 109"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v1" d="M150 52 L230 109"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref0" d="M70 135 L35 209"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref2" d="M70 135 L95 209"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="r2" d="M70 135 L150 209"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="rot" data-normalization-hasse-to="r2" d="M150 135 L150 209"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="r2" d="M230 135 L150 209"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref1" d="M230 135 L205 209"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref3" d="M230 135 L265 209"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref0" d="M150 327 L35 235"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref2" d="M150 327 L95 235"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="r2" d="M150 327 L150 235"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref1" d="M150 327 L205 235"></path>
-          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref3" d="M150 327 L265 235"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v0" d="M150 49 L70 101"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="rot" d="M150 49 L150 101"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="d4" data-normalization-hasse-to="v1" d="M150 49 L230 101"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref0" d="M70 123 L35 225"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="ref2" d="M70 123 L95 225"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v0" data-normalization-hasse-to="r2" d="M70 123 L150 225"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="rot" data-normalization-hasse-to="r2" d="M150 123 L150 225"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="r2" d="M230 123 L150 225"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref1" d="M230 123 L205 225"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="v1" data-normalization-hasse-to="ref3" d="M230 123 L265 225"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref0" d="M150 311 L35 247"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref2" d="M150 311 L95 247"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="r2" d="M150 311 L150 247"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref1" d="M150 311 L205 247"></path>
+          <path class="figure-line normalization-hasse-edge" data-normalization-hasse-edge data-normalization-hasse-from="one" data-normalization-hasse-to="ref3" d="M150 311 L265 247"></path>
         </g>
 
         <g class="normalization-subgroup" data-normalization-subgroup="d4" data-subgroup-label="D4" transform="translate(150 38)">
           <rect class="figure-node soft" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label large" y="1">D<tspan baseline-shift="sub" font-size="68%">4</tspan></text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="v0" data-subgroup-label="&lt;tau,sigma^2&gt;" transform="translate(70 122)">
+        <g class="normalization-subgroup" data-normalization-subgroup="v0" data-subgroup-label="&lt;tau,sigma^2&gt;" transform="translate(70 112)">
           <rect class="figure-node pale" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="rot" data-subgroup-label="&lt;sigma&gt;" transform="translate(150 122)">
+        <g class="normalization-subgroup" data-normalization-subgroup="rot" data-subgroup-label="&lt;sigma&gt;" transform="translate(150 112)">
           <rect class="figure-node pale" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="v1" data-subgroup-label="&lt;sigma tau,sigma^2&gt;" transform="translate(230 122)">
+        <g class="normalization-subgroup" data-normalization-subgroup="v1" data-subgroup-label="&lt;sigma tau,sigma^2&gt;" transform="translate(230 112)">
           <rect class="figure-node pale" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;&tau;, &sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-face-colors="blue" data-normalization-subgroup="ref0" data-subgroup-label="&lt;tau&gt;" transform="translate(35 222)">
+        <g class="normalization-subgroup" data-normalization-face-colors="blue" data-normalization-subgroup="ref0" data-subgroup-label="&lt;tau&gt;" transform="translate(35 236)">
           <rect class="figure-node" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-face-colors="red" data-normalization-subgroup="ref2" data-subgroup-label="&lt;sigma^2 tau&gt;" transform="translate(95 222)">
+        <g class="normalization-subgroup" data-normalization-face-colors="red" data-normalization-subgroup="ref2" data-subgroup-label="&lt;sigma^2 tau&gt;" transform="translate(95 236)">
           <rect class="figure-node" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="r2" data-subgroup-label="&lt;sigma^2&gt;" transform="translate(150 222)">
+        <g class="normalization-subgroup" data-normalization-subgroup="r2" data-subgroup-label="&lt;sigma^2&gt;" transform="translate(150 236)">
           <rect class="figure-node warm" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">2</tspan>&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-edge-colors="green" data-normalization-subgroup="ref1" data-subgroup-label="&lt;sigma tau&gt;" transform="translate(205 222)">
+        <g class="normalization-subgroup" data-normalization-edge-colors="green" data-normalization-subgroup="ref1" data-subgroup-label="&lt;sigma tau&gt;" transform="translate(205 236)">
           <rect class="figure-node" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;&sigma;&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-edge-colors="purple" data-normalization-subgroup="ref3" data-subgroup-label="&lt;sigma^3 tau&gt;" transform="translate(265 222)">
+        <g class="normalization-subgroup" data-normalization-edge-colors="purple" data-normalization-subgroup="ref3" data-subgroup-label="&lt;sigma^3 tau&gt;" transform="translate(265 236)">
           <rect class="figure-node" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label tiny" y="1">&#10216;&sigma;<tspan baseline-shift="super" font-size="65%">3</tspan>&tau;&#10217;</text>
         </g>
-        <g class="normalization-subgroup" data-normalization-subgroup="one" data-subgroup-label="&lt;1&gt;" transform="translate(150 340)">
+        <g class="normalization-subgroup" data-normalization-subgroup="one" data-subgroup-label="&lt;1&gt;" transform="translate(150 322)">
           <rect class="figure-node soft" x="-11" y="-11" width="22" height="22" rx="3"></rect>
           <text class="figure-math-label small" y="1">&#10216;1&#10217;</text>
         </g>
@@ -8179,7 +8290,7 @@ function normalizationFigureTemplate() {
       <text class="normalization-arrow-caption" x="600" y="53">Normalizer</text>
       <g class="normalization-action-atlas" transform="translate(22 58)">
         <rect class="normalization-action-stage-bg" width="254" height="292" rx="10"></rect>
-        <g class="normalization-square-stage" transform="translate(28 32) scale(4.6)">
+        <g class="normalization-square-stage" transform="translate(28 73) scale(4.6)">
           <g class="normalization-square-body" data-normalization-square-body>
             <path class="normalization-square-shadow" d="M0 4 H42 V46 H0 Z"></path>
             <path class="normalization-square-edge-hit" data-normalization-boundary-edge="e0" d="M0 4 H42"></path>
@@ -8537,16 +8648,89 @@ ${rollingBouquets.map(automataCoverRollingBouquet).join("\n")}
         </g>`;
 }
 
+const gamesRbSelectableValues = [0, 1, 2, 3, 4];
+const gamesRbVisibleValues = [0, 1, 2, 3, 4, 5];
+const gamesRbInitialS = [0, 1, 4];
+const gamesRbInitialT = [0, 1, 2];
+const gamesRbCellWidth = 31;
+const gamesRbCellHeight = 24;
+const gamesRbHeaderWidth = 31;
+const gamesRbHeaderHeight = 24;
+const gamesRbTableWidth = gamesRbHeaderWidth + gamesRbVisibleValues.length * gamesRbCellWidth;
+const gamesRbTableHeight = gamesRbHeaderHeight + gamesRbVisibleValues.length * gamesRbCellHeight;
+
+function gamesRbColumnX(value) {
+  return gamesRbHeaderWidth + value * gamesRbCellWidth;
+}
+
+function gamesRbRowY(value) {
+  return gamesRbHeaderHeight + value * gamesRbCellHeight;
+}
+
+function gamesRbCellTextX(value) {
+  return gamesRbColumnX(value) + gamesRbCellWidth / 2;
+}
+
+function gamesRbCellTextY(value) {
+  return gamesRbRowY(value) + 17;
+}
+
+function gamesRbMex(values) {
+  const set = new Set(values);
+  let value = 0;
+  while (set.has(value)) value += 1;
+  return value;
+}
+
+function gamesRbFormatSet(values) {
+  return [...values].sort((a, b) => a - b).join(",");
+}
+
+function gamesRbNimTableBaseTemplate() {
+  const minorLines = [
+    ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
+    ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
+  ].join(" ");
+  const headerTexts = gamesRbVisibleValues
+    .map((value) => `<text class="games-rb-cell-text is-head" x="${gamesRbCellTextX(value)}" y="17" text-anchor="middle">${value}</text>`)
+    .join("\n          ");
+  const rows = gamesRbVisibleValues
+    .map((row) => {
+      const rowHead = `<text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="${gamesRbCellTextY(row)}" text-anchor="middle">${row}</text>`;
+      const cells = gamesRbVisibleValues
+        .map((column) => `<text class="games-rb-cell-text" x="${gamesRbCellTextX(column)}" y="${gamesRbCellTextY(row)}" text-anchor="middle">${row ^ column}</text>`)
+        .join("\n          ");
+      return `${rowHead}\n          ${cells}`;
+    })
+    .join("\n          ");
+  return `
+          <rect class="games-rb-table-bg" x="0" y="0" width="${gamesRbTableWidth}" height="${gamesRbTableHeight}" rx="0"></rect>
+          <rect class="games-rb-table-head-row" x="0" y="0" width="${gamesRbTableWidth}" height="${gamesRbHeaderHeight}"></rect>
+          <rect class="games-rb-table-head-col" x="0" y="0" width="${gamesRbHeaderWidth}" height="${gamesRbTableHeight}"></rect>
+          <path class="games-rb-table-lines is-major" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
+          <path class="games-rb-table-lines" d="${minorLines}"></path>
+          <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
+          <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="17" text-anchor="middle">⊕</text>
+          ${headerTexts}
+          ${rows}`;
+}
+
 const paperFigureTemplates = {
   "games-integral-calculus": `
-    <svg class="games-rb-table-figure games-rb-dual-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
+    <svg class="games-rb-table-figure games-rb-dual-figure" data-games-rb-interactive viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
       <title id="fig-games-rb-table-title">Checking the mex Rota-Baxter equation with two Nim-sum tables</title>
-      <desc id="fig-games-rb-table-desc">Two Nim-sum operation tables compute the two sides of the mex Rota-Baxter equation for S={0,1,3} and T={0,1,2}, then compare the common value 1.</desc>
+      <desc id="fig-games-rb-table-desc">Two Nim-sum operation tables compute the two sides of the mex Rota-Baxter equation for selectable finite sets S and T.</desc>
       <defs>
         <marker id="games-rb-mex-arrow-orange" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M 0 0 L 10 5 L 0 10 z"></path>
         </marker>
         <marker id="games-rb-mex-arrow-red" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z"></path>
+        </marker>
+        <marker id="games-rb-arrow-blue" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z"></path>
+        </marker>
+        <marker id="games-rb-arrow-red" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto">
           <path d="M 0 0 L 10 5 L 0 10 z"></path>
         </marker>
         <linearGradient id="games-rb-table-paper" x1="0" x2="1" y1="0" y2="1">
@@ -8555,48 +8739,7 @@ const paperFigureTemplates = {
           <stop offset="1" stop-color="#e8eef1"></stop>
         </linearGradient>
         <g id="games-nim-table-base">
-          <rect class="games-rb-table-bg" x="0" y="0" width="186" height="144" rx="0"></rect>
-          <rect class="games-rb-table-head-row" x="0" y="0" width="186" height="24"></rect>
-          <rect class="games-rb-table-head-col" x="0" y="0" width="31" height="144"></rect>
-          <path class="games-rb-table-lines is-major" d="M0 0 H186 M0 144 H186 M0 0 V144 M186 0 V144"></path>
-          <path class="games-rb-table-lines" d="M0 48 H186 M0 72 H186 M0 96 H186 M0 120 H186 M62 0 V144 M93 0 V144 M124 0 V144 M155 0 V144"></path>
-          <path class="games-rb-table-lines is-input-output" d="M0 24 H186 M31 0 V144"></path>
-          <text class="games-rb-cell-text is-head" x="15.5" y="17" text-anchor="middle">⊕</text>
-          <text class="games-rb-cell-text is-head" x="46.5" y="17" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text is-head" x="77.5" y="17" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text is-head" x="108.5" y="17" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text is-head" x="139.5" y="17" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text is-head" x="170.5" y="17" text-anchor="middle">4</text>
-          <text class="games-rb-cell-text is-head" x="15.5" y="41" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="46.5" y="41" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="77.5" y="41" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="108.5" y="41" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="139.5" y="41" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="170.5" y="41" text-anchor="middle">4</text>
-          <text class="games-rb-cell-text is-head" x="15.5" y="65" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="46.5" y="65" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="77.5" y="65" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="108.5" y="65" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="139.5" y="65" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="170.5" y="65" text-anchor="middle">5</text>
-          <text class="games-rb-cell-text is-head" x="15.5" y="89" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="46.5" y="89" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="77.5" y="89" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="108.5" y="89" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="139.5" y="89" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="170.5" y="89" text-anchor="middle">6</text>
-          <text class="games-rb-cell-text is-head" x="15.5" y="113" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="46.5" y="113" text-anchor="middle">3</text>
-          <text class="games-rb-cell-text" x="77.5" y="113" text-anchor="middle">2</text>
-          <text class="games-rb-cell-text" x="108.5" y="113" text-anchor="middle">1</text>
-          <text class="games-rb-cell-text" x="139.5" y="113" text-anchor="middle">0</text>
-          <text class="games-rb-cell-text" x="170.5" y="113" text-anchor="middle">7</text>
-          <text class="games-rb-cell-text is-head" x="15.5" y="137" text-anchor="middle">4</text>
-          <text class="games-rb-cell-text" x="46.5" y="137" text-anchor="middle">4</text>
-          <text class="games-rb-cell-text" x="77.5" y="137" text-anchor="middle">5</text>
-          <text class="games-rb-cell-text" x="108.5" y="137" text-anchor="middle">6</text>
-          <text class="games-rb-cell-text" x="139.5" y="137" text-anchor="middle">7</text>
-          <text class="games-rb-cell-text" x="170.5" y="137" text-anchor="middle">0</text>
+${gamesRbNimTableBaseTemplate()}
         </g>
       </defs>
 
@@ -8608,18 +8751,13 @@ const paperFigureTemplates = {
         <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
         <g class="games-rb-dual-table is-expanded-table" transform="translate(70 76)">
           <use href="#games-nim-table-base"></use>
-          <text class="games-rb-set-axis-label is-s-label" x="-14" y="64" text-anchor="middle">S</text>
-          <text class="games-rb-set-axis-label is-t-label" x="77.5" y="-8" text-anchor="middle">T</text>
-          <rect class="games-rb-set-highlight is-s-entry" x="0" y="24" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-s-entry" x="0" y="48" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-s-entry" x="0" y="96" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-t-entry" x="31" y="0" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-t-entry" x="62" y="0" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-t-entry" x="93" y="0" width="31" height="24"></rect>
-          <rect class="games-rb-mex-highlight is-mex-s-entry" x="0" y="72" width="31" height="24"></rect>
-          <rect class="games-rb-mex-highlight is-mex-t-entry" x="124" y="0" width="31" height="24"></rect>
-          <text class="games-rb-mex-axis-label is-mex-s-label" x="-33" y="88" text-anchor="middle">mex(S)</text>
-          <text class="games-rb-mex-axis-label is-mex-t-label" x="139.5" y="-23" text-anchor="middle">mex(T)</text>
+          <g data-games-rb-set-layer="expanded"></g>
+          <g data-games-rb-union-layer></g>
+          <g data-games-rb-mex-layer="expanded"></g>
+          <text class="games-rb-set-axis-label is-s-label" x="-14" y="84" text-anchor="middle">S</text>
+          <text class="games-rb-set-axis-label is-t-label" x="108.5" y="-8" text-anchor="middle">T</text>
+          <text class="games-rb-mex-axis-label is-mex-s-label" data-games-rb-mex-label="S" x="-33" y="88" text-anchor="middle">mex(S)</text>
+          <text class="games-rb-mex-axis-label is-mex-t-label" data-games-rb-mex-label="T" x="139.5" y="-23" text-anchor="middle">mex(T)</text>
         </g>
       </g>
 
@@ -8627,23 +8765,19 @@ const paperFigureTemplates = {
         <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
         <g class="games-rb-dual-table is-product-table" transform="translate(70 76)">
           <use href="#games-nim-table-base"></use>
-          <text class="games-rb-set-axis-label is-s-label" x="-14" y="64" text-anchor="middle">S</text>
-          <text class="games-rb-set-axis-label is-t-label" x="77.5" y="-8" text-anchor="middle">T</text>
-          <rect class="games-rb-set-highlight is-s-entry" x="0" y="24" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-s-entry" x="0" y="48" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-s-entry" x="0" y="96" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-t-entry" x="31" y="0" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-t-entry" x="62" y="0" width="31" height="24"></rect>
-          <rect class="games-rb-set-highlight is-t-entry" x="93" y="0" width="31" height="24"></rect>
-          <rect class="games-rb-mex-highlight is-mex-s-entry" x="0" y="72" width="31" height="24"></rect>
-          <rect class="games-rb-mex-highlight is-mex-t-entry" x="124" y="0" width="31" height="24"></rect>
-          <text class="games-rb-mex-axis-label is-mex-s-label" x="-33" y="88" text-anchor="middle">mex(S)</text>
-          <text class="games-rb-mex-axis-label is-mex-t-label" x="139.5" y="-23" text-anchor="middle">mex(T)</text>
+          <g data-games-rb-set-layer="product"></g>
+          <g data-games-rb-product-layer></g>
+          <g data-games-rb-product-arrow-layer></g>
+          <g data-games-rb-mex-layer="product"></g>
+          <text class="games-rb-set-axis-label is-s-label" x="-14" y="84" text-anchor="middle">S</text>
+          <text class="games-rb-set-axis-label is-t-label" x="108.5" y="-8" text-anchor="middle">T</text>
+          <text class="games-rb-mex-axis-label is-mex-s-label" data-games-rb-mex-label="S" x="-33" y="88" text-anchor="middle">mex(S)</text>
+          <text class="games-rb-mex-axis-label is-mex-t-label" data-games-rb-mex-label="T" x="139.5" y="-23" text-anchor="middle">mex(T)</text>
         </g>
       </g>
     </svg>
-    <span class="figure-math games-rb-table-tex games-rb-set-def games-rb-set-def-s">\\(S=\\{0,1,3\\}\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-set-def games-rb-set-def-t">\\(T=\\{0,1,2\\}\\)</span>
+    ${gamesRbSetControlTemplate("S", gamesRbInitialS)}
+    ${gamesRbSetControlTemplate("T", gamesRbInitialT)}
     <span class="figure-math games-rb-table-tex games-rb-dual-tex-left">\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)\\)</span>
     <span class="figure-math games-rb-table-tex games-rb-dual-tex-right">\\(\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T})\\)</span>`,
   "automata-cantor-morphism": `
@@ -8659,8 +8793,10 @@ const paperFigureTemplates = {
 
       <rect class="automata-cantor-paper" width="760" height="390"></rect>
       <g class="automata-cantor-layout">
+        <text class="automata-topos-label automata-topos-label-left" x="112" y="68">Sh(Σ<tspan class="automata-topos-sup">ω</tspan>)</text>
+        <text class="automata-topos-label automata-topos-label-middle" x="370" y="68">PSh(Σ<tspan class="automata-topos-sup">*</tspan>)</text>
+        <text class="automata-topos-label automata-topos-label-right" x="650" y="68">Σ-Set</text>
         <g class="automata-cantor-space">
-          <text class="automata-cantor-space-label" x="34" y="72">Cantor space</text>
           <g class="automata-cantor-fractal">
             <path class="automata-cantor-interval stage-0" d="M56 106 L56 284"></path>
             <path class="automata-cantor-interval stage-1" d="M88 106 L88 165.3"></path>
@@ -8710,40 +8846,40 @@ const paperFigureTemplates = {
           </g>
         </g>
 
-        <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M205 195 H238"></path>
-        <text class="automata-cantor-arrow-label large automata-sublocale-label" x="222" y="180">sublocale</text>
+        <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M204 195 H238"></path>
+        <text class="automata-cantor-arrow-label large automata-sublocale-label" x="221" y="214">sublocale</text>
 
         <g class="automata-prefix-poset">
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 107.1 L286 109.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 111.5 L286 109.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 120.3 L286 122.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 124.7 L286 122.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 146.7 L286 148.9"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 151 L286 148.9"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 159.8 L286 162"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 164.2 L286 162"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 225.8 L286 228"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 230.1 L286 228"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 238.9 L286 241.1"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 243.3 L286 241.1"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 265.3 L286 267.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 269.7 L286 267.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M252 278.5 L286 280.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M252 282.9 L286 280.7"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M286 109.3 L336 115.9"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M286 122.5 L336 115.9"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M286 148.9 L336 155.4"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M286 162 L336 155.4"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M286 228 L336 234.6"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M286 241.1 L336 234.6"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M286 267.5 L336 274.1"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M286 280.7 L336 274.1"></path>
-          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M336 115.9 L408 135.7"></path>
-          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M336 155.4 L408 135.7"></path>
-          <path class="automata-cantor-tree-edge level-1 blue" pathLength="1" data-cantor-arrow="blue" d="M408 135.7 L486 195"></path>
-          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M336 234.6 L408 254.3"></path>
-          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M336 274.1 L408 254.3"></path>
-          <path class="automata-cantor-tree-edge level-1 red" pathLength="1" data-cantor-arrow="red" d="M408 254.3 L486 195"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 109 L255.5 107.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 109.6 L255.5 111.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 122.2 L255.5 120.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 122.8 L255.5 124.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 148.6 L255.5 146.9"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 149.2 L255.5 150.8"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 161.7 L255.5 160"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 162.3 L255.5 164"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 227.7 L255.5 226"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 228.3 L255.5 229.9"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 240.8 L255.5 239.1"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 241.4 L255.5 243.1"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 267.2 L255.5 265.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 267.8 L255.5 269.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 280.4 L255.5 278.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 281 L255.5 282.7"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M330.8 115.2 L290.4 109.9"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M330.8 116.6 L290.4 121.9"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M330.8 154.7 L290.4 149.5"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M330.8 156.1 L290.4 161.4"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M330.8 233.9 L290.4 228.6"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M330.8 235.3 L290.4 240.5"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M330.8 273.4 L290.4 268.1"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M330.8 274.8 L290.4 280.1"></path>
+          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M401.1 133.8 L341.2 117.3"></path>
+          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M401.1 137.6 L341.2 154"></path>
+          <path class="automata-cantor-tree-edge level-1 blue" pathLength="1" data-cantor-arrow="blue" d="M475.7 187.1 L413.9 140.2"></path>
+          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M401.1 252.4 L341.2 236"></path>
+          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M401.1 256.2 L341.2 272.7"></path>
+          <path class="automata-cantor-tree-edge level-1 red" pathLength="1" data-cantor-arrow="red" d="M475.7 202.9 L413.9 249.8"></path>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="107.1" r="2.35"></circle>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="111.5" r="2.35"></circle>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="120.3" r="2.35"></circle>
@@ -8975,33 +9111,29 @@ ${automataCoverUnfoldingTemplate()}
       </defs>
 
       <g transform="translate(42 56)">
-        <rect class="tensor-step1-block tensor-step1-block-left" x="32" y="28" width="256" height="198" rx="12">
+        <foreignObject class="tensor-tex-object tensor-tex-object-left" x="130" y="-4" width="60" height="32">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="tensor-tex-label">\\(X\\)</div>
+        </foreignObject>
+        <foreignObject class="tensor-tex-object tensor-tex-object-product" x="292" y="-12" width="96" height="46">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="tensor-tex-label">\\(\\mathop{\\otimes}\\limits_{\\mathrm{FinSet}}\\)</div>
+        </foreignObject>
+        <foreignObject class="tensor-tex-object tensor-tex-object-right" x="490" y="-4" width="60" height="32">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="tensor-tex-label">\\(F\\)</div>
+        </foreignObject>
+        <rect class="tensor-step1-block tensor-step1-block-left" x="32" y="58" width="256" height="168" rx="12">
           <animate attributeName="width" values="256;256;184;184;256;256" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate>
           <animate attributeName="opacity" values="1;1;1" keyTimes="0;0.0806;1" dur="12.4s" repeatCount="indefinite"></animate>
         </rect>
-        <rect class="tensor-step1-block tensor-step1-block-middle" x="392" y="28" width="128" height="198" rx="12">
+        <rect class="tensor-step1-block tensor-step1-block-middle" x="392" y="58" width="128" height="168" rx="12">
           <animate attributeName="x" values="392;392;392;286;246;246;210;210;210" keyTimes="0;0.0806;0.1775;0.2258;0.2823;0.3387;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate>
           <animate attributeName="width" values="128;128;128;158;188;188;80;80;80" keyTimes="0;0.0806;0.1775;0.2258;0.2823;0.3387;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate>
           <animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.0806;0.2258;0.2339;0.3807;0.3891;1" dur="12.4s" repeatCount="indefinite"></animate>
         </rect>
-        <rect class="tensor-step1-block tensor-step1-block-subset" x="390" y="28" width="260" height="198" rx="12">
+        <rect class="tensor-step1-block tensor-step1-block-subset" x="390" y="58" width="260" height="168" rx="12">
           <animate attributeName="x" values="390;390;462;462;390;390" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate>
           <animate attributeName="width" values="260;260;188;188;260;260" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate>
           <animate attributeName="opacity" values="1;1;1" keyTimes="0;0.0806;1" dur="12.4s" repeatCount="indefinite"></animate>
         </rect>
-        <text class="tensor-step-title" x="70" y="18">Step 1<animate attributeName="opacity" values="1;1;1;0;0" keyTimes="0;0.0806;0.2742;0.2823;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-        <text class="tensor-step-title tensor-step-title-two" x="70" y="18">Step 2<animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.0806;0.2823;0.3387;0.532;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-        <text class="tensor-step-title tensor-step-title-three" x="70" y="18">Step 3<animate attributeName="opacity" values="0;0;0;1;1;0;0" keyTimes="0;0.0806;0.5403;0.5968;0.79;0.7984;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-        <g>
-          <text class="tensor-side-label" x="70" y="48">X1<animate attributeName="x" values="70;70;70;70;70;70" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-neutral-label" x="250" y="48">A1<animate attributeName="x" values="250;250;178;178;250;250" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;1;0;0" keyTimes="0;0.0806;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-neutral-label tensor-b1-label" x="250" y="48">B1<animate attributeName="opacity" values="0;0;0;1;1" keyTimes="0;0.0806;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-          <text class="tensor-side-label tensor-neutral-label" x="430" y="48">A2<animate attributeName="x" values="430;430;286;286;250;250" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate><animate attributeName="opacity" values="1;1;1;1;0;0" keyTimes="0;0.0806;0.2823;0.5403;0.622;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-        </g>
-        <text class="tensor-side-label tensor-neutral-label tensor-s-new-label tensor-step2-absorbed" x="430" y="48">S1<animate attributeName="x" values="430;430;394;394;250;250" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-        <text class="tensor-side-label tensor-neutral-label tensor-s-duplicate-label" x="430" y="48">S2<animate attributeName="x" values="430;430;502;502;430;430" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animate></text>
-        <text class="tensor-side-label tensor-s-label" x="610" y="48">S3</text>
-
         <g>
           <g class="tensor-x-node selected" transform="translate(70 92)"><animateTransform attributeName="transform" type="translate" values="70 92;70 92;70 92;70 92;70 92;70 92" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">x</text></g>
           <g class="tensor-x-node selected green" transform="translate(70 146)"><animateTransform attributeName="transform" type="translate" values="70 146;70 146;70 146;70 146;70 146;70 146" keyTimes="0;0.0806;0.2823;0.3387;0.5403;1" dur="12.4s" repeatCount="indefinite"></animateTransform><circle cx="0" cy="0" r="18"></circle><text x="0" y="7">y</text></g>
@@ -9080,13 +9212,11 @@ ${automataCoverUnfoldingTemplate()}
       <g transform="translate(22 18)">
         <g class="automata-input-tape" transform="translate(36 8)">
           <rect class="automata-input-panel" x="0" y="0" width="188" height="132" rx="12"></rect>
-          <text class="figure-small automata-input-heading" x="18" y="24">Input</text>
+          <text class="figure-small automata-input-heading" x="18" y="24">Input:</text>
           <text class="figure-small automata-input-word" x="28" y="57"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0083;0.0208;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.0583;0.0708;0.995;1"></animate></tspan><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.1083;0.1208;0.995;1"></animate></tspan></text>
           <text class="figure-small automata-input-word" x="28" y="89"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3417;0.3542;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.3917;0.4042;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.4417;0.4542;0.995;1"></animate></tspan></text>
           <text class="figure-small automata-input-word" x="28" y="121"><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.675;0.6875;0.995;1"></animate></tspan><tspan class="automata-word-a">a<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.725;0.7375;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.775;0.7875;0.995;1"></animate></tspan><tspan class="automata-word-b">b<animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="1;1;0.2;0.2;1" keyTimes="0;0.825;0.8375;0.995;1"></animate></tspan></text>
         </g>
-
-        <text class="figure-small automata-lift-label" x="604" y="72">Automaton as a Path Lift</text>
 
         <path class="automata-input-start-link" d="M96 140 V232"></path>
 
@@ -9269,17 +9399,10 @@ ${automataCoverUnfoldingTemplate()}
           </g>
         </g>
 
-        <g class="automata-output-panel" transform="translate(438 326)">
-          <rect class="automata-output-panel-bg" x="0" y="0" width="268" height="104" rx="12"></rect>
+        <g class="automata-output-panel" transform="translate(476 42)">
+          <rect class="automata-output-panel-bg" x="0" y="0" width="230" height="64" rx="12"></rect>
           <text class="figure-small automata-output-heading" x="18" y="24">Output</text>
-          <g class="automata-output-cell automata-output-cell-accept" transform="translate(14 32)">
-            <rect x="0" y="0" width="240" height="30" rx="9"></rect>
-            <text class="figure-small automata-output-cell-label" x="12" y="20">Accept</text>
-          </g>
-          <g class="automata-output-cell automata-output-cell-reject" transform="translate(14 67)">
-            <rect x="0" y="0" width="240" height="30" rx="9"></rect>
-            <text class="figure-small automata-output-cell-label" x="12" y="20">Reject</text>
-          </g>
+          <rect class="automata-current-output-block" x="78" y="7" width="130" height="40" rx="10"></rect>
         </g>
         <g class="automata-result-output automata-language-reject">
           <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" path="M432.7 248.6 C506 282, 556 338, 584 408" keyTimes="0;0.1542;0.1708;0.9958;1" keyPoints="0;0;1;1;0"></animateMotion>
@@ -9538,9 +9661,24 @@ function applyFigureMarkerIds(container, figureId, prefix) {
       marker.id = markerId;
       markers.set(group, markerId);
     });
+    svg.querySelectorAll(".automata-cantor-tree-arrowhead").forEach((path) => path.remove());
     svg.querySelectorAll("[data-cantor-arrow]").forEach((path) => {
+      if (path.classList.contains("automata-cantor-tree-edge")) {
+        path.removeAttribute("marker-end");
+        return;
+      }
       const markerId = markers.get(path.dataset.cantorArrow || "neutral");
       if (markerId) path.setAttribute("marker-end", `url(#${markerId})`);
+    });
+    svg.querySelectorAll(".automata-prefix-poset .automata-cantor-tree-edge").forEach((edge) => {
+      const markerId = markers.get(edge.dataset.cantorArrow || "neutral");
+      if (!markerId) return;
+      const arrowhead = edge.cloneNode(false);
+      arrowhead.classList.remove("automata-cantor-tree-edge", "child");
+      arrowhead.classList.add("automata-cantor-tree-arrowhead");
+      arrowhead.removeAttribute("pathLength");
+      arrowhead.setAttribute("marker-end", `url(#${markerId})`);
+      edge.after(arrowhead);
     });
     return;
   }
@@ -9611,15 +9749,15 @@ const normalizationSubgroupElements = {
 
 const normalizationSubgroupCoordinates = {
   d4: [150, 38],
-  v0: [70, 122],
-  rot: [150, 122],
-  v1: [230, 122],
-  ref0: [35, 222],
-  ref2: [95, 222],
-  r2: [150, 222],
-  ref1: [205, 222],
-  ref3: [265, 222],
-  one: [150, 340]
+  v0: [70, 112],
+  rot: [150, 112],
+  v1: [230, 112],
+  ref0: [35, 236],
+  ref2: [95, 236],
+  r2: [150, 236],
+  ref1: [205, 236],
+  ref3: [265, 236],
+  one: [150, 322]
 };
 
 const normalizationSubgroupNodeHalfExtents = {
@@ -9735,7 +9873,7 @@ const normalizationOldLatticeGlobalOffset = [315, 54];
 const normalizationNewLatticeGlobalOffset = [620, 54];
 const normalizationLatticeGlobalScale = 0.88;
 const normalizationLatticeGlobalOffset = normalizationOldLatticeGlobalOffset;
-const normalizationSquareStageGlobalOrigin = [50, 90];
+const normalizationSquareStageGlobalOrigin = [50, 131];
 const normalizationSquareStageScale = 4.6;
 const normalizationActionDotRadius = 3.2;
 const normalizationActionPointGlobalRadius = normalizationActionDotRadius * normalizationSquareStageScale;
@@ -11100,6 +11238,189 @@ function stopGrundyFigures(scope) {
   roots.forEach((root) => stopGrundyFigure(root));
 }
 
+function gamesRbSvgElement(tag, attrs = {}) {
+  const node = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  Object.entries(attrs).forEach(([key, value]) => {
+    if (value === null || value === undefined) return;
+    node.setAttribute(key, String(value));
+  });
+  return node;
+}
+
+function gamesRbSetTex(name) {
+  return `\\(${name}=\\)`;
+}
+
+function gamesRbSetControlTemplate(name, values) {
+  const buttons = gamesRbSelectableValues
+    .map((value) => `<button type="button" class="games-rb-set-button" data-games-rb-toggle="${name}" data-games-rb-value="${value}" aria-pressed="${values.includes(value) ? "true" : "false"}">${value}</button>`)
+    .join("");
+  return `<div class="figure-math games-rb-table-tex games-rb-set-control games-rb-set-control-${name.toLowerCase()} games-rb-set-def-${name.toLowerCase()}" data-games-rb-set-control="${name}">
+      <span class="games-rb-set-current" data-games-rb-set-def="${name}">${gamesRbSetTex(name)}</span>
+      <span class="games-rb-set-buttons" aria-label="Choose ${name}">${buttons}</span>
+    </div>`;
+}
+
+function appendGamesRbRect(layer, className, x, y, width = gamesRbCellWidth, height = gamesRbCellHeight, extra = {}) {
+  if (!layer) return null;
+  const rect = gamesRbSvgElement("rect", {
+    class: className,
+    x,
+    y,
+    width,
+    height,
+    ...extra
+  });
+  layer.append(rect);
+  return rect;
+}
+
+function appendGamesRbPath(layer, className, d, extra = {}) {
+  if (!layer) return null;
+  const path = gamesRbSvgElement("path", {
+    class: className,
+    d,
+    ...extra
+  });
+  layer.append(path);
+  return path;
+}
+
+function renderGamesRbSetHighlights(layer, state) {
+  if (!layer) return;
+  layer.replaceChildren();
+  state.S.forEach((value) => {
+    appendGamesRbRect(layer, "games-rb-set-highlight is-s-entry", 0, gamesRbRowY(value));
+  });
+  state.T.forEach((value) => {
+    appendGamesRbRect(layer, "games-rb-set-highlight is-t-entry", gamesRbColumnX(value), 0);
+  });
+}
+
+function renderGamesRbMexRings(layer, mexS, mexT) {
+  if (!layer) return;
+  layer.replaceChildren();
+  appendGamesRbRect(layer, "games-rb-mex-cell-ring is-mex-s-ring", 0, gamesRbRowY(mexS), gamesRbHeaderWidth, gamesRbCellHeight, { rx: 4 });
+  appendGamesRbRect(layer, "games-rb-mex-cell-ring is-mex-t-ring", gamesRbColumnX(mexT), 0, gamesRbCellWidth, gamesRbHeaderHeight, { rx: 4 });
+}
+
+function renderGamesRbUnionHighlights(layer, state, mexS, mexT) {
+  if (!layer) return;
+  layer.replaceChildren();
+  const cells = new Map();
+  state.T.forEach((value) => cells.set(`${mexS}:${value}`, [mexS, value]));
+  state.S.forEach((value) => cells.set(`${value}:${mexT}`, [value, mexT]));
+  cells.forEach(([row, column]) => {
+    if (!gamesRbVisibleValues.includes(row) || !gamesRbVisibleValues.includes(column)) return;
+    appendGamesRbRect(layer, "games-rb-union-highlight", gamesRbColumnX(column), gamesRbRowY(row));
+  });
+}
+
+function renderGamesRbProductHighlight(layer, mexS, mexT) {
+  if (!layer) return;
+  layer.replaceChildren();
+  if (!gamesRbVisibleValues.includes(mexS) || !gamesRbVisibleValues.includes(mexT)) return;
+  appendGamesRbRect(layer, "games-rb-product-highlight", gamesRbColumnX(mexT), gamesRbRowY(mexS), gamesRbCellWidth, gamesRbCellHeight, { rx: 4 });
+}
+
+function renderGamesRbProductArrows(layer, mexS, mexT) {
+  if (!layer) return;
+  layer.replaceChildren();
+  if (!gamesRbVisibleValues.includes(mexS) || !gamesRbVisibleValues.includes(mexT)) return;
+  const targetX = gamesRbCellTextX(mexT);
+  const targetY = gamesRbRowY(mexS) + gamesRbCellHeight / 2;
+  const sStartX = gamesRbHeaderWidth;
+  const sStartY = gamesRbRowY(mexS) + gamesRbCellHeight / 2;
+  const tStartX = gamesRbCellTextX(mexT);
+  const tStartY = gamesRbHeaderHeight;
+  appendGamesRbPath(
+    layer,
+    "games-rb-product-arrow is-from-mex-s",
+    `M${sStartX + 3} ${sStartY} C${targetX - 42} ${sStartY}, ${targetX - 26} ${targetY}, ${targetX - 15} ${targetY}`
+  );
+  appendGamesRbPath(
+    layer,
+    "games-rb-product-arrow is-from-mex-t",
+    `M${tStartX} ${tStartY + 3} C${tStartX} ${targetY - 42}, ${targetX} ${targetY - 26}, ${targetX} ${targetY - 14}`
+  );
+}
+
+function renderGamesRbFigure(root) {
+  const container = root.closest(".publication-figure, .diagram-expanded") || root.parentElement || root;
+  const sRaw = root.dataset.gamesRbS ?? gamesRbInitialS.join(",");
+  const tRaw = root.dataset.gamesRbT ?? gamesRbInitialT.join(",");
+  const state = {
+    S: sRaw.split(",").filter(Boolean).map(Number).sort((a, b) => a - b),
+    T: tRaw.split(",").filter(Boolean).map(Number).sort((a, b) => a - b)
+  };
+  const mexS = gamesRbMex(state.S);
+  const mexT = gamesRbMex(state.T);
+
+  root.querySelectorAll("[data-games-rb-set-layer]").forEach((layer) => renderGamesRbSetHighlights(layer, state));
+  root.querySelectorAll("[data-games-rb-mex-layer]").forEach((layer) => renderGamesRbMexRings(layer, mexS, mexT));
+  renderGamesRbUnionHighlights(root.querySelector("[data-games-rb-union-layer]"), state, mexS, mexT);
+  renderGamesRbProductHighlight(root.querySelector("[data-games-rb-product-layer]"), mexS, mexT);
+  renderGamesRbProductArrows(root.querySelector("[data-games-rb-product-arrow-layer]"), mexS, mexT);
+  root.querySelectorAll('[data-games-rb-mex-label="S"]').forEach((label) => {
+    label.setAttribute("y", String(gamesRbRowY(mexS) + 16));
+  });
+  root.querySelectorAll('[data-games-rb-mex-label="T"]').forEach((label) => {
+    label.setAttribute("x", String(gamesRbCellTextX(mexT)));
+  });
+  const desc = root.querySelector("#fig-games-rb-table-desc");
+  if (desc) {
+    desc.textContent = `Two Nim-sum operation tables compute the mex Rota-Baxter equation for S={${gamesRbFormatSet(state.S)}} and T={${gamesRbFormatSet(state.T)}}. The computed values are mex(S)=${mexS} and mex(T)=${mexT}.`;
+  }
+  container.querySelectorAll("[data-games-rb-toggle]").forEach((hit) => {
+    const setName = hit.dataset.gamesRbToggle;
+    const value = Number(hit.dataset.gamesRbValue);
+    const selected = state[setName]?.includes(value) || false;
+    hit.setAttribute("aria-pressed", selected ? "true" : "false");
+    hit.classList.toggle("is-selected", selected);
+  });
+}
+
+function toggleGamesRbValue(root, setName, value) {
+  const key = setName === "T" ? "gamesRbT" : "gamesRbS";
+  const current = (root.dataset[key] ?? (setName === "T" ? gamesRbInitialT : gamesRbInitialS).join(","))
+    .split(",")
+    .filter(Boolean)
+    .map(Number);
+  const next = new Set(current);
+  if (next.has(value)) next.delete(value);
+  else next.add(value);
+  root.dataset[key] = [...next].sort((a, b) => a - b).join(",");
+  renderGamesRbFigure(root);
+}
+
+function ensureGamesRbSetControls(root) {
+  const container = root.closest(".publication-figure, .diagram-expanded") || root.parentElement || root;
+  container.querySelectorAll("[data-games-rb-toggle]").forEach((button) => {
+    if (button.dataset.gamesRbControlReady === "true") return;
+    button.dataset.gamesRbControlReady = "true";
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleGamesRbValue(root, button.dataset.gamesRbToggle || "S", Number(button.dataset.gamesRbValue));
+    });
+  });
+}
+
+function initializeGamesRbFigure(root) {
+  if (!root || root.dataset.gamesRbInitialized === "true") return;
+  root.dataset.gamesRbInitialized = "true";
+  root.dataset.gamesRbS = gamesRbInitialS.join(",");
+  root.dataset.gamesRbT = gamesRbInitialT.join(",");
+  ensureGamesRbSetControls(root);
+  renderGamesRbFigure(root);
+}
+
+function initializeGamesRbFigures(scope) {
+  const roots = scope.matches?.("[data-games-rb-interactive]")
+    ? [scope]
+    : Array.from(scope.querySelectorAll("[data-games-rb-interactive]"));
+  roots.forEach(initializeGamesRbFigure);
+}
+
 const lawverePullbackGroups = ["rb", "ro", "rg", "og"];
 const lawverePullbackStates = new WeakMap();
 
@@ -11421,14 +11742,20 @@ function initializeAutomataInteractiveFigure(figure) {
   baseDot.append(makeSvg("circle", { class: "automata-moving-dot-core", cx: "0", cy: "0", r: "9.6" }));
   baseGroup.append(baseDot);
 
-  const liveWord = makeSvg("text", { class: "automata-live-word", x: "62", y: "58" });
+  const liveWord = makeSvg("text", { class: "automata-live-word", x: "86", y: "24" });
   inputTape.append(liveWord);
   const liveWordShadow = makeSvg("text", { class: "automata-live-word automata-live-word-near-dot", x: "14", y: "-14" });
   const liveWordGroup = makeSvg("g", { class: "automata-live-word-group" });
   liveWordGroup.append(liveWordShadow);
   coverGroup.append(liveWordGroup);
 
-  const resultText = makeSvg("text", { class: "automata-interactive-result", x: "136", y: "53" });
+  outputPanel.querySelectorAll(".automata-output-cell").forEach((node) => node.remove());
+  let resultBlock = outputPanel.querySelector(".automata-current-output-block");
+  if (!resultBlock) {
+    resultBlock = makeSvg("rect", { class: "automata-current-output-block", x: "78", y: "7", width: "130", height: "40", rx: "10" });
+    outputPanel.append(resultBlock);
+  }
+  const resultText = makeSvg("text", { class: "automata-interactive-result", x: "143", y: "35" });
   outputPanel.append(resultText);
 
   const state = {
@@ -11468,7 +11795,6 @@ function initializeAutomataInteractiveFigure(figure) {
     resultText.textContent = "";
     outputPanel.classList.toggle("is-accept", value === "accept");
     outputPanel.classList.toggle("is-reject", value === "reject");
-    resultText.setAttribute("y", value === "accept" ? "53" : "88");
     resultText.textContent = value === "accept" ? "✓" : "×";
   };
   const render = () => {
@@ -11692,6 +12018,7 @@ function openPaperDiagram(paper) {
   stopConnectedCorrespondenceFigures(figure);
   figure.innerHTML = paperFigureTemplates[paper.figure];
   applyFigureMarkerIds(figure, paper.figure, "diagram-arrow");
+  initializeGamesRbFigures(figure);
   initializeGrundyFigures(figure, { controls: true, autoplay: true });
   initializeLawverePullbackFigures(figure, { controls: true, autoplay: true });
   initializeConnectedCorrespondenceFigures(figure, { controls: true, autoplay: true });
@@ -12071,6 +12398,7 @@ function renderPaperRecord(paper, options = {}) {
     figure.setAttribute("aria-label", `${paper.title} diagram`);
     figure.innerHTML = template;
     applyFigureMarkerIds(figure, paper.figure, "paper-arrow");
+    initializeGamesRbFigures(figure);
     initializeGrundyFigures(figure, { autoplay: true, intervalMs: grundyAutoplayIntervalMs });
     initializeLawverePullbackFigures(figure, { autoplay: true, controls: true });
     initializeConnectedCorrespondenceFigures(figure, { autoplay: true, controls: true });
@@ -12346,6 +12674,7 @@ function renderPreparationPapers() {
       figure.setAttribute("aria-label", `${paper.title} visual proposal`);
       figure.innerHTML = template;
       applyFigureMarkerIds(figure, paper.figure, "preparation-arrow");
+      initializeGamesRbFigures(figure);
       initializeAutomataInteractiveFigures(figure);
       item.append(figure);
     }
@@ -12419,6 +12748,18 @@ function researchmapMiscPaperRecord(record) {
   };
 }
 
+const researchmapMiscNoteTitlePatterns = [
+  "準完全情報ニム",
+  "圏論に登場する矢印の意味は",
+  "what is the geometry behind conway's game of life",
+  "圏論の toy example としての集合演算"
+];
+
+function isResearchmapMiscNoteRecord(record) {
+  const title = simplified(record?.title);
+  return researchmapMiscNoteTitlePatterns.some((pattern) => title.includes(simplified(pattern)));
+}
+
 function recordLinkSet(record) {
   return new Set(compactText([
     record.link,
@@ -12452,7 +12793,7 @@ function mergeMiscRecord(base, extra) {
 }
 
 function miscPaperRecords() {
-  const records = (researchmapData?.misc || []).map(researchmapMiscPaperRecord);
+  const records = (researchmapData?.misc || []).filter((record) => !isResearchmapMiscNoteRecord(record)).map(researchmapMiscPaperRecord);
   siteData.papers.misc.forEach((paper) => {
     const candidate = {
       ...paper,
@@ -13082,13 +13423,13 @@ function renderProblemCommentSetup(problem) {
       "p",
       null,
       "The page-side comment box is already wired for giscus. After setup, visitors sign in with GitHub and comment directly on this page; no email form is involved.",
-      "ページ上のコメント欄は giscus 用に実装済みです。設定後は訪問者が GitHub でサインインして、このページ上から直接コメントできます。メール送信ではありません。"
+      "ページ上のコメント欄は giscus 用に実装済みです．設定後は訪問者が GitHub でサインインして，このページ上から直接コメントできます．メール送信ではありません．"
     ),
     localizedText(
       "p",
       null,
       "The current homepage repository is private and Discussions are disabled, so a public discussion repository or another backend is needed before comments can be saved.",
-      "現在の homepage repository は private で Discussions も無効なので、コメントを保存するには public な discussion repository か別のバックエンドが必要です。"
+      "現在の homepage repository は private で Discussions も無効なので，コメントを保存するには public な discussion repository か別のバックエンドが必要です．"
     )
   );
 
@@ -13096,19 +13437,19 @@ function renderProblemCommentSetup(problem) {
   [
     [
       "Create or choose a public GitHub repository dedicated to comments.",
-      "コメント専用の public GitHub repository を作成または選択する。"
+      "コメント専用の public GitHub repository を作成または選択する．"
     ],
     [
       "Enable Discussions and create a category for problem discussions.",
-      "Discussions を有効化し、problem discussions 用の category を作る。"
+      "Discussions を有効化し，problem discussions 用の category を作る．"
     ],
     [
       "Install the giscus app for that repository and copy repoId/categoryId into siteData.problemComments.",
-      "その repository に giscus app を入れ、repoId/categoryId を siteData.problemComments に入れる。"
+      "その repository に giscus app を入れ，repoId/categoryId を siteData.problemComments に入れる．"
     ],
     [
       "Moderate or delete comments from GitHub Discussions with repository owner permissions.",
-      "repository owner 権限で GitHub Discussions からコメントを管理・削除する。"
+      "repository owner 権限で GitHub Discussions からコメントを管理・削除する．"
     ]
   ].forEach(([en, ja]) => steps.append(localizedText("li", null, en, ja)));
   panel.append(steps);
@@ -13156,7 +13497,7 @@ function renderProblemComments(problem) {
       "p",
       "problem-comments-note",
       "Visitors can comment directly on this problem page after signing in with GitHub. Each problem has a separate discussion thread.",
-      "訪問者は GitHub でサインインしたあと、この問題ページ上から直接コメントできます。各問題には別々の discussion thread を持たせます。"
+      "訪問者は GitHub でサインインしたあと，この問題ページ上から直接コメントできます．各問題には別々の discussion thread を持たせます．"
     )
   );
   section.append(head);
@@ -13167,7 +13508,7 @@ function renderProblemComments(problem) {
         "p",
         "problem-comment-state",
         "Comment backend is not configured yet.",
-        "コメント用バックエンドはまだ未設定です。"
+        "コメント用バックエンドはまだ未設定です．"
       ),
       renderProblemCommentSetup(problem)
     );
