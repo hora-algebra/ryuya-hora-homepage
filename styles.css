@@ -7882,6 +7882,61 @@ a.position-link:hover {
   font-weight: 850;
 }
 
+.content-review-badge {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border: 1px solid rgba(49, 70, 61, 0.2);
+  border-radius: 999px;
+  background: #eef2ec;
+  color: #3f5549;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 850;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.note-meta .content-review-badge {
+  padding: 1px 6px;
+  font-size: 0.74rem;
+}
+
+.note-meta .content-review-badge::before {
+  content: none;
+  margin: 0;
+}
+
+.content-review-badge.review-preprint,
+.content-review-badge.review-work-in-progress,
+.content-review-badge.review-draft {
+  border-color: rgba(138, 77, 52, 0.28);
+  background: #f3eadc;
+  color: #7a432e;
+}
+
+.content-review-badge.review-speculative {
+  border-color: rgba(47, 83, 111, 0.3);
+  background: #e7edf2;
+  color: #2f536f;
+}
+
+.content-review-badge.review-rights-watch,
+.content-review-badge.review-permission-needed {
+  border-color: rgba(180, 35, 24, 0.26);
+  background: #fff0ee;
+  color: #9d2b20;
+}
+
+.content-review-badge.review-external-record {
+  border-color: rgba(44, 111, 99, 0.22);
+  background: #e6ede8;
+  color: #2c6f63;
+}
+
 .publication-summary {
   margin: 0;
   color: #3d453d;

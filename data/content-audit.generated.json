@@ -1,0 +1,1114 @@
+{
+  "generatedAt": "2026-04-30T01:21:06.387Z",
+  "source": {
+    "homepage": "scripts/site.js",
+    "researchmap": "https://researchmap.jp/ryuyahora"
+  },
+  "decisions": {
+    "dc1": "Do not display DC1 as current after March 2026.",
+    "kakenhi24KJ0837": "Display as ongoing.",
+    "lawvereFourth": "Keep solved wording; status remains preprint until journal publication.",
+    "cloud": "Speculative note.",
+    "pen": "Work in progress."
+  },
+  "profileClaims": [
+    {
+      "key": "position:zen-assistant-professor:2026",
+      "status": "pending-public-source",
+      "claim": "Assistant professor at ZEN University since April 2026.",
+      "note": "Confirmed by owner; public institutional page is expected but not available yet."
+    },
+    {
+      "key": "position:humai-researcher:2026",
+      "status": "pending-public-source",
+      "claim": "Researcher at the Humai Center since April 2026.",
+      "note": "Confirmed by owner; public institutional page is expected but not available yet."
+    },
+    {
+      "key": "grant:jsps-fellow:24KJ0837",
+      "status": "verified-owner-and-kaken-active",
+      "claim": "Supported by KAKENHI project 24KJ0837.",
+      "source": "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/",
+      "note": "Owner confirmed DC1 ended and should not be displayed as current; KAKENHI 24KJ0837 remains ongoing."
+    }
+  ],
+  "awards": [
+    {
+      "key": "award:graduation-representative:gsm:doctoral:2026",
+      "status": "self-reported-public-broadcast",
+      "claim": "Graduation Representative, Graduate School of Mathematical Sciences, doctoral course, March 2026.",
+      "source": "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
+      "note": "Owner confirmed public display is acceptable; precise public archival page is not yet identified."
+    },
+    {
+      "key": "award:graduation-representative:gsm:masters:2024",
+      "status": "self-reported-public-broadcast",
+      "claim": "Graduation Representative, Graduate School of Mathematical Sciences, master's course, March 2024.",
+      "source": "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
+      "note": "Owner confirmed public display is acceptable; precise public archival page is not yet identified."
+    }
+  ],
+  "mediaRights": {
+    "profilePhotos": {
+      "status": "owner-supplied",
+      "source": "local assets/profile",
+      "provenance": "Owner-supplied homepage media.",
+      "rights": "Owner-controlled profile photographs; keep if no third-party photographer restriction applies.",
+      "needsVerification": false
+    },
+    "paperFigures": {
+      "status": "site-generated",
+      "source": "local assets/papers and inline SVG",
+      "provenance": "Homepage-generated paper artwork.",
+      "rights": "Local homepage thumbnails/diagrams; generated for this site rather than copied publisher figures.",
+      "needsVerification": false
+    },
+    "noteThumbnails": {
+      "status": "derived-from-public-documents",
+      "source": "local assets/notes or Google Drive thumbnails",
+      "provenance": "Generated from linked notes/slides.",
+      "rights": "Derived from publicly linked notes/slides; review if a source PDF contains third-party images.",
+      "needsVerification": true
+    },
+    "webAppThumbnails": {
+      "status": "site-generated",
+      "source": "local assets/web-apps",
+      "provenance": "Screenshots of owner-controlled web apps.",
+      "rights": "Screenshots of owner-controlled web apps.",
+      "needsVerification": false
+    }
+  },
+  "papers": {
+    "manual": [
+      {
+        "title": "Internal Parameterizations of Hyperconnected Quotients",
+        "canonicalTitle": "Internal Parameterizations of Hyperconnected Quotients",
+        "status": "published",
+        "source": "DOI or journal page / manual homepage data",
+        "provenance": "siteData",
+        "rights": "publisher/DOI metadata plus homepage-generated figure",
+        "needsVerification": false
+      },
+      {
+        "title": "Quotient toposes of discrete dynamical systems",
+        "canonicalTitle": "Quotient toposes of discrete dynamical systems",
+        "status": "published",
+        "source": "DOI or journal page / manual homepage data",
+        "provenance": "siteData",
+        "rights": "publisher/DOI metadata plus homepage-generated figure",
+        "needsVerification": false
+      },
+      {
+        "title": "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor",
+        "canonicalTitle": "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor",
+        "status": "published",
+        "source": "DOI or journal page / manual homepage data",
+        "provenance": "siteData",
+        "rights": "publisher/DOI metadata plus homepage-generated figure",
+        "needsVerification": false
+      },
+      {
+        "title": "Solution to Lawvere's first problem: a Grothendieck topos that has proper class many quotient topoi",
+        "canonicalTitle": "Solution to Lawvere's first problem: a Grothendieck topos that has proper class many quotient topoi",
+        "status": "published",
+        "source": "DOI or journal page / manual homepage data",
+        "provenance": "siteData",
+        "rights": "publisher/DOI metadata plus homepage-generated figure",
+        "needsVerification": false
+      },
+      {
+        "title": "Lawvere's fourth open problem: Levels in the topos of symmetric simplicial sets",
+        "canonicalTitle": "Lawvere's fourth open problem: Levels in the topos of symmetric simplicial sets",
+        "status": "preprint",
+        "source": "arXiv / manual homepage data",
+        "provenance": "siteData",
+        "rights": "arXiv public preprint metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Topoi of automata I: Four topoi of automata and regular languages",
+        "canonicalTitle": "Topoi of automata I: Four topoi of automata and regular languages",
+        "status": "preprint",
+        "source": "arXiv / manual homepage data",
+        "provenance": "siteData",
+        "rights": "arXiv public preprint metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Games as recursive coalgebras: A categorical view on the Nim-sum",
+        "canonicalTitle": "Games as recursive coalgebras: A categorical view on the Nim-sum",
+        "status": "preprint",
+        "source": "arXiv / manual homepage data",
+        "provenance": "siteData",
+        "rights": "arXiv public preprint metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Normalization of a subgroup, in a topos, and of a word-congruence",
+        "canonicalTitle": "Normalization of a subgroup, in a topos, and of a word-congruence",
+        "status": "preprint",
+        "source": "arXiv / manual homepage data",
+        "provenance": "siteData",
+        "rights": "arXiv public preprint metadata",
+        "needsVerification": false
+      }
+    ],
+    "researchmap": [
+      {
+        "title": "Solution to Lawvere's first problem: A Grothendieck topos that has proper class many quotient topoi",
+        "canonicalTitle": "Solution to Lawvere's first problem: A Grothendieck topos that has proper class many quotient topoi",
+        "status": "published",
+        "source": "researchmap",
+        "provenance": "https://doi.org/10.1016/j.aim.2025.110751",
+        "rights": "publisher/DOI metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor",
+        "canonicalTitle": "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor",
+        "status": "published",
+        "source": "researchmap",
+        "provenance": "https://doi.org/10.1090/proc/17479",
+        "rights": "publisher/DOI metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Normalization of a subgroup, in a topos, and of a word-congruence",
+        "canonicalTitle": "Normalization of a subgroup, in a topos, and of a word-congruence",
+        "status": "preprint",
+        "source": "researchmap",
+        "provenance": "https://arxiv.org/abs/2511.05012",
+        "rights": "arXiv public preprint metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Games as recursive coalgebras: A categorical view on the Nim-sum",
+        "canonicalTitle": "Games as recursive coalgebras: A categorical view on the Nim-sum",
+        "status": "preprint",
+        "source": "researchmap",
+        "provenance": "https://arxiv.org/abs/2510.22886",
+        "rights": "arXiv public preprint metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Lawvere's fourth open problem: Levels in the topos of symmetric simplicial sets",
+        "canonicalTitle": "Lawvere's fourth open problem: Levels in the topos of symmetric simplicial sets",
+        "status": "preprint",
+        "source": "researchmap",
+        "provenance": "https://arxiv.org/abs/2503.03439",
+        "rights": "arXiv public preprint metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Topoi of automata I: Four topoi of automata and regular languages",
+        "canonicalTitle": "Topoi of automata I: Four topoi of automata and regular languages",
+        "status": "preprint",
+        "source": "researchmap",
+        "provenance": "https://arxiv.org/abs/2411.06358",
+        "rights": "arXiv public preprint metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Internal parameterization of hyperconnected quotients",
+        "canonicalTitle": "Internal Parameterizations of Hyperconnected Quotients",
+        "status": "published",
+        "source": "researchmap",
+        "provenance": "https://doi.org/10.70930/tac/a8ppg8i1",
+        "rights": "publisher/DOI metadata",
+        "needsVerification": false
+      },
+      {
+        "title": "Quotient toposes of discrete dynamical systems",
+        "canonicalTitle": "Quotient toposes of discrete dynamical systems",
+        "status": "published",
+        "source": "researchmap",
+        "provenance": "https://doi.org/10.1016/j.jpaa.2024.107657",
+        "rights": "publisher/DOI metadata",
+        "needsVerification": false
+      }
+    ],
+    "missingFromManualAfterAliases": [],
+    "missingFromResearchmapAfterAliases": []
+  },
+  "talks": {
+    "manual": [
+      {
+        "year": "2026",
+        "title": "Connectedness and full subcategories of topoi",
+        "canonicalTitle": "Connectedness and full subcategories of topoi",
+        "source": "siteData",
+        "provenance": "https://www.ms.u-tokyo.ac.jp/seminar/thesispres/past.html",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2026",
+        "title": "Turning lights out with the Snake Lemma",
+        "canonicalTitle": "Turning lights out with the Snake Lemma",
+        "source": "siteData",
+        "provenance": "http://www.alg.cei.uec.ac.jp/itohiro/Games/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2026",
+        "title": "Measure-theoretic closure operators on formal languages",
+        "canonicalTitle": "Measure-theoretic closure operators on formal languages",
+        "source": "siteData",
+        "provenance": "https://jssst-ppl.org/workshop/2026/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2026",
+        "title": "A space-time for Conway's game of life",
+        "canonicalTitle": "A space-time for Conway's game of life",
+        "source": "siteData",
+        "provenance": "https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2026",
+        "title": "A Rota-Baxter equation for winning games",
+        "canonicalTitle": "A Rota-Baxter equation for winning games",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/view/differential-kyoto-2026/home",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "source": "siteData",
+        "provenance": "https://www.cmup.pt/index.php/events/topoi-automata",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "source": "siteData",
+        "provenance": "https://hisashi-aratake.gitlab.io/event/cscat2025.html",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "source": "siteData",
+        "provenance": "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "source": "siteData",
+        "provenance": "https://autcat.github.io/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Local state classifier for algebraic language theory",
+        "canonicalTitle": "Local state classifier for algebraic language theory",
+        "source": "siteData",
+        "provenance": "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Local state classifier for automata theory",
+        "canonicalTitle": "Local state classifier for automata theory",
+        "source": "siteData",
+        "provenance": "https://www.irif.fr/seminaires/semantique/index",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "A topos for regular language theory",
+        "canonicalTitle": "A topos for regular language theory",
+        "source": "siteData",
+        "provenance": "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "source": "siteData",
+        "provenance": "https://conference.math.muni.cz/ct2025/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/view/slacs2025akita/home",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "Connectedness and full subcategories of topoi",
+        "canonicalTitle": "Connectedness and full subcategories of topoi",
+        "source": "siteData",
+        "provenance": "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/index_e.html",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2025",
+        "title": "The axiom of choice and local state classifier",
+        "canonicalTitle": "The axiom of choice and local state classifier",
+        "source": "siteData",
+        "provenance": "https://www.ms.u-tokyo.ac.jp/seminar/logic/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2024",
+        "title": "Combinatorial games as recursive coalgebras",
+        "canonicalTitle": "Combinatorial games as recursive coalgebras",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/faculty.gs.chiba-u.jp/cscat2024/home",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2024",
+        "title": "Introduction to topos theory",
+        "canonicalTitle": "Introduction to topos theory",
+        "source": "siteData",
+        "provenance": "",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2024",
+        "title": "圏論の利用と濫用",
+        "canonicalTitle": "圏論の利用と濫用",
+        "source": "siteData",
+        "provenance": "https://afsa.jp/g-en/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2024",
+        "title": "Quotient toposes of discrete dynamical systems",
+        "canonicalTitle": "Quotient toposes of discrete dynamical systems",
+        "source": "siteData",
+        "provenance": "https://www.usc.gal/regaca/ct2024/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2024",
+        "title": "Topos theory as a tool of automata theory",
+        "canonicalTitle": "Topos theory as a tool of automata theory",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/view/ciaa-preworkshop/home",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2024",
+        "title": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
+        "canonicalTitle": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
+        "source": "siteData",
+        "provenance": "https://ctta.igrothendieck.org/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2024",
+        "title": "Quotient topoi and geometry of computation",
+        "canonicalTitle": "Quotient topoi and geometry of computation",
+        "source": "siteData",
+        "provenance": "https://afsa.jp/afsa-2024_generalmeetingautumn/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2023",
+        "title": "Internal parameterization of hyperconnected quotients",
+        "canonicalTitle": "Internal parameterization of hyperconnected quotients",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/view/cscat2023",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2023",
+        "title": "Internal parameterization of hyperconnected quotients",
+        "canonicalTitle": "Internal parameterization of hyperconnected quotients",
+        "source": "siteData",
+        "provenance": "http://web.science.mq.edu.au/groups/coact/seminar/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2023",
+        "title": "Grundy Numbers and Categories",
+        "canonicalTitle": "Grundy Numbers and Categories",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2023",
+        "title": "Internal parameterization of hyperconnected quotients",
+        "canonicalTitle": "Internal parameterization of hyperconnected quotients",
+        "source": "siteData",
+        "provenance": "https://sites.uclouvain.be/ct2023/",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2023",
+        "title": "Category Theory and Combinatorial Game Theory",
+        "canonicalTitle": "Category Theory and Combinatorial Game Theory",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
+        "year": "2023",
+        "title": "Constructive mathematics and representation theory",
+        "canonicalTitle": "Constructive mathematics and representation theory",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/view/mlwakatenokai2023",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      }
+    ],
+    "researchmap": [
+      {
+        "date": "2026-04-06",
+        "title": "A Rota-Baxter equation for winning games",
+        "canonicalTitle": "A Rota-Baxter equation for winning games",
+        "event": "Symposium on Differentiation in category theory and program semantics",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/53286857",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2026-03-16",
+        "title": "A space⋊︎time for Conway's game of life",
+        "canonicalTitle": "A space⋊︎time for Conway's game of life",
+        "event": "CSCAT 2026 Computer Science and Category Theory",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/53075156",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2026-03-11",
+        "title": "Measure-theoretic closure operators on formal languages",
+        "canonicalTitle": "Measure-theoretic closure operators on formal languages",
+        "event": "第28回プログラミングおよびプログラミング言語ワークショップ",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/53075079",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2026-02-22",
+        "title": "Turning lights out with the Snake Lemma",
+        "canonicalTitle": "Turning lights out with the Snake Lemma",
+        "event": "組合せゲーム・パズル(CGP) プロジェクト 第２０回研究集会",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/53075058",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2026-01-23",
+        "title": "Connecteness and full subcategories of topoi",
+        "canonicalTitle": "Connectedness and full subcategories of topoi",
+        "event": "博士論文発表会",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/52954313",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-12-05",
+        "title": "Local state classifier, The axiom of choice, and permutation model",
+        "canonicalTitle": "The axiom of choice and local state classifier",
+        "event": "",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51817824",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-11-28",
+        "title": "Connectedness and full subcategories of topoi",
+        "canonicalTitle": "Connectedness and full subcategories of topoi",
+        "event": "UTokyo Logic Seminar",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51758582",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-10-31",
+        "title": "Topoi of automata,",
+        "canonicalTitle": "Topoi of automata",
+        "event": "SLACS 2025",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735028",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-07-17",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "event": "Category Theory 2025",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735025",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-06-10",
+        "title": "A topos for regular language theory",
+        "canonicalTitle": "A topos for regular language theory",
+        "event": "Theoretical Cosynus Seminar",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735022",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-06-05",
+        "title": "Local state classifier for automata theory",
+        "canonicalTitle": "Local state classifier for automata theory",
+        "event": "Séminaires du LIPN",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735020",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-05-27",
+        "title": "Local state classifier for automata theory",
+        "canonicalTitle": "Local state classifier for automata theory",
+        "event": "IRIF Sémantique seminar",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735017",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-05-16",
+        "title": "Local state classifier for algebraic language theory",
+        "canonicalTitle": "Local state classifier for algebraic language theory",
+        "event": "CTTA Groupe de travail topossique",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735010",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-05-06",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "event": "Categories for Automata and Language Theory",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735007",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-04-30",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "event": "CTTA Groupe de travail topossique",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735006",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-03-12",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "event": "CSCAT2025",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735003",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2025-02-28",
+        "title": "Topoi of automata",
+        "canonicalTitle": "Topoi of automata",
+        "event": "CMUP Semigroups, Automata and Languages seminar",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51735000",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2024-11-30",
+        "title": "Quotient topoi and geometry of computation",
+        "canonicalTitle": "Quotient topoi and geometry of computation",
+        "event": "AFSA 領域集会",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734994",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2024-09-10",
+        "title": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
+        "canonicalTitle": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
+        "event": "Toposes in Mondovi",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734992",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2024-08-29",
+        "title": "Topos theory as a tool of automata theory",
+        "canonicalTitle": "Topos theory as a tool of automata theory",
+        "event": "Young Automata Theorists Gathering in Japan",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734990",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2024-06-28",
+        "title": "Quotient toposes of discrete dynamical systems",
+        "canonicalTitle": "Quotient toposes of discrete dynamical systems",
+        "event": "Category Theory 2024",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734986",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2024-04-25",
+        "title": "圏論の利用と濫用",
+        "canonicalTitle": "圏論の利用と濫用",
+        "event": "第18回AFSAコロキウム",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734985",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2024-03-16",
+        "title": "Introduction to topos theory",
+        "canonicalTitle": "Introduction to topos theory",
+        "event": "代数トポロジー若手の会",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734982",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2024-03-15",
+        "title": "Combinatorial games as recursive coalgebras",
+        "canonicalTitle": "Combinatorial games as recursive coalgebras",
+        "event": "CSCAT2024",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734980",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2023-08-21",
+        "title": "Category Theory and Combinatorial Game Theory",
+        "canonicalTitle": "Category Theory and Combinatorial Game Theory",
+        "event": "7th Japan Combinatorial Game Theory Conference,",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734978",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2023-07-06",
+        "title": "Internal parameterization of Hyperconnected quotients",
+        "canonicalTitle": "Internal parameterization of Hyperconnected quotients",
+        "event": "Category Theory 2023",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734954",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2023-05-12",
+        "title": "Grundy Numbers and Categories",
+        "canonicalTitle": "Grundy Numbers and Categories",
+        "event": "Japan Combinatorial Game Theory Mini-Workshops with Urban Larsson,",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734936",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2023-04-19",
+        "title": "Internal parameterization of Hyperconnected quotients",
+        "canonicalTitle": "Internal parameterization of Hyperconnected quotients",
+        "event": "Australia Category Seminar",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734931",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      },
+      {
+        "date": "2023-03-09",
+        "title": "Internal parameterization of Hyperconnected quotients",
+        "canonicalTitle": "Internal parameterization of Hyperconnected quotients",
+        "event": "CSCAT2023",
+        "source": "researchmap",
+        "provenance": "https://researchmap.jp/ryuyahora/presentations/51734925",
+        "rights": "researchmap public presentation metadata",
+        "needsVerification": false
+      }
+    ],
+    "missingFromManualAfterAliases": [],
+    "missingFromResearchmapAfterAliases": [
+      {
+        "year": "2023",
+        "title": "Constructive mathematics and representation theory",
+        "canonicalTitle": "Constructive mathematics and representation theory",
+        "source": "siteData",
+        "provenance": "https://sites.google.com/view/mlwakatenokai2023",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      }
+    ]
+  },
+  "notes": {
+    "records": [
+      {
+        "title": "Counting with Exponential of Groups",
+        "file": "counting-with-exponential-of-groups.pdf",
+        "href": "assets/notes/counting-with-exponential-of-groups.pdf",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Combinatorial games as recursive coalgebras",
+        "file": "Hora_CSCAT2024.pdf",
+        "href": "https://drive.google.com/open?id=12qTwg-9KFTLe-g4UGFtupJUas58U3Ib7",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Cloud: Topos theoretic approach to representation theory",
+        "file": "A_topos_theoretic_view_of_Gabriel_s_theorem-12.pdf",
+        "href": "https://drive.google.com/open?id=1M-Rxp0KuFykfrJgCLTUo-DrM2XmrJkj4",
+        "status": "speculative",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Cloud: What is the geometry behind Conway's game of life?",
+        "file": "Adv20241210_Dynamical_system_on_a_pretopological_space.pdf",
+        "href": "https://drive.google.com/open?id=1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl",
+        "status": "speculative",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Topoi of automata",
+        "file": "CSCAT_2025-3.pdf",
+        "href": "https://drive.google.com/open?id=1WyOxS3qTZC5jar-nyg_yL7V1lZzJrNHI",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Topoi of automata",
+        "file": "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf",
+        "href": "https://drive.google.com/open?id=1CZPU91ghZsBg5-ce8dEv8CKeZJVA4bbD",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Local state classifier for algebraic language theory",
+        "file": "Local state classifier for algebraic language theory.pdf",
+        "href": "https://drive.google.com/open?id=1jwA88f7axVA_VmGsUasrudicI1OXMIPE",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Topoi of automata (IRIF)",
+        "file": "IRIFtoday.pdf",
+        "href": "https://drive.google.com/open?id=1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Local state classifier for automata theory",
+        "file": "IRIF20250527_ver1.pdf",
+        "href": "https://drive.google.com/open?id=1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Pen: A note on language measurability",
+        "file": "An_ongoing_note_on_language_measurability_under_construction20260308.pdf",
+        "href": "https://drive.google.com/open?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC",
+        "status": "work-in-progress",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Cloud: A Rota-Baxter equation for winning games",
+        "file": "RYUYA,HORA.pdf",
+        "href": "https://drive.google.com/open?id=1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU",
+        "status": "speculative",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "圏論に登場する矢印の意味は—特集 圏論の質問箱",
+        "file": "数学セミナー",
+        "href": "https://cir.nii.ac.jp/crid/1520869150155438720?lang=ja",
+        "status": "published-note",
+        "source": "CiNii/NDL",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "external-public-record",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "順序集合で遊ぶKan拡張入門",
+        "file": "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf",
+        "href": "https://drive.google.com/open?id=1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "圏論のToy Exampleとしての集合演算",
+        "file": "圏論のToy_Exampleとしての集合演算__Ver2_.pdf",
+        "href": "https://drive.google.com/open?id=1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Cloud: 構成的数学と表現論",
+        "file": "若手の会2023-8.pdf",
+        "href": "https://drive.google.com/open?id=1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-",
+        "status": "speculative",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Turning lights out with the Snake Lemma",
+        "file": "ライツアウトの代数的研究.pdf",
+        "href": "https://drive.google.com/open?id=1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "coauthored-owner-reports-permission",
+        "needsVerification": true,
+        "note": "Coauthored/written with Kyosuke Higashida; keep on the watch list for explicit coauthor consent if distribution scope changes."
+      },
+      {
+        "title": "準完全情報ニム",
+        "file": "情報処理学会研究報告アルゴリズム（AL）",
+        "href": "https://researchmap.jp/ryuyahora/misc/52084435",
+        "status": "published-note",
+        "source": "researchmap",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "external-public-record",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "ゼータ関数とメビウス反転",
+        "file": "2021topos_zeta_2-3.pdf",
+        "href": "https://drive.google.com/open?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "順序集合で遊ぶKan拡張",
+        "file": "2022topos_Kan_ext.pdf",
+        "href": "https://drive.google.com/open?id=11z191GZKbDVgskXKCBSVF7JXdFMMH81Q",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "母関数の種",
+        "file": "2023topos_species-8.pdf",
+        "href": "https://drive.google.com/open?id=1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "アイゼンシュタイン整数と組合せ論",
+        "file": "2024Topos新歓202405-6.pdf",
+        "href": "https://drive.google.com/open?id=1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Cloud: Space-Time for Conway's Game of Life",
+        "file": "Space⋊Time for Conway's Game of Life.pdf",
+        "href": "https://drive.google.com/open?id=1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje",
+        "status": "speculative",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-reports-permission",
+        "needsVerification": false,
+        "note": ""
+      },
+      {
+        "title": "Older notes",
+        "file": "Notion archive",
+        "href": "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b",
+        "status": "published-note",
+        "source": "notion",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "external-owner-page",
+        "needsVerification": false,
+        "note": ""
+      }
+    ],
+    "needsVerification": [
+      {
+        "title": "Turning lights out with the Snake Lemma",
+        "file": "ライツアウトの代数的研究.pdf",
+        "href": "https://drive.google.com/open?id=1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp",
+        "status": "published-note",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "coauthored-owner-reports-permission",
+        "needsVerification": true,
+        "note": "Coauthored/written with Kyosuke Higashida; keep on the watch list for explicit coauthor consent if distribution scope changes."
+      }
+    ]
+  },
+  "titleEquivalences": [
+    {
+      "kind": "paper",
+      "canonical": "Internal Parameterizations of Hyperconnected Quotients",
+      "aliases": [
+        "Internal parameterization of hyperconnected quotients"
+      ],
+      "reason": "researchmap title casing/singular-plural variance"
+    },
+    {
+      "kind": "talk",
+      "canonical": "Connectedness and full subcategories of topoi",
+      "aliases": [
+        "Connecteness and full subcategories of topoi"
+      ],
+      "reason": "researchmap typo"
+    },
+    {
+      "kind": "talk",
+      "canonical": "Topoi of automata",
+      "aliases": [
+        "Topoi of automata,"
+      ],
+      "reason": "researchmap trailing punctuation"
+    },
+    {
+      "kind": "talk",
+      "canonical": "The axiom of choice and local state classifier",
+      "aliases": [
+        "Local state classifier, The axiom of choice, and permutation model"
+      ],
+      "reason": "same UTokyo Logic seminar talk family"
+    },
+    {
+      "kind": "talk-slide",
+      "canonical": "Constructive mathematics and representation theory",
+      "aliases": [
+        "構成的数学と表現論"
+      ],
+      "reason": "owner confirmed English and Japanese titles refer to the same talk"
+    }
+  ]
+}

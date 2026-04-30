@@ -103,9 +103,14 @@ function headlessArgument(mode) {
 }
 
 async function waitForDebugEndpoint(diagnostics) {
+  const diagnosticTail = () => [
+    diagnostics.stderr ? `stderr=${diagnostics.stderr.trim()}` : "",
+    diagnostics.stdout ? `stdout=${diagnostics.stdout.trim()}` : ""
+  ].filter(Boolean).join("\n");
   for (let attempt = 0; attempt < 80; attempt += 1) {
     if (diagnostics.exitCode !== null || diagnostics.signal !== null) {
-      throw new Error(`Browser exited before CDP was ready: code=${diagnostics.exitCode}, signal=${diagnostics.signal}`);
+      const output = diagnosticTail();
+      throw new Error(`Browser exited before CDP was ready: code=${diagnostics.exitCode}, signal=${diagnostics.signal}${output ? `\n${output}` : ""}`);
     }
     try {
       const response = await fetch(`http://127.0.0.1:${debugPort}/json/version`);
@@ -115,7 +120,8 @@ async function waitForDebugEndpoint(diagnostics) {
     }
     await delay(100);
   }
-  throw new Error("Chrome DevTools endpoint did not become available.");
+  const output = diagnosticTail();
+  throw new Error(`Chrome DevTools endpoint did not become available.${output ? `\n${output}` : ""}`);
 }
 
 async function launchChrome() {

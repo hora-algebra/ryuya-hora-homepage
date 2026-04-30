@@ -107,7 +107,7 @@ const siteData = {
   currentPositions: [
     { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building" },
     { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai" },
-    { text: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.", textJa: "2024年4月より日本学術振興会特別研究員（DC1）．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
+    { text: "Supported by KAKENHI project 24KJ0837.", textJa: "KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
     { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
     { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
     { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター．", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
@@ -1030,10 +1030,10 @@ const siteReviewData = {
     },
     {
       key: "grant:jsps-fellow:24KJ0837",
-      status: "verified-owner-and-kaken",
-      claim: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.",
+      status: "verified-owner-and-kaken-active",
+      claim: "Supported by KAKENHI project 24KJ0837.",
       source: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/",
-      note: "Owner confirmed the wording remains acceptable after April 2026."
+      note: "Owner confirmed DC1 ended and should not be displayed as current; KAKENHI 24KJ0837 remains ongoing."
     }
   ],
   awards: [
@@ -1087,6 +1087,36 @@ const siteReviewData = {
         publicPermission: "link-only",
         source: "notion"
       }
+    }
+  },
+  mediaRights: {
+    profilePhotos: {
+      status: "owner-supplied",
+      source: "local assets/profile",
+      provenance: "Owner-supplied homepage media.",
+      rights: "Owner-controlled profile photographs; keep if no third-party photographer restriction applies.",
+      needsVerification: false
+    },
+    paperFigures: {
+      status: "site-generated",
+      source: "local assets/papers and inline SVG",
+      provenance: "Homepage-generated paper artwork.",
+      rights: "Local homepage thumbnails/diagrams; generated for this site rather than copied publisher figures.",
+      needsVerification: false
+    },
+    noteThumbnails: {
+      status: "derived-from-public-documents",
+      source: "local assets/notes or Google Drive thumbnails",
+      provenance: "Generated from linked notes/slides.",
+      rights: "Derived from publicly linked notes/slides; review if a source PDF contains third-party images.",
+      needsVerification: true
+    },
+    webAppThumbnails: {
+      status: "site-generated",
+      source: "local assets/web-apps",
+      provenance: "Screenshots of owner-controlled web apps.",
+      rights: "Screenshots of owner-controlled web apps.",
+      needsVerification: false
     }
   },
   titleEquivalences: [
@@ -12902,6 +12932,75 @@ function renderPublicationDetails(paper, fallbackRecord = null) {
   return root;
 }
 
+const contentReviewLabels = {
+  published: "Published",
+  preprint: "Preprint",
+  draft: "Draft",
+  "work-in-progress": "Work in progress",
+  speculative: "Speculative note",
+  slide: "Slide",
+  note: "Note",
+  "owner-permission": "Owner permission",
+  "rights-watch": "Rights watch",
+  "permission-needed": "Permission needed",
+  "external-record": "External record"
+};
+
+function contentReviewLabel(status) {
+  return contentReviewLabels[status] || humanizeTagId(status);
+}
+
+function contentReviewClass(status) {
+  return slugify(status || "review");
+}
+
+function contentReviewBadge(status, label = contentReviewLabel(status), title = "") {
+  const badge = el("span", `content-review-badge review-${contentReviewClass(status)}`, label);
+  if (title) badge.title = title;
+  return badge;
+}
+
+function appendContentReviewBadges(root, badges = []) {
+  badges.filter(Boolean).forEach((badge) => {
+    root.append(contentReviewBadge(badge.status, badge.label, badge.title));
+  });
+}
+
+function paperReviewRecord(paper) {
+  const venue = String(paper?.venue || "");
+  const linkHref = String(paper?.link || "");
+  const status = paper?.status || (/arxiv/i.test(venue) || /arxiv\.org/i.test(linkHref) ? "preprint" : "published");
+  const source = paper?.source || (status === "preprint" ? "arXiv / researchmap / manual homepage data" : "DOI or journal page / researchmap / manual homepage data");
+  const provenance = paper?.provenance || "Manual homepage record cross-checked against generated researchmap data when available.";
+  const rights = paper?.rights || (status === "preprint" ? "arXiv public preprint metadata and author-supplied links." : "Bibliographic metadata links to publisher/DOI records; local figures are homepage-generated.");
+  const needsVerification = Boolean(paper?.needsVerification);
+  const badges = [
+    { status, label: contentReviewLabel(status), title: source },
+    needsVerification ? { status: "permission-needed", label: "Verify", title: rights } : null
+  ];
+  return { status, source, provenance, rights, needsVerification, badges };
+}
+
+function noteReviewRecord(note) {
+  const [kind] = noteKind(note);
+  const titleKind = noteTitlePrefixKind(note.title);
+  const byFile = siteReviewData.documentRights.byFile[note.file] || null;
+  const isDrive = /drive\.google\.com/i.test(note.href || "") || /drive\.google\.com|lh3\.google/i.test(note.thumbnail || "");
+  const rightsRecord = byFile || (isDrive ? siteReviewData.documentRights.defaultDrivePdf : null);
+  const status = note.status || (titleKind === "cloud" ? "speculative" : titleKind === "pen" ? "work-in-progress" : kind === "slides" ? "slide" : "note");
+  const rights = note.rights || rightsRecord?.rightsStatus || (note.href ? "linked-public-record" : "local-record");
+  const source = note.source || rightsRecord?.source || (isDrive ? "google-drive" : "homepage");
+  const provenance = note.provenance || (rightsRecord ? "Owner-reviewed public document link metadata." : "Manual homepage document metadata.");
+  const needsVerification = Boolean(note.needsVerification || /coauthored|owner-believes-ok/i.test(rights));
+  const badges = [
+    status === "speculative" ? { status, label: "Speculative", title: "Cloud: speculative note." } : null,
+    status === "work-in-progress" ? { status, label: "Work in progress", title: "Pen: currently being written." } : null,
+    needsVerification ? { status: "rights-watch", label: "Rights watch", title: rightsRecord?.note || rights } : null,
+    byFile?.publicPermission === "link-only" ? { status: "external-record", label: "External record", title: source } : null
+  ];
+  return { status, source, provenance, rights, needsVerification, badges };
+}
+
 function renderPaperRecord(paper, options = {}) {
   const showFigure = options.showFigure ?? true;
   const item = el("article", showFigure && paper.figure ? "publication-item has-figure" : "publication-item");
@@ -12933,6 +13032,7 @@ function renderPaperRecord(paper, options = {}) {
 
   const meta = el("div", "publication-meta");
   paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
+  appendContentReviewBadges(meta, paperReviewRecord(paper).badges);
   if (meta.children.length) item.append(meta);
   if (paper.summary) item.append(el("p", "publication-summary", paper.summary));
   appendActionLinks(item, [
@@ -13278,6 +13378,7 @@ function renderPreparationPapers() {
     if (details) item.append(details);
     const meta = el("div", "publication-meta");
     paperDisplayTagRecords(paper).forEach((tag) => meta.append(renderPublicationTag(tag)));
+    appendContentReviewBadges(meta, paperReviewRecord({ ...paper, status: "draft", source: "manual homepage preparation list", provenance: "Owner-maintained works-in-preparation list.", rights: "Unpublished draft title only." }).badges);
     if (meta.children.length) item.append(meta);
     if (paper.summary) item.append(el("p", "publication-summary", paper.summary));
     appendActionLinks(item, paper.links || []);
@@ -13889,6 +13990,7 @@ function renderDocumentCard(note, pagePath) {
     if (kindIcon && kindIcon === kindLabel) badge.classList.add("is-symbol");
     meta.append(badge);
   }
+  appendContentReviewBadges(meta, noteReviewRecord(note).badges);
   metaTagIdsForText(compactText([note.title, note.description, note.file, note.talkTitle, note.talkMeta]).join(" "), note.metaTags || [])
     .forEach((tagId) => meta.append(renderMetaTagPill(tagId, "note-meta-tag")));
   const dateLabel = noteDateLabel(note);
