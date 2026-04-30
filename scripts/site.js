@@ -67,25 +67,77 @@ function problemEntry({ id, formal = false, theme, title, statement, description
 const siteData = {
   pages: [
     {
+      title: "CV",
+      href: "cv/index.html",
+      description: "Positions, awards, education, and profile links.",
+      icon: "cv",
+      thumbnail: "assets/profile/ryuya-hora-sea-900.jpg"
+    },
+    {
       title: "Documents",
       href: "documents/index.html",
-      description: "Papers, preprints, notes, and slides.",
+      description: "Overview of papers, notes, and slides.",
       icon: "paper",
       thumbnail: "assets/papers/topoi-automata.jpg"
     },
     {
+      title: "Papers",
+      href: "papers/index.html",
+      description: "Bibliography, preprints, in-preparation work, and metadata.",
+      icon: "paper",
+      thumbnail: "assets/papers/topoi-automata.jpg"
+    },
+    {
+      title: "Notes",
+      href: "notes/index.html",
+      description: "Lecture notes, expository notes, and related writing.",
+      icon: "note"
+    },
+    {
+      title: "Slides",
+      href: "slides/index.html",
+      description: "Slides and presentation materials.",
+      icon: "slide"
+    },
+    {
       title: "Activities",
       href: "activities/index.html",
-      description: "Visits, talks, plans.",
+      description: "Activity timeline, visits, talks, and yearly records.",
       icon: "activity",
+      thumbnail: "assets/profile/ryuya-hora-mondovi.jpg"
+    },
+    {
+      title: "Talks",
+      href: "talks/index.html",
+      description: "Conference talks, seminars, archive, and visit map.",
+      icon: "talk",
       thumbnail: "assets/profile/ryuya-hora-mondovi.jpg"
     },
     {
       title: "Others",
       href: "others/index.html",
-      description: "Web apps, problems, and links.",
+      description: "Overview of web apps, problems, and links.",
       icon: "webapp",
       thumbnail: "assets/web-apps/genericalgoid.png"
+    },
+    {
+      title: "Web Apps",
+      href: "web-apps/index.html",
+      description: "Small deployed tools and experiments.",
+      icon: "webapp",
+      thumbnail: "assets/web-apps/genericalgoid.png"
+    },
+    {
+      title: "Problems",
+      href: "problems/index.html",
+      description: "Open questions, problem trails, and formal problems.",
+      icon: "problem"
+    },
+    {
+      title: "Links",
+      href: "links/index.html",
+      description: "Selected external links.",
+      icon: "link"
     },
     {
       title: "Search",
@@ -101,7 +153,7 @@ const siteData = {
       "arXiv",
       "https://arxiv.org/search/math?query=Hora%2C+Ryuya&searchtype=author&abstracts=show&order=-announced_date_first&size=50"
     ],
-    ["CV", "https://drive.google.com/file/d/1TZns0gdMrcp7zOVVQ1YZVYdBn-a09G_p/view?usp=sharing"],
+    ["CV PDF", "https://drive.google.com/file/d/1TZns0gdMrcp7zOVVQ1YZVYdBn-a09G_p/view?usp=sharing"],
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
@@ -1334,6 +1386,7 @@ const i18nText = {
     "Notes": "ノート",
     "Activities": "活動",
     "CV/Awards": "CV/受賞",
+    "CV PDF": "CV PDF",
     "Problems": "Problems",
     "Search": "検索",
     "Links": "リンク",
@@ -1401,6 +1454,7 @@ const i18nText = {
     "Award": "受賞",
     "Education": "教育歴",
     "Academic Background": "学歴",
+    "Additional Awards": "追加の受賞",
     "Focus": "Focus",
     "Why it is good": "好きな理由",
     "Basic dictionary": "Basic dictionary",
@@ -1413,6 +1467,16 @@ const i18nText = {
       "ZEN大学助教，HUMAIセンター研究員です．最近は，topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています．",
     "Research": "研究",
     "Papers, preprints, notes, and slides.": "論文，preprint，ノート，スライド．",
+    "Overview of papers, notes, and slides.": "論文，ノート，スライドの概要．",
+    "Overview of visits, talks, and yearly records.": "訪問，発表，年次記録の概要．",
+    "Bibliography, preprints, in-preparation work, and metadata.": "文献，preprint，準備中の仕事，メタデータ．",
+    "Lecture notes, expository notes, and related writing.": "講義ノート，解説ノート，関連文書．",
+    "Slides and presentation materials.": "スライドと発表資料．",
+    "Activity timeline, visits, talks, and yearly records.": "活動タイムライン，訪問，発表，年次記録．",
+    "Conference talks, seminars, archive, and visit map.": "学会発表，セミナー，アーカイブ，訪問地図．",
+    "Overview of web apps, problems, and links.": "Web apps，Problems，リンクの概要．",
+    "Selected external links.": "外部リンク集．",
+    "Positions, awards, education, and profile links.": "所属，受賞，学歴，プロフィールリンク．",
     "Preprints and related writing.": "Preprint と関連文書．",
     "Web apps, problems, and links.": "Web apps，Problems，リンク．",
     "Visits, talks, plans.": "訪問，発表，予定．",
@@ -1454,6 +1518,7 @@ const i18nText = {
     "Open Links": "リンクを開く",
     "Open navigation": "ナビゲーションを開く",
     "Primary navigation": "主要ナビゲーション",
+    "Breadcrumb": "パンくずリスト",
     "Profile links": "プロフィールリンク",
     "A schematic of the research area": "研究領域の模式図",
     "Timeline controls": "タイムライン操作",
@@ -1492,6 +1557,7 @@ const i18nText = {
     "Slides and seminars.": "Slides and seminars.",
     "Timeline": "タイムライン",
     "Research Timeline": "研究タイムライン",
+    "Activity Timeline": "活動タイムライン",
     "Activities Timeline": "活動タイムライン",
     "Documents Timeline": "資料タイムライン",
     "Paper Timeline": "論文タイムライン",
@@ -1555,6 +1621,7 @@ const i18nText = {
     "CV, awards, positions, and education. Last updated: 27 April 2026.":
       "CV, awards, positions, education. 最終更新: 2026年4月27日",
     "Open Problems and Questions": "Open Problems and Questions",
+    "Problem Index": "Problem Index",
     "Open problems and trails.": "Open problems and trails.",
     "Open questions and trails.": "Open questions and trails.",
     "Questions and Trails": "Questions and Trails",
@@ -2176,6 +2243,8 @@ const translatableTextSelector = [
   ".nav-group-label",
   ".nav-search .sr-only",
   ".eyebrow",
+  ".page-breadcrumb a",
+  ".page-breadcrumb span",
   ".section-kicker",
   "h1",
   "h2",
@@ -2407,6 +2476,7 @@ function setLanguage(language) {
 }
 
 function ensureDraftNotice() {
+  if (document.body?.dataset?.draft !== "true") return;
   if (document.querySelector("[data-draft-notice]")) return;
   const header = document.querySelector(".site-header");
   if (!header) return;
@@ -2874,17 +2944,38 @@ function scrollToHashTarget() {
 }
 
 const talkSlideMatches = [
-  { title: "A Rota-Baxter equation for winning games", file: "RYUYA,HORA.pdf" },
-  { title: "A space⋊︎time for Conway's game of life", file: "Space⋊Time for Conway's Game of Life.pdf" },
-  { title: "Turning lights out with the Snake Lemma", file: "ライツアウトの代数的研究.pdf" },
-  { title: "Combinatorial games as recursive coalgebras", file: "Hora_CSCAT2024.pdf" },
-  { title: "Local state classifier for algebraic language theory", file: "Local state classifier for algebraic language theory.pdf" },
-  { title: "Local state classifier for automata theory", file: "IRIF20250527_ver1.pdf" },
+  { title: "A Rota-Baxter equation for winning games", event: "Differentiation in category theory", file: "RYUYA,HORA.pdf" },
+  { title: "A space⋊︎time for Conway's game of life", event: "CSCAT 2026", file: "Space⋊Time for Conway's Game of Life.pdf" },
+  { title: "Turning lights out with the Snake Lemma", event: "CGP", file: "ライツアウトの代数的研究.pdf" },
+  { title: "Combinatorial games as recursive coalgebras", event: "CSCAT2024", file: "Hora_CSCAT2024.pdf" },
+  { title: "Local state classifier for algebraic language theory", event: "CTTA Groupe", file: "Local state classifier for algebraic language theory.pdf" },
+  { title: "Local state classifier for automata theory", event: "IRIF Sémantique", file: "IRIF20250527_ver1.pdf" },
   { title: "Topoi of automata", event: "CSCAT2025", file: "CSCAT_2025-3.pdf" },
   { title: "Topoi of automata", event: "CTTA Groupe", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf" },
   { title: "Topoi of automata", event: "Categories for Automata", file: "IRIFtoday.pdf" },
-  { title: "Constructive mathematics and representation theory", file: "若手の会2023-8.pdf" }
+  { title: "Constructive mathematics and representation theory", event: "数学基礎論若手", file: "若手の会2023-8.pdf" }
 ];
+
+function talkSlideRecordContext(record) {
+  return compactText([
+    record?.event,
+    record?.venue,
+    record?.date,
+    record?.dateRange,
+    talkVenueDateLabel(record),
+    record?.link,
+    record?.href
+  ]).join(" ");
+}
+
+function talkSlideMatchApplies(match, record) {
+  const recordTitle = simplified(compactText([record?.title, record?.rawTitle]).join(" "));
+  const matchTitle = simplified(match?.title || "");
+  if (!recordTitle || !matchTitle) return false;
+  const titleMatches = recordTitle.includes(matchTitle) || matchTitle.includes(recordTitle);
+  const eventMatches = !match.event || simplified(talkSlideRecordContext(record)).includes(simplified(match.event));
+  return titleMatches && eventMatches;
+}
 
 const talkLocationByResearchmapId = {
   "53286857": {
@@ -3524,14 +3615,8 @@ function hasTopicKeywords(text, keywords) {
 }
 
 function slideLinksForTalk(record) {
-  const title = simplified(record.title);
-  const event = simplified(record.event);
   return talkSlideMatches
-    .filter((match) => {
-      const titleMatches = title.includes(simplified(match.title));
-      const eventMatches = !match.event || event.includes(simplified(match.event));
-      return titleMatches && eventMatches;
-    })
+    .filter((match) => talkSlideMatchApplies(match, record))
     .map((match) => noteHrefByFile(match.file))
     .filter(Boolean)
     .map((href) => ["Slides", href])
@@ -3645,11 +3730,13 @@ function findResearchmapPresentationForTalk(talk) {
   });
   if (!candidates.length) return null;
   if (candidates.length === 1) return candidates[0];
-  const context = compactText([talk.venue, talk.href]).join(" ");
+  const context = compactText([talk.venue, talkVenueDateLabel(talk), talk.href]).join(" ");
+  const talkDate = talkVenueDateLabel(talk);
+  const score = (record) =>
+    tokenOverlapScore(context, compactText([record.event, record.date, record.dateRange, record.link]).join(" ")) +
+    (talkDate && (record.date === talkDate || record.dateRange === talkDate) ? 20 : 0);
   return [...candidates].sort((a, b) => {
-    const scoreA = tokenOverlapScore(context, compactText([a.event, a.date, a.dateRange, a.link]).join(" "));
-    const scoreB = tokenOverlapScore(context, compactText([b.event, b.date, b.dateRange, b.link]).join(" "));
-    return scoreB - scoreA;
+    return score(b) - score(a);
   })[0];
 }
 
@@ -3926,11 +4013,11 @@ function siteSearchRecords() {
   allSlideRecords().forEach((slide) => {
     pushSiteSearchRecord(records, {
       type: "Slide",
-      title: shortNoteTitle(slide),
+      title: slide.talkTitle || shortNoteTitle(slide),
       href: noteHref(slide),
-      summary: slide.description || slide.talkTitle || slide.file,
+      summary: compactText([slide.talkTitle ? `Slides: ${shortNoteTitle(slide)}` : "", slide.description || slide.file]).join(" / "),
       meta: compactText([slide.talkMeta, noteLanguageKey(slide), slide.source === "overleaf" ? "Overleaf" : ""]).join(" / "),
-      keywords: compactText(["slides", slide.file, slide.talkTitle]),
+      keywords: compactText(["slides", slide.file, slide.talkTitle, slide.slideTitle]),
       icon: "talk",
       thumbnail: noteThumbnailSrc(slide)
     });
@@ -6022,10 +6109,12 @@ function findStaticTalkForSlide(slide) {
     const talkTitle = simplified(talk.title);
     return talkTitle === title || talkTitle.includes(title) || title.includes(talkTitle);
   });
-  if (!candidates.length) return null;
-  if (candidates.length === 1) return candidates[0];
-  const context = compactText([slide.description, slide.date, slide.file]).join(" ");
-  return [...candidates].sort((a, b) => {
+  const eventCandidates = explicitMatch?.event ? candidates.filter((talk) => talkSlideMatchApplies(explicitMatch, talk)) : [];
+  const pool = eventCandidates.length ? eventCandidates : candidates;
+  if (!pool.length) return null;
+  if (pool.length === 1) return pool[0];
+  const context = compactText([explicitMatch?.event, slide.description, slide.date, slide.file]).join(" ");
+  return [...pool].sort((a, b) => {
     const scoreA = tokenOverlapScore(context, compactText([a.year, a.venue, a.href]).join(" "));
     const scoreB = tokenOverlapScore(context, compactText([b.year, b.venue, b.href]).join(" "));
     return scoreB - scoreA;
@@ -6033,11 +6122,11 @@ function findStaticTalkForSlide(slide) {
 }
 
 function findResearchmapPresentationForSlide(slide, staticTalk = null) {
+  const explicitMatch = talkSlideMatches.find((match) => match.file === slide.file);
   if (staticTalk) {
     const presentation = findResearchmapPresentationForTalk(staticTalk);
-    if (presentation) return presentation;
+    if (presentation && (!explicitMatch?.event || talkSlideMatchApplies(explicitMatch, presentation))) return presentation;
   }
-  const explicitMatch = talkSlideMatches.find((match) => match.file === slide.file);
   const title = simplified(explicitMatch?.title || slideMatchTitle(slide.title));
   if (!title) return null;
   const candidates = researchmapPresentationRecords().filter((record) => {
@@ -6045,10 +6134,12 @@ function findResearchmapPresentationForSlide(slide, staticTalk = null) {
     const rawTitle = simplified(record.rawTitle);
     return recordTitle === title || rawTitle === title || recordTitle.includes(title) || title.includes(recordTitle);
   });
-  if (!candidates.length) return null;
-  if (candidates.length === 1) return candidates[0];
-  const context = compactText([slide.description, slide.date, slide.file]).join(" ");
-  return [...candidates].sort((a, b) => {
+  const eventCandidates = explicitMatch?.event ? candidates.filter((record) => talkSlideMatchApplies(explicitMatch, record)) : [];
+  const pool = eventCandidates.length ? eventCandidates : candidates;
+  if (!pool.length) return null;
+  if (pool.length === 1) return pool[0];
+  const context = compactText([explicitMatch?.event, slide.description, slide.date, slide.file]).join(" ");
+  return [...pool].sort((a, b) => {
     const scoreA = tokenOverlapScore(context, compactText([a.event, a.date, a.dateRange, a.link]).join(" "));
     const scoreB = tokenOverlapScore(context, compactText([b.event, b.date, b.dateRange, b.link]).join(" "));
     return scoreB - scoreA;
@@ -6081,7 +6172,8 @@ function mergeSlideWithTalk(slide) {
     talkTitle: talkRecord.title,
     talkMeta,
     talkHref,
-    talkRecord
+    talkRecord,
+    slideTitle: slide.title
   };
 }
 
@@ -7292,13 +7384,7 @@ function noteRecordByFile(file) {
 }
 
 function talkThumbnailRecord(record) {
-  const title = simplified(record?.title || "");
-  const event = simplified(record?.event || record?.venue || "");
-  const match = talkSlideMatches.find((candidate) => {
-    const titleMatches = title.includes(simplified(candidate.title));
-    const eventMatches = !candidate.event || event.includes(simplified(candidate.event));
-    return titleMatches && eventMatches;
-  });
+  const match = talkSlideMatches.find((candidate) => talkSlideMatchApplies(candidate, record));
   return match ? noteRecordByFile(match.file) : null;
 }
 
@@ -7892,9 +7978,11 @@ function renderResearchMapResults(selection = "", options = {}) {
     );
   }
 
-  groups.forEach(([kind]) => {
+  groups.forEach(([kind], index) => {
     const list = root.querySelector(`[data-theme-results="${kind}"]`);
     if (!list) return;
+    const headingCount = root.querySelector(`[data-theme-heading-count="${kind}"]`);
+    if (headingCount) headingCount.textContent = themeColumnCountLabel(counts[index] || 0);
     list.replaceChildren();
     const records = topThemeRecords(kind, themeIds, metaTagIds);
     if (!records.length) {
@@ -7921,6 +8009,10 @@ function researchThemeItemCount(selection = "", metaSelection = "") {
 
 function themeChoiceCountLabel(count) {
   return `${count} ${count === 1 ? "item" : "items"}`;
+}
+
+function themeColumnCountLabel(count) {
+  return `(${count})`;
 }
 
 function orderedSimplexThemes(themeIds) {
@@ -8191,7 +8283,11 @@ function renderResearchMap() {
   const columns = el("div", "theme-result-grid");
   researchThemeGroups().forEach(([kind, label]) => {
     const column = el("section", "theme-result-column");
-    column.append(el("h3", null, label), el("div", "theme-result-list"));
+    const heading = el("h3");
+    const count = el("span", "theme-result-count", themeColumnCountLabel(0));
+    count.dataset.themeHeadingCount = kind;
+    heading.append(el("span", null, label), count);
+    column.append(heading, el("div", "theme-result-list"));
     column.lastElementChild.dataset.themeResults = kind;
     columns.append(column);
   });
@@ -13971,11 +14067,15 @@ function renderDocumentCard(note, pagePath) {
   const [kind, kindLabel, kindIcon] = noteKind(note);
   const href = noteHref(note);
   const downloadHref = noteDownloadHref(note);
+  const cardTitle = note.talkTitle || shortNoteTitle(note);
   item.id = noteAnchor(note);
   item.append(noteThumbnail(note));
   const heading = el("h3");
-  heading.append(link(shortNoteTitle(note), href), titleCopyButton(`${pagePath}#${noteAnchor(note)}`, shortNoteTitle(note)));
+  heading.append(link(cardTitle, href), titleCopyButton(`${pagePath}#${noteAnchor(note)}`, cardTitle));
   item.append(heading);
+  if (note.talkTitle && simplified(shortNoteTitle(note)) !== simplified(note.talkTitle)) {
+    item.append(el("p", "slide-source-title", `Slides: ${shortNoteTitle(note)}`));
+  }
   if (note.description) item.append(el("p", null, note.description));
   if (note.talkMeta) {
     const talk = el("p", "slide-talk-meta");
@@ -14629,6 +14729,87 @@ function setupInteractions() {
   });
 }
 
+const pageBreadcrumbs = {
+  documents: [
+    ["Home", "index.html"],
+    ["Documents", "documents/index.html"]
+  ],
+  papers: [
+    ["Home", "index.html"],
+    ["Documents", "documents/index.html"],
+    ["Papers", "papers/index.html"]
+  ],
+  notes: [
+    ["Home", "index.html"],
+    ["Documents", "documents/index.html"],
+    ["Notes", "notes/index.html"]
+  ],
+  slides: [
+    ["Home", "index.html"],
+    ["Documents", "documents/index.html"],
+    ["Slides", "slides/index.html"]
+  ],
+  activities: [
+    ["Home", "index.html"],
+    ["Activities", "activities/index.html"]
+  ],
+  talks: [
+    ["Home", "index.html"],
+    ["Activities", "activities/index.html"],
+    ["Talks", "talks/index.html"]
+  ],
+  others: [
+    ["Home", "index.html"],
+    ["Others", "others/index.html"]
+  ],
+  "web-apps": [
+    ["Home", "index.html"],
+    ["Others", "others/index.html"],
+    ["Web Apps", "web-apps/index.html"]
+  ],
+  problems: [
+    ["Home", "index.html"],
+    ["Others", "others/index.html"],
+    ["Problems", "problems/index.html"]
+  ],
+  links: [
+    ["Home", "index.html"],
+    ["Others", "others/index.html"],
+    ["Links", "links/index.html"]
+  ],
+  cv: [
+    ["Home", "index.html"],
+    ["Profile", "index.html#profile"],
+    ["CV", "cv/index.html"]
+  ],
+  search: [
+    ["Home", "index.html"],
+    ["Search", "search/index.html"]
+  ]
+};
+
+function renderPageBreadcrumb() {
+  const page = document.body?.dataset.page || "";
+  const items = pageBreadcrumbs[page];
+  const hero = document.querySelector(".page-hero");
+  if (!items || !hero || hero.querySelector(".page-breadcrumb")) return;
+
+  const nav = el("nav", "page-breadcrumb");
+  nav.setAttribute("aria-label", "Breadcrumb");
+  items.forEach(([label, href], index) => {
+    const isCurrent = index === items.length - 1;
+    const node = isCurrent ? el("span", null, label) : link(label, localHref(href));
+    if (isCurrent) node.setAttribute("aria-current", "page");
+    nav.append(node);
+    if (!isCurrent) {
+      const separator = el("span", "breadcrumb-separator", "/");
+      separator.setAttribute("aria-hidden", "true");
+      nav.append(separator);
+    }
+  });
+  hero.prepend(nav);
+}
+
 function renderProfileSections() {
   renderProfileLinks();
   renderCurrentPositions();
@@ -14642,6 +14823,7 @@ function renderProfileSections() {
 function renderInitialPage() {
   const page = document.body?.dataset.page || "";
   setupLanguage();
+  renderPageBreadcrumb();
 
   if (page === "home") {
     renderProfileSections();
