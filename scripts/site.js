@@ -400,7 +400,7 @@ const siteData = {
         { title: "Grundy Numbers and Categories", venue: "Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj" },
         { title: "Internal parameterization of hyperconnected quotients", venue: "Category Theory 2023, Auditoires des Sciences, UCLouvain, 6 July", href: "https://sites.uclouvain.be/ct2023/" },
         { title: "Category Theory and Combinatorial Game Theory", venue: "7th Japan Combinatorial Game Theory Conference, NII, Tokyo, 21 August", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53" },
-        { title: "Constructive mathematics and representation theory", venue: "数学基礎論若手の会2023, Chiba, 10 December", href: "https://sites.google.com/view/mlwakatenokai2023" }
+        { title: "Constructive mathematics and representation theory", aliases: ["構成的数学と表現論"], venue: "数学基礎論若手の会2023, Chiba, 10 December", href: "https://sites.google.com/view/mlwakatenokai2023" }
       ]
     }
   ],
@@ -1014,6 +1014,115 @@ const siteData = {
   ]
 };
 
+const siteReviewData = {
+  profileClaims: [
+    {
+      key: "position:zen-assistant-professor:2026",
+      status: "pending-public-source",
+      claim: "Assistant professor at ZEN University since April 2026.",
+      note: "Confirmed by owner; public institutional page is expected but not available yet."
+    },
+    {
+      key: "position:humai-researcher:2026",
+      status: "pending-public-source",
+      claim: "Researcher at the Humai Center since April 2026.",
+      note: "Confirmed by owner; public institutional page is expected but not available yet."
+    },
+    {
+      key: "grant:jsps-fellow:24KJ0837",
+      status: "verified-owner-and-kaken",
+      claim: "Supported by Grant-in-Aid for JSPS Fellows since April 2024.",
+      source: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/",
+      note: "Owner confirmed the wording remains acceptable after April 2026."
+    }
+  ],
+  awards: [
+    {
+      key: "award:graduation-representative:gsm:doctoral:2026",
+      status: "self-reported-public-broadcast",
+      claim: "Graduation Representative, Graduate School of Mathematical Sciences, doctoral course, March 2026.",
+      source: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
+      note: "Owner confirmed public display is acceptable; precise public archival page is not yet identified."
+    },
+    {
+      key: "award:graduation-representative:gsm:masters:2024",
+      status: "self-reported-public-broadcast",
+      claim: "Graduation Representative, Graduate School of Mathematical Sciences, master's course, March 2024.",
+      source: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
+      note: "Owner confirmed public display is acceptable; precise public archival page is not yet identified."
+    }
+  ],
+  documentRights: {
+    defaultDrivePdf: {
+      rightsStatus: "owner-reports-permission",
+      publicPermission: "owner-confirmed",
+      coauthorConsent: "owner-believes-ok",
+      source: "google-drive"
+    },
+    byFile: {
+      "ライツアウトの代数的研究.pdf": {
+        rightsStatus: "coauthored-owner-reports-permission",
+        publicPermission: "owner-confirmed",
+        coauthorConsent: "owner-believes-ok",
+        source: "google-drive",
+        note: "Coauthored/written with Kyosuke Higashida; keep on the watch list for explicit coauthor consent if distribution scope changes."
+      },
+      "準完全情報ニム": {
+        rightsStatus: "external-public-record",
+        publicPermission: "link-only",
+        source: "researchmap"
+      },
+      "数学セミナー": {
+        rightsStatus: "external-public-record",
+        publicPermission: "link-only",
+        source: "CiNii/NDL"
+      },
+      "情報処理学会研究報告アルゴリズム（AL）": {
+        rightsStatus: "external-public-record",
+        publicPermission: "link-only",
+        source: "researchmap"
+      },
+      "Notion archive": {
+        rightsStatus: "external-owner-page",
+        publicPermission: "link-only",
+        source: "notion"
+      }
+    }
+  },
+  titleEquivalences: [
+    {
+      kind: "paper",
+      canonical: "Internal Parameterizations of Hyperconnected Quotients",
+      aliases: ["Internal parameterization of hyperconnected quotients"],
+      reason: "researchmap title casing/singular-plural variance"
+    },
+    {
+      kind: "talk",
+      canonical: "Connectedness and full subcategories of topoi",
+      aliases: ["Connecteness and full subcategories of topoi"],
+      reason: "researchmap typo"
+    },
+    {
+      kind: "talk",
+      canonical: "Topoi of automata",
+      aliases: ["Topoi of automata,"],
+      reason: "researchmap trailing punctuation"
+    },
+    {
+      kind: "talk",
+      canonical: "The axiom of choice and local state classifier",
+      aliases: ["Local state classifier, The axiom of choice, and permutation model"],
+      reason: "same UTokyo Logic seminar talk family"
+    },
+    {
+      kind: "talk-slide",
+      canonical: "Constructive mathematics and representation theory",
+      aliases: ["構成的数学と表現論"],
+      reason: "owner confirmed English and Japanese titles refer to the same talk"
+    }
+  ]
+};
+
 const initialUrlParams = new URLSearchParams(globalThis.location?.search || "");
 
 const state = {
@@ -1042,6 +1151,10 @@ const state = {
   noteLanguage: "all",
   noteYear: "all",
   noteTheme: "all",
+  slideQuery: "",
+  slideLanguage: "all",
+  slideYear: "all",
+  slideTheme: "all",
   speculativeQuery: ""
 };
 
@@ -1211,8 +1324,8 @@ const i18nText = {
     "Site Search": "サイト内検索",
     "Search this site.": "サイト内検索．",
     "Site index search.": "サイト内検索．",
-    "Search public pages, papers, talks, notes, activities, problems, and links.":
-      "公開ページ，論文，発表，ノート，活動，Problems，リンクを検索します．",
+    "Search public pages, papers, talks, notes, slides, activities, problems, and links.":
+      "公開ページ，論文，発表，ノート，スライド，活動，Problems，リンクを検索します．",
     "Search the site": "サイト内を検索",
     "Query": "検索語",
     "topos, automata, Categories in Tokyo...": "topos, automata, Categories in Tokyo...",
@@ -1221,7 +1334,9 @@ const i18nText = {
     "No linked items yet.": "関連項目はまだありません．",
     "Site search. Last updated: 27 April 2026.": "サイト内検索．最終更新: 2026年4月27日",
     "Search notes": "ノート内検索",
+    "Search slides": "スライド内検索",
     "Note filters": "ノートの絞り込み",
+    "Slide filters": "スライドの絞り込み",
     "Language": "言語",
     "Year": "年",
     "Theme": "テーマ",
@@ -1247,6 +1362,8 @@ const i18nText = {
     "Paper": "論文",
     "Talk": "発表",
     "Note": "ノート",
+    "Slide": "スライド",
+    "Slides": "スライド",
     "Activity": "活動",
     "Problem": "Problem",
     "Topos": "Topos",
@@ -1301,6 +1418,7 @@ const i18nText = {
     "Open Papers": "論文を開く",
     "Open Talks": "発表を開く",
     "Open Notes": "ノートを開く",
+    "Open Slides": "スライドを開く",
     "Open Web Apps": "Web Apps を開く",
     "Open Problems": "Problems を開く",
     "Open Links": "リンクを開く",
@@ -1320,7 +1438,10 @@ const i18nText = {
     "Papers and preprints.": "Papers and preprints.",
     "Bibliography": "文献",
     "Research Papers": "研究論文",
+    "Related Notes": "関連ノート",
+    "Related Slides": "関連スライド",
     "Filter papers": "論文を絞り込む",
+    "Filter papers, notes, slides": "論文，ノート，スライドを絞り込む",
     "Paper view": "論文表示",
     "List": "一覧",
     "Diagrams": "図",
@@ -1373,12 +1494,13 @@ const i18nText = {
     "Talks, seminars, and presentation material. Last updated: 27 April 2026.":
       "Talks, seminars, presentation material. 最終更新: 2026年4月27日",
     "Notes and Slides": "ノートとスライド",
-    "Lecture notes, slides, speculative notes, and teaching material. ☁︎ marked notes are speculative; 🖊️ marked notes are under construction.":
-      "Lecture notes, slides, speculative notes, teaching material をまとめています．☁︎ は speculative，🖊️ は under construction を表します．",
-    "Notes and slides.": "Notes and slides.",
-    "Slides and teaching material.": "Slides and teaching material.",
-    "Notes, slides, and teaching material. Last updated: 27 April 2026.":
-      "Notes, slides, teaching material. 最終更新: 2026年4月27日",
+    "Lecture notes, speculative notes, and teaching material. ☁︎ marked notes are speculative; 🖊️ marked notes are under construction.":
+      "Lecture notes, speculative notes, teaching material をまとめています．☁︎ は speculative，🖊️ は under construction を表します．",
+    "Notes and teaching material.": "Notes and teaching material.",
+    "Slides connected with talks.": "発表と対応するスライド．",
+    "Slides, with matching talk information when available.": "対応する発表情報つきのスライド．",
+    "Notes. Last updated: 27 April 2026.": "Notes. 最終更新: 2026年4月27日",
+    "Slides. Last updated: 27 April 2026.": "Slides. 最終更新: 2026年4月27日",
     "Academic Activity": "研究活動",
     "Research visits, organizing work, seminars, public writing, and academic events.":
       "Research visits, organizing work, seminars, public writing, academic events をまとめています．",
@@ -1455,8 +1577,8 @@ const i18nText = {
       "published papers, preprints, manuscripts in preparation と関連資料をまとめています．",
     "Conference talks, seminars, workshop presentations, and selected recordings.":
       "Conference talks, seminars, workshop presentations と selected recordings をまとめています．",
-    "Lecture notes, slides, speculative notes, and teaching material.":
-      "Lecture notes, slides, speculative notes, teaching material をまとめています．",
+    "Lecture notes, speculative notes, and teaching material.":
+      "Lecture notes, speculative notes, teaching material をまとめています．",
     "Research visits, organizing work, seminars, and academic activity by year.":
       "Research visits, organizing work, seminars, academic activity を年ごとにまとめています．",
     "Awards, education and outreach, teaching, and profile links.":
@@ -1483,6 +1605,11 @@ const i18nText = {
       "topos theory と algebraic language theory に動機づけられた generalized normalization operator を定義します．",
     "No papers match this filter.": "この条件に合う論文はありません．",
     "No notes match this filter.": "この条件に合うノートはありません．",
+    "No slides match this filter.": "この条件に合うスライドはありません．",
+    "Use paper search or tags to find related notes.": "論文検索またはタグで関連ノートを表示します．",
+    "Use paper search or tags to find related slides.": "論文検索またはタグで関連スライドを表示します．",
+    "No related notes match this filter.": "この条件に合う関連ノートはありません．",
+    "No related slides match this filter.": "この条件に合う関連スライドはありません．",
     "No generated researchmap paper data is available yet.": "researchmap から生成された論文データはまだありません．",
     "No talks match this filter.": "この条件に合う発表はありません．",
     "No generated researchmap award data is available yet.": "researchmap から生成された受賞データはまだありません．",
@@ -1875,8 +2002,29 @@ function normalizedUiText(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
 }
 
+function titleAliasMap(kind) {
+  return new Map(
+    siteReviewData.titleEquivalences
+      .filter((entry) => entry.kind === kind || entry.kind === `${kind}-slide`)
+      .flatMap((entry) => [
+        [simplified(entry.canonical), entry.canonical],
+        ...(entry.aliases || []).map((alias) => [simplified(alias), entry.canonical])
+      ])
+  );
+}
+
+const publicationTitleAliases = titleAliasMap("paper");
+const presentationTitleAliases = titleAliasMap("talk");
+
+function canonicalTitle(value, aliases) {
+  const text = normalizedUiText(value);
+  return aliases.get(simplified(text)) || text;
+}
+
 function cleanPublicationTitle(value) {
   const text = normalizedUiText(value);
+  const canonical = canonicalTitle(text, publicationTitleAliases);
+  if (canonical !== text) return canonical;
   if (text === "Grothendieck topos with a left adjoint to a left adjoint to a left adjoint to the global sections functor") {
     return "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor";
   }
@@ -1885,9 +2033,34 @@ function cleanPublicationTitle(value) {
 
 function cleanPresentationTitle(value) {
   const text = normalizedUiText(value);
-  if (text === "Connecteness and full subcategories of topoi") return "Connectedness and full subcategories of topoi";
-  if (text === "Topoi of automata,") return "Topoi of automata";
-  return text;
+  return canonicalTitle(text, presentationTitleAliases);
+}
+
+function titleCandidates(value, aliases) {
+  const candidates = new Set();
+  const add = (candidate) => {
+    const key = simplified(candidate);
+    if (key) candidates.add(key);
+    const canonical = aliases.get(key);
+    if (canonical) candidates.add(simplified(canonical));
+  };
+  if (Array.isArray(value)) value.forEach(add);
+  else add(value);
+  return [...candidates];
+}
+
+function titleCandidateValues(record, aliases, primaryValue = record?.title) {
+  return titleCandidates([
+    primaryValue,
+    record?.rawTitle,
+    ...(record?.aliases || [])
+  ], aliases);
+}
+
+function titlesOverlap(leftValues, rightValues) {
+  return leftValues.some((left) =>
+    rightValues.some((right) => left === right || left.includes(right) || right.includes(left))
+  );
 }
 
 function presentationDisplayRecord(record) {
@@ -1941,13 +2114,13 @@ function translatedPhrase(text, element = null) {
   if (lastReviewed) return `最終確認: ${lastReviewed[1]}`;
   const updated = original.match(/^updated (.+)$/);
   if (updated) return `更新 ${updated[1]}`;
-  const themeCount = original.match(/^(\d+) papers \/ (\d+) notes \/ (\d+) talks$/);
-  if (themeCount) return `${themeCount[1]} 論文 / ${themeCount[2]} ノート / ${themeCount[3]} 発表`;
+  const themeCount = original.match(/^(\d+) papers \/ (\d+) notes \/ (\d+) slides \/ (\d+) talks$/);
+  if (themeCount) return `${themeCount[1]} 論文 / ${themeCount[2]} ノート / ${themeCount[3]} スライド / ${themeCount[4]} 発表`;
   const themeCountWithPreparation = original.match(
-    /^(\d+) papers \/ (\d+) in preparation \/ (\d+) notes \/ (\d+) talks$/
+    /^(\d+) papers \/ (\d+) in preparation \/ (\d+) notes \/ (\d+) slides \/ (\d+) talks$/
   );
   if (themeCountWithPreparation) {
-    return `${themeCountWithPreparation[1]} 論文 / ${themeCountWithPreparation[2]} in preparation / ${themeCountWithPreparation[3]} ノート / ${themeCountWithPreparation[4]} 発表`;
+    return `${themeCountWithPreparation[1]} 論文 / ${themeCountWithPreparation[2]} in preparation / ${themeCountWithPreparation[3]} ノート / ${themeCountWithPreparation[4]} スライド / ${themeCountWithPreparation[5]} 発表`;
   }
   const diagramMode = original.match(/^Open diagram mode for (.+)$/);
   if (diagramMode) return `Diagram mode を開く: ${diagramMode[1]}`;
@@ -1959,6 +2132,8 @@ function translatedPhrase(text, element = null) {
   if (themeSelectionCount) return `${themeSelectionCount[1]}テーマ`;
   const noteFilterCount = original.match(/^Showing (\d+) \/ (\d+) notes$/);
   if (noteFilterCount) return `${noteFilterCount[1]} / ${noteFilterCount[2]} 件のノート`;
+  const slideFilterCount = original.match(/^Showing (\d+) \/ (\d+) slides$/);
+  if (slideFilterCount) return `${slideFilterCount[1]} / ${slideFilterCount[2]} 件のスライド`;
   const talkMapCount = original.match(/^(\d+) (talks?|visits?) \/ (.+)$/);
   if (talkMapCount) return `${talkMapCount[1]}件 / ${i18nText[activeLanguage]?.[talkMapCount[3]] || talkMapCount[3]}`;
   const openRecord = original.match(/^Open (.+)$/);
@@ -1998,6 +2173,7 @@ const translatableTextSelector = [
   ".theme-status-count",
   ".theme-choice-label",
   ".theme-choice-count",
+  ".paper-tag-index-status",
   ".paper-tag-label",
   ".web-app-tag-label",
   ".tag-label",
@@ -2615,13 +2791,14 @@ function overleafActionLinks(record, kinds = []) {
     .map((artifact) => [artifact.label || (artifact.kind === "paper" ? "PDF" : "Slides"), localHref(artifact.href)]);
 }
 
-function overleafNoteRecords() {
-  return overleafArtifacts(["slide", "note"]).map((artifact) => ({
+function overleafDocumentRecords(kinds = ["note"]) {
+  return overleafArtifacts(kinds).map((artifact) => ({
     title: artifact.title,
     description: artifact.description || "Overleaf-backed GitHub repository.",
     date: artifact.date || artifact.updated || "",
     language: artifact.language || "Document",
     theme: artifact.theme || "",
+    kind: artifact.kind === "slide" ? "slide" : "note",
     file: artifact.outputName || artifact.href.split("/").pop() || `${artifact.id}.pdf`,
     href: artifact.href,
     download: artifact.href,
@@ -2629,12 +2806,24 @@ function overleafNoteRecords() {
   }));
 }
 
+function overleafNoteRecords() {
+  return overleafDocumentRecords(["note"]);
+}
+
+function overleafSlideRecords() {
+  return overleafDocumentRecords(["slide"]);
+}
+
 function noteAnchor(note) {
   return `note-${slugify(note.file || note.title)}`;
 }
 
+function documentPagePathForRecord(note) {
+  return noteRecordIsSlide(note) ? "slides/index.html" : "notes/index.html";
+}
+
 function noteHref(note) {
-  return localHref(note.href || `notes/index.html#${noteAnchor(note)}`);
+  return localHref(note.href || `${documentPagePathForRecord(note)}#${noteAnchor(note)}`);
 }
 
 function noteDownloadHref(note) {
@@ -2642,9 +2831,9 @@ function noteDownloadHref(note) {
 }
 
 function noteHrefByFile(file) {
-  const note = siteData.notes.find((record) => record.file === file);
+  const note = [...siteData.notes, ...overleafDocumentRecords(["note", "slide"])].find((record) => record.file === file);
   if (!note) return "";
-  return localHref(`notes/index.html#${noteAnchor(note)}`);
+  return localHref(`${documentPagePathForRecord(note)}#${noteAnchor(note)}`);
 }
 
 function scrollToHashTarget() {
@@ -2663,7 +2852,8 @@ const talkSlideMatches = [
   { title: "Local state classifier for automata theory", file: "IRIF20250527_ver1.pdf" },
   { title: "Topoi of automata", event: "CSCAT2025", file: "CSCAT_2025-3.pdf" },
   { title: "Topoi of automata", event: "CTTA Groupe", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf" },
-  { title: "Topoi of automata", event: "Categories for Automata", file: "IRIFtoday.pdf" }
+  { title: "Topoi of automata", event: "Categories for Automata", file: "IRIFtoday.pdf" },
+  { title: "Constructive mathematics and representation theory", file: "若手の会2023-8.pdf" }
 ];
 
 const talkLocationByResearchmapId = {
@@ -3355,12 +3545,12 @@ function staticTalkRecords() {
 }
 
 function findStaticTalkForPresentation(record) {
-  const title = simplified(record?.title);
-  if (!title) return null;
+  const titleValues = titleCandidateValues(record, presentationTitleAliases);
+  if (!titleValues.length) return null;
   const candidates = staticTalkRecords().filter((talk) => {
-    const talkTitle = simplified(talk.title);
+    const talkTitleValues = titleCandidateValues(talk, presentationTitleAliases);
     const sameYear = !record.year || String(talk.year) === String(record.year);
-    const closeTitle = talkTitle === title || talkTitle.includes(title) || title.includes(talkTitle);
+    const closeTitle = titlesOverlap(talkTitleValues, titleValues);
     return sameYear && closeTitle;
   });
   if (!candidates.length) return null;
@@ -3417,12 +3607,11 @@ function talkLocationLabel(location) {
 }
 
 function findResearchmapPresentationForTalk(talk) {
-  const title = simplified(talk?.title);
-  if (!title) return null;
+  const titleValues = titleCandidateValues(talk, presentationTitleAliases);
+  if (!titleValues.length) return null;
   const candidates = researchmapPresentationRecords().filter((record) => {
-    const recordTitle = simplified(record.title);
-    const rawTitle = simplified(record.rawTitle);
-    return recordTitle === title || rawTitle === title || recordTitle.includes(title) || title.includes(recordTitle);
+    const recordTitleValues = titleCandidateValues(record, presentationTitleAliases);
+    return titlesOverlap(recordTitleValues, titleValues);
   });
   if (!candidates.length) return null;
   if (candidates.length === 1) return candidates[0];
@@ -3690,7 +3879,7 @@ function siteSearchRecords() {
     });
   }
 
-  [...overleafNoteRecords(), ...siteData.notes].forEach((note) => {
+  allNoteRecords().forEach((note) => {
     const [kind, kindLabel] = noteKind(note);
     pushSiteSearchRecord(records, {
       type: "Note",
@@ -3701,6 +3890,19 @@ function siteSearchRecords() {
       keywords: compactText([kind, note.file]),
       icon: "note",
       thumbnail: noteThumbnailSrc(note)
+    });
+  });
+
+  allSlideRecords().forEach((slide) => {
+    pushSiteSearchRecord(records, {
+      type: "Slide",
+      title: shortNoteTitle(slide),
+      href: noteHref(slide),
+      summary: slide.description || slide.talkTitle || slide.file,
+      meta: compactText([slide.talkMeta, noteLanguageKey(slide), slide.source === "overleaf" ? "Overleaf" : ""]).join(" / "),
+      keywords: compactText(["slides", slide.file, slide.talkTitle]),
+      icon: "talk",
+      thumbnail: noteThumbnailSrc(slide)
     });
   });
 
@@ -5159,13 +5361,17 @@ function timelineToday() {
 
 function findResearchmapPaper(paper) {
   const records = researchmapData?.papers || [];
-  const title = simplified(paper.title);
+  const titleValues = titleCandidateValues(paper, publicationTitleAliases);
   return records.find((record) => {
-    const candidate = simplified(record.title);
-    if (candidate === title) return true;
-    const titleStem = title.slice(0, 48);
-    const candidateStem = candidate.slice(0, 48);
-    return Boolean(titleStem && candidate.includes(titleStem)) || Boolean(candidateStem && title.includes(candidateStem));
+    const candidateValues = titleCandidateValues(record, publicationTitleAliases);
+    if (titlesOverlap(candidateValues, titleValues)) return true;
+    return candidateValues.some((candidate) =>
+      titleValues.some((title) => {
+        const titleStem = title.slice(0, 48);
+        const candidateStem = candidate.slice(0, 48);
+        return Boolean(titleStem && candidate.includes(titleStem)) || Boolean(candidateStem && title.includes(candidateStem));
+      })
+    );
   });
 }
 
@@ -5625,7 +5831,7 @@ function renderActivitiesTimeline() {
 }
 
 function documentTimelineNoteRecords() {
-  return sortedNoteRecords([...overleafNoteRecords(), ...siteData.notes])
+  return allNoteRecords()
     .map((note) => {
       const time = noteTime(note);
       if (!Number.isFinite(time)) return null;
@@ -5745,6 +5951,8 @@ function renderPaperTimeline() {
 }
 
 function noteKind(note) {
+  if (note.kind === "slide") return ["slides", "Slides"];
+  if (talkSlideMatches.some((match) => match.file === note.file)) return ["slides", "Slides"];
   const titleKind = noteTitlePrefixKind(note.title);
   const text = `${note.title} ${note.description || ""} ${note.file}`.toLowerCase();
   if (titleKind === "cloud") return ["cloud", "Speculative", "cloud"];
@@ -5754,6 +5962,105 @@ function noteKind(note) {
     return ["slides", "Slides"];
   }
   return ["note", "Note"];
+}
+
+function noteRecordIsSlide(note) {
+  return noteKind(note)[0] === "slides";
+}
+
+function staticNoteRecords() {
+  return siteData.notes.filter((note) => !noteRecordIsSlide(note));
+}
+
+function staticSlideRecords() {
+  return siteData.notes.filter(noteRecordIsSlide);
+}
+
+function slideMatchTitle(value = "") {
+  return stripNoteTitlePrefix(value)
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/\bslides?\b/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function findStaticTalkForSlide(slide) {
+  const explicitMatch = talkSlideMatches.find((match) => match.file === slide.file);
+  const title = simplified(explicitMatch?.title || slideMatchTitle(slide.title));
+  if (!title) return null;
+  const candidates = staticTalkRecords().filter((talk) => {
+    const talkTitle = simplified(talk.title);
+    return talkTitle === title || talkTitle.includes(title) || title.includes(talkTitle);
+  });
+  if (!candidates.length) return null;
+  if (candidates.length === 1) return candidates[0];
+  const context = compactText([slide.description, slide.date, slide.file]).join(" ");
+  return [...candidates].sort((a, b) => {
+    const scoreA = tokenOverlapScore(context, compactText([a.year, a.venue, a.href]).join(" "));
+    const scoreB = tokenOverlapScore(context, compactText([b.year, b.venue, b.href]).join(" "));
+    return scoreB - scoreA;
+  })[0];
+}
+
+function findResearchmapPresentationForSlide(slide, staticTalk = null) {
+  if (staticTalk) {
+    const presentation = findResearchmapPresentationForTalk(staticTalk);
+    if (presentation) return presentation;
+  }
+  const explicitMatch = talkSlideMatches.find((match) => match.file === slide.file);
+  const title = simplified(explicitMatch?.title || slideMatchTitle(slide.title));
+  if (!title) return null;
+  const candidates = researchmapPresentationRecords().filter((record) => {
+    const recordTitle = simplified(record.title);
+    const rawTitle = simplified(record.rawTitle);
+    return recordTitle === title || rawTitle === title || recordTitle.includes(title) || title.includes(recordTitle);
+  });
+  if (!candidates.length) return null;
+  if (candidates.length === 1) return candidates[0];
+  const context = compactText([slide.description, slide.date, slide.file]).join(" ");
+  return [...candidates].sort((a, b) => {
+    const scoreA = tokenOverlapScore(context, compactText([a.event, a.date, a.dateRange, a.link]).join(" "));
+    const scoreB = tokenOverlapScore(context, compactText([b.event, b.date, b.dateRange, b.link]).join(" "));
+    return scoreB - scoreA;
+  })[0];
+}
+
+function talkVenueDateLabel(talk) {
+  const year = String(talk?.year || "").match(/\b(19\d{2}|20\d{2})\b/)?.[1];
+  const match = String(talk?.venue || "").match(/\b(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\b/i);
+  if (!year || !match) return "";
+  const month = String(monthNumbers[match[2].toLowerCase()] + 1).padStart(2, "0");
+  const day = String(match[1]).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function mergeSlideWithTalk(slide) {
+  const staticTalk = findStaticTalkForSlide(slide);
+  const presentation = findResearchmapPresentationForSlide(slide, staticTalk);
+  const talkRecord = presentation || staticTalk;
+  if (!talkRecord) return { ...slide, kind: "slide" };
+  const talkHref = localHref(`talks/index.html#${talkRecordAnchor(talkRecord)}`);
+  const talkMeta = presentation
+    ? presentationMeta(presentation)
+    : compactText([presentationPeopleText(staticTalk), staticTalk.venue]).join(" / ");
+  return {
+    ...slide,
+    kind: "slide",
+    date: slide.date || presentation?.dateRange || presentation?.date || talkVenueDateLabel(staticTalk) || staticTalk?.year || "",
+    description: slide.description || presentation?.event || staticTalk?.venue || "",
+    talkTitle: talkRecord.title,
+    talkMeta,
+    talkHref,
+    talkRecord
+  };
+}
+
+function allNoteRecords() {
+  return sortedNoteRecords([...overleafNoteRecords(), ...staticNoteRecords()]);
+}
+
+function allSlideRecords() {
+  return sortedNoteRecords([...overleafSlideRecords(), ...staticSlideRecords()].map(mergeSlideWithTalk));
 }
 
 const noteKindSymbols = {
@@ -6951,7 +7258,7 @@ function sectionHeadingIconKey(label = "") {
 
 function noteRecordByFile(file) {
   if (!file) return null;
-  return [...siteData.notes, ...overleafNoteRecords()].find((record) => record.file === file) || null;
+  return [...siteData.notes, ...overleafDocumentRecords(["note", "slide"])].find((record) => record.file === file) || null;
 }
 
 function talkThumbnailRecord(record) {
@@ -7343,7 +7650,7 @@ function themedPreparationRecords() {
 }
 
 function themedNoteRecords() {
-  return dedupeThemeRecords([...overleafNoteRecords(), ...siteData.notes]
+  return dedupeThemeRecords(allNoteRecords()
     .filter((note) => note.file !== "Notion archive")
     .map((note) => {
       const theme = noteTheme(note);
@@ -7364,6 +7671,34 @@ function themedNoteRecords() {
         href: noteHref(note),
         meta: compactText([note.language, note.description || note.file]).join(" / "),
         metaTags: metaTagIdsForText(text, note.metaTags || []),
+        ...scoreThemeRecord(text, themeHints)
+      };
+    })).filter((record) => record.themes.length);
+}
+
+function themedSlideRecords() {
+  return dedupeThemeRecords(allSlideRecords()
+    .map((slide) => {
+      const theme = noteTheme(slide);
+      const themeHints = compactText([theme, ...(slide.themes || [])]);
+      const text = compactText([
+        slide.title,
+        slide.description,
+        slide.language,
+        slide.file,
+        slide.talkTitle,
+        slide.talkMeta,
+        theme,
+        noteThemeLabel(theme),
+        ...(slide.themes || []),
+        ...(slide.keywords || [])
+      ]).join(" ");
+      return {
+        type: "slide",
+        title: symbolicNoteTitle(slide),
+        href: noteHref(slide),
+        meta: compactText([slide.talkMeta, slide.language, slide.description || slide.file]).join(" / "),
+        metaTags: metaTagIdsForText(text, slide.metaTags || []),
         ...scoreThemeRecord(text, themeHints)
       };
     })).filter((record) => record.themes.length);
@@ -7412,6 +7747,7 @@ function themedRecords(kind) {
   if (kind === "papers") return themedPaperRecords();
   if (kind === "preparation") return themedPreparationRecords();
   if (kind === "notes") return themedNoteRecords();
+  if (kind === "slides") return themedSlideRecords();
   return themedTalkRecords();
 }
 
@@ -7521,7 +7857,7 @@ function renderResearchMapResults(selection = "", options = {}) {
       el(
         "span",
         "theme-status-count",
-        `${counts[0]} papers / ${counts[1]} in preparation / ${counts[2]} notes / ${counts[3]} talks`
+        `${counts[0]} papers / ${counts[1]} in preparation / ${counts[2]} notes / ${counts[3]} slides / ${counts[4]} talks`
       )
     );
   }
@@ -7544,6 +7880,7 @@ function researchThemeGroups() {
     ["papers", "Papers"],
     ["preparation", "In preparation"],
     ["notes", "Notes"],
+    ["slides", "Slides"],
     ["talks", "Talks"]
   ];
 }
@@ -8816,6 +9153,13 @@ function gamesRbFormatSet(values) {
   return [...values].sort((a, b) => a - b).join(",");
 }
 
+function gamesRbExpandedOutputValues(state, mexS, mexT) {
+  return [
+    ...state.T.map((value) => mexS ^ value),
+    ...state.S.map((value) => value ^ mexT)
+  ];
+}
+
 function gamesRbNimTableBaseTemplate() {
   const minorLines = [
     ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
@@ -8909,6 +9253,7 @@ ${gamesRbNimTableBaseTemplate()}
     ${gamesRbSetControlTemplate("S", gamesRbInitialS)}
     ${gamesRbSetControlTemplate("T", gamesRbInitialT)}
     <span class="figure-math games-rb-table-tex games-rb-dual-tex-left">\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-readout" data-games-rb-expanded-mex-readout>\\(\\operatorname{mex}(\\textcolor{#7c3aed}{\\text{purple cells}})=1\\)</span>
     <span class="figure-math games-rb-table-tex games-rb-dual-tex-right">\\(\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T})\\)</span>`,
   "automata-cantor-morphism": `
     <svg class="automata-cantor-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-cantor-title fig-automata-cantor-desc">
@@ -8996,36 +9341,36 @@ ${gamesRbNimTableBaseTemplate()}
         <text class="automata-cantor-arrow-label large automata-sublocale-label" x="206" y="178">sublocale</text>
 
         <g class="automata-prefix-poset" transform="translate(26 0)">
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 109 L255.5 107.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 109.6 L255.5 111.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 122.2 L255.5 120.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 122.8 L255.5 124.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 148.6 L255.5 146.9"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 149.2 L255.5 150.8"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 161.7 L255.5 160"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 162.3 L255.5 164"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 227.7 L255.5 226"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 228.3 L255.5 229.9"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 240.8 L255.5 239.1"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 241.4 L255.5 243.1"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 267.2 L255.5 265.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 267.8 L255.5 269.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" pathLength="1" data-cantor-arrow="blue" d="M281.8 280.4 L255.5 278.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" pathLength="1" data-cantor-arrow="red" d="M281.8 281 L255.5 282.7"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M330.8 115.2 L290.4 109.9"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M330.8 116.6 L290.4 121.9"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M330.8 154.7 L290.4 149.5"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M330.8 156.1 L290.4 161.4"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M330.8 233.9 L290.4 228.6"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M330.8 235.3 L290.4 240.5"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" pathLength="1" data-cantor-arrow="blue" d="M330.8 273.4 L290.4 268.1"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" pathLength="1" data-cantor-arrow="red" d="M330.8 274.8 L290.4 280.1"></path>
-          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M401.1 133.8 L341.2 117.3"></path>
-          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M401.1 137.6 L341.2 154"></path>
-          <path class="automata-cantor-tree-edge level-1 blue" pathLength="1" data-cantor-arrow="blue" d="M475.7 187.1 L413.9 140.2"></path>
-          <path class="automata-cantor-tree-edge level-2 blue" pathLength="1" data-cantor-arrow="blue" d="M401.1 252.4 L341.2 236"></path>
-          <path class="automata-cantor-tree-edge level-2 red" pathLength="1" data-cantor-arrow="red" d="M401.1 256.2 L341.2 272.7"></path>
-          <path class="automata-cantor-tree-edge level-1 red" pathLength="1" data-cantor-arrow="red" d="M475.7 202.9 L413.9 249.8"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 109 L255.5 107.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 109.6 L255.5 111.3"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 122.2 L255.5 120.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 122.8 L255.5 124.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 148.6 L255.5 146.9"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 149.2 L255.5 150.8"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 161.7 L255.5 160"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 162.3 L255.5 164"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 227.7 L255.5 226"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 228.3 L255.5 229.9"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 240.8 L255.5 239.1"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 241.4 L255.5 243.1"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 267.2 L255.5 265.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 267.8 L255.5 269.5"></path>
+          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 280.4 L255.5 278.7"></path>
+          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 281 L255.5 282.7"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" data-cantor-arrow="blue" d="M330.8 115.2 L290.4 109.9"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" data-cantor-arrow="red" d="M330.8 116.6 L290.4 121.9"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" data-cantor-arrow="blue" d="M330.8 154.7 L290.4 149.5"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" data-cantor-arrow="red" d="M330.8 156.1 L290.4 161.4"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" data-cantor-arrow="blue" d="M330.8 233.9 L290.4 228.6"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" data-cantor-arrow="red" d="M330.8 235.3 L290.4 240.5"></path>
+          <path class="automata-cantor-tree-edge child level-3 blue" data-cantor-arrow="blue" d="M330.8 273.4 L290.4 268.1"></path>
+          <path class="automata-cantor-tree-edge child level-3 red" data-cantor-arrow="red" d="M330.8 274.8 L290.4 280.1"></path>
+          <path class="automata-cantor-tree-edge level-2 blue" data-cantor-arrow="blue" d="M401.1 133.8 L341.2 117.3"></path>
+          <path class="automata-cantor-tree-edge level-2 red" data-cantor-arrow="red" d="M401.1 137.6 L341.2 154"></path>
+          <path class="automata-cantor-tree-edge level-1 blue" data-cantor-arrow="blue" d="M475.7 187.1 L413.9 140.2"></path>
+          <path class="automata-cantor-tree-edge level-2 blue" data-cantor-arrow="blue" d="M401.1 252.4 L341.2 236"></path>
+          <path class="automata-cantor-tree-edge level-2 red" data-cantor-arrow="red" d="M401.1 256.2 L341.2 272.7"></path>
+          <path class="automata-cantor-tree-edge level-1 red" data-cantor-arrow="red" d="M475.7 202.9 L413.9 249.8"></path>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="107.1" r="2.35"></circle>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="111.5" r="2.35"></circle>
           <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="120.3" r="2.35"></circle>
@@ -9819,6 +10164,7 @@ function applyFigureMarkerIds(container, figureId, prefix) {
     svg.querySelectorAll(".automata-prefix-poset .automata-cantor-tree-edge").forEach((edge) => {
       const markerId = markers.get(edge.dataset.cantorArrow || "neutral");
       if (!markerId) return;
+      edge.style.setProperty("--tree-edge-length", edge.getTotalLength().toFixed(3));
       const arrowhead = edge.cloneNode(false);
       arrowhead.classList.remove("automata-cantor-tree-edge", "child");
       arrowhead.classList.add("automata-cantor-tree-arrowhead");
@@ -11501,6 +11847,7 @@ function renderGamesRbFigure(root) {
   };
   const mexS = gamesRbMex(state.S);
   const mexT = gamesRbMex(state.T);
+  const expandedMex = gamesRbMex(gamesRbExpandedOutputValues(state, mexS, mexT));
 
   root.querySelectorAll("[data-games-rb-set-layer]").forEach((layer) => renderGamesRbSetHighlights(layer, state));
   root.querySelectorAll("[data-games-rb-mex-layer]").forEach((layer) => renderGamesRbMexRings(layer, mexS, mexT));
@@ -11523,6 +11870,10 @@ function renderGamesRbFigure(root) {
     const selected = state[setName]?.includes(value) || false;
     hit.setAttribute("aria-pressed", selected ? "true" : "false");
     hit.classList.toggle("is-selected", selected);
+  });
+  container.querySelectorAll("[data-games-rb-expanded-mex-readout]").forEach((readout) => {
+    readout.innerHTML = `\\(\\operatorname{mex}(\\textcolor{#7c3aed}{\\text{purple cells}})=${expandedMex}\\)`;
+    typesetMath(readout);
   });
 }
 
@@ -12652,6 +13003,7 @@ function paperListingRecords() {
 }
 
 function paperSearchText(paper) {
+  const metaTagIds = paperMetaTagIds(paper);
   return compactText([
     paper.title,
     paper.authors,
@@ -12659,7 +13011,9 @@ function paperSearchText(paper) {
     paper.year,
     paper.tags?.join(" "),
     paper.summary,
-    ...paperDisplayTagRecords(paper).map((tag) => tag.label)
+    ...paperDisplayTagRecords(paper).map((tag) => tag.label),
+    ...metaTagIds,
+    ...metaTagIds.flatMap((tagId) => metaTagById(tagId)?.keywords || [])
   ]).join(" ");
 }
 
@@ -12667,6 +13021,48 @@ function paperMatchesActiveFilters(paper) {
   const themeId = activePaperThemeId();
   if (themeId && !paperThemeIds(paper).includes(themeId)) return false;
   return matchesQuery(paperSearchText(paper), state.paperQuery);
+}
+
+function documentThemesForPaperSearch(record) {
+  return scoreThemeRecord(
+    compactText([
+      record.title,
+      record.description,
+      record.file,
+      record.talkTitle,
+      record.talkMeta,
+      noteTheme(record),
+      noteThemeLabel(noteTheme(record)),
+      ...(record.themes || [])
+    ]).join(" "),
+    compactText([noteTheme(record), ...(record.themes || [])])
+  ).themes;
+}
+
+function noteSearchTextForPaperSearch(record) {
+  const metaTagIds = metaTagIdsForText(
+    compactText([record.title, record.description, record.file, record.talkTitle, record.talkMeta]).join(" "),
+    record.metaTags || []
+  );
+  return compactText([
+    noteSearchText(record),
+    record.talkTitle,
+    record.talkMeta,
+    ...(record.themes || []),
+    ...metaTagIds,
+    ...metaTagIds.map(metaTagLabel),
+    ...metaTagIds.flatMap((tagId) => metaTagById(tagId)?.keywords || [])
+  ]).join(" ");
+}
+
+function documentMatchesPaperFilters(record) {
+  const themeId = activePaperThemeId();
+  if (themeId && !documentThemesForPaperSearch(record).includes(themeId)) return false;
+  return matchesQuery(noteSearchTextForPaperSearch(record), state.paperQuery);
+}
+
+function paperSearchHasDocumentFilter() {
+  return Boolean(activePaperThemeId() || String(state.paperQuery || "").trim());
 }
 
 function preparationPaperMatchesActiveFilters(title) {
@@ -12701,6 +13097,7 @@ function setPaperFilters({ query = "", theme = "" } = {}) {
   syncPaperFilterUrl();
   renderPapers();
   renderPreparationPapers();
+  renderPaperRelatedDocuments();
   renderResearchmapPapers();
   renderMiscPapers();
 }
@@ -12761,15 +13158,44 @@ function renderPaperTagButton(label, themeId, count) {
   return button;
 }
 
+function renderPaperMetaTagButton(tag, count) {
+  const button = el("button", `paper-tag-button paper-tag-button-meta paper-tag-button-${tag.id}`);
+  const query = tag.label;
+  const isActive = !activePaperThemeId() && simplified(state.paperQuery) === simplified(query);
+  button.type = "button";
+  button.dataset.paperTag = query;
+  button.classList.toggle("is-active", isActive);
+  button.setAttribute("aria-pressed", String(isActive));
+  button.disabled = !count;
+  button.append(uiIcon(metaTagIconKey(tag.id), "paper-tag-icon tag-icon"), el("span", "paper-tag-label", tag.label));
+  button.append(el("span", "paper-tag-count", String(count)));
+  button.addEventListener("click", () => setPaperQuery(query));
+  return button;
+}
+
 function renderPaperTagIndex(records = paperListingRecords()) {
   const root = document.querySelector("#paper-tag-index");
   if (!root) return;
   const counts = Object.fromEntries(researchThemes.map((theme) => [theme.id, 0]));
+  const metaCounts = Object.fromEntries(researchMetaTags.map((tag) => [tag.id, 0]));
   const preparationRecords = siteData.papers.preparation.map(preparationPaperRecord);
-  const countRecords = [...records, ...preparationRecords];
-  countRecords.forEach((paper) => {
+  const noteRecords = allNoteRecords();
+  const slideRecords = allSlideRecords();
+  const paperCountRecords = [...records, ...preparationRecords];
+  paperCountRecords.forEach((paper) => {
     new Set(paperThemeIds(paper)).forEach((themeId) => {
       counts[themeId] = (counts[themeId] || 0) + 1;
+    });
+    new Set(paperMetaTagIds(paper)).forEach((tagId) => {
+      metaCounts[tagId] = (metaCounts[tagId] || 0) + 1;
+    });
+  });
+  [...noteRecords, ...slideRecords].forEach((record) => {
+    new Set(documentThemesForPaperSearch(record)).forEach((themeId) => {
+      counts[themeId] = (counts[themeId] || 0) + 1;
+    });
+    new Set(metaTagIdsForText(compactText([record.title, record.description, record.file, record.talkTitle, record.talkMeta]).join(" "), record.metaTags || [])).forEach((tagId) => {
+      metaCounts[tagId] = (metaCounts[tagId] || 0) + 1;
     });
   });
   const activeThemeId = activePaperThemeId();
@@ -12777,8 +13203,8 @@ function renderPaperTagIndex(records = paperListingRecords()) {
   const statusText = activeThemeId
     ? `${activeTheme?.label || activeThemeId}: ${counts[activeThemeId] || 0} items`
     : state.paperQuery
-      ? `${state.paperQuery} papers`
-      : `${records.length} papers / ${preparationRecords.length} in preparation`;
+      ? `${state.paperQuery} items`
+      : `${records.length} papers / ${preparationRecords.length} in preparation / ${noteRecords.length} notes / ${slideRecords.length} slides`;
   root.replaceChildren();
   const head = el("div", "paper-tag-index-head");
   head.append(
@@ -12786,8 +13212,9 @@ function renderPaperTagIndex(records = paperListingRecords()) {
     el("span", "paper-tag-index-status", statusText)
   );
   const list = el("div", "paper-tag-list");
-  list.append(renderPaperTagButton("All", "", countRecords.length));
+  list.append(renderPaperTagButton("All", "", paperCountRecords.length + noteRecords.length + slideRecords.length));
   researchThemes.forEach((theme) => list.append(renderPaperTagButton(theme.label, theme.id, counts[theme.id] || 0)));
+  researchMetaTags.forEach((tag) => list.append(renderPaperMetaTagButton(tag, metaCounts[tag.id] || 0)));
   root.append(head, list);
 }
 
@@ -12860,6 +13287,42 @@ function renderPreparationPapers() {
   applyLanguage(root);
 }
 
+function renderPaperRelatedList(selector, records, emptyText, idleText, pagePath) {
+  const root = document.querySelector(selector);
+  if (!root) return;
+  root.replaceChildren();
+  if (!paperSearchHasDocumentFilter()) {
+    root.append(el("p", "empty-state", idleText));
+    applyLanguage(root);
+    return;
+  }
+  const filtered = records.filter(documentMatchesPaperFilters);
+  if (!filtered.length) {
+    root.append(el("p", "empty-state", emptyText));
+    applyLanguage(root);
+    return;
+  }
+  filtered.forEach((record) => root.append(renderDocumentCard(record, pagePath)));
+  applyLanguage(root);
+}
+
+function renderPaperRelatedDocuments() {
+  renderPaperRelatedList(
+    "#paper-related-notes-list",
+    allNoteRecords(),
+    "No related notes match this filter.",
+    "Use paper search or tags to find related notes.",
+    "notes/index.html"
+  );
+  renderPaperRelatedList(
+    "#paper-related-slides-list",
+    allSlideRecords(),
+    "No related slides match this filter.",
+    "Use paper search or tags to find related slides.",
+    "slides/index.html"
+  );
+}
+
 function renderHomePapers() {
   const root = document.querySelector("#home-paper-list");
   if (!root) return;
@@ -12913,9 +13376,11 @@ function researchmapMiscPaperRecord(record) {
 }
 
 const researchmapMiscNoteTitlePatterns = [
+  "counting with exponential of groups",
   "準完全情報ニム",
   "圏論に登場する矢印の意味は",
   "what is the geometry behind conway's game of life",
+  "順序集合で遊ぶkan拡張入門",
   "圏論の toy example としての集合演算"
 ];
 
@@ -13347,54 +13812,139 @@ function renderNoteFilters(allRecords, shownCount) {
   }
 }
 
+function renderSlideFilters(allRecords, shownCount) {
+  const input = document.querySelector("#slide-filter");
+  if (input && input.value !== state.slideQuery) input.value = state.slideQuery;
+
+  const languages = Array.from(new Set(allRecords.map(noteLanguageKey))).sort((a, b) => {
+    const order = ["English", "Japanese", "Document", "Other"];
+    const aIndex = order.includes(a) ? order.indexOf(a) : order.length;
+    const bIndex = order.includes(b) ? order.indexOf(b) : order.length;
+    return aIndex - bIndex || a.localeCompare(b);
+  });
+  state.slideLanguage = updateSelectOptions(
+    document.querySelector("#slide-language-filter"),
+    [["all", "All languages"], ...languages.map((language) => [language, language])],
+    state.slideLanguage
+  );
+
+  const yearKeys = Array.from(new Set(allRecords.map(noteYearKey)));
+  const datedYears = yearKeys
+    .filter((year) => year !== "undated")
+    .sort((a, b) => Number(b) - Number(a));
+  if (yearKeys.includes("undated")) datedYears.push("undated");
+  state.slideYear = updateSelectOptions(
+    document.querySelector("#slide-year-filter"),
+    [["all", "All years"], ...datedYears.map((year) => [year, year === "undated" ? "Undated" : year])],
+    state.slideYear
+  );
+
+  const themes = Array.from(new Set(allRecords.map(noteTheme))).sort((a, b) => {
+    const aIndex = noteThemeOrder.includes(a) ? noteThemeOrder.indexOf(a) : noteThemeOrder.length;
+    const bIndex = noteThemeOrder.includes(b) ? noteThemeOrder.indexOf(b) : noteThemeOrder.length;
+    return aIndex - bIndex || noteThemeLabel(a).localeCompare(noteThemeLabel(b));
+  });
+  state.slideTheme = updateSelectOptions(
+    document.querySelector("#slide-theme-filter"),
+    [["all", "All themes"], ...themes.map((theme) => [theme, noteThemeLabel(theme)])],
+    state.slideTheme
+  );
+
+  const count = document.querySelector("#slide-filter-count");
+  if (count) {
+    delete count.dataset.i18nOriginalText;
+    count.textContent = `Showing ${shownCount} / ${allRecords.length} slides`;
+  }
+}
+
+function slideMatchesFilters(slide) {
+  if (!noteMatchesQuery({ ...slide, description: compactText([slide.description, slide.talkTitle, slide.talkMeta]).join(" ") }, state.slideQuery)) return false;
+  if (state.slideLanguage !== "all" && noteLanguageKey(slide) !== state.slideLanguage) return false;
+  if (state.slideYear !== "all" && noteYearKey(slide) !== state.slideYear) return false;
+  if (state.slideTheme !== "all" && noteTheme(slide) !== state.slideTheme) return false;
+  return true;
+}
+
+function renderDocumentCard(note, pagePath) {
+  const item = el("article", "note-item");
+  const [kind, kindLabel, kindIcon] = noteKind(note);
+  const href = noteHref(note);
+  const downloadHref = noteDownloadHref(note);
+  item.id = noteAnchor(note);
+  item.append(noteThumbnail(note));
+  const heading = el("h3");
+  heading.append(link(shortNoteTitle(note), href), titleCopyButton(`${pagePath}#${noteAnchor(note)}`, shortNoteTitle(note)));
+  item.append(heading);
+  if (note.description) item.append(el("p", null, note.description));
+  if (note.talkMeta) {
+    const talk = el("p", "slide-talk-meta");
+    talk.append(uiIcon("talk", "slide-talk-icon"), document.createTextNode(note.talkMeta));
+    item.append(talk);
+  }
+  const meta = el("div", "note-meta");
+  if (kind === "pen") {
+    const badge = el("span", `note-kind-badge note-${kind}-badge`, kindLabel);
+    if (kindIcon === "pen") badge.prepend(uiIcon("pen", "note-kind-icon"));
+    else if (kindIcon && kindIcon !== kindLabel) badge.dataset.icon = kindIcon;
+    if (kindIcon && kindIcon === kindLabel) badge.classList.add("is-symbol");
+    meta.append(badge);
+  }
+  metaTagIdsForText(compactText([note.title, note.description, note.file, note.talkTitle, note.talkMeta]).join(" "), note.metaTags || [])
+    .forEach((tagId) => meta.append(renderMetaTagPill(tagId, "note-meta-tag")));
+  const dateLabel = noteDateLabel(note);
+  if (dateLabel) meta.append(el("span", null, dateLabel));
+  meta.append(el("span", null, noteLanguageKey(note)));
+  item.append(meta);
+  const actions = [["Open", href]];
+  if (downloadHref) actions.push(["Download", downloadHref]);
+  if (note.talkHref) actions.push(["Talk", note.talkHref]);
+  appendActionLinks(item, actions);
+  return item;
+}
+
 function renderNotes() {
   const root = document.querySelector("#notes-list");
   if (!root) return;
   root.replaceChildren();
   const limit = Number(root.dataset.limit || 0);
-  const allRecords = sortedNoteRecords([...overleafNoteRecords(), ...siteData.notes]);
+  const allRecords = allNoteRecords();
   const filteredRecords = allRecords.filter(noteMatchesFilters);
   const records = limit ? filteredRecords.slice(0, limit) : filteredRecords;
 
   renderNoteFilters(allRecords, records.length);
+  const section = root.closest(".notes-section") || root;
 
   if (!records.length) {
     root.append(el("p", "empty-state", "No notes match this filter."));
-    applyLanguage(document.querySelector("[data-page='notes']") || root);
+    applyLanguage(section);
     return;
   }
 
-  records.forEach((note) => {
-    const item = el("article", "note-item");
-    const [kind, kindLabel, kindIcon] = noteKind(note);
-    const href = noteHref(note);
-    const downloadHref = noteDownloadHref(note);
-    item.id = noteAnchor(note);
-    item.append(noteThumbnail(note));
-    const heading = el("h3");
-    heading.append(link(shortNoteTitle(note), href), titleCopyButton(`notes/index.html#${noteAnchor(note)}`, shortNoteTitle(note)));
-    item.append(heading);
-    if (note.description) item.append(el("p", null, note.description));
-    const meta = el("div", "note-meta");
-    if (kind === "pen") {
-      const badge = el("span", `note-kind-badge note-${kind}-badge`, kindLabel);
-      if (kindIcon === "pen") badge.prepend(uiIcon("pen", "note-kind-icon"));
-      else if (kindIcon && kindIcon !== kindLabel) badge.dataset.icon = kindIcon;
-      if (kindIcon && kindIcon === kindLabel) badge.classList.add("is-symbol");
-      meta.append(badge);
-    }
-    metaTagIdsForText(compactText([note.title, note.description, note.file]).join(" "), note.metaTags || [])
-      .forEach((tagId) => meta.append(renderMetaTagPill(tagId, "note-meta-tag")));
-    const dateLabel = noteDateLabel(note);
-    if (dateLabel) meta.append(el("span", null, dateLabel));
-    meta.append(el("span", null, noteLanguageKey(note)));
-    item.append(meta);
-    const actions = [["Open", href]];
-    if (downloadHref) actions.push(["Download", downloadHref]);
-    appendActionLinks(item, actions);
-    root.append(item);
-  });
-  applyLanguage(document.querySelector("[data-page='notes']") || root);
+  records.forEach((note) => root.append(renderDocumentCard(note, "notes/index.html")));
+  applyLanguage(section);
+  scrollToHashTarget();
+}
+
+function renderSlides() {
+  const root = document.querySelector("#slides-list");
+  if (!root) return;
+  root.replaceChildren();
+  const limit = Number(root.dataset.limit || 0);
+  const allRecords = allSlideRecords();
+  const filteredRecords = allRecords.filter(slideMatchesFilters);
+  const records = limit ? filteredRecords.slice(0, limit) : filteredRecords;
+
+  renderSlideFilters(allRecords, records.length);
+  const section = root.closest(".notes-section") || root;
+
+  if (!records.length) {
+    root.append(el("p", "empty-state", "No slides match this filter."));
+    applyLanguage(section);
+    return;
+  }
+
+  records.forEach((slide) => root.append(renderDocumentCard(slide, "slides/index.html")));
+  applyLanguage(section);
   scrollToHashTarget();
 }
 
@@ -13900,6 +14450,38 @@ function setupInteractions() {
     });
   }
 
+  const slideFilter = document.querySelector("#slide-filter");
+  if (slideFilter) {
+    slideFilter.addEventListener("input", (event) => {
+      state.slideQuery = event.target.value;
+      renderSlides();
+    });
+  }
+
+  const slideLanguageFilter = document.querySelector("#slide-language-filter");
+  if (slideLanguageFilter) {
+    slideLanguageFilter.addEventListener("change", (event) => {
+      state.slideLanguage = event.target.value;
+      renderSlides();
+    });
+  }
+
+  const slideYearFilter = document.querySelector("#slide-year-filter");
+  if (slideYearFilter) {
+    slideYearFilter.addEventListener("change", (event) => {
+      state.slideYear = event.target.value;
+      renderSlides();
+    });
+  }
+
+  const slideThemeFilter = document.querySelector("#slide-theme-filter");
+  if (slideThemeFilter) {
+    slideThemeFilter.addEventListener("change", (event) => {
+      state.slideTheme = event.target.value;
+      renderSlides();
+    });
+  }
+
   document.querySelectorAll("[data-talk-timeline]").forEach((button) => {
     button.addEventListener("click", () => {
       const action = button.dataset.talkTimeline;
@@ -13973,10 +14555,12 @@ function renderInitialPage() {
     renderPapers();
     renderPreparationPapers();
     renderNotes();
+    renderSlides();
   } else if (page === "papers") {
     renderPaperTimeline();
     renderPapers();
     renderPreparationPapers();
+    renderPaperRelatedDocuments();
     renderResearchmapPapers();
     renderMiscPapers();
   } else if (page === "activities") {
@@ -13990,6 +14574,8 @@ function renderInitialPage() {
     renderResearchmapPresentations();
   } else if (page === "notes") {
     renderNotes();
+  } else if (page === "slides") {
+    renderSlides();
   } else if (page === "cv") {
     renderProfileSections();
   } else if (page === "others") {

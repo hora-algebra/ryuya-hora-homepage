@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ryuya Hora</title>
-    <meta name="description" content="Other projects and links by Ryuya Hora.">
+    <meta name="description" content="Slides by Ryuya Hora.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../styles.css?v=cache-20260429p">
@@ -12,7 +12,7 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
     <!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="others" data-depth="child">
+  <body data-page="slides" data-depth="child">
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="Ryuya Hora home">
         <span class="brand-mark">RH</span>
@@ -30,13 +30,13 @@
             <a href="../index.html#awards">Awards</a>
           </div>
         </div>
-        <div class="nav-group">
-          <a class="nav-group-label" href="../documents/index.html">Documents</a>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="../documents/index.html">Documents</a>
           <div class="nav-submenu">
             <a href="../documents/index.html#papers">Papers</a>
             <a href="../documents/index.html#in-preparation">In preparation</a>
             <a href="../documents/index.html#notes">Notes</a>
-            <a href="../documents/index.html#slides">Slides</a>
+            <a class="is-active" href="../documents/index.html#slides">Slides</a>
           </div>
         </div>
         <div class="nav-group">
@@ -47,8 +47,8 @@
             <a href="../activities/index.html#yearly-records">Yearly Records</a>
           </div>
         </div>
-        <div class="nav-group is-active">
-          <a class="nav-group-label is-active" href="../others/index.html">Others</a>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../others/index.html">Others</a>
           <div class="nav-submenu">
             <a href="../others/index.html#web-apps">Web Apps</a>
             <a href="../others/index.html#problems">Problems</a>
@@ -64,73 +64,46 @@
 
     <main>
       <section class="page-hero section">
-        <h1>Others</h1>
-        <p class="lead">Web apps, problems, and links.</p>
+        <h1>Slides</h1>
+        <p class="lead">Slides, with matching talk information when available.</p>
       </section>
 
-      <section id="web-apps" class="section" aria-labelledby="others-web-apps-title">
-        <div class="section-head">
-          <div>
-            <h2 id="others-web-apps-title">Web Apps</h2>
-          </div>
-          <a class="section-link" href="../web-apps/index.html" aria-label="Open Web Apps">More</a>
-        </div>
-        <div id="web-app-grid" class="web-app-grid"></div>
-      </section>
-
-      <section id="problems" class="section" aria-labelledby="others-problems-title">
-        <div class="section-head">
-          <div>
-            <h2 id="others-problems-title">Problems</h2>
-          </div>
-          <div class="problem-random-actions">
-            <button class="tab-button" type="button" data-problem-random="any">Random problem</button>
-            <button class="tab-button" type="button" data-problem-random="open">Random formal</button>
-          </div>
-        </div>
-
-        <div class="problem-console">
-          <div class="problem-toolbar">
-            <label class="search-label">
-              <span>Filter problems</span>
-              <input id="problem-filter" type="search" autocomplete="off" placeholder="Topos, 2.0.2, rieg...">
+      <section class="section notes-section slides-section">
+        <div class="notes-filter-row">
+          <p id="slide-filter-count" class="note-filter-count"></p>
+          <div class="note-toolbar" aria-label="Slide filters">
+            <label class="search-label note-search-label">
+              <span>Search slides</span>
+              <input id="slide-filter" type="search" autocomplete="off" placeholder="topos, games, language...">
             </label>
-            <div id="problem-status-tabs" class="publication-tabs" aria-label="Problem status filters"></div>
+            <label class="note-filter-label">
+              <span>Language</span>
+              <select id="slide-language-filter"></select>
+            </label>
+            <label class="note-filter-label">
+              <span>Year</span>
+              <select id="slide-year-filter"></select>
+            </label>
+            <label class="note-filter-label">
+              <span>Theme</span>
+              <select id="slide-theme-filter"></select>
+            </label>
           </div>
-          <div id="problem-stats" class="problem-stats"></div>
-          <article id="problem-feature" class="problem-feature"></article>
         </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div>
-            <h2 id="others-problem-index-title">Index</h2>
-          </div>
-          <a class="section-link" href="../problems/index.html" aria-label="Open Problems">More</a>
-        </div>
-        <div id="problem-list" class="problem-list"></div>
-      </section>
-
-      <section id="links" class="section" aria-labelledby="others-links-title">
-        <div class="section-head">
-          <div>
-            <h2 id="others-links-title">Links</h2>
-          </div>
-          <a class="section-link" href="../links/index.html" aria-label="Open Links">More</a>
-        </div>
-        <div id="link-list" class="link-columns"></div>
+        <div id="slides-list" class="note-grid" aria-live="polite"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Last updated: 27 April 2026.</p>
+      <p>Slides. Last updated: 27 April 2026.</p>
       <div class="site-footer-links">
         <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
         <a href="../index.html">Home</a>
       </div>
     </footer>
 
+    <script defer src="../data/researchmap.generated.js"></script>
+    <script defer src="../data/overleaf.generated.js"></script>
     <script defer src="../scripts/site.js?v=cache-20260429p"></script>
   </body>
 </html>

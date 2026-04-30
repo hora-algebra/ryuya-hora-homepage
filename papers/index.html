@@ -7,7 +7,10 @@
     <meta name="description" content="Papers by Ryuya Hora.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
-    <link rel="stylesheet" href="../styles.css?v=cache-20260429n">
+    <link rel="stylesheet" href="../styles.css?v=cache-20260429p">
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
+    <!-- End Cloudflare Web Analytics -->
   </head>
   <body data-page="papers" data-depth="child">
     <header class="site-header">
@@ -33,6 +36,7 @@
             <a class="is-active" href="../documents/index.html#papers">Papers</a>
             <a href="../documents/index.html#in-preparation">In preparation</a>
             <a href="../documents/index.html#notes">Notes</a>
+            <a href="../documents/index.html#slides">Slides</a>
           </div>
         </div>
         <div class="nav-group">
@@ -80,7 +84,7 @@
           </div>
           <div class="paper-controls">
             <label class="search-label">
-              <span>Filter papers</span>
+              <span>Filter papers, notes, slides</span>
               <input id="paper-filter" type="search" placeholder="topos, automata, games...">
             </label>
             <div class="publication-tabs paper-view-tabs" aria-label="Paper view">
@@ -96,6 +100,18 @@
             <h3 id="paper-preparation-title">In preparation</h3>
           </div>
           <div id="preparation-paper-list" class="publication-list" aria-live="polite"></div>
+        </div>
+        <div id="paper-related-notes" class="paper-subsection" aria-labelledby="paper-related-notes-title">
+          <div class="paper-subsection-head">
+            <h3 id="paper-related-notes-title">Related Notes</h3>
+          </div>
+          <div id="paper-related-notes-list" class="note-grid" aria-live="polite"></div>
+        </div>
+        <div id="paper-related-slides" class="paper-subsection" aria-labelledby="paper-related-slides-title">
+          <div class="paper-subsection-head">
+            <h3 id="paper-related-slides-title">Related Slides</h3>
+          </div>
+          <div id="paper-related-slides-list" class="note-grid" aria-live="polite"></div>
         </div>
       </section>
 
@@ -129,7 +145,7 @@
 
     <script defer src="../data/researchmap.generated.js"></script>
     <script defer src="../data/overleaf.generated.js"></script>
-    <script defer src="../scripts/site.js?v=cache-20260429n"></script>
+    <script defer src="../scripts/site.js?v=cache-20260429p"></script>
     <script defer src="../scripts/site-main-override.js?v=cache-20260428b"></script>
   </body>
 </html>

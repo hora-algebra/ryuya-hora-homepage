@@ -1,10 +1,9 @@
 import { spawn } from "node:child_process";
-import { mkdtemp, writeFile } from "node:fs/promises";
+import { access, mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
-const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const root = process.cwd();
 const outDir = await mkdtemp(resolve(tmpdir(), "homepage-visual-check-"));
 const debugPort = Number(process.env.VISUAL_CHECK_CDP_PORT || 9300 + Math.floor(Math.random() * 600));
@@ -16,6 +15,7 @@ const pages = [
   ["papers", "papers/index.html"],
   ["talks", "talks/index.html"],
   ["notes", "notes/index.html"],
+  ["slides", "slides/index.html"],
   ["activities", "activities/index.html"],
   ["cv", "cv/index.html"],
   ["problems", "problems/index.html"],
@@ -63,25 +63,50 @@ const selectedViewports = filterByEnv(viewports, "VISUAL_CHECK_VIEWPORTS");
 const selectedLanguages = filterByEnv(languages, "VISUAL_CHECK_LANGUAGES");
 const shouldCaptureScreenshots = process.env.VISUAL_CHECK_SCREENSHOTS !== "0";
 
-const chrome = spawn(chromePath, [
-  "--headless=new",
-  "--disable-gpu",
-  "--disable-dev-shm-usage",
-  "--no-sandbox",
-  `--remote-debugging-port=${debugPort}`,
-  `--user-data-dir=${outDir}/chrome-profile`,
-  "about:blank"
-], { stdio: ["ignore", "pipe", "pipe"] });
-
-chrome.stdout.on("data", () => {});
-chrome.stderr.on("data", () => {});
-
 function delay(ms) {
   return new Promise((resolveDelay) => setTimeout(resolveDelay, ms));
 }
 
-async function waitForDebugEndpoint() {
+function appendLimited(current, chunk, limit = 6000) {
+  const next = `${current}${chunk}`;
+  return next.length > limit ? next.slice(next.length - limit) : next;
+}
+
+async function canAccess(file) {
+  try {
+    await access(file);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function browserCandidates() {
+  const candidates = [
+    process.env.VISUAL_CHECK_BROWSER,
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+    "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+  ].filter(Boolean);
+  const unique = [...new Set(candidates)];
+  const available = [];
+  for (const candidate of unique) {
+    if (await canAccess(candidate)) available.push(candidate);
+  }
+  return available;
+}
+
+function headlessArgument(mode) {
+  if (mode === "plain") return "--headless";
+  return `--headless=${mode}`;
+}
+
+async function waitForDebugEndpoint(diagnostics) {
   for (let attempt = 0; attempt < 80; attempt += 1) {
+    if (diagnostics.exitCode !== null || diagnostics.signal !== null) {
+      throw new Error(`Browser exited before CDP was ready: code=${diagnostics.exitCode}, signal=${diagnostics.signal}`);
+    }
     try {
       const response = await fetch(`http://127.0.0.1:${debugPort}/json/version`);
       if (response.ok) return;
@@ -91,6 +116,80 @@ async function waitForDebugEndpoint() {
     await delay(100);
   }
   throw new Error("Chrome DevTools endpoint did not become available.");
+}
+
+async function launchChrome() {
+  const candidates = await browserCandidates();
+  if (!candidates.length) {
+    throw new Error("No accessible Chromium-family browser was found. Set VISUAL_CHECK_BROWSER to an executable path.");
+  }
+
+  const modes = process.env.VISUAL_CHECK_HEADLESS_MODE
+    ? [process.env.VISUAL_CHECK_HEADLESS_MODE]
+    : ["new", "chrome", "plain"];
+  const errors = [];
+
+  for (const candidate of candidates) {
+    for (const mode of modes) {
+      const diagnostics = {
+        path: candidate,
+        mode,
+        stdout: "",
+        stderr: "",
+        exitCode: null,
+        signal: null
+      };
+      const chrome = spawn(candidate, [
+        headlessArgument(mode),
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+        "--no-sandbox",
+        `--remote-debugging-port=${debugPort}`,
+        `--user-data-dir=${outDir}/chrome-profile-${mode.replace(/\W+/g, "-")}`,
+        "about:blank"
+      ], { stdio: ["ignore", "pipe", "pipe"] });
+
+      chrome.stdout.on("data", (chunk) => {
+        diagnostics.stdout = appendLimited(diagnostics.stdout, chunk);
+      });
+      chrome.stderr.on("data", (chunk) => {
+        diagnostics.stderr = appendLimited(diagnostics.stderr, chunk);
+      });
+      chrome.on("exit", (code, signal) => {
+        diagnostics.exitCode = code;
+        diagnostics.signal = signal;
+      });
+
+      try {
+        await waitForDebugEndpoint(diagnostics);
+        return { chrome, diagnostics };
+      } catch (error) {
+        if (diagnostics.exitCode === null && diagnostics.signal === null) chrome.kill("SIGTERM");
+        errors.push({
+          path: candidate,
+          mode,
+          message: error.message,
+          exitCode: diagnostics.exitCode,
+          signal: diagnostics.signal,
+          stdout: diagnostics.stdout,
+          stderr: diagnostics.stderr
+        });
+        await delay(200);
+      }
+    }
+  }
+
+  const summary = errors.map((error) =>
+    [
+      `${error.path} (${error.mode})`,
+      `message=${error.message}`,
+      `exit=${error.exitCode ?? ""}`,
+      `signal=${error.signal ?? ""}`,
+      error.stderr ? `stderr=${error.stderr.trim()}` : "",
+      error.stdout ? `stdout=${error.stdout.trim()}` : ""
+    ].filter(Boolean).join("\n")
+  ).join("\n\n");
+  throw new Error(`No browser candidate exposed a Chrome DevTools endpoint.\n\n${summary}`);
 }
 
 class Cdp {
@@ -324,9 +423,14 @@ const measureScript = String.raw`(() => {
 
 const results = [];
 let cdp;
+let chrome;
+let browserDiagnostics = null;
+let fatalError = null;
 
 try {
-  await waitForDebugEndpoint();
+  const launched = await launchChrome();
+  chrome = launched.chrome;
+  browserDiagnostics = launched.diagnostics;
   cdp = await createPage();
   await cdp.send("Page.enable");
   await cdp.send("Runtime.enable");
@@ -372,9 +476,11 @@ try {
       }
     }
   }
+} catch (error) {
+  fatalError = error;
 } finally {
   if (cdp) cdp.close();
-  chrome.kill("SIGTERM");
+  if (chrome && browserDiagnostics?.exitCode === null && browserDiagnostics?.signal === null) chrome.kill("SIGTERM");
 }
 
 const report = {
@@ -382,13 +488,26 @@ const report = {
   checkedAt: new Date().toISOString(),
   total: results.length,
   failures: results.filter((result) => result.issues.length),
-  results
+  results,
+  browser: browserDiagnostics
 };
+
+if (fatalError) {
+  report.error = {
+    message: fatalError.message,
+    stack: fatalError.stack
+  };
+}
 
 await writeFile(`${outDir}/report.json`, JSON.stringify(report, null, 2));
 
 console.log(`Output: ${outDir}`);
 console.log(`Checked: ${results.length}`);
+if (fatalError) {
+  console.error(`Visual check failed: ${fatalError.message}`);
+  console.error(`Diagnostics written to ${outDir}/report.json`);
+  process.exitCode = 1;
+}
 const failures = results.filter((result) => result.issues.length);
 console.log(`With issues: ${failures.length}`);
 failures.forEach((result) => {
