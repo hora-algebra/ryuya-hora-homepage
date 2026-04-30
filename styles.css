@@ -3276,18 +3276,50 @@ a.position-link:hover {
 }
 
 .games-rb-expanded-mex-readout {
-  left: 25.8%;
+  left: 35.8%;
   top: 82.2%;
-  width: 38%;
-  color: #7c3aed;
-  font-size: 0.96rem;
-  font-weight: 900;
+  width: 50%;
+  color: #24312a;
+  font-size: 0.82rem;
+  font-weight: 950;
   line-height: 1;
+  text-align: right;
   white-space: nowrap;
 }
 
 .games-rb-expanded-mex-readout:not(:has(.katex)) {
-  font-size: 0.96rem;
+  font-size: 0.82rem;
+}
+
+.games-rb-expanded-mex-result {
+  left: 50%;
+  top: 82.2%;
+  width: 8%;
+  color: var(--games-rb-ink);
+  font-size: 1.58rem;
+  font-weight: 950;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.games-rb-expanded-mex-result:not(:has(.katex)) {
+  font-size: 1.58rem;
+}
+
+.games-rb-expanded-mex-rhs {
+  left: 69.4%;
+  top: 82.2%;
+  width: 30%;
+  color: #24312a;
+  font-size: 1rem;
+  font-weight: 950;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.games-rb-expanded-mex-rhs:not(:has(.katex)) {
+  font-size: 1rem;
 }
 
 .games-rb-set-def {

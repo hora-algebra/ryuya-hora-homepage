@@ -78,7 +78,7 @@ const siteData = {
       href: "documents/index.html",
       description: "Overview of papers, notes, and slides.",
       icon: "paper",
-      thumbnail: "assets/papers/topoi-automata.jpg"
+      thumbnail: "assets/papers/internal-parameterizations.jpg"
     },
     {
       title: "Papers",
@@ -91,13 +91,15 @@ const siteData = {
       title: "Notes",
       href: "notes/index.html",
       description: "Lecture notes, expository notes, and related writing.",
-      icon: "note"
+      icon: "note",
+      thumbnail: "assets/notes/counting-with-exponential-of-groups.png"
     },
     {
       title: "Slides",
       href: "slides/index.html",
       description: "Slides and presentation materials.",
-      icon: "slide"
+      icon: "slide",
+      thumbnail: "assets/notes/topoi-of-automata-cscat2025.png"
     },
     {
       title: "Activities",
@@ -111,39 +113,42 @@ const siteData = {
       href: "talks/index.html",
       description: "Conference talks, seminars, archive, and visit map.",
       icon: "talk",
-      thumbnail: "assets/profile/ryuya-hora-mondovi.jpg"
+      thumbnail: "assets/profile/ryuya-hora-talk.jpg"
     },
     {
       title: "Others",
       href: "others/index.html",
       description: "Overview of web apps, problems, and links.",
       icon: "webapp",
-      thumbnail: "assets/web-apps/genericalgoid.png"
+      thumbnail: "assets/profile/green-fractal-cloud.png"
     },
     {
       title: "Web Apps",
       href: "web-apps/index.html",
       description: "Small deployed tools and experiments.",
       icon: "webapp",
-      thumbnail: "assets/web-apps/genericalgoid.png"
+      thumbnail: "assets/web-apps/string-diagram.png"
     },
     {
       title: "Problems",
       href: "problems/index.html",
       description: "Open questions, problem trails, and formal problems.",
-      icon: "problem"
+      icon: "problem",
+      thumbnail: "assets/papers/lawvere-fourth.jpg"
     },
     {
       title: "Links",
       href: "links/index.html",
       description: "Selected external links.",
-      icon: "link"
+      icon: "link",
+      thumbnail: "assets/profile/green-fractal-branch.png"
     },
     {
       title: "Search",
       href: "search/index.html",
       description: "Site index search.",
-      icon: "search"
+      icon: "search",
+      thumbnail: "assets/web-apps/adjunction-reboot.png"
     }
   ],
   profileLinks: [
@@ -9379,7 +9384,9 @@ ${gamesRbNimTableBaseTemplate()}
     ${gamesRbSetControlTemplate("S", gamesRbInitialS)}
     ${gamesRbSetControlTemplate("T", gamesRbInitialT)}
     <span class="figure-math games-rb-table-tex games-rb-dual-tex-left">\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-readout" data-games-rb-expanded-mex-readout>\\(\\operatorname{mex}(\\textcolor{#7c3aed}{\\text{purple cells}})=1\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-readout" data-games-rb-expanded-mex-readout>\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)=\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-result" data-games-rb-expanded-mex-result>\\(1\\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-rhs">\\(=\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T})\\)</span>
     <span class="figure-math games-rb-table-tex games-rb-dual-tex-right">\\(\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T})\\)</span>`,
   "automata-cantor-morphism": `
     <svg class="automata-cantor-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-cantor-title fig-automata-cantor-desc">
@@ -11998,8 +12005,12 @@ function renderGamesRbFigure(root) {
     hit.classList.toggle("is-selected", selected);
   });
   container.querySelectorAll("[data-games-rb-expanded-mex-readout]").forEach((readout) => {
-    readout.innerHTML = `\\(\\operatorname{mex}(\\textcolor{#7c3aed}{\\text{purple cells}})=${expandedMex}\\)`;
+    readout.innerHTML = `\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)=\\)`;
     typesetMath(readout);
+  });
+  container.querySelectorAll("[data-games-rb-expanded-mex-result]").forEach((result) => {
+    result.innerHTML = `\\(${expandedMex}\\)`;
+    typesetMath(result);
   });
 }
 
