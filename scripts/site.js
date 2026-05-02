@@ -68,7 +68,7 @@ const siteData = {
   pages: [
     {
       title: "CV",
-      href: "cv/index.html",
+      href: "profile/cv/index.html",
       description: "Positions, awards, education, and profile links.",
       icon: "cv",
       thumbnail: "assets/profile/ryuya-hora-sea-900.jpg"
@@ -82,21 +82,21 @@ const siteData = {
     },
     {
       title: "Papers",
-      href: "papers/index.html",
+      href: "documents/papers/index.html",
       description: "Bibliography, preprints, in-preparation work, and metadata.",
       icon: "paper",
       thumbnail: "assets/papers/topoi-automata.jpg"
     },
     {
       title: "Notes",
-      href: "notes/index.html",
+      href: "documents/notes/index.html",
       description: "Lecture notes, expository notes, and related writing.",
       icon: "note",
       thumbnail: "assets/notes/counting-with-exponential-of-groups.png"
     },
     {
       title: "Slides",
-      href: "slides/index.html",
+      href: "documents/slides/index.html",
       description: "Slides and presentation materials.",
       icon: "slide",
       thumbnail: "assets/notes/topoi-of-automata-cscat2025.png"
@@ -110,7 +110,7 @@ const siteData = {
     },
     {
       title: "Talks",
-      href: "talks/index.html",
+      href: "activities/talks/index.html",
       description: "Conference talks, seminars, archive, and visit map.",
       icon: "talk",
       thumbnail: "assets/profile/ryuya-hora-talk.jpg"
@@ -124,21 +124,21 @@ const siteData = {
     },
     {
       title: "Web Apps",
-      href: "web-apps/index.html",
+      href: "others/web-apps/index.html",
       description: "Small deployed tools and experiments.",
       icon: "webapp",
       thumbnail: "assets/web-apps/string-diagram.png"
     },
     {
       title: "Problems",
-      href: "problems/index.html",
+      href: "others/problems/index.html",
       description: "Open questions, problem trails, and formal problems.",
       icon: "problem",
       thumbnail: "assets/papers/lawvere-fourth.jpg"
     },
     {
       title: "Links",
-      href: "links/index.html",
+      href: "others/links/index.html",
       description: "Selected external links.",
       icon: "link",
       thumbnail: "assets/profile/green-fractal-branch.png"
@@ -2930,7 +2930,7 @@ function noteAnchor(note) {
 }
 
 function documentPagePathForRecord(note) {
-  return noteRecordIsSlide(note) ? "slides/index.html" : "notes/index.html";
+  return noteRecordIsSlide(note) ? "documents/slides/index.html" : "documents/notes/index.html";
 }
 
 function noteHref(note) {
@@ -3887,7 +3887,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Profile",
       title: activeLanguage === "ja" && record.textJa ? record.textJa : record.text,
-      href: record.href || localHref("cv/index.html"),
+      href: record.href || localHref("profile/cv/index.html"),
       summary: "Past position",
       keywords: compactText([record.text, record.textJa]),
       icon: "building"
@@ -3898,7 +3898,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Award",
       title: record.text,
-      href: record.href || localHref("cv/index.html"),
+      href: record.href || localHref("profile/cv/index.html"),
       summary: "Award",
       icon: "award"
     });
@@ -3908,7 +3908,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Education",
       title: record.text,
-      href: record.href || localHref("cv/index.html"),
+      href: record.href || localHref("profile/cv/index.html"),
       summary: "Education and outreach",
       icon: "education"
     });
@@ -3929,7 +3929,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: paper.title,
-      href: localHref(`papers/index.html#${paperAnchor(paper)}`),
+      href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
       summary: paper.summary,
       meta: compactText([paperPeopleText(paper, researchmapPaper), paper.year, paper.venue]).join(" / "),
       keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
@@ -3956,7 +3956,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "In preparation",
       title: paper.title,
-      href: localHref(`papers/index.html#${paperAnchor(paper)}`),
+      href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
       summary: paper.summary || "Manuscript in preparation",
       keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
       icon: "paper",
@@ -3968,7 +3968,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: record.title,
-      href: record.link || localHref(`papers/index.html#${paperAnchor(record)}`),
+      href: record.link || localHref(`documents/papers/index.html#${paperAnchor(record)}`),
       summary: record.venue || record.type || "Paper metadata",
       meta: compactText([paperPeopleText(record), record.year, record.publicationDate]).join(" / "),
       keywords: compactText([record.type, record.openAccess ? "open access" : "researchmap"]),
@@ -3982,7 +3982,7 @@ function siteSearchRecords() {
       pushSiteSearchRecord(records, {
         type: "Talk",
         title: record.title,
-        href: localHref(`talks/index.html#${talkRecordAnchor(record)}`),
+        href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
         summary: record.event || record.type || "Talk",
         meta: compactText([presentationPeopleText(record), formatTalkDate(record), record.invited ? "invited" : ""]).join(" / "),
         keywords: compactText([record.type, record.event]),
@@ -3997,7 +3997,7 @@ function siteSearchRecords() {
         pushSiteSearchRecord(records, {
           type: "Talk",
           title: talk.title,
-          href: talk.href || localHref("talks/index.html"),
+          href: talk.href || localHref("activities/talks/index.html"),
           summary: talk.venue,
           meta: compactText([presentationPeopleText(presentationRecord || talk), group.year]).join(" / "),
           icon: "talk",
@@ -4050,7 +4050,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Problem",
       title: `${problem.id}: ${problem.title}`,
-      href: localHref(`problems/index.html#${problemAnchor(problem)}`),
+      href: localHref(`others/problems/index.html#${problemAnchor(problem)}`),
       summary: problem.statement,
       meta: compactText([problemStatusLabel(problem.status), problem.theme]).join(" / "),
       keywords: problem.tags || [],
@@ -4062,7 +4062,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Web App",
       title: app.title,
-      href: localHref(`web-apps/index.html#${webAppAnchor(app)}`),
+      href: localHref(`others/web-apps/index.html#${webAppAnchor(app)}`),
       summary: app.description,
       meta: compactText([app.tag, "Vercel"]).join(" / "),
       keywords: compactText([...(app.keywords || []), ...(app.links || []).map(([label]) => label)]),
@@ -4473,7 +4473,7 @@ function renderTalkTimeline() {
     el("p", "talk-timeline-meta", presentationMeta(selected)),
     el("p", "talk-timeline-count", `${selectedIndex + 1} / ${records.length}`)
   );
-  title.append(titleCopyButton(`talks/index.html#${talkRecordAnchor(selected)}`, selected.title));
+  title.append(titleCopyButton(`activities/talks/index.html#${talkRecordAnchor(selected)}`, selected.title));
   appendActionLinks(card, slideLinksForTalk(selected));
 
   root.append(timelineScrollFrame(track, selectedPosition), card);
@@ -4481,7 +4481,7 @@ function renderTalkTimeline() {
 
 function talkMapRecordHref(record) {
   const hash = `#${talkRecordAnchor(record)}`;
-  return document.body.dataset.page === "talks" ? hash : localHref(`talks/index.html${hash}`);
+  return document.body.dataset.page === "talks" ? hash : localHref(`activities/talks/index.html${hash}`);
 }
 
 function visitLocationById(id) {
@@ -5555,7 +5555,7 @@ function homeTimelinePaperRecords() {
       title: paper.title,
       dateLabel: `${startLabel} -> ${endLabel}`,
       meta: compactText([people, paper.venue]).join(" / "),
-      href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`papers/index.html#${anchor}`),
+      href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`documents/papers/index.html#${anchor}`),
       time: startTime,
       startTime,
       endTime,
@@ -5573,7 +5573,7 @@ function homeTimelineTalkRecords() {
       title: record.title,
       dateLabel: formatTalkDate(record),
       meta: compactText([presentationPeopleText(record), record.event, record.type, record.invited ? "invited" : ""]).join(" / "),
-      href: localHref(`talks/index.html#${talkRecordAnchor(record)}`),
+      href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
       time: presentationTime(record)
     }));
   }
@@ -5591,7 +5591,7 @@ function homeTimelineTalkRecords() {
         title: talk.title,
         dateLabel: group.year,
         meta: compactText([presentationPeopleText(presentationRecord || talk), talk.venue]).join(" / "),
-        href: localHref("talks/index.html"),
+        href: localHref("activities/talks/index.html"),
         time: Number.isFinite(base) ? base + (yearSpan * (index + 0.5)) / total : Number.NaN
       };
     })
@@ -5972,7 +5972,7 @@ function documentTimelineNoteRecords() {
         title,
         dateLabel: noteDateLabel(note),
         meta: compactText([kindLabel, noteLanguageKey(note), note.file]).join(" / "),
-        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`notes/index.html#${anchor}`),
+        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`documents/notes/index.html#${anchor}`),
         time
       };
     })
@@ -6171,7 +6171,7 @@ function mergeSlideWithTalk(slide) {
   const presentation = findResearchmapPresentationForSlide(slide, staticTalk);
   const talkRecord = presentation || staticTalk;
   if (!talkRecord) return { ...slide, kind: "slide" };
-  const talkHref = localHref(`talks/index.html#${talkRecordAnchor(talkRecord)}`);
+  const talkHref = localHref(`activities/talks/index.html#${talkRecordAnchor(talkRecord)}`);
   const talkMeta = presentation
     ? presentationMeta(presentation)
     : compactText([presentationPeopleText(staticTalk), staticTalk.venue]).join(" / ");
@@ -7159,8 +7159,8 @@ function sectionIconHref(heading) {
   const moreHref = sectionMoreLink(heading)?.getAttribute("href") || "";
   if (moreHref) return moreHref;
   const text = simplified(heading?.textContent || "");
-  if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("cv/index.html");
-  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("cv/index.html#awards");
+  if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("profile/cv/index.html");
+  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/cv/index.html#awards");
   if (text.includes("email") || text.includes("contact")) return "mailto:ryuya.hora@zen.ac.jp";
   if (text.includes("work") || text.includes("interest")) return localHref("index.html#works");
   if (text.includes("categories in tokyo")) return "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0";
@@ -7768,7 +7768,7 @@ function themedPaperRecords() {
       return {
         type: "paper",
         title: paper.title,
-        href: localHref(`papers/index.html#${paperAnchor(paper)}`),
+        href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper, findResearchmapPaper(paper)), paper.year, paper.venue]).join(" / "),
         metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
@@ -7793,7 +7793,7 @@ function themedPaperRecords() {
       return {
         type: "paper",
         title: paper.title,
-        href: paper.link || localHref(`papers/index.html#${paperAnchor(paper)}`),
+        href: paper.link || localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper), paper.year, paper.venue || paper.type]).join(" / "),
         metaTags: metaTagIdsForText(text, paper.metaTags || []),
         ...scoreThemeRecord(text)
@@ -7811,7 +7811,7 @@ function themedPreparationRecords() {
       return {
         type: "preparation",
         title: paper.title,
-        href: localHref(`papers/index.html#${paperAnchor(paper)}`),
+        href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
         meta: "In preparation",
         metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
@@ -7915,7 +7915,7 @@ function themedTalkRecords() {
         return {
           type: "talk",
           title: record.title,
-          href: localHref(`talks/index.html#${talkRecordAnchor(record)}`),
+          href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
           meta: compactText([presentationMeta(record), slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
           metaTags,
           ...scoreThemeRecord(text)
@@ -7934,7 +7934,7 @@ function themedTalkRecords() {
         return {
           type: "talk",
           title: talk.title,
-          href: talk.href || localHref("talks/index.html"),
+          href: talk.href || localHref("activities/talks/index.html"),
           meta: compactText([presenters, group.year, talk.venue, slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
           metaTags,
           ...scoreThemeRecord(text)
@@ -9323,7 +9323,7 @@ function automataTreeEdgeTemplate({ level, color, child = false, from, to }) {
   return `<line class="automata-cantor-tree-edge${childClass} level-${level} ${color}" data-cantor-arrow="${color}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}">
             <animate attributeName="x2" dur="12s" repeatCount="indefinite" calcMode="linear" keyTimes="${keyTimes}" values="${x2Values}"></animate>
             <animate attributeName="y2" dur="12s" repeatCount="indefinite" calcMode="linear" keyTimes="${keyTimes}" values="${y2Values}"></animate>
-            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" calcMode="linear" keyTimes="${keyTimes}" values="${opacityValues}"></animate>
+            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" calcMode="discrete" keyTimes="${keyTimes}" values="${opacityValues}"></animate>
           </line>`;
 }
 
@@ -13310,7 +13310,7 @@ function renderPaperRecord(paper, options = {}) {
   const titleRow = el("div", "publication-title");
   const title = el("h3");
   title.append(link(paper.title, paper.link));
-  titleRow.append(title, titleCopyButton(`papers/index.html#${paperAnchor(paper)}`, paper.title));
+  titleRow.append(title, titleCopyButton(`documents/papers/index.html#${paperAnchor(paper)}`, paper.title));
   item.append(titleRow);
 
   const details = renderPublicationDetails(paper);
@@ -13503,7 +13503,7 @@ function paperTagTargetHref(tag) {
   const params = new URLSearchParams();
   if (tag.themeId) params.set("theme", tag.themeId);
   else params.set("paper", tag.query || tag.label);
-  return localHref(`papers/index.html?${params.toString()}`);
+  return localHref(`documents/papers/index.html?${params.toString()}`);
 }
 
 function activatePublicationTag(tag) {
@@ -13658,7 +13658,7 @@ function renderPreparationPapers() {
     const heading = el("h3");
     heading.innerHTML = paper.title;
     const details = renderPublicationDetails(paper);
-    titleRow.append(heading, titleCopyButton(`papers/index.html#${paperAnchor(paper)}`, paper.title));
+    titleRow.append(heading, titleCopyButton(`documents/papers/index.html#${paperAnchor(paper)}`, paper.title));
     item.append(titleRow);
     if (details) item.append(details);
     const meta = el("div", "publication-meta");
@@ -13698,14 +13698,14 @@ function renderPaperRelatedDocuments() {
     allNoteRecords(),
     "No related notes match this filter.",
     "Use paper search or tags to find related notes.",
-    "notes/index.html"
+    "documents/notes/index.html"
   );
   renderPaperRelatedList(
     "#paper-related-slides-list",
     allSlideRecords(),
     "No related slides match this filter.",
     "Use paper search or tags to find related slides.",
-    "slides/index.html"
+    "documents/slides/index.html"
   );
 }
 
@@ -13863,7 +13863,7 @@ function renderTalkItem(record, href, metaText, actions = []) {
   title.append(uiIcon("talk", "talk-title-icon"));
   if (href) title.append(link(record.title, href));
   else title.append(el("span", null, record.title));
-  title.append(titleCopyButton(`talks/index.html#${talkRecordAnchor(record)}`, record.title));
+  title.append(titleCopyButton(`activities/talks/index.html#${talkRecordAnchor(record)}`, record.title));
   body.append(title, el("span", "talk-venue", metaText));
   if (actions.length) appendActionLinks(body, actions);
   shell.append(body);
@@ -14347,7 +14347,7 @@ function renderNotes() {
     return;
   }
 
-  records.forEach((note) => root.append(renderDocumentCard(note, "notes/index.html")));
+  records.forEach((note) => root.append(renderDocumentCard(note, "documents/notes/index.html")));
   applyLanguage(section);
   scrollToHashTarget();
 }
@@ -14370,7 +14370,7 @@ function renderSlides() {
     return;
   }
 
-  records.forEach((slide) => root.append(renderDocumentCard(slide, "slides/index.html")));
+  records.forEach((slide) => root.append(renderDocumentCard(slide, "documents/slides/index.html")));
   applyLanguage(section);
   scrollToHashTarget();
 }
@@ -14962,17 +14962,17 @@ const pageBreadcrumbs = {
   papers: [
     ["Home", "index.html"],
     ["Documents", "documents/index.html"],
-    ["Papers", "papers/index.html"]
+    ["Papers", "documents/papers/index.html"]
   ],
   notes: [
     ["Home", "index.html"],
     ["Documents", "documents/index.html"],
-    ["Notes", "notes/index.html"]
+    ["Notes", "documents/notes/index.html"]
   ],
   slides: [
     ["Home", "index.html"],
     ["Documents", "documents/index.html"],
-    ["Slides", "slides/index.html"]
+    ["Slides", "documents/slides/index.html"]
   ],
   activities: [
     ["Home", "index.html"],
@@ -14981,7 +14981,7 @@ const pageBreadcrumbs = {
   talks: [
     ["Home", "index.html"],
     ["Activities", "activities/index.html"],
-    ["Talks", "talks/index.html"]
+    ["Talks", "activities/talks/index.html"]
   ],
   others: [
     ["Home", "index.html"],
@@ -14990,22 +14990,22 @@ const pageBreadcrumbs = {
   "web-apps": [
     ["Home", "index.html"],
     ["Others", "others/index.html"],
-    ["Web Apps", "web-apps/index.html"]
+    ["Web Apps", "others/web-apps/index.html"]
   ],
   problems: [
     ["Home", "index.html"],
     ["Others", "others/index.html"],
-    ["Problems", "problems/index.html"]
+    ["Problems", "others/problems/index.html"]
   ],
   links: [
     ["Home", "index.html"],
     ["Others", "others/index.html"],
-    ["Links", "links/index.html"]
+    ["Links", "others/links/index.html"]
   ],
   cv: [
     ["Home", "index.html"],
     ["Profile", "index.html#profile"],
-    ["CV", "cv/index.html"]
+    ["CV", "profile/cv/index.html"]
   ],
   search: [
     ["Home", "index.html"],

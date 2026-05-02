@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Papers | Ryuya Hora</title>
+    <meta name="description" content="Papers by Ryuya Hora.">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="../../styles.css?v=cache-20260502a">
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+  </head>
+  <body data-page="papers" data-depth="child">
+    <header class="site-header">
+      <a class="brand" href="../../index.html" aria-label="Ryuya Hora home">
+        <span class="brand-mark">RH</span>
+        <span><strong>Ryuya Hora</strong><small>洞龍弥</small></span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <div class="nav-group">
+          <a class="nav-group-label" href="../../index.html">Profile</a>
+          <div class="nav-submenu">
+            <a href="../../index.html#profile">Overview</a>
+            <a href="../../index.html#research-timeline">Research Timeline</a>
+            <a href="../../index.html#works">Works</a>
+            <a href="../../profile/cv/index.html">CV</a>
+            <a href="../../index.html#awards">Awards</a>
+          </div>
+        </div>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="../index.html">Documents</a>
+          <div class="nav-submenu">
+            <a class="is-active" href="index.html">Papers</a>
+            <a href="index.html#in-preparation">In preparation</a>
+            <a href="../notes/index.html">Notes</a>
+            <a href="../slides/index.html">Slides</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../../activities/index.html">Activities</a>
+          <div class="nav-submenu">
+            <a href="../../activities/index.html#timeline">Timeline</a>
+            <a href="../../activities/index.html#visits">Visits</a>
+            <a href="../../activities/talks/index.html">Talks</a>
+            <a href="../../activities/index.html#yearly-records">Yearly Records</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../../others/index.html">Others</a>
+          <div class="nav-submenu">
+            <a href="../../others/web-apps/index.html">Web Apps</a>
+            <a href="../../others/problems/index.html">Problems</a>
+            <a href="../../others/links/index.html">Links</a>
+          </div>
+        </div>
+        <a class="nav-search" href="../../search/index.html" data-site-search-link aria-label="Search">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="sr-only">Search</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero section">
+        <h1>Papers</h1>
+        <p class="lead">Preprints and related writing.</p>
+      </section>
+
+      <section class="section" aria-labelledby="paper-timeline-title">
+        <div class="section-head">
+          <div>
+            <h2 id="paper-timeline-title">Timeline</h2>
+          </div>
+        </div>
+        <div id="paper-timeline" class="home-timeline paper-timeline" aria-live="polite"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>Bibliography</h2>
+          </div>
+          <div class="paper-controls">
+            <label class="search-label">
+              <span>Filter papers, notes, slides</span>
+              <input id="paper-filter" type="search" placeholder="topos, automata, games...">
+            </label>
+            <div class="publication-tabs paper-view-tabs" aria-label="Paper view">
+              <button class="tab-button" type="button" data-paper-view="list" aria-pressed="false">List</button>
+              <button class="tab-button is-active" type="button" data-paper-view="diagram" aria-pressed="true">Diagrams</button>
+            </div>
+          </div>
+        </div>
+        <div id="paper-tag-index" class="paper-tag-index" aria-label="Paper tags"></div>
+        <div id="paper-list" class="publication-list" aria-live="polite"></div>
+        <div id="in-preparation" class="paper-subsection" aria-labelledby="paper-preparation-title">
+          <div class="paper-subsection-head">
+            <h3 id="paper-preparation-title">In preparation</h3>
+          </div>
+          <div id="preparation-paper-list" class="publication-list" aria-live="polite"></div>
+        </div>
+        <div id="paper-related-notes" class="paper-subsection" aria-labelledby="paper-related-notes-title">
+          <div class="paper-subsection-head">
+            <h3 id="paper-related-notes-title">Related Notes</h3>
+          </div>
+          <div id="paper-related-notes-list" class="note-grid" aria-live="polite"></div>
+        </div>
+        <div id="paper-related-slides" class="paper-subsection" aria-labelledby="paper-related-slides-title">
+          <div class="paper-subsection-head">
+            <h3 id="paper-related-slides-title">Related Slides</h3>
+          </div>
+          <div id="paper-related-slides-list" class="note-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 id="papers-researchmap-title">Paper Metadata</h2>
+          </div>
+          <a class="section-link" href="https://researchmap.jp/ryuyahora">Powered by researchmap</a>
+        </div>
+        <div id="researchmap-paper-list" class="publication-list"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>Other Writing</h2>
+          </div>
+        </div>
+        <div id="misc-paper-list" class="publication-list"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Last updated: 27 April 2026.</p>
+      <div class="site-footer-links">
+        <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
+        <a href="../../index.html">Home</a>
+      </div>
+    </footer>
+
+    <script defer src="../../data/researchmap.generated.js?v=cache-20260502a"></script>
+    <script defer src="../../data/overleaf.generated.js?v=cache-20260502a"></script>
+    <script defer src="../../scripts/site.js?v=cache-20260502a"></script>
+  </body>
+</html>
