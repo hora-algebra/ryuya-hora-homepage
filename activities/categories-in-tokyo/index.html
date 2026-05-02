@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WebApps | Ryuya Hora</title>
-    <meta name="description" content="WebApps by Ryuya Hora.">
+    <title>Categories in Tokyo | Ryuya Hora</title>
+    <meta name="description" content="Categories in Tokyo.">
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../../styles.css?v=cache-20260502d">
@@ -12,7 +12,7 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
     <!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="web-apps" data-depth="2">
+  <body data-page="categories-in-tokyo" data-depth="2">
     <header class="site-header">
       <a class="brand" href="../../profile/index.html" aria-label="Ryuya Hora profile">
         <span class="brand-mark">RH</span>
@@ -41,14 +41,14 @@
             <a href="../../works/talks-slides/index.html">Talks and Slides</a>
           </div>
         </div>
-        <div class="nav-group">
-          <a class="nav-group-label" href="../../activities/index.html">Activities</a>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="../index.html">Activities</a>
           <div class="nav-submenu">
-            <a href="../../activities/timeline/index.html">Activity Timeline</a>
-            <a href="../../activities/upcoming/index.html">Upcoming</a>
-            <a href="../../activities/visit-map/index.html">visit map</a>
-            <a href="../../activities/yearly-records/index.html">Yearly records</a>
-            <a href="../../activities/categories-in-tokyo/index.html">Categories in Tokyo</a>
+            <a href="../timeline/index.html">Activity Timeline</a>
+            <a href="../upcoming/index.html">Upcoming</a>
+            <a href="../visit-map/index.html">visit map</a>
+            <a href="../yearly-records/index.html">Yearly records</a>
+            <a class="is-active" href="index.html">Categories in Tokyo</a>
           </div>
         </div>
         <div class="nav-group">
@@ -58,11 +58,11 @@
             <a href="../../problems/full-list/index.html">Full List</a>
           </div>
         </div>
-        <div class="nav-group is-active">
-          <a class="nav-group-label is-active" href="../index.html">Others</a>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../../others/index.html">Others</a>
           <div class="nav-submenu">
-            <a class="is-active" href="index.html">WebApps</a>
-            <a href="../links/index.html">Links</a>
+            <a href="../../others/web-apps/index.html">WebApps</a>
+            <a href="../../others/links/index.html">Links</a>
           </div>
         </div>
       </nav>
@@ -70,12 +70,24 @@
 
     <main>
             <section class="page-hero section">
-        <h1>WebApps</h1>
-        <p class="lead">Interactive web applications.</p>
+        <h1>Categories in Tokyo</h1>
+        <p class="lead">Conference information and venue map.</p>
       </section>
 
-      <section class="section">
-        <div id="web-app-grid" class="web-app-grid"></div>
+      <section id="categories-in-tokyo" class="section categories-tokyo-section" aria-labelledby="categories-tokyo-title">
+        <div class="categories-tokyo-feature">
+          <div class="categories-tokyo-copy">
+            <h2 id="categories-tokyo-title">
+              <a href="https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0">Categories in Tokyo</a>
+            </h2>
+            <p class="categories-tokyo-schedule">
+              <a class="text-link" href="https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A" data-i18n-ja="第3回">3rd conference</a><span data-i18n-ja="は2026年11月2日，3日，4日に開催予定です．"> is scheduled for November 2, 3, and 4, 2026.</span>
+            </p>
+          </div>
+          <figure class="categories-tokyo-map" data-categories-tokyo-map aria-label="Map of Categories in Tokyo venues">
+            <p class="empty-state">Map loading...</p>
+          </figure>
+        </div>
       </section>
     </main>
 
@@ -87,6 +99,8 @@
       </div>
     </footer>
 
+    <script defer src="../../data/researchmap.generated.js?v=cache-20260502d"></script>
+    <script defer src="../../data/overleaf.generated.js?v=cache-20260502d"></script>
     <script defer src="../../scripts/site.js?v=cache-20260502d"></script>
   </body>
 </html>

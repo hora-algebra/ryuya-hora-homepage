@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WebApps | Ryuya Hora</title>
-    <meta name="description" content="WebApps by Ryuya Hora.">
+    <title>Yearly records | Ryuya Hora</title>
+    <meta name="description" content="Yearly records.">
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../../styles.css?v=cache-20260502d">
@@ -12,7 +12,7 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
     <!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="web-apps" data-depth="2">
+  <body data-page="yearly-records" data-depth="2">
     <header class="site-header">
       <a class="brand" href="../../profile/index.html" aria-label="Ryuya Hora profile">
         <span class="brand-mark">RH</span>
@@ -41,14 +41,14 @@
             <a href="../../works/talks-slides/index.html">Talks and Slides</a>
           </div>
         </div>
-        <div class="nav-group">
-          <a class="nav-group-label" href="../../activities/index.html">Activities</a>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="../index.html">Activities</a>
           <div class="nav-submenu">
-            <a href="../../activities/timeline/index.html">Activity Timeline</a>
-            <a href="../../activities/upcoming/index.html">Upcoming</a>
-            <a href="../../activities/visit-map/index.html">visit map</a>
-            <a href="../../activities/yearly-records/index.html">Yearly records</a>
-            <a href="../../activities/categories-in-tokyo/index.html">Categories in Tokyo</a>
+            <a href="../timeline/index.html">Activity Timeline</a>
+            <a href="../upcoming/index.html">Upcoming</a>
+            <a href="../visit-map/index.html">visit map</a>
+            <a class="is-active" href="index.html">Yearly records</a>
+            <a href="../categories-in-tokyo/index.html">Categories in Tokyo</a>
           </div>
         </div>
         <div class="nav-group">
@@ -58,11 +58,11 @@
             <a href="../../problems/full-list/index.html">Full List</a>
           </div>
         </div>
-        <div class="nav-group is-active">
-          <a class="nav-group-label is-active" href="../index.html">Others</a>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../../others/index.html">Others</a>
           <div class="nav-submenu">
-            <a class="is-active" href="index.html">WebApps</a>
-            <a href="../links/index.html">Links</a>
+            <a href="../../others/web-apps/index.html">WebApps</a>
+            <a href="../../others/links/index.html">Links</a>
           </div>
         </div>
       </nav>
@@ -70,12 +70,12 @@
 
     <main>
             <section class="page-hero section">
-        <h1>WebApps</h1>
-        <p class="lead">Interactive web applications.</p>
+        <h1>Yearly records</h1>
+        <p class="lead">Yearly activity records.</p>
       </section>
 
       <section class="section">
-        <div id="web-app-grid" class="web-app-grid"></div>
+        <div id="activity-list" class="activity-grid"></div>
       </section>
     </main>
 
@@ -87,6 +87,8 @@
       </div>
     </footer>
 
+    <script defer src="../../data/researchmap.generated.js?v=cache-20260502d"></script>
+    <script defer src="../../data/overleaf.generated.js?v=cache-20260502d"></script>
     <script defer src="../../scripts/site.js?v=cache-20260502d"></script>
   </body>
 </html>

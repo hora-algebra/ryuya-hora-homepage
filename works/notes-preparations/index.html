@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WebApps | Ryuya Hora</title>
-    <meta name="description" content="WebApps by Ryuya Hora.">
+    <title>Notes and preparations | Ryuya Hora</title>
+    <meta name="description" content="Notes and works in preparation by Ryuya Hora.">
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../../styles.css?v=cache-20260502d">
@@ -12,7 +12,7 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
     <!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="web-apps" data-depth="2">
+  <body data-page="notes-preparations" data-depth="2">
     <header class="site-header">
       <a class="brand" href="../../profile/index.html" aria-label="Ryuya Hora profile">
         <span class="brand-mark">RH</span>
@@ -32,13 +32,13 @@
             <a href="../../profile/explore/index.html">Explore</a>
           </div>
         </div>
-        <div class="nav-group">
-          <a class="nav-group-label" href="../../works/index.html">Works</a>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="../index.html">Works</a>
           <div class="nav-submenu">
-            <a href="../../works/research-timeline/index.html">Research timeline</a>
-            <a href="../../works/papers/index.html">Papers</a>
-            <a href="../../works/notes-preparations/index.html">Notes and preparations</a>
-            <a href="../../works/talks-slides/index.html">Talks and Slides</a>
+            <a href="../research-timeline/index.html">Research timeline</a>
+            <a href="../papers/index.html">Papers</a>
+            <a class="is-active" href="index.html">Notes and preparations</a>
+            <a href="../talks-slides/index.html">Talks and Slides</a>
           </div>
         </div>
         <div class="nav-group">
@@ -58,11 +58,11 @@
             <a href="../../problems/full-list/index.html">Full List</a>
           </div>
         </div>
-        <div class="nav-group is-active">
-          <a class="nav-group-label is-active" href="../index.html">Others</a>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../../others/index.html">Others</a>
           <div class="nav-submenu">
-            <a class="is-active" href="index.html">WebApps</a>
-            <a href="../links/index.html">Links</a>
+            <a href="../../others/web-apps/index.html">WebApps</a>
+            <a href="../../others/links/index.html">Links</a>
           </div>
         </div>
       </nav>
@@ -70,12 +70,47 @@
 
     <main>
             <section class="page-hero section">
-        <h1>WebApps</h1>
-        <p class="lead">Interactive web applications.</p>
+        <h1>Notes and preparations</h1>
+        <p class="lead">Expository notes and works in preparation.</p>
       </section>
 
-      <section class="section">
-        <div id="web-app-grid" class="web-app-grid"></div>
+      <section id="in-preparation" class="section" aria-labelledby="notes-preparation-title">
+        <div class="section-head">
+          <div>
+            <h2 id="notes-preparation-title">In preparation</h2>
+          </div>
+        </div>
+        <div id="preparation-paper-list" class="publication-list" aria-live="polite"></div>
+      </section>
+
+      <section class="section notes-section" aria-labelledby="notes-title">
+        <div class="section-head">
+          <div>
+            <h2 id="notes-title">Notes</h2>
+          </div>
+        </div>
+        <div class="notes-filter-row">
+          <p id="note-filter-count" class="note-filter-count"></p>
+          <div class="note-toolbar" aria-label="Note filters">
+            <label class="search-label note-search-label">
+              <span>Search notes</span>
+              <input id="note-filter" type="search" autocomplete="off" placeholder="topos, games, language...">
+            </label>
+            <label class="note-filter-label">
+              <span>Language</span>
+              <select id="note-language-filter"></select>
+            </label>
+            <label class="note-filter-label">
+              <span>Year</span>
+              <select id="note-year-filter"></select>
+            </label>
+            <label class="note-filter-label">
+              <span>Theme</span>
+              <select id="note-theme-filter"></select>
+            </label>
+          </div>
+        </div>
+        <div id="notes-list" class="note-grid" aria-live="polite"></div>
       </section>
     </main>
 
@@ -87,6 +122,8 @@
       </div>
     </footer>
 
+    <script defer src="../../data/researchmap.generated.js?v=cache-20260502d"></script>
+    <script defer src="../../data/overleaf.generated.js?v=cache-20260502d"></script>
     <script defer src="../../scripts/site.js?v=cache-20260502d"></script>
   </body>
 </html>

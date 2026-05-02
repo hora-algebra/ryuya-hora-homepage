@@ -68,57 +68,57 @@ const siteData = {
   pages: [
     {
       title: "CV",
-      href: "profile/cv/index.html",
+      href: "profile/index.html",
       description: "Positions, awards, education, and profile links.",
       icon: "cv",
       thumbnail: "assets/profile/ryuya-hora-sea-900.jpg"
     },
     {
-      title: "Documents",
-      href: "documents/index.html",
-      description: "Overview of papers, notes, and slides.",
+      title: "Works",
+      href: "works/index.html",
+      description: "Overview of research timeline, papers, notes, talks, and slides.",
       icon: "paper",
       thumbnail: "assets/papers/internal-parameterizations.jpg"
     },
     {
       title: "Papers",
-      href: "documents/papers/index.html",
+      href: "works/papers/index.html",
       description: "Bibliography, preprints, in-preparation work, and metadata.",
       icon: "paper",
       thumbnail: "assets/papers/topoi-automata.jpg"
     },
     {
       title: "Notes",
-      href: "documents/notes/index.html",
+      href: "works/notes-preparations/index.html",
       description: "Lecture notes, expository notes, and related writing.",
       icon: "note",
       thumbnail: "assets/notes/counting-with-exponential-of-groups.png"
     },
     {
       title: "Slides",
-      href: "documents/slides/index.html",
-      description: "Slides and presentation materials.",
+      href: "works/talks-slides/index.html",
+      description: "Talk records and slide materials.",
       icon: "slide",
       thumbnail: "assets/notes/topoi-of-automata-cscat2025.png"
     },
     {
       title: "Activities",
       href: "activities/index.html",
-      description: "Activity timeline, visits, talks, and yearly records.",
+      description: "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.",
       icon: "activity",
       thumbnail: "assets/profile/ryuya-hora-mondovi.jpg"
     },
     {
       title: "Talks",
-      href: "activities/talks/index.html",
-      description: "Conference talks, seminars, archive, and visit map.",
+      href: "works/talks-slides/index.html",
+      description: "Talk records and slide materials.",
       icon: "talk",
       thumbnail: "assets/profile/ryuya-hora-talk.jpg"
     },
     {
       title: "Others",
       href: "others/index.html",
-      description: "Overview of web apps, problems, and links.",
+      description: "Overview of WebApps and links.",
       icon: "webapp",
       thumbnail: "assets/profile/green-fractal-cloud.png"
     },
@@ -131,7 +131,7 @@ const siteData = {
     },
     {
       title: "Problems",
-      href: "others/problems/index.html",
+      href: "problems/full-list/index.html",
       description: "Open questions, problem trails, and formal problems.",
       icon: "problem",
       thumbnail: "assets/papers/lawvere-fourth.jpg"
@@ -145,7 +145,7 @@ const siteData = {
     },
     {
       title: "Search",
-      href: "search/index.html",
+      href: "problems/search/index.html",
       description: "Site index search.",
       icon: "search",
       thumbnail: "assets/web-apps/adjunction-reboot.png"
@@ -1477,14 +1477,14 @@ const i18nText = {
       "ZEN大学助教，HUMAIセンター研究員です．最近は，topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています．",
     "Research": "研究",
     "Papers, preprints, notes, and slides.": "論文，preprint，ノート，スライド．",
-    "Overview of papers, notes, and slides.": "論文，ノート，スライドの概要．",
+    "Overview of research timeline, papers, notes, talks, and slides.": "論文，ノート，スライドの概要．",
     "Overview of visits, talks, and yearly records.": "訪問，発表，年次記録の概要．",
     "Bibliography, preprints, in-preparation work, and metadata.": "文献，preprint，準備中の仕事，メタデータ．",
     "Lecture notes, expository notes, and related writing.": "講義ノート，解説ノート，関連文書．",
-    "Slides and presentation materials.": "スライドと発表資料．",
-    "Activity timeline, visits, talks, and yearly records.": "活動タイムライン，訪問，発表，年次記録．",
-    "Conference talks, seminars, archive, and visit map.": "学会発表，セミナー，アーカイブ，訪問地図．",
-    "Overview of web apps, problems, and links.": "Web apps，Problems，リンクの概要．",
+    "Talk records and slide materials.": "スライドと発表資料．",
+    "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.": "活動タイムライン，訪問，発表，年次記録．",
+    "Talk records and slide materials.": "学会発表，セミナー，アーカイブ，訪問地図．",
+    "Overview of WebApps and links.": "Web apps，Problems，リンクの概要．",
     "Selected external links.": "外部リンク集．",
     "Positions, awards, education, and profile links.": "所属，受賞，学歴，プロフィールリンク．",
     "Preprints and related writing.": "Preprint と関連文書．",
@@ -2390,6 +2390,19 @@ function translateAttributes(root = document.body) {
   });
 }
 
+function applyLanguage(root = document.body) {
+  if (!root || isApplyingLanguage) return;
+  isApplyingLanguage = true;
+  try {
+    translateAttributes(root);
+    translatableElements(root).forEach(translateElementText);
+    syncLanguageLinks(root);
+    updateLanguageToggle();
+  } finally {
+    isApplyingLanguage = false;
+  }
+}
+
 function hrefWithLanguage(originalHref) {
   if (!originalHref || /^(https?:|mailto:|#|javascript:)/.test(originalHref)) return originalHref;
   const hashIndex = originalHref.indexOf("#");
@@ -2435,66 +2448,19 @@ function updateLanguageToggle() {
 }
 
 function ensureSearchNavLink() {
-  const nav = document.querySelector(".site-nav");
-  if (!nav) return;
-  const decorateSearchLink = (searchLink) => {
-    searchLink.dataset.siteSearchLink = "";
-    searchLink.classList.add("nav-search");
-    searchLink.classList.toggle("is-active", document.body.dataset.page === "search");
-    searchLink.setAttribute("aria-label", "Search");
-    if (!searchLink.querySelector(".search-icon")) {
-      searchLink.replaceChildren(
-        el("span", "search-icon"),
-        el("span", "sr-only", "Search")
-      );
-      searchLink.querySelector(".search-icon")?.setAttribute("aria-hidden", "true");
-    }
-  };
-  const existingSearchLink = nav.querySelector("[data-site-search-link]");
-  if (existingSearchLink) {
-    decorateSearchLink(existingSearchLink);
-    return;
-  }
-  const searchLink = link("", localHref("search/index.html"));
-  searchLink.dataset.siteSearchLink = "";
-  decorateSearchLink(searchLink);
-  const languageToggle = nav.querySelector("[data-language-toggle]");
-  if (languageToggle) nav.insertBefore(searchLink, languageToggle);
-  else nav.append(searchLink);
-}
-
-function applyLanguage(root = document.body) {
-  if (!root) return;
-  isApplyingLanguage = true;
-  try {
-    document.documentElement.lang = activeLanguage === "ja" ? "ja" : "en";
-    translatableElements(root).forEach(translateElementText);
-    translateAttributes(root);
-    syncLanguageLinks(root);
-    updateLanguageToggle();
-    decorateUiIcons(root);
-  } finally {
-    isApplyingLanguage = false;
-  }
-}
-
-function setLanguage(language) {
-  activeLanguage = japaneseUiEnabled && language === "ja" ? "ja" : "en";
-  writeStoredLanguage(activeLanguage);
-  syncLanguageUrl();
-  applyLanguage();
-  renderCategoriesTokyoMap();
+  // Search now lives inside the Problems navigation group.
 }
 
 function ensureDraftNotice() {
-  if (document.body?.dataset?.draft !== "true") return;
-  if (document.querySelector("[data-draft-notice]")) return;
-  const header = document.querySelector(".site-header");
-  if (!header) return;
+  const existing = document.querySelector(".draft-notice");
+  if (document.body?.dataset.draft !== "true") {
+    existing?.remove();
+    return;
+  }
+  if (existing) return;
   const notice = el("div", "draft-notice", "This page is still under construction.");
-  notice.dataset.draftNotice = "";
   notice.setAttribute("role", "status");
-  header.insertAdjacentElement("afterend", notice);
+  document.body?.prepend(notice);
 }
 
 function setupLanguage() {
@@ -2794,7 +2760,10 @@ function annotateMath(root = document.body) {
 }
 
 function getPathPrefix() {
-  return document.body.dataset.depth === "child" ? "../" : "";
+  const rawDepth = document.body?.dataset.depth || "0";
+  if (rawDepth === "child") return "../";
+  const depth = Number.parseInt(rawDepth, 10);
+  return Number.isFinite(depth) && depth > 0 ? "../".repeat(depth) : "";
 }
 
 function localHref(href) {
@@ -2930,7 +2899,7 @@ function noteAnchor(note) {
 }
 
 function documentPagePathForRecord(note) {
-  return noteRecordIsSlide(note) ? "documents/slides/index.html" : "documents/notes/index.html";
+  return noteRecordIsSlide(note) ? "works/talks-slides/index.html" : "works/notes-preparations/index.html";
 }
 
 function noteHref(note) {
@@ -3876,7 +3845,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Profile",
       title: activeLanguage === "ja" && record.textJa ? record.textJa : record.text,
-      href: record.href || localHref("index.html#profile"),
+      href: record.href || localHref("profile/index.html#profile"),
       summary: "Current position",
       keywords: compactText([record.text, record.textJa]),
       icon: record.icon || "profile"
@@ -3887,7 +3856,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Profile",
       title: activeLanguage === "ja" && record.textJa ? record.textJa : record.text,
-      href: record.href || localHref("profile/cv/index.html"),
+      href: record.href || localHref("profile/index.html"),
       summary: "Past position",
       keywords: compactText([record.text, record.textJa]),
       icon: "building"
@@ -3898,7 +3867,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Award",
       title: record.text,
-      href: record.href || localHref("profile/cv/index.html"),
+      href: record.href || localHref("profile/index.html"),
       summary: "Award",
       icon: "award"
     });
@@ -3908,7 +3877,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Education",
       title: record.text,
-      href: record.href || localHref("profile/cv/index.html"),
+      href: record.href || localHref("profile/index.html"),
       summary: "Education and outreach",
       icon: "education"
     });
@@ -3929,7 +3898,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: paper.title,
-      href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+      href: localHref(`works/papers/index.html#${paperAnchor(paper)}`),
       summary: paper.summary,
       meta: compactText([paperPeopleText(paper, researchmapPaper), paper.year, paper.venue]).join(" / "),
       keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
@@ -3956,7 +3925,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "In preparation",
       title: paper.title,
-      href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+      href: localHref(`works/papers/index.html#${paperAnchor(paper)}`),
       summary: paper.summary || "Manuscript in preparation",
       keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
       icon: "paper",
@@ -3968,7 +3937,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: record.title,
-      href: record.link || localHref(`documents/papers/index.html#${paperAnchor(record)}`),
+      href: record.link || localHref(`works/papers/index.html#${paperAnchor(record)}`),
       summary: record.venue || record.type || "Paper metadata",
       meta: compactText([paperPeopleText(record), record.year, record.publicationDate]).join(" / "),
       keywords: compactText([record.type, record.openAccess ? "open access" : "researchmap"]),
@@ -3982,7 +3951,7 @@ function siteSearchRecords() {
       pushSiteSearchRecord(records, {
         type: "Talk",
         title: record.title,
-        href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
+        href: localHref(`works/talks-slides/index.html#${talkRecordAnchor(record)}`),
         summary: record.event || record.type || "Talk",
         meta: compactText([presentationPeopleText(record), formatTalkDate(record), record.invited ? "invited" : ""]).join(" / "),
         keywords: compactText([record.type, record.event]),
@@ -3997,7 +3966,7 @@ function siteSearchRecords() {
         pushSiteSearchRecord(records, {
           type: "Talk",
           title: talk.title,
-          href: talk.href || localHref("activities/talks/index.html"),
+          href: talk.href || localHref("works/talks-slides/index.html"),
           summary: talk.venue,
           meta: compactText([presentationPeopleText(presentationRecord || talk), group.year]).join(" / "),
           icon: "talk",
@@ -4050,7 +4019,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Problem",
       title: `${problem.id}: ${problem.title}`,
-      href: localHref(`others/problems/index.html#${problemAnchor(problem)}`),
+      href: localHref(`problems/full-list/index.html#${problemAnchor(problem)}`),
       summary: problem.statement,
       meta: compactText([problemStatusLabel(problem.status), problem.theme]).join(" / "),
       keywords: problem.tags || [],
@@ -4473,7 +4442,7 @@ function renderTalkTimeline() {
     el("p", "talk-timeline-meta", presentationMeta(selected)),
     el("p", "talk-timeline-count", `${selectedIndex + 1} / ${records.length}`)
   );
-  title.append(titleCopyButton(`activities/talks/index.html#${talkRecordAnchor(selected)}`, selected.title));
+  title.append(titleCopyButton(`works/talks-slides/index.html#${talkRecordAnchor(selected)}`, selected.title));
   appendActionLinks(card, slideLinksForTalk(selected));
 
   root.append(timelineScrollFrame(track, selectedPosition), card);
@@ -4481,7 +4450,7 @@ function renderTalkTimeline() {
 
 function talkMapRecordHref(record) {
   const hash = `#${talkRecordAnchor(record)}`;
-  return document.body.dataset.page === "talks" ? hash : localHref(`activities/talks/index.html${hash}`);
+  return document.body.dataset.page === "talks-slides" ? hash : localHref(`works/talks-slides/index.html${hash}`);
 }
 
 function visitLocationById(id) {
@@ -5555,7 +5524,7 @@ function homeTimelinePaperRecords() {
       title: paper.title,
       dateLabel: `${startLabel} -> ${endLabel}`,
       meta: compactText([people, paper.venue]).join(" / "),
-      href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`documents/papers/index.html#${anchor}`),
+      href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`works/papers/index.html#${anchor}`),
       time: startTime,
       startTime,
       endTime,
@@ -5573,7 +5542,7 @@ function homeTimelineTalkRecords() {
       title: record.title,
       dateLabel: formatTalkDate(record),
       meta: compactText([presentationPeopleText(record), record.event, record.type, record.invited ? "invited" : ""]).join(" / "),
-      href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
+      href: localHref(`works/talks-slides/index.html#${talkRecordAnchor(record)}`),
       time: presentationTime(record)
     }));
   }
@@ -5591,7 +5560,7 @@ function homeTimelineTalkRecords() {
         title: talk.title,
         dateLabel: group.year,
         meta: compactText([presentationPeopleText(presentationRecord || talk), talk.venue]).join(" / "),
-        href: localHref("activities/talks/index.html"),
+        href: localHref("works/talks-slides/index.html"),
         time: Number.isFinite(base) ? base + (yearSpan * (index + 0.5)) / total : Number.NaN
       };
     })
@@ -5972,7 +5941,7 @@ function documentTimelineNoteRecords() {
         title,
         dateLabel: noteDateLabel(note),
         meta: compactText([kindLabel, noteLanguageKey(note), note.file]).join(" / "),
-        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`documents/notes/index.html#${anchor}`),
+        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`works/notes-preparations/index.html#${anchor}`),
         time
       };
     })
@@ -6171,7 +6140,7 @@ function mergeSlideWithTalk(slide) {
   const presentation = findResearchmapPresentationForSlide(slide, staticTalk);
   const talkRecord = presentation || staticTalk;
   if (!talkRecord) return { ...slide, kind: "slide" };
-  const talkHref = localHref(`activities/talks/index.html#${talkRecordAnchor(talkRecord)}`);
+  const talkHref = localHref(`works/talks-slides/index.html#${talkRecordAnchor(talkRecord)}`);
   const talkMeta = presentation
     ? presentationMeta(presentation)
     : compactText([presentationPeopleText(staticTalk), staticTalk.venue]).join(" / ");
@@ -7094,6 +7063,101 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "camera") {
+    svg.append(
+      shape("path", { d: "M5.2 8.2H8L9.4 5.9H14.6L16 8.2H18.8C19.7 8.2 20.4 8.9 20.4 9.8V17.3C20.4 18.2 19.7 18.9 18.8 18.9H5.2C4.3 18.9 3.6 18.2 3.6 17.3V9.8C3.6 8.9 4.3 8.2 5.2 8.2Z", fill: "none", stroke: "currentColor", "stroke-width": "1.8", "stroke-linejoin": "round" }),
+      shape("circle", { cx: "12", cy: "13.6", r: "3.1", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "17.2", cy: "10.5", r: "0.75", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "mountain") {
+    svg.append(
+      shape("path", { d: "M3.6 19L9.2 7.6L12.4 13.1L14.7 9.5L20.4 19Z", fill: "currentColor", "fill-opacity": "0.82", stroke: "currentColor", "stroke-width": "1.7", "stroke-linejoin": "round" }),
+      shape("path", { d: "M8.2 10.2L9.8 12.2L11 10.9M13.8 10.8L15.1 12.8L16.3 11.7", fill: "var(--paper)", "fill-opacity": "0.96" }),
+      line({ d: "M5.6 19H18.4", "stroke-width": "1.45" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "sake") {
+    svg.append(
+      shape("path", { d: "M6.5 8.3H16.2L15.1 19.5H8Z", fill: "none", stroke: "currentColor", "stroke-width": "1.8", "stroke-linejoin": "round" }),
+      shape("path", { d: "M7.2 11.3H15.9L15.1 19.5H8Z", fill: "currentColor", "fill-opacity": "0.72" }),
+      shape("path", { d: "M8.1 5.6C8.8 4.6 10.1 4.5 11 5.2C11.7 4.2 13.5 4.4 14 5.6C15.6 5.5 16.5 6.4 16.2 8.3H6.5C6.1 6.6 6.8 5.6 8.1 5.6Z", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.5", "stroke-linejoin": "round" }),
+      shape("path", { d: "M16.2 10.6H18.6C19.4 10.6 20 11.2 20 12V15.8C20 17.1 19.1 18 17.9 18H15.4", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linejoin": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "music-note") {
+    svg.append(
+      shape("ellipse", { cx: "9.1", cy: "16.4", rx: "2.65", ry: "2.05", transform: "rotate(-18 9.1 16.4)", fill: "currentColor" }),
+      shape("rect", { x: "11.3", y: "5.2", width: "2.05", height: "11.2", rx: "0.65", fill: "currentColor" }),
+      shape("path", { d: "M13.2 5.2C15.8 5.8 17.7 7.2 18.6 9.4C16.5 8.5 14.7 8.1 13.2 8.1Z", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "palm") {
+    svg.append(
+      shape("path", { d: "M7.4 11.8V8.7C7.4 7.9 8 7.4 8.7 7.4C9.4 7.4 9.9 7.9 9.9 8.7V11.1V6.4C9.9 5.6 10.5 5 11.2 5C11.9 5 12.5 5.6 12.5 6.4V10.8V7.1C12.5 6.3 13.1 5.8 13.8 5.8C14.5 5.8 15.1 6.3 15.1 7.1V11.3V8.9C15.1 8.2 15.7 7.7 16.4 7.7C17.1 7.7 17.6 8.2 17.6 8.9V14.2C17.6 17.4 15.5 19.5 12.4 19.5H11.4C9.5 19.5 8.2 18.6 7.1 16.9L5.6 14.4C5.2 13.8 5.4 13 6 12.7C6.6 12.3 7.2 12.5 7.7 13.1L9.1 14.8", fill: "none", stroke: "currentColor", "stroke-width": "1.55", "stroke-linecap": "round", "stroke-linejoin": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "torii") {
+    svg.append(
+      line({ d: "M4.4 6.1H19.6", "stroke-width": "2.85" }),
+      line({ d: "M6.1 8.9H17.9", "stroke-width": "2.15" }),
+      line({ d: "M8.1 8.9V20", "stroke-width": "2.35" }),
+      line({ d: "M15.9 8.9V20", "stroke-width": "2.35" }),
+      line({ d: "M7 13.2H17", "stroke-width": "2.1" }),
+      shape("path", { d: "M5.8 6.1C6.8 4.8 8.9 4.1 12 4.1C15.1 4.1 17.2 4.8 18.2 6.1", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linecap": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "tetrapod") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "11.2", r: "2", fill: "currentColor" }),
+      shape("path", { d: "M12 11.2L12 4.2L14.2 7.6M12 4.2L9.8 7.6", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M12 11.2L5.2 17.6L9.1 17.2M5.2 17.6L6.1 13.9", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M12 11.2L18.8 17.6L14.9 17.2M18.8 17.6L17.9 13.9", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M12 11.2L12 20.2L9.5 17.1M12 20.2L14.5 17.1", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "guitar-pick") {
+    svg.append(
+      shape("path", { d: "M12 3.8C16.2 3.8 19.4 6.4 19.4 10.1C19.4 15.2 14.6 19 12 20.4C9.4 19 4.6 15.2 4.6 10.1C4.6 6.4 7.8 3.8 12 3.8Z", fill: "currentColor", "fill-opacity": "0.82", stroke: "currentColor", "stroke-width": "1.65", "stroke-linejoin": "round" }),
+      shape("path", { d: "M9.2 8.6C10.5 7.7 13.5 7.7 14.8 8.6", fill: "none", stroke: "var(--paper)", "stroke-width": "1.35", "stroke-linecap": "round", "stroke-opacity": "0.9" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "plane") {
+    svg.append(
+      shape("path", { d: "M3.7 11.4L20.5 4.4L16.3 19.6L11.8 13.1L8.2 17.1L7.4 12.8Z", fill: "currentColor", "fill-opacity": "0.14", stroke: "currentColor", "stroke-width": "1.65", "stroke-linejoin": "round" }),
+      shape("path", { d: "M20.5 4.4L11.8 13.1L8.2 17.1", fill: "none", stroke: "currentColor", "stroke-width": "1.45", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M7.4 12.8L20.5 4.4L11.8 13.1", fill: "currentColor", "fill-opacity": "0.34", stroke: "currentColor", "stroke-width": "1.25", "stroke-linejoin": "round" }),
+      line({ d: "M11.8 13.1L16.3 19.6", "stroke-width": "1.2", "stroke-opacity": "0.72" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "apple") {
+    svg.append(
+      shape("path", { d: "M12 8.2C14 6.9 17 7.5 18.3 10C20 13.2 18.2 18.9 15.2 20.1C13.9 20.6 12.9 19.9 12 19.9C11.1 19.9 10.1 20.6 8.8 20.1C5.8 18.9 4 13.2 5.7 10C7 7.5 10 6.9 12 8.2Z", fill: "currentColor", "fill-opacity": "0.82", stroke: "currentColor", "stroke-width": "1.55", "stroke-linejoin": "round" }),
+      shape("path", { d: "M12 8.1C12 6.6 12.6 5.3 13.8 4.4", fill: "none", stroke: "currentColor", "stroke-width": "1.7", "stroke-linecap": "round" }),
+      shape("path", { d: "M14.2 4.6C16.4 4.1 17.9 4.8 18.7 6.7C16.8 7.3 15.2 6.7 14.2 4.6Z", fill: "currentColor", "fill-opacity": "0.42", stroke: "currentColor", "stroke-width": "1.2", "stroke-linejoin": "round" }),
+      shape("path", { d: "M8.2 10.6C7.6 12.2 7.7 14.2 8.5 16", fill: "none", stroke: "var(--paper)", "stroke-width": "1.2", "stroke-linecap": "round", "stroke-opacity": "0.8" })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "friend") {
     svg.append(
       shape("circle", { cx: "9", cy: "9", r: "2.5", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
@@ -7159,10 +7223,10 @@ function sectionIconHref(heading) {
   const moreHref = sectionMoreLink(heading)?.getAttribute("href") || "";
   if (moreHref) return moreHref;
   const text = simplified(heading?.textContent || "");
-  if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("profile/cv/index.html");
-  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/cv/index.html#awards");
+  if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("profile/index.html");
+  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/profile/awards/index.html");
   if (text.includes("email") || text.includes("contact")) return "mailto:ryuya.hora@zen.ac.jp";
-  if (text.includes("work") || text.includes("interest")) return localHref("index.html#works");
+  if (text.includes("work") || text.includes("interest")) return localHref("works/index.html");
   if (text.includes("categories in tokyo")) return "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0";
   return "";
 }
@@ -7233,6 +7297,8 @@ function paperThumbnailSrc(paper) {
 function iconKeyForLink(label = "", href = "", context = "") {
   const text = simplified(`${context} ${label}`);
   const url = String(href || "").toLowerCase();
+  const friendPageIcon = friendPageIconKey(label, context);
+  if (friendPageIcon) return friendPageIcon;
   if (url.includes("orcid.org") || text.includes("orcid")) return "orcid";
   if (url.includes("arxiv.org") || text.includes("arxiv")) return "arxiv";
   if (url.includes("researchmap.jp") || text.includes("researchmap")) return "researchmap";
@@ -7246,6 +7312,22 @@ function iconKeyForLink(label = "", href = "", context = "") {
   if (text.includes("paper")) return "paper";
   if (text.includes("slide")) return "talk";
   return "link";
+}
+
+function friendPageIconKey(label = "", context = "") {
+  if (!simplified(context).includes("friends pages")) return "";
+  return {
+    "Koki Sakamoto": "camera",
+    "Mao Hoshino": "mountain",
+    "数理物理チャンネル": "sake",
+    "Yuto Kawase": "music-note",
+    "Keisuke Hoshino": "palm",
+    "Hayato Nasu": "torii",
+    "Yuki Maehara": "tetrapod",
+    "Shuho Kanda": "guitar-pick",
+    "Junnosuke Koizumi": "plane",
+    "Yugo Takanashi": "apple"
+  }[normalizedUiText(label)] || "";
 }
 
 function iconKeyForAction(label = "", href = "") {
@@ -7768,7 +7850,7 @@ function themedPaperRecords() {
       return {
         type: "paper",
         title: paper.title,
-        href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+        href: localHref(`works/papers/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper, findResearchmapPaper(paper)), paper.year, paper.venue]).join(" / "),
         metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
@@ -7793,7 +7875,7 @@ function themedPaperRecords() {
       return {
         type: "paper",
         title: paper.title,
-        href: paper.link || localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+        href: paper.link || localHref(`works/papers/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper), paper.year, paper.venue || paper.type]).join(" / "),
         metaTags: metaTagIdsForText(text, paper.metaTags || []),
         ...scoreThemeRecord(text)
@@ -7811,7 +7893,7 @@ function themedPreparationRecords() {
       return {
         type: "preparation",
         title: paper.title,
-        href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+        href: localHref(`works/papers/index.html#${paperAnchor(paper)}`),
         meta: "In preparation",
         metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
@@ -7915,7 +7997,7 @@ function themedTalkRecords() {
         return {
           type: "talk",
           title: record.title,
-          href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
+          href: localHref(`works/talks-slides/index.html#${talkRecordAnchor(record)}`),
           meta: compactText([presentationMeta(record), slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
           metaTags,
           ...scoreThemeRecord(text)
@@ -7934,7 +8016,7 @@ function themedTalkRecords() {
         return {
           type: "talk",
           title: talk.title,
-          href: talk.href || localHref("activities/talks/index.html"),
+          href: talk.href || localHref("works/talks-slides/index.html"),
           meta: compactText([presenters, group.year, talk.venue, slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
           metaTags,
           ...scoreThemeRecord(text)
@@ -13310,7 +13392,7 @@ function renderPaperRecord(paper, options = {}) {
   const titleRow = el("div", "publication-title");
   const title = el("h3");
   title.append(link(paper.title, paper.link));
-  titleRow.append(title, titleCopyButton(`documents/papers/index.html#${paperAnchor(paper)}`, paper.title));
+  titleRow.append(title, titleCopyButton(`works/papers/index.html#${paperAnchor(paper)}`, paper.title));
   item.append(titleRow);
 
   const details = renderPublicationDetails(paper);
@@ -13503,7 +13585,7 @@ function paperTagTargetHref(tag) {
   const params = new URLSearchParams();
   if (tag.themeId) params.set("theme", tag.themeId);
   else params.set("paper", tag.query || tag.label);
-  return localHref(`documents/papers/index.html?${params.toString()}`);
+  return localHref(`works/papers/index.html?${params.toString()}`);
 }
 
 function activatePublicationTag(tag) {
@@ -13658,7 +13740,7 @@ function renderPreparationPapers() {
     const heading = el("h3");
     heading.innerHTML = paper.title;
     const details = renderPublicationDetails(paper);
-    titleRow.append(heading, titleCopyButton(`documents/papers/index.html#${paperAnchor(paper)}`, paper.title));
+    titleRow.append(heading, titleCopyButton(`works/papers/index.html#${paperAnchor(paper)}`, paper.title));
     item.append(titleRow);
     if (details) item.append(details);
     const meta = el("div", "publication-meta");
@@ -13698,14 +13780,14 @@ function renderPaperRelatedDocuments() {
     allNoteRecords(),
     "No related notes match this filter.",
     "Use paper search or tags to find related notes.",
-    "documents/notes/index.html"
+    "works/notes-preparations/index.html"
   );
   renderPaperRelatedList(
     "#paper-related-slides-list",
     allSlideRecords(),
     "No related slides match this filter.",
     "Use paper search or tags to find related slides.",
-    "documents/slides/index.html"
+    "works/talks-slides/index.html"
   );
 }
 
@@ -13863,7 +13945,7 @@ function renderTalkItem(record, href, metaText, actions = []) {
   title.append(uiIcon("talk", "talk-title-icon"));
   if (href) title.append(link(record.title, href));
   else title.append(el("span", null, record.title));
-  title.append(titleCopyButton(`activities/talks/index.html#${talkRecordAnchor(record)}`, record.title));
+  title.append(titleCopyButton(`works/talks-slides/index.html#${talkRecordAnchor(record)}`, record.title));
   body.append(title, el("span", "talk-venue", metaText));
   if (actions.length) appendActionLinks(body, actions);
   shell.append(body);
@@ -14347,7 +14429,7 @@ function renderNotes() {
     return;
   }
 
-  records.forEach((note) => root.append(renderDocumentCard(note, "documents/notes/index.html")));
+  records.forEach((note) => root.append(renderDocumentCard(note, "works/notes-preparations/index.html")));
   applyLanguage(section);
   scrollToHashTarget();
 }
@@ -14370,7 +14452,7 @@ function renderSlides() {
     return;
   }
 
-  records.forEach((slide) => root.append(renderDocumentCard(slide, "documents/slides/index.html")));
+  records.forEach((slide) => root.append(renderDocumentCard(slide, "works/talks-slides/index.html")));
   applyLanguage(section);
   scrollToHashTarget();
 }
@@ -14955,62 +15037,30 @@ function setupInteractions() {
 }
 
 const pageBreadcrumbs = {
-  documents: [
-    ["Home", "index.html"],
-    ["Documents", "documents/index.html"]
-  ],
-  papers: [
-    ["Home", "index.html"],
-    ["Documents", "documents/index.html"],
-    ["Papers", "documents/papers/index.html"]
-  ],
-  notes: [
-    ["Home", "index.html"],
-    ["Documents", "documents/index.html"],
-    ["Notes", "documents/notes/index.html"]
-  ],
-  slides: [
-    ["Home", "index.html"],
-    ["Documents", "documents/index.html"],
-    ["Slides", "documents/slides/index.html"]
-  ],
-  activities: [
-    ["Home", "index.html"],
-    ["Activities", "activities/index.html"]
-  ],
-  talks: [
-    ["Home", "index.html"],
-    ["Activities", "activities/index.html"],
-    ["Talks", "activities/talks/index.html"]
-  ],
-  others: [
-    ["Home", "index.html"],
-    ["Others", "others/index.html"]
-  ],
-  "web-apps": [
-    ["Home", "index.html"],
-    ["Others", "others/index.html"],
-    ["Web Apps", "others/web-apps/index.html"]
-  ],
-  problems: [
-    ["Home", "index.html"],
-    ["Others", "others/index.html"],
-    ["Problems", "others/problems/index.html"]
-  ],
-  links: [
-    ["Home", "index.html"],
-    ["Others", "others/index.html"],
-    ["Links", "others/links/index.html"]
-  ],
-  cv: [
-    ["Home", "index.html"],
-    ["Profile", "index.html#profile"],
-    ["CV", "profile/cv/index.html"]
-  ],
-  search: [
-    ["Home", "index.html"],
-    ["Search", "search/index.html"]
-  ]
+  profile: [["Profile", "profile/index.html"]],
+  "current-positions": [["Profile", "profile/index.html"], ["Current Positions", "profile/current-positions/index.html"]],
+  "past-affiliations": [["Profile", "profile/index.html"], ["Past Affiliations", "profile/past-affiliations/index.html"]],
+  "academic-background": [["Profile", "profile/index.html"], ["Academic Background", "profile/academic-background/index.html"]],
+  emails: [["Profile", "profile/index.html"], ["emails", "profile/emails/index.html"]],
+  awards: [["Profile", "profile/index.html"], ["Awards", "profile/awards/index.html"]],
+  "teaching-outreach": [["Profile", "profile/index.html"], ["Teaching and Outreach", "profile/teaching-outreach/index.html"]],
+  explore: [["Profile", "profile/index.html"], ["Explore", "profile/explore/index.html"]],
+  works: [["Works", "works/index.html"]],
+  "research-timeline": [["Works", "works/index.html"], ["Research timeline", "works/research-timeline/index.html"]],
+  papers: [["Works", "works/index.html"], ["Papers", "works/papers/index.html"]],
+  "notes-preparations": [["Works", "works/index.html"], ["Notes and preparations", "works/notes-preparations/index.html"]],
+  "talks-slides": [["Works", "works/index.html"], ["Talks and Slides", "works/talks-slides/index.html"]],
+  activities: [["Activities", "activities/index.html"]],
+  "activity-timeline": [["Activities", "activities/index.html"], ["Activity Timeline", "activities/timeline/index.html"]],
+  upcoming: [["Activities", "activities/index.html"], ["Upcoming", "activities/upcoming/index.html"]],
+  "visit-map": [["Activities", "activities/index.html"], ["visit map", "activities/visit-map/index.html"]],
+  "yearly-records": [["Activities", "activities/index.html"], ["Yearly records", "activities/yearly-records/index.html"]],
+  "categories-in-tokyo": [["Activities", "activities/index.html"], ["Categories in Tokyo", "activities/categories-in-tokyo/index.html"]],
+  problems: [["Problems", "problems/full-list/index.html"], ["Full List", "problems/full-list/index.html"]],
+  search: [["Problems", "problems/full-list/index.html"], ["Search", "problems/search/index.html"]],
+  others: [["Others", "others/index.html"]],
+  "web-apps": [["Others", "others/index.html"], ["WebApps", "others/web-apps/index.html"]],
+  links: [["Others", "others/index.html"], ["Links", "others/links/index.html"]]
 };
 
 function renderPageBreadcrumb() {
@@ -15050,21 +15100,22 @@ function renderInitialPage() {
   setupLanguage();
   renderPageBreadcrumb();
 
-  if (page === "home") {
+  if (page === "home" || page === "profile") {
     renderProfileSections();
     renderExplore();
-    renderResearchMap();
+  } else if (["current-positions", "past-affiliations", "academic-background", "emails", "awards", "teaching-outreach"].includes(page)) {
+    renderProfileSections();
+  } else if (page === "explore") {
+    renderExplore();
+  } else if (page === "works") {
     renderHomeTimeline();
-    renderCategoriesTokyoMap();
-    renderPlans();
-    renderHomePapers();
-    renderTalks("#home-talk-list");
-  } else if (page === "documents") {
-    renderPaperTimeline();
     renderPapers();
     renderPreparationPapers();
     renderNotes();
+    renderResearchmapPresentations();
     renderSlides();
+  } else if (page === "research-timeline") {
+    renderHomeTimeline();
   } else if (page === "papers") {
     renderPaperTimeline();
     renderPapers();
@@ -15072,34 +15123,40 @@ function renderInitialPage() {
     renderPaperRelatedDocuments();
     renderResearchmapPapers();
     renderMiscPapers();
+  } else if (page === "notes-preparations") {
+    renderPreparationPapers();
+    renderNotes();
+  } else if (page === "talks-slides") {
+    renderTalkTimeline();
+    renderResearchmapPresentations();
+    renderSlides();
   } else if (page === "activities") {
     renderActivitiesTimeline();
+    renderPlans();
     renderTalkMap();
-    renderResearchmapPresentations();
-    renderResearchmapActivityData();
     renderActivities();
-  } else if (page === "talks") {
-    renderTalkTimeline();
+    renderCategoriesTokyoMap();
+  } else if (page === "activity-timeline") {
+    renderActivitiesTimeline();
+  } else if (page === "upcoming") {
+    renderPlans();
+  } else if (page === "visit-map") {
     renderTalkMap();
-    renderResearchmapPresentations();
-  } else if (page === "notes") {
-    renderNotes();
-  } else if (page === "slides") {
-    renderSlides();
-  } else if (page === "cv") {
-    renderProfileSections();
-  } else if (page === "others") {
-    renderWebApps();
-    renderProblems();
-    renderLinks();
+  } else if (page === "yearly-records") {
+    renderActivities();
+  } else if (page === "categories-in-tokyo") {
+    renderCategoriesTokyoMap();
   } else if (page === "problems") {
     renderProblems();
-  } else if (page === "links") {
+  } else if (page === "search") {
+    renderSiteSearch();
+  } else if (page === "others") {
+    renderWebApps();
     renderLinks();
   } else if (page === "web-apps") {
     renderWebApps();
-  } else if (page === "search") {
-    renderSiteSearch();
+  } else if (page === "links") {
+    renderLinks();
   } else {
     renderProfileSections();
     renderExplore();

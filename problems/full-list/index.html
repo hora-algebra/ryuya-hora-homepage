@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WebApps | Ryuya Hora</title>
-    <meta name="description" content="WebApps by Ryuya Hora.">
+    <title>Full List | Ryuya Hora</title>
+    <meta name="description" content="Full list of problems by Ryuya Hora.">
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../../styles.css?v=cache-20260502d">
@@ -12,7 +12,7 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
     <!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="web-apps" data-depth="2">
+  <body data-page="problems" data-depth="2">
     <header class="site-header">
       <a class="brand" href="../../profile/index.html" aria-label="Ryuya Hora profile">
         <span class="brand-mark">RH</span>
@@ -51,18 +51,18 @@
             <a href="../../activities/categories-in-tokyo/index.html">Categories in Tokyo</a>
           </div>
         </div>
-        <div class="nav-group">
-          <a class="nav-group-label" href="../../problems/full-list/index.html">Problems</a>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="index.html">Problems</a>
           <div class="nav-submenu">
-            <a href="../../problems/search/index.html">Search</a>
-            <a href="../../problems/full-list/index.html">Full List</a>
+            <a href="../search/index.html">Search</a>
+            <a class="is-active" href="index.html">Full List</a>
           </div>
         </div>
-        <div class="nav-group is-active">
-          <a class="nav-group-label is-active" href="../index.html">Others</a>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../../others/index.html">Others</a>
           <div class="nav-submenu">
-            <a class="is-active" href="index.html">WebApps</a>
-            <a href="../links/index.html">Links</a>
+            <a href="../../others/web-apps/index.html">WebApps</a>
+            <a href="../../others/links/index.html">Links</a>
           </div>
         </div>
       </nav>
@@ -70,12 +70,40 @@
 
     <main>
             <section class="page-hero section">
-        <h1>WebApps</h1>
-        <p class="lead">Interactive web applications.</p>
+        <h1>Full List</h1>
+        <p class="lead">Full list of problems, questions, and trails.</p>
       </section>
 
       <section class="section">
-        <div id="web-app-grid" class="web-app-grid"></div>
+        <div class="section-head">
+          <div>
+            <h2>Questions and Trails</h2>
+          </div>
+          <div class="problem-random-actions">
+            <button class="tab-button" type="button" data-problem-random="any">Random problem</button>
+            <button class="tab-button" type="button" data-problem-random="open">Random formal</button>
+          </div>
+        </div>
+        <div class="problem-console">
+          <div class="problem-toolbar">
+            <label class="search-label">
+              <span>Filter problems</span>
+              <input id="problem-filter" type="search" autocomplete="off" placeholder="Topos, 2.0.2, rieg...">
+            </label>
+            <div id="problem-status-tabs" class="publication-tabs" aria-label="Problem status filters"></div>
+          </div>
+          <div id="problem-stats" class="problem-stats"></div>
+          <article id="problem-feature" class="problem-feature"></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>All Entries</h2>
+          </div>
+        </div>
+        <div id="problem-list" class="problem-list"></div>
       </section>
     </main>
 

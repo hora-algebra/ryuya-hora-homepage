@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WebApps | Ryuya Hora</title>
-    <meta name="description" content="WebApps by Ryuya Hora.">
+    <title>Search | Ryuya Hora</title>
+    <meta name="description" content="Search.">
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="../../styles.css?v=cache-20260502d">
@@ -12,7 +12,7 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
     <!-- End Cloudflare Web Analytics -->
   </head>
-  <body data-page="web-apps" data-depth="2">
+  <body data-page="search" data-depth="2">
     <header class="site-header">
       <a class="brand" href="../../profile/index.html" aria-label="Ryuya Hora profile">
         <span class="brand-mark">RH</span>
@@ -51,31 +51,37 @@
             <a href="../../activities/categories-in-tokyo/index.html">Categories in Tokyo</a>
           </div>
         </div>
-        <div class="nav-group">
-          <a class="nav-group-label" href="../../problems/full-list/index.html">Problems</a>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="../full-list/index.html">Problems</a>
           <div class="nav-submenu">
-            <a href="../../problems/search/index.html">Search</a>
-            <a href="../../problems/full-list/index.html">Full List</a>
+            <a class="is-active" href="index.html">Search</a>
+            <a href="../full-list/index.html">Full List</a>
           </div>
         </div>
-        <div class="nav-group is-active">
-          <a class="nav-group-label is-active" href="../index.html">Others</a>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../../others/index.html">Others</a>
           <div class="nav-submenu">
-            <a class="is-active" href="index.html">WebApps</a>
-            <a href="../links/index.html">Links</a>
+            <a href="../../others/web-apps/index.html">WebApps</a>
+            <a href="../../others/links/index.html">Links</a>
           </div>
         </div>
       </nav>
     </header>
 
     <main>
-            <section class="page-hero section">
-        <h1>WebApps</h1>
-        <p class="lead">Interactive web applications.</p>
+      <section class="page-hero section">
+        <h1>Search</h1>
       </section>
 
       <section class="section">
-        <div id="web-app-grid" class="web-app-grid"></div>
+        <div class="site-search-panel">
+          <label class="search-label site-search-label">
+            <span>Query</span>
+            <input id="site-search-input" type="search" autocomplete="off" placeholder="topos, automata, Categories in Tokyo...">
+          </label>
+          <p id="site-search-count" class="site-search-count"></p>
+          <div id="site-search-results" class="site-search-results" aria-live="polite"></div>
+        </div>
       </section>
     </main>
 
@@ -87,6 +93,8 @@
       </div>
     </footer>
 
+    <script defer src="../../data/researchmap.generated.js?v=cache-20260502d"></script>
+    <script defer src="../../data/overleaf.generated.js?v=cache-20260502d"></script>
     <script defer src="../../scripts/site.js?v=cache-20260502d"></script>
   </body>
 </html>
