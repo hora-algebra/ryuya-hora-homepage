@@ -2510,29 +2510,6 @@ a.position-link:hover {
   line-height: 1;
 }
 
-.games-rb-center-result {
-  color: #24312a;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 22px;
-  font-weight: 950;
-  line-height: 1;
-  overflow: visible;
-  pointer-events: none;
-}
-
-.games-rb-center-result > div {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  white-space: nowrap;
-}
-
-.games-rb-center-result .katex {
-  color: inherit;
-  line-height: 1;
-}
-
 .games-rb-table-subtitle {
   fill: rgba(36, 49, 42, 0.62);
   font-size: 12px;
@@ -3184,7 +3161,7 @@ a.position-link:hover {
 }
 
 .games-rb-dual-table .games-rb-cell-text {
-  font-size: 11.6px;
+  font-size: 12px;
 }
 
 .games-rb-set-highlight {
@@ -3259,7 +3236,7 @@ a.position-link:hover {
 .games-rb-mex-axis-tex {
   color: var(--games-rb-ink);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 9px;
+  font-size: 9.8px;
   font-weight: 900;
   line-height: 1;
   overflow: visible;
@@ -3454,7 +3431,7 @@ a.position-link:hover {
   align-items: center;
   display: inline-flex;
   left: 28.2%;
-  top: 90.2%;
+  top: 87.4%;
   width: 42%;
   color: #24312a;
   font-size: 1.08rem;
@@ -3486,9 +3463,25 @@ a.position-link:hover {
   line-height: 1;
 }
 
+.games-rb-bottom-result {
+  left: 54.4%;
+  top: 87.4%;
+  width: 9%;
+  color: #24312a;
+  font-size: 1.16rem;
+  font-weight: 950;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.games-rb-bottom-result:not(:has(.katex)) {
+  font-size: 1.16rem;
+}
+
 .games-rb-expanded-mex-equals {
   left: 52.4%;
-  top: 90.2%;
+  top: 87.4%;
   width: 8%;
   color: #7c3aed;
   font-size: 1.08rem;
@@ -3503,7 +3496,7 @@ a.position-link:hover {
 
 .games-rb-expanded-mex-rhs {
   left: 76.6%;
-  top: 90.2%;
+  top: 87.4%;
   width: 34%;
   color: #24312a;
   font-size: 1.08rem;
@@ -3517,14 +3510,47 @@ a.position-link:hover {
   font-size: 1.08rem;
 }
 
+.games-rb-integral-left,
+.games-rb-integral-right {
+  color: #24312a;
+  font-size: 1.02rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.games-rb-integral-left {
+  left: 28.2%;
+  top: 93.8%;
+  width: 42%;
+}
+
+.games-rb-integral-right {
+  left: 76.6%;
+  top: 93.8%;
+  width: 34%;
+}
+
+.games-rb-integral-left:not(:has(.katex)),
+.games-rb-integral-right:not(:has(.katex)) {
+  font-size: 1.02rem;
+}
+
 @media (max-width: 520px) {
   .games-rb-expanded-mex-readout,
   .games-rb-expanded-mex-readout:not(:has(.katex)),
   .games-rb-expanded-mex-equals,
   .games-rb-expanded-mex-equals:not(:has(.katex)),
+  .games-rb-bottom-result,
+  .games-rb-bottom-result:not(:has(.katex)),
   .games-rb-expanded-mex-rhs,
-  .games-rb-expanded-mex-rhs:not(:has(.katex)) {
-    font-size: 1rem;
+  .games-rb-expanded-mex-rhs:not(:has(.katex)),
+  .games-rb-integral-left,
+  .games-rb-integral-left:not(:has(.katex)),
+  .games-rb-integral-right,
+  .games-rb-integral-right:not(:has(.katex)) {
+    font-size: 0.82rem;
   }
 }
 
@@ -3533,9 +3559,15 @@ a.position-link:hover {
   .games-rb-expanded-mex-readout:not(:has(.katex)),
   .games-rb-expanded-mex-equals,
   .games-rb-expanded-mex-equals:not(:has(.katex)),
+  .games-rb-bottom-result,
+  .games-rb-bottom-result:not(:has(.katex)),
   .games-rb-expanded-mex-rhs,
-  .games-rb-expanded-mex-rhs:not(:has(.katex)) {
-    font-size: 0.74rem;
+  .games-rb-expanded-mex-rhs:not(:has(.katex)),
+  .games-rb-integral-left,
+  .games-rb-integral-left:not(:has(.katex)),
+  .games-rb-integral-right,
+  .games-rb-integral-right:not(:has(.katex)) {
+    font-size: 0.62rem;
   }
 }
 
@@ -3568,7 +3600,7 @@ a.position-link:hover {
 }
 
 .games-rb-set-current {
-  font-size: 0.84rem;
+  font-size: 0.94rem;
   font-weight: 850;
   flex: 0 0 1.38rem;
   text-align: right;
@@ -3579,7 +3611,7 @@ a.position-link:hover {
   display: grid;
   flex: 1 1 auto;
   gap: 0.14rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   min-width: 0;
 }
 
@@ -3593,7 +3625,7 @@ a.position-link:hover {
   color: var(--games-rb-ink);
   cursor: pointer;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 11.6px;
+  font-size: 12px;
   font-weight: 850;
   height: auto;
   line-height: 1;
@@ -4980,28 +5012,25 @@ a.position-link:hover {
 }
 
 .automata-topos-label {
-  fill: var(--cantor-ink);
-  font-size: 18px;
-  font-weight: 880;
-  text-anchor: middle;
-  opacity: 0;
+  opacity: 1;
+  overflow: visible;
+  pointer-events: none;
 }
 
-.automata-topos-label-left {
-  animation: automata-topos-left-stage var(--cantor-cover-cycle) ease-in-out infinite;
+.automata-topos-tex {
+  align-items: center;
+  color: var(--cantor-ink);
+  display: flex;
+  font-size: 20px;
+  height: 100%;
+  justify-content: center;
+  line-height: 1;
+  width: 100%;
 }
 
-.automata-topos-label-middle {
-  animation: automata-topos-middle-stage var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-topos-label-right {
-  animation: automata-topos-right-stage var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-topos-sup {
-  baseline-shift: super;
-  font-size: 12px;
+.automata-topos-tex .katex {
+  color: inherit;
+  font-size: 1.08em;
 }
 
 .automata-cantor-interval {
@@ -5079,50 +5108,7 @@ a.position-link:hover {
 }
 
 .automata-prefix-poset .automata-cantor-tree-edge {
-  opacity: 0;
-  stroke-dasharray: var(--tree-edge-length, 1);
-  stroke-dashoffset: var(--tree-edge-length, 1);
-}
-
-.automata-prefix-poset .automata-cantor-tree-edge.level-1 {
-  animation: automata-tree-edge-level-1 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-prefix-poset .automata-cantor-tree-edge.level-2 {
-  animation: automata-tree-edge-level-2 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-prefix-poset .automata-cantor-tree-edge.level-3 {
-  animation: automata-tree-edge-level-3 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-prefix-poset .automata-cantor-tree-edge.level-4 {
-  animation: automata-tree-edge-level-4 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-cantor-tree-arrowhead {
-  fill: none;
-  opacity: 0;
-  pointer-events: none;
-  stroke: transparent;
-  stroke-width: 0.1;
-  vector-effect: non-scaling-stroke;
-}
-
-.automata-prefix-poset .automata-cantor-tree-arrowhead.level-1 {
-  animation: automata-tree-arrowhead-level-1 var(--cantor-cover-cycle) steps(1, end) infinite;
-}
-
-.automata-prefix-poset .automata-cantor-tree-arrowhead.level-2 {
-  animation: automata-tree-arrowhead-level-2 var(--cantor-cover-cycle) steps(1, end) infinite;
-}
-
-.automata-prefix-poset .automata-cantor-tree-arrowhead.level-3 {
-  animation: automata-tree-arrowhead-level-3 var(--cantor-cover-cycle) steps(1, end) infinite;
-}
-
-.automata-prefix-poset .automata-cantor-tree-arrowhead.level-4 {
-  animation: automata-tree-arrowhead-level-4 var(--cantor-cover-cycle) steps(1, end) infinite;
+  opacity: 1;
 }
 
 .automata-cantor-bouquet-loop {
@@ -5195,29 +5181,7 @@ a.position-link:hover {
 }
 
 .automata-prefix-poset .automata-cantor-node {
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.automata-prefix-poset .tree-depth-0 {
-  animation: automata-tree-node-depth-0 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-prefix-poset .tree-depth-1 {
-  animation: automata-tree-node-depth-1 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-prefix-poset .tree-depth-2 {
-  animation: automata-tree-node-depth-2 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-prefix-poset .tree-depth-3 {
-  animation: automata-tree-node-depth-3 var(--cantor-cover-cycle) ease-in-out infinite;
-}
-
-.automata-prefix-poset .tree-depth-4 {
-  animation: automata-tree-node-depth-4 var(--cantor-cover-cycle) ease-in-out infinite;
+  opacity: 1;
 }
 
 .automata-cantor-node.small {
@@ -5322,200 +5286,6 @@ a.position-link:hover {
   62%,
   100% {
     opacity: 1;
-  }
-}
-
-@keyframes automata-tree-edge-level-1 {
-  0%,
-  16% {
-    opacity: 0;
-    stroke-dashoffset: var(--tree-edge-length, 1);
-  }
-
-  18% {
-    opacity: 1;
-    stroke-dashoffset: var(--tree-edge-length, 1);
-  }
-
-  25%,
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes automata-tree-edge-level-2 {
-  0%,
-  26% {
-    opacity: 0;
-    stroke-dashoffset: var(--tree-edge-length, 1);
-  }
-
-  28% {
-    opacity: 1;
-    stroke-dashoffset: var(--tree-edge-length, 1);
-  }
-
-  37%,
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes automata-tree-edge-level-3 {
-  0%,
-  37% {
-    opacity: 0;
-    stroke-dashoffset: var(--tree-edge-length, 1);
-  }
-
-  39% {
-    opacity: 1;
-    stroke-dashoffset: var(--tree-edge-length, 1);
-  }
-
-  49%,
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes automata-tree-edge-level-4 {
-  0%,
-  48% {
-    opacity: 0;
-    stroke-dashoffset: var(--tree-edge-length, 1);
-  }
-
-  50% {
-    opacity: 1;
-    stroke-dashoffset: var(--tree-edge-length, 1);
-  }
-
-  58%,
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes automata-tree-arrowhead-level-1 {
-  0%,
-  24.9% {
-    opacity: 0;
-  }
-
-  25%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes automata-tree-arrowhead-level-2 {
-  0%,
-  36.9% {
-    opacity: 0;
-  }
-
-  37%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes automata-tree-arrowhead-level-3 {
-  0%,
-  48.9% {
-    opacity: 0;
-  }
-
-  49%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes automata-tree-arrowhead-level-4 {
-  0%,
-  57.9% {
-    opacity: 0;
-  }
-
-  58%,
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes automata-tree-node-depth-0 {
-  0%,
-  13% {
-    opacity: 0;
-    transform: scale(0.72);
-  }
-
-  17%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes automata-tree-node-depth-1 {
-  0%,
-  23% {
-    opacity: 0;
-    transform: scale(0.72);
-  }
-
-  27%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes automata-tree-node-depth-2 {
-  0%,
-  34% {
-    opacity: 0;
-    transform: scale(0.72);
-  }
-
-  38%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes automata-tree-node-depth-3 {
-  0%,
-  45% {
-    opacity: 0;
-    transform: scale(0.72);
-  }
-
-  50%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes automata-tree-node-depth-4 {
-  0%,
-  55% {
-    opacity: 0;
-    transform: scale(0.72);
-  }
-
-  59%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -11246,7 +11016,6 @@ a.position-link:hover {
   .automata-sublocale-arrow,
   .automata-sublocale-label,
   .automata-prefix-poset .automata-cantor-tree-edge,
-  .automata-prefix-poset .automata-cantor-tree-arrowhead,
   .automata-prefix-poset .automata-cantor-node,
   .automata-topos-label,
   .automata-cantor-interval,
@@ -11306,16 +11075,11 @@ a.position-link:hover {
   .automata-sublocale-arrow,
   .automata-sublocale-label,
   .automata-prefix-poset .automata-cantor-tree-edge,
-  .automata-prefix-poset .automata-cantor-tree-arrowhead,
   .automata-prefix-poset .automata-cantor-node,
   .automata-topos-label,
   .automata-cantor-interval,
   .automata-cantor-connector {
     opacity: 1;
-  }
-
-  .automata-prefix-poset .automata-cantor-tree-edge {
-    stroke-dashoffset: 0;
   }
 
   .automata-unfold-reverse-cover {

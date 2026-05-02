@@ -278,7 +278,7 @@ const siteData = {
         publicationDate: "2024-08-23",
         link: "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html",
         figure: "internal-parameterizations",
-        tags: ["topos theory", "local state classifier", "hyperconnected quotient", "category"],
+        themes: ["topos", "category"],
         links: [
           ["TAC", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
           ["arXiv", "https://arxiv.org/abs/2302.06851"],
@@ -296,7 +296,7 @@ const siteData = {
         publicationDate: "2024-08",
         link: "https://doi.org/10.1016/j.jpaa.2024.107657",
         figure: "quotient-toposes",
-        tags: ["Dynamics", "quotient topos", "Lawvere problem", "algebra", "combinatorics"],
+        themes: ["topos", "dynamical", "algebra", "combinatorics"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.jpaa.2024.107657"],
           ["arXiv", "https://arxiv.org/abs/2310.02647"],
@@ -315,7 +315,6 @@ const siteData = {
         link: "https://doi.org/10.1090/proc/17479",
         figure: "completely-connected",
         themes: ["topos", "category", "combinatorics"],
-        tags: ["completely connected topos", "Grothendieck topos"],
         links: [
           ["DOI", "https://doi.org/10.1090/proc/17479"],
           ["arXiv", "https://arxiv.org/abs/2503.04317"]
@@ -333,7 +332,6 @@ const siteData = {
         link: "https://doi.org/10.1016/j.aim.2025.110751",
         figure: "lawvere-first",
         themes: ["topos", "combinatorics", "logic"],
-        tags: ["Lawvere problem", "quotient topos", "Grothendieck topos"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.aim.2025.110751"],
           ["arXiv", "https://arxiv.org/abs/2407.17105"],
@@ -351,7 +349,7 @@ const siteData = {
         year: "2025",
         link: "https://arxiv.org/abs/2503.03439",
         figure: "lawvere-fourth",
-        tags: ["Lawvere problem", "symmetric simplicial set", "species"],
+        themes: ["topos", "combinatorics"],
         links: [["arXiv", "https://arxiv.org/abs/2503.03439"]],
         summary:
           "Provides a solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
@@ -362,7 +360,7 @@ const siteData = {
         year: "2024",
         link: "https://arxiv.org/abs/2411.06358",
         figure: "topoi-automata",
-        tags: ["automaton", "regular language", "topos theory", "geometry"],
+        themes: ["automata", "topos", "geometry"],
         links: [["arXiv", "https://arxiv.org/abs/2411.06358"]],
         summary: "Introduces a topos-theoretic point of view on formal language theory."
       },
@@ -372,7 +370,7 @@ const siteData = {
         year: "2025",
         link: "https://arxiv.org/abs/2510.22886",
         figure: "games-coalgebras",
-        tags: ["coalgebra", "combinatorial game", "Nim"],
+        themes: ["games", "coalgebras", "category"],
         links: [["arXiv", "https://arxiv.org/abs/2510.22886"]],
         summary:
           "Reinterprets impartial combinatorial games and the Nim-sum using recursive coalgebras."
@@ -383,7 +381,7 @@ const siteData = {
         year: "2025",
         link: "https://arxiv.org/abs/2511.05012",
         figure: "normalization",
-        tags: ["normalization", "local state classifier", "algebraic language theory", "combinatorics"],
+        themes: ["topos", "automata", "algebra", "combinatorics"],
         links: [["arXiv", "https://arxiv.org/abs/2511.05012"]],
         summary:
           "Defines a generalized normalization operator motivated by topos theory and algebraic language theory."
@@ -5553,7 +5551,7 @@ function homeTimelinePaperRecords() {
     const anchor = paperAnchor(paper);
     return {
       kind: "paper",
-      theme: contentTheme(compactText([paper.title, paper.venue, paperThemeIds(paper).join(" "), paper.tags?.join(" "), paper.summary]).join(" ")),
+      theme: contentTheme(compactText([paper.title, paper.venue, paperThemeIds(paper).join(" "), paper.summary]).join(" ")),
       title: paper.title,
       dateLabel: `${startLabel} -> ${endLabel}`,
       meta: compactText([people, paper.venue]).join(" / "),
@@ -7479,7 +7477,6 @@ function paperThemeText(paper) {
   return compactText([
     paper.title,
     paper.authors,
-    paper.tags?.join(" "),
     paper.summary
   ]).join(" ");
 }
@@ -7646,10 +7643,7 @@ function preparationPaperDetails(title) {
     const slidesHref = noteHrefByFile("RYUYA,HORA.pdf");
     return {
       figure: "games-integral-calculus",
-    themes: ["games", "algebra"],
-    tags: ["differential calculus", "Rota-Baxter", "integration", "impartial games"],
-    summary:
-      "Visual proposal: follow the slide dichotomy with a vertical split. The left side treats games and differentiation through the Leibniz rule for box product; the right side checks the mex Rota-Baxter equation on concrete finite sets.",
+      themes: ["games", "algebra"],
       links: mergeActionLinks(
         compactText([
           slidesHref ? ["Rota-Baxter slides", slidesHref] : null
@@ -7669,9 +7663,6 @@ function preparationPaperDetails(title) {
     return {
       figure: "automata-cantor-morphism",
       themes: ["automata", "topos", "geometry", "combinatorics"],
-      tags: ["Cantor space", "geometric morphism", "Sigma-set", "infinite word"],
-      summary:
-        "Visual proposal: reproduce the CTTA slide where the Cantor space of infinite words maps by a canonical geometric morphism through the prefix-poset slice and then by the etale-cover picture to \\(\\Sigma\\)-sets.",
       links: mergeActionLinks(
         compactText([
           slidesHref ? ["CTTA slides", slidesHref] : null
@@ -7784,7 +7775,7 @@ function themedPaperRecords() {
       };
     }),
     ...miscPaperRecords().map((paper) => {
-      const text = compactText([paper.title, paper.authors, paper.tags?.join(" ")]).join(" ");
+      const text = compactText([paper.title, paper.authors]).join(" ");
       return {
         type: "paper",
         title: paper.title,
@@ -9280,6 +9271,120 @@ function automataCoverKey(value) {
   return Number(value.toFixed(3)).toString();
 }
 
+const automataTreeEdgeTimings = {
+  1: { hidden: 0.16, start: 0.18, end: 0.25 },
+  2: { hidden: 0.26, start: 0.28, end: 0.37 },
+  3: { hidden: 0.37, start: 0.39, end: 0.49 },
+  4: { hidden: 0.48, start: 0.5, end: 0.58 }
+};
+
+const automataTreeEdges = [
+  { level: 4, color: "blue", child: true, from: [281.8, 109], to: [255.5, 107.3] },
+  { level: 4, color: "red", child: true, from: [281.8, 109.6], to: [255.5, 111.3] },
+  { level: 4, color: "blue", child: true, from: [281.8, 122.2], to: [255.5, 120.5] },
+  { level: 4, color: "red", child: true, from: [281.8, 122.8], to: [255.5, 124.5] },
+  { level: 4, color: "blue", child: true, from: [281.8, 148.6], to: [255.5, 146.9] },
+  { level: 4, color: "red", child: true, from: [281.8, 149.2], to: [255.5, 150.8] },
+  { level: 4, color: "blue", child: true, from: [281.8, 161.7], to: [255.5, 160] },
+  { level: 4, color: "red", child: true, from: [281.8, 162.3], to: [255.5, 164] },
+  { level: 4, color: "blue", child: true, from: [281.8, 227.7], to: [255.5, 226] },
+  { level: 4, color: "red", child: true, from: [281.8, 228.3], to: [255.5, 229.9] },
+  { level: 4, color: "blue", child: true, from: [281.8, 240.8], to: [255.5, 239.1] },
+  { level: 4, color: "red", child: true, from: [281.8, 241.4], to: [255.5, 243.1] },
+  { level: 4, color: "blue", child: true, from: [281.8, 267.2], to: [255.5, 265.5] },
+  { level: 4, color: "red", child: true, from: [281.8, 267.8], to: [255.5, 269.5] },
+  { level: 4, color: "blue", child: true, from: [281.8, 280.4], to: [255.5, 278.7] },
+  { level: 4, color: "red", child: true, from: [281.8, 281], to: [255.5, 282.7] },
+  { level: 3, color: "blue", child: true, from: [330.8, 115.2], to: [290.4, 109.9] },
+  { level: 3, color: "red", child: true, from: [330.8, 116.6], to: [290.4, 121.9] },
+  { level: 3, color: "blue", child: true, from: [330.8, 154.7], to: [290.4, 149.5] },
+  { level: 3, color: "red", child: true, from: [330.8, 156.1], to: [290.4, 161.4] },
+  { level: 3, color: "blue", child: true, from: [330.8, 233.9], to: [290.4, 228.6] },
+  { level: 3, color: "red", child: true, from: [330.8, 235.3], to: [290.4, 240.5] },
+  { level: 3, color: "blue", child: true, from: [330.8, 273.4], to: [290.4, 268.1] },
+  { level: 3, color: "red", child: true, from: [330.8, 274.8], to: [290.4, 280.1] },
+  { level: 2, color: "blue", from: [401.1, 133.8], to: [341.2, 117.3] },
+  { level: 2, color: "red", from: [401.1, 137.6], to: [341.2, 154] },
+  { level: 1, color: "blue", from: [475.7, 187.1], to: [413.9, 140.2] },
+  { level: 2, color: "blue", from: [401.1, 252.4], to: [341.2, 236] },
+  { level: 2, color: "red", from: [401.1, 256.2], to: [341.2, 272.7] },
+  { level: 1, color: "red", from: [475.7, 202.9], to: [413.9, 249.8] }
+];
+
+function automataTreeEdgeTemplate({ level, color, child = false, from, to }) {
+  const timing = automataTreeEdgeTimings[level];
+  const [x1, y1] = from;
+  const [x2, y2] = to;
+  const keyTimes = [0, timing.hidden, timing.start, timing.end, 1].map(automataCoverKey).join(";");
+  const x2Values = [x1, x1, x1, x2, x2].join(";");
+  const y2Values = [y1, y1, y1, y2, y2].join(";");
+  const opacityValues = "0;0;1;1;1";
+  const childClass = child ? " child" : "";
+  return `<line class="automata-cantor-tree-edge${childClass} level-${level} ${color}" data-cantor-arrow="${color}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}">
+            <animate attributeName="x2" dur="12s" repeatCount="indefinite" calcMode="linear" keyTimes="${keyTimes}" values="${x2Values}"></animate>
+            <animate attributeName="y2" dur="12s" repeatCount="indefinite" calcMode="linear" keyTimes="${keyTimes}" values="${y2Values}"></animate>
+            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" calcMode="linear" keyTimes="${keyTimes}" values="${opacityValues}"></animate>
+          </line>`;
+}
+
+function automataCantorTreeEdgesTemplate() {
+  return automataTreeEdges.map(automataTreeEdgeTemplate).join("\n");
+}
+
+const automataTreeNodeTimings = {
+  0: 0.16,
+  1: 0.25,
+  2: 0.37,
+  3: 0.49,
+  4: 0.58
+};
+
+const automataTreeNodes = [
+  { depth: 4, size: "micro", cx: 252, cy: 107.1, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 111.5, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 120.3, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 124.7, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 146.7, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 151, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 159.8, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 164.2, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 225.8, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 230.1, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 238.9, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 243.3, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 265.3, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 269.7, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 278.5, r: 2.35 },
+  { depth: 4, size: "micro", cx: 252, cy: 282.9, r: 2.35 },
+  { depth: 3, size: "tiny", cx: 286, cy: 109.3, r: 3.2 },
+  { depth: 3, size: "tiny", cx: 286, cy: 122.5, r: 3.2 },
+  { depth: 3, size: "tiny", cx: 286, cy: 148.9, r: 3.2 },
+  { depth: 3, size: "tiny", cx: 286, cy: 162, r: 3.2 },
+  { depth: 3, size: "tiny", cx: 286, cy: 228, r: 3.2 },
+  { depth: 3, size: "tiny", cx: 286, cy: 241.1, r: 3.2 },
+  { depth: 3, size: "tiny", cx: 286, cy: 267.5, r: 3.2 },
+  { depth: 3, size: "tiny", cx: 286, cy: 280.7, r: 3.2 },
+  { depth: 2, size: "small", cx: 336, cy: 115.9, r: 4.2 },
+  { depth: 2, size: "small", cx: 336, cy: 155.4, r: 4.2 },
+  { depth: 2, size: "small", cx: 336, cy: 234.6, r: 4.2 },
+  { depth: 2, size: "small", cx: 336, cy: 274.1, r: 4.2 },
+  { depth: 1, cx: 408, cy: 135.7, r: 6.2 },
+  { depth: 1, cx: 408, cy: 254.3, r: 6.2 },
+  { depth: 0, size: "large", cx: 486, cy: 195, r: 12 }
+];
+
+function automataTreeNodeTemplate({ depth, size = "", cx, cy, r }) {
+  const appear = automataCoverKey(automataTreeNodeTimings[depth]);
+  const sizeClass = size ? ` ${size}` : "";
+  return `<circle class="automata-cantor-node${sizeClass} tree-depth-${depth}" cx="${cx}" cy="${cy}" r="${r}">
+            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;${appear};1" values="0;1;1"></animate>
+          </circle>`;
+}
+
+function automataCantorTreeNodesTemplate() {
+  return automataTreeNodes.map(automataTreeNodeTemplate).join("\n");
+}
+
 function automataCoverRollingBouquet({ path, start, end, scale = 1 }) {
   const fadeIn = Math.min(start + 0.012, end);
   const fadeOut = Math.min(end + 0.018, 0.98);
@@ -9340,21 +9445,27 @@ ${rollingBouquets.map(automataCoverRollingBouquet).join("\n")}
         </g>`;
 }
 
-const gamesRbSelectableValues = [0, 1, 2, 3, 4];
-const gamesRbVisibleValues = [0, 1, 2, 3, 4, 5];
-const gamesRbInitialS = [0, 1, 4];
-const gamesRbInitialT = [0, 1, 2];
-const gamesRbTopEquationTex = "\\(\\left(\\int \\textcolor{#2563eb}{f}\\right)\\left(\\int \\textcolor{#c82727}{g}\\right)=\\int\\bigl((\\int \\textcolor{#2563eb}{f})\\,\\textcolor{#c82727}{g}+\\textcolor{#2563eb}{f}\\,(\\int \\textcolor{#c82727}{g})\\bigr)\\)";
+const gamesRbSelectableValues = [0, 1, 2, 3, 4, 5, 6, 7];
+const gamesRbVisibleValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const gamesRbInitialS = [0, 1, 2, 5, 7];
+const gamesRbInitialT = [0, 1, 2, 3, 4, 6];
 const gamesRbMexSTex = "\\(\\operatorname{mex}\\,\\textcolor{#2563eb}{S}\\)";
 const gamesRbMexTTex = "\\(\\operatorname{mex}\\,\\textcolor{#c82727}{T}\\)";
-const gamesRbExpandedMexTex = "\\(\\operatorname{mex}\\bigl(\\colorbox{#eadcff}{$(\\operatorname{mex}\\,\\textcolor{#2563eb}{S}\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}\\,\\textcolor{#c82727}{T})$}\\bigr)\\)";
+const gamesRbExpandedMexTex = "\\(\\operatorname{mex}\\bigl(\\colorbox{#f8dddd}{$(\\operatorname{mex}\\,\\textcolor{#2563eb}{S}\\oplus\\textcolor{#c82727}{T})$}\\cup\\colorbox{#dfe8ff}{$(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}\\,\\textcolor{#c82727}{T})$}\\bigr)\\)";
 const gamesRbRhsMexTex = "\\(\\operatorname{mex}\\,\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}\\,\\textcolor{#c82727}{T}\\)";
-const gamesRbCellWidth = 31;
-const gamesRbCellHeight = 24;
-const gamesRbHeaderWidth = 31;
+const gamesRbIntegralExpandedTex = "\\(\\int\\bigl(\\colorbox{#f8dddd}{$(\\int \\textcolor{#2563eb}{f})\\,\\textcolor{#c82727}{g}$}+\\colorbox{#dfe8ff}{$\\textcolor{#2563eb}{f}\\,(\\int \\textcolor{#c82727}{g})$}\\bigr)\\)";
+const gamesRbIntegralProductTex = "\\(\\left(\\int \\textcolor{#2563eb}{f}\\right)\\left(\\int \\textcolor{#c82727}{g}\\right)\\)";
+const gamesRbCellWidth = 26;
+const gamesRbCellHeight = 21;
+const gamesRbHeaderWidth = 28;
 const gamesRbHeaderHeight = 24;
 const gamesRbTableWidth = gamesRbHeaderWidth + gamesRbVisibleValues.length * gamesRbCellWidth;
 const gamesRbTableHeight = gamesRbHeaderHeight + gamesRbVisibleValues.length * gamesRbCellHeight;
+const gamesRbExpandedPanelX = 36;
+const gamesRbProductPanelX = 404;
+const gamesRbTableOffsetX = 70;
+const gamesRbPanelY = 62;
+const gamesRbTableOffsetY = 60;
 
 function gamesRbColumnX(value) {
   return gamesRbHeaderWidth + value * gamesRbCellWidth;
@@ -9369,7 +9480,7 @@ function gamesRbCellTextX(value) {
 }
 
 function gamesRbCellTextY(value) {
-  return gamesRbRowY(value) + 17;
+  return gamesRbRowY(value) + 15.6;
 }
 
 function gamesRbMex(values) {
@@ -9396,7 +9507,7 @@ function gamesRbNimTableBaseTemplate() {
     ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
   ].join(" ");
   const headerTexts = gamesRbVisibleValues
-    .map((value) => `<text class="games-rb-cell-text is-head" x="${gamesRbCellTextX(value)}" y="17" text-anchor="middle">${value}</text>`)
+    .map((value) => `<text class="games-rb-cell-text is-head" x="${gamesRbCellTextX(value)}" y="17.6" text-anchor="middle">${value}</text>`)
     .join("\n          ");
   const rows = gamesRbVisibleValues
     .map((row) => {
@@ -9414,7 +9525,7 @@ function gamesRbNimTableBaseTemplate() {
           <path class="games-rb-table-lines is-major" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
           <path class="games-rb-table-lines" d="${minorLines}"></path>
           <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
-          <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="17" text-anchor="middle">⊕</text>
+          <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="17.6" text-anchor="middle">⊕</text>
           ${headerTexts}
           ${rows}`;
 }
@@ -9454,48 +9565,45 @@ ${gamesRbNimTableBaseTemplate()}
       </defs>
 
       <rect class="games-rb-table-paper" width="760" height="390" rx="0"></rect>
-      <foreignObject class="games-rb-top-equation" x="150" y="8" width="460" height="28">
-        <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbTopEquationTex}</div>
-      </foreignObject>
 
-      <g class="games-rb-dual-panel is-expanded-side" transform="translate(36 76)">
-        <g class="games-rb-dual-table is-expanded-table" transform="translate(70 76)">
+      <g class="games-rb-dual-panel is-expanded-side" transform="translate(${gamesRbExpandedPanelX} ${gamesRbPanelY})">
+        <g class="games-rb-dual-table is-expanded-table" transform="translate(${gamesRbTableOffsetX} ${gamesRbTableOffsetY})">
           <use href="#games-nim-table-base"></use>
           <g data-games-rb-set-layer="expanded"></g>
           <g data-games-rb-union-layer></g>
           <g data-games-rb-mex-layer="expanded"></g>
-          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-73" y="73" width="62" height="22">
+          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-60" y="73" width="58" height="22">
             <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
           </foreignObject>
-          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-34" width="72" height="22">
+          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-25" width="72" height="22">
             <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
           </foreignObject>
         </g>
       </g>
 
-      <g class="games-rb-dual-panel is-product-side" transform="translate(404 76)">
-        <g class="games-rb-dual-table is-product-table" transform="translate(70 76)">
+      <g class="games-rb-dual-panel is-product-side" transform="translate(${gamesRbProductPanelX} ${gamesRbPanelY})">
+        <g class="games-rb-dual-table is-product-table" transform="translate(${gamesRbTableOffsetX} ${gamesRbTableOffsetY})">
           <use href="#games-nim-table-base"></use>
           <g data-games-rb-set-layer="product"></g>
           <g data-games-rb-product-layer></g>
           <g data-games-rb-product-arrow-layer></g>
           <g data-games-rb-mex-layer="product"></g>
-          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-73" y="73" width="62" height="22">
+          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-60" y="73" width="58" height="22">
             <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
           </foreignObject>
-          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-34" width="72" height="22">
+          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-25" width="72" height="22">
             <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
           </foreignObject>
         </g>
       </g>
-      <foreignObject class="games-rb-center-result" data-games-rb-center-result x="340" y="205" width="118" height="46">
-        <div xmlns="http://www.w3.org/1999/xhtml">\(=\textcolor{#7c3aed}{1}=\)</div>
-      </foreignObject>
     </svg>
     ${gamesRbSetControlTemplate("S", gamesRbInitialS)}
     ${gamesRbSetControlTemplate("T", gamesRbInitialT)}
     <span class="figure-math games-rb-table-tex games-rb-expanded-mex-readout" data-games-rb-expanded-mex-readout>${gamesRbExpandedMexTex}</span>
-    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-rhs">${gamesRbRhsMexTex}</span>`,
+    <span class="figure-math games-rb-table-tex games-rb-bottom-result" data-games-rb-center-result>\(=\textcolor{#7c3aed}{1}=\)</span>
+    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-rhs">${gamesRbRhsMexTex}</span>
+    <span class="figure-math games-rb-table-tex games-rb-integral-left">${gamesRbIntegralExpandedTex}</span>
+    <span class="figure-math games-rb-table-tex games-rb-integral-right">${gamesRbIntegralProductTex}</span>`,
   "automata-cantor-morphism": `
     <svg class="automata-cantor-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-cantor-title fig-automata-cantor-desc">
       <title id="fig-automata-cantor-title">Canonical geometric morphism from Cantor space to Sigma-sets</title>
@@ -9509,9 +9617,15 @@ ${gamesRbNimTableBaseTemplate()}
 
       <rect class="automata-cantor-paper" width="760" height="390"></rect>
       <g class="automata-cantor-layout">
-        <text class="automata-topos-label automata-topos-label-left" x="86" y="68">Sh(Σ<tspan class="automata-topos-sup">ω</tspan>)</text>
-        <text class="automata-topos-label automata-topos-label-middle" x="396" y="68">PSh(Σ<tspan class="automata-topos-sup">*</tspan>)</text>
-        <text class="automata-topos-label automata-topos-label-right" x="676" y="68">Σ-Set</text>
+        <foreignObject class="automata-topos-label automata-topos-label-left" x="6" y="42" width="160" height="44">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="automata-topos-tex">\\(\\operatorname{Sh}(\\Sigma^\\omega)\\)</div>
+        </foreignObject>
+        <foreignObject class="automata-topos-label automata-topos-label-middle" x="301" y="42" width="190" height="44">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="automata-topos-tex">\\(\\operatorname{PSh}(\\Sigma^*,\\triangleleft)\\)</div>
+        </foreignObject>
+        <foreignObject class="automata-topos-label automata-topos-label-right" x="601" y="42" width="150" height="44">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="automata-topos-tex">\\(\\Sigma\\text{-}\\operatorname{Set}\\)</div>
+        </foreignObject>
         <g class="automata-cantor-space" transform="translate(-44 0)">
           <g class="automata-cantor-fractal">
             <path class="automata-cantor-interval stage-0" d="M56 106 L56 284"></path>
@@ -9581,68 +9695,10 @@ ${gamesRbNimTableBaseTemplate()}
         <path class="figure-arrow automata-cantor-main-arrow automata-sublocale-arrow" data-cantor-arrow="neutral" d="M164 195 H248"></path>
         <text class="automata-cantor-arrow-label large automata-sublocale-label" x="206" y="178">sublocale</text>
 
+${automataCoverUnfoldingTemplate()}
         <g class="automata-prefix-poset" transform="translate(26 0)">
-          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 109 L255.5 107.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 109.6 L255.5 111.3"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 122.2 L255.5 120.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 122.8 L255.5 124.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 148.6 L255.5 146.9"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 149.2 L255.5 150.8"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 161.7 L255.5 160"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 162.3 L255.5 164"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 227.7 L255.5 226"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 228.3 L255.5 229.9"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 240.8 L255.5 239.1"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 241.4 L255.5 243.1"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 267.2 L255.5 265.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 267.8 L255.5 269.5"></path>
-          <path class="automata-cantor-tree-edge child level-4 blue" data-cantor-arrow="blue" d="M281.8 280.4 L255.5 278.7"></path>
-          <path class="automata-cantor-tree-edge child level-4 red" data-cantor-arrow="red" d="M281.8 281 L255.5 282.7"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" data-cantor-arrow="blue" d="M330.8 115.2 L290.4 109.9"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" data-cantor-arrow="red" d="M330.8 116.6 L290.4 121.9"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" data-cantor-arrow="blue" d="M330.8 154.7 L290.4 149.5"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" data-cantor-arrow="red" d="M330.8 156.1 L290.4 161.4"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" data-cantor-arrow="blue" d="M330.8 233.9 L290.4 228.6"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" data-cantor-arrow="red" d="M330.8 235.3 L290.4 240.5"></path>
-          <path class="automata-cantor-tree-edge child level-3 blue" data-cantor-arrow="blue" d="M330.8 273.4 L290.4 268.1"></path>
-          <path class="automata-cantor-tree-edge child level-3 red" data-cantor-arrow="red" d="M330.8 274.8 L290.4 280.1"></path>
-          <path class="automata-cantor-tree-edge level-2 blue" data-cantor-arrow="blue" d="M401.1 133.8 L341.2 117.3"></path>
-          <path class="automata-cantor-tree-edge level-2 red" data-cantor-arrow="red" d="M401.1 137.6 L341.2 154"></path>
-          <path class="automata-cantor-tree-edge level-1 blue" data-cantor-arrow="blue" d="M475.7 187.1 L413.9 140.2"></path>
-          <path class="automata-cantor-tree-edge level-2 blue" data-cantor-arrow="blue" d="M401.1 252.4 L341.2 236"></path>
-          <path class="automata-cantor-tree-edge level-2 red" data-cantor-arrow="red" d="M401.1 256.2 L341.2 272.7"></path>
-          <path class="automata-cantor-tree-edge level-1 red" data-cantor-arrow="red" d="M475.7 202.9 L413.9 249.8"></path>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="107.1" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="111.5" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="120.3" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="124.7" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="146.7" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="151" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="159.8" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="164.2" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="225.8" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="230.1" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="238.9" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="243.3" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="265.3" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="269.7" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="278.5" r="2.35"></circle>
-          <circle class="automata-cantor-node micro tree-depth-4" cx="252" cy="282.9" r="2.35"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="109.3" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="122.5" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="148.9" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="162" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="228" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="241.1" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="267.5" r="3.2"></circle>
-          <circle class="automata-cantor-node tiny tree-depth-3" cx="286" cy="280.7" r="3.2"></circle>
-          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="115.9" r="4.2"></circle>
-          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="155.4" r="4.2"></circle>
-          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="234.6" r="4.2"></circle>
-          <circle class="automata-cantor-node small tree-depth-2" cx="336" cy="274.1" r="4.2"></circle>
-          <circle class="automata-cantor-node tree-depth-1" cx="408" cy="135.7" r="6.2"></circle>
-          <circle class="automata-cantor-node tree-depth-1" cx="408" cy="254.3" r="6.2"></circle>
-          <circle class="automata-cantor-node large tree-depth-0" cx="486" cy="195" r="12"></circle>
+${automataCantorTreeEdgesTemplate()}
+${automataCantorTreeNodesTemplate()}
         </g>
 
         <path class="figure-arrow automata-cantor-main-arrow automata-etale-arrow" data-cantor-arrow="neutral" d="M548 195 H632"></path>
@@ -9653,7 +9709,6 @@ ${gamesRbNimTableBaseTemplate()}
           <path class="automata-cantor-bouquet-loop red" data-cantor-arrow="red" d="M0 0 C-40 24, -36 92, 0 92 C36 92, 40 24, 0 0"></path>
           <circle class="automata-cantor-node large" cx="0" cy="0" r="10"></circle>
         </g>
-${automataCoverUnfoldingTemplate()}
       </g>
     </svg>`,
   "internal-parameterizations": `
@@ -10393,25 +10448,9 @@ function applyFigureMarkerIds(container, figureId, prefix) {
       marker.id = markerId;
       markers.set(group, markerId);
     });
-    svg.querySelectorAll(".automata-cantor-tree-arrowhead").forEach((path) => path.remove());
     svg.querySelectorAll("[data-cantor-arrow]").forEach((path) => {
-      if (path.classList.contains("automata-cantor-tree-edge")) {
-        path.removeAttribute("marker-end");
-        return;
-      }
       const markerId = markers.get(path.dataset.cantorArrow || "neutral");
       if (markerId) path.setAttribute("marker-end", `url(#${markerId})`);
-    });
-    svg.querySelectorAll(".automata-prefix-poset .automata-cantor-tree-edge").forEach((edge) => {
-      const markerId = markers.get(edge.dataset.cantorArrow || "neutral");
-      if (!markerId) return;
-      edge.style.setProperty("--tree-edge-length", edge.getTotalLength().toFixed(3));
-      const arrowhead = edge.cloneNode(false);
-      arrowhead.classList.remove("automata-cantor-tree-edge", "child");
-      arrowhead.classList.add("automata-cantor-tree-arrowhead");
-      arrowhead.removeAttribute("pathLength");
-      arrowhead.setAttribute("marker-end", `url(#${markerId})`);
-      edge.after(arrowhead);
     });
     return;
   }
@@ -12120,7 +12159,7 @@ function renderGamesRbFigure(root) {
     readout.innerHTML = gamesRbExpandedMexTex;
     typesetMath(readout);
   });
-  root.querySelectorAll("[data-games-rb-center-result] > div").forEach((readout) => {
+  container.querySelectorAll("[data-games-rb-center-result]").forEach((readout) => {
     readout.innerHTML = `\\(=\\textcolor{#7c3aed}{${rbResult}}=\\)`;
     typesetMath(readout);
   });
@@ -12717,7 +12756,7 @@ function ensureDiagramDialog() {
 function renderDiagramNotes(panel, paper) {
   const notes = paperDiagramNotes[paper.figure] || {
     heading: "Diagram Notes",
-    keywords: paper.tags || [],
+    keywords: paperThemeIds(paper).map(themeTagLabel),
     concepts: [],
     results: compactText([paper.summary])
   };
@@ -13356,7 +13395,6 @@ function paperSearchText(paper) {
     paper.authors,
     paper.venue,
     paper.year,
-    paper.tags?.join(" "),
     paper.summary,
     ...paperDisplayTagRecords(paper).map((tag) => tag.label),
     ...metaTagIds,
@@ -13609,7 +13647,7 @@ function renderPreparationPapers() {
     if (showFigure) {
       const figure = el("div", "publication-figure");
       figure.classList.add(`publication-figure-${paper.figure}`);
-      figure.setAttribute("aria-label", `${paper.title} visual proposal`);
+      figure.setAttribute("aria-label", `${paper.title} diagram`);
       figure.innerHTML = template;
       applyFigureMarkerIds(figure, paper.figure, "preparation-arrow");
       initializeGamesRbFigures(figure);
@@ -13718,8 +13756,7 @@ function researchmapMiscPaperRecord(record) {
     year: record.year,
     publicationDate: record.publicationDate,
     link: canonicalArxivHref(record.link),
-    links: normalizedPublicationLinks(record.links || []),
-    tags: compactText([record.type])
+    links: normalizedPublicationLinks(record.links || [])
   };
 }
 
@@ -13764,8 +13801,7 @@ function mergeMiscRecord(base, extra) {
     venue: base.venue && base.venue !== "researchmap misc" ? base.venue : extra.venue || base.venue,
     publicationDate: base.publicationDate || extra.publicationDate,
     link: base.link || extra.link,
-    links: normalizedPublicationLinks([...(base.links || []), ...(extra.links || []), extra.link ? ["researchmap", extra.link] : null].filter(Boolean)),
-    tags: [...new Set(compactText([...(base.tags || []), ...(extra.tags || [])]))]
+    links: normalizedPublicationLinks([...(base.links || []), ...(extra.links || []), extra.link ? ["researchmap", extra.link] : null].filter(Boolean))
   };
 }
 
