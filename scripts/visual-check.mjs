@@ -133,61 +133,75 @@ async function launchChrome() {
   const modes = process.env.VISUAL_CHECK_HEADLESS_MODE
     ? [process.env.VISUAL_CHECK_HEADLESS_MODE]
     : ["new", "chrome", "plain"];
+  const argumentProfiles = [
+    {
+      name: "full",
+      args: ["--disable-gpu", "--disable-dev-shm-usage", "--no-sandbox"]
+    },
+    {
+      name: "minimal",
+      args: []
+    }
+  ];
   const errors = [];
 
   for (const candidate of candidates) {
     for (const mode of modes) {
-      const diagnostics = {
-        path: candidate,
-        mode,
-        stdout: "",
-        stderr: "",
-        exitCode: null,
-        signal: null
-      };
-      const chrome = spawn(candidate, [
-        headlessArgument(mode),
-        "--disable-gpu",
-        "--disable-dev-shm-usage",
-        "--no-sandbox",
-        `--remote-debugging-port=${debugPort}`,
-        `--user-data-dir=${outDir}/chrome-profile-${mode.replace(/\W+/g, "-")}`,
-        "about:blank"
-      ], { stdio: ["ignore", "pipe", "pipe"] });
-
-      chrome.stdout.on("data", (chunk) => {
-        diagnostics.stdout = appendLimited(diagnostics.stdout, chunk);
-      });
-      chrome.stderr.on("data", (chunk) => {
-        diagnostics.stderr = appendLimited(diagnostics.stderr, chunk);
-      });
-      chrome.on("exit", (code, signal) => {
-        diagnostics.exitCode = code;
-        diagnostics.signal = signal;
-      });
-
-      try {
-        await waitForDebugEndpoint(diagnostics);
-        return { chrome, diagnostics };
-      } catch (error) {
-        if (diagnostics.exitCode === null && diagnostics.signal === null) chrome.kill("SIGTERM");
-        errors.push({
+      for (const profile of argumentProfiles) {
+        const diagnostics = {
           path: candidate,
           mode,
-          message: error.message,
-          exitCode: diagnostics.exitCode,
-          signal: diagnostics.signal,
-          stdout: diagnostics.stdout,
-          stderr: diagnostics.stderr
+          profile: profile.name,
+          stdout: "",
+          stderr: "",
+          exitCode: null,
+          signal: null
+        };
+        const chrome = spawn(candidate, [
+          headlessArgument(mode),
+          ...profile.args,
+          "--no-first-run",
+          "--no-default-browser-check",
+          `--remote-debugging-port=${debugPort}`,
+          `--user-data-dir=${outDir}/chrome-profile-${mode.replace(/\W+/g, "-")}-${profile.name}`,
+          "about:blank"
+        ], { stdio: ["ignore", "pipe", "pipe"] });
+
+        chrome.stdout.on("data", (chunk) => {
+          diagnostics.stdout = appendLimited(diagnostics.stdout, chunk);
         });
-        await delay(200);
+        chrome.stderr.on("data", (chunk) => {
+          diagnostics.stderr = appendLimited(diagnostics.stderr, chunk);
+        });
+        chrome.on("exit", (code, signal) => {
+          diagnostics.exitCode = code;
+          diagnostics.signal = signal;
+        });
+
+        try {
+          await waitForDebugEndpoint(diagnostics);
+          return { chrome, diagnostics };
+        } catch (error) {
+          if (diagnostics.exitCode === null && diagnostics.signal === null) chrome.kill("SIGTERM");
+          errors.push({
+            path: candidate,
+            mode,
+            profile: profile.name,
+            message: error.message,
+            exitCode: diagnostics.exitCode,
+            signal: diagnostics.signal,
+            stdout: diagnostics.stdout,
+            stderr: diagnostics.stderr
+          });
+          await delay(200);
+        }
       }
     }
   }
 
   const summary = errors.map((error) =>
     [
-      `${error.path} (${error.mode})`,
+      `${error.path} (${error.mode}/${error.profile})`,
       `message=${error.message}`,
       `exit=${error.exitCode ?? ""}`,
       `signal=${error.signal ?? ""}`,

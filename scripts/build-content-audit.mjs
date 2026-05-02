@@ -127,7 +127,8 @@ function noteAudit(note) {
   const rightsRecord = byFile || (isDrive ? siteReviewData.documentRights.defaultDrivePdf : null);
   const status = titleKind === "cloud" ? "speculative" : titleKind === "pen" ? "work-in-progress" : "published-note";
   const rights = rightsRecord?.rightsStatus || (note.href ? "linked-public-record" : "local-record");
-  const needsVerification = /coauthored|owner-believes-ok/i.test(rights) || Boolean(note.needsVerification);
+  const hasExplicitPermission = rightsRecord?.coauthorConsent === "explicit-granted" || /explicit-permission/i.test(rights);
+  const needsVerification = !hasExplicitPermission && (/coauthored|owner-believes-ok/i.test(rights) || Boolean(note.needsVerification));
   return {
     title: note.title,
     file: note.file,
@@ -137,6 +138,7 @@ function noteAudit(note) {
     provenance: rightsRecord ? "owner-reviewed document rights metadata" : "manual homepage metadata",
     rights,
     needsVerification,
+    explicitPermission: hasExplicitPermission,
     note: rightsRecord?.note || ""
   };
 }
@@ -192,6 +194,12 @@ const researchmapTalks = (researchmap.presentations || []).map((talk) => ({
 
 const manualTalkKeys = new Set(manualTalks.map((talk) => simplified(talk.canonicalTitle)));
 const researchmapTalkKeys = new Set(researchmapTalks.map((talk) => simplified(talk.canonicalTitle)));
+const manualOnlyTalkKeys = new Set(
+  (siteReviewData.manualTalksNotInResearchmap || []).flatMap((record) => [
+    simplified(record.canonical),
+    ...(record.aliases || []).map(simplified)
+  ])
+);
 
 const notes = siteData.notes.map(noteAudit);
 
@@ -204,7 +212,7 @@ const audit = {
   decisions: {
     dc1: "Do not display DC1 as current after March 2026.",
     kakenhi24KJ0837: "Display as ongoing.",
-    lawvereFourth: "Keep solved wording; status remains preprint until journal publication.",
+    lawvereFourth: "Use providing-a-solution wording; status remains preprint until journal publication.",
     cloud: "Speculative note.",
     pen: "Work in progress."
   },
@@ -221,11 +229,17 @@ const audit = {
     manual: manualTalks,
     researchmap: researchmapTalks,
     missingFromManualAfterAliases: researchmapTalks.filter((talk) => !manualTalkKeys.has(simplified(talk.canonicalTitle))),
-    missingFromResearchmapAfterAliases: manualTalks.filter((talk) => !researchmapTalkKeys.has(simplified(talk.canonicalTitle)))
+    missingFromResearchmapAfterAliases: manualTalks.filter((talk) => !researchmapTalkKeys.has(simplified(talk.canonicalTitle)) && !manualOnlyTalkKeys.has(simplified(talk.canonicalTitle))),
+    ownerMaintainedManualOnly: manualTalks.filter((talk) => manualOnlyTalkKeys.has(simplified(talk.canonicalTitle)))
   },
   notes: {
     records: notes,
     needsVerification: notes.filter((note) => note.needsVerification)
+  },
+  researchmapActivity: {
+    researchProjects: researchmap.researchProjects || [],
+    academicContributions: researchmap.academicContributions || [],
+    socialContributions: researchmap.socialContributions || []
   },
   titleEquivalences: siteReviewData.titleEquivalences
 };

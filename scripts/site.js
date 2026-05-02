@@ -162,9 +162,9 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building" },
-    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai" },
-    { text: "Supported by KAKENHI project 24KJ0837.", textJa: "KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money" },
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026" },
+    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai", reviewKey: "position:humai-researcher:2026" },
+    { text: "Supported by KAKENHI project 24KJ0837.", textJa: "KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837" },
     { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
     { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
     { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター．", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
@@ -278,7 +278,7 @@ const siteData = {
         publicationDate: "2024-08-23",
         link: "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html",
         figure: "internal-parameterizations",
-        tags: ["topos theory", "local state classifier", "hyperconnected quotient"],
+        tags: ["topos theory", "local state classifier", "hyperconnected quotient", "category"],
         links: [
           ["TAC", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
           ["arXiv", "https://arxiv.org/abs/2302.06851"],
@@ -296,7 +296,7 @@ const siteData = {
         publicationDate: "2024-08",
         link: "https://doi.org/10.1016/j.jpaa.2024.107657",
         figure: "quotient-toposes",
-        tags: ["Dynamics", "quotient topos", "Lawvere problem"],
+        tags: ["Dynamics", "quotient topos", "Lawvere problem", "algebra", "combinatorics"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.jpaa.2024.107657"],
           ["arXiv", "https://arxiv.org/abs/2310.02647"],
@@ -314,7 +314,7 @@ const siteData = {
         publicationDate: "2026-02",
         link: "https://doi.org/10.1090/proc/17479",
         figure: "completely-connected",
-        themes: ["topos", "geometry", "combinatorics"],
+        themes: ["topos", "category", "combinatorics"],
         tags: ["completely connected topos", "Grothendieck topos"],
         links: [
           ["DOI", "https://doi.org/10.1090/proc/17479"],
@@ -332,7 +332,7 @@ const siteData = {
         publicationDate: "2026-03",
         link: "https://doi.org/10.1016/j.aim.2025.110751",
         figure: "lawvere-first",
-        themes: ["topos", "combinatorics"],
+        themes: ["topos", "combinatorics", "logic"],
         tags: ["Lawvere problem", "quotient topos", "Grothendieck topos"],
         links: [
           ["DOI", "https://doi.org/10.1016/j.aim.2025.110751"],
@@ -354,7 +354,7 @@ const siteData = {
         tags: ["Lawvere problem", "symmetric simplicial set", "species"],
         links: [["arXiv", "https://arxiv.org/abs/2503.03439"]],
         summary:
-          "Solves one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
+          "Provides a solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
       },
       {
         title: "Topoi of automata I: Four topoi of automata and regular languages",
@@ -362,7 +362,7 @@ const siteData = {
         year: "2024",
         link: "https://arxiv.org/abs/2411.06358",
         figure: "topoi-automata",
-        tags: ["automaton", "regular language", "topos theory"],
+        tags: ["automaton", "regular language", "topos theory", "geometry"],
         links: [["arXiv", "https://arxiv.org/abs/2411.06358"]],
         summary: "Introduces a topos-theoretic point of view on formal language theory."
       },
@@ -383,7 +383,7 @@ const siteData = {
         year: "2025",
         link: "https://arxiv.org/abs/2511.05012",
         figure: "normalization",
-        tags: ["normalization", "local state classifier", "algebraic language theory"],
+        tags: ["normalization", "local state classifier", "algebraic language theory", "combinatorics"],
         links: [["arXiv", "https://arxiv.org/abs/2511.05012"]],
         summary:
           "Defines a generalized normalization operator motivated by topos theory and algebraic language theory."
@@ -500,8 +500,8 @@ const siteData = {
     {
       title: "Plans",
       items: [
-        { date: "2026-07", text: "July 2026: planning to attend ACT 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" },
-        { date: "2026-09-29", text: "September 29, 2026: give a talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" }
+        { date: "2026-07-06 - 2026-07-10", text: "Planning to attend ACT 2026 in Tallinn.", href: "https://actconf2026.github.io/" },
+        { date: "2026-09-29", text: "Scheduled to give an online talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" }
       ]
     },
     {
@@ -571,10 +571,10 @@ const siteData = {
   ],
   awards: [
     { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 研究科長賞，博士課程，2026年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 修了式総代，博士課程，2026年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
+    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 修了式総代，博士課程，2026年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html", reviewKey: "award:graduation-representative:gsm:doctoral:2026" },
     { text: "SLACS 2025 presentation award, October 2025.", textJa: "第42回 記号論理と情報科学研究集会（SLACS 2025）発表賞，2025年10月．", href: "https://sites.google.com/view/slacs2025akita/home" },
     { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 研究科長賞，修士課程，2024年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 修了式総代，修士課程，2024年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
+    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 修了式総代，修士課程，2024年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html", reviewKey: "award:graduation-representative:gsm:masters:2024" },
     { text: "Faculty of Science encouragement award, The University of Tokyo, March 2022.", textJa: "東京大学理学部 学修奨励賞，2022年3月．", href: "https://warp.ndl.go.jp/info:ndljp/pid/12972979/www.s.u-tokyo.ac.jp/ja/awards/encouragement/R3.html" }
   ],
   education: [
@@ -1062,7 +1062,7 @@ const siteData = {
         ["組み合わせゲーム理論の世界", "https://www.kyoritsu-pub.co.jp/book/b10044851.html"],
         ["数学ガールの秘密ノート 場合の数", "https://note7.hyuki.net"],
         ["Algorithmic Foundations for Social Advancement", "https://link.springer.com/book/10.1007/978-981-96-0668-9"],
-        ["数学セミナー2025年11月号 圏論の質問箱", "https://www.nippyo.co.jp/shop/magazines/latest/4.html"],
+        ["数学セミナー2025年11月号 圏論の質問箱", "https://www.nippyo.co.jp/shop/magazine/9611.html"],
         ["大学への数学 2025年11月号 数理空間トポス", "https://www.tokyo-s.jp/assets/uploads/ds2511mokuji_d_ol.pdf"],
         ["数理物理ラジオ 母関数の種", "https://www.youtube.com/live/gInu95RiCUo"],
         ["数理空間トポス 5周年記念公開イベント", "https://www.shosen.co.jp/event/9341/#:~:text=%E5%8A%A0%E8%97%A4%E6%96%87%E5%85%83"]
@@ -1077,13 +1077,13 @@ const siteReviewData = {
       key: "position:zen-assistant-professor:2026",
       status: "pending-public-source",
       claim: "Assistant professor at ZEN University since April 2026.",
-      note: "Confirmed by owner; public institutional page is expected but not available yet."
+      note: "Confirmed by owner and researchmap; no public institutional profile page is available yet."
     },
     {
       key: "position:humai-researcher:2026",
       status: "pending-public-source",
       claim: "Researcher at the Humai Center since April 2026.",
-      note: "Confirmed by owner; public institutional page is expected but not available yet."
+      note: "Confirmed by owner; no public institutional profile page is available yet."
     },
     {
       key: "grant:jsps-fellow:24KJ0837",
@@ -1099,14 +1099,14 @@ const siteReviewData = {
       status: "self-reported-public-broadcast",
       claim: "Graduation Representative, Graduate School of Mathematical Sciences, doctoral course, March 2026.",
       source: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      note: "Owner confirmed public display is acceptable; precise public archival page is not yet identified."
+      note: "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
     },
     {
       key: "award:graduation-representative:gsm:masters:2024",
       status: "self-reported-public-broadcast",
       claim: "Graduation Representative, Graduate School of Mathematical Sciences, master's course, March 2024.",
       source: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      note: "Owner confirmed public display is acceptable; precise public archival page is not yet identified."
+      note: "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
     }
   ],
   documentRights: {
@@ -1118,11 +1118,11 @@ const siteReviewData = {
     },
     byFile: {
       "ライツアウトの代数的研究.pdf": {
-        rightsStatus: "coauthored-owner-reports-permission",
+        rightsStatus: "coauthored-explicit-permission",
         publicPermission: "owner-confirmed",
-        coauthorConsent: "owner-believes-ok",
+        coauthorConsent: "explicit-granted",
         source: "google-drive",
-        note: "Coauthored/written with Kyosuke Higashida; keep on the watch list for explicit coauthor consent if distribution scope changes."
+        note: "Coauthored/written with Kyosuke Higashida; owner reports explicit permission from Higashida for public display."
       },
       "準完全情報ニム": {
         rightsStatus: "external-public-record",
@@ -1176,6 +1176,13 @@ const siteReviewData = {
       needsVerification: false
     }
   },
+  manualTalksNotInResearchmap: [
+    {
+      canonical: "Constructive mathematics and representation theory",
+      aliases: ["構成的数学と表現論"],
+      reason: "Owner confirmed this English title and the Japanese title refer to the same talk; keep as owner-maintained homepage record even if researchmap omits it."
+    }
+  ],
   titleEquivalences: [
     {
       kind: "paper",
@@ -1465,7 +1472,7 @@ const i18nText = {
     "Basic dictionary": "Basic dictionary",
     "Assistant Professor · ZEN University": "ZEN大学助教",
     "Ryuya Hora": "洞龍弥",
-    "Category theory, topos theory, computation.": "Category theory, topos theory, computation.",
+    "Category theory, topos theory, combinatorics, computation.": "Category theory, topos theory, combinatorics, computation.",
     "Ryuya Hora studies category theory, topos theory, and the geometry of computation.":
       "洞龍弥は category theory, topos theory, and the geometry of computation を研究しています．",
     "I am an assistant professor at ZEN University and a researcher at the Humai Center. My recent work explores how topos theory transfers ideas among algebra, geometry, logic, computation, and combinatorics.":
@@ -1489,6 +1496,7 @@ const i18nText = {
     "All themes": "すべてのテーマ",
     "Current Positions": "現在の所属",
     "Interests": "関心",
+    "Works": "成果",
     "Contact": "連絡先",
     "Email": "メール",
     "Site Map": "サイトマップ",
@@ -1697,8 +1705,8 @@ const i18nText = {
       "completely connected topoi を研究し，例とともに site characterization を与えます．",
     "Gives a solution to Lawvere's first open problem.":
       "Lawvere's first open problem の解決を与えます．",
-    "Solves one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets.":
-      "symmetric simplicial sets の topos における levels を用いて，Lawvere の 7 つの open problems の一つを解決します．",
+    "Provides a solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets.":
+      "symmetric simplicial sets のトポスにおける levels を通じて，Lawvere の7つの open problems の1つに解を与えます．",
     "Introduces a topos-theoretic point of view on formal language theory.":
       "formal language theory に対する topos-theoretic な見方を導入します．",
     "Reinterprets impartial combinatorial games and the Nim-sum using recursive coalgebras.":
@@ -1877,7 +1885,7 @@ const researchThemes = [
     x: 318,
     y: 150,
     r: 56,
-    keywords: ["coalgebra", "coalgebras", "recursive coalgebra", "recursive coalgebras", "differential calculus"]
+    keywords: ["coalgebra", "coalgebras", "recursive coalgebra", "recursive coalgebras"]
   },
   {
     id: "category",
@@ -2216,13 +2224,13 @@ function translatedPhrase(text, element = null) {
   if (lastReviewed) return `最終確認: ${lastReviewed[1]}`;
   const updated = original.match(/^updated (.+)$/);
   if (updated) return `更新 ${updated[1]}`;
-  const themeCount = original.match(/^(\d+) papers \/ (\d+) notes \/ (\d+) slides \/ (\d+) talks$/);
-  if (themeCount) return `${themeCount[1]} 論文 / ${themeCount[2]} ノート / ${themeCount[3]} スライド / ${themeCount[4]} 発表`;
+  const themeCount = original.match(/^(\d+) papers \/ (\d+) notes \/ (\d+) talks$/);
+  if (themeCount) return `${themeCount[1]} 論文 / ${themeCount[2]} ノート / ${themeCount[3]} 発表`;
   const themeCountWithPreparation = original.match(
-    /^(\d+) papers \/ (\d+) in preparation \/ (\d+) notes \/ (\d+) slides \/ (\d+) talks$/
+    /^(\d+) papers \/ (\d+) in preparation \/ (\d+) notes \/ (\d+) talks$/
   );
   if (themeCountWithPreparation) {
-    return `${themeCountWithPreparation[1]} 論文 / ${themeCountWithPreparation[2]} in preparation / ${themeCountWithPreparation[3]} ノート / ${themeCountWithPreparation[4]} スライド / ${themeCountWithPreparation[5]} 発表`;
+    return `${themeCountWithPreparation[1]} 論文 / ${themeCountWithPreparation[2]} in preparation / ${themeCountWithPreparation[3]} ノート / ${themeCountWithPreparation[4]} 発表`;
   }
   const diagramMode = original.match(/^Open diagram mode for (.+)$/);
   if (diagramMode) return `Diagram mode を開く: ${diagramMode[1]}`;
@@ -7156,7 +7164,7 @@ function sectionIconHref(heading) {
   if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("cv/index.html");
   if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("cv/index.html#awards");
   if (text.includes("email") || text.includes("contact")) return "mailto:ryuya.hora@zen.ac.jp";
-  if (text.includes("interest")) return localHref("index.html#interests");
+  if (text.includes("work") || text.includes("interest")) return localHref("index.html#works");
   if (text.includes("categories in tokyo")) return "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0";
   return "";
 }
@@ -7325,7 +7333,7 @@ function navIconKey(label = "", href = "") {
   const url = String(href || "").toLowerCase();
   if (text.includes("profile") || text.includes("プロフィール") || text.includes("概要")) return "profile";
   if (text.includes("research timeline") || text.includes("yearly record") || text.includes("研究タイムライン") || text.includes("年次記録") || url.includes("#research-timeline") || url.includes("#yearly-records")) return "timeline";
-  if (text.includes("interest") || text.includes("関心") || url.includes("#interests")) return "topos";
+  if (text.includes("work") || text.includes("interest") || text.includes("関心") || text.includes("成果") || url.includes("#works") || url.includes("#interests")) return "topos";
   if (text.includes("preparation") || url.includes("#in-preparation")) return "clock";
   if (text.includes("documents") || text.includes("資料")) return "paper";
   if (text.includes("papers") || text.includes("論文") || url.includes("/papers/")) return "paper";
@@ -7519,7 +7527,14 @@ function paperMetaTagIds(paper) {
 }
 
 const differentialGamesPreparationTitle = "Differential calculus of impartial combinatorial games (with Ryo Suzuki)";
+const topoiAutomataIIPreparationTitle = "Topoi of automata II: Hyperconnected geometric morphisms, syntactic monoids, and language classes";
 const topoiAutomataIIIPreparationTitle = "Topoi of automata III: Geometry of \\(\\Sigma\\)-sets";
+const subtopoiFreeMonoidPreparationTitle = "Subtopoi of free monoid actions (with Morgan Rogers)";
+const topoiEnoughProjectivesPreparationTitle = "Topoi with enough projectives";
+const totallyDisconnectedTopoiPreparationTitle = "Totally disconnected topoi";
+const dynamicalPretopologicalPreparationTitle = "Dynamical systems on pretopological spaces";
+const twistedTetrahedraPreparationTitle = "Twisted Regular Tetrahedra and Eisenstein Integers";
+const gabrielToposPreparationTitle = "A topos-theoretic view on Gabriel's theorem";
 
 const preparationSlideMatches = [
   {
@@ -7643,11 +7658,17 @@ function preparationPaperDetails(title) {
       )
     };
   }
+  if (title === topoiAutomataIIPreparationTitle) {
+    return {
+      themes: ["algebra", "geometry"],
+      links: relatedSlides
+    };
+  }
   if (title === topoiAutomataIIIPreparationTitle) {
     const slidesHref = noteHrefByFile("_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf");
     return {
       figure: "automata-cantor-morphism",
-      themes: ["automata", "topos", "geometry"],
+      themes: ["automata", "topos", "geometry", "combinatorics"],
       tags: ["Cantor space", "geometric morphism", "Sigma-set", "infinite word"],
       summary:
         "Visual proposal: reproduce the CTTA slide where the Cantor space of infinite words maps by a canonical geometric morphism through the prefix-poset slice and then by the etale-cover picture to \\(\\Sigma\\)-sets.",
@@ -7657,6 +7678,44 @@ function preparationPaperDetails(title) {
         ]),
         relatedSlides
       )
+    };
+  }
+  if (title === subtopoiFreeMonoidPreparationTitle) {
+    return {
+      themes: ["geometry", "logic"],
+      links: relatedSlides
+    };
+  }
+  if (title === topoiEnoughProjectivesPreparationTitle) {
+    return {
+      themes: ["algebra"],
+      links: relatedSlides
+    };
+  }
+  if (title === totallyDisconnectedTopoiPreparationTitle) {
+    return {
+      themes: ["geometry"],
+      links: relatedSlides
+    };
+  }
+  if (title === dynamicalPretopologicalPreparationTitle) {
+    return {
+      themes: ["topos"],
+      metaTags: ["speculative"],
+      links: relatedSlides
+    };
+  }
+  if (title === twistedTetrahedraPreparationTitle) {
+    return {
+      themes: ["algebra"],
+      links: relatedSlides
+    };
+  }
+  if (title === gabrielToposPreparationTitle) {
+    return {
+      themes: ["logic"],
+      metaTags: ["speculative"],
+      links: relatedSlides
     };
   }
   if (relatedSlides.length) return { links: relatedSlides };
@@ -7825,21 +7884,49 @@ function themedSlideRecords() {
     })).filter((record) => record.themes.length);
 }
 
+function slidesForThemedTalk(record) {
+  const key = talkRecordKey(record);
+  const title = simplified(record?.title);
+  return allSlideRecords().filter((slide) => {
+    if (slide.talkRecord && talkRecordKey(slide.talkRecord) === key) return true;
+    const slideTalkTitle = simplified(slide.talkTitle);
+    return slideTalkTitle && title && (slideTalkTitle === title || slideTalkTitle.includes(title) || title.includes(slideTalkTitle));
+  });
+}
+
+function talkTextWithSlides(record, baseParts = []) {
+  const slides = slidesForThemedTalk(record);
+  const slideText = slides.flatMap((slide) => [
+    slide.title,
+    slide.description,
+    slide.file,
+    slide.talkMeta,
+    ...(slide.themes || []),
+    ...(slide.keywords || [])
+  ]);
+  return {
+    slides,
+    text: compactText([...baseParts, ...slideText]).join(" "),
+    metaTags: [...new Set(slides.flatMap((slide) => metaTagIdsForText(compactText([slide.title, slide.description, slide.file, slide.talkMeta]).join(" "), slide.metaTags || [])))]
+  };
+}
+
 function themedTalkRecords() {
   const synced = researchmapPresentationRecords();
   if (synced.length) {
     return synced
       .map((record) => {
-        const text = compactText([
+        const { slides, text, metaTags } = talkTextWithSlides(record, [
           record.title,
           record.presenters?.join(" "),
           presentationMeta(record)
-        ]).join(" ");
+        ]);
         return {
           type: "talk",
           title: record.title,
           href: localHref(`talks/index.html#${talkRecordAnchor(record)}`),
-          meta: presentationMeta(record),
+          meta: compactText([presentationMeta(record), slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
+          metaTags,
           ...scoreThemeRecord(text)
         };
       })
@@ -7851,12 +7938,14 @@ function themedTalkRecords() {
       group.items.map((talk) => {
         const presentationRecord = findResearchmapPresentationForTalk(talk);
         const presenters = presentationPeopleText(presentationRecord || talk);
-        const text = compactText([talk.title, presenters, talk.venue]).join(" ");
+        const record = presentationRecord || talk;
+        const { slides, text, metaTags } = talkTextWithSlides(record, [talk.title, presenters, talk.venue]);
         return {
           type: "talk",
           title: talk.title,
           href: talk.href || localHref("talks/index.html"),
-          meta: compactText([presenters, group.year, talk.venue]).join(" / "),
+          meta: compactText([presenters, group.year, talk.venue, slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
+          metaTags,
           ...scoreThemeRecord(text)
         };
       })
@@ -7868,7 +7957,6 @@ function themedRecords(kind) {
   if (kind === "papers") return themedPaperRecords();
   if (kind === "preparation") return themedPreparationRecords();
   if (kind === "notes") return themedNoteRecords();
-  if (kind === "slides") return themedSlideRecords();
   return themedTalkRecords();
 }
 
@@ -7909,14 +7997,22 @@ function themeSelectionScore(record, themeIds) {
   return themeIds.reduce((score, themeId) => score + (record.scores[themeId] || 0), 0);
 }
 
-function renderThemeResultIcons(themeIds = []) {
+function renderThemeResultIcons(themeIds = [], metaTagIds = []) {
   const themes = normalizeThemeSelection(themeIds);
+  const metaTags = normalizeMetaTagSelection(metaTagIds);
   const strip = el("div", "theme-result-icons");
-  strip.setAttribute("aria-hidden", "true");
   themes.forEach((themeId) => {
     const label = themeTagLabel(themeId);
     const icon = uiIcon(tagIconKey(label), "theme-result-icon tag-icon");
     icon.title = label;
+    icon.setAttribute("aria-label", label);
+    strip.append(icon);
+  });
+  metaTags.forEach((tagId) => {
+    const label = metaTagLabel(tagId);
+    const icon = uiIcon(metaTagIconKey(tagId), "theme-result-meta-icon tag-icon");
+    icon.title = label;
+    icon.setAttribute("aria-label", label);
     strip.append(icon);
   });
   return strip;
@@ -7956,8 +8052,7 @@ function renderThemeResult(record, selection = "", metaSelection = "") {
   item.dataset.metaTags = (record.metaTags || []).join(" ");
   const heading = el("h4");
   heading.append(link(record.title, record.href));
-  item.append(renderThemeResultIcons(record.themes), heading);
-  if (record.metaTags?.length) item.append(renderMetaTagIcons(record.metaTags));
+  item.append(renderThemeResultIcons(record.themes, record.metaTags), heading);
   if (record.meta) item.append(el("p", "theme-result-meta", record.meta));
   return item;
 }
@@ -7978,7 +8073,7 @@ function renderResearchMapResults(selection = "", options = {}) {
       el(
         "span",
         "theme-status-count",
-        `${counts[0]} papers / ${counts[1]} in preparation / ${counts[2]} notes / ${counts[3]} slides / ${counts[4]} talks`
+        `${counts[0]} papers / ${counts[1]} in preparation / ${counts[2]} notes / ${counts[3]} talks`
       )
     );
   }
@@ -8003,7 +8098,6 @@ function researchThemeGroups() {
     ["papers", "Papers"],
     ["preparation", "In preparation"],
     ["notes", "Notes"],
-    ["slides", "Slides"],
     ["talks", "Talks"]
   ];
 }
@@ -9250,6 +9344,11 @@ const gamesRbSelectableValues = [0, 1, 2, 3, 4];
 const gamesRbVisibleValues = [0, 1, 2, 3, 4, 5];
 const gamesRbInitialS = [0, 1, 4];
 const gamesRbInitialT = [0, 1, 2];
+const gamesRbTopEquationTex = "\\(\\left(\\int \\textcolor{#2563eb}{f}\\right)\\left(\\int \\textcolor{#c82727}{g}\\right)=\\int\\bigl((\\int \\textcolor{#2563eb}{f})\\,\\textcolor{#c82727}{g}+\\textcolor{#2563eb}{f}\\,(\\int \\textcolor{#c82727}{g})\\bigr)\\)";
+const gamesRbMexSTex = "\\(\\operatorname{mex}\\,\\textcolor{#2563eb}{S}\\)";
+const gamesRbMexTTex = "\\(\\operatorname{mex}\\,\\textcolor{#c82727}{T}\\)";
+const gamesRbExpandedMexTex = "\\(\\operatorname{mex}\\bigl(\\colorbox{#eadcff}{$(\\operatorname{mex}\\,\\textcolor{#2563eb}{S}\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}\\,\\textcolor{#c82727}{T})$}\\bigr)\\)";
+const gamesRbRhsMexTex = "\\(\\operatorname{mex}\\,\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}\\,\\textcolor{#c82727}{T}\\)";
 const gamesRbCellWidth = 31;
 const gamesRbCellHeight = 24;
 const gamesRbHeaderWidth = 31;
@@ -9343,51 +9442,60 @@ const paperFigureTemplates = {
           <stop offset="0.6" stop-color="#f7f1e7"></stop>
           <stop offset="1" stop-color="#e8eef1"></stop>
         </linearGradient>
+        <linearGradient id="games-rb-union-both" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#c82727" stop-opacity="0.13"></stop>
+          <stop offset="0.49" stop-color="#c82727" stop-opacity="0.13"></stop>
+          <stop offset="0.51" stop-color="#2563eb" stop-opacity="0.13"></stop>
+          <stop offset="1" stop-color="#2563eb" stop-opacity="0.13"></stop>
+        </linearGradient>
         <g id="games-nim-table-base">
 ${gamesRbNimTableBaseTemplate()}
         </g>
       </defs>
 
       <rect class="games-rb-table-paper" width="760" height="390" rx="0"></rect>
-      <text class="games-rb-table-title" x="380" y="31">mex Rota-Baxter equation</text>
-      <text class="games-rb-dual-main-equals" x="380" y="190" text-anchor="middle">=</text>
+      <foreignObject class="games-rb-top-equation" x="150" y="8" width="460" height="28">
+        <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbTopEquationTex}</div>
+      </foreignObject>
 
       <g class="games-rb-dual-panel is-expanded-side" transform="translate(36 76)">
-        <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
         <g class="games-rb-dual-table is-expanded-table" transform="translate(70 76)">
           <use href="#games-nim-table-base"></use>
           <g data-games-rb-set-layer="expanded"></g>
           <g data-games-rb-union-layer></g>
           <g data-games-rb-mex-layer="expanded"></g>
-          <text class="games-rb-set-axis-label is-s-label" x="-14" y="84" text-anchor="middle">S</text>
-          <text class="games-rb-set-axis-label is-t-label" x="108.5" y="-8" text-anchor="middle">T</text>
-          <text class="games-rb-mex-axis-label is-mex-s-label" data-games-rb-mex-label="S" x="-33" y="88" text-anchor="middle">mex(S)</text>
-          <text class="games-rb-mex-axis-label is-mex-t-label" data-games-rb-mex-label="T" x="139.5" y="-23" text-anchor="middle">mex(T)</text>
+          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-73" y="73" width="62" height="22">
+            <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
+          </foreignObject>
+          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-34" width="72" height="22">
+            <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
+          </foreignObject>
         </g>
       </g>
 
       <g class="games-rb-dual-panel is-product-side" transform="translate(404 76)">
-        <rect class="games-rb-panel-bg" width="320" height="246" rx="12"></rect>
         <g class="games-rb-dual-table is-product-table" transform="translate(70 76)">
           <use href="#games-nim-table-base"></use>
           <g data-games-rb-set-layer="product"></g>
           <g data-games-rb-product-layer></g>
           <g data-games-rb-product-arrow-layer></g>
           <g data-games-rb-mex-layer="product"></g>
-          <text class="games-rb-set-axis-label is-s-label" x="-14" y="84" text-anchor="middle">S</text>
-          <text class="games-rb-set-axis-label is-t-label" x="108.5" y="-8" text-anchor="middle">T</text>
-          <text class="games-rb-mex-axis-label is-mex-s-label" data-games-rb-mex-label="S" x="-33" y="88" text-anchor="middle">mex(S)</text>
-          <text class="games-rb-mex-axis-label is-mex-t-label" data-games-rb-mex-label="T" x="139.5" y="-23" text-anchor="middle">mex(T)</text>
+          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-73" y="73" width="62" height="22">
+            <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
+          </foreignObject>
+          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-34" width="72" height="22">
+            <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
+          </foreignObject>
         </g>
       </g>
+      <foreignObject class="games-rb-center-result" data-games-rb-center-result x="340" y="205" width="118" height="46">
+        <div xmlns="http://www.w3.org/1999/xhtml">\(=\textcolor{#7c3aed}{1}=\)</div>
+      </foreignObject>
     </svg>
     ${gamesRbSetControlTemplate("S", gamesRbInitialS)}
     ${gamesRbSetControlTemplate("T", gamesRbInitialT)}
-    <span class="figure-math games-rb-table-tex games-rb-dual-tex-left">\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-readout" data-games-rb-expanded-mex-readout>\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)=\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-result" data-games-rb-expanded-mex-result>\\(1\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-rhs">\\(=\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T})\\)</span>
-    <span class="figure-math games-rb-table-tex games-rb-dual-tex-right">\\(\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T})\\)</span>`,
+    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-readout" data-games-rb-expanded-mex-readout>${gamesRbExpandedMexTex}</span>
+    <span class="figure-math games-rb-table-tex games-rb-expanded-mex-rhs">${gamesRbRhsMexTex}</span>`,
   "automata-cantor-morphism": `
     <svg class="automata-cantor-figure" viewBox="0 0 760 390" role="img" aria-labelledby="fig-automata-cantor-title fig-automata-cantor-desc">
       <title id="fig-automata-cantor-title">Canonical geometric morphism from Cantor space to Sigma-sets</title>
@@ -11933,11 +12041,15 @@ function renderGamesRbUnionHighlights(layer, state, mexS, mexT) {
   if (!layer) return;
   layer.replaceChildren();
   const cells = new Map();
-  state.T.forEach((value) => cells.set(`${mexS}:${value}`, [mexS, value]));
-  state.S.forEach((value) => cells.set(`${value}:${mexT}`, [value, mexT]));
-  cells.forEach(([row, column]) => {
+  state.T.forEach((value) => cells.set(`${mexS}:${value}`, [mexS, value, "is-mex-s-plus-t"]));
+  state.S.forEach((value) => {
+    const key = `${value}:${mexT}`;
+    const previous = cells.get(key);
+    cells.set(key, [value, mexT, previous ? "is-both-union-terms" : "is-s-plus-mex-t"]);
+  });
+  cells.forEach(([row, column, className]) => {
     if (!gamesRbVisibleValues.includes(row) || !gamesRbVisibleValues.includes(column)) return;
-    appendGamesRbRect(layer, "games-rb-union-highlight", gamesRbColumnX(column), gamesRbRowY(row));
+    appendGamesRbRect(layer, `games-rb-union-highlight ${className}`, gamesRbColumnX(column), gamesRbRowY(row));
   });
 }
 
@@ -11980,7 +12092,7 @@ function renderGamesRbFigure(root) {
   };
   const mexS = gamesRbMex(state.S);
   const mexT = gamesRbMex(state.T);
-  const expandedMex = gamesRbMex(gamesRbExpandedOutputValues(state, mexS, mexT));
+  const rbResult = gamesRbMex(gamesRbExpandedOutputValues(state, mexS, mexT));
 
   root.querySelectorAll("[data-games-rb-set-layer]").forEach((layer) => renderGamesRbSetHighlights(layer, state));
   root.querySelectorAll("[data-games-rb-mex-layer]").forEach((layer) => renderGamesRbMexRings(layer, mexS, mexT));
@@ -11988,10 +12100,10 @@ function renderGamesRbFigure(root) {
   renderGamesRbProductHighlight(root.querySelector("[data-games-rb-product-layer]"), mexS, mexT);
   renderGamesRbProductArrows(root.querySelector("[data-games-rb-product-arrow-layer]"), mexS, mexT);
   root.querySelectorAll('[data-games-rb-mex-label="S"]').forEach((label) => {
-    label.setAttribute("y", String(gamesRbRowY(mexS) + 16));
+    label.setAttribute("y", String(gamesRbRowY(mexS) + 1));
   });
   root.querySelectorAll('[data-games-rb-mex-label="T"]').forEach((label) => {
-    label.setAttribute("x", String(gamesRbCellTextX(mexT)));
+    label.setAttribute("x", String(gamesRbCellTextX(mexT) - 36));
   });
   const desc = root.querySelector("#fig-games-rb-table-desc");
   if (desc) {
@@ -12005,12 +12117,12 @@ function renderGamesRbFigure(root) {
     hit.classList.toggle("is-selected", selected);
   });
   container.querySelectorAll("[data-games-rb-expanded-mex-readout]").forEach((readout) => {
-    readout.innerHTML = `\\(\\operatorname{mex}\\bigl((\\operatorname{mex}(\\textcolor{#2563eb}{S})\\oplus\\textcolor{#c82727}{T})\\cup(\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}(\\textcolor{#c82727}{T}))\\bigr)=\\)`;
+    readout.innerHTML = gamesRbExpandedMexTex;
     typesetMath(readout);
   });
-  container.querySelectorAll("[data-games-rb-expanded-mex-result]").forEach((result) => {
-    result.innerHTML = `\\(${expandedMex}\\)`;
-    typesetMath(result);
+  root.querySelectorAll("[data-games-rb-center-result] > div").forEach((readout) => {
+    readout.innerHTML = `\\(=\\textcolor{#7c3aed}{${rbResult}}=\\)`;
+    typesetMath(readout);
   });
 }
 
@@ -12897,7 +13009,10 @@ function renderCurrentPositions() {
         content.dataset.i18nJa = record.textJa;
         content.dataset.i18nJaEmphasis = record.emphasisJa || "";
       }
-      item.append(iconWrap, content);
+      const body = el("div", "position-item-body");
+      body.append(content);
+      appendContentReviewBadges(body, claimReviewBadges(record.reviewKey));
+      item.append(iconWrap, body);
       root.append(item);
     });
     applyLanguage(root);
@@ -12920,6 +13035,7 @@ function renderLinkedList(selector, records) {
     } else {
       body.append(localizedText("span", null, record.text, record.textJa));
     }
+    appendContentReviewBadges(body, claimReviewBadges(record.reviewKey));
     item.append(body);
     root.append(item);
   });
@@ -13050,7 +13166,11 @@ const contentReviewLabels = {
   "owner-permission": "Owner permission",
   "rights-watch": "Rights watch",
   "permission-needed": "Permission needed",
-  "external-record": "External record"
+  "external-record": "External record",
+  "pending-public-source": "Source pending",
+  "verified-owner-and-kaken-active": "KAKEN verified",
+  "self-reported-public-broadcast": "Owner confirmed",
+  "coauthored-explicit-permission": "Permission confirmed"
 };
 
 function contentReviewLabel(status) {
@@ -13071,6 +13191,24 @@ function appendContentReviewBadges(root, badges = []) {
   badges.filter(Boolean).forEach((badge) => {
     root.append(contentReviewBadge(badge.status, badge.label, badge.title));
   });
+}
+
+function siteReviewRecordByKey(key) {
+  if (!key) return null;
+  return [
+    ...(siteReviewData.profileClaims || []),
+    ...(siteReviewData.awards || [])
+  ].find((record) => record.key === key) || null;
+}
+
+function claimReviewBadges(key) {
+  const record = siteReviewRecordByKey(key);
+  if (!record) return [];
+  return [{
+    status: record.status,
+    label: contentReviewLabel(record.status),
+    title: record.note || record.source || record.claim
+  }];
 }
 
 function paperReviewRecord(paper) {
@@ -13098,10 +13236,12 @@ function noteReviewRecord(note) {
   const rights = note.rights || rightsRecord?.rightsStatus || (note.href ? "linked-public-record" : "local-record");
   const source = note.source || rightsRecord?.source || (isDrive ? "google-drive" : "homepage");
   const provenance = note.provenance || (rightsRecord ? "Owner-reviewed public document link metadata." : "Manual homepage document metadata.");
-  const needsVerification = Boolean(note.needsVerification || /coauthored|owner-believes-ok/i.test(rights));
+  const hasExplicitPermission = rightsRecord?.coauthorConsent === "explicit-granted" || /explicit-permission/i.test(rights);
+  const needsVerification = !hasExplicitPermission && Boolean(note.needsVerification || /coauthored|owner-believes-ok/i.test(rights));
   const badges = [
     status === "speculative" ? { status, label: "Speculative", title: "Cloud: speculative note." } : null,
     status === "work-in-progress" ? { status, label: "Work in progress", title: "Pen: currently being written." } : null,
+    hasExplicitPermission ? { status: "coauthored-explicit-permission", label: "Permission confirmed", title: rightsRecord?.note || rights } : null,
     needsVerification ? { status: "rights-watch", label: "Rights watch", title: rightsRecord?.note || rights } : null,
     byFile?.publicPermission === "link-only" ? { status: "external-record", label: "External record", title: source } : null
   ];
@@ -13912,6 +14052,44 @@ function renderResearchmapEducation() {
     root.append(item);
   });
   applyLanguage(root);
+}
+
+function researchmapActivityText(record) {
+  return compactText([
+    record.period,
+    record.title,
+    record.organization || record.systemName || record.promoter || record.event || "",
+    record.roles?.length ? record.roles.join(", ") : record.role || "",
+    record.grantNumbers?.length ? record.grantNumbers.join(", ") : ""
+  ]).join(" - ");
+}
+
+function renderResearchmapActivityList(selector, records, iconKey) {
+  const root = document.querySelector(selector);
+  if (!root) return;
+  root.replaceChildren();
+  root.classList.add("icon-list");
+  const visibleRecords = records || [];
+  hideProfileDataContainerWhenEmpty(root, !visibleRecords.length);
+  if (!visibleRecords.length) return;
+
+  visibleRecords.forEach((record) => {
+    const item = el("li", "icon-list-item");
+    item.append(uiIcon(iconKey, "list-item-icon"));
+    const body = el("div", "icon-list-body");
+    body.append(link(researchmapActivityText(record), record.link));
+    if (record.links?.length) {
+      appendActionLinks(body, normalizedPublicationLinks(record.links));
+    }
+    item.append(body);
+    root.append(item);
+  });
+}
+
+function renderResearchmapActivityData() {
+  renderResearchmapActivityList("#researchmap-project-list", researchmapData?.researchProjects || [], "money");
+  renderResearchmapActivityList("#researchmap-academic-contribution-list", researchmapData?.academicContributions || [], "activity");
+  renderResearchmapActivityList("#researchmap-social-contribution-list", researchmapData?.socialContributions || [], "education");
 }
 
 function renderTalks(limitSelector = "#talk-list") {
@@ -14862,6 +15040,7 @@ function renderInitialPage() {
     renderActivitiesTimeline();
     renderTalkMap();
     renderResearchmapPresentations();
+    renderResearchmapActivityData();
     renderActivities();
   } else if (page === "talks") {
     renderTalkTimeline();
@@ -14904,6 +15083,7 @@ function renderInitialPage() {
     renderTalkTimeline();
     renderTalkMap();
     renderResearchmapPresentations();
+    renderResearchmapActivityData();
     renderNotes();
     renderActivities();
     renderPlans();

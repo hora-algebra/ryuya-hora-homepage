@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-30T01:21:06.387Z",
+  "generatedAt": "2026-05-02T01:16:51.876Z",
   "source": {
     "homepage": "scripts/site.js",
     "researchmap": "https://researchmap.jp/ryuyahora"
@@ -7,7 +7,7 @@
   "decisions": {
     "dc1": "Do not display DC1 as current after March 2026.",
     "kakenhi24KJ0837": "Display as ongoing.",
-    "lawvereFourth": "Keep solved wording; status remains preprint until journal publication.",
+    "lawvereFourth": "Use providing-a-solution wording; status remains preprint until journal publication.",
     "cloud": "Speculative note.",
     "pen": "Work in progress."
   },
@@ -16,13 +16,13 @@
       "key": "position:zen-assistant-professor:2026",
       "status": "pending-public-source",
       "claim": "Assistant professor at ZEN University since April 2026.",
-      "note": "Confirmed by owner; public institutional page is expected but not available yet."
+      "note": "Confirmed by owner and researchmap; no public institutional profile page is available yet."
     },
     {
       "key": "position:humai-researcher:2026",
       "status": "pending-public-source",
       "claim": "Researcher at the Humai Center since April 2026.",
-      "note": "Confirmed by owner; public institutional page is expected but not available yet."
+      "note": "Confirmed by owner; no public institutional profile page is available yet."
     },
     {
       "key": "grant:jsps-fellow:24KJ0837",
@@ -38,14 +38,14 @@
       "status": "self-reported-public-broadcast",
       "claim": "Graduation Representative, Graduate School of Mathematical Sciences, doctoral course, March 2026.",
       "source": "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      "note": "Owner confirmed public display is acceptable; precise public archival page is not yet identified."
+      "note": "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
     },
     {
       "key": "award:graduation-representative:gsm:masters:2024",
       "status": "self-reported-public-broadcast",
       "claim": "Graduation Representative, Graduate School of Mathematical Sciences, master's course, March 2024.",
       "source": "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      "note": "Owner confirmed public display is acceptable; precise public archival page is not yet identified."
+      "note": "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
     }
   ],
   "mediaRights": {
@@ -787,7 +787,8 @@
       }
     ],
     "missingFromManualAfterAliases": [],
-    "missingFromResearchmapAfterAliases": [
+    "missingFromResearchmapAfterAliases": [],
+    "ownerMaintainedManualOnly": [
       {
         "year": "2023",
         "title": "Constructive mathematics and representation theory",
@@ -810,6 +811,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -821,6 +823,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -832,6 +835,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -843,6 +847,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -854,6 +859,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -865,6 +871,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -876,6 +883,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -887,6 +895,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -898,6 +907,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -909,6 +919,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -920,6 +931,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -931,6 +943,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "external-public-record",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -942,6 +955,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -953,6 +967,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -964,6 +979,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -973,9 +989,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "coauthored-owner-reports-permission",
-        "needsVerification": true,
-        "note": "Coauthored/written with Kyosuke Higashida; keep on the watch list for explicit coauthor consent if distribution scope changes."
+        "rights": "coauthored-explicit-permission",
+        "needsVerification": false,
+        "explicitPermission": true,
+        "note": "Coauthored/written with Kyosuke Higashida; owner reports explicit permission from Higashida for public display."
       },
       {
         "title": "準完全情報ニム",
@@ -986,6 +1003,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "external-public-record",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -997,6 +1015,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -1008,6 +1027,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -1019,6 +1039,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -1030,6 +1051,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -1041,6 +1063,7 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "owner-reports-permission",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       },
       {
@@ -1052,20 +1075,367 @@
         "provenance": "owner-reviewed document rights metadata",
         "rights": "external-owner-page",
         "needsVerification": false,
+        "explicitPermission": false,
         "note": ""
       }
     ],
-    "needsVerification": [
+    "needsVerification": []
+  },
+  "researchmapActivity": {
+    "researchProjects": [
       {
-        "title": "Turning lights out with the Snake Lemma",
-        "file": "ライツアウトの代数的研究.pdf",
-        "href": "https://drive.google.com/open?id=1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp",
-        "status": "published-note",
-        "source": "google-drive",
-        "provenance": "owner-reviewed document rights metadata",
-        "rights": "coauthored-owner-reports-permission",
-        "needsVerification": true,
-        "note": "Coauthored/written with Kyosuke Higashida; keep on the watch list for explicit coauthor consent if distribution scope changes."
+        "id": "51480752",
+        "title": "ToposのQuotientの分類",
+        "investigators": [
+          "洞 龍弥"
+        ],
+        "organization": "日本学術振興会",
+        "systemName": "科学研究費助成事業",
+        "category": "特別研究員奨励費",
+        "institution": "東京大学",
+        "role": "",
+        "period": "2024-04-23 - 2027-03-31",
+        "from": "2024-04-23",
+        "to": "2027-03-31",
+        "grantNumbers": [
+          "24KJ0837",
+          "JP24KJ0837"
+        ],
+        "overallGrantAmount": {
+          "totalCost": 4400000,
+          "directCost": 4400000,
+          "indirectCost": "0"
+        },
+        "link": "https://kaken.nii.ac.jp/grant/KAKENHI-PROJECT-24KJ0837",
+        "links": [
+          [
+            "KAKEN",
+            "https://kaken.nii.ac.jp/grant/KAKENHI-PROJECT-24KJ0837"
+          ],
+          [
+            "Published paper",
+            "https://researchmap.jp/ryuyahora/published_papers/51633861"
+          ],
+          [
+            "Misc",
+            "https://researchmap.jp/ryuyahora/misc/52022831"
+          ],
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/research_projects/51480752"
+          ]
+        ]
+      },
+      {
+        "id": "51480789",
+        "title": "組合せゲーム理論の応用可能性の探求",
+        "investigators": [
+          "安福智明",
+          "宇野毅明",
+          "木村俊一",
+          "木谷裕紀",
+          "篠田正人",
+          "末續鴻輝",
+          "洞龍弥",
+          "前山和喜",
+          "吉渡叶"
+        ],
+        "organization": "",
+        "systemName": "",
+        "category": "",
+        "institution": "",
+        "role": "coinvestigator",
+        "period": "2025-04 - 2026-03",
+        "from": "2025-04",
+        "to": "2026-03",
+        "grantNumbers": [
+          "251M-22791"
+        ],
+        "overallGrantAmount": null,
+        "link": "https://researchmap.jp/ryuyahora/misc/52084435",
+        "links": [
+          [
+            "Misc",
+            "https://researchmap.jp/ryuyahora/misc/52084435"
+          ],
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/research_projects/51480789"
+          ]
+        ]
+      }
+    ],
+    "academicContributions": [
+      {
+        "id": "51734876",
+        "title": "Organizer of Categories in Tokyo",
+        "type": "academic_society_etc",
+        "roles": [
+          "planning",
+          "organizing"
+        ],
+        "promoter": "",
+        "event": "",
+        "period": "2024-04 - present",
+        "from": "2024-04",
+        "to": "present",
+        "year": "2024",
+        "link": "https://researchmap.jp/ryuyahora/academic_contribution/51734876",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/academic_contribution/51734876"
+          ]
+        ]
+      },
+      {
+        "id": "51734811",
+        "title": "Japan Combinatorial Game Theory Workshop (JCGTW) organizing member",
+        "type": "",
+        "roles": [
+          "organizing",
+          "other"
+        ],
+        "promoter": "",
+        "event": "",
+        "period": "2023-05 - present",
+        "from": "2023-05",
+        "to": "present",
+        "year": "2023",
+        "link": "https://researchmap.jp/ryuyahora/academic_contribution/51734811",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/academic_contribution/51734811"
+          ]
+        ]
+      },
+      {
+        "id": "53075181",
+        "title": "2nd Categories in Tokyo",
+        "type": "academic_society_etc",
+        "roles": [
+          "planning",
+          "organizing"
+        ],
+        "promoter": "Yuki Maehara",
+        "event": "",
+        "period": "2026-02-07 - 2026-02-08",
+        "from": "2026-02-07",
+        "to": "2026-02-08",
+        "year": "2026",
+        "link": "https://researchmap.jp/ryuyahora/academic_contribution/53075181",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/academic_contribution/53075181"
+          ]
+        ]
+      },
+      {
+        "id": "51633965",
+        "title": "Organizing 1st Categories in Tokyo",
+        "type": "academic_society_etc",
+        "roles": [
+          "planning"
+        ],
+        "promoter": "",
+        "event": "",
+        "period": "2024-11-23 - 2024-11-24",
+        "from": "2024-11-23",
+        "to": "2024-11-24",
+        "year": "2024",
+        "link": "https://researchmap.jp/ryuyahora/academic_contribution/51633965",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/academic_contribution/51633965"
+          ]
+        ]
+      },
+      {
+        "id": "51633962",
+        "title": "Organizing 0th Categories in Tokyo",
+        "type": "academic_society_etc",
+        "roles": [
+          "planning"
+        ],
+        "promoter": "",
+        "event": "",
+        "period": "2024-05-15 - 2024-05-15",
+        "from": "2024-05-15",
+        "to": "2024-05-15",
+        "year": "2024",
+        "link": "https://researchmap.jp/ryuyahora/academic_contribution/51633962",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/academic_contribution/51633962"
+          ]
+        ]
+      },
+      {
+        "id": "51734788",
+        "title": "Applied Categorical Structures",
+        "type": "",
+        "roles": [
+          "peer review"
+        ],
+        "promoter": "",
+        "event": "",
+        "period": "",
+        "from": "",
+        "to": "",
+        "year": "",
+        "link": "https://researchmap.jp/ryuyahora/academic_contribution/51734788",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/academic_contribution/51734788"
+          ]
+        ]
+      }
+    ],
+    "socialContributions": [
+      {
+        "id": "51734792",
+        "title": "N高研究部アドバイザー",
+        "roles": [
+          "advisor"
+        ],
+        "promoter": "",
+        "event": "",
+        "period": "2025-06 - present",
+        "from": "2025-06",
+        "to": "present",
+        "year": "2025",
+        "link": "https://researchmap.jp/ryuyahora/social_contribution/51734792",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/social_contribution/51734792"
+          ]
+        ]
+      },
+      {
+        "id": "51734796",
+        "title": "数理空間トポスチューター",
+        "roles": [
+          "advisor"
+        ],
+        "promoter": "",
+        "event": "",
+        "period": "2020-07 - present",
+        "from": "2020-07",
+        "to": "present",
+        "year": "2020",
+        "link": "https://researchmap.jp/ryuyahora/social_contribution/51734796",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/social_contribution/51734796"
+          ]
+        ]
+      },
+      {
+        "id": "51734872",
+        "title": "アイゼンシュタイン整数と組合せ論",
+        "roles": [
+          "appearance"
+        ],
+        "promoter": "数理空間トポス",
+        "event": "新歓イベント",
+        "period": "2024-05-18",
+        "from": "2024-05-18",
+        "to": "",
+        "year": "2024",
+        "link": "https://researchmap.jp/ryuyahora/social_contribution/51734872",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/social_contribution/51734872"
+          ]
+        ]
+      },
+      {
+        "id": "51734862",
+        "title": "母関数の種",
+        "roles": [
+          "appearance"
+        ],
+        "promoter": "数理空間トポス",
+        "event": "新歓イベント",
+        "period": "2023-07-15",
+        "from": "2023-07-15",
+        "to": "",
+        "year": "2023",
+        "link": "https://researchmap.jp/ryuyahora/social_contribution/51734862",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/social_contribution/51734862"
+          ]
+        ]
+      },
+      {
+        "id": "51734825",
+        "title": "数理空間トポスが書泉グランデにお邪魔します。～数理空間トポス5周年記念公開イベント～",
+        "roles": [
+          "appearance"
+        ],
+        "promoter": "",
+        "event": "",
+        "period": "2023-05-26",
+        "from": "2023-05-26",
+        "to": "",
+        "year": "2023",
+        "link": "https://researchmap.jp/ryuyahora/social_contribution/51734825",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/social_contribution/51734825"
+          ]
+        ]
+      },
+      {
+        "id": "51734836",
+        "title": "順序集合で遊ぶKan拡張",
+        "roles": [
+          "appearance"
+        ],
+        "promoter": "数理空間トポス",
+        "event": "新歓イベント",
+        "period": "2022-06-04",
+        "from": "2022-06-04",
+        "to": "",
+        "year": "2022",
+        "link": "https://researchmap.jp/ryuyahora/social_contribution/51734836",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/social_contribution/51734836"
+          ]
+        ]
+      },
+      {
+        "id": "51734818",
+        "title": "Zeta function and Mobius inversion",
+        "roles": [
+          "appearance"
+        ],
+        "promoter": "数理空間トポス",
+        "event": "新歓イベント",
+        "period": "2021-12-04",
+        "from": "2021-12-04",
+        "to": "",
+        "year": "2021",
+        "link": "https://researchmap.jp/ryuyahora/social_contribution/51734818",
+        "links": [
+          [
+            "researchmap",
+            "https://researchmap.jp/ryuyahora/social_contribution/51734818"
+          ]
+        ]
       }
     ]
   },

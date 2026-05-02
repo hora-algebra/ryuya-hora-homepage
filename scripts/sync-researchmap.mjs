@@ -12,7 +12,16 @@ const preferredLanguages = (process.env.RESEARCHMAP_LANGS || "en,ja")
   .map((lang) => lang.trim())
   .filter(Boolean);
 
-const achievementTypes = ["published_papers", "presentations", "awards", "education", "misc"];
+const achievementTypes = [
+  "published_papers",
+  "presentations",
+  "awards",
+  "education",
+  "misc",
+  "research_projects",
+  "academic_contribution",
+  "social_contribution"
+];
 
 function compact(values) {
   return values.filter((value) => value !== undefined && value !== null && String(value).trim() !== "");
@@ -52,8 +61,42 @@ function yearFrom(...values) {
 function dateRange(from, to) {
   const start = firstText(from);
   const end = firstText(to);
-  if (start && end) return `${start} - ${end}`;
-  return start || end || "";
+  const normalizedEnd = end === "9999" ? "present" : end;
+  if (start && normalizedEnd) return `${start} - ${normalizedEnd}`;
+  return start || normalizedEnd || "";
+}
+
+function grantNumbers(item) {
+  const identifiers = item.identifiers || {};
+  return compact([
+    ...asArray(identifiers.grant_number).map(pickText),
+    ...asArray(identifiers.national_grant_number).map(pickText)
+  ]);
+}
+
+function amountValue(value) {
+  const text = pickText(value);
+  return text ? Number(text) || text : "";
+}
+
+function normalizeContributionRoles(value) {
+  return asArray(value).map(pickText).filter(Boolean);
+}
+
+function normalizeContributionRoleLabel(value) {
+  const dictionary = {
+    advisor: "advisor",
+    appearance: "appearance",
+    others: "other",
+    peer_review: "peer review",
+    planning_etc: "planning",
+    panel_chair_etc: "organizing"
+  };
+  return dictionary[value] || String(value || "").replace(/_/g, " ");
+}
+
+function normalizedContributionRoles(value) {
+  return normalizeContributionRoles(value).map(normalizeContributionRoleLabel);
 }
 
 function asArray(value) {
@@ -115,7 +158,10 @@ function normalizeLink(label, href) {
     .replace(/^http:\/\/arxiv\.org\/pdf\/arXiv:/i, "https://arxiv.org/pdf/")
     .replace(/^http:\/\/arxiv\.org\/pdf\//i, "https://arxiv.org/pdf/");
   if (/^arxiv$/i.test(cleanLabel)) cleanLabel = "arXiv";
+  if (/^kaken$/i.test(cleanLabel)) cleanLabel = "KAKEN";
   if (cleanLabel === "rm:research_project_id") cleanLabel = "Research project";
+  if (cleanLabel === "rm:published_papers") cleanLabel = "Published paper";
+  if (cleanLabel === "rm:misc") cleanLabel = "Misc";
   return [cleanLabel, cleanHref];
 }
 
@@ -238,6 +284,66 @@ function normalizeMisc(item) {
   };
 }
 
+function normalizeResearchProject(item) {
+  const links = linksFrom(item, "research_projects");
+  return {
+    id: firstText(item["rm:id"], item.id),
+    title: firstText(item.research_project_title, item.title),
+    investigators: normalizePeople(item.investigators),
+    organization: firstText(item.offer_organization),
+    systemName: firstText(item.system_name),
+    category: firstText(item.category),
+    institution: firstText(item.institution_name),
+    role: firstText(item.research_project_owner_role),
+    period: dateRange(item.from_date, item.to_date),
+    from: firstText(item.from_date),
+    to: firstText(item.to_date) === "9999" ? "present" : firstText(item.to_date),
+    grantNumbers: grantNumbers(item),
+    overallGrantAmount: item.overall_grant_amount ? {
+      totalCost: amountValue(item.overall_grant_amount.total_cost),
+      directCost: amountValue(item.overall_grant_amount.direct_cost),
+      indirectCost: amountValue(item.overall_grant_amount.indirect_cost)
+    } : null,
+    link: primaryLink(links, itemUrl(item, "research_projects")),
+    links
+  };
+}
+
+function normalizeAcademicContribution(item) {
+  const links = linksFrom(item, "academic_contribution");
+  return {
+    id: firstText(item["rm:id"], item.id),
+    title: firstText(item.academic_contribution_title, item.title),
+    type: firstText(item.academic_contribution_type),
+    roles: normalizedContributionRoles(item.academic_contribution_roles),
+    promoter: firstText(item.promoter),
+    event: firstText(item.event),
+    period: dateRange(item.from_event_date, item.to_event_date),
+    from: firstText(item.from_event_date),
+    to: firstText(item.to_event_date) === "9999" ? "present" : firstText(item.to_event_date),
+    year: yearFrom(item.from_event_date, item.to_event_date),
+    link: primaryLink(links, itemUrl(item, "academic_contribution")),
+    links
+  };
+}
+
+function normalizeSocialContribution(item) {
+  const links = linksFrom(item, "social_contribution");
+  return {
+    id: firstText(item["rm:id"], item.id),
+    title: firstText(item.social_contribution_title, item.title),
+    roles: normalizedContributionRoles(item.social_contribution_roles),
+    promoter: firstText(item.promoter),
+    event: firstText(item.event),
+    period: dateRange(item.from_event_date, item.to_event_date),
+    from: firstText(item.from_event_date),
+    to: firstText(item.to_event_date) === "9999" ? "present" : firstText(item.to_event_date),
+    year: yearFrom(item.from_event_date, item.to_event_date),
+    link: primaryLink(links, itemUrl(item, "social_contribution")),
+    links
+  };
+}
+
 function graphItems(profile, type) {
   const graph = asArray(profile["@graph"]);
   return asArray(graph.find((entry) => entry["@type"] === type)?.items);
@@ -321,7 +427,10 @@ const data = {
   presentations: collections.presentations.map(normalizePresentation).filter((item) => item.title),
   awards: collections.awards.map(normalizeAward).filter((item) => item.title),
   education: collections.education.map(normalizeEducation).filter((item) => item.affiliation || item.department),
-  misc: collections.misc.map(normalizeMisc).filter((item) => item.title)
+  misc: collections.misc.map(normalizeMisc).filter((item) => item.title),
+  researchProjects: collections.research_projects.map(normalizeResearchProject).filter((item) => item.title),
+  academicContributions: collections.academic_contribution.map(normalizeAcademicContribution).filter((item) => item.title),
+  socialContributions: collections.social_contribution.map(normalizeSocialContribution).filter((item) => item.title)
 };
 
 await mkdir("data", { recursive: true });
@@ -338,5 +447,8 @@ console.log(`Presentations: ${data.presentations.length}`);
 console.log(`Awards: ${data.awards.length}`);
 console.log(`Education: ${data.education.length}`);
 console.log(`Misc: ${data.misc.length}`);
+console.log(`Research projects: ${data.researchProjects.length}`);
+console.log(`Academic contributions: ${data.academicContributions.length}`);
+console.log(`Social contributions: ${data.socialContributions.length}`);
 console.log(`Wrote ${outputJson}`);
 console.log(`Wrote ${outputScript}`);
