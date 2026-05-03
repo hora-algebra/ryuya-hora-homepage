@@ -1702,14 +1702,16 @@ a.position-icon:focus-visible {
 }
 
 .position-link {
-  color: var(--ink);
+  color: var(--accent);
   line-height: 1.48;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
 }
 
-a.position-link:hover {
-  color: var(--accent);
-  text-decoration: underline;
+a.position-link:hover,
+a.position-link:focus-visible {
+  color: var(--accent-2);
 }
 
 .categories-tokyo-feature {
@@ -9745,9 +9747,9 @@ a.position-link:hover {
 }
 
 #home-timeline {
-  --timeline-lane-step: 104px;
-  --timeline-lane-top: 92px;
-  --timeline-item-top: 114px;
+  --timeline-lane-step: 94px;
+  --timeline-lane-top: 82px;
+  --timeline-item-top: 104px;
   --timeline-paper: #2f536f;
   --timeline-paper-bg: #e7edf2;
   --timeline-affiliation: #c7783d;
@@ -9766,7 +9768,8 @@ a.position-link:hover {
 
 #home-timeline .home-timeline-track {
   width: max(100%, var(--timeline-track-width, 100%));
-  min-height: clamp(535px, 40vw, 565px);
+  min-height: 495px;
+  background: linear-gradient(180deg, #fffdf8 0%, #f3eee6 100%);
 }
 
 #home-timeline .home-timeline-lane-label {
@@ -9827,7 +9830,7 @@ a.position-link:hover {
 }
 
 #home-timeline .home-year-tick::before {
-  height: 495px;
+  height: 455px;
 }
 
 #home-timeline .home-timeline-lane {
@@ -9845,6 +9848,12 @@ a.position-link:hover {
 
 #home-timeline .home-timeline-interval-span {
   top: calc(var(--timeline-item-top) + var(--lane) * var(--timeline-lane-step) + var(--offset) * 1px);
+}
+
+#home-timeline .home-timeline-secondary-interval-span {
+  top: calc(var(--timeline-item-top) + var(--lane) * var(--timeline-lane-step) + var(--offset) * 1px);
+  left: calc(150px + (100% - 176px) * var(--x-start) / 100);
+  width: calc((100% - 176px) * (var(--x-end) - var(--x-start)) / 100);
 }
 
 #home-timeline .timeline-lane-label-overlay .home-timeline-lane-label {
@@ -9902,6 +9911,14 @@ a.position-link:hover {
   height: 360px;
   background: rgba(43, 52, 43, 0.1);
   content: "";
+}
+
+.home-quarter-tick {
+  color: transparent;
+}
+
+.home-quarter-tick::before {
+  background: rgba(43, 52, 43, 0.075);
 }
 
 .home-timeline-now {
@@ -9988,6 +10005,7 @@ a.position-link:hover {
 
 .home-timeline-secondary-interval-span {
   --theme-stroke: #5f6b62;
+  --theme-bg: #eceee9;
   position: absolute;
   top: calc(82px + var(--lane) * 48px + var(--offset) * 1px);
   left: calc(96px + (100% - 122px) * var(--x-start) / 100);
@@ -9996,22 +10014,24 @@ a.position-link:hover {
   min-width: 14px;
   height: 2px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--theme-stroke) 54%, transparent);
-  opacity: 0.5;
+  background: color-mix(in srgb, var(--theme-stroke) 78%, var(--theme-bg));
   text-decoration: none;
   transform: translateY(-50%);
 }
 
 .home-timeline-secondary-interval-span.kind-affiliation {
   --theme-stroke: var(--timeline-affiliation);
+  --theme-bg: var(--timeline-affiliation-bg);
 }
 
 .home-timeline-secondary-interval-span.kind-academic {
   --theme-stroke: var(--timeline-academic);
+  --theme-bg: var(--timeline-academic-bg);
 }
 
 .home-timeline-secondary-interval-span.kind-teaching {
   --theme-stroke: var(--timeline-teaching);
+  --theme-bg: var(--timeline-teaching-bg);
 }
 
 .home-timeline-affiliation-span {
@@ -10217,6 +10237,12 @@ a.position-link:hover {
   opacity: 1;
 }
 
+#home-timeline .home-timeline-node.kind-activity.activity-categories-tokyo-private {
+  width: 11.3px;
+  height: 11.3px;
+  filter: drop-shadow(0 0 3px rgba(217, 154, 24, 0.4)) drop-shadow(0 4px 6px rgba(78, 54, 18, 0.2));
+}
+
 .home-timeline-node.kind-award {
   --theme-stroke: #a87428;
   --theme-bg: #f4ecd6;
@@ -10315,6 +10341,7 @@ a.position-link:hover {
 
 #home-timeline .home-timeline-lane-rail {
   top: var(--lane-rail-top, calc(var(--timeline-item-top) - var(--timeline-lane-top) + (var(--timeline-lane-step) / 2) - 0.5px));
+  display: none;
   height: 1px;
   background: linear-gradient(
     90deg,
@@ -10337,17 +10364,19 @@ a.position-link:hover {
 }
 
 #home-timeline .home-timeline-lane-label.kind-affiliation-academic {
-  background: linear-gradient(
-    90deg,
-    var(--timeline-affiliation) 0 30%,
-    var(--timeline-academic) 39% 62%,
-    var(--timeline-teaching) 72% 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--timeline-affiliation);
   font-size: 0.66rem;
   line-height: 1;
+  text-shadow:
+    -1px -1px 0 #fffdf8,
+    0 -1px 0 #fffdf8,
+    1px -1px 0 #fffdf8,
+    -1px 0 0 #fffdf8,
+    1px 0 0 #fffdf8,
+    -1px 1px 0 #fffdf8,
+    0 1px 0 #fffdf8,
+    1px 1px 0 #fffdf8,
+    0 2px 5px rgba(35, 37, 30, 0.2);
 }
 
 #home-timeline .home-timeline-lane-label.kind-teaching {
@@ -10367,15 +10396,33 @@ a.position-link:hover {
 }
 
 #home-timeline .home-timeline-lane-label.kind-activity-award-talk {
-  background: linear-gradient(
-    90deg,
-    var(--timeline-activity) 0 29%,
-    var(--timeline-award) 36% 64%,
-    var(--timeline-talk) 71% 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--timeline-activity);
+  text-shadow:
+    -1px -1px 0 #fffdf8,
+    0 -1px 0 #fffdf8,
+    1px -1px 0 #fffdf8,
+    -1px 0 0 #fffdf8,
+    1px 0 0 #fffdf8,
+    -1px 1px 0 #fffdf8,
+    0 1px 0 #fffdf8,
+    1px 1px 0 #fffdf8,
+    0 2px 5px rgba(35, 37, 30, 0.2);
+}
+
+#home-timeline .home-timeline-lane-label.kind-paper,
+#home-timeline .home-timeline-lane-label.kind-affiliation-academic,
+#home-timeline .home-timeline-lane-label.kind-activity-award-talk {
+  color: #24231f;
+  text-shadow:
+    -1px -1px 0 #fffdf8,
+    0 -1px 0 #fffdf8,
+    1px -1px 0 #fffdf8,
+    -1px 0 0 #fffdf8,
+    1px 0 0 #fffdf8,
+    -1px 1px 0 #fffdf8,
+    0 1px 0 #fffdf8,
+    1px 1px 0 #fffdf8,
+    0 2px 5px rgba(35, 37, 30, 0.18);
 }
 
 #home-timeline .home-timeline-paper-span {
@@ -10399,6 +10446,13 @@ a.position-link:hover {
   --theme-stroke: var(--timeline-teaching);
   --theme-bg: var(--timeline-teaching-bg);
   background: color-mix(in srgb, var(--timeline-teaching) 78%, var(--timeline-teaching-bg));
+}
+
+#home-timeline .home-timeline-interval-span.is-major-position {
+  height: 10px;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--theme-stroke) 18%, transparent),
+    0 5px 12px rgba(35, 37, 30, 0.16);
 }
 
 #home-timeline .home-timeline-node.kind-teaching {

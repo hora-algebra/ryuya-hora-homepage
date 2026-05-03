@@ -134,12 +134,12 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026", timelineStart: "2026-04", timelineExtendToEnd: true },
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026", timelineStart: "2026-04", timelineExtendToEnd: true, timelineWeight: "major" },
     { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai", reviewKey: "position:humai-researcher:2026", timelineStart: "2026-04", timelineExtendToEnd: true },
     { text: "Supported by KAKENHI project 24KJ0837 through March 2027.", textJa: "2027年3月まで KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837", timelineStart: "2024-04", timelineEnd: "2027-03" }
   ],
   pastPositions: [
-    { text: "Visited the Centre for Topos Theory and its Applications in Paris as a Research Associate from April to June 2025; Research Associate appointment from April 2025 to March 2026.", textJa: "2025年4月から6月まで，Centre for Topos Theory and its Applications（パリ）にリサーチアソシエイトとして滞在．リサーチアソシエイトとしての所属期間は2025年4月から2026年3月まで．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", timelineTitle: "CTTA visit as Research Associate", timelineDetail: "Research Associate appointment: April 2025 to March 2026.", timelineDetailJa: "リサーチアソシエイトとしての所属期間: 2025年4月から2026年3月まで．", timelineStart: "2025-04", timelineEnd: "2025-06", timelineSecondaryStart: "2025-04", timelineSecondaryEnd: "2026-03", timelineSecondaryLabel: "appointment", timelineSecondaryLabelJa: "所属期間" },
+    { text: "Visited the Centre for Topos Theory and its Applications in Paris as a Research Associate from 10 April to 27 June 2025; Research Associate appointment from April 2025 to March 2026.", textJa: "2025年4月10日から6月27日まで，Centre for Topos Theory and its Applications（パリ）にリサーチアソシエイトとして滞在．リサーチアソシエイトとしての所属期間は2025年4月から2026年3月まで．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", timelineTitle: "CTTA visit as Research Associate", timelineDetail: "Research Associate appointment: April 2025 to March 2026.", timelineDetailJa: "リサーチアソシエイトとしての所属期間: 2025年4月から2026年3月まで．", timelineStart: "2025-04-10", timelineEnd: "2025-06-27", timelineSecondaryStart: "2025-04", timelineSecondaryEnd: "2026-03", timelineSecondaryLabel: "appointment", timelineSecondaryLabelJa: "所属期間" },
     { text: "FoPM student from April 2022 to March 2026; financially supported by FoPM from October 2022 to March 2024.", textJa: "2022年4月から2026年3月まで変革を駆動する先端物理・数学プログラム（FoPM）学生．2022年10月から2024年3月までFoPMによる経済支援を受けた．", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", timelineTitle: "FoPM financial support", timelineDetail: "FoPM student period: April 2022 to March 2026.", timelineDetailJa: "FoPM学生としての期間: 2022年4月から2026年3月まで．", timelineStart: "2022-10", timelineEnd: "2024-03", timelineSecondaryStart: "2022-04", timelineSecondaryEnd: "2026-03", timelineSecondaryLabel: "student period", timelineSecondaryLabelJa: "学生期間" },
     { text: "Member of the AFSA project and Research Assistant at the National Institute of Informatics from July 2022 to March 2025.", textJa: "2022年7月から2025年3月まで，AFSAプロジェクトメンバーおよび国立情報学研究所リサーチアシスタント．", href: "https://afsa.jp/g-en/", timelineStart: "2022-07", timelineEnd: "2025-03" }
   ],
@@ -555,18 +555,16 @@ const siteData = {
     }
   ],
   awards: [
-    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 研究科長賞，博士課程，2026年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 修了式総代，博士課程，2026年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html", reviewKey: "award:graduation-representative:gsm:doctoral:2026" },
+    { text: "Dean's award and Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 研究科長賞・修了式総代，博士課程，2026年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html", links: [["Dean's award", "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html"], ["Graduation ceremony", "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html"]], reviewKey: "award:graduation-representative:gsm:doctoral:2026" },
     { text: "SLACS 2025 presentation award, October 2025.", textJa: "第42回 記号論理と情報科学研究集会（SLACS 2025）発表賞，2025年10月．", href: "https://sites.google.com/view/slacs2025akita/home" },
-    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 研究科長賞，修士課程，2024年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 修了式総代，修士課程，2024年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html", reviewKey: "award:graduation-representative:gsm:masters:2024" },
+    { text: "Dean's award and Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 研究科長賞・修了式総代，修士課程，2024年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html", links: [["Dean's award", "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html"], ["Graduation ceremony", "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html"]], reviewKey: "award:graduation-representative:gsm:masters:2024" },
     { text: "Faculty of Science encouragement award, The University of Tokyo, March 2022.", textJa: "東京大学理学部 学修奨励賞，2022年3月．", href: "https://warp.ndl.go.jp/info:ndljp/pid/12972979/www.s.u-tokyo.ac.jp/ja/awards/encouragement/R3.html" }
   ],
   education: [
     { text: "Worked as a tutor at SEG for several years around 2019.", textJa: "2019年前後から数年間，SEG でチューター．", href: "https://www.seg.co.jp/" },
     { text: "Private tutor for gifted elementary and junior high school students from February 2020 to September 2022.", textJa: "2020年2月から2022年9月まで，現代数学やプログラミングの家庭教師．" },
-    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から数理空間トポスのチューター．", href: "https://sites.google.com/view/mspacetopos/home" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月から角川ドワンゴ学園 研究部のアドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/" }
+    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から数理空間トポスのチューター．", href: "https://sites.google.com/view/mspacetopos/home", timelineExtendToEnd: true },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月から角川ドワンゴ学園 研究部のアドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", timelineExtendToEnd: true }
   ],
   problems: [
     problemEntry({
@@ -5691,7 +5689,8 @@ function homeTimelineAffiliationRecords() {
       startTime,
       endTime: hasExplicitEnd ? explicitEndTime : today,
       affiliationStatus: "current",
-      extendToTimelineEnd: Boolean(record.timelineExtendToEnd)
+      extendToTimelineEnd: Boolean(record.timelineExtendToEnd),
+      timelineWeight: record.timelineWeight || ""
     };
   }).filter(Boolean);
 }
@@ -5775,7 +5774,8 @@ function homeTimelineTeachingRecords() {
       time: startTime,
       startTime,
       endTime,
-      teachingStatus: Number.isFinite(endTime) && isCurrent ? "current" : Number.isFinite(endTime) ? "past" : "point"
+      teachingStatus: Number.isFinite(endTime) && isCurrent ? "current" : Number.isFinite(endTime) ? "past" : "point",
+      extendToTimelineEnd: Boolean(record.timelineExtendToEnd)
     };
   }).filter(Boolean);
 }
@@ -5794,6 +5794,19 @@ function academicTimelineCourseLabel(record) {
   return "";
 }
 
+function academicTimelineIsMajorRecord(record) {
+  const affiliation = simplified(record.affiliation);
+  const department = simplified(record.department);
+  const period = String(record.period || "").trim();
+  const isUniversityOfTokyo = affiliation.includes("the university of tokyo") || affiliation.includes("university tokyo");
+  if (affiliation.includes("山口県立徳山高等学校")) return true;
+  if (!isUniversityOfTokyo) return false;
+  if (department.includes("college of arts and sciences")) return true;
+  if (department.includes("faculty of science")) return true;
+  if (!department.includes("graduate school of mathematical sciences")) return false;
+  return period.startsWith("2022-04 - 2024-03") || period.startsWith("2024-04 - 2026-03");
+}
+
 function homeTimelineAcademicRecords() {
   const education = visibleResearchmapEducationRecords().map((record) => {
     const startTime = timelineTimeFromValue(record.from || record.period);
@@ -5809,7 +5822,8 @@ function homeTimelineAcademicRecords() {
       time: startTime,
       startTime,
       endTime,
-      academicStatus: "past"
+      academicStatus: "past",
+      timelineWeight: academicTimelineIsMajorRecord(record) ? "major" : ""
     };
   });
   const pastAffiliations = siteData.pastPositions.map((record) => {
@@ -5935,23 +5949,23 @@ function homeTimelineRecordThemeLabel(record) {
   return record.theme ? homeTimelineThemeLabel(record.theme) : "";
 }
 
-const homeTimelineLanes = ["paper", "affiliation", "talk"];
+const homeTimelineLanes = ["affiliation", "talk", "paper"];
 const homeTimelineLanePositions = {
-  paper: 0,
-  affiliation: 1,
-  talk: 2.7
+  affiliation: 0.09,
+  talk: 1.71,
+  paper: 3.19
 };
 const homeTimelineLaneRailPositions = {
-  paper: 0.5,
-  affiliation: 1.5,
-  talk: 3.6
+  affiliation: 0.59,
+  talk: 2.66,
+  paper: 3.69
 };
 const homeTimelinePointLanes = ["affiliation", "talk"];
 const homeTimelineDefaultWindowMs = 3 * 365.25 * 24 * 60 * 60 * 1000;
 const homeTimelineMetric = {
-  laneTop: 92,
-  itemTop: 114,
-  laneStep: 104
+  laneTop: 82,
+  itemTop: 104,
+  laneStep: 94
 };
 
 const homeTimelineTalkActivityRelationSpecs = [
@@ -6206,34 +6220,47 @@ function homeTimelineIntervalSpanLayout(records, firstTime, lastTime, kind, slot
   const layout = new Map();
   const slots = [];
   const items = [];
-  records
+  const intervalPosition = (startTime, endTime, extendToTimelineEnd = false) => {
+    const start = Math.max(0, Math.min(100, timelinePosition(startTime, firstTime, lastTime, 0, 1)));
+    const end = extendToTimelineEnd
+      ? 100
+      : Math.min(100, Math.max(start + 1.2, timelinePosition(endTime, firstTime, lastTime, 0, 1)));
+    return { start, end };
+  };
+  const intervalRecords = records
     .filter((record) => kinds.includes(record.kind) && homeTimelineIsIntervalRecord(record))
-    .sort((a, b) => a.startTime - b.startTime || a.endTime - b.endTime || a.title.localeCompare(b.title))
-    .forEach((record) => {
-      const start = Math.max(0, Math.min(100, timelinePosition(record.startTime, firstTime, lastTime, 0, 1)));
-      const end = record.extendToTimelineEnd ? 100 : Math.min(100, Math.max(start + 1.2, timelinePosition(record.endTime, firstTime, lastTime, 0, 1)));
-      const slot = slots.findIndex((slotEnd) => start > slotEnd + 1.2);
+    .sort((a, b) => {
+      const aStart = Number.isFinite(a.secondaryStartTime) ? a.secondaryStartTime : a.startTime;
+      const bStart = Number.isFinite(b.secondaryStartTime) ? b.secondaryStartTime : b.startTime;
+      const aEnd = Number.isFinite(a.secondaryEndTime) ? a.secondaryEndTime : a.endTime;
+      const bEnd = Number.isFinite(b.secondaryEndTime) ? b.secondaryEndTime : b.endTime;
+      return aStart - bStart || aEnd - bEnd || a.title.localeCompare(b.title);
+    });
+  [
+    ...intervalRecords.filter((record) => record.timelineWeight === "major"),
+    ...intervalRecords.filter((record) => record.timelineWeight !== "major")
+  ].forEach((record) => {
+      const primary = intervalPosition(record.startTime, record.endTime, record.extendToTimelineEnd);
+      const secondaryStartTime = record.secondaryStartTime;
+      const secondaryEndTime = record.secondaryEndTime;
+      const hasSecondary = Number.isFinite(secondaryStartTime) && Number.isFinite(secondaryEndTime);
+      const secondary = hasSecondary ? intervalPosition(secondaryStartTime, secondaryEndTime) : { start: Number.NaN, end: Number.NaN };
+      const slotStart = hasSecondary ? secondary.start : primary.start;
+      const slotEnd = hasSecondary ? secondary.end : primary.end;
+      const slotClearance = record.timelineWeight === "major" ? 0 : 1.2;
+      const slot = slots.findIndex((placedSlotEnd) => slotStart > placedSlotEnd + slotClearance);
       const index = slot >= 0 ? slot : slots.length;
-      slots[index] = end;
-      items.push({ record, start, end, slot: index });
+      slots[index] = slotEnd;
+      items.push({ record, start: primary.start, end: primary.end, secondaryStart: secondary.start, secondaryEnd: secondary.end, slot: index });
   });
   const maxSlot = items.reduce((max, item) => Math.max(max, item.slot), 0);
   const center = maxSlot / 2;
   items.forEach((item) => {
-    const secondaryStartTime = item.record.secondaryStartTime;
-    const secondaryEndTime = item.record.secondaryEndTime;
-    const hasSecondary = Number.isFinite(secondaryStartTime) && Number.isFinite(secondaryEndTime);
-    const secondaryStart = hasSecondary
-      ? Math.max(0, Math.min(100, timelinePosition(secondaryStartTime, firstTime, lastTime, 0, 1)))
-      : Number.NaN;
-    const secondaryEnd = hasSecondary
-      ? Math.min(100, Math.max(secondaryStart + 1.2, timelinePosition(secondaryEndTime, firstTime, lastTime, 0, 1)))
-      : Number.NaN;
     layout.set(item.record, {
       start: item.start,
       end: item.end,
-      secondaryStart,
-      secondaryEnd,
+      secondaryStart: item.secondaryStart,
+      secondaryEnd: item.secondaryEnd,
       offset: Number(((item.slot - center) * slotGap).toFixed(1))
     });
   });
@@ -6258,7 +6285,8 @@ function renderHomeTimelineIntervalSpan(record, position) {
     record.kind === "paper" ? `home-timeline-paper-span theme-${record.theme} is-${record.paperStatus}` : "",
     record.kind === "affiliation" ? `home-timeline-affiliation-span is-${record.affiliationStatus}` : "",
     record.kind === "academic" ? `home-timeline-academic-span is-${record.academicStatus}` : "",
-    record.kind === "teaching" ? `home-timeline-teaching-span is-${record.teachingStatus}` : ""
+    record.kind === "teaching" ? `home-timeline-teaching-span is-${record.teachingStatus}` : "",
+    record.timelineWeight === "major" ? "is-major-position" : ""
   ]).join(" ");
   const span = link("", record.href, classes);
   const key = homeTimelineRecordKey(record);
@@ -6311,8 +6339,15 @@ function renderHomeTimelinePaperSpan(record, position) {
   return renderHomeTimelineIntervalSpan(record, position);
 }
 
+function homeTimelineIsBimonthlyCategoryTheorySeminarActivity(record) {
+  return record.kind === "activity" && simplified(record.title).includes("bimonthly category theory seminar");
+}
+
 function homeTimelineIsCategoriesInTokyoActivity(record) {
-  return record.kind === "activity" && simplified(record.title).includes("categories in tokyo");
+  return record.kind === "activity" && (
+    simplified(record.title).includes("categories in tokyo") ||
+    homeTimelineIsBimonthlyCategoryTheorySeminarActivity(record)
+  );
 }
 
 function renderHomeTimelineNode(record, position) {
@@ -6321,7 +6356,8 @@ function renderHomeTimelineNode(record, position) {
     `kind-${record.kind}`,
     `theme-${record.theme}`,
     record.kind === "activity" ? `activity-${record.activityScale || "meeting"}` : "",
-    homeTimelineIsCategoriesInTokyoActivity(record) ? "activity-categories-tokyo" : ""
+    homeTimelineIsCategoriesInTokyoActivity(record) ? "activity-categories-tokyo" : "",
+    homeTimelineIsBimonthlyCategoryTheorySeminarActivity(record) ? "activity-categories-tokyo-private" : ""
   ]).join(" ");
   const node = link("", record.href, nodeClasses);
   const key = homeTimelineRecordKey(record);
@@ -6460,10 +6496,20 @@ function renderHomeTimeline() {
   track.style.setProperty("--timeline-years", Math.max(8, lastYear - firstYear + 1));
   track.style.setProperty("--timeline-track-width", `${(trackWidthRatio * 100).toFixed(2)}%`);
   for (let year = firstYear; year <= lastYear; year += 1) {
-    const position = timelinePosition(timelineUtc(year, 0, 1), firstTime, lastTime, 0, 1);
-    const tick = el("span", "home-year-tick", year);
-    tick.style.setProperty("--x", Math.max(0, Math.min(100, position)));
-    yearRow.append(tick);
+    [0, 3, 6, 9].forEach((month) => {
+      const time = timelineUtc(year, month, 1);
+      if (time < firstTime || time > lastTime) return;
+      const position = timelinePosition(time, firstTime, lastTime, 0, 1);
+      const isYearBoundary = month === 0;
+      const tick = el(
+        "span",
+        `home-year-tick ${isYearBoundary ? "home-year-boundary-tick" : "home-quarter-tick"}`,
+        isYearBoundary ? year : ""
+      );
+      tick.style.setProperty("--x", Math.max(0, Math.min(100, position)));
+      tick.setAttribute("aria-hidden", isYearBoundary ? "false" : "true");
+      yearRow.append(tick);
+    });
   }
   track.append(yearRow);
 
@@ -13955,6 +14001,7 @@ function renderLinkedList(selector, records) {
     } else {
       body.append(localizedText("span", null, record.text, record.textJa));
     }
+    if (selector !== "#award-list" && record.links?.length) appendActionLinks(body, normalizedPublicationLinks(record.links));
     appendContentReviewBadges(body, claimReviewBadges(record.reviewKey));
     item.append(body);
     root.append(item);
