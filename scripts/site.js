@@ -134,18 +134,14 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026", timelineStart: "2026-04" },
-    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai", reviewKey: "position:humai-researcher:2026", timelineStart: "2026-04" },
-    { text: "Supported by KAKENHI project 24KJ0837.", textJa: "KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837", timelineStart: "2024-04" },
-    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension", timelineStart: "2024-01", timelineStartLabel: "2024" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon", timelineStart: "2025-06" },
-    { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター．", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback", timelineStart: "2020-07" }
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026", timelineStart: "2026-04", timelineExtendToEnd: true, timelineWeight: "major" },
+    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai", reviewKey: "position:humai-researcher:2026", timelineStart: "2026-04", timelineExtendToEnd: true },
+    { text: "Supported by KAKENHI project 24KJ0837 through March 2027.", textJa: "2027年3月まで KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837", timelineStart: "2024-04", timelineEnd: "2027-03" }
   ],
   pastPositions: [
-    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", textJa: "2025年4月から7月まで，Centre for Topos Theory and its Applications（パリ）リサーチアソシエイト．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", timelineStart: "2025-04", timelineEnd: "2025-07" },
-    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", textJa: "2024年4月から2026年3月まで，東京大学大学院数理科学研究科 博士課程．", href: "https://www.ms.u-tokyo.ac.jp/", timelineStart: "2024-04", timelineEnd: "2026-03" },
-    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", textJa: "2022年10月から2024年3月まで，変革を駆動する先端物理・数学プログラム（FoPM）支援学生．", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", timelineStart: "2022-10", timelineEnd: "2024-03" },
-    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", textJa: "2020年11月から2021年3月まで，国立情報学研究所リサーチアシスタント．", href: "https://www.nii.ac.jp/en/", timelineStart: "2020-11", timelineEnd: "2021-03" }
+    { text: "Visited the Centre for Topos Theory and its Applications in Paris as a Research Associate from 10 April to 27 June 2025; Research Associate appointment from April 2025 to March 2026.", textJa: "2025年4月10日から6月27日まで，Centre for Topos Theory and its Applications（パリ）にリサーチアソシエイトとして滞在．リサーチアソシエイトとしての所属期間は2025年4月から2026年3月まで．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", timelineTitle: "CTTA visit as Research Associate", timelineDetail: "Research Associate appointment: April 2025 to March 2026.", timelineDetailJa: "リサーチアソシエイトとしての所属期間: 2025年4月から2026年3月まで．", timelineStart: "2025-04-10", timelineEnd: "2025-06-27", timelineSecondaryStart: "2025-04", timelineSecondaryEnd: "2026-03", timelineSecondaryLabel: "appointment", timelineSecondaryLabelJa: "所属期間" },
+    { text: "FoPM student from April 2022 to March 2026; financially supported by FoPM from October 2022 to March 2024.", textJa: "2022年4月から2026年3月まで変革を駆動する先端物理・数学プログラム（FoPM）学生．2022年10月から2024年3月までFoPMによる経済支援を受けた．", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", timelineTitle: "FoPM financial support", timelineDetail: "FoPM student period: April 2022 to March 2026.", timelineDetailJa: "FoPM学生としての期間: 2022年4月から2026年3月まで．", timelineStart: "2022-10", timelineEnd: "2024-03", timelineSecondaryStart: "2022-04", timelineSecondaryEnd: "2026-03", timelineSecondaryLabel: "student period", timelineSecondaryLabelJa: "学生期間" },
+    { text: "Member of the AFSA project and Research Assistant at the National Institute of Informatics from July 2022 to March 2025.", textJa: "2022年7月から2025年3月まで，AFSAプロジェクトメンバーおよび国立情報学研究所リサーチアシスタント．", href: "https://afsa.jp/g-en/", timelineStart: "2022-07", timelineEnd: "2025-03" }
   ],
   webApps: [
     {
@@ -480,6 +476,7 @@ const siteData = {
       title: "2026",
       items: [
         { date: "2026-01", text: "Submitted Ph.D. thesis.", href: "https://www.ms.u-tokyo.ac.jp/seminar/2026/sem26-042.html" },
+        { date: "2026-01-23", text: "Gave a talk at Ph.D. thesis presentation.", href: "https://www.ms.u-tokyo.ac.jp/seminar/thesispres/past.html" },
         { date: "2026-02-07 - 2026-02-08", text: "Organized and attended Categories in Tokyo 2.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2026-02-22 - 2026-02-23", text: "Attended 20th CGP project.", href: "http://www.alg.cei.uec.ac.jp/itohiro/Games/" },
         { date: "2026-03-11", text: "Presented a poster with Ryoma Sin'ya at PPL 2026.", href: "https://jssst-ppl.org/workshop/2026/" },
@@ -498,27 +495,38 @@ const siteData = {
         { date: "2025-02-12", text: "Visited Kyoto Category Theory Meeting.", href: "https://sites.google.com/view/kyoto-category-theory-meeting/program" },
         { date: "2025-02-28", text: "Gave a talk at CMUP SAL seminar.", href: "https://www.cmup.pt/index.php/events/topoi-automata" },
         { date: "2025-03-05", text: "Uploaded Lawvere's fourth open problem preprint.", href: "https://arxiv.org/abs/2503.03439" },
-        { date: "2025-04-11 - 2025-06-26", text: "Visited Paris as a research associate at CTTA and visitor in Paris-Saclay University.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
-        { date: "2025-05-27 - 2025-06-05", text: "Gave talks at IRIF and LIPN.", href: "https://www.irif.fr/seminaires/semantique/index" },
+        { date: "2025-03-12", text: "Gave a talk at CSCAT 2025.", href: "https://hisashi-aratake.gitlab.io/event/cscat2025.html" },
+        { date: "2025-04-30", text: "Gave a talk at CTTA Groupe de travail topossique.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
+        { date: "2025-05-06", text: "Gave a talk at Categories for Automata and Language Theory.", href: "https://autcat.github.io/" },
+        { date: "2025-05-16", text: "Gave a talk at CTTA Groupe de travail topossique.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
+        { date: "2025-05-27", text: "Gave a talk at IRIF Sémantique seminar.", href: "https://www.irif.fr/seminaires/semantique/index" },
+        { date: "2025-06-05", text: "Gave a talk at Séminaires du LIPN.", href: "https://researchmap.jp/ryuyahora/presentations/51735020" },
+        { date: "2025-06-10", text: "Gave a talk at Theoretical Cosynus Seminar.", href: "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/" },
         { date: "2025-07-17", text: "Gave a talk at CT 2025.", href: "https://conference.math.muni.cz/ct2025/" },
         { date: "2025-10-10", text: "Wrote in 数学セミナー2025年11月号.", href: "https://www.nippyo.co.jp/shop/magazine/9611.html" },
         { date: "2025-10-18 - 2025-10-19", text: "Attended Takagi Lecture 2025.", href: "https://www.kurims.kyoto-u.ac.jp/~toshi/jjm/JJMJ/JJM_JHP/contents/takagi_jp/25th/index.htm" },
         { date: "2025-10-27", text: "Uploaded preprint on games as recursive coalgebras.", href: "https://arxiv.org/abs/2510.22886" },
         { date: "2025-10-31", text: "Gave a talk at SLACS 2025.", href: "https://sites.google.com/view/slacs2025akita/home" },
         { date: "2025-11-07", text: "Uploaded preprint on normalization of a subgroup.", href: "https://arxiv.org/abs/2511.05012" },
-        { date: "2025-11-28 - 2025-12-05", text: "Gave talks at UTokyo Logic seminar.", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic/" }
+        { date: "2025-11-28", text: "Gave a talk at UTokyo Logic seminar.", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/index_e.html" },
+        { date: "2025-12-05", text: "Gave a talk at UTokyo Logic seminar.", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic/" }
       ]
     },
     {
       title: "2024",
       items: [
+        { date: "2024-03-15", text: "Gave a talk at CSCAT 2024.", href: "https://sites.google.com/faculty.gs.chiba-u.jp/cscat2024/home" },
+        { date: "2024-03-16", text: "Gave a talk at 代数トポロジー若手の会.", href: "https://researchmap.jp/ryuyahora/presentations/51734982" },
         { date: "2024-04-25", text: "Spoke at AFSA.", href: "https://afsa.jp/g-en/" },
         { date: "2024-05-15", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2024-06-28", text: "Gave a talk at CT 2024 in Santiago de Compostela.", href: "https://www.usc.gal/regaca/ct2024/" },
         { date: "2024-07-01 - 2024-07-05", text: "Attended TACL 2024.", href: "https://iiia.csic.es/tacl2024/" },
         { date: "2024-08", text: "Paper on quotient toposes of discrete dynamical systems appeared in JPAA.", href: "https://doi.org/10.1016/j.jpaa.2024.107657" },
+        { date: "2024-08-29", text: "Gave a talk at Young Automata Theorists Gathering in Japan.", href: "https://sites.google.com/view/ciaa-preworkshop/home" },
+        { date: "2024-09-10", text: "Gave a talk at Toposes in Mondovi.", href: "https://ctta.igrothendieck.org/" },
         { date: "2024-11-10", text: "Uploaded Topoi of automata I.", href: "https://arxiv.org/abs/2411.06358" },
         { date: "2024-11-23 - 2024-11-24", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+        { date: "2024-11-30", text: "Gave a talk at AFSA area meeting.", href: "https://afsa.jp/afsa-2024_generalmeetingautumn/" },
         { date: "2024-12-10", text: "Wrote for Advent Calendar 2024.", href: "https://adventar.org/calendars/10265" }
       ]
     },
@@ -526,7 +534,12 @@ const siteData = {
       title: "2023",
       items: [
         { date: "2023-02-14", text: "Uploaded first paper on arXiv.", href: "https://arxiv.org/abs/2302.06851" },
+        { date: "2023-03-09", text: "Gave a talk at CSCAT 2023.", href: "https://sites.google.com/view/cscat2023" },
+        { date: "2023-04-19", text: "Gave a talk at Australia Category Seminar.", href: "http://web.science.mq.edu.au/groups/coact/seminar/" },
+        { date: "2023-05-12", text: "Gave a talk at Japan Combinatorial Game Theory Mini-Workshops.", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj" },
         { date: "2023-06", text: "Attended EM-cats.", href: "https://topos.institute/events/em-cats/" },
+        { date: "2023-07-06", text: "Gave a talk at Category Theory 2023.", href: "https://sites.uclouvain.be/ct2023/" },
+        { date: "2023-08-21", text: "Gave a talk at the 7th Japan Combinatorial Game Theory Conference.", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53" },
         { date: "2023-09-11", text: "A friend's preprint, which I was a little involved in, was uploaded.", href: "https://arxiv.org/abs/2309.05304" },
         { date: "2023-09", text: "Talked about Joyal's species on a Japanese YouTube channel.", href: "https://www.youtube.com/live/gInu95RiCUo" },
         { date: "2023-10-10", text: "A combinatorial game theory preprint acknowledging me was uploaded.", href: "https://arxiv.org/abs/2310.06610" },
@@ -542,18 +555,16 @@ const siteData = {
     }
   ],
   awards: [
-    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 研究科長賞，博士課程，2026年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 修了式総代，博士課程，2026年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html", reviewKey: "award:graduation-representative:gsm:doctoral:2026" },
+    { text: "Dean's award and Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, doctoral course, March 2026.", textJa: "東京大学大学院数理科学研究科 研究科長賞・修了式総代，博士課程，2026年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html", links: [["Dean's award", "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html"], ["Graduation ceremony", "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html"]], reviewKey: "award:graduation-representative:gsm:doctoral:2026" },
     { text: "SLACS 2025 presentation award, October 2025.", textJa: "第42回 記号論理と情報科学研究集会（SLACS 2025）発表賞，2025年10月．", href: "https://sites.google.com/view/slacs2025akita/home" },
-    { text: "Dean's award, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 研究科長賞，修士課程，2024年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html" },
-    { text: "Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 修了式総代，修士課程，2024年3月．", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html", reviewKey: "award:graduation-representative:gsm:masters:2024" },
+    { text: "Dean's award and Graduation Representative, Graduate School of Mathematical Sciences, The University of Tokyo, master's course, March 2024.", textJa: "東京大学大学院数理科学研究科 研究科長賞・修了式総代，修士課程，2024年3月．", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html", links: [["Dean's award", "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html"], ["Graduation ceremony", "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html"]], reviewKey: "award:graduation-representative:gsm:masters:2024" },
     { text: "Faculty of Science encouragement award, The University of Tokyo, March 2022.", textJa: "東京大学理学部 学修奨励賞，2022年3月．", href: "https://warp.ndl.go.jp/info:ndljp/pid/12972979/www.s.u-tokyo.ac.jp/ja/awards/encouragement/R3.html" }
   ],
   education: [
     { text: "Worked as a tutor at SEG for several years around 2019.", textJa: "2019年前後から数年間，SEG でチューター．", href: "https://www.seg.co.jp/" },
     { text: "Private tutor for gifted elementary and junior high school students from February 2020 to September 2022.", textJa: "2020年2月から2022年9月まで，現代数学やプログラミングの家庭教師．" },
-    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から数理空間トポスのチューター．", href: "https://sites.google.com/view/mspacetopos/home" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月から角川ドワンゴ学園 研究部のアドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/" }
+    { text: "Teaching modern mathematics at Math Space Topos since July 2020.", textJa: "2020年7月から数理空間トポスのチューター．", href: "https://sites.google.com/view/mspacetopos/home", timelineExtendToEnd: true },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月から角川ドワンゴ学園 研究部のアドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", timelineExtendToEnd: true }
   ],
   problems: [
     problemEntry({
@@ -1060,9 +1071,9 @@ const siteReviewData = {
     {
       key: "grant:jsps-fellow:24KJ0837",
       status: "verified-owner-and-kaken-active",
-      claim: "Supported by KAKENHI project 24KJ0837.",
+      claim: "Supported by KAKENHI project 24KJ0837 through March 2027.",
       source: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/",
-      note: "Owner confirmed DC1 ended and should not be displayed as current; KAKENHI 24KJ0837 remains ongoing."
+      note: "Owner confirmed DC1 ended and should not be displayed as current; KAKENHI 24KJ0837 runs through March 2027."
     }
   ],
   awards: [
@@ -1440,6 +1451,8 @@ const i18nText = {
     "Award": "受賞",
     "Education": "教育歴",
     "Academic Background": "学歴",
+    "Academic Background and Past Affiliations": "学歴・過去の所属",
+    "Academic Background / Past Affiliations": "学歴・過去の所属",
     "Focus": "Focus",
     "Why it is good": "好きな理由",
     "Basic dictionary": "Basic dictionary",
@@ -1602,6 +1615,8 @@ const i18nText = {
     "Teaching": "教育",
     "Education and Outreach": "教育とアウトリーチ",
     "Teaching and Outreach": "教育・アウトリーチ",
+    "Affiliation / Academic / Teaching + Outreach": "所属・学歴・教育/アウトリーチ",
+    "Activity / Award / Talk": "活動・受賞・講演",
     "Source": "出典",
     "Credit": "謝辞",
     "CV, awards, positions, and education. Last updated: 3 May 2026.":
@@ -2694,9 +2709,10 @@ function hideTimelineTooltipSoon() {
 function attachTimelineTooltip(node, record) {
   const kindLabel = homeTimelineKindLabel(record.kind);
   const themeLabel = homeTimelineRecordThemeLabel(record);
+  const detail = activeLanguage === "ja" && record.detailJa ? record.detailJa : record.detail;
   node.dataset.timelineKicker = compactText([kindLabel, themeLabel, record.dateLabel]).join(" / ");
   node.dataset.timelineTitle = record.title;
-  node.dataset.timelineMeta = record.meta || "";
+  node.dataset.timelineMeta = compactText([record.meta, detail]).join(" / ");
   node.addEventListener("mouseenter", (event) => showTimelineTooltip(node, event));
   node.addEventListener("mousemove", (event) => {
     const tooltip = document.querySelector("#timeline-tooltip");
@@ -3501,11 +3517,9 @@ const activityVisitRecords = [
   { date: "2026-04-05", title: "Attended Humai project final screening", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
   { date: "2025-02-12", title: "Visited Kyoto Category Theory Meeting", locationId: "kyoto", kind: "visit", href: "https://sites.google.com/view/kyoto-category-theory-meeting/program" },
   { date: "2025-02", title: "Attended Logic Winter School at RIKEN", locationId: "saitama", kind: "attended", href: oldActivitiesSource },
-  { date: "2025-04", title: "Visited Paris as CTTA research associate and Paris-Saclay visitor", locationId: "paris", kind: "visit", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
   { date: "2025-04", title: "Visited LIPN for discussion with Morgan Rogers", locationId: "paris", kind: "visit", href: oldActivitiesSource },
   { date: "2025-04", title: "Attended a two-day seminar by Joshua Wrigley at Université Paris Cité", locationId: "paris", kind: "attended", href: oldActivitiesSource },
   { date: "2025-05", title: "Attended the first OxTop seminar at Oxford University", locationId: "oxford", kind: "attended", href: oldActivitiesSource },
-  { date: "2025-06-26", title: "Finished CTTA Paris visit, 11 April to 26 June 2025", locationId: "paris", kind: "visit", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
   { date: "2025-10-18", title: "Attended Takagi Lecture 2025", locationId: "kyoto", kind: "attended", href: "https://www.kurims.kyoto-u.ac.jp/~toshi/jjm/JJMJ/JJM_JHP/contents/takagi_jp/25th/index.htm" },
   { date: "2025-10-27", title: "Visited Akita University for SLACS 2025", locationId: "akita", kind: "visit", href: "https://sites.google.com/view/slacs2025akita/home" },
   { date: "2025-11-16", title: "Attended the Game theory seminar at Karuizawa seminar house", locationId: "karuizawa", kind: "attended", href: oldActivitiesSource },
@@ -3796,7 +3810,7 @@ function siteSearchRecords() {
     title: "Ryuya Hora",
     href: localHref("index.html"),
     summary: "Profile.",
-    keywords: ["profile", "contact", "ZEN University", "Humai Center", "Categories in Tokyo"],
+    keywords: ["profile", "contact", "ZEN University", "Humai Center"],
     icon: "profile"
   });
 
@@ -3822,14 +3836,14 @@ function siteSearchRecords() {
     });
   });
 
-  siteData.pastPositions.forEach((record) => {
+  profileAcademicAffiliationRecords().forEach((record) => {
     pushSiteSearchRecord(records, {
       type: "Profile",
       title: activeLanguage === "ja" && record.textJa ? record.textJa : record.text,
-      href: record.href || localHref("profile/index.html"),
-      summary: "Past position",
+      href: localHref("profile/index.html#academic-background"),
+      summary: "Academic background and past affiliation",
       keywords: compactText([record.text, record.textJa]),
-      icon: "building"
+      icon: record.icon || "education"
     });
   });
 
@@ -5377,10 +5391,24 @@ function timelineUtc(year, month = 6, day = 15) {
   return Date.UTC(Number(year), Number(month), Number(day));
 }
 
+function timelineDaysInMonth(year, month) {
+  return new Date(Date.UTC(Number(year), Number(month) + 1, 0)).getUTCDate();
+}
+
+function inferredTimelineMonthDay(year, month, fallbackDay = 15) {
+  const monthNumber = Number(month);
+  if (monthNumber === 3) return 1;
+  if (monthNumber === 2) return timelineDaysInMonth(year, monthNumber);
+  return fallbackDay;
+}
+
 function timelineTimeFromValue(value, fallbackYear = "", month = 5, day = 15) {
   const text = String(value || "");
   const iso = text.match(/\b(\d{4})-(\d{2})(?:-(\d{2}))?\b/);
-  if (iso) return timelineUtc(iso[1], Number(iso[2]) - 1, iso[3] || 15);
+  if (iso) {
+    const isoMonth = Number(iso[2]) - 1;
+    return timelineUtc(iso[1], isoMonth, iso[3] || inferredTimelineMonthDay(iso[1], isoMonth, day));
+  }
   const year = text.match(/\b(19\d{2}|20\d{2})\b/)?.[1] || String(fallbackYear || "").match(/\b(19\d{2}|20\d{2})\b/)?.[1];
   if (year) return timelineUtc(year, month, day);
   return Number.NaN;
@@ -5389,7 +5417,10 @@ function timelineTimeFromValue(value, fallbackYear = "", month = 5, day = 15) {
 function explicitTimelineTime(value) {
   const text = String(value || "");
   const iso = text.match(/\b(\d{4})-(\d{2})(?:-(\d{2}))?\b/);
-  if (iso) return timelineUtc(iso[1], Number(iso[2]) - 1, iso[3] || 15);
+  if (iso) {
+    const isoMonth = Number(iso[2]) - 1;
+    return timelineUtc(iso[1], isoMonth, iso[3] || inferredTimelineMonthDay(iso[1], isoMonth));
+  }
   const monthDayYear = text.match(
     /\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),\s+(19\d{2}|20\d{2})\b/i
   );
@@ -5397,7 +5428,10 @@ function explicitTimelineTime(value) {
   const monthYear = text.match(
     /\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(19\d{2}|20\d{2})\b/i
   );
-  if (monthYear) return timelineUtc(monthYear[2], monthNumbers[monthYear[1].toLowerCase()], 15);
+  if (monthYear) {
+    const monthIndex = monthNumbers[monthYear[1].toLowerCase()];
+    return timelineUtc(monthYear[2], monthIndex, inferredTimelineMonthDay(monthYear[2], monthIndex));
+  }
   return Number.NaN;
 }
 
@@ -5499,7 +5533,9 @@ function timelineDateLabel(time) {
   const year = date.getUTCFullYear();
   const month = String(date.getUTCMonth() + 1).padStart(2, "0");
   const day = String(date.getUTCDate()).padStart(2, "0");
-  return day === "15" ? `${year}-${month}` : `${year}-${month}-${day}`;
+  const monthIndex = date.getUTCMonth();
+  const inferredDay = inferredTimelineMonthDay(year, monthIndex);
+  return Number(day) === inferredDay ? `${year}-${month}` : `${year}-${month}-${day}`;
 }
 
 function homeTimelinePaperRecords() {
@@ -5609,7 +5645,7 @@ function homeTimelineActivityRecords() {
 }
 
 function positionTimelineTitle(record) {
-  return record.emphasis || String(record.text || "").replace(/\.$/u, "");
+  return record.timelineTitle || record.emphasis || String(record.text || "").replace(/\.$/u, "");
 }
 
 function positionTimelineStart(record) {
@@ -5620,6 +5656,14 @@ function positionTimelineEnd(record, fallback = Number.NaN) {
   return timelineTimeFromValue(record.timelineEnd || "") || fallback;
 }
 
+function positionTimelineSecondaryStart(record) {
+  return timelineTimeFromValue(record.timelineSecondaryStart || "");
+}
+
+function positionTimelineSecondaryEnd(record) {
+  return timelineTimeFromValue(record.timelineSecondaryEnd || "");
+}
+
 function positionTimelineDateLabel(record, endLabel) {
   const startTime = positionTimelineStart(record);
   const startLabel = record.timelineStartLabel || timelineDateLabel(startTime);
@@ -5628,40 +5672,27 @@ function positionTimelineDateLabel(record, endLabel) {
 
 function homeTimelineAffiliationRecords() {
   const today = timelineToday();
-  const current = siteData.currentPositions.map((record) => {
+  return siteData.currentPositions.map((record) => {
     const startTime = positionTimelineStart(record);
     if (!Number.isFinite(startTime)) return null;
+    const explicitEndTime = positionTimelineEnd(record);
+    const hasExplicitEnd = Number.isFinite(explicitEndTime);
+    const endLabel = hasExplicitEnd ? timelineDateLabel(explicitEndTime) : "present";
     return {
       kind: "affiliation",
       theme: "",
       title: positionTimelineTitle(record),
-      dateLabel: positionTimelineDateLabel(record, "present"),
+      dateLabel: positionTimelineDateLabel(record, endLabel),
       meta: "Current position",
       href: profileTimelineHref("#current-positions"),
       time: startTime,
       startTime,
-      endTime: today,
-      affiliationStatus: "current"
+      endTime: hasExplicitEnd ? explicitEndTime : today,
+      affiliationStatus: "current",
+      extendToTimelineEnd: Boolean(record.timelineExtendToEnd),
+      timelineWeight: record.timelineWeight || ""
     };
-  });
-  const past = siteData.pastPositions.map((record) => {
-    const startTime = positionTimelineStart(record);
-    const endTime = positionTimelineEnd(record);
-    if (!Number.isFinite(startTime) || !Number.isFinite(endTime)) return null;
-    return {
-      kind: "affiliation",
-      theme: "",
-      title: positionTimelineTitle(record),
-      dateLabel: positionTimelineDateLabel(record, timelineDateLabel(endTime)),
-      meta: "Past affiliation",
-      href: profileTimelineHref("#past-affiliations"),
-      time: startTime,
-      startTime,
-      endTime,
-      affiliationStatus: "past"
-    };
-  });
-  return [...current, ...past].filter(Boolean);
+  }).filter(Boolean);
 }
 
 function visibleResearchmapAwardRecords() {
@@ -5743,7 +5774,8 @@ function homeTimelineTeachingRecords() {
       time: startTime,
       startTime,
       endTime,
-      teachingStatus: Number.isFinite(endTime) && isCurrent ? "current" : Number.isFinite(endTime) ? "past" : "point"
+      teachingStatus: Number.isFinite(endTime) && isCurrent ? "current" : Number.isFinite(endTime) ? "past" : "point",
+      extendToTimelineEnd: Boolean(record.timelineExtendToEnd)
     };
   }).filter(Boolean);
 }
@@ -5762,8 +5794,21 @@ function academicTimelineCourseLabel(record) {
   return "";
 }
 
+function academicTimelineIsMajorRecord(record) {
+  const affiliation = simplified(record.affiliation);
+  const department = simplified(record.department);
+  const period = String(record.period || "").trim();
+  const isUniversityOfTokyo = affiliation.includes("the university of tokyo") || affiliation.includes("university tokyo");
+  if (affiliation.includes("山口県立徳山高等学校")) return true;
+  if (!isUniversityOfTokyo) return false;
+  if (department.includes("college of arts and sciences")) return true;
+  if (department.includes("faculty of science")) return true;
+  if (!department.includes("graduate school of mathematical sciences")) return false;
+  return period.startsWith("2022-04 - 2024-03") || period.startsWith("2024-04 - 2026-03");
+}
+
 function homeTimelineAcademicRecords() {
-  return (researchmapData?.education || []).map((record) => {
+  const education = visibleResearchmapEducationRecords().map((record) => {
     const startTime = timelineTimeFromValue(record.from || record.period);
     const endTime = timelineTimeFromValue(record.to || "");
     if (!Number.isFinite(startTime) || !Number.isFinite(endTime)) return null;
@@ -5777,13 +5822,44 @@ function homeTimelineAcademicRecords() {
       time: startTime,
       startTime,
       endTime,
-      academicStatus: "past"
+      academicStatus: "past",
+      timelineWeight: academicTimelineIsMajorRecord(record) ? "major" : ""
     };
-  }).filter(Boolean);
+  });
+  const pastAffiliations = siteData.pastPositions.map((record) => {
+    const startTime = positionTimelineStart(record);
+    const endTime = positionTimelineEnd(record);
+    if (!Number.isFinite(startTime) || !Number.isFinite(endTime)) return null;
+    const secondaryStartTime = positionTimelineSecondaryStart(record);
+    const secondaryEndTime = positionTimelineSecondaryEnd(record);
+    const secondaryLabel = activeLanguage === "ja" && record.timelineSecondaryLabelJa
+      ? record.timelineSecondaryLabelJa
+      : record.timelineSecondaryLabel || "full period";
+    return {
+      kind: "academic",
+      theme: "",
+      title: positionTimelineTitle(record),
+      dateLabel: positionTimelineDateLabel(record, timelineDateLabel(endTime)),
+      meta: "Past affiliation",
+      detail: record.timelineDetail || "",
+      detailJa: record.timelineDetailJa || "",
+      href: profileTimelineHref("#academic-background"),
+      time: startTime,
+      startTime,
+      endTime,
+      secondaryStartTime,
+      secondaryEndTime,
+      secondaryDateLabel: Number.isFinite(secondaryStartTime) && Number.isFinite(secondaryEndTime)
+        ? `${secondaryLabel}: ${timelineDateLabel(secondaryStartTime)} -> ${timelineDateLabel(secondaryEndTime)}`
+        : "",
+      academicStatus: "past-affiliation"
+    };
+  });
+  return [...education, ...pastAffiliations].filter(Boolean);
 }
 
 function homeTimelineRecords() {
-  return [
+  const records = [
     ...homeTimelineTalkRecords(),
     ...homeTimelinePaperRecords(),
     ...homeTimelineActivityRecords(),
@@ -5794,6 +5870,8 @@ function homeTimelineRecords() {
   ]
     .filter((record) => Number.isFinite(record.time) || Number.isFinite(record.startTime))
     .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title));
+  const activitiesWithTalks = new Set(homeTimelineTalkActivityRelations(records).map((relation) => relation.activity));
+  return records.filter((record) => record.kind !== "activity" || !activitiesWithTalks.has(record));
 }
 
 function homeTimelineRecordKey(record) {
@@ -5834,7 +5912,7 @@ function stepHomeTimelineSelection(delta) {
 function homeTimelineKindLabel(kind) {
   if (kind === "paper") return "Paper";
   if (kind === "affiliation") return "Affiliation";
-  if (kind === "academic") return "Academic Background";
+  if (kind === "academic") return "Academic Background / Past Affiliations";
   if (kind === "teaching") return "Teaching and Outreach";
   if (kind === "award") return "Award";
   if (kind === "note") return "Note";
@@ -5843,7 +5921,9 @@ function homeTimelineKindLabel(kind) {
 }
 
 function homeTimelineLaneLabel(kind) {
-  if (kind === "activity") return "Award / Activity";
+  if (kind === "paper") return "Papers";
+  if (kind === "affiliation") return "Positions and Jobs";
+  if (kind === "talk") return "Activities";
   return homeTimelineKindLabel(kind);
 }
 
@@ -5869,16 +5949,152 @@ function homeTimelineRecordThemeLabel(record) {
   return record.theme ? homeTimelineThemeLabel(record.theme) : "";
 }
 
-const homeTimelineLanes = ["paper", "affiliation", "academic", "teaching", "activity", "talk"];
-const homeTimelinePointLanes = ["teaching", "activity", "talk"];
+const homeTimelineLanes = ["affiliation", "talk", "paper"];
+const homeTimelineLanePositions = {
+  affiliation: 0.09,
+  talk: 1.71,
+  paper: 3.19
+};
+const homeTimelineLaneRailPositions = {
+  affiliation: 0.59,
+  talk: 2.66,
+  paper: 3.69
+};
+const homeTimelinePointLanes = ["affiliation", "talk"];
 const homeTimelineDefaultWindowMs = 3 * 365.25 * 24 * 60 * 60 * 1000;
+const homeTimelineMetric = {
+  laneTop: 82,
+  itemTop: 104,
+  laneStep: 94
+};
+
+const homeTimelineTalkActivityRelationSpecs = [
+  {
+    activity: { title: "Gave a talk at CSCAT 2023", date: "2023-03-09" },
+    talks: [{ title: "Internal parameterization of hyperconnected quotients", meta: "CSCAT2023" }]
+  },
+  {
+    activity: { title: "Gave a talk at Australia Category Seminar", date: "2023-04-19" },
+    talks: [{ title: "Internal parameterization of hyperconnected quotients", meta: "Australia Category Seminar" }]
+  },
+  {
+    activity: { title: "Gave a talk at Japan Combinatorial Game Theory Mini-Workshops", date: "2023-05-12" },
+    talks: [{ title: "Grundy Numbers and Categories" }]
+  },
+  {
+    activity: { title: "Gave a talk at Category Theory 2023", date: "2023-07-06" },
+    talks: [{ title: "Internal parameterization of hyperconnected quotients", meta: "Category Theory 2023" }]
+  },
+  {
+    activity: { title: "Gave a talk at the 7th Japan Combinatorial Game Theory Conference", date: "2023-08-21" },
+    talks: [{ title: "Category Theory and Combinatorial Game Theory" }]
+  },
+  {
+    activity: { title: "Gave a talk at CSCAT 2024", date: "2024-03-15" },
+    talks: [{ title: "Combinatorial games as recursive coalgebras" }]
+  },
+  {
+    activity: { title: "Gave a talk at 代数トポロジー若手の会", date: "2024-03-16" },
+    talks: [{ title: "Introduction to topos theory" }]
+  },
+  {
+    activity: { title: "Spoke at AFSA" },
+    talks: [{ title: "圏論の利用と濫用", meta: "AFSA" }]
+  },
+  {
+    activity: { title: "Gave a talk at CT 2024" },
+    talks: [{ title: "Quotient toposes of discrete dynamical systems", meta: "Category Theory 2024" }]
+  },
+  {
+    activity: { title: "Gave a talk at Young Automata Theorists Gathering in Japan", date: "2024-08-29" },
+    talks: [{ title: "Topos theory as a tool of automata theory" }]
+  },
+  {
+    activity: { title: "Gave a talk at Toposes in Mondovi", date: "2024-09-10" },
+    talks: [{ title: "The colimit of all monomorphisms classifies hyperconnected geometric morphisms" }]
+  },
+  {
+    activity: { title: "Gave a talk at AFSA area meeting", date: "2024-11-30" },
+    talks: [{ title: "Quotient topoi and geometry of computation" }]
+  },
+  {
+    activity: { title: "Gave a talk at CMUP SAL seminar" },
+    talks: [{ title: "Topoi of automata", meta: "CMUP" }]
+  },
+  {
+    activity: { title: "Gave a talk at CSCAT 2025", date: "2025-03-12" },
+    talks: [{ title: "Topoi of automata", meta: "CSCAT2025" }]
+  },
+  {
+    activity: { title: "Gave a talk at CTTA Groupe de travail topossique", date: "2025-04-30" },
+    talks: [{ title: "Topoi of automata", meta: "CTTA", date: "2025-04-30" }]
+  },
+  {
+    activity: { title: "Gave a talk at Categories for Automata and Language Theory", date: "2025-05-06" },
+    talks: [{ title: "Topoi of automata", meta: "Categories for Automata and Language Theory" }]
+  },
+  {
+    activity: { title: "Gave a talk at CTTA Groupe de travail topossique", date: "2025-05-16" },
+    talks: [{ title: "Local state classifier for algebraic language theory" }]
+  },
+  {
+    activity: { title: "Gave a talk at IRIF Sémantique seminar", date: "2025-05-27" },
+    talks: [{ title: "Local state classifier for automata theory", meta: "IRIF" }]
+  },
+  {
+    activity: { title: "Gave a talk at Séminaires du LIPN", date: "2025-06-05" },
+    talks: [{ title: "Local state classifier for automata theory", meta: "LIPN" }]
+  },
+  {
+    activity: { title: "Gave a talk at Theoretical Cosynus Seminar", date: "2025-06-10" },
+    talks: [{ title: "A topos for regular language theory" }]
+  },
+  {
+    activity: { title: "Gave a talk at CT 2025" },
+    talks: [{ title: "Topoi of automata", meta: "Category Theory 2025" }]
+  },
+  {
+    activity: { title: "Gave a talk at SLACS 2025" },
+    talks: [{ title: "Topoi of automata", meta: "SLACS 2025" }]
+  },
+  {
+    activity: { title: "Gave a talk at UTokyo Logic seminar", date: "2025-11-28" },
+    talks: [{ title: "Connectedness and full subcategories of topoi", date: "2025-11-28" }]
+  },
+  {
+    activity: { title: "Gave a talk at UTokyo Logic seminar", date: "2025-12-05" },
+    talks: [{ title: "The axiom of choice and local state classifier", date: "2025-12-05" }]
+  },
+  {
+    activity: { title: "Gave a talk at Ph.D. thesis presentation", date: "2026-01-23" },
+    talks: [{ title: "Connectedness and full subcategories of topoi", date: "2026-01-23" }]
+  },
+  {
+    activity: { title: "Attended 20th CGP project" },
+    talks: [{ title: "Turning lights out with the Snake Lemma" }]
+  },
+  {
+    activity: { title: "Presented a poster with Ryoma Sin'ya at PPL 2026" },
+    talks: [{ title: "Measure-theoretic closure operators on formal languages" }]
+  },
+  {
+    activity: { title: "Gave a talk at CSCAT 2026" },
+    talks: [{ title: "Conway's game of life", meta: "CSCAT 2026" }]
+  },
+  {
+    activity: { title: "Attended and spoke at Differentiation in category theory and program semantics" },
+    talks: [{ title: "A Rota-Baxter equation for winning games" }]
+  }
+];
 
 function homeTimelineLaneKind(kind) {
-  return kind === "award" ? "activity" : kind;
+  if (kind === "academic" || kind === "teaching") return "affiliation";
+  return kind === "activity" || kind === "award" ? "talk" : kind;
 }
 
 function homeTimelineLaneIndex(kind) {
-  return homeTimelineLanes.indexOf(homeTimelineLaneKind(kind));
+  const laneKind = homeTimelineLaneKind(kind);
+  return homeTimelineLanePositions[laneKind] ?? homeTimelineLanes.indexOf(laneKind);
 }
 
 function homeTimelineIsIntervalRecord(record) {
@@ -5886,46 +6102,156 @@ function homeTimelineIsIntervalRecord(record) {
   return record.kind === "teaching" && Number.isFinite(record.endTime);
 }
 
-function homeTimelineNodeLayout(records, firstTime, lastTime, pointGap = 16, collisionGap = 1.75) {
+function homeTimelineRelationMatches(record, criteria = {}) {
+  const text = simplified(compactText([record.title, record.dateLabel, record.meta]).join(" "));
+  return ["title", "date", "meta"].every((key) => {
+    const needle = simplified(criteria[key]);
+    return !needle || text.includes(needle);
+  });
+}
+
+function homeTimelineRelationRecord(records, kind, criteria) {
+  return records.find((record) => record.kind === kind && homeTimelineRelationMatches(record, criteria)) || null;
+}
+
+function homeTimelineTalkActivityRelations(records) {
+  return homeTimelineTalkActivityRelationSpecs.flatMap((spec) => {
+    const activity = homeTimelineRelationRecord(records, "activity", spec.activity);
+    if (!activity) return [];
+    return spec.talks
+      .map((talkSpec) => {
+        const talk = homeTimelineRelationRecord(records, "talk", talkSpec);
+        return talk ? { activity, talk } : null;
+      })
+      .filter(Boolean);
+  });
+}
+
+const homeTimelineGoldenRatioConjugate = (Math.sqrt(5) - 1) / 2;
+const homeTimelineAatXPercentPixelScale = 12;
+
+function homeTimelinePointRadius(record) {
+  if (homeTimelineIsCategoriesInTokyoActivity(record)) return 9;
+  if (record.kind === "activity") return record.activityScale === "minor" ? 3.5 : 5;
+  if (record.kind === "award") return 7.5;
+  if (record.kind === "talk") return 8;
+  return 7;
+}
+
+function homeTimelineAatTargetOffset(index, span = 46) {
+  const phase = ((index + 1) * homeTimelineGoldenRatioConjugate) % 1;
+  return Number(((phase - 0.5) * span * 2).toFixed(1));
+}
+
+function homeTimelineAatOffsetCandidates(index, span = 46, fallbackStep = 10) {
+  const target = homeTimelineAatTargetOffset(index, span);
+  const scoreCandidate = (candidate) =>
+    Math.abs(candidate - target) + Math.max(0, Math.abs(candidate) - span) * 1.6 + Math.abs(candidate) * 0.2;
+  const candidates = [target, 0];
+  for (let i = 1; i <= 21; i += 1) {
+    const phase = (i * homeTimelineGoldenRatioConjugate) % 1;
+    candidates.push(Number(((phase - 0.5) * span * 2).toFixed(1)));
+  }
+  for (let i = 1; i <= 8; i += 1) {
+    const outside = span + i * fallbackStep;
+    candidates.push(target < 0 ? -outside : outside, target < 0 ? outside : -outside);
+  }
+  return [...new Set(candidates)]
+    .sort((a, b) => scoreCandidate(a) - scoreCandidate(b) || Math.abs(a) - Math.abs(b));
+}
+
+function homeTimelinePointOffsetIsClear(item, offset, placed, xPercentPixelScale = homeTimelineAatXPercentPixelScale) {
+  return placed.every((other) => {
+    const minGap = homeTimelinePointRadius(item.record) + homeTimelinePointRadius(other.record) + 4;
+    const xGap = Math.abs(item.x - other.x) * xPercentPixelScale;
+    if (xGap >= minGap) return true;
+    return Math.hypot(xGap, offset - other.offset) >= minGap;
+  });
+}
+
+function homeTimelineAatNodeLayout(items, layout, xPercentPixelScale) {
+  const placed = [];
+  items.forEach((item, index) => {
+    const offset = homeTimelineAatOffsetCandidates(index)
+      .find((candidate) => homeTimelinePointOffsetIsClear(item, candidate, placed, xPercentPixelScale));
+    const resolvedOffset = Number.isFinite(offset) ? offset : homeTimelineAatTargetOffset(index);
+    const position = {
+      x: item.x,
+      offset: resolvedOffset
+    };
+    placed.push({ ...item, offset: resolvedOffset });
+    layout.set(item.record, position);
+  });
+}
+
+function homeTimelineStackedNodeLayout(items, layout, pointGap, collisionGap) {
+  const slots = [];
+  const slottedItems = items.map((item) => {
+    const slot = slots.findIndex((slotEnd) => item.x > slotEnd + collisionGap);
+    const index = slot >= 0 ? slot : slots.length;
+    slots[index] = item.x;
+    return { ...item, slot: index };
+  });
+  const maxSlot = slottedItems.reduce((max, item) => Math.max(max, item.slot), 0);
+  const center = maxSlot / 2;
+  slottedItems.forEach((item) => {
+    layout.set(item.record, {
+      x: item.x,
+      offset: Number(((item.slot - center) * pointGap).toFixed(1))
+    });
+  });
+}
+
+function homeTimelineNodeLayout(records, firstTime, lastTime, pointGap = 16, collisionGap = 1.75, xPercentPixelScale = homeTimelineAatXPercentPixelScale) {
   const layout = new Map();
   homeTimelinePointLanes.forEach((laneKind) => {
-    const slots = [];
     const items = records
       .filter((record) => homeTimelineLaneKind(record.kind) === laneKind && !homeTimelineIsIntervalRecord(record))
       .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title))
-      .map((record) => ({ record, x: timelinePosition(record.time, firstTime, lastTime, 0, 1) }))
-      .map((item) => {
-        const slot = slots.findIndex((slotEnd) => item.x > slotEnd + collisionGap);
-        const index = slot >= 0 ? slot : slots.length;
-        slots[index] = item.x;
-        return { ...item, slot: index };
-      });
-    const maxSlot = items.reduce((max, item) => Math.max(max, item.slot), 0);
-    const center = maxSlot / 2;
-    items.forEach((item) => {
-      layout.set(item.record, {
-        x: item.x,
-        offset: Number(((item.slot - center) * pointGap).toFixed(1))
-      });
-    });
+      .map((record) => ({ record, x: timelinePosition(record.time, firstTime, lastTime, 0, 1) }));
+    if (laneKind === "talk") homeTimelineAatNodeLayout(items, layout, xPercentPixelScale);
+    else homeTimelineStackedNodeLayout(items, layout, pointGap, collisionGap);
   });
   return layout;
 }
 
 function homeTimelineIntervalSpanLayout(records, firstTime, lastTime, kind, slotGap = 9) {
+  const kinds = Array.isArray(kind) ? kind : [kind];
   const layout = new Map();
   const slots = [];
   const items = [];
-  records
-    .filter((record) => record.kind === kind && homeTimelineIsIntervalRecord(record))
-    .sort((a, b) => a.startTime - b.startTime || a.endTime - b.endTime || a.title.localeCompare(b.title))
-    .forEach((record) => {
-      const start = Math.max(0, Math.min(100, timelinePosition(record.startTime, firstTime, lastTime, 0, 1)));
-      const end = Math.min(100, Math.max(start + 1.2, timelinePosition(record.endTime, firstTime, lastTime, 0, 1)));
-      const slot = slots.findIndex((slotEnd) => start > slotEnd + 1.2);
+  const intervalPosition = (startTime, endTime, extendToTimelineEnd = false) => {
+    const start = Math.max(0, Math.min(100, timelinePosition(startTime, firstTime, lastTime, 0, 1)));
+    const end = extendToTimelineEnd
+      ? 100
+      : Math.min(100, Math.max(start + 1.2, timelinePosition(endTime, firstTime, lastTime, 0, 1)));
+    return { start, end };
+  };
+  const intervalRecords = records
+    .filter((record) => kinds.includes(record.kind) && homeTimelineIsIntervalRecord(record))
+    .sort((a, b) => {
+      const aStart = Number.isFinite(a.secondaryStartTime) ? a.secondaryStartTime : a.startTime;
+      const bStart = Number.isFinite(b.secondaryStartTime) ? b.secondaryStartTime : b.startTime;
+      const aEnd = Number.isFinite(a.secondaryEndTime) ? a.secondaryEndTime : a.endTime;
+      const bEnd = Number.isFinite(b.secondaryEndTime) ? b.secondaryEndTime : b.endTime;
+      return aStart - bStart || aEnd - bEnd || a.title.localeCompare(b.title);
+    });
+  [
+    ...intervalRecords.filter((record) => record.timelineWeight === "major"),
+    ...intervalRecords.filter((record) => record.timelineWeight !== "major")
+  ].forEach((record) => {
+      const primary = intervalPosition(record.startTime, record.endTime, record.extendToTimelineEnd);
+      const secondaryStartTime = record.secondaryStartTime;
+      const secondaryEndTime = record.secondaryEndTime;
+      const hasSecondary = Number.isFinite(secondaryStartTime) && Number.isFinite(secondaryEndTime);
+      const secondary = hasSecondary ? intervalPosition(secondaryStartTime, secondaryEndTime) : { start: Number.NaN, end: Number.NaN };
+      const slotStart = hasSecondary ? secondary.start : primary.start;
+      const slotEnd = hasSecondary ? secondary.end : primary.end;
+      const slotClearance = record.timelineWeight === "major" ? 0 : 1.2;
+      const slot = slots.findIndex((placedSlotEnd) => slotStart > placedSlotEnd + slotClearance);
       const index = slot >= 0 ? slot : slots.length;
-      slots[index] = end;
-      items.push({ record, start, end, slot: index });
+      slots[index] = slotEnd;
+      items.push({ record, start: primary.start, end: primary.end, secondaryStart: secondary.start, secondaryEnd: secondary.end, slot: index });
   });
   const maxSlot = items.reduce((max, item) => Math.max(max, item.slot), 0);
   const center = maxSlot / 2;
@@ -5933,6 +6259,8 @@ function homeTimelineIntervalSpanLayout(records, firstTime, lastTime, kind, slot
     layout.set(item.record, {
       start: item.start,
       end: item.end,
+      secondaryStart: item.secondaryStart,
+      secondaryEnd: item.secondaryEnd,
       offset: Number(((item.slot - center) * slotGap).toFixed(1))
     });
   });
@@ -5944,11 +6272,7 @@ function homeTimelinePaperSpanLayout(records, firstTime, lastTime, slotGap = 9) 
 }
 
 function homeTimelineAffiliationSpanLayout(records, firstTime, lastTime, slotGap = 7) {
-  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "affiliation", slotGap);
-}
-
-function homeTimelineAcademicSpanLayout(records, firstTime, lastTime, slotGap = 7) {
-  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "academic", slotGap);
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, ["affiliation", "academic", "teaching"], slotGap);
 }
 
 function homeTimelineTeachingSpanLayout(records, firstTime, lastTime, slotGap = 7) {
@@ -5961,7 +6285,8 @@ function renderHomeTimelineIntervalSpan(record, position) {
     record.kind === "paper" ? `home-timeline-paper-span theme-${record.theme} is-${record.paperStatus}` : "",
     record.kind === "affiliation" ? `home-timeline-affiliation-span is-${record.affiliationStatus}` : "",
     record.kind === "academic" ? `home-timeline-academic-span is-${record.academicStatus}` : "",
-    record.kind === "teaching" ? `home-timeline-teaching-span is-${record.teachingStatus}` : ""
+    record.kind === "teaching" ? `home-timeline-teaching-span is-${record.teachingStatus}` : "",
+    record.timelineWeight === "major" ? "is-major-position" : ""
   ]).join(" ");
   const span = link("", record.href, classes);
   const key = homeTimelineRecordKey(record);
@@ -5981,8 +6306,48 @@ function renderHomeTimelineIntervalSpan(record, position) {
   return span;
 }
 
+function renderHomeTimelineSecondaryIntervalSpan(record, position) {
+  if (!Number.isFinite(position?.secondaryStart) || !Number.isFinite(position?.secondaryEnd)) return null;
+  const classes = compactText([
+    "home-timeline-secondary-interval-span",
+    `kind-${record.kind}`,
+    record.kind === "affiliation" ? `is-${record.affiliationStatus}` : "",
+    record.kind === "academic" ? `is-${record.academicStatus}` : "",
+    record.kind === "teaching" ? `is-${record.teachingStatus}` : ""
+  ]).join(" ");
+  const span = link("", record.href, classes);
+  const detail = activeLanguage === "ja" && record.detailJa ? record.detailJa : record.detail;
+  const label = compactText([
+    `${homeTimelineKindLabel(record.kind)} / ${record.secondaryDateLabel || "extended period"}: ${record.title}`,
+    detail || record.meta
+  ]).join(" / ");
+  span.style.setProperty("--x-start", position.secondaryStart);
+  span.style.setProperty("--x-end", position.secondaryEnd);
+  span.style.setProperty("--offset", position.offset);
+  span.style.setProperty("--lane", homeTimelineLaneIndex(record.kind));
+  span.setAttribute("aria-label", label);
+  span.setAttribute("title", label);
+  attachTimelineTooltip(span, {
+    ...record,
+    dateLabel: record.secondaryDateLabel || record.dateLabel,
+    meta: record.meta
+  });
+  return span;
+}
+
 function renderHomeTimelinePaperSpan(record, position) {
   return renderHomeTimelineIntervalSpan(record, position);
+}
+
+function homeTimelineIsBimonthlyCategoryTheorySeminarActivity(record) {
+  return record.kind === "activity" && simplified(record.title).includes("bimonthly category theory seminar");
+}
+
+function homeTimelineIsCategoriesInTokyoActivity(record) {
+  return record.kind === "activity" && (
+    simplified(record.title).includes("categories in tokyo") ||
+    homeTimelineIsBimonthlyCategoryTheorySeminarActivity(record)
+  );
 }
 
 function renderHomeTimelineNode(record, position) {
@@ -5990,7 +6355,9 @@ function renderHomeTimelineNode(record, position) {
     "home-timeline-node",
     `kind-${record.kind}`,
     `theme-${record.theme}`,
-    record.kind === "activity" ? `activity-${record.activityScale || "meeting"}` : ""
+    record.kind === "activity" ? `activity-${record.activityScale || "meeting"}` : "",
+    homeTimelineIsCategoriesInTokyoActivity(record) ? "activity-categories-tokyo" : "",
+    homeTimelineIsBimonthlyCategoryTheorySeminarActivity(record) ? "activity-categories-tokyo-private" : ""
   ]).join(" ");
   const node = link("", record.href, nodeClasses);
   const key = homeTimelineRecordKey(record);
@@ -6008,6 +6375,46 @@ function renderHomeTimelineNode(record, position) {
   node.setAttribute("title", label);
   attachTimelineTooltip(node, record);
   return node;
+}
+
+function homeTimelineRelationCenter(record, position) {
+  return {
+    x: position.x,
+    y: homeTimelineMetric.itemTop + homeTimelineLaneIndex(record.kind) * homeTimelineMetric.laneStep + position.offset
+  };
+}
+
+function renderHomeTimelineRelation(relation, pointLayout) {
+  const activityPosition = pointLayout.get(relation.activity);
+  const talkPosition = pointLayout.get(relation.talk);
+  if (!activityPosition || !talkPosition) return null;
+  const activity = homeTimelineRelationCenter(relation.activity, activityPosition);
+  const talk = homeTimelineRelationCenter(relation.talk, talkPosition);
+  const xLeft = Math.min(activity.x, talk.x);
+  const xWidth = Math.abs(talk.x - activity.x);
+  const yTop = Math.min(activity.y, talk.y);
+  const yHeight = Math.abs(talk.y - activity.y);
+  const startsLeft = activity.x <= talk.x;
+  const startsTop = activity.y <= talk.y;
+  const relationNode = el("span", "home-timeline-relation");
+  relationNode.style.setProperty("--x-left", xLeft.toFixed(4));
+  relationNode.style.setProperty("--x-width", xWidth.toFixed(4));
+  relationNode.style.setProperty("--relation-y", yTop.toFixed(1));
+  relationNode.style.setProperty("--relation-height", yHeight.toFixed(1));
+  relationNode.setAttribute("aria-hidden", "true");
+  const svg = svgEl("svg", {
+    viewBox: "0 0 100 100",
+    preserveAspectRatio: "none",
+    focusable: "false"
+  });
+  svg.append(svgEl("line", {
+    x1: startsLeft ? "0" : "100",
+    y1: startsTop ? "0" : "100",
+    x2: startsLeft ? "100" : "0",
+    y2: startsTop ? "100" : "0"
+  }));
+  relationNode.append(svg);
+  return relationNode;
 }
 
 function renderHomeTimelineDetail(record, index, total) {
@@ -6037,6 +6444,8 @@ function renderHomeTimelineDetail(record, index, total) {
     el("h3", null, record.title)
   );
   if (record.meta) body.append(el("p", "home-timeline-detail-meta", record.meta));
+  const detail = activeLanguage === "ja" && record.detailJa ? record.detailJa : record.detail;
+  if (detail) body.append(el("p", "home-timeline-detail-meta", detail));
   appendActionLinks(body, [["Open", record.href]]);
   card.append(nav, body, el("span", "home-timeline-detail-count", `${index + 1} / ${total}`));
   return card;
@@ -6062,17 +6471,12 @@ function renderHomeTimeline() {
   }
 
   const times = records
-    .flatMap((record) => [record.startTime, record.endTime, record.time])
+    .flatMap((record) => [record.startTime, record.endTime, record.time, record.secondaryStartTime, record.secondaryEndTime])
     .filter(Number.isFinite);
   const firstTime = Math.min(...times);
   const lastTime = Math.max(...times);
   const selectedIndex = homeTimelineSelectedIndex(records);
   const selectedRecord = records[selectedIndex];
-  const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime, 16);
-  const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime, 11);
-  const affiliationLayout = homeTimelineAffiliationSpanLayout(records, firstTime, lastTime, 11);
-  const academicLayout = homeTimelineAcademicSpanLayout(records, firstTime, lastTime, 11);
-  const teachingLayout = homeTimelineTeachingSpanLayout(records, firstTime, lastTime, 11);
 
   const yearRow = el("div", "home-timeline-year-row");
   const firstYear = new Date(firstTime).getUTCFullYear();
@@ -6082,14 +6486,30 @@ function renderHomeTimeline() {
   const totalSpan = Math.max(1, lastTime - firstTime);
   const defaultWindowSpan = Math.min(totalSpan, homeTimelineDefaultWindowMs);
   const trackWidthRatio = Math.max(1, totalSpan / defaultWindowSpan);
+  const rootWidth = root.getBoundingClientRect().width || root.clientWidth || 720;
+  const trackPixelWidth = Math.max(rootWidth, rootWidth * trackWidthRatio);
+  const xPercentPixelScale = Math.max(homeTimelineAatXPercentPixelScale, (trackPixelWidth - 176) / 100);
+  const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime, 16, 1.75, xPercentPixelScale);
+  const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime, 11);
+  const affiliationLayout = homeTimelineAffiliationSpanLayout(records, firstTime, lastTime, 11);
   const track = el("div", "home-timeline-track");
   track.style.setProperty("--timeline-years", Math.max(8, lastYear - firstYear + 1));
   track.style.setProperty("--timeline-track-width", `${(trackWidthRatio * 100).toFixed(2)}%`);
   for (let year = firstYear; year <= lastYear; year += 1) {
-    const position = timelinePosition(timelineUtc(year, 0, 1), firstTime, lastTime, 0, 1);
-    const tick = el("span", "home-year-tick", year);
-    tick.style.setProperty("--x", Math.max(0, Math.min(100, position)));
-    yearRow.append(tick);
+    [0, 3, 6, 9].forEach((month) => {
+      const time = timelineUtc(year, month, 1);
+      if (time < firstTime || time > lastTime) return;
+      const position = timelinePosition(time, firstTime, lastTime, 0, 1);
+      const isYearBoundary = month === 0;
+      const tick = el(
+        "span",
+        `home-year-tick ${isYearBoundary ? "home-year-boundary-tick" : "home-quarter-tick"}`,
+        isYearBoundary ? year : ""
+      );
+      tick.style.setProperty("--x", Math.max(0, Math.min(100, position)));
+      tick.setAttribute("aria-hidden", isYearBoundary ? "false" : "true");
+      yearRow.append(tick);
+    });
   }
   track.append(yearRow);
 
@@ -6104,11 +6524,17 @@ function renderHomeTimeline() {
 
   homeTimelineLanes.forEach((kind, index) => {
     const lane = el("div", `home-timeline-lane kind-${kind}`);
-    lane.style.setProperty("--lane", index);
+    const lanePosition = homeTimelineLanePositions[kind] ?? index;
+    const railPosition = homeTimelineLaneRailPositions[kind] ?? lanePosition + 0.5;
+    const railTop = homeTimelineMetric.itemTop + railPosition * homeTimelineMetric.laneStep
+      - (homeTimelineMetric.laneTop + lanePosition * homeTimelineMetric.laneStep) - 0.5;
+    lane.style.setProperty("--lane", lanePosition);
+    lane.style.setProperty("--lane-rail-top", `${railTop.toFixed(1)}px`);
     const labelClasses = compactText([
       "home-timeline-lane-label",
       `kind-${kind}`,
-      kind === "activity" ? "kind-award-activity" : ""
+      kind === "affiliation" ? "kind-affiliation-academic" : "",
+      kind === "talk" ? "kind-activity-award-talk" : ""
     ]).join(" ");
     lane.append(
       el("div", labelClasses, homeTimelineLaneLabel(kind)),
@@ -6116,6 +6542,24 @@ function renderHomeTimeline() {
     );
     track.append(lane);
   });
+
+  homeTimelineTalkActivityRelations(records)
+    .map((relation) => renderHomeTimelineRelation(relation, pointLayout))
+    .filter(Boolean)
+    .forEach((relationNode) => {
+      track.append(relationNode);
+    });
+
+  records
+    .filter((record) => homeTimelineIsIntervalRecord(record))
+    .map((record) => {
+      const layout = record.kind === "paper" ? paperLayout : affiliationLayout;
+      return renderHomeTimelineSecondaryIntervalSpan(record, layout.get(record));
+    })
+    .filter(Boolean)
+    .forEach((span) => {
+      track.append(span);
+    });
 
   records
     .filter((record) => record.kind === "paper")
@@ -6132,13 +6576,13 @@ function renderHomeTimeline() {
   records
     .filter((record) => record.kind === "academic")
     .forEach((record) => {
-      track.append(renderHomeTimelineIntervalSpan(record, academicLayout.get(record)));
+      track.append(renderHomeTimelineIntervalSpan(record, affiliationLayout.get(record)));
     });
 
   records
     .filter((record) => record.kind === "teaching" && homeTimelineIsIntervalRecord(record))
     .forEach((record) => {
-      track.append(renderHomeTimelineIntervalSpan(record, teachingLayout.get(record)));
+      track.append(renderHomeTimelineIntervalSpan(record, affiliationLayout.get(record)));
     });
 
   records
@@ -6644,6 +7088,59 @@ function noteThumbnailSrc(note) {
   return note.localThumbnail ? localHref(note.localThumbnail) : note.thumbnail || "";
 }
 
+let noteThumbnailObserver = null;
+let queuedNoteThumbnails = [];
+let noteThumbnailHydrationScheduled = false;
+
+function loadQueuedNoteThumbnail(target) {
+  const image = target?.matches?.("img")
+    ? target
+    : target?.querySelector?.("img[data-thumbnail-src]");
+  if (!image || image.dataset.thumbnailLoaded === "true" || image.dataset.thumbnailLoading === "true") return;
+  const src = image.dataset.thumbnailSrc;
+  if (!src) return;
+  image.dataset.thumbnailLoading = "true";
+  image.src = src;
+}
+
+function observeQueuedNoteThumbnail(target) {
+  if (!target) return;
+  if (!("IntersectionObserver" in window)) {
+    loadQueuedNoteThumbnail(target);
+    return;
+  }
+  if (!noteThumbnailObserver) {
+    noteThumbnailObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const target = entry.target;
+        noteThumbnailObserver.unobserve(target);
+        loadQueuedNoteThumbnail(target);
+      });
+    }, { rootMargin: "420px 0px" });
+  }
+  noteThumbnailObserver.observe(target);
+}
+
+function flushQueuedNoteThumbnails() {
+  const batch = queuedNoteThumbnails;
+  queuedNoteThumbnails = [];
+  noteThumbnailHydrationScheduled = false;
+  batch.forEach((target, index) => {
+    observeQueuedNoteThumbnail(target);
+    window.setTimeout(() => loadQueuedNoteThumbnail(target), 220 + index * 45);
+  });
+}
+
+function queueNoteThumbnailHydration(target) {
+  if (!target) return;
+  queuedNoteThumbnails.push(target);
+  if (noteThumbnailHydrationScheduled) return;
+  noteThumbnailHydrationScheduled = true;
+  const schedule = window.requestAnimationFrame || ((callback) => window.setTimeout(callback, 16));
+  schedule(() => schedule(flushQueuedNoteThumbnails));
+}
+
 function noteThumbnail(note) {
   const [kind, kindLabel, kindIcon] = noteKind(note);
   const thumbnailSrc = noteThumbnailSrc(note);
@@ -6660,21 +7157,27 @@ function noteThumbnail(note) {
   if (thumbnailSrc) {
     const image = el("img");
     let triedDriveFallback = false;
-    image.src = thumbnailSrc;
+    image.dataset.thumbnailSrc = thumbnailSrc;
+    if (note.localThumbnail && note.thumbnail) image.dataset.thumbnailFallback = note.thumbnail;
     image.alt = "";
     image.loading = "lazy";
     image.decoding = "async";
     image.addEventListener("error", () => {
-      if (!triedDriveFallback && note.localThumbnail && note.thumbnail) {
+      if (!triedDriveFallback && image.dataset.thumbnailFallback) {
         triedDriveFallback = true;
-        image.src = note.thumbnail;
+        image.src = image.dataset.thumbnailFallback;
         return;
       }
       thumb.classList.remove("has-image");
       image.remove();
       if (!thumb.querySelector(".note-thumb-art")) thumb.prepend(noteThumbnailArt());
     });
+    image.addEventListener("load", () => {
+      image.dataset.thumbnailLoaded = "true";
+      delete image.dataset.thumbnailLoading;
+    }, { once: true });
     thumb.append(image, body);
+    queueNoteThumbnailHydration(thumb);
     return thumb;
   }
 
@@ -7736,6 +8239,7 @@ function navIconKey(label = "", href = "") {
 
 function linkedListIconKey(selector = "", record = {}) {
   const key = String(selector);
+  if (record.icon) return record.icon;
   if (key.includes("past-position")) return "building";
   if (key.includes("award")) return "award";
   if (key.includes("education")) return "education";
@@ -9823,7 +10327,7 @@ ${rollingBouquets.map(automataCoverRollingBouquet).join("\n")}
         </g>`;
 }
 
-const gamesRbSelectableValues = [0, 1, 2, 3, 4, 5, 6, 7];
+const gamesRbSelectableValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const gamesRbVisibleValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const gamesRbInitialS = [0, 1, 2, 5, 7];
 const gamesRbInitialT = [0, 1, 2, 3, 4, 6];
@@ -9833,16 +10337,16 @@ const gamesRbExpandedMexTex = "\\(\\operatorname{mex}\\bigl(\\colorbox{#f8dddd}{
 const gamesRbRhsMexTex = "\\(\\operatorname{mex}\\,\\textcolor{#2563eb}{S}\\oplus\\operatorname{mex}\\,\\textcolor{#c82727}{T}\\)";
 const gamesRbIntegralExpandedTex = "\\(\\int\\bigl(\\colorbox{#f8dddd}{$(\\int \\textcolor{#2563eb}{f})\\,\\textcolor{#c82727}{g}$}+\\colorbox{#dfe8ff}{$\\textcolor{#2563eb}{f}\\,(\\int \\textcolor{#c82727}{g})$}\\bigr)\\)";
 const gamesRbIntegralProductTex = "\\(\\left(\\int \\textcolor{#2563eb}{f}\\right)\\left(\\int \\textcolor{#c82727}{g}\\right)\\)";
-const gamesRbCellWidth = 26;
-const gamesRbCellHeight = 21;
-const gamesRbHeaderWidth = 28;
-const gamesRbHeaderHeight = 24;
+const gamesRbCellWidth = 30;
+const gamesRbCellHeight = 24;
+const gamesRbHeaderWidth = 31;
+const gamesRbHeaderHeight = 26;
 const gamesRbTableWidth = gamesRbHeaderWidth + gamesRbVisibleValues.length * gamesRbCellWidth;
 const gamesRbTableHeight = gamesRbHeaderHeight + gamesRbVisibleValues.length * gamesRbCellHeight;
-const gamesRbExpandedPanelX = 36;
-const gamesRbProductPanelX = 404;
-const gamesRbTableOffsetX = 70;
-const gamesRbPanelY = 62;
+const gamesRbExpandedPanelX = 22;
+const gamesRbProductPanelX = 386;
+const gamesRbTableOffsetX = 54;
+const gamesRbPanelY = 8;
 const gamesRbTableOffsetY = 60;
 
 function gamesRbColumnX(value) {
@@ -9858,7 +10362,17 @@ function gamesRbCellTextX(value) {
 }
 
 function gamesRbCellTextY(value) {
-  return gamesRbRowY(value) + 15.6;
+  return gamesRbRowY(value) + 17.8;
+}
+
+function gamesRbTableHitTargetsTemplate() {
+  const tTargets = gamesRbSelectableValues
+    .map((value) => `<rect class="games-rb-hit-target is-t-target" data-games-rb-toggle="T" data-games-rb-value="${value}" role="button" tabindex="0" aria-label="Toggle ${value} in T" aria-pressed="${gamesRbInitialT.includes(value) ? "true" : "false"}" x="${gamesRbColumnX(value)}" y="0" width="${gamesRbCellWidth}" height="${gamesRbHeaderHeight}"></rect>`)
+    .join("\n          ");
+  const sTargets = gamesRbSelectableValues
+    .map((value) => `<rect class="games-rb-hit-target is-s-target" data-games-rb-toggle="S" data-games-rb-value="${value}" role="button" tabindex="0" aria-label="Toggle ${value} in S" aria-pressed="${gamesRbInitialS.includes(value) ? "true" : "false"}" x="0" y="${gamesRbRowY(value)}" width="${gamesRbHeaderWidth}" height="${gamesRbCellHeight}"></rect>`)
+    .join("\n          ");
+  return `${tTargets}\n          ${sTargets}`;
 }
 
 function gamesRbMex(values) {
@@ -9885,7 +10399,7 @@ function gamesRbNimTableBaseTemplate() {
     ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
   ].join(" ");
   const headerTexts = gamesRbVisibleValues
-    .map((value) => `<text class="games-rb-cell-text is-head" x="${gamesRbCellTextX(value)}" y="17.6" text-anchor="middle">${value}</text>`)
+    .map((value) => `<text class="games-rb-cell-text is-head" x="${gamesRbCellTextX(value)}" y="19.3" text-anchor="middle">${value}</text>`)
     .join("\n          ");
   const rows = gamesRbVisibleValues
     .map((row) => {
@@ -9903,7 +10417,7 @@ function gamesRbNimTableBaseTemplate() {
           <path class="games-rb-table-lines is-major" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
           <path class="games-rb-table-lines" d="${minorLines}"></path>
           <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
-          <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="17.6" text-anchor="middle">⊕</text>
+          <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="19.3" text-anchor="middle">⊕</text>
           ${headerTexts}
           ${rows}`;
 }
@@ -9950,12 +10464,15 @@ ${gamesRbNimTableBaseTemplate()}
           <g data-games-rb-set-layer="expanded"></g>
           <g data-games-rb-union-layer></g>
           <g data-games-rb-mex-layer="expanded"></g>
-          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-60" y="73" width="58" height="22">
+          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-66" y="73" width="64" height="24">
             <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
           </foreignObject>
-          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-25" width="72" height="22">
+          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-27" width="80" height="24">
             <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
           </foreignObject>
+          <g class="games-rb-hit-layer">
+${gamesRbTableHitTargetsTemplate()}
+          </g>
         </g>
       </g>
 
@@ -9966,17 +10483,19 @@ ${gamesRbNimTableBaseTemplate()}
           <g data-games-rb-product-layer></g>
           <g data-games-rb-product-arrow-layer></g>
           <g data-games-rb-mex-layer="product"></g>
-          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-60" y="73" width="58" height="22">
+          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-66" y="73" width="64" height="24">
             <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
           </foreignObject>
-          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-25" width="72" height="22">
+          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-27" width="80" height="24">
             <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
           </foreignObject>
+          <g class="games-rb-hit-layer">
+${gamesRbTableHitTargetsTemplate()}
+          </g>
         </g>
       </g>
     </svg>
-    ${gamesRbSetControlTemplate("S", gamesRbInitialS)}
-    ${gamesRbSetControlTemplate("T", gamesRbInitialT)}
+    <span class="games-rb-limit-toast" data-games-rb-limit-toast role="status" aria-live="polite"></span>
     <span class="figure-math games-rb-table-tex games-rb-expanded-mex-readout" data-games-rb-expanded-mex-readout>${gamesRbExpandedMexTex}</span>
     <span class="figure-math games-rb-table-tex games-rb-bottom-result" data-games-rb-center-result>\(=\textcolor{#7c3aed}{1}=\)</span>
     <span class="figure-math games-rb-table-tex games-rb-expanded-mex-rhs">${gamesRbRhsMexTex}</span>
@@ -12440,10 +12959,10 @@ function renderGamesRbSetHighlights(layer, state) {
   if (!layer) return;
   layer.replaceChildren();
   state.S.forEach((value) => {
-    appendGamesRbRect(layer, "games-rb-set-highlight is-s-entry", 0, gamesRbRowY(value));
+    appendGamesRbRect(layer, "games-rb-set-highlight is-s-entry", 0, gamesRbRowY(value), gamesRbHeaderWidth, gamesRbCellHeight);
   });
   state.T.forEach((value) => {
-    appendGamesRbRect(layer, "games-rb-set-highlight is-t-entry", gamesRbColumnX(value), 0);
+    appendGamesRbRect(layer, "games-rb-set-highlight is-t-entry", gamesRbColumnX(value), 0, gamesRbCellWidth, gamesRbHeaderHeight);
   });
 }
 
@@ -12520,7 +13039,7 @@ function renderGamesRbFigure(root) {
     label.setAttribute("y", String(gamesRbRowY(mexS) + 1));
   });
   root.querySelectorAll('[data-games-rb-mex-label="T"]').forEach((label) => {
-    label.setAttribute("x", String(gamesRbCellTextX(mexT) - 36));
+    label.setAttribute("x", String(gamesRbCellTextX(mexT) - 40));
   });
   const desc = root.querySelector("#fig-games-rb-table-desc");
   if (desc) {
@@ -12543,6 +13062,24 @@ function renderGamesRbFigure(root) {
   });
 }
 
+const gamesRbLimitMessageTimers = new WeakMap();
+
+function showGamesRbLimitMessage(root) {
+  const container = root.closest(".publication-figure, .diagram-expanded") || root.parentElement || root;
+  const toast = container.querySelector("[data-games-rb-limit-toast]");
+  if (!toast) return;
+  const previous = gamesRbLimitMessageTimers.get(root);
+  if (previous) clearTimeout(previous);
+  toast.textContent = "mex would exceed the table range.";
+  toast.classList.add("is-visible");
+  const timer = setTimeout(() => {
+    toast.classList.remove("is-visible");
+    toast.textContent = "";
+    gamesRbLimitMessageTimers.delete(root);
+  }, 1000);
+  gamesRbLimitMessageTimers.set(root, timer);
+}
+
 function toggleGamesRbValue(root, setName, value) {
   const key = setName === "T" ? "gamesRbT" : "gamesRbS";
   const current = (root.dataset[key] ?? (setName === "T" ? gamesRbInitialT : gamesRbInitialS).join(","))
@@ -12551,7 +13088,13 @@ function toggleGamesRbValue(root, setName, value) {
     .map(Number);
   const next = new Set(current);
   if (next.has(value)) next.delete(value);
-  else next.add(value);
+  else {
+    next.add(value);
+    if (gamesRbSelectableValues.every((candidate) => next.has(candidate))) {
+      showGamesRbLimitMessage(root);
+      return;
+    }
+  }
   root.dataset[key] = [...next].sort((a, b) => a - b).join(",");
   renderGamesRbFigure(root);
 }
@@ -12562,6 +13105,12 @@ function ensureGamesRbSetControls(root) {
     if (button.dataset.gamesRbControlReady === "true") return;
     button.dataset.gamesRbControlReady = "true";
     button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleGamesRbValue(root, button.dataset.gamesRbToggle || "S", Number(button.dataset.gamesRbValue));
+    });
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
       event.stopPropagation();
       toggleGamesRbValue(root, button.dataset.gamesRbToggle || "S", Number(button.dataset.gamesRbValue));
     });
@@ -13452,6 +14001,7 @@ function renderLinkedList(selector, records) {
     } else {
       body.append(localizedText("span", null, record.text, record.textJa));
     }
+    if (selector !== "#award-list" && record.links?.length) appendActionLinks(body, normalizedPublicationLinks(record.links));
     appendContentReviewBadges(body, claimReviewBadges(record.reviewKey));
     item.append(body);
     root.append(item);
@@ -13474,7 +14024,8 @@ function renderExplore() {
   const root = document.querySelector("#explore-grid");
   if (!root) return;
   root.replaceChildren();
-  siteData.pages.forEach((page) => {
+  const profileExplorePageTitles = new Set(["Works", "Activities", "Others"]);
+  siteData.pages.filter((page) => profileExplorePageTitles.has(page.title)).forEach((page) => {
     const item = el("article", "explore-card");
     const thumbnailSrc = pageThumbnailSrc(page);
     if (thumbnailSrc) {
@@ -13676,24 +14227,117 @@ function noteReviewRecord(note) {
   return { status, source, provenance, rights, needsVerification, badges };
 }
 
+const paperFigureScriptCache = new Map();
+let paperFigureObserver = null;
+const paperFigureCacheKey = "cache-20260503ag";
+let queuedPaperFigures = [];
+let paperFigureHydrationScheduled = false;
+
+function paperFigureModuleId(paper) {
+  return paperAnchor(paper);
+}
+
+function paperFigureScriptPath(moduleId) {
+  return localHref(`scripts/paper-figures/${moduleId}.js?v=${paperFigureCacheKey}`);
+}
+
+function loadPaperFigureScript(moduleId) {
+  if (paperFigureScriptCache.has(moduleId)) return paperFigureScriptCache.get(moduleId);
+  const promise = new Promise((resolve, reject) => {
+    const node = document.createElement("script");
+    node.src = paperFigureScriptPath(moduleId);
+    node.defer = true;
+    node.addEventListener("load", resolve, { once: true });
+    node.addEventListener("error", reject, { once: true });
+    document.body.append(node);
+  });
+  paperFigureScriptCache.set(moduleId, promise);
+  return promise;
+}
+
+function renderPaperFigureLoadingDots() {
+  const dots = el("div", "loading-dots");
+  dots.setAttribute("aria-hidden", "true");
+  dots.append(el("span"), el("span"), el("span"));
+  return dots;
+}
+
+function hydratePaperFigure(figure) {
+  if (!figure || figure.dataset.figureLoaded === "true" || figure.dataset.figureLoading === "true") return;
+  const moduleId = figure.dataset.paperFigureModule;
+  if (!moduleId) return;
+  figure.dataset.figureLoading = "true";
+  loadPaperFigureScript(moduleId)
+    .then(() => {
+      const module = globalThis.paperFigureModules?.[moduleId];
+      if (!module?.render) throw new Error(`Missing paper figure module: ${moduleId}`);
+      module.render(figure);
+      figure.dataset.figureLoaded = "true";
+    })
+    .catch(() => {
+      figure.replaceChildren(el("p", "empty-state", "Diagram failed to load."));
+      figure.classList.remove("is-loading");
+      figure.classList.add("has-load-error");
+    })
+    .finally(() => {
+      delete figure.dataset.figureLoading;
+    });
+}
+
+function observePaperFigure(figure) {
+  if (!figure) return;
+  if (!globalThis.IntersectionObserver) {
+    setTimeout(() => hydratePaperFigure(figure), 0);
+    return;
+  }
+  if (!paperFigureObserver) {
+    paperFigureObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        paperFigureObserver.unobserve(entry.target);
+        hydratePaperFigure(entry.target);
+      });
+    }, { rootMargin: "260px 0px" });
+  }
+  paperFigureObserver.observe(figure);
+}
+
+function schedulePaperFigureHydration() {
+  if (paperFigureHydrationScheduled) return;
+  paperFigureHydrationScheduled = true;
+  const afterPaint = globalThis.requestAnimationFrame || ((callback) => setTimeout(callback, 16));
+  afterPaint(() => {
+    afterPaint(() => {
+      const figures = queuedPaperFigures;
+      queuedPaperFigures = [];
+      paperFigureHydrationScheduled = false;
+      figures.forEach((figure) => {
+        if (figure.isConnected) observePaperFigure(figure);
+      });
+    });
+  });
+}
+
+function queuePaperFigureHydration(figure) {
+  if (!figure) return;
+  queuedPaperFigures.push(figure);
+  schedulePaperFigureHydration();
+}
+
 function renderPaperRecord(paper, options = {}) {
   const showFigure = options.showFigure ?? true;
-  const item = el("article", showFigure && paper.figure ? "publication-item has-figure" : "publication-item");
+  const hasLazyFigure = showFigure && paper.figure;
+  const item = el("article", hasLazyFigure ? "publication-item has-figure" : "publication-item");
   item.id = paperAnchor(paper);
-  const template = paperFigureTemplates[paper.figure];
-  if (showFigure && template) {
+  let deferredFigure = null;
+  if (hasLazyFigure) {
     const figure = el("div", "publication-figure");
     figure.classList.add(`publication-figure-${paper.figure}`);
     figure.setAttribute("aria-label", `${paper.title} diagram`);
-    figure.innerHTML = template;
-    applyFigureMarkerIds(figure, paper.figure, "paper-arrow");
-    initializeGamesRbFigures(figure);
-    initializeGrundyFigures(figure, { autoplay: true, intervalMs: grundyAutoplayIntervalMs });
-    initializeLawverePullbackFigures(figure, { autoplay: true, controls: true });
-    initializeConnectedCorrespondenceFigures(figure, { autoplay: true, controls: true });
-    initializeNormalizationFigures(figure, { controls: true });
-    initializeAutomataInteractiveFigures(figure);
-    item.append(figure);
+    figure.classList.add("is-loading");
+    figure.dataset.paperFigureModule = paperFigureModuleId(paper);
+    figure.append(renderPaperFigureLoadingDots());
+    deferredFigure = figure;
   }
 
   const titleRow = el("div", "publication-title");
@@ -13714,6 +14358,10 @@ function renderPaperRecord(paper, options = {}) {
     ...normalizedPublicationLinks(paper.links || []),
     ...overleafActionLinks(paper, ["paper", "preprint"])
   ]);
+  if (deferredFigure) {
+    item.append(deferredFigure);
+    queuePaperFigureHydration(deferredFigure);
+  }
   return item;
 }
 
@@ -14039,6 +14687,68 @@ function renderPapers() {
   scrollToHashTarget();
 }
 
+let preparationFigureObserver = null;
+let queuedPreparationFigures = [];
+let preparationFigureHydrationScheduled = false;
+
+function renderPreparationFigure(figure) {
+  if (!figure || figure.dataset.figureLoaded === "true" || figure.dataset.figureLoading === "true") return;
+  const figureId = figure.dataset.preparationFigure;
+  const template = figureId ? paperFigureTemplates[figureId] : "";
+  if (!template) {
+    figure.classList.remove("is-loading");
+    return;
+  }
+  figure.dataset.figureLoading = "true";
+  figure.textContent = "";
+  figure.innerHTML = template;
+  applyFigureMarkerIds(figure, figureId, figure.dataset.figureMarkerPrefix || "preparation-arrow");
+  initializeGamesRbFigures(figure);
+  initializeAutomataInteractiveFigures(figure);
+  typesetMath(figure);
+  figure.dataset.figureLoaded = "true";
+  delete figure.dataset.figureLoading;
+  figure.classList.remove("is-loading");
+}
+
+function observePreparationFigure(figure) {
+  if (!figure) return;
+  if (!("IntersectionObserver" in window)) {
+    renderPreparationFigure(figure);
+    return;
+  }
+  if (!preparationFigureObserver) {
+    preparationFigureObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const target = entry.target;
+        preparationFigureObserver.unobserve(target);
+        renderPreparationFigure(target);
+      });
+    }, { rootMargin: "420px 0px" });
+  }
+  preparationFigureObserver.observe(figure);
+}
+
+function flushQueuedPreparationFigures() {
+  const batch = queuedPreparationFigures;
+  queuedPreparationFigures = [];
+  preparationFigureHydrationScheduled = false;
+  batch.forEach((figure, index) => {
+    observePreparationFigure(figure);
+    window.setTimeout(() => renderPreparationFigure(figure), 180 + index * 80);
+  });
+}
+
+function queuePreparationFigureHydration(figure) {
+  if (!figure) return;
+  queuedPreparationFigures.push(figure);
+  if (preparationFigureHydrationScheduled) return;
+  preparationFigureHydrationScheduled = true;
+  const schedule = window.requestAnimationFrame || ((callback) => window.setTimeout(callback, 16));
+  schedule(() => schedule(flushQueuedPreparationFigures));
+}
+
 function renderPreparationPapers() {
   const root = document.querySelector("#preparation-paper-list");
   if (!root) return;
@@ -14052,18 +14762,19 @@ function renderPreparationPapers() {
   filtered.forEach((title) => {
     const paper = preparationPaperRecord(title);
     const template = paperFigureTemplates[paper.figure];
-    const showFigure = state.paperView === "diagram" && template;
+    const showFigure = Boolean(template);
     const item = el("article", showFigure ? "publication-item publication-item-compact has-figure publication-preparation-feature" : "publication-item publication-item-compact");
     item.id = paperAnchor(paper);
+    let deferredFigure = null;
     if (showFigure) {
       const figure = el("div", "publication-figure");
       figure.classList.add(`publication-figure-${paper.figure}`);
       figure.setAttribute("aria-label", `${paper.title} diagram`);
-      figure.innerHTML = template;
-      applyFigureMarkerIds(figure, paper.figure, "preparation-arrow");
-      initializeGamesRbFigures(figure);
-      initializeAutomataInteractiveFigures(figure);
-      item.append(figure);
+      figure.dataset.preparationFigure = paper.figure;
+      figure.dataset.figureMarkerPrefix = "preparation-arrow";
+      figure.classList.add("is-loading");
+      figure.append(renderPaperFigureLoadingDots());
+      deferredFigure = figure;
     }
     const titleRow = el("div", "publication-title");
     const heading = el("h3");
@@ -14078,6 +14789,10 @@ function renderPreparationPapers() {
     if (meta.children.length) item.append(meta);
     if (paper.summary) item.append(el("p", "publication-summary", paper.summary));
     appendActionLinks(item, paper.links || []);
+    if (deferredFigure) {
+      item.append(deferredFigure);
+      queuePreparationFigureHydration(deferredFigure);
+    }
     root.append(item);
   });
   typesetMath(root);
@@ -14451,6 +15166,26 @@ function researchmapEducationTextJa(record) {
   ]).join(" - ");
 }
 
+function profileAcademicAffiliationRecords() {
+  const education = visibleResearchmapEducationRecords().map((record) => ({
+    kind: "academic",
+    text: researchmapEducationText(record),
+    textJa: researchmapEducationTextJa(record),
+    href: record.link,
+    icon: "education",
+    time: timelineTimeFromValue(record.from || record.period)
+  }));
+  const pastAffiliations = siteData.pastPositions.map((record) => ({
+    ...record,
+    kind: "past-affiliation",
+    icon: "building",
+    time: positionTimelineStart(record)
+  }));
+  return [...education, ...pastAffiliations]
+    .filter((record) => Number.isFinite(record.time))
+    .sort((a, b) => b.time - a.time || String(a.text).localeCompare(String(b.text)));
+}
+
 function renderResearchmapAwards() {
   const root = document.querySelector("#researchmap-award-list");
   if (!root) return;
@@ -14469,31 +15204,6 @@ function renderResearchmapAwards() {
     const body = el("div", "icon-list-body");
     const anchor = link(researchmapAwardText(record), record.link);
     anchor.dataset.i18nJa = researchmapAwardTextJa(record);
-    body.append(anchor);
-    item.append(body);
-    root.append(item);
-  });
-  applyLanguage(root);
-}
-
-function renderResearchmapEducation() {
-  const root = document.querySelector("#researchmap-education-list");
-  if (!root) return;
-  root.replaceChildren();
-  root.classList.add("icon-list");
-  const records = researchmapData?.education || [];
-  const sourceKeys = nonResearchmapEducationDuplicateKeys();
-  const visibleRecords = records.filter((record) => !researchmapEducationDuplicateKeys(record).some((key) => sourceKeys.has(key)));
-  hideProfileDataContainerWhenEmpty(root, !visibleRecords.length);
-  if (!visibleRecords.length) {
-    return;
-  }
-  visibleRecords.forEach((record) => {
-    const item = el("li", "icon-list-item");
-    item.append(uiIcon("education", "list-item-icon"));
-    const body = el("div", "icon-list-body");
-    const anchor = link(researchmapEducationText(record), record.link);
-    anchor.dataset.i18nJa = researchmapEducationTextJa(record);
     body.append(anchor);
     item.append(body);
     root.append(item);
@@ -15211,6 +15921,7 @@ function worksHashTarget() {
 
 function worksInitialPaperLimit() {
   const hash = worksHashTarget();
+  if (isWorksPage() && document.body?.dataset.worksPapersFull === "true") return Infinity;
   if (!isWorksPage() || state.worksPapersExpanded || paperSearchHasDocumentFilter()) return Infinity;
   if (hash.startsWith("paper-") || hash === "papers" || hash === "in-preparation") return Infinity;
   return worksInitialPaperRecordLimit;
@@ -15479,11 +16190,10 @@ function setupInteractions() {
 function renderProfileSections() {
   renderProfileLinks();
   renderCurrentPositions();
-  renderLinkedList("#past-position-list", siteData.pastPositions);
+  renderLinkedList("#academic-affiliation-list", profileAcademicAffiliationRecords());
   renderLinkedList("#award-list", siteData.awards);
   renderLinkedList("#education-list", siteData.education);
   renderResearchmapAwards();
-  renderResearchmapEducation();
 }
 
 function renderInitialPage() {

@@ -1,9 +1,19 @@
 (function () {
-  const fullLoadTargets = new Set(["in-preparation", "notes-preparations", "talks-slides"]);
-  let fullLoadPromise = null;
+  const cacheKey = "cache-20260503aq";
+  const loaded = new Map();
+  let richCorePromise = null;
+  let richSetupDone = false;
+  let userScrolled = false;
+  const sectionLoaders = {
+    papers: loadPapers,
+    "notes-preparations": loadTalks,
+    "in-preparation": loadTalks,
+    "talks-slides": loadTalks
+  };
 
   function script(src, attrs = {}) {
-    return new Promise((resolve, reject) => {
+    if (loaded.has(src)) return loaded.get(src);
+    const promise = new Promise((resolve, reject) => {
       const node = document.createElement("script");
       node.src = src;
       node.defer = true;
@@ -15,54 +25,66 @@
       node.addEventListener("error", reject, { once: true });
       document.body.append(node);
     });
+    loaded.set(src, promise);
+    return promise;
   }
 
-  function showFullLoadStatus() {
-    const root = document.getElementById("research-map");
-    if (!root) return;
-    root.innerHTML = "";
-    const card = document.createElement("article");
-    card.className = "works-search-loading";
-    card.setAttribute("role", "status");
-    card.setAttribute("aria-label", "Loading Works index");
-    const dots = document.createElement("div");
-    dots.className = "loading-dots";
-    dots.setAttribute("aria-hidden", "true");
-    dots.append(document.createElement("span"), document.createElement("span"), document.createElement("span"));
-    card.append(dots);
-    root.append(card);
+  function loadRichCore() {
+    if (richCorePromise) return richCorePromise;
+    richCorePromise = script(`../data/researchmap.generated.js?v=${cacheKey}`)
+      .then(() => script(`../data/overleaf.generated.js?v=${cacheKey}`))
+      .then(() => script(`../scripts/site.js?v=${cacheKey}`, { "data-manual-init": "true" }));
+    return richCorePromise;
   }
 
-  function loadFullWorks() {
-    if (fullLoadPromise) return fullLoadPromise;
-    showFullLoadStatus();
-    fullLoadPromise = script("../data/researchmap.generated.js?v=cache-20260503u")
-      .then(() => script("../data/overleaf.generated.js?v=cache-20260503u"))
-      .then(() => script("../scripts/site.js?v=cache-20260503u", { "data-manual-init": true }))
-      .then(() => {
-        if (typeof setupLanguage === "function") setupLanguage();
-        if (typeof renderWorksPageInitial === "function") renderWorksPageInitial();
-        if (typeof setupInteractions === "function") setupInteractions();
-        if (typeof applyLanguage === "function") applyLanguage();
-      });
-    return fullLoadPromise;
+  function setupRichOnce() {
+    if (richSetupDone) return;
+    if (typeof setupLanguage === "function") setupLanguage();
+    if (typeof setupInteractions === "function") setupInteractions();
+    richSetupDone = true;
+  }
+
+  function finishRichRender() {
+    setupRichOnce();
+    if (typeof applyLanguage === "function") applyLanguage();
+  }
+
+  function loadSearch() {
+    return loadRichCore().then(() => {
+      setupRichOnce();
+      if (typeof renderResearchMap === "function") renderResearchMap();
+      finishRichRender();
+    });
+  }
+
+  function loadPapers() {
+    return loadRichCore().then(() => {
+      setupRichOnce();
+      document.body.dataset.worksPapersFull = "true";
+      if (typeof renderPapers === "function") renderPapers();
+      finishRichRender();
+      scrollHashTarget();
+    });
+  }
+
+  function loadTalks() {
+    return loadRichCore().then(() => {
+      setupRichOnce();
+      if (typeof renderPreparationPapers === "function") renderPreparationPapers();
+      if (typeof renderNotes === "function") renderNotes();
+      if (typeof renderResearchmapPresentations === "function") renderResearchmapPresentations();
+      if (typeof renderSlides === "function") renderSlides();
+      finishRichRender();
+      scrollHashTarget();
+    });
   }
 
   function afterPageLoad(callback) {
-    const delayMs = 0;
     if (document.readyState === "complete") {
-      setTimeout(callback, delayMs);
+      setTimeout(callback, 0);
       return;
     }
-    window.addEventListener("load", () => setTimeout(callback, delayMs), { once: true });
-  }
-
-  function hashTarget() {
-    return decodeURIComponent(location.hash.slice(1) || "");
-  }
-
-  function needsFullLoadForHash(hash = hashTarget()) {
-    return fullLoadTargets.has(hash) || Array.from(fullLoadTargets).some((id) => hash.startsWith(`${id}-`));
+    window.addEventListener("load", () => setTimeout(callback, 0), { once: true });
   }
 
   function setupMenu() {
@@ -76,36 +98,96 @@
     });
   }
 
-  function setupFullLoadTriggers() {
-    document.querySelectorAll("[data-load-works-details], #paper-filter, #note-filter, #slide-filter, #talk-filter, [data-paper-view]").forEach((node) => {
-      node.addEventListener("click", loadFullWorks, { once: true });
-      node.addEventListener("focus", loadFullWorks, { once: true });
+  function hashTarget(hash = location.hash) {
+    return decodeURIComponent(String(hash || "").replace(/^#/, ""));
+  }
+
+  function hashElementId(hash = hashTarget()) {
+    if (hash === "notes") return "notes-list";
+    if (hash === "slides") return "slides-list";
+    if (hash === "talks") return "talks-slides";
+    if (hash === "preparations") return "in-preparation";
+    return hash;
+  }
+
+  function scrollHashTarget() {
+    const id = hashElementId();
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    const schedule = window.requestAnimationFrame || ((callback) => window.setTimeout(callback, 16));
+    schedule(() => schedule(() => target.scrollIntoView({ block: "start" })));
+  }
+
+  function loaderForHash(hash = hashTarget()) {
+    if (hash === "papers" || hash.startsWith("paper-")) return loadPapers;
+    if (hash === "notes-preparations" || hash === "notes" || hash === "notes-list" || hash === "in-preparation" || hash === "preparations" || hash.startsWith("note-")) return loadTalks;
+    if (hash === "talks-slides" || hash === "talks" || hash === "slides" || hash === "slides-list" || hash.startsWith("talk-") || hash.startsWith("slide-")) return loadTalks;
+    return null;
+  }
+
+  function setupLazySections() {
+    const markUserScrolled = () => {
+      if (userScrolled) return;
+      userScrolled = true;
+      if (!loaderForHash()) loadPapers();
+    };
+    window.addEventListener("wheel", markUserScrolled, { passive: true, once: true });
+    window.addEventListener("touchmove", markUserScrolled, { passive: true, once: true });
+    window.addEventListener("keydown", (event) => {
+      if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key)) markUserScrolled();
+    }, { once: true });
+
+    if (window.IntersectionObserver) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const loader = sectionLoaders[entry.target.id];
+          if (!loader) return;
+          const activeHashLoader = loaderForHash();
+          if (!userScrolled && activeHashLoader !== loader) return;
+          if (loader) loader();
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: "120px 0px" });
+      Object.keys(sectionLoaders).forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) observer.observe(section);
+      });
+    } else {
+      setTimeout(loadPapers, 1200);
+      setTimeout(loadTalks, 1800);
+    }
+
+    document.querySelectorAll("#paper-filter, [data-paper-view]").forEach((node) => {
+      node.addEventListener("focus", loadPapers, { once: true });
+      node.addEventListener("click", loadPapers, { once: true });
+    });
+
+    document.querySelectorAll("#note-filter, #slide-filter, #talk-filter, #note-language-filter, #note-year-filter, #note-theme-filter, #slide-language-filter, #slide-year-filter, #slide-theme-filter").forEach((node) => {
+      node.addEventListener("focus", loadTalks, { once: true });
+      node.addEventListener("click", loadTalks, { once: true });
     });
 
     document.addEventListener("click", (event) => {
       const anchor = event.target.closest?.("a[href]");
       if (!anchor) return;
       const url = new URL(anchor.getAttribute("href"), location.href);
-      if (url.pathname.endsWith("/works/index.html") || url.pathname.endsWith("/works/") || url.pathname === location.pathname) {
-        if (needsFullLoadForHash(decodeURIComponent(url.hash.slice(1)))) loadFullWorks();
-      }
+      const loader = loaderForHash(url.hash);
+      if (loader) loader();
     });
 
-    if (window.IntersectionObserver) {
-      const observer = new IntersectionObserver((entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          observer.disconnect();
-          afterPageLoad(loadFullWorks);
-        }
-      }, { rootMargin: "520px 0px" });
-      fullLoadTargets.forEach((id) => {
-        const section = document.getElementById(id);
-        if (section) observer.observe(section);
-      });
-    }
+    window.addEventListener("hashchange", () => {
+      const loader = loaderForHash();
+      if (loader) loader();
+    });
   }
 
   setupMenu();
-  setupFullLoadTriggers();
-  afterPageLoad(loadFullWorks);
+  setupLazySections();
+  afterPageLoad(() => {
+    loadSearch();
+    const loader = loaderForHash();
+    if (loader) loader();
+  });
 })();
