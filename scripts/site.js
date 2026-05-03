@@ -82,21 +82,21 @@ const siteData = {
     },
     {
       title: "Papers",
-      href: "works/papers/index.html",
+      href: "works/index.html#papers",
       description: "Bibliography, preprints, in-preparation work, and metadata.",
       icon: "paper",
       thumbnail: "assets/papers/topoi-automata.jpg"
     },
     {
       title: "Notes",
-      href: "works/notes-preparations/index.html",
+      href: "works/index.html#notes-preparations",
       description: "Lecture notes, expository notes, and related writing.",
       icon: "note",
       thumbnail: "assets/notes/counting-with-exponential-of-groups.png"
     },
     {
       title: "Slides",
-      href: "works/talks-slides/index.html",
+      href: "works/index.html#talks-slides",
       description: "Talk records and slide materials.",
       icon: "slide",
       thumbnail: "assets/notes/topoi-of-automata-cscat2025.png"
@@ -110,7 +110,7 @@ const siteData = {
     },
     {
       title: "Talks",
-      href: "works/talks-slides/index.html",
+      href: "works/index.html#talks-slides",
       description: "Talk records and slide materials.",
       icon: "talk",
       thumbnail: "assets/profile/ryuya-hora-talk.jpg"
@@ -124,28 +124,21 @@ const siteData = {
     },
     {
       title: "Web Apps",
-      href: "others/web-apps/index.html",
+      href: "others/index.html#web-apps",
       description: "Small deployed tools and experiments.",
       icon: "webapp",
       thumbnail: "assets/web-apps/string-diagram.png"
     },
     {
-      title: "Problems",
-      href: "problems/full-list/index.html",
-      description: "Open questions, problem trails, and formal problems.",
-      icon: "problem",
-      thumbnail: "assets/papers/lawvere-fourth.jpg"
-    },
-    {
       title: "Links",
-      href: "others/links/index.html",
+      href: "others/index.html#links",
       description: "Selected external links.",
       icon: "link",
       thumbnail: "assets/profile/green-fractal-branch.png"
     },
     {
       title: "Search",
-      href: "problems/search/index.html",
+      href: "search/index.html",
       description: "Site index search.",
       icon: "search",
       thumbnail: "assets/web-apps/adjunction-reboot.png"
@@ -162,18 +155,18 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026" },
-    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai", reviewKey: "position:humai-researcher:2026" },
-    { text: "Supported by KAKENHI project 24KJ0837.", textJa: "KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837" },
-    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
-    { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター．", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026", timelineStart: "2026-04" },
+    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai", reviewKey: "position:humai-researcher:2026", timelineStart: "2026-04" },
+    { text: "Supported by KAKENHI project 24KJ0837.", textJa: "KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837", timelineStart: "2024-04" },
+    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension", timelineStart: "2024-01", timelineStartLabel: "2024" },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon", timelineStart: "2025-06" },
+    { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター．", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback", timelineStart: "2020-07" }
   ],
   pastPositions: [
-    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", textJa: "2025年4月から7月まで，Centre for Topos Theory and its Applications（パリ）リサーチアソシエイト．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
-    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", textJa: "2024年4月から2026年3月まで，東京大学大学院数理科学研究科 博士課程．", href: "https://www.ms.u-tokyo.ac.jp/" },
-    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", textJa: "2022年10月から2024年3月まで，変革を駆動する先端物理・数学プログラム（FoPM）支援学生．", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
-    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", textJa: "2020年11月から2021年3月まで，国立情報学研究所リサーチアシスタント．", href: "https://www.nii.ac.jp/en/" }
+    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", textJa: "2025年4月から7月まで，Centre for Topos Theory and its Applications（パリ）リサーチアソシエイト．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", timelineStart: "2025-04", timelineEnd: "2025-07" },
+    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", textJa: "2024年4月から2026年3月まで，東京大学大学院数理科学研究科 博士課程．", href: "https://www.ms.u-tokyo.ac.jp/", timelineStart: "2024-04", timelineEnd: "2026-03" },
+    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", textJa: "2022年10月から2024年3月まで，変革を駆動する先端物理・数学プログラム（FoPM）支援学生．", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", timelineStart: "2022-10", timelineEnd: "2024-03" },
+    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", textJa: "2020年11月から2021年3月まで，国立情報学研究所リサーチアシスタント．", href: "https://www.nii.ac.jp/en/", timelineStart: "2020-11", timelineEnd: "2021-03" }
   ],
   webApps: [
     {
@@ -352,7 +345,7 @@ const siteData = {
         themes: ["topos", "combinatorics"],
         links: [["arXiv", "https://arxiv.org/abs/2503.03439"]],
         summary:
-          "Provides a solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
+          "Gives a preprint solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
       },
       {
         title: "Topoi of automata I: Four topoi of automata and regular languages",
@@ -498,8 +491,10 @@ const siteData = {
     {
       title: "Plans",
       items: [
+        { date: "2026-06-03", text: "Organizing the Bimonthly Category Theory Seminar." },
         { date: "2026-07-06 - 2026-07-10", text: "Planning to attend ACT 2026 in Tallinn.", href: "https://actconf2026.github.io/" },
-        { date: "2026-09-29", text: "Scheduled to give an online talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" }
+        { date: "2026-09-29", text: "Scheduled to give an online talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" },
+        { date: "2026-11-02 - 2026-11-04", text: "Organizing Categories in Tokyo 3.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A" }
       ]
     },
     {
@@ -539,12 +534,12 @@ const siteData = {
       title: "2024",
       items: [
         { date: "2024-04-25", text: "Spoke at AFSA.", href: "https://afsa.jp/g-en/" },
-        { date: "2024-05-18", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+        { date: "2024-05-15", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2024-06-28", text: "Gave a talk at CT 2024 in Santiago de Compostela.", href: "https://www.usc.gal/regaca/ct2024/" },
         { date: "2024-07-01 - 2024-07-05", text: "Attended TACL 2024.", href: "https://iiia.csic.es/tacl2024/" },
         { date: "2024-08", text: "Paper on quotient toposes of discrete dynamical systems appeared in JPAA.", href: "https://doi.org/10.1016/j.jpaa.2024.107657" },
         { date: "2024-11-10", text: "Uploaded Topoi of automata I.", href: "https://arxiv.org/abs/2411.06358" },
-        { date: "2024-11-23", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+        { date: "2024-11-23 - 2024-11-24", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2024-12-10", text: "Wrote for Advent Calendar 2024.", href: "https://adventar.org/calendars/10265" }
       ]
     },
@@ -1075,13 +1070,13 @@ const siteReviewData = {
       key: "position:zen-assistant-professor:2026",
       status: "pending-public-source",
       claim: "Assistant professor at ZEN University since April 2026.",
-      note: "Confirmed by owner and researchmap; no public institutional profile page is available yet."
+      note: "Confirmed by owner and researchmap; owner confirmed on 3 May 2026 that no public institutional profile page is available yet."
     },
     {
       key: "position:humai-researcher:2026",
       status: "pending-public-source",
       claim: "Researcher at the Humai Center since April 2026.",
-      note: "Confirmed by owner; no public institutional profile page is available yet."
+      note: "Confirmed by owner; owner confirmed on 3 May 2026 that no public institutional profile page is available yet."
     },
     {
       key: "grant:jsps-fellow:24KJ0837",
@@ -1097,22 +1092,23 @@ const siteReviewData = {
       status: "self-reported-public-broadcast",
       claim: "Graduation Representative, Graduate School of Mathematical Sciences, doctoral course, March 2026.",
       source: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      note: "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
+      note: "Owner confirmed on 3 May 2026 that this is accurate and public display is acceptable; no named public archival source is available."
     },
     {
       key: "award:graduation-representative:gsm:masters:2024",
       status: "self-reported-public-broadcast",
       claim: "Graduation Representative, Graduate School of Mathematical Sciences, master's course, March 2024.",
       source: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      note: "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
+      note: "Owner confirmed on 3 May 2026 that this is accurate and public display is acceptable; no named public archival source is available."
     }
   ],
   documentRights: {
     defaultDrivePdf: {
-      rightsStatus: "owner-reports-permission",
+      rightsStatus: "owner-confirmed-no-unapproved-third-party-material",
       publicPermission: "owner-confirmed",
-      coauthorConsent: "owner-believes-ok",
-      source: "google-drive"
+      coauthorConsent: "owner-confirmed",
+      source: "google-drive",
+      note: "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
     },
     byFile: {
       "ライツアウトの代数的研究.pdf": {
@@ -1149,7 +1145,7 @@ const siteReviewData = {
       status: "owner-supplied",
       source: "local assets/profile",
       provenance: "Owner-supplied homepage media.",
-      rights: "Owner-controlled profile photographs; keep if no third-party photographer restriction applies.",
+      rights: "Owner confirmed photographer/license status for profile photographs on 3 May 2026.",
       needsVerification: false
     },
     paperFigures: {
@@ -1163,8 +1159,8 @@ const siteReviewData = {
       status: "derived-from-public-documents",
       source: "local assets/notes or Google Drive thumbnails",
       provenance: "Generated from linked notes/slides.",
-      rights: "Derived from publicly linked notes/slides; review if a source PDF contains third-party images.",
-      needsVerification: true
+      rights: "Owner confirmed on 3 May 2026 that the linked notes and thumbnails should not contain unapproved third-party or coauthor material.",
+      needsVerification: false
     },
     webAppThumbnails: {
       status: "site-generated",
@@ -1417,15 +1413,15 @@ const i18nText = {
     "Site Search": "サイト内検索",
     "Search this site.": "サイト内検索．",
     "Site index search.": "サイト内検索．",
-    "Search public pages, papers, talks, notes, slides, activities, problems, and links.":
-      "公開ページ，論文，発表，ノート，スライド，活動，Problems，リンクを検索します．",
+    "Search public pages, papers, talks, notes, slides, activities, and links.":
+      "公開ページ，論文，発表，ノート，スライド，活動，リンクを検索します．",
     "Search the site": "サイト内を検索",
     "Query": "検索語",
     "topos, automata, Categories in Tokyo...": "topos, automata, Categories in Tokyo...",
     "Type to search the site.": "検索語を入力してください．",
     "No public site results match this search.": "この検索に合う公開ページはありません．",
     "No linked items yet.": "関連項目はまだありません．",
-    "Site search. Last updated: 27 April 2026.": "サイト内検索．最終更新: 2026年4月27日",
+    "Site search. Last updated: 3 May 2026.": "サイト内検索．最終更新: 2026年5月3日",
     "Search notes": "ノート内検索",
     "Search slides": "スライド内検索",
     "Note filters": "ノートの絞り込み",
@@ -1457,6 +1453,7 @@ const i18nText = {
     "Note": "ノート",
     "Slide": "スライド",
     "Slides": "スライド",
+    "Affiliation": "所属",
     "Activity": "活動",
     "Problem": "Problem",
     "Topos": "Topos",
@@ -1464,7 +1461,6 @@ const i18nText = {
     "Award": "受賞",
     "Education": "教育歴",
     "Academic Background": "学歴",
-    "Additional Awards": "追加の受賞",
     "Focus": "Focus",
     "Why it is good": "好きな理由",
     "Basic dictionary": "Basic dictionary",
@@ -1484,11 +1480,11 @@ const i18nText = {
     "Talk records and slide materials.": "スライドと発表資料．",
     "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.": "活動タイムライン，訪問，発表，年次記録．",
     "Talk records and slide materials.": "学会発表，セミナー，アーカイブ，訪問地図．",
-    "Overview of WebApps and links.": "Web apps，Problems，リンクの概要．",
+    "Overview of WebApps and links.": "Web apps，リンクの概要．",
     "Selected external links.": "外部リンク集．",
     "Positions, awards, education, and profile links.": "所属，受賞，学歴，プロフィールリンク．",
     "Preprints and related writing.": "Preprint と関連文書．",
-    "Web apps, problems, and links.": "Web apps，Problems，リンク．",
+    "Web apps and links.": "Web apps，リンク．",
     "Visits, talks, plans.": "訪問，発表，予定．",
     "Research Interests": "研究関心",
     "All themes": "すべてのテーマ",
@@ -1512,10 +1508,7 @@ const i18nText = {
       "東京周辺の category theory workshop series / local research community です．私は founder かつ organizer の一人です．",
     "Open Categories in Tokyo": "Categories in Tokyo を開く",
     "Related activities": "関連する活動",
-    "Last updated: 22 April 2026.": "最終更新: 2026年4月22日",
-    "Last updated: 23 April 2026.": "最終更新: 2026年4月23日",
-    "Last updated: 24 April 2026.": "最終更新: 2026年4月24日",
-    "Last updated: 27 April 2026.": "最終更新: 2026年4月27日",
+    "Last updated: 3 May 2026.": "最終更新: 2026年5月3日",
     "Back to top": "上に戻る",
     "Home": "ホーム",
     "More": "さらに見る",
@@ -1560,8 +1553,8 @@ const i18nText = {
     "Powered by researchmap": "researchmap に基づく",
     "Misc": "その他",
     "Other Writing": "その他の文章",
-    "Research papers, preprints, and related writing. Last updated: 27 April 2026.":
-      "Research papers, preprints, related writing. 最終更新: 2026年4月27日",
+    "Research papers, preprints, and related writing. Last updated: 3 May 2026.":
+      "Research papers, preprints, related writing. 最終更新: 2026年5月3日",
     "Conference talks, seminars, workshop presentations, and available slides.":
       "Conference talks, seminars, workshop presentations とスライドをまとめています．",
     "Talks and slides.": "Talks and slides.",
@@ -1586,6 +1579,7 @@ const i18nText = {
     "No mapped visits yet.": "地図表示可能な訪問はまだありません．",
     "Talk": "発表",
     "Paper": "論文",
+    "Affiliation": "所属",
     "Activity": "活動",
     "Topos theory": "Topos theory",
     "Automata / languages": "Automata / languages",
@@ -1598,22 +1592,22 @@ const i18nText = {
     "Archive": "アーカイブ",
     "Talk List": "発表一覧",
     "Filter talks": "発表を絞り込む",
-    "Talks, seminars, and presentation material. Last updated: 27 April 2026.":
-      "Talks, seminars, presentation material. 最終更新: 2026年4月27日",
+    "Talks, seminars, and presentation material. Last updated: 3 May 2026.":
+      "Talks, seminars, presentation material. 最終更新: 2026年5月3日",
     "Notes and Slides": "ノートとスライド",
     "Lecture notes, speculative notes, and teaching material. ☁︎ marked notes are speculative; 🖊️ marked notes are under construction.":
       "Lecture notes, speculative notes, teaching material をまとめています．☁︎ は speculative，🖊️ は under construction を表します．",
     "Notes and teaching material.": "Notes and teaching material.",
     "Slides connected with talks.": "発表と対応するスライド．",
     "Slides, with matching talk information when available.": "対応する発表情報つきのスライド．",
-    "Notes. Last updated: 27 April 2026.": "Notes. 最終更新: 2026年4月27日",
-    "Slides. Last updated: 27 April 2026.": "Slides. 最終更新: 2026年4月27日",
+    "Notes. Last updated: 3 May 2026.": "Notes. 最終更新: 2026年5月3日",
+    "Slides. Last updated: 3 May 2026.": "Slides. 最終更新: 2026年5月3日",
     "Academic Activity": "研究活動",
     "Research visits, organizing work, seminars, public writing, and academic events.":
       "Research visits, organizing work, seminars, public writing, academic events をまとめています．",
     "Activities and plans.": "活動と予定．",
-    "Academic activities, visits, and organizing work. Last updated: 27 April 2026.":
-      "Academic activities, visits, organizing work. 最終更新: 2026年4月27日",
+    "Academic activities, visits, and organizing work. Last updated: 3 May 2026.":
+      "Academic activities, visits, organizing work. 最終更新: 2026年5月3日",
     "Profile Details": "プロフィール詳細",
     "CV": "CV",
     "CV and awards.": "CV と受賞．",
@@ -1623,14 +1617,16 @@ const i18nText = {
     "Current": "現在",
     "Past": "過去",
     "Past Affiliations": "過去の所属",
+    "Current position": "現在の所属",
+    "Past affiliation": "過去の所属",
     "Awards": "受賞",
     "Teaching": "教育",
     "Education and Outreach": "教育とアウトリーチ",
     "Teaching and Outreach": "教育・アウトリーチ",
     "Source": "出典",
     "Credit": "謝辞",
-    "CV, awards, positions, and education. Last updated: 27 April 2026.":
-      "CV, awards, positions, education. 最終更新: 2026年4月27日",
+    "CV, awards, positions, and education. Last updated: 3 May 2026.":
+      "CV, awards, positions, education. 最終更新: 2026年5月3日",
     "Open Problems and Questions": "Open Problems and Questions",
     "Problem Index": "Problem Index",
     "Open problems and trails.": "Open problems and trails.",
@@ -1667,14 +1663,14 @@ const i18nText = {
     "Filter problems": "問題を絞り込む",
     "Index": "索引",
     "All Entries": "全項目",
-    "Open problems, questions, and reference trails. Last updated: 27 April 2026.":
-      "Open problems, questions, reference trails. 最終更新: 2026年4月27日",
+    "Open problems, questions, and reference trails. Last updated: 3 May 2026.":
+      "Open problems, questions, reference trails. 最終更新: 2026年5月3日",
     "People, Friends' Papers, Books, Events": "人物・友人の論文・本・イベント",
     "Profiles and references.": "プロフィールと資料．",
     "External references, profile pages, friends' papers, books, and events.":
       "外部資料，プロフィールページ，友人の論文，本，イベントへのリンクです．",
-    "External links and reference pages. Last updated: 27 April 2026.":
-      "External links and reference pages. 最終更新: 2026年4月27日",
+    "External links and reference pages. Last updated: 3 May 2026.":
+      "External links and reference pages. 最終更新: 2026年5月3日",
     "☁︎ Log": "☁︎ Log",
     "思弁的なノート": "思弁的なノート",
     "Short draft fragments, questions, and half-formed mathematical pictures before they become papers, talks, or polished notes.":
@@ -1703,8 +1699,8 @@ const i18nText = {
       "completely connected topoi を研究し，例とともに site characterization を与えます．",
     "Gives a solution to Lawvere's first open problem.":
       "Lawvere's first open problem の解決を与えます．",
-    "Provides a solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets.":
-      "symmetric simplicial sets のトポスにおける levels を通じて，Lawvere の7つの open problems の1つに解を与えます．",
+    "Gives a preprint solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets.":
+      "symmetric simplicial sets のトポスにおける levels を通じて，Lawvere の7つの open problems の1つに preprint solution を与えます．",
     "Introduces a topos-theoretic point of view on formal language theory.":
       "formal language theory に対する topos-theoretic な見方を導入します．",
     "Reinterprets impartial combinatorial games and the Nim-sum using recursive coalgebras.":
@@ -2254,8 +2250,6 @@ const translatableTextSelector = [
   ".nav-group-label",
   ".nav-search .sr-only",
   ".eyebrow",
-  ".page-breadcrumb a",
-  ".page-breadcrumb span",
   ".section-kicker",
   "h1",
   "h2",
@@ -2448,19 +2442,16 @@ function updateLanguageToggle() {
 }
 
 function ensureSearchNavLink() {
-  // Search now lives inside the Problems navigation group.
-}
-
-function ensureDraftNotice() {
-  const existing = document.querySelector(".draft-notice");
-  if (document.body?.dataset.draft !== "true") {
-    existing?.remove();
-    return;
-  }
-  if (existing) return;
-  const notice = el("div", "draft-notice", "This page is still under construction.");
-  notice.setAttribute("role", "status");
-  document.body?.prepend(notice);
+  const nav = document.querySelector(".site-nav");
+  if (!nav || nav.querySelector("[data-site-search-link]")) return;
+  const searchLink = link("", localHref("search/index.html"));
+  searchLink.className = "nav-search";
+  searchLink.dataset.siteSearchLink = "";
+  searchLink.setAttribute("aria-label", "Search");
+  const icon = el("span", "search-icon");
+  icon.setAttribute("aria-hidden", "true");
+  searchLink.append(icon, el("span", "sr-only", "Search"));
+  nav.append(searchLink);
 }
 
 function setupLanguage() {
@@ -2469,7 +2460,6 @@ function setupLanguage() {
   syncLanguageUrl();
   const nav = document.querySelector(".site-nav");
   ensureSearchNavLink();
-  ensureDraftNotice();
   if (japaneseUiEnabled && nav && !nav.querySelector("[data-language-toggle]")) {
     const button = el("button", "language-toggle");
     button.type = "button";
@@ -2723,7 +2713,7 @@ function hideTimelineTooltipSoon() {
 
 function attachTimelineTooltip(node, record) {
   const kindLabel = homeTimelineKindLabel(record.kind);
-  const themeLabel = record.theme ? homeTimelineThemeLabel(record.theme) : "";
+  const themeLabel = homeTimelineRecordThemeLabel(record);
   node.dataset.timelineKicker = compactText([kindLabel, themeLabel, record.dateLabel]).join(" / ");
   node.dataset.timelineTitle = record.title;
   node.dataset.timelineMeta = record.meta || "";
@@ -2899,7 +2889,7 @@ function noteAnchor(note) {
 }
 
 function documentPagePathForRecord(note) {
-  return noteRecordIsSlide(note) ? "works/talks-slides/index.html" : "works/notes-preparations/index.html";
+  return noteRecordIsSlide(note) ? "works/index.html#talks-slides" : "works/index.html#notes-preparations";
 }
 
 function noteHref(note) {
@@ -3542,11 +3532,11 @@ const activityVisitRecords = [
   { date: "2025-11", title: "Attended a seminar by Ryoma Sin'ya at Hongo campus, The University of Tokyo", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
   { date: "2025-12", title: "Attended PCT seminar", locationId: "tokyo", kind: "attended", href: "https://pctseminar.github.io" },
   { date: "2025-12", title: "Attended TMU geometry seminar", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
-  { date: "2024-05-18", title: "Organized Categories in Tokyo 0", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+  { date: "2024-05-15", title: "Organized Categories in Tokyo 0", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2024-06", title: "Visited Queen Mary University of London", locationId: "london", kind: "visit", href: oldActivitiesSource },
   { date: "2024-07-01", title: "Attended TACL 2024 at Barcelona", locationId: "barcelona", kind: "attended", href: "https://iiia.csic.es/tacl2024/" },
   { date: "2024-08", title: "Visited Kyoto RIMS", locationId: "kyoto", kind: "visit", href: oldActivitiesSource },
-  { date: "2024-11-23", title: "Organized Categories in Tokyo 1", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+  { date: "2024-11-23", dateRange: "2024-11-23 - 2024-11-24", title: "Organized Categories in Tokyo 1", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2024-11-30", title: "Gave a poster session talk at AFSA area meeting", locationId: "tokyo", kind: "poster", href: oldActivitiesSource },
   { date: "2024-12", title: "Attended courses on Automata and Class field theory by Prof. Uramoto at RIMS", locationId: "kyoto", kind: "attended", href: oldActivitiesSource },
   { date: "2023-02", title: "Attended FoPM symposium", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
@@ -3898,7 +3888,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: paper.title,
-      href: localHref(`works/papers/index.html#${paperAnchor(paper)}`),
+      href: localHref(`works/index.html#${paperAnchor(paper)}`),
       summary: paper.summary,
       meta: compactText([paperPeopleText(paper, researchmapPaper), paper.year, paper.venue]).join(" / "),
       keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
@@ -3925,7 +3915,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "In preparation",
       title: paper.title,
-      href: localHref(`works/papers/index.html#${paperAnchor(paper)}`),
+      href: localHref(`works/index.html#${paperAnchor(paper)}`),
       summary: paper.summary || "Manuscript in preparation",
       keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
       icon: "paper",
@@ -3937,7 +3927,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: record.title,
-      href: record.link || localHref(`works/papers/index.html#${paperAnchor(record)}`),
+      href: record.link || localHref(`works/index.html#${paperAnchor(record)}`),
       summary: record.venue || record.type || "Paper metadata",
       meta: compactText([paperPeopleText(record), record.year, record.publicationDate]).join(" / "),
       keywords: compactText([record.type, record.openAccess ? "open access" : "researchmap"]),
@@ -3951,7 +3941,7 @@ function siteSearchRecords() {
       pushSiteSearchRecord(records, {
         type: "Talk",
         title: record.title,
-        href: localHref(`works/talks-slides/index.html#${talkRecordAnchor(record)}`),
+        href: localHref(`works/index.html#${talkRecordAnchor(record)}`),
         summary: record.event || record.type || "Talk",
         meta: compactText([presentationPeopleText(record), formatTalkDate(record), record.invited ? "invited" : ""]).join(" / "),
         keywords: compactText([record.type, record.event]),
@@ -3966,7 +3956,7 @@ function siteSearchRecords() {
         pushSiteSearchRecord(records, {
           type: "Talk",
           title: talk.title,
-          href: talk.href || localHref("works/talks-slides/index.html"),
+          href: talk.href || localHref("works/index.html#talks-slides"),
           summary: talk.venue,
           meta: compactText([presentationPeopleText(presentationRecord || talk), group.year]).join(" / "),
           icon: "talk",
@@ -4015,23 +4005,11 @@ function siteSearchRecords() {
   });
   });
 
-  siteData.problems.forEach((problem) => {
-    pushSiteSearchRecord(records, {
-      type: "Problem",
-      title: `${problem.id}: ${problem.title}`,
-      href: localHref(`problems/full-list/index.html#${problemAnchor(problem)}`),
-      summary: problem.statement,
-      meta: compactText([problemStatusLabel(problem.status), problem.theme]).join(" / "),
-      keywords: problem.tags || [],
-      icon: "problem"
-    });
-  });
-
   siteData.webApps.forEach((app) => {
     pushSiteSearchRecord(records, {
       type: "Web App",
       title: app.title,
-      href: localHref(`others/web-apps/index.html#${webAppAnchor(app)}`),
+      href: localHref(`others/index.html#${webAppAnchor(app)}`),
       summary: app.description,
       meta: compactText([app.tag, "Vercel"]).join(" / "),
       keywords: compactText([...(app.keywords || []), ...(app.links || []).map(([label]) => label)]),
@@ -4442,7 +4420,7 @@ function renderTalkTimeline() {
     el("p", "talk-timeline-meta", presentationMeta(selected)),
     el("p", "talk-timeline-count", `${selectedIndex + 1} / ${records.length}`)
   );
-  title.append(titleCopyButton(`works/talks-slides/index.html#${talkRecordAnchor(selected)}`, selected.title));
+  title.append(titleCopyButton(`works/index.html#${talkRecordAnchor(selected)}`, selected.title));
   appendActionLinks(card, slideLinksForTalk(selected));
 
   root.append(timelineScrollFrame(track, selectedPosition), card);
@@ -4450,7 +4428,7 @@ function renderTalkTimeline() {
 
 function talkMapRecordHref(record) {
   const hash = `#${talkRecordAnchor(record)}`;
-  return document.body.dataset.page === "talks-slides" ? hash : localHref(`works/talks-slides/index.html${hash}`);
+  return document.body.dataset.page === "works" ? hash : localHref(`works/index.html${hash}`);
 }
 
 function visitLocationById(id) {
@@ -5524,7 +5502,7 @@ function homeTimelinePaperRecords() {
       title: paper.title,
       dateLabel: `${startLabel} -> ${endLabel}`,
       meta: compactText([people, paper.venue]).join(" / "),
-      href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`works/papers/index.html#${anchor}`),
+      href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`works/index.html#${anchor}`),
       time: startTime,
       startTime,
       endTime,
@@ -5542,7 +5520,7 @@ function homeTimelineTalkRecords() {
       title: record.title,
       dateLabel: formatTalkDate(record),
       meta: compactText([presentationPeopleText(record), record.event, record.type, record.invited ? "invited" : ""]).join(" / "),
-      href: localHref(`works/talks-slides/index.html#${talkRecordAnchor(record)}`),
+      href: localHref(`works/index.html#${talkRecordAnchor(record)}`),
       time: presentationTime(record)
     }));
   }
@@ -5560,7 +5538,7 @@ function homeTimelineTalkRecords() {
         title: talk.title,
         dateLabel: group.year,
         meta: compactText([presentationPeopleText(presentationRecord || talk), talk.venue]).join(" / "),
-        href: localHref("works/talks-slides/index.html"),
+        href: localHref("works/index.html#talks-slides"),
         time: Number.isFinite(base) ? base + (yearSpan * (index + 0.5)) / total : Number.NaN
       };
     })
@@ -5596,8 +5574,64 @@ function homeTimelineActivityRecords() {
   });
 }
 
+function positionTimelineTitle(record) {
+  return record.emphasis || String(record.text || "").replace(/\.$/u, "");
+}
+
+function positionTimelineStart(record) {
+  return timelineTimeFromValue(record.timelineStart || record.text);
+}
+
+function positionTimelineEnd(record, fallback = Number.NaN) {
+  return timelineTimeFromValue(record.timelineEnd || "") || fallback;
+}
+
+function positionTimelineDateLabel(record, endLabel) {
+  const startTime = positionTimelineStart(record);
+  const startLabel = record.timelineStartLabel || timelineDateLabel(startTime);
+  return `${startLabel} -> ${endLabel}`;
+}
+
+function homeTimelineAffiliationRecords() {
+  const today = timelineToday();
+  const current = siteData.currentPositions.map((record) => {
+    const startTime = positionTimelineStart(record);
+    if (!Number.isFinite(startTime)) return null;
+    return {
+      kind: "affiliation",
+      theme: "",
+      title: positionTimelineTitle(record),
+      dateLabel: positionTimelineDateLabel(record, "present"),
+      meta: "Current position",
+      href: record.href || localHref("profile/current-positions/index.html"),
+      time: startTime,
+      startTime,
+      endTime: today,
+      affiliationStatus: "current"
+    };
+  });
+  const past = siteData.pastPositions.map((record) => {
+    const startTime = positionTimelineStart(record);
+    const endTime = positionTimelineEnd(record);
+    if (!Number.isFinite(startTime) || !Number.isFinite(endTime)) return null;
+    return {
+      kind: "affiliation",
+      theme: "",
+      title: positionTimelineTitle(record),
+      dateLabel: positionTimelineDateLabel(record, timelineDateLabel(endTime)),
+      meta: "Past affiliation",
+      href: record.href || localHref("profile/past-affiliations/index.html"),
+      time: startTime,
+      startTime,
+      endTime,
+      affiliationStatus: "past"
+    };
+  });
+  return [...current, ...past].filter(Boolean);
+}
+
 function homeTimelineRecords() {
-  return [...homeTimelineTalkRecords(), ...homeTimelinePaperRecords(), ...homeTimelineActivityRecords()]
+  return [...homeTimelineTalkRecords(), ...homeTimelinePaperRecords(), ...homeTimelineActivityRecords(), ...homeTimelineAffiliationRecords()]
     .filter((record) => Number.isFinite(record.time) || Number.isFinite(record.startTime))
     .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title));
 }
@@ -5639,6 +5673,7 @@ function stepHomeTimelineSelection(delta) {
 
 function homeTimelineKindLabel(kind) {
   if (kind === "paper") return "Paper";
+  if (kind === "affiliation") return "Affiliation";
   if (kind === "note") return "Note";
   if (kind === "activity") return "Activity";
   return "Talk";
@@ -5662,10 +5697,17 @@ function homeTimelineThemeLabel(theme) {
   return homeTimelineThemeLabels[theme] || homeTimelineThemeLabels.other;
 }
 
+function homeTimelineRecordThemeLabel(record) {
+  return record.theme ? homeTimelineThemeLabel(record.theme) : "";
+}
+
+const homeTimelineLanes = ["paper", "affiliation", "activity", "talk"];
+const homeTimelinePointKinds = ["activity", "talk"];
+
 function homeTimelineNodeLayout(records, firstTime, lastTime) {
   const layout = new Map();
   const offsets = [-12, -6, 0, 6, 12];
-  ["activity", "talk"].forEach((kind) => {
+  homeTimelinePointKinds.forEach((kind) => {
     const buckets = new Map();
     records
       .filter((record) => record.kind === kind)
@@ -5681,12 +5723,12 @@ function homeTimelineNodeLayout(records, firstTime, lastTime) {
   return layout;
 }
 
-function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
+function homeTimelineIntervalSpanLayout(records, firstTime, lastTime, kind, slotGap = 9) {
   const layout = new Map();
   const slots = [];
   const items = [];
   records
-    .filter((record) => record.kind === "paper")
+    .filter((record) => record.kind === kind)
     .sort((a, b) => a.startTime - b.startTime || a.endTime - b.endTime || a.title.localeCompare(b.title))
     .forEach((record) => {
       const start = Math.max(0, Math.min(100, timelinePosition(record.startTime, firstTime, lastTime, 0, 1)));
@@ -5695,10 +5737,9 @@ function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
       const index = slot >= 0 ? slot : slots.length;
       slots[index] = end;
       items.push({ record, start, end, slot: index });
-    });
+  });
   const maxSlot = items.reduce((max, item) => Math.max(max, item.slot), 0);
   const center = maxSlot / 2;
-  const slotGap = 9;
   items.forEach((item) => {
     layout.set(item.record, {
       start: item.start,
@@ -5709,11 +5750,37 @@ function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
   return layout;
 }
 
+function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "paper", 9);
+}
+
+function homeTimelineAffiliationSpanLayout(records, firstTime, lastTime) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "affiliation", 7);
+}
+
 function renderHomeTimelinePaperSpan(record, position) {
   const span = link("", record.href, `home-timeline-paper-span theme-${record.theme} is-${record.paperStatus}`);
   const key = homeTimelineRecordKey(record);
   const label = compactText([
-    `Paper / ${homeTimelineThemeLabel(record.theme)} / ${record.dateLabel}: ${record.title}`,
+    `Paper / ${homeTimelineRecordThemeLabel(record)} / ${record.dateLabel}: ${record.title}`,
+    record.meta
+  ]).join(" / ");
+  span.style.setProperty("--x-start", position.start);
+  span.style.setProperty("--x-end", position.end);
+  span.style.setProperty("--offset", position.offset);
+  span.dataset.homeTimelineKey = key;
+  span.classList.toggle("is-selected", key === state.homeTimelineKey);
+  span.setAttribute("aria-label", label);
+  span.setAttribute("title", label);
+  attachTimelineTooltip(span, record);
+  return span;
+}
+
+function renderHomeTimelineAffiliationSpan(record, position) {
+  const span = link("", record.href, `home-timeline-affiliation-span is-${record.affiliationStatus}`);
+  const key = homeTimelineRecordKey(record);
+  const label = compactText([
+    `${homeTimelineKindLabel(record.kind)} / ${record.dateLabel}: ${record.title}`,
     record.meta
   ]).join(" / ");
   span.style.setProperty("--x-start", position.start);
@@ -5731,12 +5798,12 @@ function renderHomeTimelineNode(record, position) {
   const node = link("", record.href, `home-timeline-node kind-${record.kind} theme-${record.theme}`);
   const key = homeTimelineRecordKey(record);
   const label = compactText([
-    `${homeTimelineKindLabel(record.kind)} / ${homeTimelineThemeLabel(record.theme)} / ${record.dateLabel}: ${record.title}`,
+    `${homeTimelineKindLabel(record.kind)} / ${homeTimelineRecordThemeLabel(record)} / ${record.dateLabel}: ${record.title}`,
     record.meta
   ]).join(" / ");
   node.style.setProperty("--x", position.x);
   node.style.setProperty("--offset", position.offset);
-  node.style.setProperty("--lane", position.lane ?? ["paper", "activity", "talk"].indexOf(record.kind));
+  node.style.setProperty("--lane", position.lane ?? homeTimelineLanes.indexOf(record.kind));
   node.dataset.label = label;
   node.dataset.homeTimelineKey = key;
   node.classList.toggle("is-selected", key === state.homeTimelineKey);
@@ -5767,7 +5834,7 @@ function renderHomeTimelineDetail(record, index, total) {
   body.append(
     el("span", `home-timeline-detail-kicker theme-${record.theme}`, compactText([
       homeTimelineKindLabel(record.kind),
-      homeTimelineThemeLabel(record.theme),
+      homeTimelineRecordThemeLabel(record),
       record.dateLabel
     ]).join(" / ")),
     el("h3", null, record.title)
@@ -5789,15 +5856,18 @@ function renderHomeTimeline() {
     return;
   }
 
-  const times = records.flatMap((record) =>
-    record.kind === "paper" ? [record.startTime, record.endTime] : [record.time]
-  );
+  const times = records.flatMap((record) => (
+    Number.isFinite(record.startTime) || Number.isFinite(record.endTime)
+      ? [record.startTime, record.endTime]
+      : [record.time]
+  ));
   const firstTime = Math.min(...times);
   const lastTime = Math.max(...times);
   const selectedIndex = homeTimelineSelectedIndex(records);
   const selectedRecord = records[selectedIndex];
   const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime);
   const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime);
+  const affiliationLayout = homeTimelineAffiliationSpanLayout(records, firstTime, lastTime);
 
   const track = el("div", "home-timeline-track");
 
@@ -5821,7 +5891,7 @@ function renderHomeTimeline() {
     track.append(now);
   }
 
-  ["paper", "activity", "talk"].forEach((kind, index) => {
+  homeTimelineLanes.forEach((kind, index) => {
     const lane = el("div", `home-timeline-lane kind-${kind}`);
     lane.style.setProperty("--lane", index);
     lane.append(
@@ -5838,7 +5908,13 @@ function renderHomeTimeline() {
     });
 
   records
-    .filter((record) => record.kind !== "paper")
+    .filter((record) => record.kind === "affiliation")
+    .forEach((record) => {
+      track.append(renderHomeTimelineAffiliationSpan(record, affiliationLayout.get(record)));
+    });
+
+  records
+    .filter((record) => !["paper", "affiliation"].includes(record.kind))
     .forEach((record) => {
       track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
   });
@@ -5847,6 +5923,7 @@ function renderHomeTimeline() {
   root.querySelectorAll("[data-home-timeline-step]").forEach((button) => {
     button.addEventListener("click", () => stepHomeTimelineSelection(Number(button.dataset.homeTimelineStep || 0)));
   });
+  applyLanguage(root);
 }
 
 function activitiesTimelineRecords() {
@@ -5941,7 +6018,7 @@ function documentTimelineNoteRecords() {
         title,
         dateLabel: noteDateLabel(note),
         meta: compactText([kindLabel, noteLanguageKey(note), note.file]).join(" / "),
-        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`works/notes-preparations/index.html#${anchor}`),
+        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`works/index.html#${anchor}`),
         time
       };
     })
@@ -6140,7 +6217,7 @@ function mergeSlideWithTalk(slide) {
   const presentation = findResearchmapPresentationForSlide(slide, staticTalk);
   const talkRecord = presentation || staticTalk;
   if (!talkRecord) return { ...slide, kind: "slide" };
-  const talkHref = localHref(`works/talks-slides/index.html#${talkRecordAnchor(talkRecord)}`);
+  const talkHref = localHref(`works/index.html#${talkRecordAnchor(talkRecord)}`);
   const talkMeta = presentation
     ? presentationMeta(presentation)
     : compactText([presentationPeopleText(staticTalk), staticTalk.venue]).join(" / ");
@@ -7093,9 +7170,9 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "music-note") {
     svg.append(
-      shape("ellipse", { cx: "9.1", cy: "16.4", rx: "2.65", ry: "2.05", transform: "rotate(-18 9.1 16.4)", fill: "currentColor" }),
-      shape("rect", { x: "11.3", y: "5.2", width: "2.05", height: "11.2", rx: "0.65", fill: "currentColor" }),
-      shape("path", { d: "M13.2 5.2C15.8 5.8 17.7 7.2 18.6 9.4C16.5 8.5 14.7 8.1 13.2 8.1Z", fill: "currentColor" })
+      shape("ellipse", { cx: "8.9", cy: "16.3", rx: "3.05", ry: "2.32", transform: "rotate(-18 8.9 16.3)", fill: "currentColor" }),
+      shape("rect", { x: "11.4", y: "4.6", width: "2.1", height: "11.8", rx: "0.65", fill: "currentColor" }),
+      shape("path", { d: "M13.4 4.6C16.4 5.3 18.8 6.9 19.8 9.8C17.2 8.5 15 8.1 13.4 8.1Z", fill: "currentColor" })
     );
     return svg;
   }
@@ -7224,7 +7301,7 @@ function sectionIconHref(heading) {
   if (moreHref) return moreHref;
   const text = simplified(heading?.textContent || "");
   if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("profile/index.html");
-  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/profile/awards/index.html");
+  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/profile/index.html#awards");
   if (text.includes("email") || text.includes("contact")) return "mailto:ryuya.hora@zen.ac.jp";
   if (text.includes("work") || text.includes("interest")) return localHref("works/index.html");
   if (text.includes("categories in tokyo")) return "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0";
@@ -7536,7 +7613,7 @@ function metaTagById(tagId) {
 }
 
 function researchThemeHref(themeId = "") {
-  return localHref(`index.html${themeId ? `?theme=${encodeURIComponent(themeId)}` : ""}#research-map`);
+  return localHref(`works/index.html${themeId ? `?theme=${encodeURIComponent(themeId)}` : ""}#work-search`);
 }
 
 function themeScore(text, theme) {
@@ -7850,7 +7927,7 @@ function themedPaperRecords() {
       return {
         type: "paper",
         title: paper.title,
-        href: localHref(`works/papers/index.html#${paperAnchor(paper)}`),
+        href: localHref(`works/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper, findResearchmapPaper(paper)), paper.year, paper.venue]).join(" / "),
         metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
@@ -7875,7 +7952,7 @@ function themedPaperRecords() {
       return {
         type: "paper",
         title: paper.title,
-        href: paper.link || localHref(`works/papers/index.html#${paperAnchor(paper)}`),
+        href: paper.link || localHref(`works/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper), paper.year, paper.venue || paper.type]).join(" / "),
         metaTags: metaTagIdsForText(text, paper.metaTags || []),
         ...scoreThemeRecord(text)
@@ -7893,7 +7970,7 @@ function themedPreparationRecords() {
       return {
         type: "preparation",
         title: paper.title,
-        href: localHref(`works/papers/index.html#${paperAnchor(paper)}`),
+        href: localHref(`works/index.html#${paperAnchor(paper)}`),
         meta: "In preparation",
         metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
@@ -7997,7 +8074,7 @@ function themedTalkRecords() {
         return {
           type: "talk",
           title: record.title,
-          href: localHref(`works/talks-slides/index.html#${talkRecordAnchor(record)}`),
+          href: localHref(`works/index.html#${talkRecordAnchor(record)}`),
           meta: compactText([presentationMeta(record), slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
           metaTags,
           ...scoreThemeRecord(text)
@@ -8016,7 +8093,7 @@ function themedTalkRecords() {
         return {
           type: "talk",
           title: talk.title,
-          href: talk.href || localHref("works/talks-slides/index.html"),
+          href: talk.href || localHref("works/index.html#talks-slides"),
           meta: compactText([presenters, group.year, talk.venue, slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
           metaTags,
           ...scoreThemeRecord(text)
@@ -13309,7 +13386,13 @@ function contentReviewBadge(status, label = contentReviewLabel(status), title = 
 }
 
 function appendContentReviewBadges(root, badges = []) {
+  const hiddenStatuses = new Set([
+    "pending-public-source",
+    "self-reported-public-broadcast",
+    "verified-owner-and-kaken-active"
+  ]);
   badges.filter(Boolean).forEach((badge) => {
+    if (hiddenStatuses.has(badge.status)) return;
     root.append(contentReviewBadge(badge.status, badge.label, badge.title));
   });
 }
@@ -13392,7 +13475,7 @@ function renderPaperRecord(paper, options = {}) {
   const titleRow = el("div", "publication-title");
   const title = el("h3");
   title.append(link(paper.title, paper.link));
-  titleRow.append(title, titleCopyButton(`works/papers/index.html#${paperAnchor(paper)}`, paper.title));
+  titleRow.append(title, titleCopyButton(`works/index.html#${paperAnchor(paper)}`, paper.title));
   item.append(titleRow);
 
   const details = renderPublicationDetails(paper);
@@ -13585,7 +13668,7 @@ function paperTagTargetHref(tag) {
   const params = new URLSearchParams();
   if (tag.themeId) params.set("theme", tag.themeId);
   else params.set("paper", tag.query || tag.label);
-  return localHref(`works/papers/index.html?${params.toString()}`);
+  return localHref(`works/index.html#papers?${params.toString()}`);
 }
 
 function activatePublicationTag(tag) {
@@ -13740,7 +13823,7 @@ function renderPreparationPapers() {
     const heading = el("h3");
     heading.innerHTML = paper.title;
     const details = renderPublicationDetails(paper);
-    titleRow.append(heading, titleCopyButton(`works/papers/index.html#${paperAnchor(paper)}`, paper.title));
+    titleRow.append(heading, titleCopyButton(`works/index.html#${paperAnchor(paper)}`, paper.title));
     item.append(titleRow);
     if (details) item.append(details);
     const meta = el("div", "publication-meta");
@@ -13780,14 +13863,14 @@ function renderPaperRelatedDocuments() {
     allNoteRecords(),
     "No related notes match this filter.",
     "Use paper search or tags to find related notes.",
-    "works/notes-preparations/index.html"
+    "works/index.html#notes-preparations"
   );
   renderPaperRelatedList(
     "#paper-related-slides-list",
     allSlideRecords(),
     "No related slides match this filter.",
     "Use paper search or tags to find related slides.",
-    "works/talks-slides/index.html"
+    "works/index.html#talks-slides"
   );
 }
 
@@ -13945,7 +14028,7 @@ function renderTalkItem(record, href, metaText, actions = []) {
   title.append(uiIcon("talk", "talk-title-icon"));
   if (href) title.append(link(record.title, href));
   else title.append(el("span", null, record.title));
-  title.append(titleCopyButton(`works/talks-slides/index.html#${talkRecordAnchor(record)}`, record.title));
+  title.append(titleCopyButton(`works/index.html#${talkRecordAnchor(record)}`, record.title));
   body.append(title, el("span", "talk-venue", metaText));
   if (actions.length) appendActionLinks(body, actions);
   shell.append(body);
@@ -14429,7 +14512,7 @@ function renderNotes() {
     return;
   }
 
-  records.forEach((note) => root.append(renderDocumentCard(note, "works/notes-preparations/index.html")));
+  records.forEach((note) => root.append(renderDocumentCard(note, "works/index.html")));
   applyLanguage(section);
   scrollToHashTarget();
 }
@@ -14452,7 +14535,7 @@ function renderSlides() {
     return;
   }
 
-  records.forEach((slide) => root.append(renderDocumentCard(slide, "works/talks-slides/index.html")));
+  records.forEach((slide) => root.append(renderDocumentCard(slide, "works/index.html")));
   applyLanguage(section);
   scrollToHashTarget();
 }
@@ -15036,55 +15119,6 @@ function setupInteractions() {
   });
 }
 
-const pageBreadcrumbs = {
-  profile: [["Profile", "profile/index.html"]],
-  "current-positions": [["Profile", "profile/index.html"], ["Current Positions", "profile/current-positions/index.html"]],
-  "past-affiliations": [["Profile", "profile/index.html"], ["Past Affiliations", "profile/past-affiliations/index.html"]],
-  "academic-background": [["Profile", "profile/index.html"], ["Academic Background", "profile/academic-background/index.html"]],
-  emails: [["Profile", "profile/index.html"], ["emails", "profile/emails/index.html"]],
-  awards: [["Profile", "profile/index.html"], ["Awards", "profile/awards/index.html"]],
-  "teaching-outreach": [["Profile", "profile/index.html"], ["Teaching and Outreach", "profile/teaching-outreach/index.html"]],
-  explore: [["Profile", "profile/index.html"], ["Explore", "profile/explore/index.html"]],
-  works: [["Works", "works/index.html"]],
-  "research-timeline": [["Works", "works/index.html"], ["Research timeline", "works/research-timeline/index.html"]],
-  papers: [["Works", "works/index.html"], ["Papers", "works/papers/index.html"]],
-  "notes-preparations": [["Works", "works/index.html"], ["Notes and preparations", "works/notes-preparations/index.html"]],
-  "talks-slides": [["Works", "works/index.html"], ["Talks and Slides", "works/talks-slides/index.html"]],
-  activities: [["Activities", "activities/index.html"]],
-  "activity-timeline": [["Activities", "activities/index.html"], ["Activity Timeline", "activities/timeline/index.html"]],
-  upcoming: [["Activities", "activities/index.html"], ["Upcoming", "activities/upcoming/index.html"]],
-  "visit-map": [["Activities", "activities/index.html"], ["visit map", "activities/visit-map/index.html"]],
-  "yearly-records": [["Activities", "activities/index.html"], ["Yearly records", "activities/yearly-records/index.html"]],
-  "categories-in-tokyo": [["Activities", "activities/index.html"], ["Categories in Tokyo", "activities/categories-in-tokyo/index.html"]],
-  problems: [["Problems", "problems/full-list/index.html"], ["Full List", "problems/full-list/index.html"]],
-  search: [["Problems", "problems/full-list/index.html"], ["Search", "problems/search/index.html"]],
-  others: [["Others", "others/index.html"]],
-  "web-apps": [["Others", "others/index.html"], ["WebApps", "others/web-apps/index.html"]],
-  links: [["Others", "others/index.html"], ["Links", "others/links/index.html"]]
-};
-
-function renderPageBreadcrumb() {
-  const page = document.body?.dataset.page || "";
-  const items = pageBreadcrumbs[page];
-  const hero = document.querySelector(".page-hero");
-  if (!items || !hero || hero.querySelector(".page-breadcrumb")) return;
-
-  const nav = el("nav", "page-breadcrumb");
-  nav.setAttribute("aria-label", "Breadcrumb");
-  items.forEach(([label, href], index) => {
-    const isCurrent = index === items.length - 1;
-    const node = isCurrent ? el("span", null, label) : link(label, localHref(href));
-    if (isCurrent) node.setAttribute("aria-current", "page");
-    nav.append(node);
-    if (!isCurrent) {
-      const separator = el("span", "breadcrumb-separator", "/");
-      separator.setAttribute("aria-hidden", "true");
-      nav.append(separator);
-    }
-  });
-  hero.prepend(nav);
-}
-
 function renderProfileSections() {
   renderProfileLinks();
   renderCurrentPositions();
@@ -15098,17 +15132,17 @@ function renderProfileSections() {
 function renderInitialPage() {
   const page = document.body?.dataset.page || "";
   setupLanguage();
-  renderPageBreadcrumb();
 
   if (page === "home" || page === "profile") {
     renderProfileSections();
+    renderHomeTimeline();
     renderExplore();
-  } else if (["current-positions", "past-affiliations", "academic-background", "emails", "awards", "teaching-outreach"].includes(page)) {
+  } else if (["current-positions", "past-affiliations", "academic-background", "awards", "teaching-outreach"].includes(page)) {
     renderProfileSections();
   } else if (page === "explore") {
     renderExplore();
   } else if (page === "works") {
-    renderHomeTimeline();
+    renderResearchMap();
     renderPapers();
     renderPreparationPapers();
     renderNotes();
@@ -15131,7 +15165,6 @@ function renderInitialPage() {
     renderResearchmapPresentations();
     renderSlides();
   } else if (page === "activities") {
-    renderActivitiesTimeline();
     renderPlans();
     renderTalkMap();
     renderActivities();

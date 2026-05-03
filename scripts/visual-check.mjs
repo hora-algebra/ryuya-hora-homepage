@@ -10,6 +10,8 @@ const debugPort = Number(process.env.VISUAL_CHECK_CDP_PORT || 9300 + Math.floor(
 
 const pages = [
   ["home", "index.html"],
+  ["profile", "profile/index.html"],
+  ["works", "works/index.html"],
   ["documents", "documents/index.html"],
   ["others", "others/index.html"],
   ["papers", "papers/index.html"],

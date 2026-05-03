@@ -212,7 +212,7 @@ const audit = {
   decisions: {
     dc1: "Do not display DC1 as current after March 2026.",
     kakenhi24KJ0837: "Display as ongoing.",
-    lawvereFourth: "Use providing-a-solution wording; status remains preprint until journal publication.",
+    lawvereFourth: "Use preprint-solution wording; status remains preprint until journal publication.",
     cloud: "Speculative note.",
     pen: "Work in progress."
   },
