@@ -15,6 +15,7 @@ function notePdfAsset(id, slug, thumbnail) {
 
 const problemListUpdated = "30 March 2026";
 const publicSiteUrl = "https://hora-algebra.github.io/ryuya-hora-homepage/";
+const oldActivitiesSource = "https://sites.google.com/view/ryuya-hora/activities";
 
 const problemRefs = {
   tac: ["Local state classifier paper", "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"],
@@ -484,7 +485,7 @@ const siteData = {
         { date: "2026-03-24", text: "Received Ph.D. as department representative at the graduation ceremony.", href: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html" },
         { date: "2026-03-27", text: "Attended Workshop on Modal Logic.", href: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0" },
         { date: "2026-03-27", text: "Attended PCT seminar.", href: "https://pctseminar.github.io" },
-        { date: "2026-04-05", text: "Joined a public talk at Genron Cafe.", href: "https://genron-cafe.jp/event/20260405/" },
+        { date: "2026-04-05", text: "Attended the Humai project final screening.", href: "https://sites.google.com/view/ryuya-hora/activities" },
         { date: "2026-04-06 - 2026-04-08", text: "Attended and spoke at Differentiation in category theory and program semantics, Kyoto University.", href: "https://sites.google.com/view/differential-kyoto-2026/home" }
       ]
     },
@@ -3507,8 +3508,6 @@ const talkLocationCatalog = [
   }
 ];
 
-const oldActivitiesSource = "https://sites.google.com/view/ryuya-hora/activities";
-
 const activityVisitRecords = [
   { date: "2026-02-07", title: "Organized and attended Categories in Tokyo 2", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2026-02-22", title: "Attended the 20th Combinatorial Games and Puzzle Project", locationId: "tokyo", kind: "attended", href: "http://www.alg.cei.uec.ac.jp/itohiro/Games/" },
@@ -6475,9 +6474,6 @@ function renderHomeTimeline() {
     .filter(Number.isFinite);
   const firstTime = Math.min(...times);
   const lastTime = Math.max(...times);
-  const selectedIndex = homeTimelineSelectedIndex(records);
-  const selectedRecord = records[selectedIndex];
-
   const yearRow = el("div", "home-timeline-year-row");
   const firstYear = new Date(firstTime).getUTCFullYear();
   const lastYear = new Date(lastTime).getUTCFullYear();
@@ -6591,10 +6587,7 @@ function renderHomeTimeline() {
       track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
   });
 
-  root.append(renderHomeTimelineDetail(selectedRecord, selectedIndex, records.length), timelineScrollFrame(track, initialEndPosition, { align: "end" }));
-  root.querySelectorAll("[data-home-timeline-step]").forEach((button) => {
-    button.addEventListener("click", () => stepHomeTimelineSelection(Number(button.dataset.homeTimelineStep || 0)));
-  });
+  root.append(timelineScrollFrame(track, initialEndPosition, { align: "end" }));
   applyLanguage(root);
 }
 
