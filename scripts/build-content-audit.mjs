@@ -116,8 +116,8 @@ function paperStatus(paper) {
 }
 
 function noteTitlePrefixKind(value) {
-  const match = String(value || "").trim().match(/^(cloud|pen):\s*/i);
-  return match ? match[1].toLowerCase() : "";
+  const match = String(value || "").trim().match(/^cloud:\s*/i);
+  return match ? "cloud" : "";
 }
 
 function noteAudit(note) {
@@ -125,7 +125,7 @@ function noteAudit(note) {
   const byFile = siteReviewData.documentRights.byFile[note.file] || null;
   const isDrive = /drive\.google\.com/i.test(note.href || "") || /drive\.google\.com|lh3\.google/i.test(note.thumbnail || "");
   const rightsRecord = byFile || (isDrive ? siteReviewData.documentRights.defaultDrivePdf : null);
-  const status = titleKind === "cloud" ? "speculative" : titleKind === "pen" ? "work-in-progress" : "published-note";
+  const status = titleKind === "cloud" ? "speculative" : "published-note";
   const rights = rightsRecord?.rightsStatus || (note.href ? "linked-public-record" : "local-record");
   const hasExplicitPermission = rightsRecord?.coauthorConsent === "explicit-granted" || /explicit-permission/i.test(rights);
   const needsVerification = !hasExplicitPermission && (/coauthored|owner-believes-ok/i.test(rights) || Boolean(note.needsVerification));
@@ -213,8 +213,7 @@ const audit = {
     dc1: "Do not display DC1 as current after March 2026.",
     kakenhi24KJ0837: "Display as ongoing.",
     lawvereFourth: "Use preprint-solution wording; status remains preprint until journal publication.",
-    cloud: "Speculative note.",
-    pen: "Work in progress."
+    cloud: "Speculative note."
   },
   profileClaims: siteReviewData.profileClaims,
   awards: siteReviewData.awards,

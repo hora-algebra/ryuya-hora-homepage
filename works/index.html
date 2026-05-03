@@ -7,10 +7,7 @@
     <meta name="description" content="Research works by Ryuya Hora.">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
-    <link rel="stylesheet" href="../styles.css?v=cache-20260503a">
-    <!-- Cloudflare Web Analytics -->
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"883ad8370e8c4ac4bffb1a1e56b552ed"}'></script>
-    <!-- End Cloudflare Web Analytics -->
+    <link rel="stylesheet" href="../styles.css?v=cache-20260503s">
   </head>
   <body data-page="works" data-depth="1">
     <header class="site-header">
@@ -29,7 +26,7 @@
             <a href="../profile/index.html#awards">Awards</a>
             <a href="../profile/index.html#teaching-outreach">Teaching and Outreach</a>
             <a href="../profile/index.html#timeline">Timeline</a>
-            <a href="../profile/index.html#explore">Explore</a>
+            <a href="../profile/index.html#explore">Pages</a>
           </div>
         </div>
         <div class="nav-group is-active">
@@ -37,7 +34,7 @@
           <div class="nav-submenu">
             <a href="index.html#work-search">Search</a>
             <a href="index.html#papers">Papers</a>
-            <a href="index.html#notes-preparations">Notes and preparations</a>
+            <a href="index.html#notes-preparations">Notes and Preparations</a>
             <a href="index.html#talks-slides">Talks and Slides</a>
           </div>
         </div>
@@ -45,15 +42,15 @@
           <a class="nav-group-label" href="../activities/index.html">Activities</a>
           <div class="nav-submenu">
             <a href="../activities/index.html#upcoming">Upcoming</a>
-            <a href="../activities/index.html#visit-map">visit map</a>
-            <a href="../activities/index.html#yearly-records">Yearly records</a>
+            <a href="../activities/index.html#visit-map">Visit Map</a>
+            <a href="../activities/index.html#yearly-records">Yearly Records</a>
             <a href="../activities/index.html#categories-in-tokyo">Categories in Tokyo</a>
           </div>
         </div>
         <div class="nav-group">
           <a class="nav-group-label" href="../others/index.html">Others</a>
           <div class="nav-submenu">
-            <a href="../others/index.html#web-apps">WebApps</a>
+            <a href="../others/index.html#web-apps">Web Apps</a>
             <a href="../others/index.html#links">Links</a>
           </div>
         </div>
@@ -76,7 +73,15 @@
             <h2 id="work-search-title">Search</h2>
           </div>
         </div>
-        <div id="research-map" class="research-map" aria-live="polite"></div>
+          <div id="research-map" class="research-map" aria-live="polite">
+            <article class="works-search-loading" role="status" aria-label="Loading Works index">
+              <div class="loading-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </article>
+          </div>
       </section>
 
       <section id="papers" class="section" aria-labelledby="works-papers-title">
@@ -91,27 +96,37 @@
               <input id="paper-filter" type="search" placeholder="topos, automata, games...">
             </label>
             <div class="publication-tabs paper-view-tabs" aria-label="Paper view">
-              <button class="tab-button is-active" type="button" data-paper-view="list" aria-pressed="true">List</button>
-              <button class="tab-button" type="button" data-paper-view="diagram" aria-pressed="false">Diagrams</button>
+              <button class="tab-button" type="button" data-paper-view="list" aria-pressed="false">List</button>
+              <button class="tab-button is-active" type="button" data-paper-view="diagram" aria-pressed="true">Diagrams</button>
             </div>
           </div>
         </div>
         <div id="paper-tag-index" class="paper-tag-index" aria-label="Paper tags"></div>
-        <div id="paper-list" class="publication-list" aria-live="polite"></div>
+        <div id="paper-list" class="publication-list" aria-live="polite">
+          <article class="works-search-loading" role="status" aria-label="Loading papers">
+            <div class="loading-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section id="notes-preparations" class="section notes-section" aria-labelledby="works-notes-preparations-title">
         <div class="section-head">
           <div>
-            <h2 id="works-notes-preparations-title">Notes and preparations</h2>
+            <h2 id="works-notes-preparations-title">Notes and Preparations</h2>
           </div>
-          <a class="section-link" href="#notes-preparations">Notes and preparations</a>
+          <a class="section-link" href="#notes-preparations">Notes and Preparations</a>
         </div>
         <div id="in-preparation" class="paper-subsection" aria-labelledby="works-preparation-title">
           <div class="paper-subsection-head">
             <h3 id="works-preparation-title">In preparation</h3>
           </div>
-          <div id="preparation-paper-list" class="publication-list" aria-live="polite"></div>
+          <div id="preparation-paper-list" class="publication-list" aria-live="polite">
+            <p class="empty-state works-lazy-placeholder">In-preparation papers load when this section is opened.</p>
+          </div>
         </div>
         <div class="notes-filter-row">
           <p id="note-filter-count" class="note-filter-count"></p>
@@ -134,7 +149,9 @@
             </label>
           </div>
         </div>
-        <div id="notes-list" class="note-grid" aria-live="polite"></div>
+        <div id="notes-list" class="note-grid" aria-live="polite">
+          <p class="empty-state works-lazy-placeholder">Notes load when this section is opened.</p>
+        </div>
       </section>
 
       <section id="talks-slides" class="section notes-section slides-section" aria-labelledby="works-talks-slides-title">
@@ -148,7 +165,9 @@
             <input id="talk-filter" type="search" placeholder="year, venue, topic...">
           </label>
         </div>
-        <div id="researchmap-presentation-list" class="timeline-list" aria-live="polite"></div>
+        <div id="researchmap-presentation-list" class="timeline-list" aria-live="polite">
+          <p class="empty-state works-lazy-placeholder">Talks and slides load when this section is opened.</p>
+        </div>
         <div class="notes-filter-row">
           <p id="slide-filter-count" class="note-filter-count"></p>
           <div class="note-toolbar" aria-label="Slide filters">
@@ -182,8 +201,6 @@
       </div>
     </footer>
 
-    <script defer src="../data/researchmap.generated.js?v=cache-20260503a"></script>
-    <script defer src="../data/overleaf.generated.js?v=cache-20260503a"></script>
-    <script defer src="../scripts/site.js?v=cache-20260503a"></script>
-  </body>
+  <script defer src="../scripts/works-lite.js?v=cache-20260503u"></script>
+</body>
 </html>

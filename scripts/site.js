@@ -67,74 +67,53 @@ function problemEntry({ id, formal = false, theme, title, statement, description
 const siteData = {
   pages: [
     {
-      title: "CV",
+      title: "Profile",
       href: "profile/index.html",
       description: "Positions, awards, education, and profile links.",
       icon: "cv",
-      thumbnail: "assets/profile/ryuya-hora-sea-900.jpg"
+      thumbnail: "assets/profile/ryuya-hora-sea-900.jpg",
+      children: [
+        ["CV", "profile/index.html#current-positions"],
+        ["Awards", "profile/index.html#awards"],
+        ["Interests", "profile/index.html#interests"],
+        ["Research Timeline", "profile/index.html#timeline"]
+      ]
     },
     {
       title: "Works",
       href: "works/index.html",
       description: "Overview of research timeline, papers, notes, talks, and slides.",
       icon: "paper",
-      thumbnail: "assets/papers/internal-parameterizations.jpg"
-    },
-    {
-      title: "Papers",
-      href: "works/index.html#papers",
-      description: "Bibliography, preprints, in-preparation work, and metadata.",
-      icon: "paper",
-      thumbnail: "assets/papers/topoi-automata.jpg"
-    },
-    {
-      title: "Notes",
-      href: "works/index.html#notes-preparations",
-      description: "Lecture notes, expository notes, and related writing.",
-      icon: "note",
-      thumbnail: "assets/notes/counting-with-exponential-of-groups.png"
-    },
-    {
-      title: "Slides",
-      href: "works/index.html#talks-slides",
-      description: "Talk records and slide materials.",
-      icon: "slide",
-      thumbnail: "assets/notes/topoi-of-automata-cscat2025.png"
+      thumbnail: "assets/papers/internal-parameterizations.jpg",
+      children: [
+        ["Papers", "works/index.html#papers"],
+        ["Notes and Preparations", "works/index.html#notes-preparations"],
+        ["Talks and Slides", "works/index.html#talks-slides"]
+      ]
     },
     {
       title: "Activities",
       href: "activities/index.html",
       description: "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.",
       icon: "activity",
-      thumbnail: "assets/profile/ryuya-hora-mondovi.jpg"
-    },
-    {
-      title: "Talks",
-      href: "works/index.html#talks-slides",
-      description: "Talk records and slide materials.",
-      icon: "talk",
-      thumbnail: "assets/profile/ryuya-hora-talk.jpg"
+      thumbnail: "assets/profile/ryuya-hora-mondovi.jpg",
+      children: [
+        ["Upcoming", "activities/index.html#upcoming"],
+        ["Visit Map", "activities/index.html#visit-map"],
+        ["Yearly Records", "activities/index.html#yearly-records"],
+        ["Categories in Tokyo", "activities/index.html#categories-in-tokyo"]
+      ]
     },
     {
       title: "Others",
       href: "others/index.html",
-      description: "Overview of WebApps and links.",
+      description: "Overview of Web Apps and links.",
       icon: "webapp",
-      thumbnail: "assets/profile/green-fractal-cloud.png"
-    },
-    {
-      title: "Web Apps",
-      href: "others/index.html#web-apps",
-      description: "Small deployed tools and experiments.",
-      icon: "webapp",
-      thumbnail: "assets/web-apps/string-diagram.png"
-    },
-    {
-      title: "Links",
-      href: "others/index.html#links",
-      description: "Selected external links.",
-      icon: "link",
-      thumbnail: "assets/profile/green-fractal-branch.png"
+      thumbnail: "assets/profile/green-fractal-cloud.png",
+      children: [
+        ["Web Apps", "others/index.html#web-apps"],
+        ["Links", "others/index.html#links"]
+      ]
     },
     {
       title: "Search",
@@ -363,7 +342,7 @@ const siteData = {
         year: "2025",
         link: "https://arxiv.org/abs/2510.22886",
         figure: "games-coalgebras",
-        themes: ["games", "coalgebras", "category"],
+        themes: ["games", "coalgebras", "category", "algebra"],
         links: [["arXiv", "https://arxiv.org/abs/2510.22886"]],
         summary:
           "Reinterprets impartial combinatorial games and the Nim-sum using recursive coalgebras."
@@ -395,7 +374,6 @@ const siteData = {
       "A topos-theoretic view on Gabriel's theorem",
       "The lattice of hyperconnected quotients is a module of the semiring of productive weak topologies",
       "On limits in \\(\\mathbf{FinSet}\\)",
-      "Twisted Regular Tetrahedra and Eisenstein Integers",
       "When do finite presheaves form a topos? (with Jeremie Marques)",
       "Local state classifier, permutation model, and the internal axiom of choice"
     ],
@@ -472,7 +450,7 @@ const siteData = {
     { title: "Local state classifier for algebraic language theory", description: "Centre Lagrange, 16 May", theme: "topos", date: "2025-05-16", language: "English", file: "Local state classifier for algebraic language theory.pdf", ...notePdfAsset("1jwA88f7axVA_VmGsUasrudicI1OXMIPE", "local-state-classifier-algebraic-language") },
     { title: "Topoi of automata (IRIF)", description: "IRIF, 6 May", theme: "automata", date: "2025-05-06", language: "English", file: "IRIFtoday.pdf", ...notePdfAsset("1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU", "topoi-of-automata-irif") },
     { title: "Local state classifier for automata theory", description: "IRIF 26 May / LIPN 5 June", theme: "topos", date: "2025-05-26", language: "English", file: "IRIF20250527_ver1.pdf", ...notePdfAsset("1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF", "local-state-classifier-automata") },
-    { title: "Pen: A note on language measurability", description: "March 8, 2026", theme: "automata", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
+    { title: "A note on language measurability", description: "March 8, 2026", theme: "automata", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
     { title: "Cloud: A Rota-Baxter equation for winning games", description: "April 5, 2026", theme: "games", themes: ["games", "algebra"], metaTags: ["speculative"], date: "2026-04-05", language: "English", file: "RYUYA,HORA.pdf", ...notePdfAsset("1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU", "rota-baxter-winning-games", "https://lh3.google.com/u/0/d/1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU=s2048?auditContext=thumbnail") },
     { title: "圏論に登場する矢印の意味は—特集 圏論の質問箱", description: "数学セミナー, 2025-11", theme: "category", metaTags: ["expository"], date: "2025-11", language: "Japanese", file: "数学セミナー", href: "https://cir.nii.ac.jp/crid/1520869150155438720?lang=ja" },
     { title: "順序集合で遊ぶKan拡張入門", theme: "category", metaTags: ["expository"], language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
@@ -483,6 +461,7 @@ const siteData = {
     { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", theme: "number", metaTags: ["expository"], date: "2021", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
     { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", theme: "category", metaTags: ["expository"], date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
     { title: "母関数の種", description: "数理空間トポス 2023年新歓", theme: "combinatorics", metaTags: ["expository"], date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
+    { title: "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers", themes: ["algebra"], metaTags: ["speculative"], language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
     { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", theme: "number", metaTags: ["expository"], date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
     { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", theme: "topos", themes: ["topos", "geometry", "dynamical"], metaTags: ["speculative"], date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
     { title: "Older notes", description: "Older documents are collected on Notion.", language: "Japanese", file: "Notion archive", href: "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b" }
@@ -1480,7 +1459,7 @@ const i18nText = {
     "Talk records and slide materials.": "スライドと発表資料．",
     "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.": "活動タイムライン，訪問，発表，年次記録．",
     "Talk records and slide materials.": "学会発表，セミナー，アーカイブ，訪問地図．",
-    "Overview of WebApps and links.": "Web apps，リンクの概要．",
+    "Overview of Web Apps and links.": "Web apps，リンクの概要．",
     "Selected external links.": "外部リンク集．",
     "Positions, awards, education, and profile links.": "所属，受賞，学歴，プロフィールリンク．",
     "Preprints and related writing.": "Preprint と関連文書．",
@@ -1494,7 +1473,7 @@ const i18nText = {
     "Contact": "連絡先",
     "Email": "メール",
     "Site Map": "サイトマップ",
-    "Explore": "一覧",
+    "Pages": "ページ",
     "Plans": "予定",
     "Upcoming": "今後の予定",
     "All activities": "すべての活動",
@@ -1560,7 +1539,7 @@ const i18nText = {
     "Talks and slides.": "Talks and slides.",
     "Slides and seminars.": "Slides and seminars.",
     "Timeline": "タイムライン",
-    "Research Timeline": "研究タイムライン",
+    "Timeline": "タイムライン",
     "Activity Timeline": "活動タイムライン",
     "Activities Timeline": "活動タイムライン",
     "Documents Timeline": "資料タイムライン",
@@ -2392,6 +2371,7 @@ function applyLanguage(root = document.body) {
     translatableElements(root).forEach(translateElementText);
     syncLanguageLinks(root);
     updateLanguageToggle();
+    decorateUiIcons(root);
   } finally {
     isApplyingLanguage = false;
   }
@@ -4033,6 +4013,14 @@ function siteSearchRecords() {
   return dedupeSiteSearchRecords(records);
 }
 
+function searchResultTitleText(title = "") {
+  return String(title || "")
+    .replace(/\bSigma-sets\b/g, "\\(\\Sigma\\)-sets")
+    .replace(/\bSigma-set\b/g, "\\(\\Sigma\\)-set")
+    .replace(/\bSigma-Set\b/g, "\\(\\Sigma\\)-Set")
+    .replace(/\bSigma star\b/g, "\\(\\Sigma^*\\)");
+}
+
 function renderSiteSearchResult(record) {
   const article = el("article", "site-search-result");
   const type = el("span", "site-search-type");
@@ -4041,8 +4029,9 @@ function renderSiteSearchResult(record) {
   const body = el("div", "site-search-result-body");
   body.append(type);
   const heading = el("h3");
-  if (record.href) heading.append(link(record.title, record.href));
-  else heading.textContent = record.title;
+  const title = searchResultTitleText(record.title);
+  if (record.href) heading.append(link(title, record.href));
+  else heading.textContent = title;
   body.append(heading);
   if (record.summary) body.append(el("p", "site-search-summary", record.summary));
   const meta = compactText([record.meta, ...(record.keywords || []).slice(0, 5)]).join(" / ");
@@ -4107,6 +4096,7 @@ function renderSiteSearch() {
     });
     applyLanguage(root);
     if (count) applyLanguage(count);
+    typesetMath(root);
     return;
   }
 
@@ -4122,13 +4112,14 @@ function renderSiteSearch() {
     root.append(el("p", "empty-state", "No public site results match this search."));
     applyLanguage(root);
     if (count) applyLanguage(count);
+    typesetMath(root);
     return;
   }
 
   matches.forEach((record) => root.append(renderSiteSearchResult(record)));
-  typesetMath(root);
   applyLanguage(root);
   if (count) applyLanguage(count);
+  typesetMath(root);
 }
 
 const contentThemeKeywords = {
@@ -4332,7 +4323,21 @@ function selectTalkTimelineRecord(key, shouldScroll = false) {
   if (shouldScroll && record) document.getElementById(talkRecordAnchor(record))?.scrollIntoView({ block: "center" });
 }
 
-function timelineScrollFrame(track, position = 100) {
+function timelineLaneLabelOverlay(track) {
+  const labels = [...track.querySelectorAll(".home-timeline-lane-label")];
+  if (!labels.length) return null;
+  const overlay = el("div", "timeline-lane-label-overlay");
+  overlay.setAttribute("aria-hidden", "true");
+  labels.forEach((label) => {
+    const clone = label.cloneNode(true);
+    const lane = label.closest(".home-timeline-lane");
+    clone.style.setProperty("--lane", lane?.style.getPropertyValue("--lane") || "0");
+    overlay.append(clone);
+  });
+  return overlay;
+}
+
+function timelineScrollFrame(track, position = 100, options = {}) {
   const frame = el("div", "timeline-scroll-frame");
   frame.tabIndex = 0;
   frame.append(track);
@@ -4340,9 +4345,23 @@ function timelineScrollFrame(track, position = 100) {
     const maxScroll = frame.scrollWidth - frame.clientWidth;
     if (maxScroll <= 4) return;
     const clampedPosition = Math.max(0, Math.min(100, position));
+    if (options.align === "center") {
+      const target = (frame.scrollWidth * clampedPosition) / 100 - frame.clientWidth / 2;
+      frame.scrollLeft = Math.max(0, Math.min(maxScroll, target));
+      return;
+    }
+    if (options.align === "end") {
+      const target = (frame.scrollWidth * clampedPosition) / 100 - frame.clientWidth;
+      frame.scrollLeft = Math.max(0, Math.min(maxScroll, target));
+      return;
+    }
     frame.scrollLeft = (maxScroll * clampedPosition) / 100;
   });
-  return frame;
+  const overlay = timelineLaneLabelOverlay(track);
+  if (!overlay) return frame;
+  const shell = el("div", "timeline-scroll-shell");
+  shell.append(frame, overlay);
+  return shell;
 }
 
 function renderTalkTimeline() {
@@ -5552,6 +5571,19 @@ function cleanActivityTitle(text) {
     .trim();
 }
 
+function profileTimelineHref(hash) {
+  return document.body.dataset.page === "profile" ? hash : localHref(`profile/index.html${hash}`);
+}
+
+function homeTimelineIsMeetingActivity(record) {
+  const text = simplified(record.text);
+  return (
+    /\b(attended|planning to attend|joined)\b/u.test(text) ||
+    /\b(presented a poster|gave (?:a )?talks? at|spoke at|scheduled to give .*talk at)\b/u.test(text) ||
+    /\bvisited .*meeting\b/u.test(text)
+  );
+}
+
 function homeTimelineActivityRecords() {
   return siteData.activities.flatMap((group) => {
     if (group.title === "Other") return [];
@@ -5567,7 +5599,9 @@ function homeTimelineActivityRecords() {
           dateLabel: activityRecordDateLabel(record, group.title),
           meta: group.title === "Plans" ? "Plan" : "Activity",
           href: localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
-          time
+          time,
+          endTime: timelineRangeEndFromText(record.date) || time,
+          activityScale: homeTimelineIsMeetingActivity(record) ? "meeting" : "minor"
         };
       })
       .filter(Boolean);
@@ -5603,7 +5637,7 @@ function homeTimelineAffiliationRecords() {
       title: positionTimelineTitle(record),
       dateLabel: positionTimelineDateLabel(record, "present"),
       meta: "Current position",
-      href: record.href || localHref("profile/current-positions/index.html"),
+      href: profileTimelineHref("#current-positions"),
       time: startTime,
       startTime,
       endTime: today,
@@ -5620,7 +5654,7 @@ function homeTimelineAffiliationRecords() {
       title: positionTimelineTitle(record),
       dateLabel: positionTimelineDateLabel(record, timelineDateLabel(endTime)),
       meta: "Past affiliation",
-      href: record.href || localHref("profile/past-affiliations/index.html"),
+      href: profileTimelineHref("#past-affiliations"),
       time: startTime,
       startTime,
       endTime,
@@ -5630,8 +5664,134 @@ function homeTimelineAffiliationRecords() {
   return [...current, ...past].filter(Boolean);
 }
 
+function visibleResearchmapAwardRecords() {
+  const sourceKeys = nonResearchmapAwardDuplicateKeys();
+  return (researchmapData?.awards || []).filter((record) => !researchmapAwardDuplicateKeys(record).some((key) => sourceKeys.has(key)));
+}
+
+function visibleResearchmapEducationRecords() {
+  const sourceKeys = nonResearchmapEducationDuplicateKeys();
+  return (researchmapData?.education || []).filter((record) => !researchmapEducationDuplicateKeys(record).some((key) => sourceKeys.has(key)));
+}
+
+function homeTimelineAwardRecords() {
+  const siteAwards = siteData.awards.map((record) => {
+    const time = [
+      timelineTimeFromValue(record.timelineDate),
+      explicitTimelineTime(record.text),
+      timelineTimeFromValue(record.text)
+    ].find(Number.isFinite);
+    if (!Number.isFinite(time)) return null;
+    return {
+      kind: "award",
+      theme: "",
+      title: String(record.text || "").replace(/\.$/u, ""),
+      dateLabel: record.timelineDate || timelineDateLabel(time),
+      meta: "Award",
+      href: profileTimelineHref("#awards"),
+      time
+    };
+  });
+  const researchmapAwards = visibleResearchmapAwardRecords().map((record) => {
+    const time = timelineTimeFromValue(record.date || record.year);
+    if (!Number.isFinite(time)) return null;
+    return {
+      kind: "award",
+      theme: "",
+      title: record.title,
+      dateLabel: record.date || record.year || timelineDateLabel(time),
+      meta: compactText(["Award", record.association]).join(" / "),
+      href: profileTimelineHref("#awards"),
+      time
+    };
+  });
+  return [...siteAwards, ...researchmapAwards].filter(Boolean);
+}
+
+function timelineRangeEndFromText(text) {
+  const value = String(text || "");
+  const toMonthYear = value.match(
+    /\bto\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(19\d{2}|20\d{2})\b/i
+  );
+  if (toMonthYear) return timelineUtc(toMonthYear[2], monthNumbers[toMonthYear[1].toLowerCase()], 15);
+  const isoRange = value.match(/\b(?:19|20)\d{2}-\d{2}(?:-\d{2})?\s*-\s*((?:19|20)\d{2}-\d{2}(?:-\d{2})?)\b/);
+  if (isoRange) return timelineTimeFromValue(isoRange[1]);
+  return Number.NaN;
+}
+
+function homeTimelineTeachingRecords() {
+  const today = timelineToday();
+  return siteData.education.map((record) => {
+    const startTime = [
+      timelineTimeFromValue(record.timelineStart),
+      explicitTimelineTime(record.text),
+      timelineTimeFromValue(record.text)
+    ].find(Number.isFinite);
+    if (!Number.isFinite(startTime)) return null;
+    const parsedEnd = timelineTimeFromValue(record.timelineEnd) || timelineRangeEndFromText(record.text);
+    const isCurrent = !Number.isFinite(parsedEnd) && (/\bsince\b/i.test(record.text || "") || /より/u.test(record.textJa || ""));
+    const endTime = Number.isFinite(parsedEnd) ? parsedEnd : isCurrent ? today : Number.NaN;
+    const startLabel = record.timelineStartLabel || timelineDateLabel(startTime);
+    const endLabel = Number.isFinite(endTime) ? (isCurrent && endTime === today ? "present" : timelineDateLabel(endTime)) : "";
+    return {
+      kind: "teaching",
+      theme: "",
+      title: String(record.text || "").replace(/\.$/u, ""),
+      dateLabel: endLabel ? `${startLabel} -> ${endLabel}` : startLabel,
+      meta: "Teaching and Outreach",
+      href: profileTimelineHref("#teaching-outreach"),
+      time: startTime,
+      startTime,
+      endTime,
+      teachingStatus: Number.isFinite(endTime) && isCurrent ? "current" : Number.isFinite(endTime) ? "past" : "point"
+    };
+  }).filter(Boolean);
+}
+
+function academicTimelineCourseLabel(record) {
+  const explicitCourse = String(record.course || "").trim();
+  if (explicitCourse) return explicitCourse;
+  const text = simplified(compactText([record.affiliation, record.department]).join(" "));
+  if (
+    (text.includes("university of tokyo") || text.includes("university tokyo")) &&
+    (text.includes("graduate school of mathematical sciences") || text.includes("graduate school mathematical sciences"))
+  ) {
+    if (String(record.period || "").startsWith("2024-04 - 2026-03")) return "Doctoral course";
+    if (String(record.period || "").startsWith("2022-04 - 2024-03")) return "Master's course";
+  }
+  return "";
+}
+
+function homeTimelineAcademicRecords() {
+  return (researchmapData?.education || []).map((record) => {
+    const startTime = timelineTimeFromValue(record.from || record.period);
+    const endTime = timelineTimeFromValue(record.to || "");
+    if (!Number.isFinite(startTime) || !Number.isFinite(endTime)) return null;
+    return {
+      kind: "academic",
+      theme: "",
+      title: compactText([record.affiliation, record.department, academicTimelineCourseLabel(record)]).join(" - "),
+      dateLabel: record.period || `${timelineDateLabel(startTime)} -> ${timelineDateLabel(endTime)}`,
+      meta: "Academic Background",
+      href: profileTimelineHref("#academic-background"),
+      time: startTime,
+      startTime,
+      endTime,
+      academicStatus: "past"
+    };
+  }).filter(Boolean);
+}
+
 function homeTimelineRecords() {
-  return [...homeTimelineTalkRecords(), ...homeTimelinePaperRecords(), ...homeTimelineActivityRecords(), ...homeTimelineAffiliationRecords()]
+  return [
+    ...homeTimelineTalkRecords(),
+    ...homeTimelinePaperRecords(),
+    ...homeTimelineActivityRecords(),
+    ...homeTimelineAffiliationRecords(),
+    ...homeTimelineAwardRecords(),
+    ...homeTimelineTeachingRecords(),
+    ...homeTimelineAcademicRecords()
+  ]
     .filter((record) => Number.isFinite(record.time) || Number.isFinite(record.startTime))
     .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title));
 }
@@ -5674,9 +5834,17 @@ function stepHomeTimelineSelection(delta) {
 function homeTimelineKindLabel(kind) {
   if (kind === "paper") return "Paper";
   if (kind === "affiliation") return "Affiliation";
+  if (kind === "academic") return "Academic Background";
+  if (kind === "teaching") return "Teaching and Outreach";
+  if (kind === "award") return "Award";
   if (kind === "note") return "Note";
   if (kind === "activity") return "Activity";
   return "Talk";
+}
+
+function homeTimelineLaneLabel(kind) {
+  if (kind === "activity") return "Award / Activity";
+  return homeTimelineKindLabel(kind);
 }
 
 const homeTimelineThemeLabels = {
@@ -5701,24 +5869,45 @@ function homeTimelineRecordThemeLabel(record) {
   return record.theme ? homeTimelineThemeLabel(record.theme) : "";
 }
 
-const homeTimelineLanes = ["paper", "affiliation", "activity", "talk"];
-const homeTimelinePointKinds = ["activity", "talk"];
+const homeTimelineLanes = ["paper", "affiliation", "academic", "teaching", "activity", "talk"];
+const homeTimelinePointLanes = ["teaching", "activity", "talk"];
+const homeTimelineDefaultWindowMs = 3 * 365.25 * 24 * 60 * 60 * 1000;
 
-function homeTimelineNodeLayout(records, firstTime, lastTime) {
+function homeTimelineLaneKind(kind) {
+  return kind === "award" ? "activity" : kind;
+}
+
+function homeTimelineLaneIndex(kind) {
+  return homeTimelineLanes.indexOf(homeTimelineLaneKind(kind));
+}
+
+function homeTimelineIsIntervalRecord(record) {
+  if (record.kind === "paper" || record.kind === "affiliation" || record.kind === "academic") return true;
+  return record.kind === "teaching" && Number.isFinite(record.endTime);
+}
+
+function homeTimelineNodeLayout(records, firstTime, lastTime, pointGap = 16, collisionGap = 1.75) {
   const layout = new Map();
-  const offsets = [-12, -6, 0, 6, 12];
-  homeTimelinePointKinds.forEach((kind) => {
-    const buckets = new Map();
-    records
-      .filter((record) => record.kind === kind)
-      .sort((a, b) => a.time - b.time || a.title.localeCompare(b.title))
-      .forEach((record) => {
-        const x = timelinePosition(record.time, firstTime, lastTime, 0, 1);
-        const bucket = Math.round(x / 2.75);
-        const stack = buckets.get(bucket) || 0;
-        buckets.set(bucket, stack + 1);
-        layout.set(record, { x, offset: offsets[stack % offsets.length] });
+  homeTimelinePointLanes.forEach((laneKind) => {
+    const slots = [];
+    const items = records
+      .filter((record) => homeTimelineLaneKind(record.kind) === laneKind && !homeTimelineIsIntervalRecord(record))
+      .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title))
+      .map((record) => ({ record, x: timelinePosition(record.time, firstTime, lastTime, 0, 1) }))
+      .map((item) => {
+        const slot = slots.findIndex((slotEnd) => item.x > slotEnd + collisionGap);
+        const index = slot >= 0 ? slot : slots.length;
+        slots[index] = item.x;
+        return { ...item, slot: index };
       });
+    const maxSlot = items.reduce((max, item) => Math.max(max, item.slot), 0);
+    const center = maxSlot / 2;
+    items.forEach((item) => {
+      layout.set(item.record, {
+        x: item.x,
+        offset: Number(((item.slot - center) * pointGap).toFixed(1))
+      });
+    });
   });
   return layout;
 }
@@ -5728,7 +5917,7 @@ function homeTimelineIntervalSpanLayout(records, firstTime, lastTime, kind, slot
   const slots = [];
   const items = [];
   records
-    .filter((record) => record.kind === kind)
+    .filter((record) => record.kind === kind && homeTimelineIsIntervalRecord(record))
     .sort((a, b) => a.startTime - b.startTime || a.endTime - b.endTime || a.title.localeCompare(b.title))
     .forEach((record) => {
       const start = Math.max(0, Math.min(100, timelinePosition(record.startTime, firstTime, lastTime, 0, 1)));
@@ -5750,52 +5939,60 @@ function homeTimelineIntervalSpanLayout(records, firstTime, lastTime, kind, slot
   return layout;
 }
 
-function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
-  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "paper", 9);
+function homeTimelinePaperSpanLayout(records, firstTime, lastTime, slotGap = 9) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "paper", slotGap);
 }
 
-function homeTimelineAffiliationSpanLayout(records, firstTime, lastTime) {
-  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "affiliation", 7);
+function homeTimelineAffiliationSpanLayout(records, firstTime, lastTime, slotGap = 7) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "affiliation", slotGap);
+}
+
+function homeTimelineAcademicSpanLayout(records, firstTime, lastTime, slotGap = 7) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "academic", slotGap);
+}
+
+function homeTimelineTeachingSpanLayout(records, firstTime, lastTime, slotGap = 7) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "teaching", slotGap);
+}
+
+function renderHomeTimelineIntervalSpan(record, position) {
+  const classes = compactText([
+    "home-timeline-interval-span",
+    record.kind === "paper" ? `home-timeline-paper-span theme-${record.theme} is-${record.paperStatus}` : "",
+    record.kind === "affiliation" ? `home-timeline-affiliation-span is-${record.affiliationStatus}` : "",
+    record.kind === "academic" ? `home-timeline-academic-span is-${record.academicStatus}` : "",
+    record.kind === "teaching" ? `home-timeline-teaching-span is-${record.teachingStatus}` : ""
+  ]).join(" ");
+  const span = link("", record.href, classes);
+  const key = homeTimelineRecordKey(record);
+  const label = compactText([
+    `${homeTimelineKindLabel(record.kind)} / ${homeTimelineRecordThemeLabel(record)} / ${record.dateLabel}: ${record.title}`,
+    record.meta
+  ]).join(" / ");
+  span.style.setProperty("--x-start", position.start);
+  span.style.setProperty("--x-end", position.end);
+  span.style.setProperty("--offset", position.offset);
+  span.style.setProperty("--lane", homeTimelineLaneIndex(record.kind));
+  span.dataset.homeTimelineKey = key;
+  span.classList.toggle("is-selected", key === state.homeTimelineKey);
+  span.setAttribute("aria-label", label);
+  span.setAttribute("title", label);
+  attachTimelineTooltip(span, record);
+  return span;
 }
 
 function renderHomeTimelinePaperSpan(record, position) {
-  const span = link("", record.href, `home-timeline-paper-span theme-${record.theme} is-${record.paperStatus}`);
-  const key = homeTimelineRecordKey(record);
-  const label = compactText([
-    `Paper / ${homeTimelineRecordThemeLabel(record)} / ${record.dateLabel}: ${record.title}`,
-    record.meta
-  ]).join(" / ");
-  span.style.setProperty("--x-start", position.start);
-  span.style.setProperty("--x-end", position.end);
-  span.style.setProperty("--offset", position.offset);
-  span.dataset.homeTimelineKey = key;
-  span.classList.toggle("is-selected", key === state.homeTimelineKey);
-  span.setAttribute("aria-label", label);
-  span.setAttribute("title", label);
-  attachTimelineTooltip(span, record);
-  return span;
-}
-
-function renderHomeTimelineAffiliationSpan(record, position) {
-  const span = link("", record.href, `home-timeline-affiliation-span is-${record.affiliationStatus}`);
-  const key = homeTimelineRecordKey(record);
-  const label = compactText([
-    `${homeTimelineKindLabel(record.kind)} / ${record.dateLabel}: ${record.title}`,
-    record.meta
-  ]).join(" / ");
-  span.style.setProperty("--x-start", position.start);
-  span.style.setProperty("--x-end", position.end);
-  span.style.setProperty("--offset", position.offset);
-  span.dataset.homeTimelineKey = key;
-  span.classList.toggle("is-selected", key === state.homeTimelineKey);
-  span.setAttribute("aria-label", label);
-  span.setAttribute("title", label);
-  attachTimelineTooltip(span, record);
-  return span;
+  return renderHomeTimelineIntervalSpan(record, position);
 }
 
 function renderHomeTimelineNode(record, position) {
-  const node = link("", record.href, `home-timeline-node kind-${record.kind} theme-${record.theme}`);
+  const nodeClasses = compactText([
+    "home-timeline-node",
+    `kind-${record.kind}`,
+    `theme-${record.theme}`,
+    record.kind === "activity" ? `activity-${record.activityScale || "meeting"}` : ""
+  ]).join(" ");
+  const node = link("", record.href, nodeClasses);
   const key = homeTimelineRecordKey(record);
   const label = compactText([
     `${homeTimelineKindLabel(record.kind)} / ${homeTimelineRecordThemeLabel(record)} / ${record.dateLabel}: ${record.title}`,
@@ -5803,7 +6000,7 @@ function renderHomeTimelineNode(record, position) {
   ]).join(" / ");
   node.style.setProperty("--x", position.x);
   node.style.setProperty("--offset", position.offset);
-  node.style.setProperty("--lane", position.lane ?? homeTimelineLanes.indexOf(record.kind));
+  node.style.setProperty("--lane", position.lane ?? homeTimelineLaneIndex(record.kind));
   node.dataset.label = label;
   node.dataset.homeTimelineKey = key;
   node.classList.toggle("is-selected", key === state.homeTimelineKey);
@@ -5832,7 +6029,7 @@ function renderHomeTimelineDetail(record, index, total) {
 
   const body = el("div", "home-timeline-detail-body");
   body.append(
-    el("span", `home-timeline-detail-kicker theme-${record.theme}`, compactText([
+    el("span", `home-timeline-detail-kicker kind-${record.kind} theme-${record.theme}`, compactText([
       homeTimelineKindLabel(record.kind),
       homeTimelineRecordThemeLabel(record),
       record.dateLabel
@@ -5843,6 +6040,14 @@ function renderHomeTimelineDetail(record, index, total) {
   appendActionLinks(body, [["Open", record.href]]);
   card.append(nav, body, el("span", "home-timeline-detail-count", `${index + 1} / ${total}`));
   return card;
+}
+
+function homeTimelineLatestPlanTime(records) {
+  const planTimes = records
+    .filter((record) => record.kind === "activity" && record.meta === "Plan")
+    .flatMap((record) => [record.endTime, record.time])
+    .filter(Number.isFinite);
+  return planTimes.length ? Math.max(...planTimes) : Number.NaN;
 }
 
 function renderHomeTimeline() {
@@ -5856,24 +6061,30 @@ function renderHomeTimeline() {
     return;
   }
 
-  const times = records.flatMap((record) => (
-    Number.isFinite(record.startTime) || Number.isFinite(record.endTime)
-      ? [record.startTime, record.endTime]
-      : [record.time]
-  ));
+  const times = records
+    .flatMap((record) => [record.startTime, record.endTime, record.time])
+    .filter(Number.isFinite);
   const firstTime = Math.min(...times);
   const lastTime = Math.max(...times);
   const selectedIndex = homeTimelineSelectedIndex(records);
   const selectedRecord = records[selectedIndex];
-  const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime);
-  const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime);
-  const affiliationLayout = homeTimelineAffiliationSpanLayout(records, firstTime, lastTime);
-
-  const track = el("div", "home-timeline-track");
+  const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime, 16);
+  const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime, 11);
+  const affiliationLayout = homeTimelineAffiliationSpanLayout(records, firstTime, lastTime, 11);
+  const academicLayout = homeTimelineAcademicSpanLayout(records, firstTime, lastTime, 11);
+  const teachingLayout = homeTimelineTeachingSpanLayout(records, firstTime, lastTime, 11);
 
   const yearRow = el("div", "home-timeline-year-row");
   const firstYear = new Date(firstTime).getUTCFullYear();
   const lastYear = new Date(lastTime).getUTCFullYear();
+  const initialEndTime = homeTimelineLatestPlanTime(records) || lastTime;
+  const initialEndPosition = timelinePosition(initialEndTime, firstTime, lastTime, 0, 1);
+  const totalSpan = Math.max(1, lastTime - firstTime);
+  const defaultWindowSpan = Math.min(totalSpan, homeTimelineDefaultWindowMs);
+  const trackWidthRatio = Math.max(1, totalSpan / defaultWindowSpan);
+  const track = el("div", "home-timeline-track");
+  track.style.setProperty("--timeline-years", Math.max(8, lastYear - firstYear + 1));
+  track.style.setProperty("--timeline-track-width", `${(trackWidthRatio * 100).toFixed(2)}%`);
   for (let year = firstYear; year <= lastYear; year += 1) {
     const position = timelinePosition(timelineUtc(year, 0, 1), firstTime, lastTime, 0, 1);
     const tick = el("span", "home-year-tick", year);
@@ -5894,8 +6105,13 @@ function renderHomeTimeline() {
   homeTimelineLanes.forEach((kind, index) => {
     const lane = el("div", `home-timeline-lane kind-${kind}`);
     lane.style.setProperty("--lane", index);
+    const labelClasses = compactText([
+      "home-timeline-lane-label",
+      `kind-${kind}`,
+      kind === "activity" ? "kind-award-activity" : ""
+    ]).join(" ");
     lane.append(
-      el("div", `home-timeline-lane-label kind-${kind}`, homeTimelineKindLabel(kind)),
+      el("div", labelClasses, homeTimelineLaneLabel(kind)),
       el("div", "home-timeline-lane-rail")
     );
     track.append(lane);
@@ -5904,22 +6120,34 @@ function renderHomeTimeline() {
   records
     .filter((record) => record.kind === "paper")
     .forEach((record) => {
-      track.append(renderHomeTimelinePaperSpan(record, paperLayout.get(record)));
+      track.append(renderHomeTimelineIntervalSpan(record, paperLayout.get(record)));
     });
 
   records
     .filter((record) => record.kind === "affiliation")
     .forEach((record) => {
-      track.append(renderHomeTimelineAffiliationSpan(record, affiliationLayout.get(record)));
+      track.append(renderHomeTimelineIntervalSpan(record, affiliationLayout.get(record)));
     });
 
   records
-    .filter((record) => !["paper", "affiliation"].includes(record.kind))
+    .filter((record) => record.kind === "academic")
+    .forEach((record) => {
+      track.append(renderHomeTimelineIntervalSpan(record, academicLayout.get(record)));
+    });
+
+  records
+    .filter((record) => record.kind === "teaching" && homeTimelineIsIntervalRecord(record))
+    .forEach((record) => {
+      track.append(renderHomeTimelineIntervalSpan(record, teachingLayout.get(record)));
+    });
+
+  records
+    .filter((record) => !homeTimelineIsIntervalRecord(record))
     .forEach((record) => {
       track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
   });
 
-  root.append(renderHomeTimelineDetail(selectedRecord, selectedIndex, records.length), timelineScrollFrame(track));
+  root.append(renderHomeTimelineDetail(selectedRecord, selectedIndex, records.length), timelineScrollFrame(track, initialEndPosition, { align: "end" }));
   root.querySelectorAll("[data-home-timeline-step]").forEach((button) => {
     button.addEventListener("click", () => stepHomeTimelineSelection(Number(button.dataset.homeTimelineStep || 0)));
   });
@@ -6130,7 +6358,6 @@ function noteKind(note) {
   const titleKind = noteTitlePrefixKind(note.title);
   const text = `${note.title} ${note.description || ""} ${note.file}`.toLowerCase();
   if (titleKind === "cloud") return ["cloud", "Speculative", "cloud"];
-  if (titleKind === "pen") return ["pen", "Pen", "pen"];
   if (note.file === "Notion archive") return ["archive", "Archive"];
   if (text.includes("slides") || text.includes("talk") || text.includes("cscat") || text.includes("seminar")) {
     return ["slides", "Slides"];
@@ -6243,17 +6470,16 @@ function allSlideRecords() {
 }
 
 const noteKindSymbols = {
-  cloud: "☁︎",
-  pen: "Pen"
+  cloud: "☁︎"
 };
 
 function noteTitlePrefixKind(value) {
-  const match = normalizedUiText(value).match(/^(cloud|pen):\s*/i);
-  return match ? match[1].toLowerCase() : "";
+  const match = normalizedUiText(value).match(/^cloud:\s*/i);
+  return match ? "cloud" : "";
 }
 
 function stripNoteTitlePrefix(value) {
-  return normalizedUiText(value).replace(/^(cloud|pen):\s*/i, "").trim();
+  return normalizedUiText(value).replace(/^cloud:\s*/i, "").trim();
 }
 
 function symbolicCloudPenLabel(value) {
@@ -6261,10 +6487,9 @@ function symbolicCloudPenLabel(value) {
   if (!text) return text;
   const exact = simplified(text);
   if (exact === "cloud" || exact === "speculative") return noteKindSymbols.cloud;
-  if (exact === "pen") return noteKindSymbols.pen;
-  const match = text.match(/^(cloud|pen)\s*:?\s+(.+)$/i);
+  const match = text.match(/^cloud\s*:?\s+(.+)$/i);
   if (!match) return text;
-  return `${noteKindSymbols[match[1].toLowerCase()]} ${match[2].trim()}`.trim();
+  return `${noteKindSymbols.cloud} ${match[1].trim()}`.trim();
 }
 
 function symbolicNoteTitle(note) {
@@ -6427,8 +6652,7 @@ function noteThumbnail(note) {
 
   const body = el("div", "note-thumb-body");
   const kindBadge = el("span", "note-thumb-kind", kindLabel);
-  if (kindIcon === "pen") kindBadge.prepend(uiIcon("pen", "note-kind-icon"));
-  else if (kindIcon === "cloud") kindBadge.prepend(uiIcon("cloud", "note-kind-icon"));
+  if (kindIcon === "cloud") kindBadge.prepend(uiIcon("cloud", "note-kind-icon"));
   else if (kindIcon && kindIcon !== kindLabel) kindBadge.dataset.icon = kindIcon;
   if (kindIcon && kindIcon === kindLabel) kindBadge.classList.add("is-symbol");
   body.append(kindBadge, el("span", "note-thumb-title", shortNoteTitle(note)), el("span", "note-thumb-meta", note.language));
@@ -6588,10 +6812,24 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "talk") {
     svg.append(
-      shape("rect", { x: "4.4", y: "5.8", width: "15.2", height: "9.2", rx: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
-      line({ d: "M8.5 18.7H15.5" }),
-      line({ d: "M12 15.1V18.7" }),
-      shape("path", { d: "M10 8.5l4.3 2.1L10 12.8Z", fill: "currentColor" })
+      shape("path", {
+        d: "M5.2 12.8H8.1L17.9 7.4V16.6L8.1 11.2H5.2Z",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.9"
+      }),
+      shape("path", {
+        d: "M7.8 13L9.2 18.3H12.1L10.3 14.2",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.8"
+      }),
+      line({ d: "M20.2 9.1L22 7.7", "stroke-width": "1.6" }),
+      line({ d: "M20.7 12H22.9", "stroke-width": "1.6" }),
+      line({ d: "M20.2 14.9L22 16.3", "stroke-width": "1.6" })
     );
     return svg;
   }
@@ -6679,23 +6917,6 @@ function uiIconSvg(key) {
     svg.append(
       shape("rect", { x: "4.2", y: "6.6", width: "15.6", height: "10.8", rx: "2", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
       line({ d: "M5.2 8.6L12 13.1L18.8 8.6" })
-    );
-    return svg;
-  }
-
-  if (normalizedKey === "pen") {
-    svg.append(
-      shape("path", {
-        d: "M5.2 18.8L6.4 14.1L15.1 5.4C16 4.5 17.4 4.5 18.3 5.4L18.6 5.7C19.5 6.6 19.5 8 18.6 8.9L9.9 17.6Z",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        "stroke-width": "1.9"
-      }),
-      line({ d: "M13.7 6.8L17.2 10.3", "stroke-width": "1.9" }),
-      line({ d: "M6.4 14.1L9.9 17.6", "stroke-width": "1.9" }),
-      line({ d: "M4.7 19.3L9.1 18.1", "stroke-width": "1.55" })
     );
     return svg;
   }
@@ -7301,7 +7522,7 @@ function sectionIconHref(heading) {
   if (moreHref) return moreHref;
   const text = simplified(heading?.textContent || "");
   if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("profile/index.html");
-  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/profile/index.html#awards");
+  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/index.html#awards");
   if (text.includes("email") || text.includes("contact")) return "mailto:ryuya.hora@zen.ac.jp";
   if (text.includes("work") || text.includes("interest")) return localHref("works/index.html");
   if (text.includes("categories in tokyo")) return "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0";
@@ -7489,13 +7710,18 @@ function navIconKey(label = "", href = "") {
   const text = simplified(label);
   const url = String(href || "").toLowerCase();
   if (text.includes("profile") || text.includes("プロフィール") || text.includes("概要")) return "profile";
+  if (text.includes("current position") || text.includes("past affiliation") || text.includes("affiliation")) return "building";
+  if (text.includes("academic background") || text.includes("teaching") || text.includes("outreach")) return "education";
+  if (text.includes("award")) return "award";
   if (text.includes("research timeline") || text.includes("yearly record") || text.includes("研究タイムライン") || text.includes("年次記録") || url.includes("#research-timeline") || url.includes("#yearly-records")) return "timeline";
-  if (text.includes("work") || text.includes("interest") || text.includes("関心") || text.includes("成果") || url.includes("#works") || url.includes("#interests")) return "topos";
-  if (text.includes("preparation") || url.includes("#in-preparation")) return "clock";
+  if (text.includes("explore")) return "search";
+  if (text.includes("work") || text.includes("interest") || text.includes("関心") || text.includes("成果") || url.includes("#works") || url.includes("#interests")) return "paper";
+  if (text.includes("upcoming") || text.includes("preparation") || url.includes("#in-preparation")) return "clock";
   if (text.includes("documents") || text.includes("資料")) return "paper";
   if (text.includes("papers") || text.includes("論文") || url.includes("/papers/")) return "paper";
   if (text.includes("notes") || text.includes("ノート") || url.includes("/notes/")) return "note";
-  if (text.includes("visit") || text.includes("訪問") || url.includes("#visits")) return "globe";
+  if (text.includes("visit") || text.includes("訪問") || url.includes("#visit")) return "globe";
+  if (text.includes("categories in tokyo")) return "kan-extension";
   if (text.includes("activities") || text.includes("活動") || url.includes("/activities/")) return "activity";
   if (text.includes("talks") || text.includes("発表") || url.includes("/talks/")) return "talk";
   if (text.includes("others") || text.includes("その他")) return "link";
@@ -7528,9 +7754,13 @@ function activityIconKey(group = {}, record = {}) {
 
 function sectionHeadingIconKey(label = "") {
   const text = simplified(label);
+  if (text === "profile" || text.includes("ryuya hora")) return "profile";
+  if (text === "works") return "paper";
+  if (text === "activities") return "activity";
+  if (text === "others") return "link";
   if (text.includes("categories in tokyo")) return "kan-extension";
   if (text.includes("research timeline") || text.includes("timeline") || text.includes("タイムライン")) return "timeline";
-  if (text.includes("upcoming") || text.includes("plan") || text.includes("予定")) return "activity";
+  if (text.includes("upcoming") || text.includes("plan") || text.includes("予定")) return "clock";
   if (text.includes("visit") || text.includes("訪問")) return "globe";
   if (text.includes("recent talks") || text.includes("talk list") || text.includes("archive") || text.includes("アーカイブ") || text.includes("talk") || text.includes("発表")) return "talk";
   if (text.includes("recent papers") || text.includes("bibliography") || text.includes("paper") || text.includes("writing") || text.includes("論文") || text.includes("文献") || text.includes("文章")) return "paper";
@@ -7538,7 +7768,7 @@ function sectionHeadingIconKey(label = "") {
   if (text.includes("web app")) return "webapp";
   if (text.includes("question") || text.includes("trail") || text.includes("problem") || text.includes("entry") || text.includes("entries") || text.includes("全項目")) return "problem";
   if (text.includes("index") || text.includes("explore") || text.includes("search") || text.includes("検索") || text.includes("一覧") || text.includes("索引")) return "search";
-  if (text.includes("current position") || text.includes("past position") || text.includes("position") || text.includes("所属")) return "building";
+  if (text.includes("current position") || text.includes("past position") || text.includes("affiliation") || text.includes("position") || text.includes("所属")) return "building";
   if (text.includes("topic") || text.includes("トピック")) return "tag";
   if (text.includes("email") || text.includes("メール")) return "mail";
   if (text.includes("award") || text.includes("受賞")) return "award";
@@ -7593,10 +7823,10 @@ function decorateUiIcons(root = document.body) {
     node.classList.add("has-icon");
   });
 
-  collect(".section-head h2, .profile-grid h2, .categories-tokyo-copy h2").forEach((node) => {
+  collect(".page-hero h1, .section-head h2, .profile-grid h2, .categories-tokyo-copy h2").forEach((node) => {
     const key = sectionHeadingIconKey(node.textContent);
     linkSectionHeadingText(node);
-    const copyButton = sectionSelfCopyButton(node);
+    const copyButton = node.matches(".page-hero h1") ? null : sectionSelfCopyButton(node);
     if (copyButton) node.append(copyButton);
     if (!key) return;
     if (!node.querySelector(".section-title-icon")) node.prepend(sectionTitleIconLink(key, node));
@@ -7689,7 +7919,6 @@ const subtopoiFreeMonoidPreparationTitle = "Subtopoi of free monoid actions (wit
 const topoiEnoughProjectivesPreparationTitle = "Topoi with enough projectives";
 const totallyDisconnectedTopoiPreparationTitle = "Totally disconnected topoi";
 const dynamicalPretopologicalPreparationTitle = "Dynamical systems on pretopological spaces";
-const twistedTetrahedraPreparationTitle = "Twisted Regular Tetrahedra and Eisenstein Integers";
 const gabrielToposPreparationTitle = "A topos-theoretic view on Gabriel's theorem";
 
 const preparationSlideMatches = [
@@ -7752,12 +7981,6 @@ const preparationSlideMatches = [
     ]
   },
   {
-    title: "Twisted Regular Tetrahedra and Eisenstein Integers",
-    slides: [
-      ["Eisenstein integer slides", "2024Topos新歓202405-6.pdf"]
-    ]
-  },
-  {
     title: "When do finite presheaves form a topos? (with Jeremie Marques)",
     slides: [
       ["Topoi of automata slides", "CSCAT_2025-3.pdf"]
@@ -7802,7 +8025,7 @@ function preparationPaperDetails(title) {
     const slidesHref = noteHrefByFile("RYUYA,HORA.pdf");
     return {
       figure: "games-integral-calculus",
-      themes: ["games", "algebra"],
+      themes: ["games", "algebra", "category"],
       links: mergeActionLinks(
         compactText([
           slidesHref ? ["Rota-Baxter slides", slidesHref] : null
@@ -7813,7 +8036,7 @@ function preparationPaperDetails(title) {
   }
   if (title === topoiAutomataIIPreparationTitle) {
     return {
-      themes: ["algebra", "geometry"],
+      themes: ["algebra", "geometry", "combinatorics"],
       links: relatedSlides
     };
   }
@@ -7838,7 +8061,8 @@ function preparationPaperDetails(title) {
   }
   if (title === topoiEnoughProjectivesPreparationTitle) {
     return {
-      themes: ["algebra"],
+      themes: ["algebra", "logic"],
+      metaTags: ["speculative"],
       links: relatedSlides
     };
   }
@@ -7852,12 +8076,6 @@ function preparationPaperDetails(title) {
     return {
       themes: ["topos"],
       metaTags: ["speculative"],
-      links: relatedSlides
-    };
-  }
-  if (title === twistedTetrahedraPreparationTitle) {
-    return {
-      themes: ["algebra"],
       links: relatedSlides
     };
   }
@@ -8201,7 +8419,7 @@ function renderThemeResult(record, selection = "", metaSelection = "") {
   item.dataset.themes = record.themes.join(" ");
   item.dataset.metaTags = (record.metaTags || []).join(" ");
   const heading = el("h4");
-  heading.append(link(record.title, record.href));
+  heading.append(link(searchResultTitleText(record.title), record.href));
   item.append(renderThemeResultIcons(record.themes, record.metaTags), heading);
   if (record.meta) item.append(el("p", "theme-result-meta", record.meta));
   return item;
@@ -8241,6 +8459,7 @@ function renderResearchMapResults(selection = "", options = {}) {
     }
     records.forEach((record) => list.append(renderThemeResult(record, themeIds, metaTagIds)));
   });
+  typesetMath(root);
 }
 
 function researchThemeGroups() {
@@ -13281,6 +13500,13 @@ function renderExplore() {
     copy.append(link(page.title, localHref(page.href), "explore-title"), el("p", null, page.description));
     head.append(copy);
     body.append(head);
+    if (Array.isArray(page.children) && page.children.length) {
+      const childList = el("div", "explore-child-links");
+      page.children.forEach(([label, href]) => {
+        childList.append(link(label, localHref(href), "explore-child-link"));
+      });
+      body.append(childList);
+    }
     item.append(body);
     root.append(item);
   });
@@ -13357,7 +13583,6 @@ const contentReviewLabels = {
   published: "Published",
   preprint: "Preprint",
   draft: "Draft",
-  "work-in-progress": "Work in progress",
   speculative: "Speculative note",
   slide: "Slide",
   note: "Note",
@@ -13436,7 +13661,7 @@ function noteReviewRecord(note) {
   const byFile = siteReviewData.documentRights.byFile[note.file] || null;
   const isDrive = /drive\.google\.com/i.test(note.href || "") || /drive\.google\.com|lh3\.google/i.test(note.thumbnail || "");
   const rightsRecord = byFile || (isDrive ? siteReviewData.documentRights.defaultDrivePdf : null);
-  const status = note.status || (titleKind === "cloud" ? "speculative" : titleKind === "pen" ? "work-in-progress" : kind === "slides" ? "slide" : "note");
+  const status = note.status || (titleKind === "cloud" ? "speculative" : kind === "slides" ? "slide" : "note");
   const rights = note.rights || rightsRecord?.rightsStatus || (note.href ? "linked-public-record" : "local-record");
   const source = note.source || rightsRecord?.source || (isDrive ? "google-drive" : "homepage");
   const provenance = note.provenance || (rightsRecord ? "Owner-reviewed public document link metadata." : "Manual homepage document metadata.");
@@ -13444,7 +13669,6 @@ function noteReviewRecord(note) {
   const needsVerification = !hasExplicitPermission && Boolean(note.needsVerification || /coauthored|owner-believes-ok/i.test(rights));
   const badges = [
     status === "speculative" ? { status, label: "Speculative", title: "Cloud: speculative note." } : null,
-    status === "work-in-progress" ? { status, label: "Work in progress", title: "Pen: currently being written." } : null,
     hasExplicitPermission ? { status: "coauthored-explicit-permission", label: "Permission confirmed", title: rightsRecord?.note || rights } : null,
     needsVerification ? { status: "rights-watch", label: "Rights watch", title: rightsRecord?.note || rights } : null,
     byFile?.publicPermission === "link-only" ? { status: "external-record", label: "External record", title: source } : null
@@ -13726,6 +13950,10 @@ function renderPaperMetaTagButton(tag, count) {
 function renderPaperTagIndex(records = paperListingRecords()) {
   const root = document.querySelector("#paper-tag-index");
   if (!root) return;
+  if (isWorksPage() && !state.paperTagsExpanded && !paperSearchHasDocumentFilter()) {
+    root.replaceChildren();
+    return;
+  }
   const counts = Object.fromEntries(researchThemes.map((theme) => [theme.id, 0]));
   const metaCounts = Object.fromEntries(researchMetaTags.map((tag) => [tag.id, 0]));
   const preparationRecords = siteData.papers.preparation.map(preparationPaperRecord);
@@ -13768,6 +13996,19 @@ function renderPaperTagIndex(records = paperListingRecords()) {
   root.append(head, list);
 }
 
+function renderPaperCompactRecord(paper) {
+  const item = el("article", "publication-item publication-item-compact");
+  item.id = paperAnchor(paper);
+  const title = el("h3");
+  title.append(link(paper.title, paper.link));
+  item.append(title);
+  const meta = compactText([paperPeopleText(paper, findResearchmapPaper(paper)), paper.year, paper.venue]).join(" / ");
+  if (meta) item.append(el("p", "publication-compact-meta", meta));
+  if (paper.summary) item.append(el("p", "publication-summary publication-summary-compact", paper.summary));
+  item.append(link("Open paper", paper.link, "text-link"));
+  return item;
+}
+
 function renderPapers() {
   const root = document.querySelector("#paper-list");
   if (!root) return;
@@ -13787,7 +14028,12 @@ function renderPapers() {
     applyLanguage(root);
     return;
   }
-  filtered.forEach((paper) => root.append(renderPaperRecord(paper, { showFigure: state.paperView === "diagram" })));
+  const limit = worksInitialPaperLimit();
+  const visibleRecords = Number.isFinite(limit) ? filtered.slice(0, limit) : filtered;
+  const useCompactRecords = isWorksPage() && state.paperView !== "diagram" && Number.isFinite(limit) && !paperSearchHasDocumentFilter();
+  visibleRecords.forEach((paper) => {
+    root.append(useCompactRecords ? renderPaperCompactRecord(paper) : renderPaperRecord(paper, { showFigure: state.paperView === "diagram" }));
+  });
   typesetMath(root);
   applyLanguage(root);
   scrollToHashTarget();
@@ -14473,13 +14719,6 @@ function renderDocumentCard(note, pagePath) {
     item.append(talk);
   }
   const meta = el("div", "note-meta");
-  if (kind === "pen") {
-    const badge = el("span", `note-kind-badge note-${kind}-badge`, kindLabel);
-    if (kindIcon === "pen") badge.prepend(uiIcon("pen", "note-kind-icon"));
-    else if (kindIcon && kindIcon !== kindLabel) badge.dataset.icon = kindIcon;
-    if (kindIcon && kindIcon === kindLabel) badge.classList.add("is-symbol");
-    meta.append(badge);
-  }
   appendContentReviewBadges(meta, noteReviewRecord(note).badges);
   metaTagIdsForText(compactText([note.title, note.description, note.file, note.talkTitle, note.talkMeta]).join(" "), note.metaTags || [])
     .forEach((tagId) => meta.append(renderMetaTagPill(tagId, "note-meta-tag")));
@@ -14931,6 +15170,124 @@ function initialProblemFromHash() {
   return siteData.problems.find((problem) => hash === problemAnchor(problem) || hash === problem.id);
 }
 
+const worksInitialPaperRecordLimit = 4;
+const worksLazySectionConfigs = [
+  {
+    id: "papers",
+    roots: ["#paper-list"],
+    placeholder: "Papers load as this section approaches.",
+    render: () => renderPapers()
+  },
+  {
+    id: "in-preparation",
+    roots: ["#preparation-paper-list"],
+    placeholder: "In-preparation papers load when this section is opened.",
+    render: () => renderPreparationPapers()
+  },
+  {
+    id: "notes-preparations",
+    roots: ["#note-list"],
+    placeholder: "Notes load when this section is opened.",
+    render: () => renderNotes()
+  },
+  {
+    id: "talks-slides",
+    roots: ["#researchmap-presentation-list", "#slide-list"],
+    placeholder: "Talks and slides load when this section is opened.",
+    render: () => {
+      renderResearchmapPresentations();
+      renderSlides();
+    }
+  }
+];
+
+function isWorksPage() {
+  return document.body?.dataset.page === "works";
+}
+
+function worksHashTarget() {
+  return decodeURIComponent(globalThis.location?.hash?.slice(1) || "");
+}
+
+function worksInitialPaperLimit() {
+  const hash = worksHashTarget();
+  if (!isWorksPage() || state.worksPapersExpanded || paperSearchHasDocumentFilter()) return Infinity;
+  if (hash.startsWith("paper-") || hash === "papers" || hash === "in-preparation") return Infinity;
+  return worksInitialPaperRecordLimit;
+}
+
+function worksLazyRenderedSections() {
+  if (!state.worksLazyRenderedSections) state.worksLazyRenderedSections = new Set();
+  return state.worksLazyRenderedSections;
+}
+
+function worksLazyConfigForHash(hash = worksHashTarget()) {
+  if (hash.startsWith("paper-")) return worksLazySectionConfigs.find((config) => config.id === "papers");
+  return worksLazySectionConfigs.find((config) => hash === config.id || hash.startsWith(`${config.id}-`));
+}
+
+function renderWorksLazyPlaceholder(config) {
+  config.roots.forEach((selector) => {
+    const root = document.querySelector(selector);
+    if (!root || root.childElementCount) return;
+    root.append(el("p", "empty-state works-lazy-placeholder", config.placeholder));
+  });
+}
+
+function renderWorksLazySection(id) {
+  const config = worksLazySectionConfigs.find((record) => record.id === id);
+  const rendered = worksLazyRenderedSections();
+  if (!config || rendered.has(id)) return;
+  rendered.add(id);
+  if (id === "papers") state.worksPapersExpanded = true;
+  config.render();
+  scrollToHashTarget();
+}
+
+function setupWorksLazySections() {
+  worksLazySectionConfigs.forEach(renderWorksLazyPlaceholder);
+  const initialHashConfig = worksLazyConfigForHash();
+  if (initialHashConfig) renderWorksLazySection(initialHashConfig.id);
+
+  if (globalThis.IntersectionObserver) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        renderWorksLazySection(entry.target.id);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "720px 0px" });
+    worksLazySectionConfigs.forEach((config) => {
+      const section = document.getElementById(config.id);
+      if (section && !worksLazyRenderedSections().has(config.id)) observer.observe(section);
+    });
+  } else {
+    worksLazySectionConfigs.forEach((config) => setTimeout(() => renderWorksLazySection(config.id), 1200));
+  }
+
+  if (!state.worksLazyHashListenerAttached) {
+    state.worksLazyHashListenerAttached = true;
+    globalThis.addEventListener?.("hashchange", () => {
+      const config = worksLazyConfigForHash();
+      if (config) renderWorksLazySection(config.id);
+    });
+    document.addEventListener("click", (event) => {
+      const anchor = event.target?.closest?.("a[href]");
+      if (!anchor) return;
+      const hash = new URL(anchor.getAttribute("href"), globalThis.location?.href).hash.slice(1);
+      const config = worksLazyConfigForHash(hash);
+      if (config) setTimeout(() => renderWorksLazySection(config.id), 0);
+    });
+  }
+}
+
+function renderWorksPageInitial() {
+  state.worksPapersExpanded = false;
+  state.worksLazyRenderedSections = new Set();
+  renderResearchMap();
+  setupWorksLazySections();
+}
+
 function renderProblems() {
   const root = document.querySelector("#problem-list");
   if (!root) return;
@@ -15142,12 +15499,7 @@ function renderInitialPage() {
   } else if (page === "explore") {
     renderExplore();
   } else if (page === "works") {
-    renderResearchMap();
-    renderPapers();
-    renderPreparationPapers();
-    renderNotes();
-    renderResearchmapPresentations();
-    renderSlides();
+    renderWorksPageInitial();
   } else if (page === "research-timeline") {
     renderHomeTimeline();
   } else if (page === "papers") {
@@ -15222,4 +15574,4 @@ function renderInitialPage() {
   applyLanguage();
 }
 
-renderInitialPage();
+if (!document.currentScript?.dataset.manualInit) renderInitialPage();
