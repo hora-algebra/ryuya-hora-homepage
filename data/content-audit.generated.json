@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-02T01:16:51.876Z",
+  "generatedAt": "2026-05-03T05:29:16.519Z",
   "source": {
     "homepage": "scripts/site.js",
     "researchmap": "https://researchmap.jp/ryuyahora"
@@ -7,22 +7,21 @@
   "decisions": {
     "dc1": "Do not display DC1 as current after March 2026.",
     "kakenhi24KJ0837": "Display as ongoing.",
-    "lawvereFourth": "Use providing-a-solution wording; status remains preprint until journal publication.",
-    "cloud": "Speculative note.",
-    "pen": "Work in progress."
+    "lawvereFourth": "Use preprint-solution wording; status remains preprint until journal publication.",
+    "cloud": "Speculative note."
   },
   "profileClaims": [
     {
       "key": "position:zen-assistant-professor:2026",
       "status": "pending-public-source",
       "claim": "Assistant professor at ZEN University since April 2026.",
-      "note": "Confirmed by owner and researchmap; no public institutional profile page is available yet."
+      "note": "Confirmed by owner and researchmap; owner confirmed on 3 May 2026 that no public institutional profile page is available yet."
     },
     {
       "key": "position:humai-researcher:2026",
       "status": "pending-public-source",
       "claim": "Researcher at the Humai Center since April 2026.",
-      "note": "Confirmed by owner; no public institutional profile page is available yet."
+      "note": "Confirmed by owner; owner confirmed on 3 May 2026 that no public institutional profile page is available yet."
     },
     {
       "key": "grant:jsps-fellow:24KJ0837",
@@ -38,14 +37,14 @@
       "status": "self-reported-public-broadcast",
       "claim": "Graduation Representative, Graduate School of Mathematical Sciences, doctoral course, March 2026.",
       "source": "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      "note": "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
+      "note": "Owner confirmed on 3 May 2026 that this is accurate and public display is acceptable; no named public archival source is available."
     },
     {
       "key": "award:graduation-representative:gsm:masters:2024",
       "status": "self-reported-public-broadcast",
       "claim": "Graduation Representative, Graduate School of Mathematical Sciences, master's course, March 2024.",
       "source": "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      "note": "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
+      "note": "Owner confirmed on 3 May 2026 that this is accurate and public display is acceptable; no named public archival source is available."
     }
   ],
   "mediaRights": {
@@ -53,7 +52,7 @@
       "status": "owner-supplied",
       "source": "local assets/profile",
       "provenance": "Owner-supplied homepage media.",
-      "rights": "Owner-controlled profile photographs; keep if no third-party photographer restriction applies.",
+      "rights": "Owner confirmed photographer/license status for profile photographs on 3 May 2026.",
       "needsVerification": false
     },
     "paperFigures": {
@@ -67,8 +66,8 @@
       "status": "derived-from-public-documents",
       "source": "local assets/notes or Google Drive thumbnails",
       "provenance": "Generated from linked notes/slides.",
-      "rights": "Derived from publicly linked notes/slides; review if a source PDF contains third-party images.",
-      "needsVerification": true
+      "rights": "Owner confirmed on 3 May 2026 that the linked notes and thumbnails should not contain unapproved third-party or coauthor material.",
+      "needsVerification": false
     },
     "webAppThumbnails": {
       "status": "site-generated",
@@ -809,10 +808,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Combinatorial games as recursive coalgebras",
@@ -821,10 +820,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Cloud: Topos theoretic approach to representation theory",
@@ -833,10 +832,10 @@
         "status": "speculative",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Cloud: What is the geometry behind Conway's game of life?",
@@ -845,10 +844,10 @@
         "status": "speculative",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Topoi of automata",
@@ -857,10 +856,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Topoi of automata",
@@ -869,10 +868,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Local state classifier for algebraic language theory",
@@ -881,10 +880,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Topoi of automata (IRIF)",
@@ -893,10 +892,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Local state classifier for automata theory",
@@ -905,22 +904,22 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
-        "title": "Pen: A note on language measurability",
+        "title": "A note on language measurability",
         "file": "An_ongoing_note_on_language_measurability_under_construction20260308.pdf",
         "href": "https://drive.google.com/open?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC",
-        "status": "work-in-progress",
+        "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Cloud: A Rota-Baxter equation for winning games",
@@ -929,10 +928,10 @@
         "status": "speculative",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "圏論に登場する矢印の意味は—特集 圏論の質問箱",
@@ -953,10 +952,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "圏論のToy Exampleとしての集合演算",
@@ -965,10 +964,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Cloud: 構成的数学と表現論",
@@ -977,10 +976,10 @@
         "status": "speculative",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Turning lights out with the Snake Lemma",
@@ -1013,10 +1012,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "順序集合で遊ぶKan拡張",
@@ -1025,10 +1024,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "母関数の種",
@@ -1037,10 +1036,22 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
+      },
+      {
+        "title": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers",
+        "file": "2024Topos新歓202405-6.pdf",
+        "href": "https://drive.google.com/open?id=1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9",
+        "status": "speculative",
+        "source": "google-drive",
+        "provenance": "owner-reviewed document rights metadata",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
+        "needsVerification": false,
+        "explicitPermission": false,
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "アイゼンシュタイン整数と組合せ論",
@@ -1049,10 +1060,10 @@
         "status": "published-note",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Cloud: Space-Time for Conway's Game of Life",
@@ -1061,10 +1072,10 @@
         "status": "speculative",
         "source": "google-drive",
         "provenance": "owner-reviewed document rights metadata",
-        "rights": "owner-reports-permission",
+        "rights": "owner-confirmed-no-unapproved-third-party-material",
         "needsVerification": false,
         "explicitPermission": false,
-        "note": ""
+        "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
       },
       {
         "title": "Older notes",

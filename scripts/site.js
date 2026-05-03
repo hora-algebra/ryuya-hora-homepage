@@ -67,81 +67,53 @@ function problemEntry({ id, formal = false, theme, title, statement, description
 const siteData = {
   pages: [
     {
-      title: "CV",
-      href: "profile/cv/index.html",
+      title: "Profile",
+      href: "profile/index.html",
       description: "Positions, awards, education, and profile links.",
       icon: "cv",
-      thumbnail: "assets/profile/ryuya-hora-sea-900.jpg"
+      thumbnail: "assets/profile/ryuya-hora-sea-900.jpg",
+      children: [
+        ["CV", "profile/index.html#current-positions"],
+        ["Awards", "profile/index.html#awards"],
+        ["Interests", "profile/index.html#interests"],
+        ["Research Timeline", "profile/index.html#timeline"]
+      ]
     },
     {
-      title: "Documents",
-      href: "documents/index.html",
-      description: "Overview of papers, notes, and slides.",
+      title: "Works",
+      href: "works/index.html",
+      description: "Overview of research timeline, papers, notes, talks, and slides.",
       icon: "paper",
-      thumbnail: "assets/papers/internal-parameterizations.jpg"
-    },
-    {
-      title: "Papers",
-      href: "documents/papers/index.html",
-      description: "Bibliography, preprints, in-preparation work, and metadata.",
-      icon: "paper",
-      thumbnail: "assets/papers/topoi-automata.jpg"
-    },
-    {
-      title: "Notes",
-      href: "documents/notes/index.html",
-      description: "Lecture notes, expository notes, and related writing.",
-      icon: "note",
-      thumbnail: "assets/notes/counting-with-exponential-of-groups.png"
-    },
-    {
-      title: "Slides",
-      href: "documents/slides/index.html",
-      description: "Slides and presentation materials.",
-      icon: "slide",
-      thumbnail: "assets/notes/topoi-of-automata-cscat2025.png"
+      thumbnail: "assets/papers/internal-parameterizations.jpg",
+      children: [
+        ["Papers", "works/index.html#papers"],
+        ["Notes and Preparations", "works/index.html#notes-preparations"],
+        ["Talks and Slides", "works/index.html#talks-slides"]
+      ]
     },
     {
       title: "Activities",
       href: "activities/index.html",
-      description: "Activity timeline, visits, talks, and yearly records.",
+      description: "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.",
       icon: "activity",
-      thumbnail: "assets/profile/ryuya-hora-mondovi.jpg"
-    },
-    {
-      title: "Talks",
-      href: "activities/talks/index.html",
-      description: "Conference talks, seminars, archive, and visit map.",
-      icon: "talk",
-      thumbnail: "assets/profile/ryuya-hora-talk.jpg"
+      thumbnail: "assets/profile/ryuya-hora-mondovi.jpg",
+      children: [
+        ["Upcoming", "activities/index.html#upcoming"],
+        ["Visit Map", "activities/index.html#visit-map"],
+        ["Yearly Records", "activities/index.html#yearly-records"],
+        ["Categories in Tokyo", "activities/index.html#categories-in-tokyo"]
+      ]
     },
     {
       title: "Others",
       href: "others/index.html",
-      description: "Overview of web apps, problems, and links.",
+      description: "Overview of Web Apps and links.",
       icon: "webapp",
-      thumbnail: "assets/profile/green-fractal-cloud.png"
-    },
-    {
-      title: "Web Apps",
-      href: "others/web-apps/index.html",
-      description: "Small deployed tools and experiments.",
-      icon: "webapp",
-      thumbnail: "assets/web-apps/string-diagram.png"
-    },
-    {
-      title: "Problems",
-      href: "others/problems/index.html",
-      description: "Open questions, problem trails, and formal problems.",
-      icon: "problem",
-      thumbnail: "assets/papers/lawvere-fourth.jpg"
-    },
-    {
-      title: "Links",
-      href: "others/links/index.html",
-      description: "Selected external links.",
-      icon: "link",
-      thumbnail: "assets/profile/green-fractal-branch.png"
+      thumbnail: "assets/profile/green-fractal-cloud.png",
+      children: [
+        ["Web Apps", "others/index.html#web-apps"],
+        ["Links", "others/index.html#links"]
+      ]
     },
     {
       title: "Search",
@@ -162,18 +134,18 @@ const siteData = {
     ["researchmap", "https://researchmap.jp/ryuyahora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026" },
-    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai", reviewKey: "position:humai-researcher:2026" },
-    { text: "Supported by KAKENHI project 24KJ0837.", textJa: "KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837" },
-    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension" },
-    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon" },
-    { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター．", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback" }
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp", icon: "building", reviewKey: "position:zen-assistant-professor:2026", timelineStart: "2026-04" },
+    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", icon: "humai", reviewKey: "position:humai-researcher:2026", timelineStart: "2026-04" },
+    { text: "Supported by KAKENHI project 24KJ0837.", textJa: "KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837", timelineStart: "2024-04" },
+    { text: "Founder and one of the organizers of Categories in Tokyo since 2024.", textJa: "2024年より Categories in Tokyo の創設者・主催者の一人．", href: "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0", icon: "kan-extension", timelineStart: "2024-01", timelineStartLabel: "2024" },
+    { text: "Advisor to 角川ドワンゴ学園 研究部 since June 2025.", textJa: "2025年6月より角川ドワンゴ学園 研究部アドバイザー．", href: "https://nnn.ed.jp/attractiveness/extracurricular/club/kenkyubu/", icon: "hexagon", timelineStart: "2025-06" },
+    { text: "Tutor at Math Space Topos since July 2020.", textJa: "2020年7月より数理空間トポス チューター．", href: "https://sites.google.com/view/mspacetopos/home", icon: "pullback", timelineStart: "2020-07" }
   ],
   pastPositions: [
-    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", textJa: "2025年4月から7月まで，Centre for Topos Theory and its Applications（パリ）リサーチアソシエイト．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
-    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", textJa: "2024年4月から2026年3月まで，東京大学大学院数理科学研究科 博士課程．", href: "https://www.ms.u-tokyo.ac.jp/" },
-    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", textJa: "2022年10月から2024年3月まで，変革を駆動する先端物理・数学プログラム（FoPM）支援学生．", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/" },
-    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", textJa: "2020年11月から2021年3月まで，国立情報学研究所リサーチアシスタント．", href: "https://www.nii.ac.jp/en/" }
+    { text: "Research Associate at Centre for Topos Theory and its Applications, Paris, April to July 2025.", textJa: "2025年4月から7月まで，Centre for Topos Theory and its Applications（パリ）リサーチアソシエイト．", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", timelineStart: "2025-04", timelineEnd: "2025-07" },
+    { text: "Ph.D. student at Graduate School of Mathematical Sciences, The University of Tokyo, April 2024 to March 2026.", textJa: "2024年4月から2026年3月まで，東京大学大学院数理科学研究科 博士課程．", href: "https://www.ms.u-tokyo.ac.jp/", timelineStart: "2024-04", timelineEnd: "2026-03" },
+    { text: "Graduate student supported by FoPM, October 2022 to March 2024.", textJa: "2022年10月から2024年3月まで，変革を駆動する先端物理・数学プログラム（FoPM）支援学生．", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", timelineStart: "2022-10", timelineEnd: "2024-03" },
+    { text: "Research Assistant at National Institute of Informatics, November 2020 to March 2021.", textJa: "2020年11月から2021年3月まで，国立情報学研究所リサーチアシスタント．", href: "https://www.nii.ac.jp/en/", timelineStart: "2020-11", timelineEnd: "2021-03" }
   ],
   webApps: [
     {
@@ -352,7 +324,7 @@ const siteData = {
         themes: ["topos", "combinatorics"],
         links: [["arXiv", "https://arxiv.org/abs/2503.03439"]],
         summary:
-          "Provides a solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
+          "Gives a preprint solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
       },
       {
         title: "Topoi of automata I: Four topoi of automata and regular languages",
@@ -370,7 +342,7 @@ const siteData = {
         year: "2025",
         link: "https://arxiv.org/abs/2510.22886",
         figure: "games-coalgebras",
-        themes: ["games", "coalgebras", "category"],
+        themes: ["games", "coalgebras", "category", "algebra"],
         links: [["arXiv", "https://arxiv.org/abs/2510.22886"]],
         summary:
           "Reinterprets impartial combinatorial games and the Nim-sum using recursive coalgebras."
@@ -402,7 +374,6 @@ const siteData = {
       "A topos-theoretic view on Gabriel's theorem",
       "The lattice of hyperconnected quotients is a module of the semiring of productive weak topologies",
       "On limits in \\(\\mathbf{FinSet}\\)",
-      "Twisted Regular Tetrahedra and Eisenstein Integers",
       "When do finite presheaves form a topos? (with Jeremie Marques)",
       "Local state classifier, permutation model, and the internal axiom of choice"
     ],
@@ -479,7 +450,7 @@ const siteData = {
     { title: "Local state classifier for algebraic language theory", description: "Centre Lagrange, 16 May", theme: "topos", date: "2025-05-16", language: "English", file: "Local state classifier for algebraic language theory.pdf", ...notePdfAsset("1jwA88f7axVA_VmGsUasrudicI1OXMIPE", "local-state-classifier-algebraic-language") },
     { title: "Topoi of automata (IRIF)", description: "IRIF, 6 May", theme: "automata", date: "2025-05-06", language: "English", file: "IRIFtoday.pdf", ...notePdfAsset("1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU", "topoi-of-automata-irif") },
     { title: "Local state classifier for automata theory", description: "IRIF 26 May / LIPN 5 June", theme: "topos", date: "2025-05-26", language: "English", file: "IRIF20250527_ver1.pdf", ...notePdfAsset("1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF", "local-state-classifier-automata") },
-    { title: "Pen: A note on language measurability", description: "March 8, 2026", theme: "automata", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
+    { title: "A note on language measurability", description: "March 8, 2026", theme: "automata", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
     { title: "Cloud: A Rota-Baxter equation for winning games", description: "April 5, 2026", theme: "games", themes: ["games", "algebra"], metaTags: ["speculative"], date: "2026-04-05", language: "English", file: "RYUYA,HORA.pdf", ...notePdfAsset("1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU", "rota-baxter-winning-games", "https://lh3.google.com/u/0/d/1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU=s2048?auditContext=thumbnail") },
     { title: "圏論に登場する矢印の意味は—特集 圏論の質問箱", description: "数学セミナー, 2025-11", theme: "category", metaTags: ["expository"], date: "2025-11", language: "Japanese", file: "数学セミナー", href: "https://cir.nii.ac.jp/crid/1520869150155438720?lang=ja" },
     { title: "順序集合で遊ぶKan拡張入門", theme: "category", metaTags: ["expository"], language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
@@ -490,6 +461,7 @@ const siteData = {
     { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", theme: "number", metaTags: ["expository"], date: "2021", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
     { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", theme: "category", metaTags: ["expository"], date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
     { title: "母関数の種", description: "数理空間トポス 2023年新歓", theme: "combinatorics", metaTags: ["expository"], date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
+    { title: "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers", themes: ["algebra"], metaTags: ["speculative"], language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
     { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", theme: "number", metaTags: ["expository"], date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
     { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", theme: "topos", themes: ["topos", "geometry", "dynamical"], metaTags: ["speculative"], date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
     { title: "Older notes", description: "Older documents are collected on Notion.", language: "Japanese", file: "Notion archive", href: "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b" }
@@ -498,8 +470,10 @@ const siteData = {
     {
       title: "Plans",
       items: [
+        { date: "2026-06-03", text: "Organizing the Bimonthly Category Theory Seminar." },
         { date: "2026-07-06 - 2026-07-10", text: "Planning to attend ACT 2026 in Tallinn.", href: "https://actconf2026.github.io/" },
-        { date: "2026-09-29", text: "Scheduled to give an online talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" }
+        { date: "2026-09-29", text: "Scheduled to give an online talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" },
+        { date: "2026-11-02 - 2026-11-04", text: "Organizing Categories in Tokyo 3.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A" }
       ]
     },
     {
@@ -539,12 +513,12 @@ const siteData = {
       title: "2024",
       items: [
         { date: "2024-04-25", text: "Spoke at AFSA.", href: "https://afsa.jp/g-en/" },
-        { date: "2024-05-18", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+        { date: "2024-05-15", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2024-06-28", text: "Gave a talk at CT 2024 in Santiago de Compostela.", href: "https://www.usc.gal/regaca/ct2024/" },
         { date: "2024-07-01 - 2024-07-05", text: "Attended TACL 2024.", href: "https://iiia.csic.es/tacl2024/" },
         { date: "2024-08", text: "Paper on quotient toposes of discrete dynamical systems appeared in JPAA.", href: "https://doi.org/10.1016/j.jpaa.2024.107657" },
         { date: "2024-11-10", text: "Uploaded Topoi of automata I.", href: "https://arxiv.org/abs/2411.06358" },
-        { date: "2024-11-23", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+        { date: "2024-11-23 - 2024-11-24", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
         { date: "2024-12-10", text: "Wrote for Advent Calendar 2024.", href: "https://adventar.org/calendars/10265" }
       ]
     },
@@ -1075,13 +1049,13 @@ const siteReviewData = {
       key: "position:zen-assistant-professor:2026",
       status: "pending-public-source",
       claim: "Assistant professor at ZEN University since April 2026.",
-      note: "Confirmed by owner and researchmap; no public institutional profile page is available yet."
+      note: "Confirmed by owner and researchmap; owner confirmed on 3 May 2026 that no public institutional profile page is available yet."
     },
     {
       key: "position:humai-researcher:2026",
       status: "pending-public-source",
       claim: "Researcher at the Humai Center since April 2026.",
-      note: "Confirmed by owner; no public institutional profile page is available yet."
+      note: "Confirmed by owner; owner confirmed on 3 May 2026 that no public institutional profile page is available yet."
     },
     {
       key: "grant:jsps-fellow:24KJ0837",
@@ -1097,22 +1071,23 @@ const siteReviewData = {
       status: "self-reported-public-broadcast",
       claim: "Graduation Representative, Graduate School of Mathematical Sciences, doctoral course, March 2026.",
       source: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      note: "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
+      note: "Owner confirmed on 3 May 2026 that this is accurate and public display is acceptable; no named public archival source is available."
     },
     {
       key: "award:graduation-representative:gsm:masters:2024",
       status: "self-reported-public-broadcast",
       claim: "Graduation Representative, Graduate School of Mathematical Sciences, master's course, March 2024.",
       source: "https://www.u-tokyo.ac.jp/ja/students/events/h15_04.html",
-      note: "Owner confirmed this is accurate and public display is acceptable; no named public archival source is available."
+      note: "Owner confirmed on 3 May 2026 that this is accurate and public display is acceptable; no named public archival source is available."
     }
   ],
   documentRights: {
     defaultDrivePdf: {
-      rightsStatus: "owner-reports-permission",
+      rightsStatus: "owner-confirmed-no-unapproved-third-party-material",
       publicPermission: "owner-confirmed",
-      coauthorConsent: "owner-believes-ok",
-      source: "google-drive"
+      coauthorConsent: "owner-confirmed",
+      source: "google-drive",
+      note: "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
     },
     byFile: {
       "ライツアウトの代数的研究.pdf": {
@@ -1149,7 +1124,7 @@ const siteReviewData = {
       status: "owner-supplied",
       source: "local assets/profile",
       provenance: "Owner-supplied homepage media.",
-      rights: "Owner-controlled profile photographs; keep if no third-party photographer restriction applies.",
+      rights: "Owner confirmed photographer/license status for profile photographs on 3 May 2026.",
       needsVerification: false
     },
     paperFigures: {
@@ -1163,8 +1138,8 @@ const siteReviewData = {
       status: "derived-from-public-documents",
       source: "local assets/notes or Google Drive thumbnails",
       provenance: "Generated from linked notes/slides.",
-      rights: "Derived from publicly linked notes/slides; review if a source PDF contains third-party images.",
-      needsVerification: true
+      rights: "Owner confirmed on 3 May 2026 that the linked notes and thumbnails should not contain unapproved third-party or coauthor material.",
+      needsVerification: false
     },
     webAppThumbnails: {
       status: "site-generated",
@@ -1417,15 +1392,15 @@ const i18nText = {
     "Site Search": "サイト内検索",
     "Search this site.": "サイト内検索．",
     "Site index search.": "サイト内検索．",
-    "Search public pages, papers, talks, notes, slides, activities, problems, and links.":
-      "公開ページ，論文，発表，ノート，スライド，活動，Problems，リンクを検索します．",
+    "Search public pages, papers, talks, notes, slides, activities, and links.":
+      "公開ページ，論文，発表，ノート，スライド，活動，リンクを検索します．",
     "Search the site": "サイト内を検索",
     "Query": "検索語",
     "topos, automata, Categories in Tokyo...": "topos, automata, Categories in Tokyo...",
     "Type to search the site.": "検索語を入力してください．",
     "No public site results match this search.": "この検索に合う公開ページはありません．",
     "No linked items yet.": "関連項目はまだありません．",
-    "Site search. Last updated: 27 April 2026.": "サイト内検索．最終更新: 2026年4月27日",
+    "Site search. Last updated: 3 May 2026.": "サイト内検索．最終更新: 2026年5月3日",
     "Search notes": "ノート内検索",
     "Search slides": "スライド内検索",
     "Note filters": "ノートの絞り込み",
@@ -1457,6 +1432,7 @@ const i18nText = {
     "Note": "ノート",
     "Slide": "スライド",
     "Slides": "スライド",
+    "Affiliation": "所属",
     "Activity": "活動",
     "Problem": "Problem",
     "Topos": "Topos",
@@ -1464,7 +1440,6 @@ const i18nText = {
     "Award": "受賞",
     "Education": "教育歴",
     "Academic Background": "学歴",
-    "Additional Awards": "追加の受賞",
     "Focus": "Focus",
     "Why it is good": "好きな理由",
     "Basic dictionary": "Basic dictionary",
@@ -1477,18 +1452,18 @@ const i18nText = {
       "ZEN大学助教，HUMAIセンター研究員です．最近は，topos theory が algebra, geometry, logic, computation, combinatorics の間でどのようにアイデアを運ぶかを研究しています．",
     "Research": "研究",
     "Papers, preprints, notes, and slides.": "論文，preprint，ノート，スライド．",
-    "Overview of papers, notes, and slides.": "論文，ノート，スライドの概要．",
+    "Overview of research timeline, papers, notes, talks, and slides.": "論文，ノート，スライドの概要．",
     "Overview of visits, talks, and yearly records.": "訪問，発表，年次記録の概要．",
     "Bibliography, preprints, in-preparation work, and metadata.": "文献，preprint，準備中の仕事，メタデータ．",
     "Lecture notes, expository notes, and related writing.": "講義ノート，解説ノート，関連文書．",
-    "Slides and presentation materials.": "スライドと発表資料．",
-    "Activity timeline, visits, talks, and yearly records.": "活動タイムライン，訪問，発表，年次記録．",
-    "Conference talks, seminars, archive, and visit map.": "学会発表，セミナー，アーカイブ，訪問地図．",
-    "Overview of web apps, problems, and links.": "Web apps，Problems，リンクの概要．",
+    "Talk records and slide materials.": "スライドと発表資料．",
+    "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.": "活動タイムライン，訪問，発表，年次記録．",
+    "Talk records and slide materials.": "学会発表，セミナー，アーカイブ，訪問地図．",
+    "Overview of Web Apps and links.": "Web apps，リンクの概要．",
     "Selected external links.": "外部リンク集．",
     "Positions, awards, education, and profile links.": "所属，受賞，学歴，プロフィールリンク．",
     "Preprints and related writing.": "Preprint と関連文書．",
-    "Web apps, problems, and links.": "Web apps，Problems，リンク．",
+    "Web apps and links.": "Web apps，リンク．",
     "Visits, talks, plans.": "訪問，発表，予定．",
     "Research Interests": "研究関心",
     "All themes": "すべてのテーマ",
@@ -1498,7 +1473,7 @@ const i18nText = {
     "Contact": "連絡先",
     "Email": "メール",
     "Site Map": "サイトマップ",
-    "Explore": "一覧",
+    "Pages": "ページ",
     "Plans": "予定",
     "Upcoming": "今後の予定",
     "All activities": "すべての活動",
@@ -1512,10 +1487,7 @@ const i18nText = {
       "東京周辺の category theory workshop series / local research community です．私は founder かつ organizer の一人です．",
     "Open Categories in Tokyo": "Categories in Tokyo を開く",
     "Related activities": "関連する活動",
-    "Last updated: 22 April 2026.": "最終更新: 2026年4月22日",
-    "Last updated: 23 April 2026.": "最終更新: 2026年4月23日",
-    "Last updated: 24 April 2026.": "最終更新: 2026年4月24日",
-    "Last updated: 27 April 2026.": "最終更新: 2026年4月27日",
+    "Last updated: 3 May 2026.": "最終更新: 2026年5月3日",
     "Back to top": "上に戻る",
     "Home": "ホーム",
     "More": "さらに見る",
@@ -1560,14 +1532,14 @@ const i18nText = {
     "Powered by researchmap": "researchmap に基づく",
     "Misc": "その他",
     "Other Writing": "その他の文章",
-    "Research papers, preprints, and related writing. Last updated: 27 April 2026.":
-      "Research papers, preprints, related writing. 最終更新: 2026年4月27日",
+    "Research papers, preprints, and related writing. Last updated: 3 May 2026.":
+      "Research papers, preprints, related writing. 最終更新: 2026年5月3日",
     "Conference talks, seminars, workshop presentations, and available slides.":
       "Conference talks, seminars, workshop presentations とスライドをまとめています．",
     "Talks and slides.": "Talks and slides.",
     "Slides and seminars.": "Slides and seminars.",
     "Timeline": "タイムライン",
-    "Research Timeline": "研究タイムライン",
+    "Timeline": "タイムライン",
     "Activity Timeline": "活動タイムライン",
     "Activities Timeline": "活動タイムライン",
     "Documents Timeline": "資料タイムライン",
@@ -1586,6 +1558,7 @@ const i18nText = {
     "No mapped visits yet.": "地図表示可能な訪問はまだありません．",
     "Talk": "発表",
     "Paper": "論文",
+    "Affiliation": "所属",
     "Activity": "活動",
     "Topos theory": "Topos theory",
     "Automata / languages": "Automata / languages",
@@ -1598,22 +1571,22 @@ const i18nText = {
     "Archive": "アーカイブ",
     "Talk List": "発表一覧",
     "Filter talks": "発表を絞り込む",
-    "Talks, seminars, and presentation material. Last updated: 27 April 2026.":
-      "Talks, seminars, presentation material. 最終更新: 2026年4月27日",
+    "Talks, seminars, and presentation material. Last updated: 3 May 2026.":
+      "Talks, seminars, presentation material. 最終更新: 2026年5月3日",
     "Notes and Slides": "ノートとスライド",
     "Lecture notes, speculative notes, and teaching material. ☁︎ marked notes are speculative; 🖊️ marked notes are under construction.":
       "Lecture notes, speculative notes, teaching material をまとめています．☁︎ は speculative，🖊️ は under construction を表します．",
     "Notes and teaching material.": "Notes and teaching material.",
     "Slides connected with talks.": "発表と対応するスライド．",
     "Slides, with matching talk information when available.": "対応する発表情報つきのスライド．",
-    "Notes. Last updated: 27 April 2026.": "Notes. 最終更新: 2026年4月27日",
-    "Slides. Last updated: 27 April 2026.": "Slides. 最終更新: 2026年4月27日",
+    "Notes. Last updated: 3 May 2026.": "Notes. 最終更新: 2026年5月3日",
+    "Slides. Last updated: 3 May 2026.": "Slides. 最終更新: 2026年5月3日",
     "Academic Activity": "研究活動",
     "Research visits, organizing work, seminars, public writing, and academic events.":
       "Research visits, organizing work, seminars, public writing, academic events をまとめています．",
     "Activities and plans.": "活動と予定．",
-    "Academic activities, visits, and organizing work. Last updated: 27 April 2026.":
-      "Academic activities, visits, organizing work. 最終更新: 2026年4月27日",
+    "Academic activities, visits, and organizing work. Last updated: 3 May 2026.":
+      "Academic activities, visits, organizing work. 最終更新: 2026年5月3日",
     "Profile Details": "プロフィール詳細",
     "CV": "CV",
     "CV and awards.": "CV と受賞．",
@@ -1623,14 +1596,16 @@ const i18nText = {
     "Current": "現在",
     "Past": "過去",
     "Past Affiliations": "過去の所属",
+    "Current position": "現在の所属",
+    "Past affiliation": "過去の所属",
     "Awards": "受賞",
     "Teaching": "教育",
     "Education and Outreach": "教育とアウトリーチ",
     "Teaching and Outreach": "教育・アウトリーチ",
     "Source": "出典",
     "Credit": "謝辞",
-    "CV, awards, positions, and education. Last updated: 27 April 2026.":
-      "CV, awards, positions, education. 最終更新: 2026年4月27日",
+    "CV, awards, positions, and education. Last updated: 3 May 2026.":
+      "CV, awards, positions, education. 最終更新: 2026年5月3日",
     "Open Problems and Questions": "Open Problems and Questions",
     "Problem Index": "Problem Index",
     "Open problems and trails.": "Open problems and trails.",
@@ -1667,14 +1642,14 @@ const i18nText = {
     "Filter problems": "問題を絞り込む",
     "Index": "索引",
     "All Entries": "全項目",
-    "Open problems, questions, and reference trails. Last updated: 27 April 2026.":
-      "Open problems, questions, reference trails. 最終更新: 2026年4月27日",
+    "Open problems, questions, and reference trails. Last updated: 3 May 2026.":
+      "Open problems, questions, reference trails. 最終更新: 2026年5月3日",
     "People, Friends' Papers, Books, Events": "人物・友人の論文・本・イベント",
     "Profiles and references.": "プロフィールと資料．",
     "External references, profile pages, friends' papers, books, and events.":
       "外部資料，プロフィールページ，友人の論文，本，イベントへのリンクです．",
-    "External links and reference pages. Last updated: 27 April 2026.":
-      "External links and reference pages. 最終更新: 2026年4月27日",
+    "External links and reference pages. Last updated: 3 May 2026.":
+      "External links and reference pages. 最終更新: 2026年5月3日",
     "☁︎ Log": "☁︎ Log",
     "思弁的なノート": "思弁的なノート",
     "Short draft fragments, questions, and half-formed mathematical pictures before they become papers, talks, or polished notes.":
@@ -1703,8 +1678,8 @@ const i18nText = {
       "completely connected topoi を研究し，例とともに site characterization を与えます．",
     "Gives a solution to Lawvere's first open problem.":
       "Lawvere's first open problem の解決を与えます．",
-    "Provides a solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets.":
-      "symmetric simplicial sets のトポスにおける levels を通じて，Lawvere の7つの open problems の1つに解を与えます．",
+    "Gives a preprint solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets.":
+      "symmetric simplicial sets のトポスにおける levels を通じて，Lawvere の7つの open problems の1つに preprint solution を与えます．",
     "Introduces a topos-theoretic point of view on formal language theory.":
       "formal language theory に対する topos-theoretic な見方を導入します．",
     "Reinterprets impartial combinatorial games and the Nim-sum using recursive coalgebras.":
@@ -2254,8 +2229,6 @@ const translatableTextSelector = [
   ".nav-group-label",
   ".nav-search .sr-only",
   ".eyebrow",
-  ".page-breadcrumb a",
-  ".page-breadcrumb span",
   ".section-kicker",
   "h1",
   "h2",
@@ -2390,6 +2363,20 @@ function translateAttributes(root = document.body) {
   });
 }
 
+function applyLanguage(root = document.body) {
+  if (!root || isApplyingLanguage) return;
+  isApplyingLanguage = true;
+  try {
+    translateAttributes(root);
+    translatableElements(root).forEach(translateElementText);
+    syncLanguageLinks(root);
+    updateLanguageToggle();
+    decorateUiIcons(root);
+  } finally {
+    isApplyingLanguage = false;
+  }
+}
+
 function hrefWithLanguage(originalHref) {
   if (!originalHref || /^(https?:|mailto:|#|javascript:)/.test(originalHref)) return originalHref;
   const hashIndex = originalHref.indexOf("#");
@@ -2436,65 +2423,15 @@ function updateLanguageToggle() {
 
 function ensureSearchNavLink() {
   const nav = document.querySelector(".site-nav");
-  if (!nav) return;
-  const decorateSearchLink = (searchLink) => {
-    searchLink.dataset.siteSearchLink = "";
-    searchLink.classList.add("nav-search");
-    searchLink.classList.toggle("is-active", document.body.dataset.page === "search");
-    searchLink.setAttribute("aria-label", "Search");
-    if (!searchLink.querySelector(".search-icon")) {
-      searchLink.replaceChildren(
-        el("span", "search-icon"),
-        el("span", "sr-only", "Search")
-      );
-      searchLink.querySelector(".search-icon")?.setAttribute("aria-hidden", "true");
-    }
-  };
-  const existingSearchLink = nav.querySelector("[data-site-search-link]");
-  if (existingSearchLink) {
-    decorateSearchLink(existingSearchLink);
-    return;
-  }
+  if (!nav || nav.querySelector("[data-site-search-link]")) return;
   const searchLink = link("", localHref("search/index.html"));
+  searchLink.className = "nav-search";
   searchLink.dataset.siteSearchLink = "";
-  decorateSearchLink(searchLink);
-  const languageToggle = nav.querySelector("[data-language-toggle]");
-  if (languageToggle) nav.insertBefore(searchLink, languageToggle);
-  else nav.append(searchLink);
-}
-
-function applyLanguage(root = document.body) {
-  if (!root) return;
-  isApplyingLanguage = true;
-  try {
-    document.documentElement.lang = activeLanguage === "ja" ? "ja" : "en";
-    translatableElements(root).forEach(translateElementText);
-    translateAttributes(root);
-    syncLanguageLinks(root);
-    updateLanguageToggle();
-    decorateUiIcons(root);
-  } finally {
-    isApplyingLanguage = false;
-  }
-}
-
-function setLanguage(language) {
-  activeLanguage = japaneseUiEnabled && language === "ja" ? "ja" : "en";
-  writeStoredLanguage(activeLanguage);
-  syncLanguageUrl();
-  applyLanguage();
-  renderCategoriesTokyoMap();
-}
-
-function ensureDraftNotice() {
-  if (document.body?.dataset?.draft !== "true") return;
-  if (document.querySelector("[data-draft-notice]")) return;
-  const header = document.querySelector(".site-header");
-  if (!header) return;
-  const notice = el("div", "draft-notice", "This page is still under construction.");
-  notice.dataset.draftNotice = "";
-  notice.setAttribute("role", "status");
-  header.insertAdjacentElement("afterend", notice);
+  searchLink.setAttribute("aria-label", "Search");
+  const icon = el("span", "search-icon");
+  icon.setAttribute("aria-hidden", "true");
+  searchLink.append(icon, el("span", "sr-only", "Search"));
+  nav.append(searchLink);
 }
 
 function setupLanguage() {
@@ -2503,7 +2440,6 @@ function setupLanguage() {
   syncLanguageUrl();
   const nav = document.querySelector(".site-nav");
   ensureSearchNavLink();
-  ensureDraftNotice();
   if (japaneseUiEnabled && nav && !nav.querySelector("[data-language-toggle]")) {
     const button = el("button", "language-toggle");
     button.type = "button";
@@ -2757,7 +2693,7 @@ function hideTimelineTooltipSoon() {
 
 function attachTimelineTooltip(node, record) {
   const kindLabel = homeTimelineKindLabel(record.kind);
-  const themeLabel = record.theme ? homeTimelineThemeLabel(record.theme) : "";
+  const themeLabel = homeTimelineRecordThemeLabel(record);
   node.dataset.timelineKicker = compactText([kindLabel, themeLabel, record.dateLabel]).join(" / ");
   node.dataset.timelineTitle = record.title;
   node.dataset.timelineMeta = record.meta || "";
@@ -2794,7 +2730,10 @@ function annotateMath(root = document.body) {
 }
 
 function getPathPrefix() {
-  return document.body.dataset.depth === "child" ? "../" : "";
+  const rawDepth = document.body?.dataset.depth || "0";
+  if (rawDepth === "child") return "../";
+  const depth = Number.parseInt(rawDepth, 10);
+  return Number.isFinite(depth) && depth > 0 ? "../".repeat(depth) : "";
 }
 
 function localHref(href) {
@@ -2930,7 +2869,7 @@ function noteAnchor(note) {
 }
 
 function documentPagePathForRecord(note) {
-  return noteRecordIsSlide(note) ? "documents/slides/index.html" : "documents/notes/index.html";
+  return noteRecordIsSlide(note) ? "works/index.html#talks-slides" : "works/index.html#notes-preparations";
 }
 
 function noteHref(note) {
@@ -3573,11 +3512,11 @@ const activityVisitRecords = [
   { date: "2025-11", title: "Attended a seminar by Ryoma Sin'ya at Hongo campus, The University of Tokyo", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
   { date: "2025-12", title: "Attended PCT seminar", locationId: "tokyo", kind: "attended", href: "https://pctseminar.github.io" },
   { date: "2025-12", title: "Attended TMU geometry seminar", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
-  { date: "2024-05-18", title: "Organized Categories in Tokyo 0", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+  { date: "2024-05-15", title: "Organized Categories in Tokyo 0", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2024-06", title: "Visited Queen Mary University of London", locationId: "london", kind: "visit", href: oldActivitiesSource },
   { date: "2024-07-01", title: "Attended TACL 2024 at Barcelona", locationId: "barcelona", kind: "attended", href: "https://iiia.csic.es/tacl2024/" },
   { date: "2024-08", title: "Visited Kyoto RIMS", locationId: "kyoto", kind: "visit", href: oldActivitiesSource },
-  { date: "2024-11-23", title: "Organized Categories in Tokyo 1", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
+  { date: "2024-11-23", dateRange: "2024-11-23 - 2024-11-24", title: "Organized Categories in Tokyo 1", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2024-11-30", title: "Gave a poster session talk at AFSA area meeting", locationId: "tokyo", kind: "poster", href: oldActivitiesSource },
   { date: "2024-12", title: "Attended courses on Automata and Class field theory by Prof. Uramoto at RIMS", locationId: "kyoto", kind: "attended", href: oldActivitiesSource },
   { date: "2023-02", title: "Attended FoPM symposium", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
@@ -3876,7 +3815,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Profile",
       title: activeLanguage === "ja" && record.textJa ? record.textJa : record.text,
-      href: record.href || localHref("index.html#profile"),
+      href: record.href || localHref("profile/index.html#profile"),
       summary: "Current position",
       keywords: compactText([record.text, record.textJa]),
       icon: record.icon || "profile"
@@ -3887,7 +3826,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Profile",
       title: activeLanguage === "ja" && record.textJa ? record.textJa : record.text,
-      href: record.href || localHref("profile/cv/index.html"),
+      href: record.href || localHref("profile/index.html"),
       summary: "Past position",
       keywords: compactText([record.text, record.textJa]),
       icon: "building"
@@ -3898,7 +3837,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Award",
       title: record.text,
-      href: record.href || localHref("profile/cv/index.html"),
+      href: record.href || localHref("profile/index.html"),
       summary: "Award",
       icon: "award"
     });
@@ -3908,7 +3847,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Education",
       title: record.text,
-      href: record.href || localHref("profile/cv/index.html"),
+      href: record.href || localHref("profile/index.html"),
       summary: "Education and outreach",
       icon: "education"
     });
@@ -3929,7 +3868,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: paper.title,
-      href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+      href: localHref(`works/index.html#${paperAnchor(paper)}`),
       summary: paper.summary,
       meta: compactText([paperPeopleText(paper, researchmapPaper), paper.year, paper.venue]).join(" / "),
       keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
@@ -3956,7 +3895,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "In preparation",
       title: paper.title,
-      href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+      href: localHref(`works/index.html#${paperAnchor(paper)}`),
       summary: paper.summary || "Manuscript in preparation",
       keywords: paperDisplayTagRecords(paper).map((tag) => tag.label),
       icon: "paper",
@@ -3968,7 +3907,7 @@ function siteSearchRecords() {
     pushSiteSearchRecord(records, {
       type: "Paper",
       title: record.title,
-      href: record.link || localHref(`documents/papers/index.html#${paperAnchor(record)}`),
+      href: record.link || localHref(`works/index.html#${paperAnchor(record)}`),
       summary: record.venue || record.type || "Paper metadata",
       meta: compactText([paperPeopleText(record), record.year, record.publicationDate]).join(" / "),
       keywords: compactText([record.type, record.openAccess ? "open access" : "researchmap"]),
@@ -3982,7 +3921,7 @@ function siteSearchRecords() {
       pushSiteSearchRecord(records, {
         type: "Talk",
         title: record.title,
-        href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
+        href: localHref(`works/index.html#${talkRecordAnchor(record)}`),
         summary: record.event || record.type || "Talk",
         meta: compactText([presentationPeopleText(record), formatTalkDate(record), record.invited ? "invited" : ""]).join(" / "),
         keywords: compactText([record.type, record.event]),
@@ -3997,7 +3936,7 @@ function siteSearchRecords() {
         pushSiteSearchRecord(records, {
           type: "Talk",
           title: talk.title,
-          href: talk.href || localHref("activities/talks/index.html"),
+          href: talk.href || localHref("works/index.html#talks-slides"),
           summary: talk.venue,
           meta: compactText([presentationPeopleText(presentationRecord || talk), group.year]).join(" / "),
           icon: "talk",
@@ -4046,23 +3985,11 @@ function siteSearchRecords() {
   });
   });
 
-  siteData.problems.forEach((problem) => {
-    pushSiteSearchRecord(records, {
-      type: "Problem",
-      title: `${problem.id}: ${problem.title}`,
-      href: localHref(`others/problems/index.html#${problemAnchor(problem)}`),
-      summary: problem.statement,
-      meta: compactText([problemStatusLabel(problem.status), problem.theme]).join(" / "),
-      keywords: problem.tags || [],
-      icon: "problem"
-    });
-  });
-
   siteData.webApps.forEach((app) => {
     pushSiteSearchRecord(records, {
       type: "Web App",
       title: app.title,
-      href: localHref(`others/web-apps/index.html#${webAppAnchor(app)}`),
+      href: localHref(`others/index.html#${webAppAnchor(app)}`),
       summary: app.description,
       meta: compactText([app.tag, "Vercel"]).join(" / "),
       keywords: compactText([...(app.keywords || []), ...(app.links || []).map(([label]) => label)]),
@@ -4086,6 +4013,14 @@ function siteSearchRecords() {
   return dedupeSiteSearchRecords(records);
 }
 
+function searchResultTitleText(title = "") {
+  return String(title || "")
+    .replace(/\bSigma-sets\b/g, "\\(\\Sigma\\)-sets")
+    .replace(/\bSigma-set\b/g, "\\(\\Sigma\\)-set")
+    .replace(/\bSigma-Set\b/g, "\\(\\Sigma\\)-Set")
+    .replace(/\bSigma star\b/g, "\\(\\Sigma^*\\)");
+}
+
 function renderSiteSearchResult(record) {
   const article = el("article", "site-search-result");
   const type = el("span", "site-search-type");
@@ -4094,8 +4029,9 @@ function renderSiteSearchResult(record) {
   const body = el("div", "site-search-result-body");
   body.append(type);
   const heading = el("h3");
-  if (record.href) heading.append(link(record.title, record.href));
-  else heading.textContent = record.title;
+  const title = searchResultTitleText(record.title);
+  if (record.href) heading.append(link(title, record.href));
+  else heading.textContent = title;
   body.append(heading);
   if (record.summary) body.append(el("p", "site-search-summary", record.summary));
   const meta = compactText([record.meta, ...(record.keywords || []).slice(0, 5)]).join(" / ");
@@ -4160,6 +4096,7 @@ function renderSiteSearch() {
     });
     applyLanguage(root);
     if (count) applyLanguage(count);
+    typesetMath(root);
     return;
   }
 
@@ -4175,13 +4112,14 @@ function renderSiteSearch() {
     root.append(el("p", "empty-state", "No public site results match this search."));
     applyLanguage(root);
     if (count) applyLanguage(count);
+    typesetMath(root);
     return;
   }
 
   matches.forEach((record) => root.append(renderSiteSearchResult(record)));
-  typesetMath(root);
   applyLanguage(root);
   if (count) applyLanguage(count);
+  typesetMath(root);
 }
 
 const contentThemeKeywords = {
@@ -4385,7 +4323,21 @@ function selectTalkTimelineRecord(key, shouldScroll = false) {
   if (shouldScroll && record) document.getElementById(talkRecordAnchor(record))?.scrollIntoView({ block: "center" });
 }
 
-function timelineScrollFrame(track, position = 100) {
+function timelineLaneLabelOverlay(track) {
+  const labels = [...track.querySelectorAll(".home-timeline-lane-label")];
+  if (!labels.length) return null;
+  const overlay = el("div", "timeline-lane-label-overlay");
+  overlay.setAttribute("aria-hidden", "true");
+  labels.forEach((label) => {
+    const clone = label.cloneNode(true);
+    const lane = label.closest(".home-timeline-lane");
+    clone.style.setProperty("--lane", lane?.style.getPropertyValue("--lane") || "0");
+    overlay.append(clone);
+  });
+  return overlay;
+}
+
+function timelineScrollFrame(track, position = 100, options = {}) {
   const frame = el("div", "timeline-scroll-frame");
   frame.tabIndex = 0;
   frame.append(track);
@@ -4393,9 +4345,23 @@ function timelineScrollFrame(track, position = 100) {
     const maxScroll = frame.scrollWidth - frame.clientWidth;
     if (maxScroll <= 4) return;
     const clampedPosition = Math.max(0, Math.min(100, position));
+    if (options.align === "center") {
+      const target = (frame.scrollWidth * clampedPosition) / 100 - frame.clientWidth / 2;
+      frame.scrollLeft = Math.max(0, Math.min(maxScroll, target));
+      return;
+    }
+    if (options.align === "end") {
+      const target = (frame.scrollWidth * clampedPosition) / 100 - frame.clientWidth;
+      frame.scrollLeft = Math.max(0, Math.min(maxScroll, target));
+      return;
+    }
     frame.scrollLeft = (maxScroll * clampedPosition) / 100;
   });
-  return frame;
+  const overlay = timelineLaneLabelOverlay(track);
+  if (!overlay) return frame;
+  const shell = el("div", "timeline-scroll-shell");
+  shell.append(frame, overlay);
+  return shell;
 }
 
 function renderTalkTimeline() {
@@ -4473,7 +4439,7 @@ function renderTalkTimeline() {
     el("p", "talk-timeline-meta", presentationMeta(selected)),
     el("p", "talk-timeline-count", `${selectedIndex + 1} / ${records.length}`)
   );
-  title.append(titleCopyButton(`activities/talks/index.html#${talkRecordAnchor(selected)}`, selected.title));
+  title.append(titleCopyButton(`works/index.html#${talkRecordAnchor(selected)}`, selected.title));
   appendActionLinks(card, slideLinksForTalk(selected));
 
   root.append(timelineScrollFrame(track, selectedPosition), card);
@@ -4481,7 +4447,7 @@ function renderTalkTimeline() {
 
 function talkMapRecordHref(record) {
   const hash = `#${talkRecordAnchor(record)}`;
-  return document.body.dataset.page === "talks" ? hash : localHref(`activities/talks/index.html${hash}`);
+  return document.body.dataset.page === "works" ? hash : localHref(`works/index.html${hash}`);
 }
 
 function visitLocationById(id) {
@@ -5555,7 +5521,7 @@ function homeTimelinePaperRecords() {
       title: paper.title,
       dateLabel: `${startLabel} -> ${endLabel}`,
       meta: compactText([people, paper.venue]).join(" / "),
-      href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`documents/papers/index.html#${anchor}`),
+      href: document.body.dataset.page === "papers" ? `#${anchor}` : localHref(`works/index.html#${anchor}`),
       time: startTime,
       startTime,
       endTime,
@@ -5573,7 +5539,7 @@ function homeTimelineTalkRecords() {
       title: record.title,
       dateLabel: formatTalkDate(record),
       meta: compactText([presentationPeopleText(record), record.event, record.type, record.invited ? "invited" : ""]).join(" / "),
-      href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
+      href: localHref(`works/index.html#${talkRecordAnchor(record)}`),
       time: presentationTime(record)
     }));
   }
@@ -5591,7 +5557,7 @@ function homeTimelineTalkRecords() {
         title: talk.title,
         dateLabel: group.year,
         meta: compactText([presentationPeopleText(presentationRecord || talk), talk.venue]).join(" / "),
-        href: localHref("activities/talks/index.html"),
+        href: localHref("works/index.html#talks-slides"),
         time: Number.isFinite(base) ? base + (yearSpan * (index + 0.5)) / total : Number.NaN
       };
     })
@@ -5603,6 +5569,19 @@ function cleanActivityTitle(text) {
     .replace(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}:\s*/i, "")
     .replace(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}:\s*/i, "")
     .trim();
+}
+
+function profileTimelineHref(hash) {
+  return document.body.dataset.page === "profile" ? hash : localHref(`profile/index.html${hash}`);
+}
+
+function homeTimelineIsMeetingActivity(record) {
+  const text = simplified(record.text);
+  return (
+    /\b(attended|planning to attend|joined)\b/u.test(text) ||
+    /\b(presented a poster|gave (?:a )?talks? at|spoke at|scheduled to give .*talk at)\b/u.test(text) ||
+    /\bvisited .*meeting\b/u.test(text)
+  );
 }
 
 function homeTimelineActivityRecords() {
@@ -5620,15 +5599,199 @@ function homeTimelineActivityRecords() {
           dateLabel: activityRecordDateLabel(record, group.title),
           meta: group.title === "Plans" ? "Plan" : "Activity",
           href: localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
-          time
+          time,
+          endTime: timelineRangeEndFromText(record.date) || time,
+          activityScale: homeTimelineIsMeetingActivity(record) ? "meeting" : "minor"
         };
       })
       .filter(Boolean);
   });
 }
 
+function positionTimelineTitle(record) {
+  return record.emphasis || String(record.text || "").replace(/\.$/u, "");
+}
+
+function positionTimelineStart(record) {
+  return timelineTimeFromValue(record.timelineStart || record.text);
+}
+
+function positionTimelineEnd(record, fallback = Number.NaN) {
+  return timelineTimeFromValue(record.timelineEnd || "") || fallback;
+}
+
+function positionTimelineDateLabel(record, endLabel) {
+  const startTime = positionTimelineStart(record);
+  const startLabel = record.timelineStartLabel || timelineDateLabel(startTime);
+  return `${startLabel} -> ${endLabel}`;
+}
+
+function homeTimelineAffiliationRecords() {
+  const today = timelineToday();
+  const current = siteData.currentPositions.map((record) => {
+    const startTime = positionTimelineStart(record);
+    if (!Number.isFinite(startTime)) return null;
+    return {
+      kind: "affiliation",
+      theme: "",
+      title: positionTimelineTitle(record),
+      dateLabel: positionTimelineDateLabel(record, "present"),
+      meta: "Current position",
+      href: profileTimelineHref("#current-positions"),
+      time: startTime,
+      startTime,
+      endTime: today,
+      affiliationStatus: "current"
+    };
+  });
+  const past = siteData.pastPositions.map((record) => {
+    const startTime = positionTimelineStart(record);
+    const endTime = positionTimelineEnd(record);
+    if (!Number.isFinite(startTime) || !Number.isFinite(endTime)) return null;
+    return {
+      kind: "affiliation",
+      theme: "",
+      title: positionTimelineTitle(record),
+      dateLabel: positionTimelineDateLabel(record, timelineDateLabel(endTime)),
+      meta: "Past affiliation",
+      href: profileTimelineHref("#past-affiliations"),
+      time: startTime,
+      startTime,
+      endTime,
+      affiliationStatus: "past"
+    };
+  });
+  return [...current, ...past].filter(Boolean);
+}
+
+function visibleResearchmapAwardRecords() {
+  const sourceKeys = nonResearchmapAwardDuplicateKeys();
+  return (researchmapData?.awards || []).filter((record) => !researchmapAwardDuplicateKeys(record).some((key) => sourceKeys.has(key)));
+}
+
+function visibleResearchmapEducationRecords() {
+  const sourceKeys = nonResearchmapEducationDuplicateKeys();
+  return (researchmapData?.education || []).filter((record) => !researchmapEducationDuplicateKeys(record).some((key) => sourceKeys.has(key)));
+}
+
+function homeTimelineAwardRecords() {
+  const siteAwards = siteData.awards.map((record) => {
+    const time = [
+      timelineTimeFromValue(record.timelineDate),
+      explicitTimelineTime(record.text),
+      timelineTimeFromValue(record.text)
+    ].find(Number.isFinite);
+    if (!Number.isFinite(time)) return null;
+    return {
+      kind: "award",
+      theme: "",
+      title: String(record.text || "").replace(/\.$/u, ""),
+      dateLabel: record.timelineDate || timelineDateLabel(time),
+      meta: "Award",
+      href: profileTimelineHref("#awards"),
+      time
+    };
+  });
+  const researchmapAwards = visibleResearchmapAwardRecords().map((record) => {
+    const time = timelineTimeFromValue(record.date || record.year);
+    if (!Number.isFinite(time)) return null;
+    return {
+      kind: "award",
+      theme: "",
+      title: record.title,
+      dateLabel: record.date || record.year || timelineDateLabel(time),
+      meta: compactText(["Award", record.association]).join(" / "),
+      href: profileTimelineHref("#awards"),
+      time
+    };
+  });
+  return [...siteAwards, ...researchmapAwards].filter(Boolean);
+}
+
+function timelineRangeEndFromText(text) {
+  const value = String(text || "");
+  const toMonthYear = value.match(
+    /\bto\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(19\d{2}|20\d{2})\b/i
+  );
+  if (toMonthYear) return timelineUtc(toMonthYear[2], monthNumbers[toMonthYear[1].toLowerCase()], 15);
+  const isoRange = value.match(/\b(?:19|20)\d{2}-\d{2}(?:-\d{2})?\s*-\s*((?:19|20)\d{2}-\d{2}(?:-\d{2})?)\b/);
+  if (isoRange) return timelineTimeFromValue(isoRange[1]);
+  return Number.NaN;
+}
+
+function homeTimelineTeachingRecords() {
+  const today = timelineToday();
+  return siteData.education.map((record) => {
+    const startTime = [
+      timelineTimeFromValue(record.timelineStart),
+      explicitTimelineTime(record.text),
+      timelineTimeFromValue(record.text)
+    ].find(Number.isFinite);
+    if (!Number.isFinite(startTime)) return null;
+    const parsedEnd = timelineTimeFromValue(record.timelineEnd) || timelineRangeEndFromText(record.text);
+    const isCurrent = !Number.isFinite(parsedEnd) && (/\bsince\b/i.test(record.text || "") || /より/u.test(record.textJa || ""));
+    const endTime = Number.isFinite(parsedEnd) ? parsedEnd : isCurrent ? today : Number.NaN;
+    const startLabel = record.timelineStartLabel || timelineDateLabel(startTime);
+    const endLabel = Number.isFinite(endTime) ? (isCurrent && endTime === today ? "present" : timelineDateLabel(endTime)) : "";
+    return {
+      kind: "teaching",
+      theme: "",
+      title: String(record.text || "").replace(/\.$/u, ""),
+      dateLabel: endLabel ? `${startLabel} -> ${endLabel}` : startLabel,
+      meta: "Teaching and Outreach",
+      href: profileTimelineHref("#teaching-outreach"),
+      time: startTime,
+      startTime,
+      endTime,
+      teachingStatus: Number.isFinite(endTime) && isCurrent ? "current" : Number.isFinite(endTime) ? "past" : "point"
+    };
+  }).filter(Boolean);
+}
+
+function academicTimelineCourseLabel(record) {
+  const explicitCourse = String(record.course || "").trim();
+  if (explicitCourse) return explicitCourse;
+  const text = simplified(compactText([record.affiliation, record.department]).join(" "));
+  if (
+    (text.includes("university of tokyo") || text.includes("university tokyo")) &&
+    (text.includes("graduate school of mathematical sciences") || text.includes("graduate school mathematical sciences"))
+  ) {
+    if (String(record.period || "").startsWith("2024-04 - 2026-03")) return "Doctoral course";
+    if (String(record.period || "").startsWith("2022-04 - 2024-03")) return "Master's course";
+  }
+  return "";
+}
+
+function homeTimelineAcademicRecords() {
+  return (researchmapData?.education || []).map((record) => {
+    const startTime = timelineTimeFromValue(record.from || record.period);
+    const endTime = timelineTimeFromValue(record.to || "");
+    if (!Number.isFinite(startTime) || !Number.isFinite(endTime)) return null;
+    return {
+      kind: "academic",
+      theme: "",
+      title: compactText([record.affiliation, record.department, academicTimelineCourseLabel(record)]).join(" - "),
+      dateLabel: record.period || `${timelineDateLabel(startTime)} -> ${timelineDateLabel(endTime)}`,
+      meta: "Academic Background",
+      href: profileTimelineHref("#academic-background"),
+      time: startTime,
+      startTime,
+      endTime,
+      academicStatus: "past"
+    };
+  }).filter(Boolean);
+}
+
 function homeTimelineRecords() {
-  return [...homeTimelineTalkRecords(), ...homeTimelinePaperRecords(), ...homeTimelineActivityRecords()]
+  return [
+    ...homeTimelineTalkRecords(),
+    ...homeTimelinePaperRecords(),
+    ...homeTimelineActivityRecords(),
+    ...homeTimelineAffiliationRecords(),
+    ...homeTimelineAwardRecords(),
+    ...homeTimelineTeachingRecords(),
+    ...homeTimelineAcademicRecords()
+  ]
     .filter((record) => Number.isFinite(record.time) || Number.isFinite(record.startTime))
     .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title));
 }
@@ -5670,9 +5833,18 @@ function stepHomeTimelineSelection(delta) {
 
 function homeTimelineKindLabel(kind) {
   if (kind === "paper") return "Paper";
+  if (kind === "affiliation") return "Affiliation";
+  if (kind === "academic") return "Academic Background";
+  if (kind === "teaching") return "Teaching and Outreach";
+  if (kind === "award") return "Award";
   if (kind === "note") return "Note";
   if (kind === "activity") return "Activity";
   return "Talk";
+}
+
+function homeTimelineLaneLabel(kind) {
+  if (kind === "activity") return "Award / Activity";
+  return homeTimelineKindLabel(kind);
 }
 
 const homeTimelineThemeLabels = {
@@ -5693,31 +5865,59 @@ function homeTimelineThemeLabel(theme) {
   return homeTimelineThemeLabels[theme] || homeTimelineThemeLabels.other;
 }
 
-function homeTimelineNodeLayout(records, firstTime, lastTime) {
+function homeTimelineRecordThemeLabel(record) {
+  return record.theme ? homeTimelineThemeLabel(record.theme) : "";
+}
+
+const homeTimelineLanes = ["paper", "affiliation", "academic", "teaching", "activity", "talk"];
+const homeTimelinePointLanes = ["teaching", "activity", "talk"];
+const homeTimelineDefaultWindowMs = 3 * 365.25 * 24 * 60 * 60 * 1000;
+
+function homeTimelineLaneKind(kind) {
+  return kind === "award" ? "activity" : kind;
+}
+
+function homeTimelineLaneIndex(kind) {
+  return homeTimelineLanes.indexOf(homeTimelineLaneKind(kind));
+}
+
+function homeTimelineIsIntervalRecord(record) {
+  if (record.kind === "paper" || record.kind === "affiliation" || record.kind === "academic") return true;
+  return record.kind === "teaching" && Number.isFinite(record.endTime);
+}
+
+function homeTimelineNodeLayout(records, firstTime, lastTime, pointGap = 16, collisionGap = 1.75) {
   const layout = new Map();
-  const offsets = [-12, -6, 0, 6, 12];
-  ["activity", "talk"].forEach((kind) => {
-    const buckets = new Map();
-    records
-      .filter((record) => record.kind === kind)
-      .sort((a, b) => a.time - b.time || a.title.localeCompare(b.title))
-      .forEach((record) => {
-        const x = timelinePosition(record.time, firstTime, lastTime, 0, 1);
-        const bucket = Math.round(x / 2.75);
-        const stack = buckets.get(bucket) || 0;
-        buckets.set(bucket, stack + 1);
-        layout.set(record, { x, offset: offsets[stack % offsets.length] });
+  homeTimelinePointLanes.forEach((laneKind) => {
+    const slots = [];
+    const items = records
+      .filter((record) => homeTimelineLaneKind(record.kind) === laneKind && !homeTimelineIsIntervalRecord(record))
+      .sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind) || a.title.localeCompare(b.title))
+      .map((record) => ({ record, x: timelinePosition(record.time, firstTime, lastTime, 0, 1) }))
+      .map((item) => {
+        const slot = slots.findIndex((slotEnd) => item.x > slotEnd + collisionGap);
+        const index = slot >= 0 ? slot : slots.length;
+        slots[index] = item.x;
+        return { ...item, slot: index };
       });
+    const maxSlot = items.reduce((max, item) => Math.max(max, item.slot), 0);
+    const center = maxSlot / 2;
+    items.forEach((item) => {
+      layout.set(item.record, {
+        x: item.x,
+        offset: Number(((item.slot - center) * pointGap).toFixed(1))
+      });
+    });
   });
   return layout;
 }
 
-function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
+function homeTimelineIntervalSpanLayout(records, firstTime, lastTime, kind, slotGap = 9) {
   const layout = new Map();
   const slots = [];
   const items = [];
   records
-    .filter((record) => record.kind === "paper")
+    .filter((record) => record.kind === kind && homeTimelineIsIntervalRecord(record))
     .sort((a, b) => a.startTime - b.startTime || a.endTime - b.endTime || a.title.localeCompare(b.title))
     .forEach((record) => {
       const start = Math.max(0, Math.min(100, timelinePosition(record.startTime, firstTime, lastTime, 0, 1)));
@@ -5726,10 +5926,9 @@ function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
       const index = slot >= 0 ? slot : slots.length;
       slots[index] = end;
       items.push({ record, start, end, slot: index });
-    });
+  });
   const maxSlot = items.reduce((max, item) => Math.max(max, item.slot), 0);
   const center = maxSlot / 2;
-  const slotGap = 9;
   items.forEach((item) => {
     layout.set(item.record, {
       start: item.start,
@@ -5740,16 +5939,40 @@ function homeTimelinePaperSpanLayout(records, firstTime, lastTime) {
   return layout;
 }
 
-function renderHomeTimelinePaperSpan(record, position) {
-  const span = link("", record.href, `home-timeline-paper-span theme-${record.theme} is-${record.paperStatus}`);
+function homeTimelinePaperSpanLayout(records, firstTime, lastTime, slotGap = 9) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "paper", slotGap);
+}
+
+function homeTimelineAffiliationSpanLayout(records, firstTime, lastTime, slotGap = 7) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "affiliation", slotGap);
+}
+
+function homeTimelineAcademicSpanLayout(records, firstTime, lastTime, slotGap = 7) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "academic", slotGap);
+}
+
+function homeTimelineTeachingSpanLayout(records, firstTime, lastTime, slotGap = 7) {
+  return homeTimelineIntervalSpanLayout(records, firstTime, lastTime, "teaching", slotGap);
+}
+
+function renderHomeTimelineIntervalSpan(record, position) {
+  const classes = compactText([
+    "home-timeline-interval-span",
+    record.kind === "paper" ? `home-timeline-paper-span theme-${record.theme} is-${record.paperStatus}` : "",
+    record.kind === "affiliation" ? `home-timeline-affiliation-span is-${record.affiliationStatus}` : "",
+    record.kind === "academic" ? `home-timeline-academic-span is-${record.academicStatus}` : "",
+    record.kind === "teaching" ? `home-timeline-teaching-span is-${record.teachingStatus}` : ""
+  ]).join(" ");
+  const span = link("", record.href, classes);
   const key = homeTimelineRecordKey(record);
   const label = compactText([
-    `Paper / ${homeTimelineThemeLabel(record.theme)} / ${record.dateLabel}: ${record.title}`,
+    `${homeTimelineKindLabel(record.kind)} / ${homeTimelineRecordThemeLabel(record)} / ${record.dateLabel}: ${record.title}`,
     record.meta
   ]).join(" / ");
   span.style.setProperty("--x-start", position.start);
   span.style.setProperty("--x-end", position.end);
   span.style.setProperty("--offset", position.offset);
+  span.style.setProperty("--lane", homeTimelineLaneIndex(record.kind));
   span.dataset.homeTimelineKey = key;
   span.classList.toggle("is-selected", key === state.homeTimelineKey);
   span.setAttribute("aria-label", label);
@@ -5758,16 +5981,26 @@ function renderHomeTimelinePaperSpan(record, position) {
   return span;
 }
 
+function renderHomeTimelinePaperSpan(record, position) {
+  return renderHomeTimelineIntervalSpan(record, position);
+}
+
 function renderHomeTimelineNode(record, position) {
-  const node = link("", record.href, `home-timeline-node kind-${record.kind} theme-${record.theme}`);
+  const nodeClasses = compactText([
+    "home-timeline-node",
+    `kind-${record.kind}`,
+    `theme-${record.theme}`,
+    record.kind === "activity" ? `activity-${record.activityScale || "meeting"}` : ""
+  ]).join(" ");
+  const node = link("", record.href, nodeClasses);
   const key = homeTimelineRecordKey(record);
   const label = compactText([
-    `${homeTimelineKindLabel(record.kind)} / ${homeTimelineThemeLabel(record.theme)} / ${record.dateLabel}: ${record.title}`,
+    `${homeTimelineKindLabel(record.kind)} / ${homeTimelineRecordThemeLabel(record)} / ${record.dateLabel}: ${record.title}`,
     record.meta
   ]).join(" / ");
   node.style.setProperty("--x", position.x);
   node.style.setProperty("--offset", position.offset);
-  node.style.setProperty("--lane", position.lane ?? ["paper", "activity", "talk"].indexOf(record.kind));
+  node.style.setProperty("--lane", position.lane ?? homeTimelineLaneIndex(record.kind));
   node.dataset.label = label;
   node.dataset.homeTimelineKey = key;
   node.classList.toggle("is-selected", key === state.homeTimelineKey);
@@ -5796,9 +6029,9 @@ function renderHomeTimelineDetail(record, index, total) {
 
   const body = el("div", "home-timeline-detail-body");
   body.append(
-    el("span", `home-timeline-detail-kicker theme-${record.theme}`, compactText([
+    el("span", `home-timeline-detail-kicker kind-${record.kind} theme-${record.theme}`, compactText([
       homeTimelineKindLabel(record.kind),
-      homeTimelineThemeLabel(record.theme),
+      homeTimelineRecordThemeLabel(record),
       record.dateLabel
     ]).join(" / ")),
     el("h3", null, record.title)
@@ -5807,6 +6040,14 @@ function renderHomeTimelineDetail(record, index, total) {
   appendActionLinks(body, [["Open", record.href]]);
   card.append(nav, body, el("span", "home-timeline-detail-count", `${index + 1} / ${total}`));
   return card;
+}
+
+function homeTimelineLatestPlanTime(records) {
+  const planTimes = records
+    .filter((record) => record.kind === "activity" && record.meta === "Plan")
+    .flatMap((record) => [record.endTime, record.time])
+    .filter(Number.isFinite);
+  return planTimes.length ? Math.max(...planTimes) : Number.NaN;
 }
 
 function renderHomeTimeline() {
@@ -5820,21 +6061,30 @@ function renderHomeTimeline() {
     return;
   }
 
-  const times = records.flatMap((record) =>
-    record.kind === "paper" ? [record.startTime, record.endTime] : [record.time]
-  );
+  const times = records
+    .flatMap((record) => [record.startTime, record.endTime, record.time])
+    .filter(Number.isFinite);
   const firstTime = Math.min(...times);
   const lastTime = Math.max(...times);
   const selectedIndex = homeTimelineSelectedIndex(records);
   const selectedRecord = records[selectedIndex];
-  const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime);
-  const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime);
-
-  const track = el("div", "home-timeline-track");
+  const pointLayout = homeTimelineNodeLayout(records, firstTime, lastTime, 16);
+  const paperLayout = homeTimelinePaperSpanLayout(records, firstTime, lastTime, 11);
+  const affiliationLayout = homeTimelineAffiliationSpanLayout(records, firstTime, lastTime, 11);
+  const academicLayout = homeTimelineAcademicSpanLayout(records, firstTime, lastTime, 11);
+  const teachingLayout = homeTimelineTeachingSpanLayout(records, firstTime, lastTime, 11);
 
   const yearRow = el("div", "home-timeline-year-row");
   const firstYear = new Date(firstTime).getUTCFullYear();
   const lastYear = new Date(lastTime).getUTCFullYear();
+  const initialEndTime = homeTimelineLatestPlanTime(records) || lastTime;
+  const initialEndPosition = timelinePosition(initialEndTime, firstTime, lastTime, 0, 1);
+  const totalSpan = Math.max(1, lastTime - firstTime);
+  const defaultWindowSpan = Math.min(totalSpan, homeTimelineDefaultWindowMs);
+  const trackWidthRatio = Math.max(1, totalSpan / defaultWindowSpan);
+  const track = el("div", "home-timeline-track");
+  track.style.setProperty("--timeline-years", Math.max(8, lastYear - firstYear + 1));
+  track.style.setProperty("--timeline-track-width", `${(trackWidthRatio * 100).toFixed(2)}%`);
   for (let year = firstYear; year <= lastYear; year += 1) {
     const position = timelinePosition(timelineUtc(year, 0, 1), firstTime, lastTime, 0, 1);
     const tick = el("span", "home-year-tick", year);
@@ -5852,11 +6102,16 @@ function renderHomeTimeline() {
     track.append(now);
   }
 
-  ["paper", "activity", "talk"].forEach((kind, index) => {
+  homeTimelineLanes.forEach((kind, index) => {
     const lane = el("div", `home-timeline-lane kind-${kind}`);
     lane.style.setProperty("--lane", index);
+    const labelClasses = compactText([
+      "home-timeline-lane-label",
+      `kind-${kind}`,
+      kind === "activity" ? "kind-award-activity" : ""
+    ]).join(" ");
     lane.append(
-      el("div", `home-timeline-lane-label kind-${kind}`, homeTimelineKindLabel(kind)),
+      el("div", labelClasses, homeTimelineLaneLabel(kind)),
       el("div", "home-timeline-lane-rail")
     );
     track.append(lane);
@@ -5865,19 +6120,38 @@ function renderHomeTimeline() {
   records
     .filter((record) => record.kind === "paper")
     .forEach((record) => {
-      track.append(renderHomeTimelinePaperSpan(record, paperLayout.get(record)));
+      track.append(renderHomeTimelineIntervalSpan(record, paperLayout.get(record)));
     });
 
   records
-    .filter((record) => record.kind !== "paper")
+    .filter((record) => record.kind === "affiliation")
+    .forEach((record) => {
+      track.append(renderHomeTimelineIntervalSpan(record, affiliationLayout.get(record)));
+    });
+
+  records
+    .filter((record) => record.kind === "academic")
+    .forEach((record) => {
+      track.append(renderHomeTimelineIntervalSpan(record, academicLayout.get(record)));
+    });
+
+  records
+    .filter((record) => record.kind === "teaching" && homeTimelineIsIntervalRecord(record))
+    .forEach((record) => {
+      track.append(renderHomeTimelineIntervalSpan(record, teachingLayout.get(record)));
+    });
+
+  records
+    .filter((record) => !homeTimelineIsIntervalRecord(record))
     .forEach((record) => {
       track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
   });
 
-  root.append(renderHomeTimelineDetail(selectedRecord, selectedIndex, records.length), timelineScrollFrame(track));
+  root.append(renderHomeTimelineDetail(selectedRecord, selectedIndex, records.length), timelineScrollFrame(track, initialEndPosition, { align: "end" }));
   root.querySelectorAll("[data-home-timeline-step]").forEach((button) => {
     button.addEventListener("click", () => stepHomeTimelineSelection(Number(button.dataset.homeTimelineStep || 0)));
   });
+  applyLanguage(root);
 }
 
 function activitiesTimelineRecords() {
@@ -5972,7 +6246,7 @@ function documentTimelineNoteRecords() {
         title,
         dateLabel: noteDateLabel(note),
         meta: compactText([kindLabel, noteLanguageKey(note), note.file]).join(" / "),
-        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`documents/notes/index.html#${anchor}`),
+        href: document.body.dataset.page === "documents" ? `#${anchor}` : localHref(`works/index.html#${anchor}`),
         time
       };
     })
@@ -6084,7 +6358,6 @@ function noteKind(note) {
   const titleKind = noteTitlePrefixKind(note.title);
   const text = `${note.title} ${note.description || ""} ${note.file}`.toLowerCase();
   if (titleKind === "cloud") return ["cloud", "Speculative", "cloud"];
-  if (titleKind === "pen") return ["pen", "Pen", "pen"];
   if (note.file === "Notion archive") return ["archive", "Archive"];
   if (text.includes("slides") || text.includes("talk") || text.includes("cscat") || text.includes("seminar")) {
     return ["slides", "Slides"];
@@ -6171,7 +6444,7 @@ function mergeSlideWithTalk(slide) {
   const presentation = findResearchmapPresentationForSlide(slide, staticTalk);
   const talkRecord = presentation || staticTalk;
   if (!talkRecord) return { ...slide, kind: "slide" };
-  const talkHref = localHref(`activities/talks/index.html#${talkRecordAnchor(talkRecord)}`);
+  const talkHref = localHref(`works/index.html#${talkRecordAnchor(talkRecord)}`);
   const talkMeta = presentation
     ? presentationMeta(presentation)
     : compactText([presentationPeopleText(staticTalk), staticTalk.venue]).join(" / ");
@@ -6197,17 +6470,16 @@ function allSlideRecords() {
 }
 
 const noteKindSymbols = {
-  cloud: "☁︎",
-  pen: "Pen"
+  cloud: "☁︎"
 };
 
 function noteTitlePrefixKind(value) {
-  const match = normalizedUiText(value).match(/^(cloud|pen):\s*/i);
-  return match ? match[1].toLowerCase() : "";
+  const match = normalizedUiText(value).match(/^cloud:\s*/i);
+  return match ? "cloud" : "";
 }
 
 function stripNoteTitlePrefix(value) {
-  return normalizedUiText(value).replace(/^(cloud|pen):\s*/i, "").trim();
+  return normalizedUiText(value).replace(/^cloud:\s*/i, "").trim();
 }
 
 function symbolicCloudPenLabel(value) {
@@ -6215,10 +6487,9 @@ function symbolicCloudPenLabel(value) {
   if (!text) return text;
   const exact = simplified(text);
   if (exact === "cloud" || exact === "speculative") return noteKindSymbols.cloud;
-  if (exact === "pen") return noteKindSymbols.pen;
-  const match = text.match(/^(cloud|pen)\s*:?\s+(.+)$/i);
+  const match = text.match(/^cloud\s*:?\s+(.+)$/i);
   if (!match) return text;
-  return `${noteKindSymbols[match[1].toLowerCase()]} ${match[2].trim()}`.trim();
+  return `${noteKindSymbols.cloud} ${match[1].trim()}`.trim();
 }
 
 function symbolicNoteTitle(note) {
@@ -6381,8 +6652,7 @@ function noteThumbnail(note) {
 
   const body = el("div", "note-thumb-body");
   const kindBadge = el("span", "note-thumb-kind", kindLabel);
-  if (kindIcon === "pen") kindBadge.prepend(uiIcon("pen", "note-kind-icon"));
-  else if (kindIcon === "cloud") kindBadge.prepend(uiIcon("cloud", "note-kind-icon"));
+  if (kindIcon === "cloud") kindBadge.prepend(uiIcon("cloud", "note-kind-icon"));
   else if (kindIcon && kindIcon !== kindLabel) kindBadge.dataset.icon = kindIcon;
   if (kindIcon && kindIcon === kindLabel) kindBadge.classList.add("is-symbol");
   body.append(kindBadge, el("span", "note-thumb-title", shortNoteTitle(note)), el("span", "note-thumb-meta", note.language));
@@ -6542,10 +6812,24 @@ function uiIconSvg(key) {
 
   if (normalizedKey === "talk") {
     svg.append(
-      shape("rect", { x: "4.4", y: "5.8", width: "15.2", height: "9.2", rx: "1.7", fill: "none", stroke: "currentColor", "stroke-width": "1.9" }),
-      line({ d: "M8.5 18.7H15.5" }),
-      line({ d: "M12 15.1V18.7" }),
-      shape("path", { d: "M10 8.5l4.3 2.1L10 12.8Z", fill: "currentColor" })
+      shape("path", {
+        d: "M5.2 12.8H8.1L17.9 7.4V16.6L8.1 11.2H5.2Z",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.9"
+      }),
+      shape("path", {
+        d: "M7.8 13L9.2 18.3H12.1L10.3 14.2",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "1.8"
+      }),
+      line({ d: "M20.2 9.1L22 7.7", "stroke-width": "1.6" }),
+      line({ d: "M20.7 12H22.9", "stroke-width": "1.6" }),
+      line({ d: "M20.2 14.9L22 16.3", "stroke-width": "1.6" })
     );
     return svg;
   }
@@ -6633,23 +6917,6 @@ function uiIconSvg(key) {
     svg.append(
       shape("rect", { x: "4.2", y: "6.6", width: "15.6", height: "10.8", rx: "2", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
       line({ d: "M5.2 8.6L12 13.1L18.8 8.6" })
-    );
-    return svg;
-  }
-
-  if (normalizedKey === "pen") {
-    svg.append(
-      shape("path", {
-        d: "M5.2 18.8L6.4 14.1L15.1 5.4C16 4.5 17.4 4.5 18.3 5.4L18.6 5.7C19.5 6.6 19.5 8 18.6 8.9L9.9 17.6Z",
-        fill: "none",
-        stroke: "currentColor",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round",
-        "stroke-width": "1.9"
-      }),
-      line({ d: "M13.7 6.8L17.2 10.3", "stroke-width": "1.9" }),
-      line({ d: "M6.4 14.1L9.9 17.6", "stroke-width": "1.9" }),
-      line({ d: "M4.7 19.3L9.1 18.1", "stroke-width": "1.55" })
     );
     return svg;
   }
@@ -7094,6 +7361,101 @@ function uiIconSvg(key) {
     return svg;
   }
 
+  if (normalizedKey === "camera") {
+    svg.append(
+      shape("path", { d: "M5.2 8.2H8L9.4 5.9H14.6L16 8.2H18.8C19.7 8.2 20.4 8.9 20.4 9.8V17.3C20.4 18.2 19.7 18.9 18.8 18.9H5.2C4.3 18.9 3.6 18.2 3.6 17.3V9.8C3.6 8.9 4.3 8.2 5.2 8.2Z", fill: "none", stroke: "currentColor", "stroke-width": "1.8", "stroke-linejoin": "round" }),
+      shape("circle", { cx: "12", cy: "13.6", r: "3.1", fill: "none", stroke: "currentColor", "stroke-width": "1.8" }),
+      shape("circle", { cx: "17.2", cy: "10.5", r: "0.75", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "mountain") {
+    svg.append(
+      shape("path", { d: "M3.6 19L9.2 7.6L12.4 13.1L14.7 9.5L20.4 19Z", fill: "currentColor", "fill-opacity": "0.82", stroke: "currentColor", "stroke-width": "1.7", "stroke-linejoin": "round" }),
+      shape("path", { d: "M8.2 10.2L9.8 12.2L11 10.9M13.8 10.8L15.1 12.8L16.3 11.7", fill: "var(--paper)", "fill-opacity": "0.96" }),
+      line({ d: "M5.6 19H18.4", "stroke-width": "1.45" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "sake") {
+    svg.append(
+      shape("path", { d: "M6.5 8.3H16.2L15.1 19.5H8Z", fill: "none", stroke: "currentColor", "stroke-width": "1.8", "stroke-linejoin": "round" }),
+      shape("path", { d: "M7.2 11.3H15.9L15.1 19.5H8Z", fill: "currentColor", "fill-opacity": "0.72" }),
+      shape("path", { d: "M8.1 5.6C8.8 4.6 10.1 4.5 11 5.2C11.7 4.2 13.5 4.4 14 5.6C15.6 5.5 16.5 6.4 16.2 8.3H6.5C6.1 6.6 6.8 5.6 8.1 5.6Z", fill: "var(--paper)", stroke: "currentColor", "stroke-width": "1.5", "stroke-linejoin": "round" }),
+      shape("path", { d: "M16.2 10.6H18.6C19.4 10.6 20 11.2 20 12V15.8C20 17.1 19.1 18 17.9 18H15.4", fill: "none", stroke: "currentColor", "stroke-width": "1.6", "stroke-linejoin": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "music-note") {
+    svg.append(
+      shape("ellipse", { cx: "8.9", cy: "16.3", rx: "3.05", ry: "2.32", transform: "rotate(-18 8.9 16.3)", fill: "currentColor" }),
+      shape("rect", { x: "11.4", y: "4.6", width: "2.1", height: "11.8", rx: "0.65", fill: "currentColor" }),
+      shape("path", { d: "M13.4 4.6C16.4 5.3 18.8 6.9 19.8 9.8C17.2 8.5 15 8.1 13.4 8.1Z", fill: "currentColor" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "palm") {
+    svg.append(
+      shape("path", { d: "M7.4 11.8V8.7C7.4 7.9 8 7.4 8.7 7.4C9.4 7.4 9.9 7.9 9.9 8.7V11.1V6.4C9.9 5.6 10.5 5 11.2 5C11.9 5 12.5 5.6 12.5 6.4V10.8V7.1C12.5 6.3 13.1 5.8 13.8 5.8C14.5 5.8 15.1 6.3 15.1 7.1V11.3V8.9C15.1 8.2 15.7 7.7 16.4 7.7C17.1 7.7 17.6 8.2 17.6 8.9V14.2C17.6 17.4 15.5 19.5 12.4 19.5H11.4C9.5 19.5 8.2 18.6 7.1 16.9L5.6 14.4C5.2 13.8 5.4 13 6 12.7C6.6 12.3 7.2 12.5 7.7 13.1L9.1 14.8", fill: "none", stroke: "currentColor", "stroke-width": "1.55", "stroke-linecap": "round", "stroke-linejoin": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "torii") {
+    svg.append(
+      line({ d: "M4.4 6.1H19.6", "stroke-width": "2.85" }),
+      line({ d: "M6.1 8.9H17.9", "stroke-width": "2.15" }),
+      line({ d: "M8.1 8.9V20", "stroke-width": "2.35" }),
+      line({ d: "M15.9 8.9V20", "stroke-width": "2.35" }),
+      line({ d: "M7 13.2H17", "stroke-width": "2.1" }),
+      shape("path", { d: "M5.8 6.1C6.8 4.8 8.9 4.1 12 4.1C15.1 4.1 17.2 4.8 18.2 6.1", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linecap": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "tetrapod") {
+    svg.append(
+      shape("circle", { cx: "12", cy: "11.2", r: "2", fill: "currentColor" }),
+      shape("path", { d: "M12 11.2L12 4.2L14.2 7.6M12 4.2L9.8 7.6", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M12 11.2L5.2 17.6L9.1 17.2M5.2 17.6L6.1 13.9", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M12 11.2L18.8 17.6L14.9 17.2M18.8 17.6L17.9 13.9", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M12 11.2L12 20.2L9.5 17.1M12 20.2L14.5 17.1", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "guitar-pick") {
+    svg.append(
+      shape("path", { d: "M12 3.8C16.2 3.8 19.4 6.4 19.4 10.1C19.4 15.2 14.6 19 12 20.4C9.4 19 4.6 15.2 4.6 10.1C4.6 6.4 7.8 3.8 12 3.8Z", fill: "currentColor", "fill-opacity": "0.82", stroke: "currentColor", "stroke-width": "1.65", "stroke-linejoin": "round" }),
+      shape("path", { d: "M9.2 8.6C10.5 7.7 13.5 7.7 14.8 8.6", fill: "none", stroke: "var(--paper)", "stroke-width": "1.35", "stroke-linecap": "round", "stroke-opacity": "0.9" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "plane") {
+    svg.append(
+      shape("path", { d: "M3.7 11.4L20.5 4.4L16.3 19.6L11.8 13.1L8.2 17.1L7.4 12.8Z", fill: "currentColor", "fill-opacity": "0.14", stroke: "currentColor", "stroke-width": "1.65", "stroke-linejoin": "round" }),
+      shape("path", { d: "M20.5 4.4L11.8 13.1L8.2 17.1", fill: "none", stroke: "currentColor", "stroke-width": "1.45", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+      shape("path", { d: "M7.4 12.8L20.5 4.4L11.8 13.1", fill: "currentColor", "fill-opacity": "0.34", stroke: "currentColor", "stroke-width": "1.25", "stroke-linejoin": "round" }),
+      line({ d: "M11.8 13.1L16.3 19.6", "stroke-width": "1.2", "stroke-opacity": "0.72" })
+    );
+    return svg;
+  }
+
+  if (normalizedKey === "apple") {
+    svg.append(
+      shape("path", { d: "M12 8.2C14 6.9 17 7.5 18.3 10C20 13.2 18.2 18.9 15.2 20.1C13.9 20.6 12.9 19.9 12 19.9C11.1 19.9 10.1 20.6 8.8 20.1C5.8 18.9 4 13.2 5.7 10C7 7.5 10 6.9 12 8.2Z", fill: "currentColor", "fill-opacity": "0.82", stroke: "currentColor", "stroke-width": "1.55", "stroke-linejoin": "round" }),
+      shape("path", { d: "M12 8.1C12 6.6 12.6 5.3 13.8 4.4", fill: "none", stroke: "currentColor", "stroke-width": "1.7", "stroke-linecap": "round" }),
+      shape("path", { d: "M14.2 4.6C16.4 4.1 17.9 4.8 18.7 6.7C16.8 7.3 15.2 6.7 14.2 4.6Z", fill: "currentColor", "fill-opacity": "0.42", stroke: "currentColor", "stroke-width": "1.2", "stroke-linejoin": "round" }),
+      shape("path", { d: "M8.2 10.6C7.6 12.2 7.7 14.2 8.5 16", fill: "none", stroke: "var(--paper)", "stroke-width": "1.2", "stroke-linecap": "round", "stroke-opacity": "0.8" })
+    );
+    return svg;
+  }
+
   if (normalizedKey === "friend") {
     svg.append(
       shape("circle", { cx: "9", cy: "9", r: "2.5", fill: "none", stroke: "currentColor", "stroke-width": "1.7" }),
@@ -7159,10 +7521,10 @@ function sectionIconHref(heading) {
   const moreHref = sectionMoreLink(heading)?.getAttribute("href") || "";
   if (moreHref) return moreHref;
   const text = simplified(heading?.textContent || "");
-  if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("profile/cv/index.html");
-  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/cv/index.html#awards");
+  if (text.includes("current position") || text.includes("past position") || text.includes("position")) return localHref("profile/index.html");
+  if (text.includes("award") || text.includes("education") || text.includes("outreach")) return localHref("profile/index.html#awards");
   if (text.includes("email") || text.includes("contact")) return "mailto:ryuya.hora@zen.ac.jp";
-  if (text.includes("work") || text.includes("interest")) return localHref("index.html#works");
+  if (text.includes("work") || text.includes("interest")) return localHref("works/index.html");
   if (text.includes("categories in tokyo")) return "https://sites.google.com/view/categoriesintokyo/%E3%83%9B%E3%83%BC%E3%83%A0";
   return "";
 }
@@ -7233,6 +7595,8 @@ function paperThumbnailSrc(paper) {
 function iconKeyForLink(label = "", href = "", context = "") {
   const text = simplified(`${context} ${label}`);
   const url = String(href || "").toLowerCase();
+  const friendPageIcon = friendPageIconKey(label, context);
+  if (friendPageIcon) return friendPageIcon;
   if (url.includes("orcid.org") || text.includes("orcid")) return "orcid";
   if (url.includes("arxiv.org") || text.includes("arxiv")) return "arxiv";
   if (url.includes("researchmap.jp") || text.includes("researchmap")) return "researchmap";
@@ -7246,6 +7610,22 @@ function iconKeyForLink(label = "", href = "", context = "") {
   if (text.includes("paper")) return "paper";
   if (text.includes("slide")) return "talk";
   return "link";
+}
+
+function friendPageIconKey(label = "", context = "") {
+  if (!simplified(context).includes("friends pages")) return "";
+  return {
+    "Koki Sakamoto": "camera",
+    "Mao Hoshino": "mountain",
+    "数理物理チャンネル": "sake",
+    "Yuto Kawase": "music-note",
+    "Keisuke Hoshino": "palm",
+    "Hayato Nasu": "torii",
+    "Yuki Maehara": "tetrapod",
+    "Shuho Kanda": "guitar-pick",
+    "Junnosuke Koizumi": "plane",
+    "Yugo Takanashi": "apple"
+  }[normalizedUiText(label)] || "";
 }
 
 function iconKeyForAction(label = "", href = "") {
@@ -7330,13 +7710,18 @@ function navIconKey(label = "", href = "") {
   const text = simplified(label);
   const url = String(href || "").toLowerCase();
   if (text.includes("profile") || text.includes("プロフィール") || text.includes("概要")) return "profile";
+  if (text.includes("current position") || text.includes("past affiliation") || text.includes("affiliation")) return "building";
+  if (text.includes("academic background") || text.includes("teaching") || text.includes("outreach")) return "education";
+  if (text.includes("award")) return "award";
   if (text.includes("research timeline") || text.includes("yearly record") || text.includes("研究タイムライン") || text.includes("年次記録") || url.includes("#research-timeline") || url.includes("#yearly-records")) return "timeline";
-  if (text.includes("work") || text.includes("interest") || text.includes("関心") || text.includes("成果") || url.includes("#works") || url.includes("#interests")) return "topos";
-  if (text.includes("preparation") || url.includes("#in-preparation")) return "clock";
+  if (text.includes("explore")) return "search";
+  if (text.includes("work") || text.includes("interest") || text.includes("関心") || text.includes("成果") || url.includes("#works") || url.includes("#interests")) return "paper";
+  if (text.includes("upcoming") || text.includes("preparation") || url.includes("#in-preparation")) return "clock";
   if (text.includes("documents") || text.includes("資料")) return "paper";
   if (text.includes("papers") || text.includes("論文") || url.includes("/papers/")) return "paper";
   if (text.includes("notes") || text.includes("ノート") || url.includes("/notes/")) return "note";
-  if (text.includes("visit") || text.includes("訪問") || url.includes("#visits")) return "globe";
+  if (text.includes("visit") || text.includes("訪問") || url.includes("#visit")) return "globe";
+  if (text.includes("categories in tokyo")) return "kan-extension";
   if (text.includes("activities") || text.includes("活動") || url.includes("/activities/")) return "activity";
   if (text.includes("talks") || text.includes("発表") || url.includes("/talks/")) return "talk";
   if (text.includes("others") || text.includes("その他")) return "link";
@@ -7369,9 +7754,13 @@ function activityIconKey(group = {}, record = {}) {
 
 function sectionHeadingIconKey(label = "") {
   const text = simplified(label);
+  if (text === "profile" || text.includes("ryuya hora")) return "profile";
+  if (text === "works") return "paper";
+  if (text === "activities") return "activity";
+  if (text === "others") return "link";
   if (text.includes("categories in tokyo")) return "kan-extension";
   if (text.includes("research timeline") || text.includes("timeline") || text.includes("タイムライン")) return "timeline";
-  if (text.includes("upcoming") || text.includes("plan") || text.includes("予定")) return "activity";
+  if (text.includes("upcoming") || text.includes("plan") || text.includes("予定")) return "clock";
   if (text.includes("visit") || text.includes("訪問")) return "globe";
   if (text.includes("recent talks") || text.includes("talk list") || text.includes("archive") || text.includes("アーカイブ") || text.includes("talk") || text.includes("発表")) return "talk";
   if (text.includes("recent papers") || text.includes("bibliography") || text.includes("paper") || text.includes("writing") || text.includes("論文") || text.includes("文献") || text.includes("文章")) return "paper";
@@ -7379,7 +7768,7 @@ function sectionHeadingIconKey(label = "") {
   if (text.includes("web app")) return "webapp";
   if (text.includes("question") || text.includes("trail") || text.includes("problem") || text.includes("entry") || text.includes("entries") || text.includes("全項目")) return "problem";
   if (text.includes("index") || text.includes("explore") || text.includes("search") || text.includes("検索") || text.includes("一覧") || text.includes("索引")) return "search";
-  if (text.includes("current position") || text.includes("past position") || text.includes("position") || text.includes("所属")) return "building";
+  if (text.includes("current position") || text.includes("past position") || text.includes("affiliation") || text.includes("position") || text.includes("所属")) return "building";
   if (text.includes("topic") || text.includes("トピック")) return "tag";
   if (text.includes("email") || text.includes("メール")) return "mail";
   if (text.includes("award") || text.includes("受賞")) return "award";
@@ -7434,10 +7823,10 @@ function decorateUiIcons(root = document.body) {
     node.classList.add("has-icon");
   });
 
-  collect(".section-head h2, .profile-grid h2, .categories-tokyo-copy h2").forEach((node) => {
+  collect(".page-hero h1, .section-head h2, .profile-grid h2, .categories-tokyo-copy h2").forEach((node) => {
     const key = sectionHeadingIconKey(node.textContent);
     linkSectionHeadingText(node);
-    const copyButton = sectionSelfCopyButton(node);
+    const copyButton = node.matches(".page-hero h1") ? null : sectionSelfCopyButton(node);
     if (copyButton) node.append(copyButton);
     if (!key) return;
     if (!node.querySelector(".section-title-icon")) node.prepend(sectionTitleIconLink(key, node));
@@ -7454,7 +7843,7 @@ function metaTagById(tagId) {
 }
 
 function researchThemeHref(themeId = "") {
-  return localHref(`index.html${themeId ? `?theme=${encodeURIComponent(themeId)}` : ""}#research-map`);
+  return localHref(`works/index.html${themeId ? `?theme=${encodeURIComponent(themeId)}` : ""}#work-search`);
 }
 
 function themeScore(text, theme) {
@@ -7530,7 +7919,6 @@ const subtopoiFreeMonoidPreparationTitle = "Subtopoi of free monoid actions (wit
 const topoiEnoughProjectivesPreparationTitle = "Topoi with enough projectives";
 const totallyDisconnectedTopoiPreparationTitle = "Totally disconnected topoi";
 const dynamicalPretopologicalPreparationTitle = "Dynamical systems on pretopological spaces";
-const twistedTetrahedraPreparationTitle = "Twisted Regular Tetrahedra and Eisenstein Integers";
 const gabrielToposPreparationTitle = "A topos-theoretic view on Gabriel's theorem";
 
 const preparationSlideMatches = [
@@ -7593,12 +7981,6 @@ const preparationSlideMatches = [
     ]
   },
   {
-    title: "Twisted Regular Tetrahedra and Eisenstein Integers",
-    slides: [
-      ["Eisenstein integer slides", "2024Topos新歓202405-6.pdf"]
-    ]
-  },
-  {
     title: "When do finite presheaves form a topos? (with Jeremie Marques)",
     slides: [
       ["Topoi of automata slides", "CSCAT_2025-3.pdf"]
@@ -7643,7 +8025,7 @@ function preparationPaperDetails(title) {
     const slidesHref = noteHrefByFile("RYUYA,HORA.pdf");
     return {
       figure: "games-integral-calculus",
-      themes: ["games", "algebra"],
+      themes: ["games", "algebra", "category"],
       links: mergeActionLinks(
         compactText([
           slidesHref ? ["Rota-Baxter slides", slidesHref] : null
@@ -7654,7 +8036,7 @@ function preparationPaperDetails(title) {
   }
   if (title === topoiAutomataIIPreparationTitle) {
     return {
-      themes: ["algebra", "geometry"],
+      themes: ["algebra", "geometry", "combinatorics"],
       links: relatedSlides
     };
   }
@@ -7679,7 +8061,8 @@ function preparationPaperDetails(title) {
   }
   if (title === topoiEnoughProjectivesPreparationTitle) {
     return {
-      themes: ["algebra"],
+      themes: ["algebra", "logic"],
+      metaTags: ["speculative"],
       links: relatedSlides
     };
   }
@@ -7693,12 +8076,6 @@ function preparationPaperDetails(title) {
     return {
       themes: ["topos"],
       metaTags: ["speculative"],
-      links: relatedSlides
-    };
-  }
-  if (title === twistedTetrahedraPreparationTitle) {
-    return {
-      themes: ["algebra"],
       links: relatedSlides
     };
   }
@@ -7768,7 +8145,7 @@ function themedPaperRecords() {
       return {
         type: "paper",
         title: paper.title,
-        href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+        href: localHref(`works/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper, findResearchmapPaper(paper)), paper.year, paper.venue]).join(" / "),
         metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
@@ -7793,7 +8170,7 @@ function themedPaperRecords() {
       return {
         type: "paper",
         title: paper.title,
-        href: paper.link || localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+        href: paper.link || localHref(`works/index.html#${paperAnchor(paper)}`),
         meta: compactText([paperPeopleText(paper), paper.year, paper.venue || paper.type]).join(" / "),
         metaTags: metaTagIdsForText(text, paper.metaTags || []),
         ...scoreThemeRecord(text)
@@ -7811,7 +8188,7 @@ function themedPreparationRecords() {
       return {
         type: "preparation",
         title: paper.title,
-        href: localHref(`documents/papers/index.html#${paperAnchor(paper)}`),
+        href: localHref(`works/index.html#${paperAnchor(paper)}`),
         meta: "In preparation",
         metaTags: paperMetaTagIds(paper),
         ...paperThemeScore(paper)
@@ -7915,7 +8292,7 @@ function themedTalkRecords() {
         return {
           type: "talk",
           title: record.title,
-          href: localHref(`activities/talks/index.html#${talkRecordAnchor(record)}`),
+          href: localHref(`works/index.html#${talkRecordAnchor(record)}`),
           meta: compactText([presentationMeta(record), slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
           metaTags,
           ...scoreThemeRecord(text)
@@ -7934,7 +8311,7 @@ function themedTalkRecords() {
         return {
           type: "talk",
           title: talk.title,
-          href: talk.href || localHref("activities/talks/index.html"),
+          href: talk.href || localHref("works/index.html#talks-slides"),
           meta: compactText([presenters, group.year, talk.venue, slides.length ? `${slides.length} slide${slides.length === 1 ? "" : "s"}` : ""]).join(" / "),
           metaTags,
           ...scoreThemeRecord(text)
@@ -8042,7 +8419,7 @@ function renderThemeResult(record, selection = "", metaSelection = "") {
   item.dataset.themes = record.themes.join(" ");
   item.dataset.metaTags = (record.metaTags || []).join(" ");
   const heading = el("h4");
-  heading.append(link(record.title, record.href));
+  heading.append(link(searchResultTitleText(record.title), record.href));
   item.append(renderThemeResultIcons(record.themes, record.metaTags), heading);
   if (record.meta) item.append(el("p", "theme-result-meta", record.meta));
   return item;
@@ -8082,6 +8459,7 @@ function renderResearchMapResults(selection = "", options = {}) {
     }
     records.forEach((record) => list.append(renderThemeResult(record, themeIds, metaTagIds)));
   });
+  typesetMath(root);
 }
 
 function researchThemeGroups() {
@@ -13122,6 +13500,13 @@ function renderExplore() {
     copy.append(link(page.title, localHref(page.href), "explore-title"), el("p", null, page.description));
     head.append(copy);
     body.append(head);
+    if (Array.isArray(page.children) && page.children.length) {
+      const childList = el("div", "explore-child-links");
+      page.children.forEach(([label, href]) => {
+        childList.append(link(label, localHref(href), "explore-child-link"));
+      });
+      body.append(childList);
+    }
     item.append(body);
     root.append(item);
   });
@@ -13198,7 +13583,6 @@ const contentReviewLabels = {
   published: "Published",
   preprint: "Preprint",
   draft: "Draft",
-  "work-in-progress": "Work in progress",
   speculative: "Speculative note",
   slide: "Slide",
   note: "Note",
@@ -13227,7 +13611,13 @@ function contentReviewBadge(status, label = contentReviewLabel(status), title = 
 }
 
 function appendContentReviewBadges(root, badges = []) {
+  const hiddenStatuses = new Set([
+    "pending-public-source",
+    "self-reported-public-broadcast",
+    "verified-owner-and-kaken-active"
+  ]);
   badges.filter(Boolean).forEach((badge) => {
+    if (hiddenStatuses.has(badge.status)) return;
     root.append(contentReviewBadge(badge.status, badge.label, badge.title));
   });
 }
@@ -13271,7 +13661,7 @@ function noteReviewRecord(note) {
   const byFile = siteReviewData.documentRights.byFile[note.file] || null;
   const isDrive = /drive\.google\.com/i.test(note.href || "") || /drive\.google\.com|lh3\.google/i.test(note.thumbnail || "");
   const rightsRecord = byFile || (isDrive ? siteReviewData.documentRights.defaultDrivePdf : null);
-  const status = note.status || (titleKind === "cloud" ? "speculative" : titleKind === "pen" ? "work-in-progress" : kind === "slides" ? "slide" : "note");
+  const status = note.status || (titleKind === "cloud" ? "speculative" : kind === "slides" ? "slide" : "note");
   const rights = note.rights || rightsRecord?.rightsStatus || (note.href ? "linked-public-record" : "local-record");
   const source = note.source || rightsRecord?.source || (isDrive ? "google-drive" : "homepage");
   const provenance = note.provenance || (rightsRecord ? "Owner-reviewed public document link metadata." : "Manual homepage document metadata.");
@@ -13279,7 +13669,6 @@ function noteReviewRecord(note) {
   const needsVerification = !hasExplicitPermission && Boolean(note.needsVerification || /coauthored|owner-believes-ok/i.test(rights));
   const badges = [
     status === "speculative" ? { status, label: "Speculative", title: "Cloud: speculative note." } : null,
-    status === "work-in-progress" ? { status, label: "Work in progress", title: "Pen: currently being written." } : null,
     hasExplicitPermission ? { status: "coauthored-explicit-permission", label: "Permission confirmed", title: rightsRecord?.note || rights } : null,
     needsVerification ? { status: "rights-watch", label: "Rights watch", title: rightsRecord?.note || rights } : null,
     byFile?.publicPermission === "link-only" ? { status: "external-record", label: "External record", title: source } : null
@@ -13310,7 +13699,7 @@ function renderPaperRecord(paper, options = {}) {
   const titleRow = el("div", "publication-title");
   const title = el("h3");
   title.append(link(paper.title, paper.link));
-  titleRow.append(title, titleCopyButton(`documents/papers/index.html#${paperAnchor(paper)}`, paper.title));
+  titleRow.append(title, titleCopyButton(`works/index.html#${paperAnchor(paper)}`, paper.title));
   item.append(titleRow);
 
   const details = renderPublicationDetails(paper);
@@ -13503,7 +13892,7 @@ function paperTagTargetHref(tag) {
   const params = new URLSearchParams();
   if (tag.themeId) params.set("theme", tag.themeId);
   else params.set("paper", tag.query || tag.label);
-  return localHref(`documents/papers/index.html?${params.toString()}`);
+  return localHref(`works/index.html#papers?${params.toString()}`);
 }
 
 function activatePublicationTag(tag) {
@@ -13561,6 +13950,10 @@ function renderPaperMetaTagButton(tag, count) {
 function renderPaperTagIndex(records = paperListingRecords()) {
   const root = document.querySelector("#paper-tag-index");
   if (!root) return;
+  if (isWorksPage() && !state.paperTagsExpanded && !paperSearchHasDocumentFilter()) {
+    root.replaceChildren();
+    return;
+  }
   const counts = Object.fromEntries(researchThemes.map((theme) => [theme.id, 0]));
   const metaCounts = Object.fromEntries(researchMetaTags.map((tag) => [tag.id, 0]));
   const preparationRecords = siteData.papers.preparation.map(preparationPaperRecord);
@@ -13603,6 +13996,19 @@ function renderPaperTagIndex(records = paperListingRecords()) {
   root.append(head, list);
 }
 
+function renderPaperCompactRecord(paper) {
+  const item = el("article", "publication-item publication-item-compact");
+  item.id = paperAnchor(paper);
+  const title = el("h3");
+  title.append(link(paper.title, paper.link));
+  item.append(title);
+  const meta = compactText([paperPeopleText(paper, findResearchmapPaper(paper)), paper.year, paper.venue]).join(" / ");
+  if (meta) item.append(el("p", "publication-compact-meta", meta));
+  if (paper.summary) item.append(el("p", "publication-summary publication-summary-compact", paper.summary));
+  item.append(link("Open paper", paper.link, "text-link"));
+  return item;
+}
+
 function renderPapers() {
   const root = document.querySelector("#paper-list");
   if (!root) return;
@@ -13622,7 +14028,12 @@ function renderPapers() {
     applyLanguage(root);
     return;
   }
-  filtered.forEach((paper) => root.append(renderPaperRecord(paper, { showFigure: state.paperView === "diagram" })));
+  const limit = worksInitialPaperLimit();
+  const visibleRecords = Number.isFinite(limit) ? filtered.slice(0, limit) : filtered;
+  const useCompactRecords = isWorksPage() && state.paperView !== "diagram" && Number.isFinite(limit) && !paperSearchHasDocumentFilter();
+  visibleRecords.forEach((paper) => {
+    root.append(useCompactRecords ? renderPaperCompactRecord(paper) : renderPaperRecord(paper, { showFigure: state.paperView === "diagram" }));
+  });
   typesetMath(root);
   applyLanguage(root);
   scrollToHashTarget();
@@ -13658,7 +14069,7 @@ function renderPreparationPapers() {
     const heading = el("h3");
     heading.innerHTML = paper.title;
     const details = renderPublicationDetails(paper);
-    titleRow.append(heading, titleCopyButton(`documents/papers/index.html#${paperAnchor(paper)}`, paper.title));
+    titleRow.append(heading, titleCopyButton(`works/index.html#${paperAnchor(paper)}`, paper.title));
     item.append(titleRow);
     if (details) item.append(details);
     const meta = el("div", "publication-meta");
@@ -13698,14 +14109,14 @@ function renderPaperRelatedDocuments() {
     allNoteRecords(),
     "No related notes match this filter.",
     "Use paper search or tags to find related notes.",
-    "documents/notes/index.html"
+    "works/index.html#notes-preparations"
   );
   renderPaperRelatedList(
     "#paper-related-slides-list",
     allSlideRecords(),
     "No related slides match this filter.",
     "Use paper search or tags to find related slides.",
-    "documents/slides/index.html"
+    "works/index.html#talks-slides"
   );
 }
 
@@ -13863,7 +14274,7 @@ function renderTalkItem(record, href, metaText, actions = []) {
   title.append(uiIcon("talk", "talk-title-icon"));
   if (href) title.append(link(record.title, href));
   else title.append(el("span", null, record.title));
-  title.append(titleCopyButton(`activities/talks/index.html#${talkRecordAnchor(record)}`, record.title));
+  title.append(titleCopyButton(`works/index.html#${talkRecordAnchor(record)}`, record.title));
   body.append(title, el("span", "talk-venue", metaText));
   if (actions.length) appendActionLinks(body, actions);
   shell.append(body);
@@ -14308,13 +14719,6 @@ function renderDocumentCard(note, pagePath) {
     item.append(talk);
   }
   const meta = el("div", "note-meta");
-  if (kind === "pen") {
-    const badge = el("span", `note-kind-badge note-${kind}-badge`, kindLabel);
-    if (kindIcon === "pen") badge.prepend(uiIcon("pen", "note-kind-icon"));
-    else if (kindIcon && kindIcon !== kindLabel) badge.dataset.icon = kindIcon;
-    if (kindIcon && kindIcon === kindLabel) badge.classList.add("is-symbol");
-    meta.append(badge);
-  }
   appendContentReviewBadges(meta, noteReviewRecord(note).badges);
   metaTagIdsForText(compactText([note.title, note.description, note.file, note.talkTitle, note.talkMeta]).join(" "), note.metaTags || [])
     .forEach((tagId) => meta.append(renderMetaTagPill(tagId, "note-meta-tag")));
@@ -14347,7 +14751,7 @@ function renderNotes() {
     return;
   }
 
-  records.forEach((note) => root.append(renderDocumentCard(note, "documents/notes/index.html")));
+  records.forEach((note) => root.append(renderDocumentCard(note, "works/index.html")));
   applyLanguage(section);
   scrollToHashTarget();
 }
@@ -14370,7 +14774,7 @@ function renderSlides() {
     return;
   }
 
-  records.forEach((slide) => root.append(renderDocumentCard(slide, "documents/slides/index.html")));
+  records.forEach((slide) => root.append(renderDocumentCard(slide, "works/index.html")));
   applyLanguage(section);
   scrollToHashTarget();
 }
@@ -14766,6 +15170,124 @@ function initialProblemFromHash() {
   return siteData.problems.find((problem) => hash === problemAnchor(problem) || hash === problem.id);
 }
 
+const worksInitialPaperRecordLimit = 4;
+const worksLazySectionConfigs = [
+  {
+    id: "papers",
+    roots: ["#paper-list"],
+    placeholder: "Papers load as this section approaches.",
+    render: () => renderPapers()
+  },
+  {
+    id: "in-preparation",
+    roots: ["#preparation-paper-list"],
+    placeholder: "In-preparation papers load when this section is opened.",
+    render: () => renderPreparationPapers()
+  },
+  {
+    id: "notes-preparations",
+    roots: ["#note-list"],
+    placeholder: "Notes load when this section is opened.",
+    render: () => renderNotes()
+  },
+  {
+    id: "talks-slides",
+    roots: ["#researchmap-presentation-list", "#slide-list"],
+    placeholder: "Talks and slides load when this section is opened.",
+    render: () => {
+      renderResearchmapPresentations();
+      renderSlides();
+    }
+  }
+];
+
+function isWorksPage() {
+  return document.body?.dataset.page === "works";
+}
+
+function worksHashTarget() {
+  return decodeURIComponent(globalThis.location?.hash?.slice(1) || "");
+}
+
+function worksInitialPaperLimit() {
+  const hash = worksHashTarget();
+  if (!isWorksPage() || state.worksPapersExpanded || paperSearchHasDocumentFilter()) return Infinity;
+  if (hash.startsWith("paper-") || hash === "papers" || hash === "in-preparation") return Infinity;
+  return worksInitialPaperRecordLimit;
+}
+
+function worksLazyRenderedSections() {
+  if (!state.worksLazyRenderedSections) state.worksLazyRenderedSections = new Set();
+  return state.worksLazyRenderedSections;
+}
+
+function worksLazyConfigForHash(hash = worksHashTarget()) {
+  if (hash.startsWith("paper-")) return worksLazySectionConfigs.find((config) => config.id === "papers");
+  return worksLazySectionConfigs.find((config) => hash === config.id || hash.startsWith(`${config.id}-`));
+}
+
+function renderWorksLazyPlaceholder(config) {
+  config.roots.forEach((selector) => {
+    const root = document.querySelector(selector);
+    if (!root || root.childElementCount) return;
+    root.append(el("p", "empty-state works-lazy-placeholder", config.placeholder));
+  });
+}
+
+function renderWorksLazySection(id) {
+  const config = worksLazySectionConfigs.find((record) => record.id === id);
+  const rendered = worksLazyRenderedSections();
+  if (!config || rendered.has(id)) return;
+  rendered.add(id);
+  if (id === "papers") state.worksPapersExpanded = true;
+  config.render();
+  scrollToHashTarget();
+}
+
+function setupWorksLazySections() {
+  worksLazySectionConfigs.forEach(renderWorksLazyPlaceholder);
+  const initialHashConfig = worksLazyConfigForHash();
+  if (initialHashConfig) renderWorksLazySection(initialHashConfig.id);
+
+  if (globalThis.IntersectionObserver) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        renderWorksLazySection(entry.target.id);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "720px 0px" });
+    worksLazySectionConfigs.forEach((config) => {
+      const section = document.getElementById(config.id);
+      if (section && !worksLazyRenderedSections().has(config.id)) observer.observe(section);
+    });
+  } else {
+    worksLazySectionConfigs.forEach((config) => setTimeout(() => renderWorksLazySection(config.id), 1200));
+  }
+
+  if (!state.worksLazyHashListenerAttached) {
+    state.worksLazyHashListenerAttached = true;
+    globalThis.addEventListener?.("hashchange", () => {
+      const config = worksLazyConfigForHash();
+      if (config) renderWorksLazySection(config.id);
+    });
+    document.addEventListener("click", (event) => {
+      const anchor = event.target?.closest?.("a[href]");
+      if (!anchor) return;
+      const hash = new URL(anchor.getAttribute("href"), globalThis.location?.href).hash.slice(1);
+      const config = worksLazyConfigForHash(hash);
+      if (config) setTimeout(() => renderWorksLazySection(config.id), 0);
+    });
+  }
+}
+
+function renderWorksPageInitial() {
+  state.worksPapersExpanded = false;
+  state.worksLazyRenderedSections = new Set();
+  renderResearchMap();
+  setupWorksLazySections();
+}
+
 function renderProblems() {
   const root = document.querySelector("#problem-list");
   if (!root) return;
@@ -14954,87 +15476,6 @@ function setupInteractions() {
   });
 }
 
-const pageBreadcrumbs = {
-  documents: [
-    ["Home", "index.html"],
-    ["Documents", "documents/index.html"]
-  ],
-  papers: [
-    ["Home", "index.html"],
-    ["Documents", "documents/index.html"],
-    ["Papers", "documents/papers/index.html"]
-  ],
-  notes: [
-    ["Home", "index.html"],
-    ["Documents", "documents/index.html"],
-    ["Notes", "documents/notes/index.html"]
-  ],
-  slides: [
-    ["Home", "index.html"],
-    ["Documents", "documents/index.html"],
-    ["Slides", "documents/slides/index.html"]
-  ],
-  activities: [
-    ["Home", "index.html"],
-    ["Activities", "activities/index.html"]
-  ],
-  talks: [
-    ["Home", "index.html"],
-    ["Activities", "activities/index.html"],
-    ["Talks", "activities/talks/index.html"]
-  ],
-  others: [
-    ["Home", "index.html"],
-    ["Others", "others/index.html"]
-  ],
-  "web-apps": [
-    ["Home", "index.html"],
-    ["Others", "others/index.html"],
-    ["Web Apps", "others/web-apps/index.html"]
-  ],
-  problems: [
-    ["Home", "index.html"],
-    ["Others", "others/index.html"],
-    ["Problems", "others/problems/index.html"]
-  ],
-  links: [
-    ["Home", "index.html"],
-    ["Others", "others/index.html"],
-    ["Links", "others/links/index.html"]
-  ],
-  cv: [
-    ["Home", "index.html"],
-    ["Profile", "index.html#profile"],
-    ["CV", "profile/cv/index.html"]
-  ],
-  search: [
-    ["Home", "index.html"],
-    ["Search", "search/index.html"]
-  ]
-};
-
-function renderPageBreadcrumb() {
-  const page = document.body?.dataset.page || "";
-  const items = pageBreadcrumbs[page];
-  const hero = document.querySelector(".page-hero");
-  if (!items || !hero || hero.querySelector(".page-breadcrumb")) return;
-
-  const nav = el("nav", "page-breadcrumb");
-  nav.setAttribute("aria-label", "Breadcrumb");
-  items.forEach(([label, href], index) => {
-    const isCurrent = index === items.length - 1;
-    const node = isCurrent ? el("span", null, label) : link(label, localHref(href));
-    if (isCurrent) node.setAttribute("aria-current", "page");
-    nav.append(node);
-    if (!isCurrent) {
-      const separator = el("span", "breadcrumb-separator", "/");
-      separator.setAttribute("aria-hidden", "true");
-      nav.append(separator);
-    }
-  });
-  hero.prepend(nav);
-}
-
 function renderProfileSections() {
   renderProfileLinks();
   renderCurrentPositions();
@@ -15048,23 +15489,19 @@ function renderProfileSections() {
 function renderInitialPage() {
   const page = document.body?.dataset.page || "";
   setupLanguage();
-  renderPageBreadcrumb();
 
-  if (page === "home") {
+  if (page === "home" || page === "profile") {
     renderProfileSections();
-    renderExplore();
-    renderResearchMap();
     renderHomeTimeline();
-    renderCategoriesTokyoMap();
-    renderPlans();
-    renderHomePapers();
-    renderTalks("#home-talk-list");
-  } else if (page === "documents") {
-    renderPaperTimeline();
-    renderPapers();
-    renderPreparationPapers();
-    renderNotes();
-    renderSlides();
+    renderExplore();
+  } else if (["current-positions", "past-affiliations", "academic-background", "awards", "teaching-outreach"].includes(page)) {
+    renderProfileSections();
+  } else if (page === "explore") {
+    renderExplore();
+  } else if (page === "works") {
+    renderWorksPageInitial();
+  } else if (page === "research-timeline") {
+    renderHomeTimeline();
   } else if (page === "papers") {
     renderPaperTimeline();
     renderPapers();
@@ -15072,34 +15509,39 @@ function renderInitialPage() {
     renderPaperRelatedDocuments();
     renderResearchmapPapers();
     renderMiscPapers();
-  } else if (page === "activities") {
-    renderActivitiesTimeline();
-    renderTalkMap();
-    renderResearchmapPresentations();
-    renderResearchmapActivityData();
-    renderActivities();
-  } else if (page === "talks") {
-    renderTalkTimeline();
-    renderTalkMap();
-    renderResearchmapPresentations();
-  } else if (page === "notes") {
+  } else if (page === "notes-preparations") {
+    renderPreparationPapers();
     renderNotes();
-  } else if (page === "slides") {
+  } else if (page === "talks-slides") {
+    renderTalkTimeline();
+    renderResearchmapPresentations();
     renderSlides();
-  } else if (page === "cv") {
-    renderProfileSections();
-  } else if (page === "others") {
-    renderWebApps();
-    renderProblems();
-    renderLinks();
+  } else if (page === "activities") {
+    renderPlans();
+    renderTalkMap();
+    renderActivities();
+    renderCategoriesTokyoMap();
+  } else if (page === "activity-timeline") {
+    renderActivitiesTimeline();
+  } else if (page === "upcoming") {
+    renderPlans();
+  } else if (page === "visit-map") {
+    renderTalkMap();
+  } else if (page === "yearly-records") {
+    renderActivities();
+  } else if (page === "categories-in-tokyo") {
+    renderCategoriesTokyoMap();
   } else if (page === "problems") {
     renderProblems();
-  } else if (page === "links") {
+  } else if (page === "search") {
+    renderSiteSearch();
+  } else if (page === "others") {
+    renderWebApps();
     renderLinks();
   } else if (page === "web-apps") {
     renderWebApps();
-  } else if (page === "search") {
-    renderSiteSearch();
+  } else if (page === "links") {
+    renderLinks();
   } else {
     renderProfileSections();
     renderExplore();
@@ -15132,4 +15574,4 @@ function renderInitialPage() {
   applyLanguage();
 }
 
-renderInitialPage();
+if (!document.currentScript?.dataset.manualInit) renderInitialPage();

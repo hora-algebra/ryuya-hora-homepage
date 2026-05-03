@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Works | Ryuya Hora</title>
+    <meta name="description" content="Research works by Ryuya Hora.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="../styles.css?v=cache-20260503s">
+  </head>
+  <body data-page="works" data-depth="1">
+    <header class="site-header">
+      <a class="brand" href="../profile/index.html" aria-label="Ryuya Hora profile">
+        <span class="brand-mark">RH</span>
+        <span><strong>Ryuya Hora</strong><small>洞龍弥</small></span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <div class="nav-group">
+          <a class="nav-group-label" href="../profile/index.html">Profile</a>
+          <div class="nav-submenu">
+            <a href="../profile/index.html#current-positions">Current Positions</a>
+            <a href="../profile/index.html#past-affiliations">Past Affiliations</a>
+            <a href="../profile/index.html#academic-background">Academic Background</a>
+            <a href="../profile/index.html#awards">Awards</a>
+            <a href="../profile/index.html#teaching-outreach">Teaching and Outreach</a>
+            <a href="../profile/index.html#timeline">Timeline</a>
+            <a href="../profile/index.html#explore">Pages</a>
+          </div>
+        </div>
+        <div class="nav-group is-active">
+          <a class="nav-group-label is-active" href="index.html">Works</a>
+          <div class="nav-submenu">
+            <a href="index.html#work-search">Search</a>
+            <a href="index.html#papers">Papers</a>
+            <a href="index.html#notes-preparations">Notes and Preparations</a>
+            <a href="index.html#talks-slides">Talks and Slides</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../activities/index.html">Activities</a>
+          <div class="nav-submenu">
+            <a href="../activities/index.html#upcoming">Upcoming</a>
+            <a href="../activities/index.html#visit-map">Visit Map</a>
+            <a href="../activities/index.html#yearly-records">Yearly Records</a>
+            <a href="../activities/index.html#categories-in-tokyo">Categories in Tokyo</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <a class="nav-group-label" href="../others/index.html">Others</a>
+          <div class="nav-submenu">
+            <a href="../others/index.html#web-apps">Web Apps</a>
+            <a href="../others/index.html#links">Links</a>
+          </div>
+        </div>
+        <a class="nav-search" href="../search/index.html" data-site-search-link aria-label="Search">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="sr-only">Search</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+            <section class="page-hero section">
+        <h1>Works</h1>
+        <p class="lead">Search, papers, notes, preparations, talks, and slides.</p>
+      </section>
+
+      <section id="work-search" class="section research-map-section" aria-labelledby="work-search-title">
+        <div class="section-head">
+          <div>
+            <h2 id="work-search-title">Search</h2>
+          </div>
+        </div>
+          <div id="research-map" class="research-map" aria-live="polite">
+            <article class="works-search-loading" role="status" aria-label="Loading Works index">
+              <div class="loading-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </article>
+          </div>
+      </section>
+
+      <section id="papers" class="section" aria-labelledby="works-papers-title">
+        <div class="section-head">
+          <div>
+            <h2 id="works-papers-title">Papers</h2>
+          </div>
+          <a class="section-link" href="#papers">Papers</a>
+          <div class="paper-controls">
+            <label class="search-label">
+              <span>Filter papers</span>
+              <input id="paper-filter" type="search" placeholder="topos, automata, games...">
+            </label>
+            <div class="publication-tabs paper-view-tabs" aria-label="Paper view">
+              <button class="tab-button" type="button" data-paper-view="list" aria-pressed="false">List</button>
+              <button class="tab-button is-active" type="button" data-paper-view="diagram" aria-pressed="true">Diagrams</button>
+            </div>
+          </div>
+        </div>
+        <div id="paper-tag-index" class="paper-tag-index" aria-label="Paper tags"></div>
+        <div id="paper-list" class="publication-list" aria-live="polite">
+          <article class="works-search-loading" role="status" aria-label="Loading papers">
+            <div class="loading-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="notes-preparations" class="section notes-section" aria-labelledby="works-notes-preparations-title">
+        <div class="section-head">
+          <div>
+            <h2 id="works-notes-preparations-title">Notes and Preparations</h2>
+          </div>
+          <a class="section-link" href="#notes-preparations">Notes and Preparations</a>
+        </div>
+        <div id="in-preparation" class="paper-subsection" aria-labelledby="works-preparation-title">
+          <div class="paper-subsection-head">
+            <h3 id="works-preparation-title">In preparation</h3>
+          </div>
+          <div id="preparation-paper-list" class="publication-list" aria-live="polite">
+            <p class="empty-state works-lazy-placeholder">In-preparation papers load when this section is opened.</p>
+          </div>
+        </div>
+        <div class="notes-filter-row">
+          <p id="note-filter-count" class="note-filter-count"></p>
+          <div class="note-toolbar" aria-label="Note filters">
+            <label class="search-label note-search-label">
+              <span>Search notes</span>
+              <input id="note-filter" type="search" autocomplete="off" placeholder="topos, games, language...">
+            </label>
+            <label class="note-filter-label">
+              <span>Language</span>
+              <select id="note-language-filter"></select>
+            </label>
+            <label class="note-filter-label">
+              <span>Year</span>
+              <select id="note-year-filter"></select>
+            </label>
+            <label class="note-filter-label">
+              <span>Theme</span>
+              <select id="note-theme-filter"></select>
+            </label>
+          </div>
+        </div>
+        <div id="notes-list" class="note-grid" aria-live="polite">
+          <p class="empty-state works-lazy-placeholder">Notes load when this section is opened.</p>
+        </div>
+      </section>
+
+      <section id="talks-slides" class="section notes-section slides-section" aria-labelledby="works-talks-slides-title">
+        <div class="section-head">
+          <div>
+            <h2 id="works-talks-slides-title">Talks and Slides</h2>
+          </div>
+          <a class="section-link" href="#talks-slides">Talks and Slides</a>
+          <label class="search-label">
+            <span>Filter talks</span>
+            <input id="talk-filter" type="search" placeholder="year, venue, topic...">
+          </label>
+        </div>
+        <div id="researchmap-presentation-list" class="timeline-list" aria-live="polite">
+          <p class="empty-state works-lazy-placeholder">Talks and slides load when this section is opened.</p>
+        </div>
+        <div class="notes-filter-row">
+          <p id="slide-filter-count" class="note-filter-count"></p>
+          <div class="note-toolbar" aria-label="Slide filters">
+            <label class="search-label note-search-label">
+              <span>Search slides</span>
+              <input id="slide-filter" type="search" autocomplete="off" placeholder="topos, games, language...">
+            </label>
+            <label class="note-filter-label">
+              <span>Language</span>
+              <select id="slide-language-filter"></select>
+            </label>
+            <label class="note-filter-label">
+              <span>Year</span>
+              <select id="slide-year-filter"></select>
+            </label>
+            <label class="note-filter-label">
+              <span>Theme</span>
+              <select id="slide-theme-filter"></select>
+            </label>
+          </div>
+        </div>
+        <div id="slides-list" class="note-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Last updated: 3 May 2026.</p>
+      <div class="site-footer-links">
+        <a class="site-public-url" href="https://hora-algebra.github.io/ryuya-hora-homepage/">https://hora-algebra.github.io/ryuya-hora-homepage/</a>
+        <a href="../profile/index.html">Profile</a>
+      </div>
+    </footer>
+
+  <script defer src="../scripts/works-lite.js?v=cache-20260503u"></script>
+</body>
+</html>
