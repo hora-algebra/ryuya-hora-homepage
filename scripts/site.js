@@ -152,11 +152,7 @@ const siteData = {
       tag: "Simulation",
       description: "A toroidal evolution sandbox with organisms, resources, terrain, mutation, and visible lineages.",
       descriptionJa: "organisms, resources, terrain, mutation, visible lineages を持つ toroidal evolution sandbox．",
-      links: [
-        ["Open app", "https://genericalgoid-ryuyahora.vercel.app"],
-        ["Guide", "https://genericalgoid-ryuyahora.vercel.app/guide.html"],
-        ["Dev", "https://genericalgoid-ryuyahora.vercel.app/dev.html"]
-      ],
+      links: [["Open app", "https://genericalgoid-ryuyahora.vercel.app"]],
       keywords: ["evolution", "simulation", "lineage", "sandbox"]
     },
     {
@@ -166,13 +162,22 @@ const siteData = {
       tag: "Geometry",
       description: "Interactive pages for finite-worm experiments, search heuristics, growth, and theory notes.",
       descriptionJa: "finite-worm experiments, search heuristics, growth, theory notes の interactive pages．",
-      links: [
-        ["Open app", "https://results-fawn.vercel.app"],
-        ["Search", "https://results-fawn.vercel.app/search/"],
-        ["Growth", "https://results-fawn.vercel.app/growth/"],
-        ["Theory", "https://results-fawn.vercel.app/theory/"]
-      ],
+      links: [["Open app", "https://results-fawn.vercel.app"]],
       keywords: ["Moser's worm problem", "geometry", "heuristics", "search"]
+    },
+    {
+      title: "Erdos Trapezoid Hunt",
+      href: "https://erdos-game-ryuyahora.vercel.app",
+      thumbnail: "assets/web-apps/erdos-trapezoid-hunt.png",
+      tag: "Geometry",
+      description: "A unit-area trapezoid hunt game inspired by J. Koizumi's paper and video.",
+      descriptionJa: "J. Koizumi さんの paper/video による unit-area trapezoid hunt game．",
+      links: [
+        ["Open app", "https://erdos-game-ryuyahora.vercel.app"],
+        ["Paper by J. Koizumi", "https://doi.org/10.1090/proc/17322"],
+        ["Video by J. Koizumi", "https://www.youtube.com/watch?v=2LC1mAJGmmU"]
+      ],
+      keywords: ["Erdos", "trapezoid", "unit area", "geometry game", "Junnosuke Koizumi"]
     },
     {
       title: "Adjunction Reboot",
@@ -181,36 +186,8 @@ const siteData = {
       tag: "Category theory",
       description: "A diagram-first adjunction workbench for unit, counit, and snake moves.",
       descriptionJa: "unit, counit, snake moves を扱う diagram-first adjunction workbench．",
-      links: [
-        ["Workbench", "https://adjunction-reboot-v2-ryuyahora.vercel.app/workbench"],
-        ["Guide", "https://adjunction-reboot-v2-ryuyahora.vercel.app/guide"],
-        ["Monad", "https://adjunction-reboot-v2-ryuyahora.vercel.app/monad"]
-      ],
+      links: [["Open app", "https://adjunction-reboot-v2-ryuyahora.vercel.app/workbench"]],
       keywords: ["adjunction", "string diagram", "snake identity", "category theory"]
-    },
-    {
-      title: "2-Category String Diagram App",
-      href: "https://adjoint-string-diagram-app-ryuyahor.vercel.app/workbench",
-      thumbnail: "assets/web-apps/string-diagram.png",
-      tag: "Category theory",
-      description: "A typed 2-category editor for signature-based string diagram rewrites.",
-      descriptionJa: "signature-based string diagram rewrites のための typed 2-category editor．",
-      links: [
-        ["Workbench", "https://adjoint-string-diagram-app-ryuyahor.vercel.app/workbench"],
-        ["Tutorial", "https://adjoint-string-diagram-app-ryuyahor.vercel.app/workbench?tutorial=snake"],
-        ["Guide", "https://adjoint-string-diagram-app-ryuyahor.vercel.app/guide"]
-      ],
-      keywords: ["2-category", "string diagram", "typed rewrite", "adjunction"]
-    },
-    {
-      title: "Automaton Acceptance Game",
-      href: "https://automaton-acceptance-game-ryuyahora.vercel.app",
-      thumbnail: "assets/web-apps/automaton-acceptance-game.png",
-      tag: "Automata",
-      description: "A browser game for reading automaton acceptance as an interactive process.",
-      descriptionJa: "automaton acceptance を interactive process として読む browser game．",
-      links: [["Open app", "https://automaton-acceptance-game-ryuyahora.vercel.app"]],
-      keywords: ["automata", "acceptance", "game", "language theory"]
     },
     {
       title: "Automaton Acceptance Game: CFG Monoid",
@@ -243,7 +220,7 @@ const siteData = {
         title: "Internal Parameterizations of Hyperconnected Quotients",
         venue: "Theory and Applications of Categories 42(11), 263-313",
         year: "2024",
-        preprintDate: "2023-02",
+        preprintDate: "2023-02-14",
         publicationDate: "2024-08-23",
         link: "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html",
         figure: "internal-parameterizations",
@@ -316,6 +293,7 @@ const siteData = {
         authors: "with Yuki Maehara and Yuhi Kamio",
         venue: "arXiv:2503.03439",
         year: "2025",
+        preprintDate: "2025-03-05",
         link: "https://arxiv.org/abs/2503.03439",
         figure: "lawvere-fourth",
         themes: ["topos", "combinatorics"],
@@ -327,6 +305,7 @@ const siteData = {
         title: "Topoi of automata I: Four topoi of automata and regular languages",
         venue: "arXiv:2411.06358",
         year: "2024",
+        preprintDate: "2024-11-10",
         link: "https://arxiv.org/abs/2411.06358",
         figure: "topoi-automata",
         themes: ["automata", "topos", "geometry"],
@@ -337,6 +316,7 @@ const siteData = {
         title: "Games as recursive coalgebras: A categorical view on the Nim-sum",
         venue: "arXiv:2510.22886",
         year: "2025",
+        preprintDate: "2025-10-27",
         link: "https://arxiv.org/abs/2510.22886",
         figure: "games-coalgebras",
         themes: ["games", "coalgebras", "category", "algebra"],
@@ -348,6 +328,7 @@ const siteData = {
         title: "Normalization of a subgroup, in a topos, and of a word-congruence",
         venue: "arXiv:2511.05012",
         year: "2025",
+        preprintDate: "2025-11-07",
         link: "https://arxiv.org/abs/2511.05012",
         figure: "normalization",
         themes: ["topos", "automata", "algebra", "combinatorics"],
@@ -465,37 +446,31 @@ const siteData = {
   ],
   activities: [
     {
-      title: "Plans",
-      items: [
-        { date: "2026-06-03", text: "Organizing the Bimonthly Category Theory Seminar." },
-        { date: "2026-07-06 - 2026-07-10", text: "Will attend ACT 2026 in Tallinn.", href: "https://actconf2026.github.io/" },
-        { date: "2026-09-29", text: "Will give an online talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html" },
-        { date: "2026-11-02 - 2026-11-04", text: "Organizing Categories in Tokyo 3.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A" }
-      ]
-    },
-    {
       title: "2026",
       items: [
-        { date: "2026-01", text: "Submitted Ph.D. thesis." },
+        { date: "2026-01", text: "Submitted Ph.D. thesis.", activityCategory: "milestone" },
         { date: "2026-01-23", text: "Gave a talk at Ph.D. thesis presentation.", href: "https://www.ms.u-tokyo.ac.jp/seminar/2026/sem26-042.html", linkText: "Ph.D. thesis presentation" },
         { date: "2026-02-07 - 2026-02-08", text: "Organized Categories in Tokyo 2.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 2" },
         { date: "2026-02-22 - 2026-02-23", text: "Attended the 20th Combinatorial Games and Puzzle Project.", href: "http://www.alg.cei.uec.ac.jp/itohiro/Games/Game260222.html", linkText: "20th Combinatorial Games and Puzzle Project" },
         { date: "2026-03-11", text: "Presented a joint poster with Ryoma Sin'ya at PPL 2026.", href: "https://jssst-ppl.org/workshop/2026/accepted.html", linkText: "PPL 2026" },
         { date: "2026-03-16 - 2026-03-17", text: "Attended CSCAT 2026 and gave a talk.", href: "https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html", linkText: "CSCAT 2026" },
-        { date: "2026-03-24", text: "Received Ph.D. and served as a graduation representative at the AY 2025 Diploma Presentation Ceremony.", href: "https://www.u-tokyo.ac.jp/en/current-students/diploma-presentation.html", linkText: "AY 2025 Diploma Presentation Ceremony" },
-        { date: "2026-03-27", text: "Attended Workshop on Modal Logic.", href: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0", linkText: "Workshop on Modal Logic" },
-        { date: "2026-03-27", text: "Attended the Pacific Category Theory Seminar.", href: "https://pctseminar.github.io", linkText: "Pacific Category Theory Seminar" },
-        { date: "2026-04-05", text: "Attended the HUMAI Anthology final screening.", href: "https://zen.ac.jp/news/humai_anthology2025", linkText: "HUMAI Anthology final screening" },
-        { date: "2026-04-06 - 2026-04-08", text: "Attended Differentiation in category theory and program semantics at Kyoto University and gave a talk.", href: "https://sites.google.com/view/differential-kyoto-2026/home", linkText: "Differentiation in category theory and program semantics" }
+        { date: "2026-03-24", text: "Received Ph.D. and served as a graduation representative at the AY 2025 Diploma Presentation Ceremony.", href: "https://www.u-tokyo.ac.jp/en/current-students/diploma-presentation.html", linkText: "AY 2025 Diploma Presentation Ceremony", activityCategory: "milestone" },
+        { date: "2026-03-27", text: "Attended Workshop on Modal Logic.", href: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0", linkText: "Workshop on Modal Logic", activityCategory: "attendance" },
+        { date: "2026-03-27", text: "Attended the Pacific Category Theory Seminar.", href: "https://pctseminar.github.io", linkText: "Pacific Category Theory Seminar", activityCategory: "attendance" },
+        { date: "2026-04-05", text: "Attended the HUMAI Anthology final screening.", href: "https://zen.ac.jp/news/humai_anthology2025", linkText: "HUMAI Anthology final screening", activityCategory: "milestone" },
+        { date: "2026-04-06 - 2026-04-08", text: "Attended Differentiation in category theory and program semantics at Kyoto University and gave a talk.", href: "https://sites.google.com/view/differential-kyoto-2026/home", linkText: "Differentiation in category theory and program semantics" },
+        { date: "2026-06-03", text: "Organizing the Bimonthly Category Theory Seminar.", status: "planned" },
+        { date: "2026-07-06 - 2026-07-10", text: "Will attend ACT 2026 in Tallinn.", href: "https://actconf2026.github.io/", linkText: "ACT 2026", status: "planned", activityCategory: "attendance" },
+        { date: "2026-09-29", text: "Will give an online talk at ItaCa Fest 2026.", href: "https://progetto-itaca.github.io/fests/fest26.html", linkText: "ItaCa Fest 2026", status: "planned" },
+        { date: "2026-11-02 - 2026-11-04", text: "Organizing Categories in Tokyo 3.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 3", status: "planned" }
       ]
     },
     {
       title: "2025",
       items: [
-        { date: "2025-01 - 2025-02", text: "Completed a FoPM lab rotation on condensed mathematics.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/about/features.html", linkText: "FoPM" },
-        { date: "2025-02-12", text: "Attended the Kyoto Category Theory Meeting.", href: "https://sites.google.com/view/kyoto-category-theory-meeting", linkText: "Kyoto Category Theory Meeting" },
+        { date: "2025-01 - 2025-02", text: "Completed a FoPM lab rotation on condensed mathematics.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/about/features.html", linkText: "FoPM", activityCategory: "milestone" },
+        { date: "2025-02-12", text: "Attended the Kyoto Category Theory Meeting.", href: "https://sites.google.com/view/kyoto-category-theory-meeting", linkText: "Kyoto Category Theory Meeting", activityCategory: "attendance" },
         { date: "2025-02-28", text: "Gave a talk at CMUP SAL seminar.", href: "https://www.cmup.pt/events/topoi-automata", linkText: "CMUP SAL seminar" },
-        { date: "2025-03-05", text: "Posted Lawvere's fourth open problem: Levels in the topos of symmetric simplicial sets to arXiv.", href: "https://arxiv.org/abs/2503.03439", linkText: "Lawvere's fourth open problem: Levels in the topos of symmetric simplicial sets" },
         { date: "2025-03-12", text: "Gave a talk at CSCAT 2025.", href: "https://hisashi-aratake.gitlab.io/event/cscat2025.html", linkText: "CSCAT 2025" },
         { date: "2025-04-30", text: "Gave a talk on Topoi of automata at CTTA Groupe de travail topossique.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", linkText: "CTTA" },
         { date: "2025-05-06", text: "Gave a talk at Categories for Automata and Language Theory.", href: "https://autcat.github.io/", linkText: "Categories for Automata and Language Theory" },
@@ -504,11 +479,9 @@ const siteData = {
         { date: "2025-06-05", text: "Gave a talk at Séminaires du LIPN.", href: "https://lipn.univ-paris13.fr/applications/seminaires/index.php?lang=en", linkText: "Séminaires du LIPN" },
         { date: "2025-06-11", text: "Gave a talk at Theoretical Cosynus Seminar.", href: "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/", linkText: "Theoretical Cosynus Seminar" },
         { date: "2025-07-17", text: "Gave a talk at CT 2025.", href: "https://archive.math.muni.cz/conference/ct2025/index.php%3Fid%3Dprogramme-and-venue.html", linkText: "CT 2025" },
-        { date: "2025-10-10", text: "Wrote the article 圏論に登場する矢印の意味は for 数学セミナー 2025年11月号.", href: "https://www.nippyo.co.jp/shop/magazine/9611.html", linkText: "圏論に登場する矢印の意味は" },
-        { date: "2025-10-18 - 2025-10-19", text: "Attended the 25th Takagi Lectures.", href: "https://www.ms.u-tokyo.ac.jp/~toshi/jjm/JJM_HP/contents/takagi/25th/index.htm", linkText: "25th Takagi Lectures" },
-        { date: "2025-10-27", text: "Posted Games as recursive coalgebras: A categorical view on the Nim-sum to arXiv.", href: "https://arxiv.org/abs/2510.22886", linkText: "Games as recursive coalgebras: A categorical view on the Nim-sum" },
+        { date: "2025-10-10", text: "Wrote the article 圏論に登場する矢印の意味は for 数学セミナー 2025年11月号.", href: "https://www.nippyo.co.jp/shop/magazine/9611.html", linkText: "圏論に登場する矢印の意味は", activityCategory: "writing-media" },
+        { date: "2025-10-18 - 2025-10-19", text: "Attended the 25th Takagi Lectures.", href: "https://www.ms.u-tokyo.ac.jp/~toshi/jjm/JJM_HP/contents/takagi/25th/index.htm", linkText: "25th Takagi Lectures", activityCategory: "attendance" },
         { date: "2025-10-31", text: "Gave a talk at SLACS 2025.", href: "https://sites.google.com/view/slacs2025akita/home", linkText: "SLACS 2025" },
-        { date: "2025-11-07", text: "Posted Normalization of a subgroup, in a topos, and of a word-congruence to arXiv.", href: "https://arxiv.org/abs/2511.05012", linkText: "Normalization of a subgroup, in a topos, and of a word-congruence" },
         { date: "2025-11-28", text: "Gave a talk at UTokyo Logic seminar.", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/past_e.html", linkText: "UTokyo Logic seminar" },
         { date: "2025-12-05", text: "Gave a talk at UTokyo Logic seminar.", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic/", linkText: "UTokyo Logic seminar" }
       ]
@@ -521,27 +494,24 @@ const siteData = {
         { date: "2024-04-24", text: "Gave a talk at the 18th AFSA Colloquium.", href: "https://afsa.jp/meeting/", linkText: "18th AFSA Colloquium" },
         { date: "2024-05-15", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 0" },
         { date: "2024-06-28", text: "Gave a talk at CT 2024.", href: "https://www.usc.gal/regaca/ct2024/programme.html", linkText: "CT 2024" },
-        { date: "2024-07-01 - 2024-07-05", text: "Attended TACL 2024.", href: "https://barcinologic.github.io/web/tacl_mirror/index.html", linkText: "TACL 2024" },
-        { date: "2024-08", text: "The paper Quotient toposes of discrete dynamical systems appeared in JPAA.", href: "https://doi.org/10.1016/j.jpaa.2024.107657", linkText: "Quotient toposes of discrete dynamical systems" },
+        { date: "2024-07-01 - 2024-07-05", text: "Attended TACL 2024.", href: "https://barcinologic.github.io/web/tacl_mirror/index.html", linkText: "TACL 2024", activityCategory: "attendance" },
         { date: "2024-08-29", text: "Gave a talk at Young Automata Theorists Gathering in Japan.", href: "https://sites.google.com/view/ciaa-preworkshop/home", linkText: "Young Automata Theorists Gathering in Japan" },
         { date: "2024-09-10", text: "Gave a talk at Toposes in Mondovì.", href: "https://ctta.igrothendieck.org/", linkText: "Toposes in Mondovì" },
-        { date: "2024-11-10", text: "Posted Topoi of automata I: Four topoi of automata and regular languages to arXiv.", href: "https://arxiv.org/abs/2411.06358", linkText: "Topoi of automata I: Four topoi of automata and regular languages" },
         { date: "2024-11-23 - 2024-11-24", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 1" },
         { date: "2024-11-30", text: "Gave a talk at AFSA area meeting.", href: "https://afsa.jp/afsa-2024_generalmeetingautumn/", linkText: "AFSA area meeting" },
-        { date: "2024-12-10", text: "Wrote What is the geometry behind Conway's game of life? for 圏論 Advent Calendar 2024.", href: "https://drive.google.com/file/d/1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl/view", linkText: "What is the geometry behind Conway's game of life?" }
+        { date: "2024-12-10", text: "Wrote What is the geometry behind Conway's game of life? for 圏論 Advent Calendar 2024.", href: "https://drive.google.com/file/d/1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl/view", linkText: "What is the geometry behind Conway's game of life?", activityCategory: "writing-media" }
       ]
     },
     {
       title: "2023",
       items: [
-        { date: "2023-02-14", text: "Posted Internal Parameterization of Hyperconnected Quotients to arXiv.", href: "https://arxiv.org/abs/2302.06851", linkText: "Internal Parameterization of Hyperconnected Quotients" },
         { date: "2023-03-09", text: "Gave a talk at CSCAT 2023.", href: "https://sites.google.com/view/cscat2023", linkText: "CSCAT 2023" },
         { date: "2023-04-19", text: "Gave an online talk at Australian Category Seminar.", href: "https://centre-of-australian-category-theory.github.io/seminar/", linkText: "Australian Category Seminar" },
         { date: "2023-05-12", text: "Gave a talk at Japan Combinatorial Game Theory Mini-Workshops with Urban Larsson.", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj", linkText: "Japan Combinatorial Game Theory Mini-Workshops with Urban Larsson" },
-        { date: "2023-06", text: "Participated in Em-Cats.", href: "https://topos.institute/events/em-cats/", linkText: "Em-Cats" },
+        { date: "2023-06", text: "Participated in Em-Cats.", href: "https://topos.institute/events/em-cats/", linkText: "Em-Cats", activityCategory: "attendance" },
         { date: "2023-07-06", text: "Gave a talk at Category Theory 2023.", href: "https://sites.uclouvain.be/ct2023/", linkText: "Category Theory 2023" },
         { date: "2023-08-21", text: "Gave a talk at the 7th Japan Combinatorial Game Theory Conference.", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53", linkText: "7th Japan Combinatorial Game Theory Conference" },
-        { date: "2023-09", text: "Spoke about Joyal's theory of species in 数理物理ラジオ 母関数の種.", href: "https://www.youtube.com/live/gInu95RiCUo", linkText: "数理物理ラジオ 母関数の種" },
+        { date: "2023-09", text: "Spoke about Joyal's theory of species in 数理物理ラジオ 母関数の種.", href: "https://www.youtube.com/live/gInu95RiCUo", linkText: "数理物理ラジオ 母関数の種", activityCategory: "writing-media" },
         { date: "2023-12-10", text: "Gave a talk at 数学基礎論若手の会2023.", href: "https://sites.google.com/view/mlwakatenokai2023", linkText: "数学基礎論若手の会2023" }
       ]
     },
@@ -1001,12 +971,12 @@ const siteData = {
     {
       title: "Profile Links",
       items: [
-        ["ORCiD", "https://orcid.org/0009-0008-6975-8908"],
+        ["ORCID", "https://orcid.org/0009-0008-6975-8908"],
         [
           "arXiv author search",
           "https://arxiv.org/search/math?query=Hora%2C+Ryuya&searchtype=author&abstracts=show&order=-announced_date_first&size=50"
         ],
-        ["researchmap", "https://researchmap.jp/ryuyahora"],
+        ["researchmap", "https://researchmap.jp/ryuyahora?lang=en"],
         ["nLab", "https://ncatlab.org/nlab/show/Ryuya+Hora"],
         ["Old homepage", "https://sites.google.com/view/ryuya-hora"]
       ]
@@ -1020,25 +990,25 @@ const siteData = {
         ["Yuto Kawase", "https://ykawase5048.github.io/yutokawase/"],
         ["Keisuke Hoshino", "https://sites.google.com/view/keisuke-hoshino/"],
         ["Hayato Nasu", "https://hayatonasu.github.io/hayatonasu/"],
-        ["Yuki Maehara", "https://yukimaehara.github.io"],
+        ["Yuki Maehara", "https://yukimaehara.github.io/"],
         ["Shuho Kanda", "https://shuhokanda.com/"],
-        ["Junnosuke Koizumi", "http://jkoizumi144.com/index.html"],
-        ["Yugo Takanashi", "https://tk-pair.github.io/index.html"]
+        ["Junnosuke Koizumi", "https://jkoizumi144.com/"],
+        ["Yugo Takanashi", "https://tk-pair.github.io/"]
       ]
     },
     {
       title: "Academic Photobomb",
       items: [
         { date: "2016-04", label: "数学ガールの秘密ノート 場合の数", href: "https://note7.hyuki.net" },
-        { date: "2023-05-26", label: "数理空間トポス 5周年記念公開イベント", href: "https://www.shosen.co.jp/event/9341/#:~:text=%E5%8A%A0%E8%97%A4%E6%96%87%E5%85%83" },
-        { date: "2023-09-11", label: "Filtered colimit elimination from Birkhoff's variety theorem", href: "https://arxiv.org/abs/2309.05304" },
-        { date: "2023-09-22", label: "数理物理ラジオ 母関数の種", href: "https://www.youtube.com/live/gInu95RiCUo" },
+        { date: "2023-05-26", label: "数理空間トポス 5周年記念公開イベント", href: "https://www.shosen.co.jp/event/9341/" },
+        { date: "2023-09-11", label: "Filtered colimit elimination from Birkhoff's variety theorem", href: "https://doi.org/10.1016/j.jpaa.2024.107794" },
+        { date: "2023-09-22", label: "数理物理ラジオ第16回 ゲスト: ほらさん", href: "https://www.youtube.com/watch?v=gInu95RiCUo" },
         { date: "2023-10-10", label: "On variations of Yama Nim and Triangular Nim", href: "https://arxiv.org/abs/2310.06610" },
         { date: "2023-11-22", label: "Quadratic residues and domino tilings", href: "https://arxiv.org/abs/2311.13597" },
-        { date: "2024-02-28", label: "組み合わせゲーム理論の世界", href: "https://www.kyoritsu-pub.co.jp/book/b10044851.html" },
+        { date: "2024-02-28", label: "組合せゲーム理論の世界", href: "https://www.kyoritsu-pub.co.jp/book/b10044851.html" },
         { date: "2024-07-29", label: "On iterated circumcenter sequences", href: "https://arxiv.org/abs/2407.19767" },
-        { date: "2025-03-07", label: "Algorithmic Foundations for Social Advancement", href: "https://link.springer.com/book/10.1007/978-981-96-0668-9" },
-        { date: "2025-07-06", label: "On the theories classified by an etendue", href: "https://arxiv.org/abs/2507.04526" },
+        { date: "2025-03-07", label: "Algorithmic Foundations for Social Advancement", href: "https://doi.org/10.1007/978-981-96-0668-9" },
+        { date: "2025-07-06", label: "On the theories classified by an étendue", href: "https://arxiv.org/abs/2507.04526" },
         { date: "2025-10-10", label: "数学セミナー2025年11月号 圏論の質問箱", href: "https://www.nippyo.co.jp/shop/magazine/9611.html" },
         { date: "2025-10-20", label: "大学への数学 2025年11月号 数理空間トポス", href: "https://www.tokyo-s.jp/assets/uploads/ds2511mokuji_d_ol.pdf" }
       ]
@@ -3536,36 +3506,31 @@ const activityVisitRecords = [
   { date: "2026-02-07", title: "Organized Categories in Tokyo 2", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A" },
   { date: "2026-02-22", title: "Attended the 20th Combinatorial Games and Puzzle Project", locationId: "tokyo", kind: "attended", href: "http://www.alg.cei.uec.ac.jp/itohiro/Games/Game260222.html" },
   { date: "2026-03-27", title: "Attended Workshop on Modal Logic", locationId: "tokyo", kind: "attended", href: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0" },
-  { date: "2026-03-27", title: "Attended the Pacific Category Theory Seminar", locationId: "tokyo", kind: "attended", href: "https://pctseminar.github.io" },
   { date: "2026-04-05", title: "Attended the HUMAI Anthology final screening", locationId: "tokyo", kind: "attended", href: "https://zen.ac.jp/news/humai_anthology2025" },
   { date: "2025-02-12", title: "Attended the Kyoto Category Theory Meeting", locationId: "kyoto", kind: "attended", href: "https://sites.google.com/view/kyoto-category-theory-meeting" },
-  { date: "2025-02", title: "Attended Logic Winter School at RIKEN", locationId: "saitama", kind: "attended", href: oldActivitiesSource },
-  { date: "2025-04", title: "Visited LIPN for discussion with Morgan Rogers", locationId: "paris", kind: "visit", href: oldActivitiesSource },
-  { date: "2025-04", title: "Attended a two-day seminar by Joshua Wrigley at Université Paris Cité", locationId: "paris", kind: "attended", href: oldActivitiesSource },
-  { date: "2025-05", title: "Attended the first OxTop seminar at Oxford University", locationId: "oxford", kind: "attended", href: oldActivitiesSource },
+  { date: "2025-02", title: "Attended Logic Winter School III at RIKEN", locationId: "saitama", kind: "attended", href: "https://sites.google.com/view/logic-winter-school-iii/" },
+  { date: "2025-04", title: "Visited LIPN for discussion with Morgan Rogers", locationId: "paris", kind: "visit", href: "https://lipn.univ-paris13.fr/~rogers/", linkText: "Morgan Rogers" },
+  { date: "2025-04", title: "Attended a two-day seminar by Joshua Wrigley at Université Paris Cité", locationId: "paris", kind: "attended", href: "https://jlwrigley.github.io/", linkText: "Joshua Wrigley" },
+  { date: "2025-05", title: "Attended the first TopOx seminar at Oxford University", locationId: "oxford", kind: "attended", href: "https://topos.institute/events/topox/", linkText: "TopOx seminar" },
   { date: "2025-10-18", title: "Attended the 25th Takagi Lectures", locationId: "kyoto", kind: "attended", href: "https://www.ms.u-tokyo.ac.jp/~toshi/jjm/JJM_HP/contents/takagi/25th/index.htm" },
-  { date: "2025-10-27", title: "Visited Akita University for SLACS 2025", locationId: "akita", kind: "visit", href: "https://sites.google.com/view/slacs2025akita/home" },
-  { date: "2025-11-16", title: "Attended the Game theory seminar at Karuizawa seminar house", locationId: "karuizawa", kind: "attended", href: oldActivitiesSource },
-  { date: "2025-11", title: "Attended a seminar by Ryoma Sin'ya at Hongo campus, The University of Tokyo", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
-  { date: "2025-12", title: "Attended PCT seminar", locationId: "tokyo", kind: "attended", href: "https://pctseminar.github.io" },
-  { date: "2025-12", title: "Attended TMU geometry seminar", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
+  { date: "2025-11-16", title: "Attended a combinatorial game theory research seminar retreat for the NII collaborative research project 組合せゲーム理論の応用可能性の探求 at the NII Karuizawa International Seminar House", locationId: "karuizawa", kind: "attended", href: "https://www.nii.ac.jp/research/upload/2025_NII_koubo-kyoudou_list.pdf", linkText: "組合せゲーム理論の応用可能性の探求" },
+  { date: "2025-11", title: "Attended a seminar by Ryoma Sin'ya at Hongo campus, The University of Tokyo", locationId: "tokyo", kind: "attended", href: "https://www.kanagawa-u.ac.jp/professor/details/details_102276.html", linkText: "Ryoma Sin'ya" },
+  { date: "2025-12", title: "Attended TMU geometry seminar", locationId: "tokyo", kind: "attended", href: "https://sites.google.com/site/tmugeometry/" },
   { date: "2024-05-15", title: "Organized Categories in Tokyo 0", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A" },
-  { date: "2024-06", title: "Visited Queen Mary University of London", locationId: "london", kind: "visit", href: oldActivitiesSource },
+  { date: "2024-06", title: "Visited Queen Mary University of London", locationId: "london", kind: "visit", href: "https://www.qmul.ac.uk/", linkText: "Queen Mary University of London" },
   { date: "2024-07-01", title: "Attended TACL 2024 at Barcelona", locationId: "barcelona", kind: "attended", href: "https://barcinologic.github.io/web/tacl_mirror/index.html" },
-  { date: "2024-08", title: "Visited Kyoto RIMS", locationId: "kyoto", kind: "visit", href: oldActivitiesSource },
+  { date: "2024-08", title: "Visited RIMS, Kyoto University", locationId: "kyoto", kind: "visit", href: "https://www.kurims.kyoto-u.ac.jp/en/index.html", linkText: "RIMS, Kyoto University" },
   { date: "2024-11-23", dateRange: "2024-11-23 - 2024-11-24", title: "Organized Categories in Tokyo 1", locationId: "tokyo", kind: "organized", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A" },
-  { date: "2024-11-30", title: "Gave a poster session talk at AFSA area meeting", locationId: "tokyo", kind: "poster", href: "https://afsa.jp/afsa-2024_generalmeetingautumn/" },
-  { date: "2024-12", title: "Attended courses on Automata and Class field theory by Prof. Uramoto at RIMS", locationId: "kyoto", kind: "attended", href: oldActivitiesSource },
-  { date: "2023-02", title: "Attended FoPM symposium", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
-  { date: "2023-03", title: "Talked about Applied Category Theory at FoPM seminar", locationId: "tokyo", kind: "talk", href: oldActivitiesSource },
-  { date: "2023-05", title: "Attended JCGTW", locationId: "tokyo", kind: "attended", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A" },
-  { date: "2023-05", title: "Talked about Applied Category Theory at a bookstore talk event", locationId: "tokyo", kind: "talk", href: oldActivitiesSource },
-  { date: "2023-08", title: "Staff and participant at ICIAM", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
-  { date: "2023-09", title: "Attended 数物セミナーadv at Okayama", locationId: "okayama", kind: "attended", href: oldActivitiesSource },
-  { date: "2023-09", title: "Discussion with Prof. Ivan Tomasic at Kyoto", locationId: "kyoto", kind: "visit", href: oldActivitiesSource },
-  { date: "2023-09", title: "Discussion with Prof. Ivan Tomasic at Tokyo", locationId: "tokyo", kind: "visit", href: oldActivitiesSource },
-  { date: "2023-09", title: "Attended the last seminar on abduction at NII", locationId: "tokyo", kind: "attended", href: oldActivitiesSource },
-  { date: "2023-10", title: "Visit in Kyoto, RIMS and AFSA colloquium", locationId: "kyoto", kind: "visit", href: oldActivitiesSource },
+  { date: "2024-12", title: "Attended courses on Automata and Class field theory by Takeo Uramoto at RIMS", locationId: "kyoto", kind: "attended", href: "https://ris.kuas.kagoshima-u.ac.jp/html/100007588_en.html", linkText: "Takeo Uramoto" },
+  { date: "2023-02", title: "Attended FoPM International Symposium", locationId: "tokyo", kind: "attended", href: "https://indico.ipmu.jp/event/420/overview" },
+  { date: "2023-03", title: "Talked about Applied Category Theory at a FoPM seminar on Hongo campus, The University of Tokyo", locationId: "tokyo", kind: "talk", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", linkText: "FoPM" },
+  { date: "2023-05", title: "Talked at 数理空間トポス 5th anniversary public event at Shosen Grande", locationId: "tokyo", kind: "talk", href: "https://www.shosen.co.jp/event/9341/" },
+  { date: "2023-08", title: "Staff and participant at ICIAM 2023", locationId: "tokyo", kind: "attended", href: "https://iciam2023.org/" },
+  { date: "2023-09", title: "Attended the 3rd 数物セミナーAdvanced at Okayama", locationId: "okayama", kind: "attended", href: "https://suubutsuseminar.com/camp/camp_ad3.html" },
+  { date: "2023-09", title: "Discussion with Ivan Tomašić at Kyoto", locationId: "kyoto", kind: "visit", href: "https://www.qmul.ac.uk/maths/profiles/tomasici.html", linkText: "Ivan Tomašić" },
+  { date: "2023-09", title: "Discussion with Ivan Tomašić at Tokyo", locationId: "tokyo", kind: "visit", href: "https://www.qmul.ac.uk/maths/profiles/tomasici.html", linkText: "Ivan Tomašić" },
+  { date: "2023-09", title: "Attended the last seminar on abduction at NII Kanda Lab", locationId: "tokyo", kind: "attended", href: "https://research.nii.ac.jp/~uno/kandalab/index.html", linkText: "NII Kanda Lab" },
+  { date: "2023-10", title: "Visit in Kyoto, RIMS and AFSA colloquium", locationId: "kyoto", kind: "visit", href: "https://afsa.jp/meeting/" },
   { date: "2023-12", title: "Talked at 数学基礎論若手の会2023", locationId: "chiba", kind: "talk", href: "https://sites.google.com/view/mlwakatenokai2023" }
 ];
 
@@ -4521,8 +4486,14 @@ function canonicalVisitLocation(location) {
   return match ? visitLocationById(match[0]) || location : location;
 }
 
+const visitMapExcludedPresentationIds = new Set([
+  // Presented by Kyosuke Higashida; the owner's visit is represented by the CGP attendance record.
+  "53075058"
+]);
+
 function presentationVisitRecords() {
   return sortedPresentations(researchmapPresentationRecords())
+    .filter((record) => !visitMapExcludedPresentationIds.has(researchmapPresentationId(record)))
     .map((record) => {
       const originalLocation = talkLocationForRecord(record);
       const location = canonicalVisitLocation(originalLocation);
@@ -4973,7 +4944,9 @@ function renderTalkMapDetail(groups) {
   list.setAttribute("aria-label", `Mapped visits for ${selected.location.name}`);
   selected.records.forEach((record) => {
     const item = el("li");
-    const title = record.href ? link(record.title, record.href) : document.createTextNode(record.title);
+    const title = record.href && record.linkText
+      ? partialLinkedText(record.title, record.titleJa, record.href, record.linkText, record.linkTextJa)
+      : record.href ? link(record.title, record.href) : document.createTextNode(record.title);
     item.append(
       title,
       el("span", null, compactText([record.date, record.kind, record.meta]).join(" / "))
@@ -5497,6 +5470,40 @@ function activityRecordDateLabel(record, groupTitle) {
   return record.date || explicitTimelineLabel(record.text) || groupTitle;
 }
 
+function activityRecordStatus(record) {
+  return String(record?.status || "").toLowerCase();
+}
+
+function activityRecordIsPlanned(record) {
+  return activityRecordStatus(record) === "planned";
+}
+
+function activityRecordEndTime(record, group, index, total) {
+  const time = activityRecordTime(record, group, index, total);
+  return timelineRangeEndFromText(record.date) || time;
+}
+
+function activityRecordIsFuture(record, group, index, total) {
+  const endTime = activityRecordEndTime(record, group, index, total);
+  return Number.isFinite(endTime) && endTime >= timelineToday();
+}
+
+function activityRecordIsUpcoming(record, group, index, total) {
+  return activityRecordIsPlanned(record) || activityRecordIsFuture(record, group, index, total);
+}
+
+function activityRecordEntries({ includeOther = true } = {}) {
+  return siteData.activities.flatMap((group) => {
+    if (!includeOther && group.title === "Other") return [];
+    const total = Math.max(1, group.items.length);
+    return group.items.map((record, index) => {
+      const time = activityRecordTime(record, group, index, total);
+      const endTime = timelineRangeEndFromText(record.date) || time;
+      return { group, record, index, total, time, endTime };
+    });
+  });
+}
+
 function timelinePosition(time, firstTime, lastTime, index, count) {
   if (!Number.isFinite(time)) return count <= 1 ? 50 : (index / (count - 1)) * 100;
   if (firstTime === lastTime) return 50;
@@ -5639,7 +5646,7 @@ function profileTimelineHref(hash) {
 function homeTimelineIsMeetingActivity(record) {
   const text = simplified(record.text);
   return (
-    /\b(attended|will attend|joined)\b/u.test(text) ||
+    /\b(attended|will attend|joined|participated)\b/u.test(text) ||
     /\bpresented a .*poster\b/u.test(text) ||
     /\bgave (?:a )?talks?(?: on .*)? at\b/u.test(text) ||
     /\bwill give .*talk at\b/u.test(text) ||
@@ -5647,28 +5654,35 @@ function homeTimelineIsMeetingActivity(record) {
   );
 }
 
+function activityCategoryLabel(category) {
+  return {
+    attendance: "Attendance",
+    milestone: "Milestone",
+    "writing-media": "Writing/Media"
+  }[category] || "";
+}
+
 function homeTimelineActivityRecords() {
-  return siteData.activities.flatMap((group) => {
-    if (group.title === "Other") return [];
-    const total = Math.max(1, group.items.length);
-    return group.items
-      .map((record, index) => {
-        const time = activityRecordTime(record, group, index, total);
-        if (!Number.isFinite(time)) return null;
-        return {
-          kind: "activity",
-          theme: contentTheme(record.text),
-          title: cleanActivityTitle(record.text),
-          dateLabel: activityRecordDateLabel(record, group.title),
-          meta: group.title === "Plans" ? "Plan" : "Activity",
-          href: localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
-          time,
-          endTime: timelineRangeEndFromText(record.date) || time,
-          activityScale: homeTimelineIsMeetingActivity(record) ? "meeting" : "minor"
-        };
-      })
-      .filter(Boolean);
-  });
+  return activityRecordEntries({ includeOther: false })
+    .map(({ group, record, index, total, time, endTime }) => {
+      if (!Number.isFinite(time)) return null;
+      const activityCategory = record.activityCategory || "";
+      const activityStatus = activityRecordIsUpcoming(record, group, index, total) ? "planned" : "";
+      return {
+        kind: "activity",
+        theme: contentTheme(record.text),
+        title: cleanActivityTitle(record.text),
+        dateLabel: activityRecordDateLabel(record, group.title),
+        meta: compactText([activityStatus === "planned" ? "Plan" : "Activity", activityCategoryLabel(activityCategory)]).join(" / "),
+        href: localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
+        time,
+        endTime,
+        activityScale: homeTimelineIsMeetingActivity(record) ? "meeting" : "minor",
+        activityCategory,
+        activityStatus
+      };
+    })
+    .filter(Boolean);
 }
 
 function positionTimelineTitle(record) {
@@ -5909,7 +5923,7 @@ function homeTimelineSelectedIndex(records) {
   const keyedIndex = records.findIndex((record) => homeTimelineRecordKey(record) === state.homeTimelineKey);
   if (keyedIndex >= 0) return keyedIndex;
   const latestActivityIndex = records.reduce((bestIndex, record, index) => {
-    if (record.kind !== "activity" || record.meta === "Plan") return bestIndex;
+    if (record.kind !== "activity" || record.activityStatus === "planned") return bestIndex;
     if (bestIndex < 0) return index;
     return record.time > records[bestIndex].time ? index : bestIndex;
   }, -1);
@@ -6242,6 +6256,8 @@ function homeTimelinePointRadius(record) {
   if (homeTimelineIsBimonthlyCategoryTheorySeminarActivity(record)) return 4.8;
   if (homeTimelineIsCategoriesInTokyoActivity(record)) return 6.8;
   if (homeTimelineIsMinorTalk(record)) return 5;
+  if (record.kind === "activity" && record.activityCategory === "milestone") return 5.8;
+  if (record.kind === "activity" && record.activityCategory === "writing-media") return 5.4;
   if (record.kind === "activity") return record.activityScale === "minor" ? 3.5 : 5;
   if (record.kind === "award") return 7.5;
   if (record.kind === "talk") return 8;
@@ -6471,6 +6487,7 @@ function renderHomeTimelineNode(record, position) {
     `kind-${record.kind}`,
     `theme-${record.theme}`,
     record.kind === "activity" ? `activity-${record.activityScale || "meeting"}` : "",
+    record.kind === "activity" && record.activityCategory ? `activity-category-${slugify(record.activityCategory)}` : "",
     homeTimelineIsMinorTalk(record) ? "talk-minor" : "",
     homeTimelineIsCategoriesInTokyoActivity(record) ? "activity-categories-tokyo" : "",
     homeTimelineIsBimonthlyCategoryTheorySeminarActivity(record) ? "activity-categories-tokyo-private" : ""
@@ -6673,7 +6690,7 @@ function renderHomeTimelineDetail(record, index, total) {
 
 function homeTimelineLatestPlanTime(records) {
   const planTimes = records
-    .filter((record) => record.kind === "activity" && record.meta === "Plan")
+    .filter((record) => record.kind === "activity" && record.activityStatus === "planned")
     .flatMap((record) => [record.endTime, record.time])
     .filter(Number.isFinite);
   return planTimes.length ? Math.max(...planTimes) : Number.NaN;
@@ -15856,10 +15873,14 @@ function renderActivities() {
   const groups = limitGroups ? siteData.activities.slice(0, limitGroups) : siteData.activities;
 
   groups.forEach((group) => {
+    const records = group.items
+      .map((record, index) => ({ record, index }))
+      .filter(({ record }) => !activityRecordIsPlanned(record));
+    if (!records.length) return;
     const column = el("article", "activity-column");
     column.append(el("h3", null, group.title));
     const list = el("ul");
-    group.items.forEach((record, index) => {
+    records.forEach(({ record, index }) => {
       const item = el("li", "activity-list-item");
       item.id = activityAnchor(group, record, index);
       item.append(uiIcon(activityIconKey(group, record), "activity-item-icon"));
@@ -15884,17 +15905,27 @@ function renderPlans() {
   const root = document.querySelector("#home-plan-list");
   if (!root) return;
   root.replaceChildren();
-  const plans = siteData.activities.find((group) => group.title === "Plans")?.items || [];
+  const plans = activityRecordEntries({ includeOther: false })
+    .filter(({ group, record, index, total }) => activityRecordIsUpcoming(record, group, index, total))
+    .sort((a, b) => {
+      if (Number.isFinite(a.time) && Number.isFinite(b.time)) return a.time - b.time;
+      if (Number.isFinite(a.time)) return -1;
+      if (Number.isFinite(b.time)) return 1;
+      return String(a.record.text).localeCompare(String(b.record.text));
+    });
 
   if (!plans.length) {
     root.append(el("p", "empty-state", "No current plans listed."));
     return;
   }
 
-  plans.forEach((record) => {
+  plans.forEach(({ group, record, index }) => {
     const item = el("article", "plan-item");
+    item.id = activityAnchor(group, record, index);
+    if (record.date) item.append(el("span", "activity-date", record.date));
     const heading = el("h3");
-    if (record.href) heading.append(link(record.text, record.href));
+    if (record.href && record.linkText) heading.append(partialLinkedText(record.text, record.textJa, record.href, record.linkText, record.linkTextJa));
+    else if (record.href) heading.append(link(record.text, record.href));
     else heading.textContent = record.text;
     item.append(heading);
     root.append(item);
@@ -16402,8 +16433,8 @@ function renderLinks() {
       const item = el("li", "icon-list-item");
       item.append(uiIcon(iconKeyForLink(label, href, group.title), "list-item-icon"));
       const body = el("div", "icon-list-body");
-      if (dateLabel) body.append(el("span", "link-date", dateLabel));
       body.append(link(label, href));
+      if (dateLabel) body.append(el("span", "link-date", dateLabel));
       item.append(body);
       list.append(item);
     });

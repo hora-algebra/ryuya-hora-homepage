@@ -11,9 +11,8 @@ const debugPort = 9237;
 const apps = [
   ["genericalgoid", "https://genericalgoid-ryuyahora.vercel.app"],
   ["moser-worm", "https://results-fawn.vercel.app"],
+  ["erdos-trapezoid-hunt", "https://erdos-game-ryuyahora.vercel.app"],
   ["adjunction-reboot", "https://adjunction-reboot-v2-ryuyahora.vercel.app/workbench"],
-  ["string-diagram", "https://adjoint-string-diagram-app-ryuyahor.vercel.app/workbench"],
-  ["automaton-acceptance-game", "https://automaton-acceptance-game-ryuyahora.vercel.app"],
   ["cfg-monoid-game", "https://automaton-acceptance-game-cfg-monoi.vercel.app"]
 ];
 

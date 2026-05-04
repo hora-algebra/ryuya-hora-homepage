@@ -249,7 +249,7 @@ window.worksPapersData = {
         "title": "Internal Parameterizations of Hyperconnected Quotients",
         "venue": "Theory and Applications of Categories 42(11), 263-313",
         "year": "2024",
-        "preprintDate": "2023-02",
+        "preprintDate": "2023-02-14",
         "publicationDate": "2024-08-23",
         "link": "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html",
         "figure": "internal-parameterizations",
@@ -374,6 +374,7 @@ window.worksPapersData = {
         "authors": "with Yuki Maehara and Yuhi Kamio",
         "venue": "arXiv:2503.03439",
         "year": "2025",
+        "preprintDate": "2025-03-05",
         "link": "https://arxiv.org/abs/2503.03439",
         "figure": "lawvere-fourth",
         "themes": [
@@ -392,6 +393,7 @@ window.worksPapersData = {
         "title": "Topoi of automata I: Four topoi of automata and regular languages",
         "venue": "arXiv:2411.06358",
         "year": "2024",
+        "preprintDate": "2024-11-10",
         "link": "https://arxiv.org/abs/2411.06358",
         "figure": "topoi-automata",
         "themes": [
@@ -411,6 +413,7 @@ window.worksPapersData = {
         "title": "Games as recursive coalgebras: A categorical view on the Nim-sum",
         "venue": "arXiv:2510.22886",
         "year": "2025",
+        "preprintDate": "2025-10-27",
         "link": "https://arxiv.org/abs/2510.22886",
         "figure": "games-coalgebras",
         "themes": [
@@ -431,6 +434,7 @@ window.worksPapersData = {
         "title": "Normalization of a subgroup, in a topos, and of a word-congruence",
         "venue": "arXiv:2511.05012",
         "year": "2025",
+        "preprintDate": "2025-11-07",
         "link": "https://arxiv.org/abs/2511.05012",
         "figure": "normalization",
         "themes": [

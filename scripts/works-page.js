@@ -269,7 +269,6 @@
     const shape = (tag, attrs, text) => svgEl(tag, attrs, text);
     const normalizedKey = ({
       document: "paper",
-      slides: "talk",
       papers: "paper",
       notes: "note",
       talks: "talk",
@@ -305,6 +304,19 @@
         line({ d: "M6.2 13.2H17.7", "stroke-width": "1.45" }),
         shape("path", { d: "M17.5 15.2L20 12.7L21.1 13.8L18.6 16.3L17.2 16.6Z", fill: "currentColor", "fill-opacity": "0.7" }),
         shape("path", { d: "M19.6 13.1L20.7 14.2", fill: "none", stroke: "var(--paper)", "stroke-linecap": "round", "stroke-width": "0.8" })
+      );
+      return svg;
+    }
+
+    if (normalizedKey === "slides") {
+      svg.append(
+        shape("rect", { x: "4.6", y: "5.2", width: "14.8", height: "10.2", rx: "1.6", fill: "none", stroke: "currentColor", "stroke-width": "1.9", "stroke-linejoin": "round" }),
+        line({ d: "M12 15.5V19.2" }),
+        line({ d: "M8.6 19.2H15.4" }),
+        shape("rect", { x: "7.1", y: "7.6", width: "4.2", height: "2.8", rx: "0.6", fill: "currentColor", "fill-opacity": "0.24", stroke: "currentColor", "stroke-width": "1.1" }),
+        line({ d: "M13.2 8.1H16.8", "stroke-width": "1.45" }),
+        line({ d: "M13.2 10.4H16", "stroke-width": "1.45" }),
+        line({ d: "M7.2 12.7H16.8", "stroke-width": "1.45" })
       );
       return svg;
     }
@@ -377,6 +389,40 @@
         shape("path", { d: "M9.8 13.9A4.2 4.2 0 0 0 16 14.3L18.7 11.6A4.2 4.2 0 1 0 12.8 5.7L11.3 7.2", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" }),
         line({ d: "M9.6 14.4L14.4 9.6", "stroke-width": "2.05" }),
         shape("path", { d: "M14.2 10.1A4.2 4.2 0 0 0 8 9.7L5.3 12.4A4.2 4.2 0 1 0 11.2 18.3L12.7 16.8", fill: "none", stroke: "currentColor", "stroke-width": "2.05", "stroke-linecap": "round", "stroke-linejoin": "round" })
+      );
+      return svg;
+    }
+
+    if (normalizedKey === "building") {
+      svg.append(
+        line({ d: "M4.8 19.1H19.2" }),
+        line({ d: "M7 19.1V10.1" }),
+        line({ d: "M12 19.1V10.1" }),
+        line({ d: "M17 19.1V10.1" }),
+        line({ d: "M4.8 10.1H19.2" }),
+        line({ d: "M4.8 10.1L12 5L19.2 10.1" })
+      );
+      return svg;
+    }
+
+    if (normalizedKey === "researchmap") {
+      svg.append(
+        shape("circle", { cx: "7.4", cy: "9.1", r: "2.6", fill: "currentColor" }),
+        shape("circle", { cx: "16.5", cy: "8.2", r: "2.45", fill: "currentColor", "fill-opacity": "0.68" }),
+        shape("circle", { cx: "14.4", cy: "16.2", r: "2.75", fill: "currentColor" }),
+        shape("path", { d: "M9.7 9L14.2 8.5M8.9 10.9L12.6 14.4M15.8 10.5L15 13.6", fill: "none", stroke: "currentColor", "stroke-width": "1.15", "stroke-linecap": "round", "stroke-opacity": "0.64" }),
+        shape("circle", { cx: "10.7", cy: "12.1", r: "0.8", fill: "var(--paper)" }),
+        shape("circle", { cx: "13.2", cy: "11.2", r: "0.8", fill: "var(--paper)" }),
+        shape("circle", { cx: "12.7", cy: "14", r: "0.8", fill: "var(--paper)" })
+      );
+      return svg;
+    }
+
+    if (normalizedKey === "download") {
+      svg.append(
+        line({ d: "M12 5.7V14.9" }),
+        line({ d: "M8.6 11.7L12 15.1L15.4 11.7" }),
+        line({ d: "M6.2 18.2H17.8" })
       );
       return svg;
     }
@@ -602,12 +648,64 @@
     return button;
   }
 
-  function appendActionLinks(parent, records) {
+  const actionLinkIconKeys = {
+    event: "building",
+    slides: "slides",
+    slide: "slides",
+    download: "download",
+    downloads: "download",
+    researchmap: "researchmap"
+  };
+
+  const talkActionOrder = {
+    event: 0,
+    slides: 1,
+    slide: 1,
+    download: 2,
+    downloads: 2,
+    researchmap: 3
+  };
+
+  function actionLabelKey(label) {
+    return simplified(label).replace(/\s+/g, "-");
+  }
+
+  function actionLinkIconKey(label) {
+    const key = actionLabelKey(label);
+    if (key.includes("researchmap")) return "researchmap";
+    if (key.includes("download")) return "download";
+    if (key.includes("slide")) return "slides";
+    if (key.includes("event")) return "building";
+    return actionLinkIconKeys[key] || "";
+  }
+
+  function orderedTalkActions(records) {
+    return [...(records || [])].sort(([labelA], [labelB]) => {
+      const rankA = talkActionOrder[actionLabelKey(labelA)] ?? 20;
+      const rankB = talkActionOrder[actionLabelKey(labelB)] ?? 20;
+      return rankA - rankB || String(labelA).localeCompare(String(labelB));
+    });
+  }
+
+  function actionLinkElement(label, href, options = {}) {
+    if (!options.iconOnly) return link(symbolicCloudPenLabel(label), href, "action-link");
+    const iconKey = actionLinkIconKey(label);
+    if (!iconKey) return link(symbolicCloudPenLabel(label), href, "action-link");
+    const anchor = link("", href, "action-link action-link-icon-only");
+    const text = symbolicCloudPenLabel(label);
+    anchor.setAttribute("aria-label", text);
+    anchor.title = text;
+    anchor.append(uiIcon(iconKey, "action-link-icon"));
+    return anchor;
+  }
+
+  function appendActionLinks(parent, records, options = {}) {
     if (!records || !records.length) return;
-    const actions = el("div", "action-links");
-    records.forEach((record) => {
+    const actions = el("div", options.iconOnly ? "action-links action-links-icon-only" : "action-links");
+    const sourceRecords = options.order === "talk" ? orderedTalkActions(records) : records;
+    sourceRecords.forEach((record) => {
       const [label, href] = record;
-      if (href) actions.append(link(symbolicCloudPenLabel(label), href, "action-link"));
+      if (href) actions.append(actionLinkElement(label, href, options));
     });
     if (actions.children.length) parent.append(actions);
   }
@@ -1616,7 +1714,27 @@
     { title: "Topoi of automata", event: "CSCAT2025", file: "CSCAT_2025-3.pdf" },
     { title: "Topoi of automata", event: "CTTA Groupe", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf" },
     { title: "Topoi of automata", event: "Categories for Automata", file: "IRIFtoday.pdf" },
+    { title: "Topoi of automata", event: "Category Theory 2025", file: "ct2025-hora.pdf" },
     { title: "Constructive mathematics and representation theory", event: "数学基礎論若手", file: "若手の会2023-8.pdf" }
+  ];
+
+  const talkExternalMaterialMatches = [
+    {
+      title: "Topoi of automata",
+      event: "CMUP",
+      material: {
+        title: "CMUP seminar flyer",
+        description: "Event flyer; not lecture slides",
+        materialType: "Flyer",
+        theme: "automata",
+        themes: ["topos", "automata"],
+        date: "2025-02-28",
+        language: "English",
+        file: "semLP_2.pdf",
+        href: "https://www.cmup.pt/sites/default/files/2025-02/semLP_2.pdf",
+        download: "https://www.cmup.pt/sites/default/files/2025-02/semLP_2.pdf"
+      }
+    }
   ];
 
   function preparationSlideLinks(title) {
@@ -2178,8 +2296,19 @@
     scrollToHashTarget();
   }
 
+  const presentationTitleCorrections = new Map([
+    ["Connecteness and full subcategories of topoi", "Connectedness and full subcategories of topoi"]
+  ]);
+
+  function presentationDisplayTitle(title) {
+    const normalizedTitle = normalizedUiText(title);
+    return presentationTitleCorrections.get(normalizedTitle) || normalizedTitle;
+  }
+
   function presentationDisplayRecord(record) {
-    return record ? { ...record, title: normalizedUiText(record.title), rawTitle: record.title } : record;
+    if (!record) return record;
+    const rawTitle = normalizedUiText(record.title);
+    return { ...record, title: presentationDisplayTitle(rawTitle), rawTitle };
   }
 
   function researchmapPresentationRecords() {
@@ -2246,6 +2375,35 @@
     return [...records, ...fallbackOnlyRecords.map((record) => ({ ...record, source: "manual" }))];
   }
 
+  function presentationFallbackRecordsFor(record) {
+    return fallbackPresentationRecords()
+      .map(presentationDisplayRecord)
+      .filter((fallbackRecord) => presentationRecordsReferToSameTalk(record, fallbackRecord));
+  }
+
+  function presentationActionLabel(label, href) {
+    const text = simplified(`${label} ${href}`);
+    if (text.includes("youtube") || text.includes("youtu be") || text.includes("video")) return "Video";
+    if (text.includes("researchmap")) return "Researchmap";
+    return "Event";
+  }
+
+  function presentationActionLinks(record) {
+    const links = [];
+    (record.links || []).forEach(([label, href]) => {
+      if (href) links.push([presentationActionLabel(label, href), href]);
+    });
+    const primaryHref = record.link || record.href;
+    if (primaryHref && !links.some(([, href]) => href === primaryHref)) {
+      links.push([presentationActionLabel("", primaryHref), primaryHref]);
+    }
+    presentationFallbackRecordsFor(record).forEach((fallbackRecord) => {
+      const href = fallbackRecord.link || fallbackRecord.href;
+      if (href) links.push([presentationActionLabel("event", href), href]);
+    });
+    return mergeActionLinks(links);
+  }
+
   function presentationSearchText(record) {
     return compactText([record.year, record.title, record.rawTitle, record.presenters?.join(" "), record.event, record.venue, record.type, record.date, record.dateRange]).join(" ");
   }
@@ -2305,6 +2463,13 @@
     return staticSlideRecords().find((record) => record.file === file) || null;
   }
 
+  function externalMaterialRecordsForPresentation(record) {
+    return talkExternalMaterialMatches
+      .filter((match) => talkSlideMatchApplies(match, record))
+      .map((match) => ({ ...match.material, kind: match.material?.kind || "material" }))
+      .filter(Boolean);
+  }
+
   function mergeSlideWithPresentation(slide, presentation) {
     if (!presentation) return { ...slide, kind: "slide" };
     return {
@@ -2343,11 +2508,13 @@
 
   function matchedSlideRecordsForPresentation(record) {
     return uniqueBy(
-      talkSlideMatches
-        .filter((match) => talkSlideMatchApplies(match, record))
-        .map((match) => rawSlideRecordByFile(match.file))
-        .filter(Boolean)
-        .map((slide) => mergeSlideWithPresentation(slide, record)),
+      [
+        ...talkSlideMatches
+          .filter((match) => talkSlideMatchApplies(match, record))
+          .map((match) => rawSlideRecordByFile(match.file))
+          .filter(Boolean),
+        ...externalMaterialRecordsForPresentation(record)
+      ].map((slide) => mergeSlideWithPresentation(slide, record)),
       (slide) => slide.file || slide.href || slide.title
     );
   }
@@ -2461,6 +2628,79 @@
     if (count) count.textContent = `Showing ${shownCount} / ${allRecords.length} records`;
   }
 
+  function materialTypeLabel(record) {
+    return record.materialType || (noteRecordIsSlide(record) ? "Slides" : "Material");
+  }
+
+  function materialIconKey(record) {
+    const label = simplified(materialTypeLabel(record));
+    if (label.includes("flyer") || label.includes("event")) return "external";
+    return "slides";
+  }
+
+  function materialActionLabel(record) {
+    const typeLabel = materialTypeLabel(record);
+    return typeLabel === "Slides" ? "Slides" : typeLabel;
+  }
+
+  function materialActionLinks(record) {
+    const href = noteHref(record);
+    const links = href ? [[materialActionLabel(record), href]] : [];
+    const downloadHref = noteDownloadHref(record);
+    if (downloadHref && downloadHref !== href) links.push(["Download", downloadHref]);
+    return links;
+  }
+
+  function shouldRenderMaterialStrip(slides) {
+    if (!slides.length) return false;
+    if (slides.length > 1) return true;
+    return materialTypeLabel(slides[0]) !== "Slides";
+  }
+
+  function materialCompactLabel(record) {
+    const title = shortNoteTitle(record);
+    if (record.materialType) return title;
+    const talkTitle = simplified(record.talkTitle || record.talkRecord?.title || "");
+    const noteTitle = simplified(title);
+    if (talkTitle && noteTitle && (talkTitle === noteTitle || talkTitle.includes(noteTitle) || noteTitle.includes(talkTitle))) {
+      return record.description || noteDateLabel(record) || materialTypeLabel(record);
+    }
+    return title;
+  }
+
+  function appendMaterialAnchors(parent, slides, slideAnchorRegistry) {
+    slides.forEach((slide) => {
+      const anchorId = noteAnchor(slide);
+      if (!anchorId || slideAnchorRegistry.has(anchorId)) return;
+      const anchor = el("span", "talk-material-anchor");
+      anchor.id = anchorId;
+      anchor.setAttribute("aria-hidden", "true");
+      parent.append(anchor);
+      slideAnchorRegistry.add(anchorId);
+    });
+  }
+
+  function renderTalkMaterialStrip(slides, slideAnchorRegistry) {
+    const strip = el("div", "talk-material-strip");
+    strip.append(el("span", "talk-material-strip-label", "Materials"));
+    slides.forEach((slide) => {
+      const chip = el("span", "talk-material-chip");
+      const anchorId = noteAnchor(slide);
+      if (anchorId && !slideAnchorRegistry.has(anchorId)) {
+        chip.id = anchorId;
+        slideAnchorRegistry.add(anchorId);
+      }
+      const typeLabel = materialTypeLabel(slide);
+      chip.append(uiIcon(materialIconKey(slide), "talk-material-chip-icon"));
+      chip.append(el("span", "talk-material-chip-kind", typeLabel));
+      chip.append(link(materialCompactLabel(slide), noteHref(slide), "talk-material-chip-link"));
+      const downloadHref = noteDownloadHref(slide);
+      if (downloadHref && downloadHref !== noteHref(slide)) chip.append(link("Download", downloadHref, "talk-material-chip-action"));
+      strip.append(chip);
+    });
+    return strip;
+  }
+
   function renderTalkMaterialList(slides, slideAnchorRegistry) {
     const list = el("div", "talk-material-list");
     slides.forEach((slide) => {
@@ -2472,7 +2712,9 @@
       }
       const body = el("div", "talk-material-body");
       const title = el("div", "talk-material-title");
-      title.append(uiIcon("slides", "talk-material-icon"), link(shortNoteTitle(slide), noteHref(slide)));
+      const typeLabel = materialTypeLabel(slide);
+      title.append(uiIcon(materialIconKey(slide), "talk-material-icon"), link(shortNoteTitle(slide), noteHref(slide)));
+      if (typeLabel !== "Slides") title.append(el("span", "talk-material-kind", typeLabel));
       body.append(title);
       const meta = compactText([noteDateLabel(slide), noteThemeLabel(noteTheme(slide)), noteLanguageKey(slide)]).join(" / ");
       if (meta) body.append(el("div", "talk-material-meta", meta));
@@ -2489,6 +2731,15 @@
   function renderTalkItem(record, href, metaText, actions = []) {
     const item = el("li");
     const shell = el("div", "talk-item-shell");
+    const body = el("div", "talk-item-body");
+    const title = el("div", "talk-title");
+    title.append(uiIcon("talk", "talk-title-icon"));
+    if (href) title.append(link(record.title, href));
+    else title.append(el("span", null, record.title));
+    title.append(titleCopyButton(talksPageHref(talkRecordAnchor(record)), record.title));
+    if (actions.length) appendActionLinks(title, actions, { iconOnly: true, order: "talk" });
+    body.append(title, el("span", "talk-venue", metaText));
+    shell.append(body);
     const preview = talkThumbnail(record);
     if (preview) {
       const thumb = link("", preview.href, "talk-thumb");
@@ -2503,15 +2754,6 @@
       shell.append(thumb);
       item.classList.add("has-thumbnail");
     }
-    const body = el("div", "talk-item-body");
-    const title = el("span", "talk-title");
-    title.append(uiIcon("talk", "talk-title-icon"));
-    if (href) title.append(link(record.title, href));
-    else title.append(el("span", null, record.title));
-    title.append(titleCopyButton(talksPageHref(talkRecordAnchor(record)), record.title));
-    body.append(title, el("span", "talk-venue", metaText));
-    if (actions.length) appendActionLinks(body, actions);
-    shell.append(body);
     item.append(shell);
     return item;
   }
@@ -2526,18 +2768,20 @@
         date: noteDateLabel(slide),
         year: talkSlideRecordYear(item)
       };
-      const rendered = renderTalkItem(record, noteHref(slide), compactText(["Slides only", noteDateLabel(slide), noteThemeLabel(noteTheme(slide)), noteLanguageKey(slide)]).join(" / "));
+      const rendered = renderTalkItem(record, noteHref(slide), compactText(["Slides only", noteDateLabel(slide), noteThemeLabel(noteTheme(slide)), noteLanguageKey(slide)]).join(" / "), materialActionLinks(slide));
       rendered.id = noteAnchor(slide);
       rendered.classList.add("talk-slide-item", "is-slide-only");
-      const body = rendered.querySelector(".talk-item-body");
-      if (body) body.append(renderTalkMaterialList(item.slides, slideAnchorRegistry));
       return rendered;
     }
-    const rendered = renderTalkItem(item.record, item.record.link || item.record.href, presentationMeta(item.record), []);
+    const materialActions = shouldRenderMaterialStrip(item.slides) || item.slides.length !== 1 ? [] : materialActionLinks(item.slides[0]);
+    const rendered = renderTalkItem(item.record, item.record.link || item.record.href, presentationMeta(item.record), mergeActionLinks(presentationActionLinks(item.record), materialActions));
     rendered.id = talkRecordAnchor(item.record);
     rendered.classList.add("talk-slide-item");
     const body = rendered.querySelector(".talk-item-body");
-    if (body && item.slides.length) body.append(renderTalkMaterialList(item.slides, slideAnchorRegistry));
+    if (body && item.slides.length) {
+      if (shouldRenderMaterialStrip(item.slides)) body.append(renderTalkMaterialStrip(item.slides, slideAnchorRegistry));
+      else appendMaterialAnchors(body, item.slides, slideAnchorRegistry);
+    }
     return rendered;
   }
 

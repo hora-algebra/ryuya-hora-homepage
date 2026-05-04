@@ -386,6 +386,21 @@ window.worksTalksData = {
       "localThumbnail": "assets/notes/local-state-classifier-automata.png"
     },
     {
+      "title": "Topoi of automata",
+      "description": "Category Theory 2025",
+      "theme": "automata",
+      "themes": [
+        "topos",
+        "automata"
+      ],
+      "kind": "slide",
+      "date": "2025-07-17",
+      "language": "English",
+      "file": "ct2025-hora.pdf",
+      "href": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf",
+      "download": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf"
+    },
+    {
       "title": "A note on language measurability",
       "description": "March 8, 2026",
       "theme": "automata",
