@@ -451,7 +451,6 @@ window.worksSearchData = {
       "year": "",
       "summary": "",
       "themes": [
-        "logic",
         "geometry",
         "dynamical"
       ],
@@ -465,6 +464,7 @@ window.worksSearchData = {
       "year": "",
       "summary": "",
       "themes": [
+        "automata",
         "category"
       ],
       "metaTags": [],
@@ -562,26 +562,26 @@ window.worksSearchData = {
       "kind": "Notes",
       "title": "Counting with Exponential of Groups",
       "href": "assets/notes/counting-with-exponential-of-groups.pdf",
-      "year": "",
+      "year": "2023-12",
       "summary": "An introduction to rieg theory",
       "themes": [
+        "logic",
         "algebra"
       ],
       "metaTags": [
         "expository"
       ],
-      "text": "Counting with Exponential of Groups An introduction to rieg theory counting-with-exponential-of-groups.pdf English"
+      "text": "Counting with Exponential of Groups An introduction to rieg theory counting-with-exponential-of-groups.pdf 2023-12 English algebra logic"
     },
     {
-      "kind": "Notes",
+      "kind": "Slides",
       "title": "Combinatorial games as recursive coalgebras",
       "href": "https://drive.google.com/open?id=12qTwg-9KFTLe-g4UGFtupJUas58U3Ib7",
       "year": "2024-03-15",
       "summary": "Slides at CSCAT 2024",
       "themes": [
         "games",
-        "coalgebras",
-        "algebra"
+        "coalgebras"
       ],
       "metaTags": [],
       "text": "Combinatorial games as recursive coalgebras Slides at CSCAT 2024 Hora_CSCAT2024.pdf 2024-03-15 English"
@@ -599,7 +599,7 @@ window.worksSearchData = {
       "metaTags": [
         "speculative"
       ],
-      "text": "Cloud: Topos theoretic approach to representation theory A_topos_theoretic_view_of_Gabriel_s_theorem-12.pdf English"
+      "text": "Cloud: Topos theoretic approach to representation theory A_topos_theoretic_view_of_Gabriel_s_theorem-12.pdf English topos algebra speculative"
     },
     {
       "kind": "Notes",
@@ -609,17 +609,16 @@ window.worksSearchData = {
       "summary": "A first step with a relative topos",
       "themes": [
         "topos",
-        "logic",
         "geometry",
         "dynamical"
       ],
       "metaTags": [
         "speculative"
       ],
-      "text": "Cloud: What is the geometry behind Conway's game of life? A first step with a relative topos Adv20241210_Dynamical_system_on_a_pretopological_space.pdf 2024-12-10 English"
+      "text": "Cloud: What is the geometry behind Conway's game of life? A first step with a relative topos Adv20241210_Dynamical_system_on_a_pretopological_space.pdf 2024-12-10 English topos geometry dynamical speculative"
     },
     {
-      "kind": "Notes",
+      "kind": "Slides",
       "title": "Topoi of automata",
       "href": "https://drive.google.com/open?id=1WyOxS3qTZC5jar-nyg_yL7V1lZzJrNHI",
       "year": "2025-03-12",
@@ -630,245 +629,6 @@ window.worksSearchData = {
       ],
       "metaTags": [],
       "text": "Topoi of automata CSCAT 2025 CSCAT_2025-3.pdf 2025-03-12 English"
-    },
-    {
-      "kind": "Notes",
-      "title": "Local state classifier for algebraic language theory",
-      "href": "https://drive.google.com/open?id=1jwA88f7axVA_VmGsUasrudicI1OXMIPE",
-      "year": "2025-05-16",
-      "summary": "Centre Lagrange, 16 May",
-      "themes": [
-        "topos",
-        "automata",
-        "algebra"
-      ],
-      "metaTags": [],
-      "text": "Local state classifier for algebraic language theory Centre Lagrange, 16 May Local state classifier for algebraic language theory.pdf 2025-05-16 English"
-    },
-    {
-      "kind": "Notes",
-      "title": "Topoi of automata (IRIF)",
-      "href": "https://drive.google.com/open?id=1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU",
-      "year": "2025-05-06",
-      "summary": "IRIF, 6 May",
-      "themes": [
-        "topos",
-        "automata"
-      ],
-      "metaTags": [],
-      "text": "Topoi of automata (IRIF) IRIF, 6 May IRIFtoday.pdf 2025-05-06 English"
-    },
-    {
-      "kind": "Notes",
-      "title": "Local state classifier for automata theory",
-      "href": "https://drive.google.com/open?id=1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF",
-      "year": "2025-05-26",
-      "summary": "IRIF 26 May / LIPN 5 June",
-      "themes": [
-        "topos",
-        "automata"
-      ],
-      "metaTags": [],
-      "text": "Local state classifier for automata theory IRIF 26 May / LIPN 5 June IRIF20250527_ver1.pdf 2025-05-26 English"
-    },
-    {
-      "kind": "Notes",
-      "title": "A note on language measurability",
-      "href": "https://drive.google.com/open?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC",
-      "year": "2026-03-08",
-      "summary": "March 8, 2026",
-      "themes": [
-        "automata"
-      ],
-      "metaTags": [],
-      "text": "A note on language measurability March 8, 2026 An_ongoing_note_on_language_measurability_under_construction20260308.pdf 2026-03-08 English"
-    },
-    {
-      "kind": "Notes",
-      "title": "Cloud: A Rota-Baxter equation for winning games",
-      "href": "https://drive.google.com/open?id=1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU",
-      "year": "2026-04-05",
-      "summary": "April 5, 2026",
-      "themes": [
-        "games"
-      ],
-      "metaTags": [
-        "speculative"
-      ],
-      "text": "Cloud: A Rota-Baxter equation for winning games April 5, 2026 RYUYA,HORA.pdf 2026-04-05 English"
-    },
-    {
-      "kind": "Notes",
-      "title": "圏論に登場する矢印の意味は—特集 圏論の質問箱",
-      "href": "https://cir.nii.ac.jp/crid/1520869150155438720?lang=ja",
-      "year": "2025-11",
-      "summary": "数学セミナー, 2025-11",
-      "themes": [
-        "category"
-      ],
-      "metaTags": [],
-      "text": "圏論に登場する矢印の意味は—特集 圏論の質問箱 数学セミナー, 2025-11 数学セミナー 2025-11 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "順序集合で遊ぶKan拡張入門",
-      "href": "https://drive.google.com/open?id=1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt",
-      "year": "",
-      "summary": "",
-      "themes": [
-        "category"
-      ],
-      "metaTags": [
-        "expository"
-      ],
-      "text": "順序集合で遊ぶKan拡張入門 Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "圏論のToy Exampleとしての集合演算",
-      "href": "https://drive.google.com/open?id=1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP",
-      "year": "",
-      "summary": "",
-      "themes": [
-        "category"
-      ],
-      "metaTags": [
-        "expository"
-      ],
-      "text": "圏論のToy Exampleとしての集合演算 圏論のToy_Exampleとしての集合演算__Ver2_.pdf Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "Cloud: 構成的数学と表現論",
-      "href": "https://drive.google.com/open?id=1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-",
-      "year": "2023-12-10",
-      "summary": "数学基礎論若手の会 2023",
-      "themes": [
-        "logic",
-        "algebra"
-      ],
-      "metaTags": [
-        "speculative"
-      ],
-      "text": "Cloud: 構成的数学と表現論 数学基礎論若手の会 2023 若手の会2023-8.pdf 2023-12-10 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "Turning lights out with the Snake Lemma",
-      "href": "https://drive.google.com/open?id=1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp",
-      "year": "2026-02-22",
-      "summary": "CGP project, written with Kyosuke Higashida",
-      "themes": [
-        "games"
-      ],
-      "metaTags": [],
-      "text": "Turning lights out with the Snake Lemma CGP project, written with Kyosuke Higashida ライツアウトの代数的研究.pdf 2026-02-22 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "準完全情報ニム",
-      "href": "https://researchmap.jp/ryuyahora/misc/52084435",
-      "year": "2026-01",
-      "summary": "情報処理学会研究報告アルゴリズム（AL）, 2026-01",
-      "themes": [],
-      "metaTags": [],
-      "text": "準完全情報ニム 情報処理学会研究報告アルゴリズム（AL）, 2026-01 情報処理学会研究報告アルゴリズム（AL） 2026-01 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "ゼータ関数とメビウス反転",
-      "href": "https://drive.google.com/open?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4",
-      "year": "2021",
-      "summary": "数理空間トポス 2021年新歓",
-      "themes": [
-        "topos"
-      ],
-      "metaTags": [
-        "expository"
-      ],
-      "text": "ゼータ関数とメビウス反転 数理空間トポス 2021年新歓 2021topos_zeta_2-3.pdf 2021 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "順序集合で遊ぶKan拡張",
-      "href": "https://drive.google.com/open?id=11z191GZKbDVgskXKCBSVF7JXdFMMH81Q",
-      "year": "2022",
-      "summary": "数理空間トポス 2022年新歓",
-      "themes": [
-        "topos",
-        "category"
-      ],
-      "metaTags": [
-        "expository"
-      ],
-      "text": "順序集合で遊ぶKan拡張 数理空間トポス 2022年新歓 2022topos_Kan_ext.pdf 2022 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "母関数の種",
-      "href": "https://drive.google.com/open?id=1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az",
-      "year": "2023",
-      "summary": "数理空間トポス 2023年新歓",
-      "themes": [
-        "topos",
-        "combinatorics"
-      ],
-      "metaTags": [
-        "expository"
-      ],
-      "text": "母関数の種 数理空間トポス 2023年新歓 2023topos_species-8.pdf 2023 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers",
-      "year": "",
-      "summary": "Speculative cloud entry; no public PDF is attached.",
-      "themes": [
-        "algebra"
-      ],
-      "metaTags": [
-        "speculative"
-      ],
-      "text": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers Speculative cloud entry; no public PDF is attached. English"
-    },
-    {
-      "kind": "Notes",
-      "title": "アイゼンシュタイン整数と組合せ論",
-      "href": "https://drive.google.com/open?id=1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9",
-      "year": "2024-05",
-      "summary": "数理空間トポス 2024年新歓",
-      "themes": [
-        "topos",
-        "combinatorics"
-      ],
-      "metaTags": [
-        "expository"
-      ],
-      "text": "アイゼンシュタイン整数と組合せ論 数理空間トポス 2024年新歓 2024Topos新歓202405-6.pdf 2024-05 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "Cloud: Space-Time for Conway's Game of Life",
-      "href": "https://drive.google.com/open?id=1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje",
-      "year": "2026-03-17",
-      "summary": "CSCAT 2026",
-      "themes": [
-        "dynamical"
-      ],
-      "metaTags": [
-        "speculative"
-      ],
-      "text": "Cloud: Space-Time for Conway's Game of Life CSCAT 2026 Space⋊Time for Conway's Game of Life.pdf 2026-03-17 Japanese"
-    },
-    {
-      "kind": "Notes",
-      "title": "Older notes",
-      "href": "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b",
-      "year": "",
-      "summary": "Older documents are collected on Notion.",
-      "themes": [],
-      "metaTags": [],
-      "text": "Older notes Older documents are collected on Notion. Notion archive Japanese"
     },
     {
       "kind": "Slides",
@@ -884,41 +644,293 @@ window.worksSearchData = {
       "text": "Topoi of automata Groupe de travail topossique, April 30, 2025 _Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf 2025-04-30 English"
     },
     {
-      "kind": "Talks",
-      "title": "Connectedness and full subcategories of topoi",
-      "href": "https://www.ms.u-tokyo.ac.jp/seminar/thesispres/past.html",
-      "year": "2026",
-      "summary": "Ph.D. thesis presentation, Room 126, Graduate School of Mathematical Sciences, The University of Tokyo, 23 January",
+      "kind": "Slides",
+      "title": "Local state classifier for algebraic language theory",
+      "href": "https://drive.google.com/open?id=1jwA88f7axVA_VmGsUasrudicI1OXMIPE",
+      "year": "2025-05-16",
+      "summary": "Centre Lagrange, 16 May",
+      "themes": [
+        "topos",
+        "automata",
+        "algebra"
+      ],
+      "metaTags": [],
+      "text": "Local state classifier for algebraic language theory Centre Lagrange, 16 May Local state classifier for algebraic language theory.pdf 2025-05-16 English"
+    },
+    {
+      "kind": "Slides",
+      "title": "Topoi of automata (IRIF)",
+      "href": "https://drive.google.com/open?id=1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU",
+      "year": "2025-05-06",
+      "summary": "IRIF, 6 May",
+      "themes": [
+        "topos",
+        "automata"
+      ],
+      "metaTags": [],
+      "text": "Topoi of automata (IRIF) IRIF, 6 May IRIFtoday.pdf 2025-05-06 English"
+    },
+    {
+      "kind": "Slides",
+      "title": "Local state classifier for automata theory",
+      "href": "https://drive.google.com/open?id=1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF",
+      "year": "2025-05-26",
+      "summary": "IRIF 26 May / LIPN 5 June",
+      "themes": [
+        "topos",
+        "automata"
+      ],
+      "metaTags": [],
+      "text": "Local state classifier for automata theory IRIF 26 May / LIPN 5 June IRIF20250527_ver1.pdf 2025-05-26 English"
+    },
+    {
+      "kind": "Slides",
+      "title": "Topoi of automata",
+      "href": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf",
+      "year": "2025-07-17",
+      "summary": "Category Theory 2025",
+      "themes": [
+        "topos",
+        "automata",
+        "category"
+      ],
+      "metaTags": [],
+      "text": "Topoi of automata Category Theory 2025 ct2025-hora.pdf 2025-07-17 English topos automata"
+    },
+    {
+      "kind": "Notes",
+      "title": "A note on language measurability",
+      "href": "https://drive.google.com/open?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC",
+      "year": "2026-03-08",
+      "summary": "March 8, 2026",
+      "themes": [
+        "automata"
+      ],
+      "metaTags": [],
+      "text": "A note on language measurability March 8, 2026 An_ongoing_note_on_language_measurability_under_construction20260308.pdf 2026-03-08 English"
+    },
+    {
+      "kind": "Slides",
+      "title": "Cloud: A Rota-Baxter equation for winning games",
+      "href": "https://drive.google.com/open?id=1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU",
+      "year": "2026-04-05",
+      "summary": "April 5, 2026",
+      "themes": [
+        "games",
+        "algebra"
+      ],
+      "metaTags": [
+        "speculative"
+      ],
+      "text": "Cloud: A Rota-Baxter equation for winning games April 5, 2026 RYUYA,HORA.pdf 2026-04-05 English games algebra speculative"
+    },
+    {
+      "kind": "Notes",
+      "title": "圏論に登場する矢印の意味は—特集 圏論の質問箱",
+      "href": "https://cir.nii.ac.jp/crid/1520869150155438720?lang=ja",
+      "year": "2025-11",
+      "summary": "数学セミナー, 2025-11",
+      "themes": [
+        "category"
+      ],
+      "metaTags": [
+        "expository"
+      ],
+      "text": "圏論に登場する矢印の意味は—特集 圏論の質問箱 数学セミナー, 2025-11 数学セミナー 2025-11 Japanese expository"
+    },
+    {
+      "kind": "Notes",
+      "title": "順序集合で遊ぶKan拡張入門",
+      "href": "https://drive.google.com/open?id=1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt",
+      "year": "2021-11",
+      "summary": "",
+      "themes": [
+        "category"
+      ],
+      "metaTags": [
+        "expository"
+      ],
+      "text": "順序集合で遊ぶKan拡張入門 Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf 2021-11 Japanese expository"
+    },
+    {
+      "kind": "Notes",
+      "title": "圏論のToy Exampleとしての集合演算",
+      "href": "https://drive.google.com/open?id=1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP",
+      "year": "2021-05",
+      "summary": "",
+      "themes": [
+        "category"
+      ],
+      "metaTags": [
+        "expository"
+      ],
+      "text": "圏論のToy Exampleとしての集合演算 圏論のToy_Exampleとしての集合演算__Ver2_.pdf 2021-05 Japanese expository"
+    },
+    {
+      "kind": "Slides",
+      "title": "Cloud: 構成的数学と表現論",
+      "href": "https://drive.google.com/open?id=1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-",
+      "year": "2023-12-10",
+      "summary": "数学基礎論若手の会 2023",
+      "themes": [
+        "logic",
+        "algebra"
+      ],
+      "metaTags": [
+        "speculative",
+        "expository"
+      ],
+      "text": "Cloud: 構成的数学と表現論 数学基礎論若手の会 2023 若手の会2023-8.pdf 2023-12-10 Japanese logic algebra speculative expository"
+    },
+    {
+      "kind": "Slides",
+      "title": "Turning lights out with the Snake Lemma",
+      "href": "https://drive.google.com/open?id=1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp",
+      "year": "2026-02-22",
+      "summary": "CGP project, written with Kyosuke Higashida",
+      "themes": [
+        "games"
+      ],
+      "metaTags": [],
+      "text": "Turning lights out with the Snake Lemma CGP project, written with Kyosuke Higashida ライツアウトの代数的研究.pdf 2026-02-22 Japanese"
+    },
+    {
+      "kind": "Notes",
+      "title": "準完全情報ニム",
+      "href": "https://researchmap.jp/ryuyahora/misc/52084435",
+      "year": "2026-01-06",
+      "summary": "情報処理学会研究報告アルゴリズム（AL）, 2026-01",
+      "themes": [
+        "games"
+      ],
+      "metaTags": [],
+      "text": "準完全情報ニム 情報処理学会研究報告アルゴリズム（AL）, 2026-01 情報処理学会研究報告アルゴリズム（AL） 2026-01-06 Japanese"
+    },
+    {
+      "kind": "Slides",
+      "title": "ゼータ関数とメビウス反転",
+      "href": "https://drive.google.com/open?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4",
+      "year": "2021-12-04",
+      "summary": "数理空間トポス 2021年新歓",
+      "themes": [
+        "topos"
+      ],
+      "metaTags": [
+        "expository"
+      ],
+      "text": "ゼータ関数とメビウス反転 数理空間トポス 2021年新歓 2021topos_zeta_2-3.pdf 2021-12-04 Japanese Math Space Topos 2021 new welcome event expository expository"
+    },
+    {
+      "kind": "Slides",
+      "title": "順序集合で遊ぶKan拡張",
+      "href": "https://drive.google.com/open?id=11z191GZKbDVgskXKCBSVF7JXdFMMH81Q",
+      "year": "2022-06-04",
+      "summary": "数理空間トポス 2022年新歓",
       "themes": [
         "topos",
         "category"
       ],
+      "metaTags": [
+        "expository"
+      ],
+      "text": "順序集合で遊ぶKan拡張 数理空間トポス 2022年新歓 2022topos_Kan_ext.pdf 2022-06-04 Japanese Math Space Topos 2022 new welcome event expository expository"
+    },
+    {
+      "kind": "Slides",
+      "title": "母関数の種",
+      "href": "https://drive.google.com/open?id=1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az",
+      "year": "2023-07-15",
+      "summary": "数理空間トポス 2023年新歓",
+      "themes": [
+        "topos",
+        "combinatorics"
+      ],
+      "metaTags": [
+        "expository"
+      ],
+      "text": "母関数の種 数理空間トポス 2023年新歓 2023topos_species-8.pdf 2023-07-15 Japanese Math Space Topos 2023 new welcome event expository expository"
+    },
+    {
+      "kind": "Notes",
+      "title": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers",
+      "href": "",
+      "year": "",
+      "summary": "Speculative cloud entry; no public PDF is attached.",
+      "themes": [
+        "algebra",
+        "geometry",
+        "combinatorics"
+      ],
+      "metaTags": [
+        "speculative"
+      ],
+      "text": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers Speculative cloud entry; no public PDF is attached. English algebra speculative"
+    },
+    {
+      "kind": "Slides",
+      "title": "アイゼンシュタイン整数と組合せ論",
+      "href": "https://drive.google.com/open?id=1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9",
+      "year": "2024-05-18",
+      "summary": "数理空間トポス 2024年新歓",
+      "themes": [
+        "topos"
+      ],
+      "metaTags": [
+        "expository"
+      ],
+      "text": "アイゼンシュタイン整数と組合せ論 数理空間トポス 2024年新歓 2024Topos新歓202405-6.pdf 2024-05-18 Japanese Math Space Topos 2024 new welcome event expository expository"
+    },
+    {
+      "kind": "Slides",
+      "title": "Cloud: Space-Time for Conway's Game of Life",
+      "href": "https://drive.google.com/open?id=1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje",
+      "year": "2026-03-17",
+      "summary": "CSCAT 2026",
+      "themes": [
+        "topos",
+        "geometry",
+        "dynamical"
+      ],
+      "metaTags": [
+        "speculative"
+      ],
+      "text": "Cloud: Space-Time for Conway's Game of Life CSCAT 2026 Space⋊Time for Conway's Game of Life.pdf 2026-03-17 Japanese topos geometry dynamical speculative"
+    },
+    {
+      "kind": "Talks",
+      "title": "Connectedness and full subcategories of topoi",
+      "href": "https://www.ms.u-tokyo.ac.jp/seminar/2026/sem26-042.html",
+      "year": "2026",
+      "summary": "Ph.D. thesis presentation, Room 126, Graduate School of Mathematical Sciences, The University of Tokyo, 23 January",
+      "themes": [
+        "topos"
+      ],
       "metaTags": [],
-      "text": "Connectedness and full subcategories of topoi Ph.D. thesis presentation, Room 126, Graduate School of Mathematical Sciences, The University of Tokyo, 23 January 2026 https://www.ms.u-tokyo.ac.jp/seminar/thesispres/past.html"
+      "text": "Connectedness and full subcategories of topoi Ph.D. thesis presentation Ph.D. thesis presentation, Room 126, Graduate School of Mathematical Sciences, The University of Tokyo, 23 January 2026-01-23 2026 https://www.ms.u-tokyo.ac.jp/seminar/2026/sem26-042.html"
     },
     {
       "kind": "Talks",
       "title": "Turning lights out with the Snake Lemma",
-      "href": "http://www.alg.cei.uec.ac.jp/itohiro/Games/",
+      "href": "http://www.alg.cei.uec.ac.jp/itohiro/Games/Game260222.html",
       "year": "2026",
       "summary": "20th CGP project, The University of Electro-Communications, Chofu, 22 February",
       "themes": [
         "games"
       ],
       "metaTags": [],
-      "text": "Turning lights out with the Snake Lemma 20th CGP project, The University of Electro-Communications, Chofu, 22 February 2026 http://www.alg.cei.uec.ac.jp/itohiro/Games/"
+      "text": "Turning lights out with the Snake Lemma 20th CGP project 20th CGP project, The University of Electro-Communications, Chofu, 22 February 2026-02-22 2026 http://www.alg.cei.uec.ac.jp/itohiro/Games/Game260222.html"
     },
     {
       "kind": "Talks",
       "title": "Measure-theoretic closure operators on formal languages",
-      "href": "https://jssst-ppl.org/workshop/2026/",
+      "href": "https://jssst-ppl.org/workshop/2026/accepted.html",
       "year": "2026",
       "summary": "PPL 2026, Rexxam Hall, Takamatsu, 11 March",
       "themes": [
         "automata"
       ],
       "metaTags": [],
-      "text": "Measure-theoretic closure operators on formal languages PPL 2026, Rexxam Hall, Takamatsu, 11 March 2026 https://jssst-ppl.org/workshop/2026/"
+      "text": "Measure-theoretic closure operators on formal languages PPL 2026 PPL 2026, Rexxam Hall, Takamatsu, 11 March 2026-03-11 2026 https://jssst-ppl.org/workshop/2026/accepted.html"
     },
     {
       "kind": "Talks",
@@ -930,7 +942,7 @@ window.worksSearchData = {
         "dynamical"
       ],
       "metaTags": [],
-      "text": "A space-time for Conway's game of life CSCAT 2026, AOSSA Room 601A, Fukui, 17 March 2026 https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html"
+      "text": "A space-time for Conway's game of life CSCAT 2026 CSCAT 2026, AOSSA Room 601A, Fukui, 17 March 2026-03-17 2026 https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html"
     },
     {
       "kind": "Talks",
@@ -939,15 +951,27 @@ window.worksSearchData = {
       "year": "2026",
       "summary": "Room 420, RIMS, Kyoto University, 6 April",
       "themes": [
-        "games"
+        "games",
+        "category",
+        "algebra"
       ],
       "metaTags": [],
-      "text": "A Rota-Baxter equation for winning games Room 420, RIMS, Kyoto University, 6 April 2026 https://sites.google.com/view/differential-kyoto-2026/home"
+      "text": "A Rota-Baxter equation for winning games Differentiation in category theory and program semantics Room 420, RIMS, Kyoto University, 6 April 2026-04-06 2026 https://sites.google.com/view/differential-kyoto-2026/home"
+    },
+    {
+      "kind": "Talks",
+      "title": "TBA",
+      "href": "https://progetto-itaca.github.io/fests/fest26.html",
+      "year": "2026",
+      "summary": "ItaCa Fest 2026, online, 29 September",
+      "themes": [],
+      "metaTags": [],
+      "text": "TBA ItaCa Fest 2026 ItaCa Fest 2026, online, 29 September 2026-09-29 2026 https://progetto-itaca.github.io/fests/fest26.html"
     },
     {
       "kind": "Talks",
       "title": "Topoi of automata",
-      "href": "https://www.cmup.pt/index.php/events/topoi-automata",
+      "href": "https://www.cmup.pt/events/topoi-automata",
       "year": "2025",
       "summary": "CMUP SAL seminar, Zoom, 28 February",
       "themes": [
@@ -955,7 +979,7 @@ window.worksSearchData = {
         "automata"
       ],
       "metaTags": [],
-      "text": "Topoi of automata CMUP SAL seminar, Zoom, 28 February 2025 https://www.cmup.pt/index.php/events/topoi-automata"
+      "text": "Topoi of automata CMUP SAL seminar CMUP SAL seminar, Zoom, 28 February 2025-02-28 2025 https://www.cmup.pt/events/topoi-automata"
     },
     {
       "kind": "Talks",
@@ -968,7 +992,7 @@ window.worksSearchData = {
         "automata"
       ],
       "metaTags": [],
-      "text": "Topoi of automata CSCAT 2025, Room F203, Sojo University, Kumamoto, 12 March 2025 https://hisashi-aratake.gitlab.io/event/cscat2025.html"
+      "text": "Topoi of automata CSCAT 2025 CSCAT 2025, Room F203, Sojo University, Kumamoto, 12 March 2025-03-12 2025 https://hisashi-aratake.gitlab.io/event/cscat2025.html"
     },
     {
       "kind": "Talks",
@@ -981,7 +1005,7 @@ window.worksSearchData = {
         "automata"
       ],
       "metaTags": [],
-      "text": "Topoi of automata Groupe de travail topossique, Centre Lagrange, Paris, 30 April 2025 https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/"
+      "text": "Topoi of automata Groupe de travail topossique Groupe de travail topossique, Centre Lagrange, Paris, 30 April 2025-04-30 2025 https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/"
     },
     {
       "kind": "Talks",
@@ -995,7 +1019,7 @@ window.worksSearchData = {
         "category"
       ],
       "metaTags": [],
-      "text": "Topoi of automata Categories for Automata and Language Theory, IRIF, Paris, 6 May 2025 https://autcat.github.io/"
+      "text": "Topoi of automata Categories for Automata and Language Theory Categories for Automata and Language Theory, IRIF, Paris, 6 May 2025-05-06 2025 https://autcat.github.io/"
     },
     {
       "kind": "Talks",
@@ -1009,12 +1033,12 @@ window.worksSearchData = {
         "algebra"
       ],
       "metaTags": [],
-      "text": "Local state classifier for algebraic language theory Groupe de travail topossique, Centre Lagrange, Paris, 16 May 2025 https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/"
+      "text": "Local state classifier for algebraic language theory Groupe de travail topossique Groupe de travail topossique, Centre Lagrange, Paris, 16 May 2025-05-16 2025 https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/"
     },
     {
       "kind": "Talks",
       "title": "Local state classifier for automata theory",
-      "href": "https://www.irif.fr/seminaires/semantique/index",
+      "href": "https://www.irif.fr/en/seminaires/semantique/index",
       "year": "2025",
       "summary": "Semantique seminar, Salle 3071, IRIF, Paris, 27 May",
       "themes": [
@@ -1022,7 +1046,7 @@ window.worksSearchData = {
         "automata"
       ],
       "metaTags": [],
-      "text": "Local state classifier for automata theory Semantique seminar, Salle 3071, IRIF, Paris, 27 May 2025 https://www.irif.fr/seminaires/semantique/index"
+      "text": "Local state classifier for automata theory IRIF Sémantique seminar Semantique seminar, Salle 3071, IRIF, Paris, 27 May 2025-05-27 2025 https://www.irif.fr/en/seminaires/semantique/index"
     },
     {
       "kind": "Talks",
@@ -1032,16 +1056,15 @@ window.worksSearchData = {
       "summary": "Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June",
       "themes": [
         "topos",
-        "automata",
-        "logic"
+        "automata"
       ],
       "metaTags": [],
-      "text": "A topos for regular language theory Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June 2025 https://www.lix.polytechnique.fr/proofs-algorithms/tcs/"
+      "text": "A topos for regular language theory Theoretical Cosynus Seminar Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June 2025-06-11 2025 https://www.lix.polytechnique.fr/proofs-algorithms/tcs/"
     },
     {
       "kind": "Talks",
       "title": "Topoi of automata",
-      "href": "https://conference.math.muni.cz/ct2025/",
+      "href": "https://archive.math.muni.cz/conference/ct2025/index.php%3Fid%3Dprogramme-and-venue.html",
       "year": "2025",
       "summary": "CT 2025, Building B2, Faculty of Arts, Masaryk University, Brno, 17 July",
       "themes": [
@@ -1049,7 +1072,7 @@ window.worksSearchData = {
         "automata"
       ],
       "metaTags": [],
-      "text": "Topoi of automata CT 2025, Building B2, Faculty of Arts, Masaryk University, Brno, 17 July 2025 https://conference.math.muni.cz/ct2025/"
+      "text": "Topoi of automata CT 2025 CT 2025, Building B2, Faculty of Arts, Masaryk University, Brno, 17 July 2025-07-17 2025 https://archive.math.muni.cz/conference/ct2025/index.php%3Fid%3Dprogramme-and-venue.html"
     },
     {
       "kind": "Talks",
@@ -1062,21 +1085,20 @@ window.worksSearchData = {
         "automata"
       ],
       "metaTags": [],
-      "text": "Topoi of automata SLACS 2025, Shared Room 321, Akita University, 31 October 2025 https://sites.google.com/view/slacs2025akita/home"
+      "text": "Topoi of automata SLACS 2025 SLACS 2025, Shared Room 321, Akita University, 31 October 2025-10-31 2025 https://sites.google.com/view/slacs2025akita/home"
     },
     {
       "kind": "Talks",
       "title": "Connectedness and full subcategories of topoi",
-      "href": "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/index_e.html",
+      "href": "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/past_e.html",
       "year": "2025",
       "summary": "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 28 November",
       "themes": [
         "topos",
-        "category",
         "logic"
       ],
       "metaTags": [],
-      "text": "Connectedness and full subcategories of topoi UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 28 November 2025 https://www.ms.u-tokyo.ac.jp/seminar/logic_e/index_e.html"
+      "text": "Connectedness and full subcategories of topoi UTokyo Logic seminar UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 28 November 2025-11-28 2025 https://www.ms.u-tokyo.ac.jp/seminar/logic_e/past_e.html"
     },
     {
       "kind": "Talks",
@@ -1089,7 +1111,7 @@ window.worksSearchData = {
         "logic"
       ],
       "metaTags": [],
-      "text": "The axiom of choice and local state classifier UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 5 December 2025 https://www.ms.u-tokyo.ac.jp/seminar/logic/"
+      "text": "The axiom of choice and local state classifier UTokyo Logic seminar UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 5 December 2025-12-05 2025 https://www.ms.u-tokyo.ac.jp/seminar/logic/"
     },
     {
       "kind": "Talks",
@@ -1099,42 +1121,37 @@ window.worksSearchData = {
       "summary": "CSCAT 2024, Multimedia Room 1, Science Building 4, Chiba University, 15 March",
       "themes": [
         "games",
-        "coalgebras",
-        "algebra"
+        "coalgebras"
       ],
       "metaTags": [],
-      "text": "Combinatorial games as recursive coalgebras CSCAT 2024, Multimedia Room 1, Science Building 4, Chiba University, 15 March 2024 https://sites.google.com/faculty.gs.chiba-u.jp/cscat2024/home"
+      "text": "Combinatorial games as recursive coalgebras CSCAT 2024 CSCAT 2024, Multimedia Room 1, Science Building 4, Chiba University, 15 March 2024-03-15 2024 https://sites.google.com/faculty.gs.chiba-u.jp/cscat2024/home"
     },
     {
       "kind": "Talks",
       "title": "Introduction to topos theory",
-      "href": "#talks-slides",
+      "href": "",
       "year": "2024",
       "summary": "代数トポロジー若手の会, Nagoya University, 16 March",
       "themes": [
         "topos"
       ],
-      "metaTags": [
-        "expository"
-      ],
-      "text": "Introduction to topos theory 代数トポロジー若手の会, Nagoya University, 16 March 2024"
+      "metaTags": [],
+      "text": "Introduction to topos theory 代数トポロジー若手の会 代数トポロジー若手の会, Nagoya University, 16 March 2024-03-16 2024"
     },
     {
       "kind": "Talks",
       "title": "圏論の利用と濫用",
-      "href": "https://afsa.jp/g-en/",
+      "href": "https://afsa.jp/meeting/",
       "year": "2024",
-      "summary": "18th AFSA Colloquium, NII Kanda Lab, Tokyo, 25 April",
-      "themes": [
-        "category"
-      ],
+      "summary": "18th AFSA Colloquium, NII Kanda Lab, Tokyo, 24 April",
+      "themes": [],
       "metaTags": [],
-      "text": "圏論の利用と濫用 18th AFSA Colloquium, NII Kanda Lab, Tokyo, 25 April 2024 https://afsa.jp/g-en/"
+      "text": "圏論の利用と濫用 18th AFSA Colloquium 18th AFSA Colloquium, NII Kanda Lab, Tokyo, 24 April 2024-04-24 2024 https://afsa.jp/meeting/"
     },
     {
       "kind": "Talks",
       "title": "Quotient toposes of discrete dynamical systems",
-      "href": "https://www.usc.gal/regaca/ct2024/",
+      "href": "https://www.usc.gal/regaca/ct2024/programme.html",
       "year": "2024",
       "summary": "CT 2024, Facultade de Matemáticas, Universidade de Santiago de Compostela, 28 June",
       "themes": [
@@ -1142,7 +1159,7 @@ window.worksSearchData = {
         "dynamical"
       ],
       "metaTags": [],
-      "text": "Quotient toposes of discrete dynamical systems CT 2024, Facultade de Matemáticas, Universidade de Santiago de Compostela, 28 June 2024 https://www.usc.gal/regaca/ct2024/"
+      "text": "Quotient toposes of discrete dynamical systems CT 2024 CT 2024, Facultade de Matemáticas, Universidade de Santiago de Compostela, 28 June 2024-06-28 2024 https://www.usc.gal/regaca/ct2024/programme.html"
     },
     {
       "kind": "Talks",
@@ -1155,19 +1172,19 @@ window.worksSearchData = {
         "automata"
       ],
       "metaTags": [],
-      "text": "Topos theory as a tool of automata theory Young Automata Theorists Gathering in Japan, Room 305, Akita University, 29 August 2024 https://sites.google.com/view/ciaa-preworkshop/home"
+      "text": "Topos theory as a tool of automata theory Young Automata Theorists Gathering in Japan Young Automata Theorists Gathering in Japan, Room 305, Akita University, 29 August 2024-08-29 2024 https://sites.google.com/view/ciaa-preworkshop/home"
     },
     {
       "kind": "Talks",
       "title": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
       "href": "https://ctta.igrothendieck.org/",
       "year": "2024",
-      "summary": "Toposes in Mondovi, Circolo di Lettura, Palazzo del Governatore, 10 September",
+      "summary": "Toposes in Mondovì, Circolo di Lettura, Palazzo del Governatore, 10 September",
       "themes": [
         "topos"
       ],
       "metaTags": [],
-      "text": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms Toposes in Mondovi, Circolo di Lettura, Palazzo del Governatore, 10 September 2024 https://ctta.igrothendieck.org/"
+      "text": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms Toposes in Mondovì Toposes in Mondovì, Circolo di Lettura, Palazzo del Governatore, 10 September 2024-09-10 2024 https://ctta.igrothendieck.org/"
     },
     {
       "kind": "Talks",
@@ -1177,11 +1194,10 @@ window.worksSearchData = {
       "summary": "AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November",
       "themes": [
         "topos",
-        "category",
         "geometry"
       ],
       "metaTags": [],
-      "text": "Quotient topoi and geometry of computation AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November 2024 https://afsa.jp/afsa-2024_generalmeetingautumn/"
+      "text": "Quotient topoi and geometry of computation AFSA area meeting AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November 2024-11-30 2024 https://afsa.jp/afsa-2024_generalmeetingautumn/"
     },
     {
       "kind": "Talks",
@@ -1193,20 +1209,20 @@ window.worksSearchData = {
         "topos"
       ],
       "metaTags": [],
-      "text": "Internal parameterization of hyperconnected quotients CSCAT 2023, Room 478, Research Building 2, Kyoto University, 9 March 2023 https://sites.google.com/view/cscat2023"
+      "text": "Internal parameterization of hyperconnected quotients CSCAT 2023 CSCAT 2023, Room 478, Research Building 2, Kyoto University, 9 March 2023-03-09 2023 https://sites.google.com/view/cscat2023"
     },
     {
       "kind": "Talks",
       "title": "Internal parameterization of hyperconnected quotients",
-      "href": "http://web.science.mq.edu.au/groups/coact/seminar/",
+      "href": "https://centre-of-australian-category-theory.github.io/seminar/",
       "year": "2023",
-      "summary": "Australia Category Seminar, online, 19 April",
+      "summary": "Australian Category Seminar, online, 19 April",
       "themes": [
         "topos",
         "category"
       ],
       "metaTags": [],
-      "text": "Internal parameterization of hyperconnected quotients Australia Category Seminar, online, 19 April 2023 http://web.science.mq.edu.au/groups/coact/seminar/"
+      "text": "Internal parameterization of hyperconnected quotients Australian Category Seminar Australian Category Seminar, online, 19 April 2023-04-19 2023 https://centre-of-australian-category-theory.github.io/seminar/"
     },
     {
       "kind": "Talks",
@@ -1219,7 +1235,7 @@ window.worksSearchData = {
         "category"
       ],
       "metaTags": [],
-      "text": "Grundy Numbers and Categories Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May 2023 https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj"
+      "text": "Grundy Numbers and Categories Japan Combinatorial Game Theory Mini-Workshops Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May 2023-05-12 2023 https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj"
     },
     {
       "kind": "Talks",
@@ -1232,7 +1248,7 @@ window.worksSearchData = {
         "category"
       ],
       "metaTags": [],
-      "text": "Internal parameterization of hyperconnected quotients Category Theory 2023, Auditoires des Sciences, UCLouvain, 6 July 2023 https://sites.uclouvain.be/ct2023/"
+      "text": "Internal parameterization of hyperconnected quotients Category Theory 2023 Category Theory 2023, Auditoires des Sciences, UCLouvain, 6 July 2023-07-06 2023 https://sites.uclouvain.be/ct2023/"
     },
     {
       "kind": "Talks",
@@ -1245,7 +1261,7 @@ window.worksSearchData = {
         "category"
       ],
       "metaTags": [],
-      "text": "Category Theory and Combinatorial Game Theory 7th Japan Combinatorial Game Theory Conference, NII, Tokyo, 21 August 2023 https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53"
+      "text": "Category Theory and Combinatorial Game Theory 7th Japan Combinatorial Game Theory Conference 7th Japan Combinatorial Game Theory Conference, NII, Tokyo, 21 August 2023-08-21 2023 https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53"
     },
     {
       "kind": "Talks",
@@ -1258,7 +1274,7 @@ window.worksSearchData = {
         "algebra"
       ],
       "metaTags": [],
-      "text": "Constructive mathematics and representation theory 数学基礎論若手の会2023, Chiba, 10 December 2023 https://sites.google.com/view/mlwakatenokai2023"
+      "text": "Constructive mathematics and representation theory 数学基礎論若手の会2023 数学基礎論若手の会2023, Chiba, 10 December 2023-12-10 2023 https://sites.google.com/view/mlwakatenokai2023"
     }
   ]
 };

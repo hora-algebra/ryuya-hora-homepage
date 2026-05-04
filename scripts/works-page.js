@@ -1,7 +1,7 @@
 (function () {
   const initialUrlParams = new URLSearchParams(globalThis.location?.search || "");
   const publicSiteUrl = "https://hora-algebra.github.io/ryuya-hora-homepage/";
-  const paperFigureCacheKey = "cache-20260504a";
+  const paperFigureCacheKey = "cache-20260504aj";
   const worksInitialPaperRecordLimit = 4;
   const katexCdnBase = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist";
 
@@ -13,6 +13,7 @@
     talkYear: "all",
     talkTheme: "all",
     talkSlides: "all",
+    talkType: "all",
     researchTheme: initialUrlParams.get("theme") || "",
     researchMetaTag: initialUrlParams.get("meta") || "",
     noteQuery: "",
@@ -233,7 +234,8 @@
     if (!text || text === "all") return "tag";
     if (text.includes("award") || text.includes("grant") || text.includes("kakenhi")) return "award";
     if (text.includes("expository") || text.includes("introduction") || text.includes("intro") || text.includes("toy example") || text.includes("入門") || text.includes("新歓") || text.includes("解説")) return "pencil";
-    if (text.includes("education") || text.includes("book") || text.includes("teaching")) return "education";
+    if (text.includes("book")) return "book";
+    if (text.includes("education") || text.includes("teaching")) return "academic-cap";
     if (text.includes("simulation") || text.includes("experiment") || text.includes("workbench") || text.includes("editor")) return "webapp";
     if (text.includes("cloud") || text.includes("speculative")) return "cloud";
     if (text.includes("draft") || text.includes("meta") || text.includes("research log")) return "note";
@@ -259,6 +261,9 @@
   }
 
   function uiIconSvg(key) {
+    const commonIcon = globalThis.siteCommonIconSvg?.(key);
+    if (commonIcon) return commonIcon;
+
     const svg = svgEl("svg", {
       viewBox: "0 0 24 24",
       "aria-hidden": "true",
@@ -649,7 +654,7 @@
   }
 
   const actionLinkIconKeys = {
-    event: "building",
+    event: "event",
     slides: "slides",
     slide: "slides",
     download: "download",
@@ -670,12 +675,14 @@
     return simplified(label).replace(/\s+/g, "-");
   }
 
-  function actionLinkIconKey(label) {
+  function actionLinkIconKey(label, href = "") {
+    const commonIcon = globalThis.siteActionIconKey?.(label, href);
+    if (commonIcon) return commonIcon;
     const key = actionLabelKey(label);
     if (key.includes("researchmap")) return "researchmap";
     if (key.includes("download")) return "download";
     if (key.includes("slide")) return "slides";
-    if (key.includes("event")) return "building";
+    if (key.includes("event")) return "event";
     return actionLinkIconKeys[key] || "";
   }
 
@@ -688,8 +695,15 @@
   }
 
   function actionLinkElement(label, href, options = {}) {
-    if (!options.iconOnly) return link(symbolicCloudPenLabel(label), href, "action-link");
-    const iconKey = actionLinkIconKey(label);
+    const iconKey = actionLinkIconKey(label, href) || (!options.iconOnly && href ? "open" : "");
+    if (!options.iconOnly) {
+      const anchor = link(symbolicCloudPenLabel(label), href, "action-link");
+      if (iconKey) {
+        anchor.prepend(uiIcon(iconKey, "action-link-icon"));
+        anchor.classList.add("has-icon");
+      }
+      return anchor;
+    }
     if (!iconKey) return link(symbolicCloudPenLabel(label), href, "action-link");
     const anchor = link("", href, "action-link action-link-icon-only");
     const text = symbolicCloudPenLabel(label);
@@ -916,10 +930,9 @@
 
   function researchThemeGroups() {
     return [
-      ["papers", "Papers", (record) => record.kind === "Papers"],
-      ["preparation", "In preparation", (record) => record.kind === "In preparation"],
-      ["notes", "Notes", (record) => record.kind === "Notes"],
-      ["talks", "Talks", (record) => record.kind === "Talks"]
+      ["papers", "Papers", (record) => record.kind === "Papers", "works/papers/index.html"],
+      ["notes-preparations", "Notes and Preparations", (record) => record.kind === "In preparation" || record.kind === "Notes", "works/notes-preparations/index.html"],
+      ["talks-slides", "Talks and Slides", (record) => record.kind === "Talks" || record.kind === "Slides", "works/talks-slides/index.html"]
     ];
   }
 
@@ -1004,6 +1017,17 @@
     return `(${count})`;
   }
 
+  function researchGroupStatusLabel(counts = []) {
+    return `${counts[0] || 0} papers / ${counts[1] || 0} notes and preparations / ${counts[2] || 0} talks and slides`;
+  }
+
+  function researchGroupIconKey(kind = "") {
+    if (kind === "papers") return "paper";
+    if (kind === "notes-preparations") return "note";
+    if (kind === "talks-slides") return "talk";
+    return "open";
+  }
+
   function renderThemeResultIcons(themeIds = [], metaTagIds = []) {
     const strip = el("div", "theme-result-icons");
     normalizeThemeSelection(themeIds).forEach((themeId) => {
@@ -1066,7 +1090,7 @@
     if (status && updateStatus) {
       status.replaceChildren(
         el("span", "theme-status-label", researchSelectionLabel(themeIds, metaTagIds)),
-        el("span", "theme-status-count", `${counts[0]} papers / ${counts[1]} in preparation / ${counts[2]} notes / ${counts[3]} talks`)
+        el("span", "theme-status-count", researchGroupStatusLabel(counts))
       );
     }
     groups.forEach(([kind], index) => {
@@ -1215,12 +1239,20 @@
     mapColumn.append(overview);
     const panel = el("div", "theme-panel");
     const columns = el("div", "theme-result-grid");
-    researchThemeGroups().forEach(([kind, label]) => {
+    researchThemeGroups().forEach(([kind, label, , href]) => {
       const column = el("section", "theme-result-column");
       const heading = el("h3");
       const count = el("span", "theme-result-count", themeColumnCountLabel(0));
       count.dataset.themeHeadingCount = kind;
-      heading.append(el("span", null, label), count);
+      const headingLink = link("", href, "theme-result-heading-link");
+      headingLink.setAttribute("aria-label", `Open ${label}`);
+      headingLink.replaceChildren(
+        uiIcon(researchGroupIconKey(kind), "theme-result-heading-section-icon"),
+        el("span", "theme-result-heading-label", label),
+        count,
+        uiIcon("open", "theme-result-heading-open-icon")
+      );
+      heading.append(headingLink);
       const list = el("div", "theme-result-list");
       list.dataset.themeResults = kind;
       column.append(heading, list);
@@ -1711,6 +1743,7 @@
     { title: "Combinatorial games as recursive coalgebras", event: "CSCAT2024", file: "Hora_CSCAT2024.pdf" },
     { title: "Local state classifier for algebraic language theory", event: "CTTA Groupe", file: "Local state classifier for algebraic language theory.pdf" },
     { title: "Local state classifier for automata theory", event: "IRIF Sémantique", file: "IRIF20250527_ver1.pdf" },
+    { title: "Local state classifier for automata theory", event: "LIPN", file: "IRIF20250527_ver1.pdf", materialNote: "Same slide deck as the IRIF Sémantique seminar." },
     { title: "Topoi of automata", event: "CSCAT2025", file: "CSCAT_2025-3.pdf" },
     { title: "Topoi of automata", event: "CTTA Groupe", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf" },
     { title: "Topoi of automata", event: "Categories for Automata", file: "IRIFtoday.pdf" },
@@ -1732,7 +1765,40 @@
         language: "English",
         file: "semLP_2.pdf",
         href: "https://www.cmup.pt/sites/default/files/2025-02/semLP_2.pdf",
-        download: "https://www.cmup.pt/sites/default/files/2025-02/semLP_2.pdf"
+        download: "https://www.cmup.pt/sites/default/files/2025-02/semLP_2.pdf",
+        localThumbnail: "assets/notes/topoi-of-automata-cmup-flyer.png"
+      }
+    },
+    {
+      title: "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
+      event: "Toposes in Mondovì",
+      material: {
+        title: "Toposes in Mondovì video",
+        description: "Conference video; no public slide deck found",
+        materialType: "Video",
+        theme: "topos",
+        themes: ["topos"],
+        date: "2024-09-10",
+        language: "English",
+        file: "Toposes in Mondovì video",
+        href: "https://www.youtube.com/watch?v=T1U1-Q6esuY",
+        thumbnail: "https://img.youtube.com/vi/T1U1-Q6esuY/hqdefault.jpg"
+      }
+    },
+    {
+      title: "Internal parameterization of hyperconnected quotients",
+      event: "Category Theory 2023",
+      material: {
+        title: "CT2023 video",
+        description: "Conference recording by the Archive Trust for Research",
+        materialType: "Video",
+        theme: "topos",
+        themes: ["topos"],
+        date: "2023-07-06",
+        language: "English",
+        file: "CT2023 video",
+        href: "https://www.youtube.com/watch?v=lVvTIe-lHXw",
+        thumbnail: "https://img.youtube.com/vi/lVvTIe-lHXw/hqdefault.jpg"
       }
     }
   ];
@@ -2316,7 +2382,16 @@
   }
 
   function fallbackPresentationRecords() {
-    return (dataSet().talks?.talks || []).flatMap((group) => (group.items || []).map((talk) => ({ ...talk, year: group.year, link: talk.href, event: talk.venue })));
+    return (dataSet().talks?.talks || []).flatMap((group) =>
+      (group.items || []).map((talk) => ({
+        ...talk,
+        year: talk.year || group.year,
+        link: talk.link || talk.href,
+        href: talk.href || talk.link,
+        event: talk.event || talk.venue,
+        date: talk.date || ""
+      }))
+    );
   }
 
   function presentationComparableDate(record) {
@@ -2367,12 +2442,42 @@
     return sameYear && presentationTitlesReferToSameTalk(a?.title, b?.title) && simplified(talkSlideRecordContext(a)).includes(simplified(b?.event || b?.venue || ""));
   }
 
+  function mergePresentationRecord(sourceRecord, manualRecord) {
+    if (!manualRecord) return sourceRecord;
+    const sourceLink = sourceRecord.link || "";
+    const manualLink = manualRecord.link || manualRecord.href || "";
+    const links = mergeActionLinks(
+      manualRecord.links || [],
+      manualLink ? [["event", manualLink]] : [],
+      sourceRecord.links || [],
+      sourceLink && sourceLink !== manualLink ? [["researchmap", sourceLink]] : []
+    );
+    return {
+      ...sourceRecord,
+      title: manualRecord.title || sourceRecord.title,
+      aliases: [...new Set([...(sourceRecord.aliases || []), ...(manualRecord.aliases || [])])],
+      presenters: manualRecord.presenters || sourceRecord.presenters,
+      event: manualRecord.event || sourceRecord.event,
+      venue: manualRecord.venue || sourceRecord.venue,
+      date: manualRecord.date || sourceRecord.date,
+      dateRange: manualRecord.dateRange || sourceRecord.dateRange,
+      year: manualRecord.year || sourceRecord.year,
+      link: manualLink || sourceRecord.link,
+      href: manualRecord.href || manualRecord.link || sourceRecord.href,
+      links,
+      source: sourceRecord.source || "researchmap",
+      sourceRecord,
+      manualRecord
+    };
+  }
+
   function allPresentationRecords() {
     const records = researchmapPresentationRecords();
     const fallbackRecords = fallbackPresentationRecords().map(presentationDisplayRecord);
     if (!records.length) return fallbackRecords;
+    const mergedRecords = records.map((record) => mergePresentationRecord(record, fallbackRecords.find((fallbackRecord) => presentationRecordsReferToSameTalk(record, fallbackRecord))));
     const fallbackOnlyRecords = fallbackRecords.filter((record) => !records.some((sourceRecord) => presentationRecordsReferToSameTalk(sourceRecord, record)));
-    return [...records, ...fallbackOnlyRecords.map((record) => ({ ...record, source: "manual" }))];
+    return [...mergedRecords, ...fallbackOnlyRecords.map((record) => ({ ...record, source: "manual" }))];
   }
 
   function presentationFallbackRecordsFor(record) {
@@ -2490,7 +2595,26 @@
   }
 
   function talkSlideRecordContext(record) {
-    return compactText([record?.event, record?.venue, record?.date, record?.dateRange, record?.link, record?.href]).join(" ");
+    return compactText([
+      record?.event,
+      record?.venue,
+      record?.date,
+      record?.dateRange,
+      record?.link,
+      record?.href,
+      record?.sourceRecord?.event,
+      record?.sourceRecord?.venue,
+      record?.sourceRecord?.date,
+      record?.sourceRecord?.dateRange,
+      record?.sourceRecord?.link,
+      record?.sourceRecord?.href,
+      record?.manualRecord?.event,
+      record?.manualRecord?.venue,
+      record?.manualRecord?.date,
+      record?.manualRecord?.dateRange,
+      record?.manualRecord?.link,
+      record?.manualRecord?.href
+    ]).join(" ");
   }
 
   function talkSlideMatchApplies(match, record) {
@@ -2506,15 +2630,25 @@
     return matchedSlideRecordsForPresentation(record).map((slide) => ["Slides", noteHref(slide)]).filter(([, href]) => Boolean(href));
   }
 
+  function slideRecordForTalkMatch(match, record) {
+    const slide = rawSlideRecordByFile(match.file);
+    if (!slide) return null;
+    return mergeSlideWithPresentation({
+      ...slide,
+      materialNote: match.materialNote || slide.materialNote || ""
+    }, record);
+  }
+
   function matchedSlideRecordsForPresentation(record) {
     return uniqueBy(
       [
         ...talkSlideMatches
           .filter((match) => talkSlideMatchApplies(match, record))
-          .map((match) => rawSlideRecordByFile(match.file))
+          .map((match) => slideRecordForTalkMatch(match, record))
           .filter(Boolean),
         ...externalMaterialRecordsForPresentation(record)
-      ].map((slide) => mergeSlideWithPresentation(slide, record)),
+          .map((slide) => mergeSlideWithPresentation(slide, record))
+      ],
       (slide) => slide.file || slide.href || slide.title
     );
   }
@@ -2550,9 +2684,26 @@
       item.record ? presentationSearchText(item.record) : "",
       item.slide ? noteSearchText(item.slide) : "",
       ...item.slides.map(noteSearchText),
-      ...item.slides.map((slide) => slide.talkMeta)
+      ...item.slides.map((slide) => slide.talkMeta),
+      ...item.slides.map((slide) => slide.materialNote)
     ]).join(" ");
     return scoreThemeRecord(text, slideThemeHints).themes;
+  }
+
+  function talkTypeKey(record) {
+    const raw = String(record?.talkType || record?.presentationType || "").trim().toLowerCase();
+    if (raw === "expository") return "expository";
+    return "academic";
+  }
+
+  function talkSlideRecordType(item) {
+    if (item.kind === "slide-only") return talkTypeKey(item.slide);
+    if (item.slides.some((slide) => talkTypeKey(slide) === "expository")) return "expository";
+    return talkTypeKey(item.record);
+  }
+
+  function talkTypeLabel(type) {
+    return type === "expository" ? "Expository" : "Academic";
   }
 
   function talkSlideRecordSearchText(item) {
@@ -2563,8 +2714,11 @@
       item.record ? presentationMeta(item.record) : "",
       item.slide ? noteSearchText(item.slide) : "",
       ...item.slides.map(noteSearchText),
+      ...item.slides.map((slide) => slide.materialNote),
       ...themes,
       ...themes.map(noteThemeLabel),
+      talkSlideRecordType(item),
+      talkTypeLabel(talkSlideRecordType(item)),
       item.slides.length ? "slides materials" : "talk only"
     ]).join(" ");
   }
@@ -2580,6 +2734,7 @@
     if (state.talkSlides === "with-slides" && !item.slides.length) return false;
     if (state.talkSlides === "without-slides" && item.slides.length) return false;
     if (state.talkSlides === "slides-only" && item.kind !== "slide-only") return false;
+    if (state.talkType !== "all" && talkSlideRecordType(item) !== state.talkType) return false;
     return true;
   }
 
@@ -2624,6 +2779,11 @@
       ["without-slides", "Talk only"],
       ["slides-only", "Slides only"]
     ], state.talkSlides);
+    state.talkType = updateSelectOptions(document.querySelector("#talk-type-filter"), [
+      ["all", "All types"],
+      ["academic", "Academic"],
+      ["expository", "Expository"]
+    ], state.talkType);
     const count = document.querySelector("#talk-filter-count");
     if (count) count.textContent = `Showing ${shownCount} / ${allRecords.length} records`;
   }
@@ -2634,7 +2794,8 @@
 
   function materialIconKey(record) {
     const label = simplified(materialTypeLabel(record));
-    if (label.includes("flyer") || label.includes("event")) return "external";
+    if (label.includes("flyer") || label.includes("event")) return "event";
+    if (label.includes("video") || label.includes("youtube")) return "talk";
     return "slides";
   }
 
@@ -2654,6 +2815,7 @@
   function shouldRenderMaterialStrip(slides) {
     if (!slides.length) return false;
     if (slides.length > 1) return true;
+    if (slides[0].materialNote) return true;
     return materialTypeLabel(slides[0]) !== "Slides";
   }
 
@@ -2694,6 +2856,7 @@
       chip.append(uiIcon(materialIconKey(slide), "talk-material-chip-icon"));
       chip.append(el("span", "talk-material-chip-kind", typeLabel));
       chip.append(link(materialCompactLabel(slide), noteHref(slide), "talk-material-chip-link"));
+      if (slide.materialNote) chip.append(el("span", "talk-material-chip-note", slide.materialNote));
       const downloadHref = noteDownloadHref(slide);
       if (downloadHref && downloadHref !== noteHref(slide)) chip.append(link("Download", downloadHref, "talk-material-chip-action"));
       strip.append(chip);
@@ -2728,19 +2891,27 @@
     return list;
   }
 
-  function renderTalkItem(record, href, metaText, actions = []) {
+  function renderTalkTypeBadge(type) {
+    const badge = el("span", `talk-type-badge talk-type-badge-${type}`);
+    badge.textContent = talkTypeLabel(type);
+    return badge;
+  }
+
+  function renderTalkItem(record, href, metaText, actions = [], options = {}) {
     const item = el("li");
     const shell = el("div", "talk-item-shell");
     const body = el("div", "talk-item-body");
     const title = el("div", "talk-title");
+    const type = options.talkType || talkTypeKey(record);
     title.append(uiIcon("talk", "talk-title-icon"));
     if (href) title.append(link(record.title, href));
     else title.append(el("span", null, record.title));
-    title.append(titleCopyButton(talksPageHref(talkRecordAnchor(record)), record.title));
+    title.append(renderTalkTypeBadge(type));
+    title.append(titleCopyButton(options.copyHref || talksPageHref(talkRecordAnchor(record)), record.title));
     if (actions.length) appendActionLinks(title, actions, { iconOnly: true, order: "talk" });
     body.append(title, el("span", "talk-venue", metaText));
     shell.append(body);
-    const preview = talkThumbnail(record);
+    const preview = options.thumbnail || talkThumbnail(record);
     if (preview) {
       const thumb = link("", preview.href, "talk-thumb");
       thumb.setAttribute("aria-label", `Open slides for ${record.title}`);
@@ -2762,19 +2933,38 @@
     if (item.kind === "slide-only") {
       const slide = item.slide;
       const record = {
-        title: shortNoteTitle(slide),
+        title: slide.talkTitle || shortNoteTitle(slide),
         link: noteHref(slide),
-        event: "Unmatched slide material",
+        event: slide.event || slide.description || "Slide material",
         date: noteDateLabel(slide),
-        year: talkSlideRecordYear(item)
+        year: talkSlideRecordYear(item),
+        talkType: slide.talkType,
+        metaTags: slide.metaTags || []
       };
-      const rendered = renderTalkItem(record, noteHref(slide), compactText(["Slides only", noteDateLabel(slide), noteThemeLabel(noteTheme(slide)), noteLanguageKey(slide)]).join(" / "), materialActionLinks(slide));
+      const thumbnailSrc = noteThumbnailSrc(slide);
+      const rendered = renderTalkItem(
+        record,
+        noteHref(slide),
+        compactText([slide.event || "Slides only", noteDateLabel(slide), noteThemeLabel(noteTheme(slide)), noteLanguageKey(slide)]).join(" / "),
+        materialActionLinks(slide),
+        {
+          talkType: talkSlideRecordType(item),
+          copyHref: talksPageHref(noteAnchor(slide)),
+          thumbnail: thumbnailSrc ? { src: thumbnailSrc, href: noteHref(slide) } : null
+        }
+      );
       rendered.id = noteAnchor(slide);
       rendered.classList.add("talk-slide-item", "is-slide-only");
       return rendered;
     }
     const materialActions = shouldRenderMaterialStrip(item.slides) || item.slides.length !== 1 ? [] : materialActionLinks(item.slides[0]);
-    const rendered = renderTalkItem(item.record, item.record.link || item.record.href, presentationMeta(item.record), mergeActionLinks(presentationActionLinks(item.record), materialActions));
+    const rendered = renderTalkItem(
+      item.record,
+      item.record.link || item.record.href,
+      presentationMeta(item.record),
+      mergeActionLinks(presentationActionLinks(item.record), materialActions),
+      { talkType: talkSlideRecordType(item) }
+    );
     rendered.id = talkRecordAnchor(item.record);
     rendered.classList.add("talk-slide-item");
     const body = rendered.querySelector(".talk-item-body");
@@ -3376,11 +3566,11 @@
         <desc id="fig-normalization-desc">A D4-action on a square on the left, an old subgroup lattice in the middle, and a new subgroup lattice on the right. Dotted links connect each square point to its stabilizer in the old lattice. Green dotted links connect each old subgroup to its normalized subgroup in the new lattice.</desc>
         <defs>
           <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
-          <marker id="normalization-link-arrow-d4" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#5d615c" fill-opacity="0.58"></path></marker>
-          <marker id="normalization-link-arrow-ref0" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#1f6fb2" fill-opacity="0.9"></path></marker>
-          <marker id="normalization-link-arrow-ref2" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#d65a3a" fill-opacity="0.9"></path></marker>
-          <marker id="normalization-link-arrow-ref1" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#51912f" fill-opacity="0.92"></path></marker>
-          <marker id="normalization-link-arrow-ref3" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#7c57c2" fill-opacity="0.92"></path></marker>
+          <marker id="normalization-link-arrow-d4" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
+          <marker id="normalization-link-arrow-ref0" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
+          <marker id="normalization-link-arrow-ref2" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
+          <marker id="normalization-link-arrow-ref1" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
+          <marker id="normalization-link-arrow-ref3" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
         </defs>
 
         ${normalizationLatticeTemplate("old", 315, 54, 0.88)}
@@ -3660,9 +3850,9 @@
   }
 
   const quotientLightColorValues = {
-    green: "#2c6f63",
-    orange: "#b66737",
-    blue: "#2f5f91"
+    green: "#009b7a",
+    orange: "#e95f16",
+    blue: "#2563eb"
   };
 
   function quotientLightClasses(color = "green") {
@@ -3895,11 +4085,14 @@
   const gamesRbHeaderHeight = 26;
   const gamesRbTableWidth = gamesRbHeaderWidth + gamesRbVisibleValues.length * gamesRbCellWidth;
   const gamesRbTableHeight = gamesRbHeaderHeight + gamesRbVisibleValues.length * gamesRbCellHeight;
+  const gamesRbMexLabelWidth = 62;
+  const gamesRbMexLabelHeight = 20;
+  const gamesRbFigureHeight = 410;
   const gamesRbExpandedPanelX = 22;
   const gamesRbProductPanelX = 386;
   const gamesRbTableOffsetX = 54;
-  const gamesRbPanelY = 8;
-  const gamesRbTableOffsetY = 60;
+  const gamesRbPanelY = 10;
+  const gamesRbTableOffsetY = 74;
 
   function gamesRbColumnX(value) {
     return gamesRbHeaderWidth + value * gamesRbCellWidth;
@@ -3945,11 +4138,7 @@
     ];
   }
 
-  function gamesRbNimTableBaseTemplate() {
-    const minorLines = [
-      ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
-      ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
-    ].join(" ");
+  function gamesRbNimTableTextTemplate() {
     const headerTexts = gamesRbVisibleValues
       .map((value) => `<text class="games-rb-cell-text is-head" x="${gamesRbCellTextX(value)}" y="19.3" text-anchor="middle">${value}</text>`)
       .join("\n          ");
@@ -3960,23 +4149,60 @@
           .map((column) => `<text class="games-rb-cell-text" x="${gamesRbCellTextX(column)}" y="${gamesRbCellTextY(row)}" text-anchor="middle">${row ^ column}</text>`)
           .join("\n          ");
         return `${rowHead}\n          ${cells}`;
-      })
-      .join("\n          ");
+        })
+        .join("\n          ");
+    return `
+            <g class="games-rb-table-text-layer">
+              <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="19.3" text-anchor="middle">⊕</text>
+            ${headerTexts}
+            ${rows}
+            </g>`;
+  }
+
+  function gamesRbNimTableLinesTemplate() {
+    const minorLines = [
+      ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
+      ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
+    ].join(" ");
+    return `
+            <g class="games-rb-table-line-layer">
+              <path class="games-rb-table-lines is-border" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
+              <path class="games-rb-table-lines" d="${minorLines}"></path>
+              <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
+            </g>`;
+  }
+
+  function gamesRbNimTableBaseTemplate() {
+    const minorLines = [
+      ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
+      ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
+    ].join(" ");
     return `
             <rect class="games-rb-table-bg" x="0" y="0" width="${gamesRbTableWidth}" height="${gamesRbTableHeight}" rx="0"></rect>
             <rect class="games-rb-table-head-row" x="0" y="0" width="${gamesRbTableWidth}" height="${gamesRbHeaderHeight}"></rect>
             <rect class="games-rb-table-head-col" x="0" y="0" width="${gamesRbHeaderWidth}" height="${gamesRbTableHeight}"></rect>
             <path class="games-rb-table-lines is-major" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
             <path class="games-rb-table-lines" d="${minorLines}"></path>
-            <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
-            <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="19.3" text-anchor="middle">⊕</text>
-            ${headerTexts}
-            ${rows}`;
+            <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>`;
+  }
+
+  function gamesRbMexAxisLabelsTemplate() {
+    const initialMexS = gamesRbMex(gamesRbInitialS);
+    const initialMexT = gamesRbMex(gamesRbInitialT);
+    const sY = gamesRbRowY(initialMexS) + (gamesRbCellHeight - gamesRbMexLabelHeight) / 2;
+    const tX = gamesRbCellTextX(initialMexT) - gamesRbMexLabelWidth / 2;
+    return `
+            <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-58" y="${sY}" width="${gamesRbMexLabelWidth}" height="${gamesRbMexLabelHeight}">
+              <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
+            </foreignObject>
+            <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="${tX}" y="-24" width="${gamesRbMexLabelWidth}" height="${gamesRbMexLabelHeight}">
+              <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
+            </foreignObject>`;
   }
 
   const latestPaperFigureTemplates = {
     "games-integral-calculus": `
-      <svg class="games-rb-table-figure games-rb-dual-figure" data-games-rb-interactive viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
+      <svg class="games-rb-table-figure games-rb-dual-figure" data-games-rb-interactive viewBox="0 0 760 ${gamesRbFigureHeight}" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
         <title id="fig-games-rb-table-title">Checking the mex Rota-Baxter equation with two Nim-sum tables</title>
         <desc id="fig-games-rb-table-desc">Two Nim-sum operation tables compute the two sides of the mex Rota-Baxter equation for selectable finite sets S and T.</desc>
         <defs>
@@ -3998,29 +4224,30 @@
             <stop offset="1" stop-color="#e8eef1"></stop>
           </linearGradient>
           <linearGradient id="games-rb-union-both" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stop-color="#c82727" stop-opacity="0.13"></stop>
-            <stop offset="0.49" stop-color="#c82727" stop-opacity="0.13"></stop>
-            <stop offset="0.51" stop-color="#2563eb" stop-opacity="0.13"></stop>
-            <stop offset="1" stop-color="#2563eb" stop-opacity="0.13"></stop>
+            <stop offset="0" stop-color="#f8dddd"></stop>
+            <stop offset="0.49" stop-color="#f8dddd"></stop>
+            <stop offset="0.51" stop-color="#dfe8ff"></stop>
+            <stop offset="1" stop-color="#dfe8ff"></stop>
           </linearGradient>
           <g id="games-nim-table-base">
   ${gamesRbNimTableBaseTemplate()}
           </g>
         </defs>
 
-        <rect class="games-rb-table-paper" width="760" height="390" rx="0"></rect>
+        <rect class="games-rb-table-paper" width="760" height="${gamesRbFigureHeight}" rx="0"></rect>
 
         <g class="games-rb-dual-panel is-expanded-side" transform="translate(${gamesRbExpandedPanelX} ${gamesRbPanelY})">
           <g class="games-rb-dual-table is-expanded-table" transform="translate(${gamesRbTableOffsetX} ${gamesRbTableOffsetY})">
             <use href="#games-nim-table-base"></use>
             <g data-games-rb-set-layer="expanded"></g>
             <g data-games-rb-union-layer></g>
+  ${gamesRbNimTableLinesTemplate()}
+  ${gamesRbNimTableTextTemplate()}
             <g data-games-rb-mex-layer="expanded"></g>
             <g class="games-rb-hit-layer">
   ${gamesRbTableHitTargetsTemplate()}
             </g>
-            <text class="games-rb-mex-axis-svg-label is-mex-s-label" data-games-rb-mex-label="S" x="-15" y="73" text-anchor="end">mex <tspan class="games-rb-mex-var is-s-var">S</tspan></text>
-            <text class="games-rb-mex-axis-svg-label is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-10" text-anchor="middle">mex <tspan class="games-rb-mex-var is-t-var">T</tspan></text>
+  ${gamesRbMexAxisLabelsTemplate()}
           </g>
         </g>
 
@@ -4029,13 +4256,14 @@
             <use href="#games-nim-table-base"></use>
             <g data-games-rb-set-layer="product"></g>
             <g data-games-rb-product-layer></g>
+  ${gamesRbNimTableLinesTemplate()}
+  ${gamesRbNimTableTextTemplate()}
             <g data-games-rb-product-arrow-layer></g>
             <g data-games-rb-mex-layer="product"></g>
             <g class="games-rb-hit-layer">
   ${gamesRbTableHitTargetsTemplate()}
             </g>
-            <text class="games-rb-mex-axis-svg-label is-mex-s-label" data-games-rb-mex-label="S" x="-15" y="73" text-anchor="end">mex <tspan class="games-rb-mex-var is-s-var">S</tspan></text>
-            <text class="games-rb-mex-axis-svg-label is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-10" text-anchor="middle">mex <tspan class="games-rb-mex-var is-t-var">T</tspan></text>
+  ${gamesRbMexAxisLabelsTemplate()}
           </g>
         </g>
       </svg>
@@ -5900,12 +6128,60 @@
     pulseNormalizationElementControl(root, selectedElement);
   }
 
+  function syncNormalizationLinkArrowheadColors(root) {
+    const svg = root?.matches?.("svg") ? root : root?.querySelector?.("svg");
+    if (!svg) return;
+    const defs = svg.querySelector("defs");
+    if (!defs) return;
+    defs.querySelectorAll("marker[data-normalization-link-arrowhead-clone]").forEach((marker) => marker.remove());
+
+    const markerKeys = new Set(["d4", "ref0", "ref2", "ref1", "ref3"]);
+    const originalMarkerFor = (key) => {
+      const markerKey = markerKeys.has(key) ? key : "d4";
+      const suffix = `normalization-link-arrow-${markerKey}`;
+      return Array.from(svg.querySelectorAll("marker")).find((marker) =>
+        !marker.dataset.normalizationLinkArrowheadClone && marker.id.endsWith(suffix)
+      );
+    };
+    const markerPath = (marker) => marker?.querySelector("path");
+    const setMarkerMid = (path, markerId) => {
+      const markerUrl = `url(#${markerId})`;
+      path.setAttribute("marker-mid", markerUrl);
+      path.style.setProperty("marker-mid", markerUrl);
+    };
+    const links = [
+      ...svg.querySelectorAll("[data-normalization-stabilizer-link]"),
+      ...svg.querySelectorAll("[data-normalization-operator-link]")
+    ];
+    links.forEach((path, index) => {
+      const key = path.dataset.normalizationLinkSubgroup || path.dataset.normalizationOperatorSource || "d4";
+      const sourceMarker = originalMarkerFor(key);
+      if (!sourceMarker) return;
+      const style = getComputedStyle(path);
+      const stroke = style.stroke && style.stroke !== "none" ? style.stroke : path.getAttribute("stroke");
+      if (!stroke || stroke === "none") return;
+      const clone = sourceMarker.cloneNode(true);
+      clone.id = `${sourceMarker.id}-stroke-${index}`;
+      clone.dataset.normalizationLinkArrowheadClone = "true";
+      clone.removeAttribute("data-normalization-marker-source");
+      const arrow = markerPath(clone);
+      if (arrow) {
+        arrow.setAttribute("fill", stroke);
+        arrow.style.setProperty("fill", stroke);
+        arrow.setAttribute("fill-opacity", style.strokeOpacity || "1");
+      }
+      defs.append(clone);
+      setMarkerMid(path, clone.id);
+    });
+  }
+
   function initializeNormalizationFigure(root, options = {}) {
     root.classList.toggle("is-interactive", Boolean(options.controls));
     setNormalizationSelection(root, root.dataset.normalizationSelected || "d4");
     updateNormalizationHasseEdges(root);
     updateNormalizationStabilizerLinks(root);
     updateNormalizationOperatorLinks(root);
+    syncNormalizationLinkArrowheadColors(root);
     typesetMath(root);
     if (!options.controls || root.dataset.normalizationInitialized) return;
     root.dataset.normalizationInitialized = "true";
@@ -6347,20 +6623,6 @@
     return node;
   }
 
-  function gamesRbSetTex(name) {
-    return `\\(${name}=\\)`;
-  }
-
-  function gamesRbSetControlTemplate(name, values) {
-    const buttons = gamesRbSelectableValues
-      .map((value) => `<button type="button" class="games-rb-set-button" data-games-rb-toggle="${name}" data-games-rb-value="${value}" aria-pressed="${values.includes(value) ? "true" : "false"}">${value}</button>`)
-      .join("");
-    return `<div class="figure-math games-rb-table-tex games-rb-set-control games-rb-set-control-${name.toLowerCase()} games-rb-set-def-${name.toLowerCase()}" data-games-rb-set-control="${name}">
-        <span class="games-rb-set-current" data-games-rb-set-def="${name}">${gamesRbSetTex(name)}</span>
-        <span class="games-rb-set-buttons" aria-label="Choose ${name}">${buttons}</span>
-      </div>`;
-  }
-
   function appendGamesRbRect(layer, className, x, y, width = gamesRbCellWidth, height = gamesRbCellHeight, extra = {}) {
     if (!layer) return null;
     const rect = gamesRbSvgElement("rect", {
@@ -6467,9 +6729,17 @@
     renderGamesRbProductHighlight(root.querySelector("[data-games-rb-product-layer]"), mexS, mexT);
     renderGamesRbProductArrows(root.querySelector("[data-games-rb-product-arrow-layer]"), mexS, mexT);
     root.querySelectorAll('[data-games-rb-mex-label="S"]').forEach((label) => {
+      if (label.classList.contains("games-rb-mex-axis-tex")) {
+        label.setAttribute("y", String(gamesRbRowY(mexS) + (gamesRbCellHeight - gamesRbMexLabelHeight) / 2));
+        return;
+      }
       label.setAttribute("y", String(gamesRbRowY(mexS) + 16));
     });
     root.querySelectorAll('[data-games-rb-mex-label="T"]').forEach((label) => {
+      if (label.classList.contains("games-rb-mex-axis-tex")) {
+        label.setAttribute("x", String(gamesRbCellTextX(mexT) - gamesRbMexLabelWidth / 2));
+        return;
+      }
       label.setAttribute("x", String(gamesRbCellTextX(mexT)));
     });
     const desc = root.querySelector("#fig-games-rb-table-desc");
@@ -7106,6 +7376,7 @@
       ["#talk-year-filter", "change", (event) => { state.talkYear = event.target.value; renderResearchmapPresentations(); }],
       ["#talk-theme-filter", "change", (event) => { state.talkTheme = event.target.value; renderResearchmapPresentations(); }],
       ["#talk-slides-filter", "change", (event) => { state.talkSlides = event.target.value; renderResearchmapPresentations(); }],
+      ["#talk-type-filter", "change", (event) => { state.talkType = event.target.value; renderResearchmapPresentations(); }],
       ["#slide-filter", "input", (event) => { state.slideQuery = event.target.value; renderSlides(); }],
       ["#slide-language-filter", "change", (event) => { state.slideLanguage = event.target.value; renderSlides(); }],
       ["#slide-year-filter", "change", (event) => { state.slideYear = event.target.value; renderSlides(); }],
@@ -7121,6 +7392,28 @@
   function applyFigureMarkerIds(container, figureId, prefix) {
     const svg = container.querySelector("svg");
     if (!svg) return;
+    const normalizationMarkerKeys = new Set(["d4", "ref0", "ref2", "ref1", "ref3"]);
+    const applyNormalizationLinkMarkers = (idMap = new Map()) => {
+      const markerIdFor = (key) => {
+        const markerKey = normalizationMarkerKeys.has(key) ? key : "d4";
+        const originalId = `normalization-link-arrow-${markerKey}`;
+        const markerId = idMap.get(originalId) || originalId;
+        return svg.querySelector(`marker[id="${markerId}"]`) ? markerId : "";
+      };
+      const setMarkerMid = (path, key) => {
+        const markerId = markerIdFor(key);
+        if (!markerId) return;
+        const markerUrl = `url(#${markerId})`;
+        path.setAttribute("marker-mid", markerUrl);
+        path.style.setProperty("marker-mid", markerUrl);
+      };
+      svg.querySelectorAll("[data-normalization-stabilizer-link]").forEach((path) => {
+        setMarkerMid(path, path.dataset.normalizationLinkSubgroup || "d4");
+      });
+      svg.querySelectorAll("[data-normalization-operator-link]").forEach((path) => {
+        setMarkerMid(path, path.dataset.normalizationOperatorSource || "d4");
+      });
+    };
 
     if (figureId === "completely-connected") {
       svg.querySelectorAll("marker[data-connected-marker]").forEach((marker) => {
@@ -7228,6 +7521,7 @@
         if (nextValue !== value) node.setAttribute(attribute, nextValue);
       });
     });
+    if (figureId === "normalization") applyNormalizationLinkMarkers(idMap);
   }
 
   globalThis.setupLanguage = setupLanguage;
