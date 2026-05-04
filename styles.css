@@ -2773,7 +2773,7 @@ a.position-link:focus-visible,
 }
 
 .publication-figure-games-integral-calculus {
-  aspect-ratio: 760 / 390;
+  aspect-ratio: 760 / 410;
 }
 
 .publication-figure-automata-cantor-morphism {
@@ -2948,6 +2948,11 @@ a.position-link:focus-visible,
 }
 
 .games-rb-table-lines.is-major {
+  stroke: rgba(43, 52, 43, 0.34);
+  stroke-width: 1.35;
+}
+
+.games-rb-table-lines.is-border {
   stroke: rgba(43, 52, 43, 0.34);
   stroke-width: 1.35;
 }
@@ -3522,11 +3527,11 @@ a.position-link:focus-visible,
 }
 
 .games-rb-set-highlight.is-s-entry {
-  fill: rgba(var(--games-rb-blue-rgb, 63, 115, 152), 0.22);
+  fill: #dfe8ff;
 }
 
 .games-rb-set-highlight.is-t-entry {
-  fill: rgba(var(--games-rb-red-rgb, 191, 79, 67), 0.2);
+  fill: #f8dddd;
 }
 
 .games-rb-hit-target {
@@ -3684,11 +3689,11 @@ a.position-link:focus-visible,
 }
 
 .games-rb-union-highlight.is-mex-s-plus-t {
-  fill: rgba(var(--games-rb-red-rgb, 191, 79, 67), 0.12);
+  fill: #f8dddd;
 }
 
 .games-rb-union-highlight.is-s-plus-mex-t {
-  fill: rgba(var(--games-rb-blue-rgb, 63, 115, 152), 0.12);
+  fill: #dfe8ff;
 }
 
 .games-rb-union-highlight.is-both-union-terms {
@@ -3854,10 +3859,10 @@ a.position-link:focus-visible,
   align-items: center;
   display: inline-flex;
   left: 26%;
-  top: 86.9%;
+  top: 88.1%;
   width: 48%;
   color: #24312a;
-  font-size: 0.96rem;
+  font-size: 1.14rem;
   font-weight: 950;
   line-height: 1;
   justify-content: center;
@@ -3866,7 +3871,7 @@ a.position-link:focus-visible,
 }
 
 .games-rb-expanded-mex-readout:not(:has(.katex)) {
-  font-size: 0.96rem;
+  font-size: 1.14rem;
 }
 
 .games-rb-expanded-mex-readout .games-rb-math-part,
@@ -3888,10 +3893,10 @@ a.position-link:focus-visible,
 
 .games-rb-bottom-result {
   left: 55.2%;
-  top: 86.9%;
+  top: 88.1%;
   width: 7%;
   color: #24312a;
-  font-size: 1.16rem;
+  font-size: 1.34rem;
   font-weight: 950;
   line-height: 1;
   text-align: center;
@@ -3899,30 +3904,30 @@ a.position-link:focus-visible,
 }
 
 .games-rb-bottom-result:not(:has(.katex)) {
-  font-size: 1.16rem;
+  font-size: 1.34rem;
 }
 
 .games-rb-expanded-mex-equals {
   left: 55.2%;
-  top: 86.9%;
+  top: 88.1%;
   width: 8%;
   color: var(--games-rb-purple);
-  font-size: 1.08rem;
+  font-size: 1.26rem;
   font-weight: 950;
   line-height: 1;
   white-space: nowrap;
 }
 
 .games-rb-expanded-mex-equals:not(:has(.katex)) {
-  font-size: 1.08rem;
+  font-size: 1.26rem;
 }
 
 .games-rb-expanded-mex-rhs {
   left: 78.6%;
-  top: 86.9%;
+  top: 88.1%;
   width: 34%;
   color: #24312a;
-  font-size: 1.08rem;
+  font-size: 1.26rem;
   font-weight: 950;
   line-height: 1;
   text-align: center;
@@ -3930,13 +3935,13 @@ a.position-link:focus-visible,
 }
 
 .games-rb-expanded-mex-rhs:not(:has(.katex)) {
-  font-size: 1.08rem;
+  font-size: 1.26rem;
 }
 
 .games-rb-integral-left,
 .games-rb-integral-right {
   color: #24312a;
-  font-size: 1.1rem;
+  font-size: 1.32rem;
   font-weight: 900;
   line-height: 1;
   text-align: center;
@@ -3945,19 +3950,19 @@ a.position-link:focus-visible,
 
 .games-rb-integral-left {
   left: 29.8%;
-  top: 23.8%;
+  top: 7.6%;
   width: 34%;
 }
 
 .games-rb-integral-right {
   left: 77.7%;
-  top: 23.8%;
+  top: 7.6%;
   width: 34%;
 }
 
 .games-rb-integral-left:not(:has(.katex)),
 .games-rb-integral-right:not(:has(.katex)) {
-  font-size: 1.1rem;
+  font-size: 1.32rem;
 }
 
 @media (max-width: 520px) {
@@ -3994,84 +3999,25 @@ a.position-link:focus-visible,
   }
 }
 
-.games-rb-set-def {
-  top: 16.8%;
-  font-size: 0.84rem;
-  font-weight: 850;
-  white-space: nowrap;
-}
+@media (max-width: 520px) {
+  .games-rb-integral-left,
+  .games-rb-integral-right {
+    display: none;
+  }
 
-.games-rb-set-def-s {
-  left: 25.8%;
-  color: var(--games-rb-blue);
-}
+  .games-rb-expanded-mex-readout {
+    left: 29%;
+    width: 42%;
+  }
 
-.games-rb-set-def-t {
-  left: 74.2%;
-  color: var(--games-rb-red);
-}
+  .games-rb-bottom-result {
+    left: 56%;
+  }
 
-.games-rb-set-control {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  gap: 0.18rem;
-  justify-content: flex-start;
-  top: 21.2%;
-  width: 40%;
-  white-space: nowrap;
-}
-
-.games-rb-set-current {
-  font-size: 0.94rem;
-  font-weight: 850;
-  flex: 0 0 1.38rem;
-  text-align: right;
-}
-
-.games-rb-set-buttons {
-  align-items: center;
-  display: grid;
-  flex: 1 1 auto;
-  gap: 0.14rem;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  min-width: 0;
-}
-
-.games-rb-set-button {
-  appearance: none;
-  aspect-ratio: 1 / 1;
-  background: rgba(255, 253, 248, 0.88);
-  border: 1px solid rgba(43, 52, 43, 0.2);
-  border-radius: 7px;
-  box-sizing: border-box;
-  color: var(--games-rb-ink);
-  cursor: pointer;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 12px;
-  font-weight: 850;
-  height: auto;
-  line-height: 1;
-  min-width: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.games-rb-set-control-s .games-rb-set-button[aria-pressed="true"] {
-  background: rgba(var(--games-rb-blue-rgb, 63, 115, 152), 0.16);
-  border-color: rgba(var(--games-rb-blue-rgb, 63, 115, 152), 0.5);
-  color: var(--games-rb-blue);
-}
-
-.games-rb-set-control-t .games-rb-set-button[aria-pressed="true"] {
-  background: rgba(var(--games-rb-red-rgb, 191, 79, 67), 0.14);
-  border-color: rgba(var(--games-rb-red-rgb, 191, 79, 67), 0.46);
-  color: var(--games-rb-red);
-}
-
-.games-rb-set-button:focus-visible {
-  outline: 2px solid rgba(31, 39, 33, 0.52);
-  outline-offset: 2px;
+  .games-rb-expanded-mex-rhs {
+    left: 80.4%;
+    width: 30%;
+  }
 }
 
 @keyframes games-rb-dual-mex {
@@ -9573,13 +9519,14 @@ a.position-link:focus-visible,
 
 .talk-map-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(210px, 0.65fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   min-width: 0;
 }
 
 .talk-map-figure {
   --visit-map-zoom: 1;
+  --talk-map-viewport-height: clamp(280px, 40vh, 430px);
   display: grid;
   gap: 10px;
   min-width: 0;
@@ -9589,6 +9536,14 @@ a.position-link:focus-visible,
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.76);
   box-shadow: 0 10px 28px rgba(42, 45, 39, 0.04);
+}
+
+.talk-europe-map {
+  --talk-map-viewport-height: clamp(280px, 40vh, 430px);
+}
+
+.talk-japan-map {
+  --talk-map-viewport-height: clamp(280px, 40vh, 430px);
 }
 
 .talk-map-toolbar {
@@ -9655,11 +9610,12 @@ a.position-link:focus-visible,
 
 .talk-map-canvas {
   overflow: auto;
-  max-height: clamp(260px, 42vh, 430px);
+  height: var(--talk-map-viewport-height);
   border: 1px solid rgba(43, 52, 43, 0.1);
   border-radius: 8px;
   background: #edf3f4;
   cursor: grab;
+  overflow-anchor: none;
   overscroll-behavior: contain;
   scrollbar-gutter: stable both-edges;
   touch-action: none;
@@ -9963,12 +9919,13 @@ a.position-link:focus-visible,
 
 .home-timeline-status {
   --timeline-status-color: var(--accent);
+  position: relative;
   display: grid;
   gap: 3px;
   min-height: 0;
   max-height: 92px;
   margin: 0 2px;
-  padding: 9px 12px 10px;
+  padding: 9px 78px 10px 12px;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--timeline-status-color) 22%, rgba(215, 210, 199, 0.72));
   border-left: 4px solid var(--timeline-status-color);
@@ -10033,6 +9990,40 @@ a.position-link:focus-visible,
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 650;
+}
+
+.home-timeline-status-nav {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  transform: translateY(-50%);
+}
+
+.home-timeline-status-control.timeline-control {
+  width: 28px;
+  height: 28px;
+  border-color: color-mix(in srgb, var(--timeline-status-color) 28%, var(--line));
+  border-radius: 7px;
+  background: rgba(255, 253, 248, 0.92);
+  color: var(--timeline-status-color);
+  box-shadow: none;
+}
+
+.home-timeline-status-control.timeline-control:hover,
+.home-timeline-status-control.timeline-control:focus-visible {
+  border-color: var(--timeline-status-color);
+  color: var(--timeline-status-color);
+}
+
+.home-timeline-status-control-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.home-timeline-status-control.is-previous .home-timeline-status-control-icon {
+  transform: rotate(180deg);
 }
 
 .home-timeline-detail {
@@ -12270,8 +12261,16 @@ a.position-link:focus-visible,
     width: min(560px, 100%);
   }
 
-  .talk-map-canvas {
-    max-height: clamp(320px, 44vh, 560px);
+  .talk-map-figure {
+    --talk-map-viewport-height: clamp(320px, 40vh, 520px);
+  }
+
+  .talk-europe-map {
+    --talk-map-viewport-height: clamp(320px, 40vh, 520px);
+  }
+
+  .talk-japan-map {
+    --talk-map-viewport-height: clamp(320px, 40vh, 520px);
   }
 }
 
@@ -12384,6 +12383,15 @@ a.position-link:focus-visible,
 }
 
 @media (max-width: 760px) {
+  .home-timeline-status {
+    padding-right: 72px;
+  }
+
+  .home-timeline-status-control.timeline-control {
+    width: 26px;
+    height: 26px;
+  }
+
   .home-timeline-detail {
     grid-template-columns: 1fr auto;
     gap: 10px;

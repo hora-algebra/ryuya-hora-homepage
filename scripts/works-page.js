@@ -4085,11 +4085,14 @@
   const gamesRbHeaderHeight = 26;
   const gamesRbTableWidth = gamesRbHeaderWidth + gamesRbVisibleValues.length * gamesRbCellWidth;
   const gamesRbTableHeight = gamesRbHeaderHeight + gamesRbVisibleValues.length * gamesRbCellHeight;
+  const gamesRbMexLabelWidth = 62;
+  const gamesRbMexLabelHeight = 20;
+  const gamesRbFigureHeight = 410;
   const gamesRbExpandedPanelX = 22;
   const gamesRbProductPanelX = 386;
   const gamesRbTableOffsetX = 54;
-  const gamesRbPanelY = 8;
-  const gamesRbTableOffsetY = 60;
+  const gamesRbPanelY = 10;
+  const gamesRbTableOffsetY = 74;
 
   function gamesRbColumnX(value) {
     return gamesRbHeaderWidth + value * gamesRbCellWidth;
@@ -4135,11 +4138,7 @@
     ];
   }
 
-  function gamesRbNimTableBaseTemplate() {
-    const minorLines = [
-      ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
-      ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
-    ].join(" ");
+  function gamesRbNimTableTextTemplate() {
     const headerTexts = gamesRbVisibleValues
       .map((value) => `<text class="games-rb-cell-text is-head" x="${gamesRbCellTextX(value)}" y="19.3" text-anchor="middle">${value}</text>`)
       .join("\n          ");
@@ -4150,23 +4149,60 @@
           .map((column) => `<text class="games-rb-cell-text" x="${gamesRbCellTextX(column)}" y="${gamesRbCellTextY(row)}" text-anchor="middle">${row ^ column}</text>`)
           .join("\n          ");
         return `${rowHead}\n          ${cells}`;
-      })
-      .join("\n          ");
+        })
+        .join("\n          ");
+    return `
+            <g class="games-rb-table-text-layer">
+              <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="19.3" text-anchor="middle">⊕</text>
+            ${headerTexts}
+            ${rows}
+            </g>`;
+  }
+
+  function gamesRbNimTableLinesTemplate() {
+    const minorLines = [
+      ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
+      ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
+    ].join(" ");
+    return `
+            <g class="games-rb-table-line-layer">
+              <path class="games-rb-table-lines is-border" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
+              <path class="games-rb-table-lines" d="${minorLines}"></path>
+              <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
+            </g>`;
+  }
+
+  function gamesRbNimTableBaseTemplate() {
+    const minorLines = [
+      ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
+      ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
+    ].join(" ");
     return `
             <rect class="games-rb-table-bg" x="0" y="0" width="${gamesRbTableWidth}" height="${gamesRbTableHeight}" rx="0"></rect>
             <rect class="games-rb-table-head-row" x="0" y="0" width="${gamesRbTableWidth}" height="${gamesRbHeaderHeight}"></rect>
             <rect class="games-rb-table-head-col" x="0" y="0" width="${gamesRbHeaderWidth}" height="${gamesRbTableHeight}"></rect>
             <path class="games-rb-table-lines is-major" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
             <path class="games-rb-table-lines" d="${minorLines}"></path>
-            <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
-            <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="19.3" text-anchor="middle">⊕</text>
-            ${headerTexts}
-            ${rows}`;
+            <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>`;
+  }
+
+  function gamesRbMexAxisLabelsTemplate() {
+    const initialMexS = gamesRbMex(gamesRbInitialS);
+    const initialMexT = gamesRbMex(gamesRbInitialT);
+    const sY = gamesRbRowY(initialMexS) + (gamesRbCellHeight - gamesRbMexLabelHeight) / 2;
+    const tX = gamesRbCellTextX(initialMexT) - gamesRbMexLabelWidth / 2;
+    return `
+            <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-58" y="${sY}" width="${gamesRbMexLabelWidth}" height="${gamesRbMexLabelHeight}">
+              <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
+            </foreignObject>
+            <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="${tX}" y="-24" width="${gamesRbMexLabelWidth}" height="${gamesRbMexLabelHeight}">
+              <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
+            </foreignObject>`;
   }
 
   const latestPaperFigureTemplates = {
     "games-integral-calculus": `
-      <svg class="games-rb-table-figure games-rb-dual-figure" data-games-rb-interactive viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
+      <svg class="games-rb-table-figure games-rb-dual-figure" data-games-rb-interactive viewBox="0 0 760 ${gamesRbFigureHeight}" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
         <title id="fig-games-rb-table-title">Checking the mex Rota-Baxter equation with two Nim-sum tables</title>
         <desc id="fig-games-rb-table-desc">Two Nim-sum operation tables compute the two sides of the mex Rota-Baxter equation for selectable finite sets S and T.</desc>
         <defs>
@@ -4188,29 +4224,30 @@
             <stop offset="1" stop-color="#e8eef1"></stop>
           </linearGradient>
           <linearGradient id="games-rb-union-both" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stop-color="#c82727" stop-opacity="0.13"></stop>
-            <stop offset="0.49" stop-color="#c82727" stop-opacity="0.13"></stop>
-            <stop offset="0.51" stop-color="#2563eb" stop-opacity="0.13"></stop>
-            <stop offset="1" stop-color="#2563eb" stop-opacity="0.13"></stop>
+            <stop offset="0" stop-color="#f8dddd"></stop>
+            <stop offset="0.49" stop-color="#f8dddd"></stop>
+            <stop offset="0.51" stop-color="#dfe8ff"></stop>
+            <stop offset="1" stop-color="#dfe8ff"></stop>
           </linearGradient>
           <g id="games-nim-table-base">
   ${gamesRbNimTableBaseTemplate()}
           </g>
         </defs>
 
-        <rect class="games-rb-table-paper" width="760" height="390" rx="0"></rect>
+        <rect class="games-rb-table-paper" width="760" height="${gamesRbFigureHeight}" rx="0"></rect>
 
         <g class="games-rb-dual-panel is-expanded-side" transform="translate(${gamesRbExpandedPanelX} ${gamesRbPanelY})">
           <g class="games-rb-dual-table is-expanded-table" transform="translate(${gamesRbTableOffsetX} ${gamesRbTableOffsetY})">
             <use href="#games-nim-table-base"></use>
             <g data-games-rb-set-layer="expanded"></g>
             <g data-games-rb-union-layer></g>
+  ${gamesRbNimTableLinesTemplate()}
+  ${gamesRbNimTableTextTemplate()}
             <g data-games-rb-mex-layer="expanded"></g>
             <g class="games-rb-hit-layer">
   ${gamesRbTableHitTargetsTemplate()}
             </g>
-            <text class="games-rb-mex-axis-svg-label is-mex-s-label" data-games-rb-mex-label="S" x="-15" y="73" text-anchor="end">mex <tspan class="games-rb-mex-var is-s-var">S</tspan></text>
-            <text class="games-rb-mex-axis-svg-label is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-10" text-anchor="middle">mex <tspan class="games-rb-mex-var is-t-var">T</tspan></text>
+  ${gamesRbMexAxisLabelsTemplate()}
           </g>
         </g>
 
@@ -4219,13 +4256,14 @@
             <use href="#games-nim-table-base"></use>
             <g data-games-rb-set-layer="product"></g>
             <g data-games-rb-product-layer></g>
+  ${gamesRbNimTableLinesTemplate()}
+  ${gamesRbNimTableTextTemplate()}
             <g data-games-rb-product-arrow-layer></g>
             <g data-games-rb-mex-layer="product"></g>
             <g class="games-rb-hit-layer">
   ${gamesRbTableHitTargetsTemplate()}
             </g>
-            <text class="games-rb-mex-axis-svg-label is-mex-s-label" data-games-rb-mex-label="S" x="-15" y="73" text-anchor="end">mex <tspan class="games-rb-mex-var is-s-var">S</tspan></text>
-            <text class="games-rb-mex-axis-svg-label is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-10" text-anchor="middle">mex <tspan class="games-rb-mex-var is-t-var">T</tspan></text>
+  ${gamesRbMexAxisLabelsTemplate()}
           </g>
         </g>
       </svg>
@@ -6585,20 +6623,6 @@
     return node;
   }
 
-  function gamesRbSetTex(name) {
-    return `\\(${name}=\\)`;
-  }
-
-  function gamesRbSetControlTemplate(name, values) {
-    const buttons = gamesRbSelectableValues
-      .map((value) => `<button type="button" class="games-rb-set-button" data-games-rb-toggle="${name}" data-games-rb-value="${value}" aria-pressed="${values.includes(value) ? "true" : "false"}">${value}</button>`)
-      .join("");
-    return `<div class="figure-math games-rb-table-tex games-rb-set-control games-rb-set-control-${name.toLowerCase()} games-rb-set-def-${name.toLowerCase()}" data-games-rb-set-control="${name}">
-        <span class="games-rb-set-current" data-games-rb-set-def="${name}">${gamesRbSetTex(name)}</span>
-        <span class="games-rb-set-buttons" aria-label="Choose ${name}">${buttons}</span>
-      </div>`;
-  }
-
   function appendGamesRbRect(layer, className, x, y, width = gamesRbCellWidth, height = gamesRbCellHeight, extra = {}) {
     if (!layer) return null;
     const rect = gamesRbSvgElement("rect", {
@@ -6705,9 +6729,17 @@
     renderGamesRbProductHighlight(root.querySelector("[data-games-rb-product-layer]"), mexS, mexT);
     renderGamesRbProductArrows(root.querySelector("[data-games-rb-product-arrow-layer]"), mexS, mexT);
     root.querySelectorAll('[data-games-rb-mex-label="S"]').forEach((label) => {
+      if (label.classList.contains("games-rb-mex-axis-tex")) {
+        label.setAttribute("y", String(gamesRbRowY(mexS) + (gamesRbCellHeight - gamesRbMexLabelHeight) / 2));
+        return;
+      }
       label.setAttribute("y", String(gamesRbRowY(mexS) + 16));
     });
     root.querySelectorAll('[data-games-rb-mex-label="T"]').forEach((label) => {
+      if (label.classList.contains("games-rb-mex-axis-tex")) {
+        label.setAttribute("x", String(gamesRbCellTextX(mexT) - gamesRbMexLabelWidth / 2));
+        return;
+      }
       label.setAttribute("x", String(gamesRbCellTextX(mexT)));
     });
     const desc = root.querySelector("#fig-games-rb-table-desc");

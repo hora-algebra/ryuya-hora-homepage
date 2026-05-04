@@ -5243,13 +5243,38 @@ function visitRecordTime(record) {
   return Number.isFinite(time) ? time : 0;
 }
 
-function talkMapViewBox(scope) {
+function talkMapProjectionXScale(scope) {
+  return scope === "europe" ? 0.7 : 1;
+}
+
+function talkMapRawViewBox(scope) {
   return talkMapData?.[scope]?.viewBox || (scope === "europe" ? "0 0 560 440" : "0 0 360 520");
 }
 
-function talkMapViewBoxParts(scope) {
-  const [x = 0, y = 0, width = 720, height = 360] = talkMapViewBox(scope).split(/\s+/).map(Number);
+function parseTalkMapViewBox(value) {
+  const [x = 0, y = 0, width = 720, height = 360] = String(value || "").split(/\s+/).map(Number);
   return { x, y, width, height };
+}
+
+function talkMapViewBoxNumber(value) {
+  return Number(value.toFixed(3)).toString();
+}
+
+function talkMapRawViewBoxParts(scope) {
+  return parseTalkMapViewBox(talkMapRawViewBox(scope));
+}
+
+function talkMapViewBox(scope) {
+  const raw = talkMapRawViewBoxParts(scope);
+  const scaleX = talkMapProjectionXScale(scope);
+  if (scaleX === 1) return talkMapRawViewBox(scope);
+  const width = raw.width * scaleX;
+  const x = raw.x + (raw.width - width) / 2;
+  return [x, raw.y, width, raw.height].map(talkMapViewBoxNumber).join(" ");
+}
+
+function talkMapViewBoxParts(scope) {
+  return parseTalkMapViewBox(talkMapViewBox(scope));
 }
 
 function talkMapViewBoxSize(scope) {
@@ -5257,22 +5282,41 @@ function talkMapViewBoxSize(scope) {
   return { width: parts.width || 720, height: parts.height || 360 };
 }
 
+function talkMapProjectionTransform(scope) {
+  const scaleX = talkMapProjectionXScale(scope);
+  if (scaleX === 1) return "";
+  const viewBox = talkMapViewBoxParts(scope);
+  const originX = viewBox.x + viewBox.width / 2;
+  return `translate(${originX} 0) scale(${scaleX} 1) translate(${-originX} 0)`;
+}
+
+function talkMapProjectedPoint(point, scope) {
+  const scaleX = talkMapProjectionXScale(scope);
+  if (scaleX === 1) return point;
+  const viewBox = talkMapViewBoxParts(scope);
+  const originX = viewBox.x + viewBox.width / 2;
+  return {
+    ...point,
+    x: originX + (point.x - originX) * scaleX
+  };
+}
+
 function talkMapPoint(location, scope) {
   const projection = talkMapData?.[scope]?.projection;
   if (projection) {
-    return {
+    return talkMapProjectedPoint({
       x: projection.offsetX + (location.lon - projection.minLon) * projection.scale,
       y: projection.offsetY + (projection.maxLat - location.lat) * projection.scale
-    };
+    }, scope);
   }
   if (scope === "japan") {
     return { x: location.japanX, y: location.japanY };
   }
-  const size = talkMapViewBoxSize(scope);
-  return {
-    x: ((location.lon + 180) / 360) * size.width,
-    y: ((90 - location.lat) / 180) * size.height
-  };
+  const rawViewBox = talkMapRawViewBoxParts(scope);
+  return talkMapProjectedPoint({
+    x: rawViewBox.x + ((location.lon + 180) / 360) * rawViewBox.width,
+    y: rawViewBox.y + ((90 - location.lat) / 180) * rawViewBox.height
+  }, scope);
 }
 
 function compareTalkMapGroups(a, b) {
@@ -5332,8 +5376,15 @@ function talkMapSpiderfyGroups(groups, scope) {
   return [...clusters.values()];
 }
 
-function talkMapSpiderfyRingLayout(count) {
-  if (count <= 8) return [{ start: 0, count, screenRadius: count === 2 ? 34 : 42 }];
+function talkMapSpiderfyRadiusProfile(scope) {
+  return scope === "japan"
+    ? { pair: 46, singleRing: 56, firstRing: 56, ringStep: 56 }
+    : { pair: 34, singleRing: 42, firstRing: 42, ringStep: 40 };
+}
+
+function talkMapSpiderfyRingLayout(count, scope) {
+  const profile = talkMapSpiderfyRadiusProfile(scope);
+  if (count <= 8) return [{ start: 0, count, screenRadius: count === 2 ? profile.pair : profile.singleRing }];
   const rings = [];
   let start = 0;
   let remaining = count;
@@ -5341,12 +5392,34 @@ function talkMapSpiderfyRingLayout(count) {
   while (remaining > 0) {
     const capacity = ring === 0 ? 8 : 12 + (ring - 1) * 6;
     const ringCount = Math.min(remaining, capacity);
-    rings.push({ start, count: ringCount, screenRadius: 42 + ring * 40 });
+    rings.push({ start, count: ringCount, screenRadius: profile.firstRing + ring * profile.ringStep });
     start += ringCount;
     remaining -= ringCount;
     ring += 1;
   }
   return rings;
+}
+
+function talkMapNormalizedAngle(angle) {
+  const fullTurn = Math.PI * 2;
+  return (angle + Math.PI / 2 + fullTurn) % fullTurn;
+}
+
+function talkMapSpiderfyEntryAngle(entry, center) {
+  return talkMapNormalizedAngle(Math.atan2(entry.base.y - center.y, entry.base.x - center.x));
+}
+
+function talkMapSpiderfyLayoutSlots(count, scope) {
+  return talkMapSpiderfyRingLayout(count, scope)
+    .flatMap((ring, ringIndex) => Array.from({ length: ring.count }, (_, offset) => {
+      const angle = -Math.PI / 2 + (Math.PI * 2 * offset) / ring.count + ringIndex * 0.18;
+      return {
+        angle,
+        radius: ring.screenRadius,
+        order: talkMapNormalizedAngle(angle)
+      };
+    }))
+    .sort((a, b) => a.order - b.order || a.radius - b.radius);
 }
 
 function talkMapExpandedSpiderCluster(groups, scope) {
@@ -5367,23 +5440,24 @@ function talkMapMapPoints(groups, scope) {
   if (!cluster) return positions;
 
   const zoom = Math.max(currentTalkMapZoom(scope), 1);
-  const ordered = [...cluster].sort((a, b) => compareTalkMapGroups(a.group, b.group) || a.index - b.index);
   const center = {
-    x: ordered.reduce((sum, entry) => sum + entry.base.x, 0) / ordered.length,
-    y: ordered.reduce((sum, entry) => sum + entry.base.y, 0) / ordered.length
+    x: cluster.reduce((sum, entry) => sum + entry.base.x, 0) / cluster.length,
+    y: cluster.reduce((sum, entry) => sum + entry.base.y, 0) / cluster.length
   };
+  const ordered = [...cluster].sort((a, b) =>
+    talkMapSpiderfyEntryAngle(a, center) - talkMapSpiderfyEntryAngle(b, center) ||
+    compareTalkMapGroups(a.group, b.group) ||
+    a.index - b.index
+  );
   const padding = Math.max(5, 14 / zoom);
-  talkMapSpiderfyRingLayout(ordered.length).forEach((ring, ringIndex) => {
-    for (let offset = 0; offset < ring.count; offset += 1) {
-      const entry = ordered[ring.start + offset];
-      const angle = -Math.PI / 2 + (Math.PI * 2 * offset) / ring.count + ringIndex * 0.18;
-      const radius = ring.screenRadius / zoom;
-      const point = clampTalkMapPoint({
-        x: center.x + Math.cos(angle) * radius,
-        y: center.y + Math.sin(angle) * radius
-      }, scope, padding);
-      positions.set(entry.group.location.id, { base: entry.base, point, spiderfied: true });
-    }
+  talkMapSpiderfyLayoutSlots(ordered.length, scope).forEach((slot, index) => {
+    const entry = ordered[index];
+    const radius = slot.radius / zoom;
+    const point = clampTalkMapPoint({
+      x: center.x + Math.cos(slot.angle) * radius,
+      y: center.y + Math.sin(slot.angle) * radius
+    }, scope, padding);
+    positions.set(entry.group.location.id, { base: entry.base, point, spiderfied: true });
   });
   return positions;
 }
@@ -5499,16 +5573,51 @@ function storeTalkMapPanPositions(root) {
   });
 }
 
-function talkMapMarkerBounds(groups, scope) {
+function talkMapPointBounds(groups, scope) {
   const points = groups.map((group) => talkMapPoint(group.location, scope));
   if (!points.length) return null;
+  return {
+    minX: Math.min(...points.map((point) => point.x)),
+    maxX: Math.max(...points.map((point) => point.x)),
+    minY: Math.min(...points.map((point) => point.y)),
+    maxY: Math.max(...points.map((point) => point.y))
+  };
+}
+
+function expandTalkMapBounds(bounds, scope, padding) {
+  if (!bounds) return null;
   const viewBox = talkMapViewBoxParts(scope);
-  const padding = scope === "japan" ? 42 : 36;
-  const minX = Math.max(viewBox.x, Math.min(...points.map((point) => point.x)) - padding);
-  const maxX = Math.min(viewBox.x + viewBox.width, Math.max(...points.map((point) => point.x)) + padding);
-  const minY = Math.max(viewBox.y, Math.min(...points.map((point) => point.y)) - padding);
-  const maxY = Math.min(viewBox.y + viewBox.height, Math.max(...points.map((point) => point.y)) + padding);
-  return { minX, maxX, minY, maxY };
+  return {
+    minX: Math.max(viewBox.x, bounds.minX - padding),
+    maxX: Math.min(viewBox.x + viewBox.width, bounds.maxX + padding),
+    minY: Math.max(viewBox.y, bounds.minY - padding),
+    maxY: Math.min(viewBox.y + viewBox.height, bounds.maxY + padding)
+  };
+}
+
+function talkMapMarkerBounds(groups, scope) {
+  return expandTalkMapBounds(talkMapPointBounds(groups, scope), scope, 8);
+}
+
+function talkMapAutoFitZoom(canvas, svg, scope, groups) {
+  const bounds = talkMapPointBounds(groups, scope);
+  if (!canvas || !svg || !bounds) return 1;
+  const viewBox = talkMapViewBoxParts(scope);
+  const currentZoom = Math.max(currentTalkMapZoom(scope), 1);
+  const svgRect = svg.getBoundingClientRect();
+  const baseScale = svgRect.width / viewBox.width / currentZoom;
+  if (!Number.isFinite(baseScale) || baseScale <= 0) return 1;
+  const screenPadding = scope === "japan" ? 18 : 16;
+  const availableWidth = Math.max(canvas.clientWidth - screenPadding * 2, 1);
+  const availableHeight = Math.max(canvas.clientHeight - screenPadding * 2, 1);
+  const boundsWidth = Math.max(bounds.maxX - bounds.minX, 1);
+  const boundsHeight = Math.max(bounds.maxY - bounds.minY, 1);
+  const zoom = Math.min(
+    talkMapZoom.max,
+    availableWidth / (boundsWidth * baseScale),
+    availableHeight / (boundsHeight * baseScale)
+  );
+  return clampTalkMapZoom(Math.max(1, Math.floor(zoom * 100) / 100));
 }
 
 function talkMapScrollForBounds(canvas, svg, scope, bounds) {
@@ -5541,10 +5650,15 @@ function fitTalkMapToMarkers(figure, scope, groups, shouldRemember = false) {
 function initializeTalkMapViewport(figure, scope, groups) {
   window.requestAnimationFrame(() => {
     const canvas = figure.querySelector(".talk-map-canvas");
-    if (!canvas) return;
+    const svg = figure.querySelector("svg");
+    if (!canvas || !svg) return;
     const saved = state.talkMapPan?.[scope];
     if (saved) applyTalkMapPan(canvas, scope, saved);
-    else fitTalkMapToMarkers(figure, scope, groups);
+    else {
+      state.talkMapZoom[scope] = talkMapAutoFitZoom(canvas, svg, scope, groups);
+      updateTalkMapZoomUi(figure, scope, groups);
+      window.requestAnimationFrame(() => fitTalkMapToMarkers(figure, scope, groups));
+    }
   });
 }
 
@@ -5712,10 +5826,11 @@ function talkMapMarker(group, scope, groups, position = null) {
 function appendTalkMapDataPaths(svg, scope) {
   const paths = talkMapData?.[scope]?.paths || [];
   const clipId = `talk-map-clip-${scope}`;
-  const size = talkMapViewBoxSize(scope);
+  const viewBox = talkMapViewBoxParts(scope);
+  const projectionTransform = talkMapProjectionTransform(scope);
   const defs = svgEl("defs");
   const clipPath = svgEl("clipPath", { id: clipId, clipPathUnits: "userSpaceOnUse" });
-  clipPath.append(svgEl("rect", { x: 0, y: 0, width: size.width, height: size.height, rx: 16 }));
+  clipPath.append(svgEl("rect", { x: viewBox.x, y: viewBox.y, width: viewBox.width, height: viewBox.height, rx: 16 }));
   defs.append(clipPath);
   svg.append(defs);
   paths.forEach((feature) => {
@@ -5724,33 +5839,33 @@ function appendTalkMapDataPaths(svg, scope) {
       d: feature.d,
       "clip-path": `url(#${clipId})`,
       "data-map-id": feature.id || "",
-      "data-continent": feature.continent || ""
+      "data-continent": feature.continent || "",
+      ...(projectionTransform ? { transform: projectionTransform } : {})
     });
     path.append(svgEl("title", {}, feature.name || feature.id || ""));
     svg.append(path);
   });
   if (!paths.length) {
-    const size = talkMapViewBoxSize(scope);
-    svg.append(svgEl("text", { class: "talk-map-caption", x: 24, y: size.height - 24 }, "Map data unavailable"));
+    svg.append(svgEl("text", { class: "talk-map-caption", x: viewBox.x + 24, y: viewBox.y + viewBox.height - 24 }, "Map data unavailable"));
   }
 }
 
 function appendEuropeMapBase(svg) {
-  const size = talkMapViewBoxSize("europe");
+  const viewBox = talkMapViewBoxParts("europe");
   svg.append(
-    svgEl("rect", { class: "talk-map-water", x: 0, y: 0, width: size.width, height: size.height, rx: 16 })
+    svgEl("rect", { class: "talk-map-water", x: viewBox.x, y: viewBox.y, width: viewBox.width, height: viewBox.height, rx: 16 })
   );
   appendTalkMapDataPaths(svg, "europe");
-  svg.append(svgEl("text", { class: "talk-map-caption", x: 24, y: size.height - 24 }, "Europe"));
+  svg.append(svgEl("text", { class: "talk-map-caption", x: viewBox.x + 24, y: viewBox.y + viewBox.height - 24 }, "Europe"));
 }
 
 function appendJapanMapBase(svg) {
-  const size = talkMapViewBoxSize("japan");
+  const viewBox = talkMapViewBoxParts("japan");
   svg.append(
-    svgEl("rect", { class: "talk-map-water", x: 0, y: 0, width: size.width, height: size.height, rx: 16 })
+    svgEl("rect", { class: "talk-map-water", x: viewBox.x, y: viewBox.y, width: viewBox.width, height: viewBox.height, rx: 16 })
   );
   appendTalkMapDataPaths(svg, "japan");
-  svg.append(svgEl("text", { class: "talk-map-caption", x: 24, y: size.height - 24 }, "Japan"));
+  svg.append(svgEl("text", { class: "talk-map-caption", x: viewBox.x + 24, y: viewBox.y + viewBox.height - 24 }, "Japan"));
 }
 
 function renderTalkMapFigure(title, scope, groups) {
@@ -7635,7 +7750,29 @@ function homeTimelineStatusPartsFromNode(node) {
   };
 }
 
-function renderHomeTimelineStatus(status, parts) {
+function homeTimelineStatusNavButton(delta, disabled) {
+  const button = el("button", `timeline-control home-timeline-status-control ${delta < 0 ? "is-previous" : "is-next"}`);
+  button.type = "button";
+  button.dataset.homeTimelineStep = String(delta);
+  button.disabled = disabled;
+  button.setAttribute("aria-label", delta < 0
+    ? activeLanguage === "ja" ? "前のTimeline項目" : "Previous timeline item"
+    : activeLanguage === "ja" ? "次のTimeline項目" : "Next timeline item");
+  button.append(uiIcon("arrow", "home-timeline-status-control-icon"));
+  return button;
+}
+
+function homeTimelineStatusNav(index, total) {
+  if (total <= 1) return null;
+  const nav = el("span", "home-timeline-status-nav");
+  nav.append(
+    homeTimelineStatusNavButton(-1, index <= 0),
+    homeTimelineStatusNavButton(1, index >= total - 1)
+  );
+  return nav;
+}
+
+function renderHomeTimelineStatus(status, parts, navState = null) {
   const kindClass = parts.kind ? `kind-${parts.kind}` : "";
   status.className = compactText(["home-timeline-status", kindClass]).join(" ");
   status.replaceChildren(
@@ -7643,29 +7780,40 @@ function renderHomeTimelineStatus(status, parts) {
     el("strong", "home-timeline-status-title", parts.title || "")
   );
   if (parts.meta) status.append(el("span", "home-timeline-status-meta", parts.meta));
+  const nav = navState ? homeTimelineStatusNav(navState.index, navState.total) : null;
+  if (nav) status.append(nav);
 }
 
-function bindHomeTimelineStatus(track, status, defaultRecord = null) {
+function bindHomeTimelineStatus(track, status, records, defaultIndex) {
+  const defaultRecord = records[defaultIndex] || null;
   const defaultParts = homeTimelineStatusPartsFromRecord(defaultRecord);
+  const navState = { index: defaultIndex, total: records.length };
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");
-  renderHomeTimelineStatus(status, defaultParts);
+  renderHomeTimelineStatus(status, defaultParts, navState);
+  status.addEventListener("click", (event) => {
+    const button = event.target.closest?.("[data-home-timeline-step]");
+    if (!button || button.disabled) return;
+    event.preventDefault();
+    stepHomeTimelineSelection(Number(button.dataset.homeTimelineStep) || 0);
+  });
   const keyedNode = (target) => target?.closest?.("[data-home-timeline-key]");
   const show = (target) => {
     const node = keyedNode(target);
-    renderHomeTimelineStatus(status, node ? homeTimelineStatusPartsFromNode(node) : defaultParts);
+    renderHomeTimelineStatus(status, node ? homeTimelineStatusPartsFromNode(node) : defaultParts, navState);
   };
   track.addEventListener("pointerover", (event) => show(event.target));
   track.addEventListener("pointerout", (event) => {
     const node = keyedNode(event.target);
     if (!node || node.contains(event.relatedTarget)) return;
-    renderHomeTimelineStatus(status, defaultParts);
+    renderHomeTimelineStatus(status, defaultParts, navState);
   });
   track.addEventListener("focusin", (event) => show(event.target));
   track.addEventListener("focusout", (event) => {
     const node = keyedNode(event.target);
     if (!node || node.contains(event.relatedTarget)) return;
-    renderHomeTimelineStatus(status, defaultParts);
+    if (status.contains(event.relatedTarget)) return;
+    renderHomeTimelineStatus(status, defaultParts, navState);
   });
 }
 
@@ -7757,7 +7905,7 @@ function renderHomeTimeline() {
     root.append(el("p", "empty-state", "No timeline entries yet."));
     return;
   }
-  const defaultRecord = records[homeTimelineSelectedIndex(records)] || records[records.length - 1];
+  const defaultIndex = homeTimelineSelectedIndex(records);
 
   const times = records
     .flatMap((record) => [record.startTime, record.endTime, record.time, record.secondaryStartTime, record.secondaryEndTime])
@@ -7886,7 +8034,7 @@ function renderHomeTimeline() {
 
   const status = el("aside", "home-timeline-status");
   bindHomeTimelineTalkPaperRelationHighlights(track);
-  bindHomeTimelineStatus(track, status, defaultRecord);
+  bindHomeTimelineStatus(track, status, records, defaultIndex);
   root.append(timelineScrollFrame(track, initialEndPosition, { align: "end" }), status);
   applyLanguage(root);
 }
@@ -11662,11 +11810,14 @@ const gamesRbHeaderWidth = 31;
 const gamesRbHeaderHeight = 26;
 const gamesRbTableWidth = gamesRbHeaderWidth + gamesRbVisibleValues.length * gamesRbCellWidth;
 const gamesRbTableHeight = gamesRbHeaderHeight + gamesRbVisibleValues.length * gamesRbCellHeight;
+const gamesRbMexLabelWidth = 62;
+const gamesRbMexLabelHeight = 20;
+const gamesRbFigureHeight = 410;
 const gamesRbExpandedPanelX = 22;
 const gamesRbProductPanelX = 386;
 const gamesRbTableOffsetX = 54;
-const gamesRbPanelY = 8;
-const gamesRbTableOffsetY = 60;
+const gamesRbPanelY = 10;
+const gamesRbTableOffsetY = 74;
 
 function gamesRbColumnX(value) {
   return gamesRbHeaderWidth + value * gamesRbCellWidth;
@@ -11712,11 +11863,7 @@ function gamesRbExpandedOutputValues(state, mexS, mexT) {
   ];
 }
 
-function gamesRbNimTableBaseTemplate() {
-  const minorLines = [
-    ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
-    ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
-  ].join(" ");
+function gamesRbNimTableTextTemplate() {
   const headerTexts = gamesRbVisibleValues
     .map((value) => `<text class="games-rb-cell-text is-head" x="${gamesRbCellTextX(value)}" y="19.3" text-anchor="middle">${value}</text>`)
     .join("\n          ");
@@ -11727,23 +11874,60 @@ function gamesRbNimTableBaseTemplate() {
         .map((column) => `<text class="games-rb-cell-text" x="${gamesRbCellTextX(column)}" y="${gamesRbCellTextY(row)}" text-anchor="middle">${row ^ column}</text>`)
         .join("\n          ");
       return `${rowHead}\n          ${cells}`;
-    })
-    .join("\n          ");
+      })
+      .join("\n          ");
+  return `
+          <g class="games-rb-table-text-layer">
+            <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="19.3" text-anchor="middle">⊕</text>
+          ${headerTexts}
+          ${rows}
+          </g>`;
+}
+
+function gamesRbNimTableLinesTemplate() {
+  const minorLines = [
+    ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
+    ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
+  ].join(" ");
+  return `
+          <g class="games-rb-table-line-layer">
+            <path class="games-rb-table-lines is-border" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
+            <path class="games-rb-table-lines" d="${minorLines}"></path>
+            <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
+          </g>`;
+}
+
+function gamesRbNimTableBaseTemplate() {
+  const minorLines = [
+    ...gamesRbVisibleValues.slice(1).map((value) => `M0 ${gamesRbRowY(value)} H${gamesRbTableWidth}`),
+    ...gamesRbVisibleValues.slice(1).map((value) => `M${gamesRbColumnX(value)} 0 V${gamesRbTableHeight}`)
+  ].join(" ");
   return `
           <rect class="games-rb-table-bg" x="0" y="0" width="${gamesRbTableWidth}" height="${gamesRbTableHeight}" rx="0"></rect>
           <rect class="games-rb-table-head-row" x="0" y="0" width="${gamesRbTableWidth}" height="${gamesRbHeaderHeight}"></rect>
           <rect class="games-rb-table-head-col" x="0" y="0" width="${gamesRbHeaderWidth}" height="${gamesRbTableHeight}"></rect>
           <path class="games-rb-table-lines is-major" d="M0 0 H${gamesRbTableWidth} M0 ${gamesRbTableHeight} H${gamesRbTableWidth} M0 0 V${gamesRbTableHeight} M${gamesRbTableWidth} 0 V${gamesRbTableHeight}"></path>
           <path class="games-rb-table-lines" d="${minorLines}"></path>
-          <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>
-          <text class="games-rb-cell-text is-head" x="${gamesRbHeaderWidth / 2}" y="19.3" text-anchor="middle">⊕</text>
-          ${headerTexts}
-          ${rows}`;
+          <path class="games-rb-table-lines is-input-output" d="M0 ${gamesRbHeaderHeight} H${gamesRbTableWidth} M${gamesRbHeaderWidth} 0 V${gamesRbTableHeight}"></path>`;
+}
+
+function gamesRbMexAxisLabelsTemplate() {
+  const initialMexS = gamesRbMex(gamesRbInitialS);
+  const initialMexT = gamesRbMex(gamesRbInitialT);
+  const sY = gamesRbRowY(initialMexS) + (gamesRbCellHeight - gamesRbMexLabelHeight) / 2;
+  const tX = gamesRbCellTextX(initialMexT) - gamesRbMexLabelWidth / 2;
+  return `
+          <foreignObject class="games-rb-mex-axis-tex is-mex-s-label" data-games-rb-mex-label="S" x="-58" y="${sY}" width="${gamesRbMexLabelWidth}" height="${gamesRbMexLabelHeight}">
+            <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexSTex}</div>
+          </foreignObject>
+          <foreignObject class="games-rb-mex-axis-tex is-mex-t-label" data-games-rb-mex-label="T" x="${tX}" y="-24" width="${gamesRbMexLabelWidth}" height="${gamesRbMexLabelHeight}">
+            <div xmlns="http://www.w3.org/1999/xhtml">${gamesRbMexTTex}</div>
+          </foreignObject>`;
 }
 
 const paperFigureTemplates = {
   "games-integral-calculus": `
-    <svg class="games-rb-table-figure games-rb-dual-figure" data-games-rb-interactive viewBox="0 0 760 390" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
+    <svg class="games-rb-table-figure games-rb-dual-figure" data-games-rb-interactive viewBox="0 0 760 ${gamesRbFigureHeight}" role="img" aria-labelledby="fig-games-rb-table-title fig-games-rb-table-desc">
       <title id="fig-games-rb-table-title">Checking the mex Rota-Baxter equation with two Nim-sum tables</title>
       <desc id="fig-games-rb-table-desc">Two Nim-sum operation tables compute the two sides of the mex Rota-Baxter equation for selectable finite sets S and T.</desc>
       <defs>
@@ -11765,29 +11949,30 @@ const paperFigureTemplates = {
           <stop offset="1" stop-color="#e8eef1"></stop>
         </linearGradient>
         <linearGradient id="games-rb-union-both" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="#c82727" stop-opacity="0.13"></stop>
-          <stop offset="0.49" stop-color="#c82727" stop-opacity="0.13"></stop>
-          <stop offset="0.51" stop-color="#2563eb" stop-opacity="0.13"></stop>
-          <stop offset="1" stop-color="#2563eb" stop-opacity="0.13"></stop>
+          <stop offset="0" stop-color="#f8dddd"></stop>
+          <stop offset="0.49" stop-color="#f8dddd"></stop>
+          <stop offset="0.51" stop-color="#dfe8ff"></stop>
+          <stop offset="1" stop-color="#dfe8ff"></stop>
         </linearGradient>
         <g id="games-nim-table-base">
 ${gamesRbNimTableBaseTemplate()}
         </g>
       </defs>
 
-      <rect class="games-rb-table-paper" width="760" height="390" rx="0"></rect>
+      <rect class="games-rb-table-paper" width="760" height="${gamesRbFigureHeight}" rx="0"></rect>
 
       <g class="games-rb-dual-panel is-expanded-side" transform="translate(${gamesRbExpandedPanelX} ${gamesRbPanelY})">
         <g class="games-rb-dual-table is-expanded-table" transform="translate(${gamesRbTableOffsetX} ${gamesRbTableOffsetY})">
           <use href="#games-nim-table-base"></use>
           <g data-games-rb-set-layer="expanded"></g>
           <g data-games-rb-union-layer></g>
+${gamesRbNimTableLinesTemplate()}
+${gamesRbNimTableTextTemplate()}
           <g data-games-rb-mex-layer="expanded"></g>
           <g class="games-rb-hit-layer">
 ${gamesRbTableHitTargetsTemplate()}
           </g>
-          <text class="games-rb-mex-axis-svg-label is-mex-s-label" data-games-rb-mex-label="S" x="-15" y="73" text-anchor="end">mex <tspan class="games-rb-mex-var is-s-var">S</tspan></text>
-          <text class="games-rb-mex-axis-svg-label is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-10" text-anchor="middle">mex <tspan class="games-rb-mex-var is-t-var">T</tspan></text>
+${gamesRbMexAxisLabelsTemplate()}
         </g>
       </g>
 
@@ -11796,13 +11981,14 @@ ${gamesRbTableHitTargetsTemplate()}
           <use href="#games-nim-table-base"></use>
           <g data-games-rb-set-layer="product"></g>
           <g data-games-rb-product-layer></g>
+${gamesRbNimTableLinesTemplate()}
+${gamesRbNimTableTextTemplate()}
           <g data-games-rb-product-arrow-layer></g>
           <g data-games-rb-mex-layer="product"></g>
           <g class="games-rb-hit-layer">
 ${gamesRbTableHitTargetsTemplate()}
           </g>
-          <text class="games-rb-mex-axis-svg-label is-mex-s-label" data-games-rb-mex-label="S" x="-15" y="73" text-anchor="end">mex <tspan class="games-rb-mex-var is-s-var">S</tspan></text>
-          <text class="games-rb-mex-axis-svg-label is-mex-t-label" data-games-rb-mex-label="T" x="104" y="-10" text-anchor="middle">mex <tspan class="games-rb-mex-var is-t-var">T</tspan></text>
+${gamesRbMexAxisLabelsTemplate()}
         </g>
       </g>
     </svg>
@@ -14273,20 +14459,6 @@ function gamesRbSvgElement(tag, attrs = {}) {
   return node;
 }
 
-function gamesRbSetTex(name) {
-  return `\\(${name}=\\)`;
-}
-
-function gamesRbSetControlTemplate(name, values) {
-  const buttons = gamesRbSelectableValues
-    .map((value) => `<button type="button" class="games-rb-set-button" data-games-rb-toggle="${name}" data-games-rb-value="${value}" aria-pressed="${values.includes(value) ? "true" : "false"}">${value}</button>`)
-    .join("");
-  return `<div class="figure-math games-rb-table-tex games-rb-set-control games-rb-set-control-${name.toLowerCase()} games-rb-set-def-${name.toLowerCase()}" data-games-rb-set-control="${name}">
-      <span class="games-rb-set-current" data-games-rb-set-def="${name}">${gamesRbSetTex(name)}</span>
-      <span class="games-rb-set-buttons" aria-label="Choose ${name}">${buttons}</span>
-    </div>`;
-}
-
 function appendGamesRbRect(layer, className, x, y, width = gamesRbCellWidth, height = gamesRbCellHeight, extra = {}) {
   if (!layer) return null;
   const rect = gamesRbSvgElement("rect", {
@@ -14393,9 +14565,17 @@ function renderGamesRbFigure(root) {
   renderGamesRbProductHighlight(root.querySelector("[data-games-rb-product-layer]"), mexS, mexT);
   renderGamesRbProductArrows(root.querySelector("[data-games-rb-product-arrow-layer]"), mexS, mexT);
   root.querySelectorAll('[data-games-rb-mex-label="S"]').forEach((label) => {
+    if (label.classList.contains("games-rb-mex-axis-tex")) {
+      label.setAttribute("y", String(gamesRbRowY(mexS) + (gamesRbCellHeight - gamesRbMexLabelHeight) / 2));
+      return;
+    }
     label.setAttribute("y", String(gamesRbRowY(mexS) + 16));
   });
   root.querySelectorAll('[data-games-rb-mex-label="T"]').forEach((label) => {
+    if (label.classList.contains("games-rb-mex-axis-tex")) {
+      label.setAttribute("x", String(gamesRbCellTextX(mexT) - gamesRbMexLabelWidth / 2));
+      return;
+    }
     label.setAttribute("x", String(gamesRbCellTextX(mexT)));
   });
   const desc = root.querySelector("#fig-games-rb-table-desc");
