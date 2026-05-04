@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T06:00:56.248Z",
+  "generatedAt": "2026-05-04T11:52:13.679Z",
   "source": {
     "homepage": "scripts/site.js",
     "researchmap": "https://researchmap.jp/ryuyahora"
@@ -926,6 +926,18 @@
         "needsVerification": false,
         "explicitPermission": false,
         "note": "Owner confirmed on 3 May 2026 that Google Drive public notes and thumbnails should not contain unapproved third-party or coauthor material."
+      },
+      {
+        "title": "Topoi of automata",
+        "file": "ct2025-hora.pdf",
+        "href": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf",
+        "status": "published-note",
+        "source": "homepage",
+        "provenance": "manual homepage metadata",
+        "rights": "linked-public-record",
+        "needsVerification": false,
+        "explicitPermission": false,
+        "note": ""
       },
       {
         "title": "A note on language measurability",

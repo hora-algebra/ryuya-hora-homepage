@@ -84,7 +84,7 @@ const siteData = {
       title: "Works",
       href: "works/index.html",
       description: "Overview of research timeline, papers, notes, talks, and slides.",
-      icon: "paper",
+      icon: "stack",
       thumbnail: "assets/papers/internal-parameterizations.jpg",
       children: [
         ["Papers", "works/papers/index.html"],
@@ -95,24 +95,24 @@ const siteData = {
     {
       title: "Activities",
       href: "activities/index.html",
-      description: "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.",
+      description: "Activity timeline, upcoming plans, visits, and yearly records.",
       icon: "activity",
       thumbnail: "assets/profile/ryuya-hora-mondovi.jpg",
       children: [
         ["Upcoming", "activities/index.html#upcoming"],
         ["Visit Map", "activities/index.html#visit-map"],
-        ["Yearly Records", "activities/index.html#yearly-records"],
-        ["Categories in Tokyo", "activities/index.html#categories-in-tokyo"]
+        ["Yearly Records", "activities/index.html#yearly-records"]
       ]
     },
     {
       title: "Others",
       href: "others/index.html",
-      description: "Profile links, academic photobombs, and small web experiments.",
-      icon: "link",
+      description: "Profile links, academic photobombs, Categories in Tokyo, and small web experiments.",
+      icon: "collection",
       thumbnail: "assets/profile/green-fractal-cloud.png",
       children: [
         ["Links", "others/index.html#links"],
+        ["Categories in Tokyo", "others/index.html#categories-in-tokyo"],
         ["Web Apps", "others/index.html#web-apps"]
       ]
     },
@@ -135,14 +135,14 @@ const siteData = {
     ["nLab", "https://ncatlab.org/nlab/show/Ryuya+Hora"]
   ],
   currentPositions: [
-    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp/en/academics/mathematical_sciences", linkText: "ZEN University", linkTextJa: "ZEN大学", icon: "building", reviewKey: "position:zen-assistant-professor:2026", timelineStart: "2026-04", timelineExtendToEnd: true, timelineWeight: "major" },
-    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", linkText: "Humai Center", linkTextJa: "HUMAIセンター", icon: "humai", reviewKey: "position:humai-researcher:2026", timelineStart: "2026-04", timelineExtendToEnd: true },
-    { text: "Supported by KAKENHI project 24KJ0837 through March 2027.", textJa: "2027年3月まで KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", linkText: "KAKENHI project 24KJ0837", linkTextJa: "KAKENHI 課題番号 24KJ0837", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837", timelineStart: "2024-04", timelineEnd: "2027-03" }
+    { text: "Assistant professor at ZEN University since April 2026.", textJa: "2026年4月よりZEN大学助教．", emphasis: "Assistant professor at ZEN University", emphasisJa: "ZEN大学助教", href: "https://zen.ac.jp/en/academics/mathematical_sciences", linkText: "ZEN University", linkTextJa: "ZEN大学", icon: "building", reviewKey: "position:zen-assistant-professor:2026", timelineStart: "2026-04-01", timelineExtendToEnd: true, timelineWeight: "major" },
+    { text: "Researcher at the Humai Center since April 2026.", textJa: "2026年4月よりZEN大学HUMAIセンター研究員．", href: "https://zen.ac.jp/humai", linkText: "Humai Center", linkTextJa: "HUMAIセンター", icon: "humai", reviewKey: "position:humai-researcher:2026", timelineStart: "2026-04-01", timelineExtendToEnd: true },
+    { text: "Supported by KAKENHI project 24KJ0837 through March 2027.", textJa: "2027年3月まで KAKENHI 課題番号 24KJ0837 により研究支援を受けています．", href: "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-24KJ0837/", linkText: "KAKENHI project 24KJ0837", linkTextJa: "KAKENHI 課題番号 24KJ0837", icon: "money", reviewKey: "grant:jsps-fellow:24KJ0837", timelineStart: "2024-04-23", timelineEnd: "2027-03-31" }
   ],
   pastPositions: [
-    { text: "CTTA - Research Associate - 2025", textJa: "CTTA - Research Associate - 2025", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", linkText: "CTTA", linkTextJa: "CTTA", timelineTitle: "CTTA visit as Research Associate", timelineDetail: "Research Associate appointment: April 2025 to March 2026.", timelineDetailJa: "リサーチアソシエイトとしての所属期間: 2025年4月から2026年3月まで．", timelineStart: "2025-04-10", timelineEnd: "2025-06-27", timelineSecondaryStart: "2025-04", timelineSecondaryEnd: "2026-03", timelineSecondaryLabel: "appointment", timelineSecondaryLabelJa: "所属期間" },
-    { text: "FoPM - Student - 2022-2026", textJa: "FoPM - 学生 - 2022-2026", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", linkText: "FoPM", linkTextJa: "FoPM", timelineTitle: "FoPM financial support", timelineDetail: "FoPM student period: April 2022 to March 2026.", timelineDetailJa: "FoPM学生としての期間: 2022年4月から2026年3月まで．", timelineStart: "2022-10", timelineEnd: "2024-03", timelineSecondaryStart: "2022-04", timelineSecondaryEnd: "2026-03", timelineSecondaryLabel: "student period", timelineSecondaryLabelJa: "学生期間" },
-    { text: "Kanda Lab - Research Assistant - 2022-2025", textJa: "神田ラボ - Research Assistant - 2022-2025", href: "https://research.nii.ac.jp/~uno/kandalab/index.html", linkText: "Kanda Lab", linkTextJa: "神田ラボ", timelineStart: "2022-07", timelineEnd: "2025-03" }
+    { text: "CTTA - Research Associate - 2025", textJa: "CTTA - Research Associate - 2025", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", linkText: "CTTA", linkTextJa: "CTTA", timelineTitle: "CTTA visit as Research Associate", timelineDetail: "Research Associate appointment: April 2025 to March 2026.", timelineDetailJa: "リサーチアソシエイトとしての所属期間: 2025年4月から2026年3月まで．", timelineStart: "2025-04-10", timelineEnd: "2025-06-27", timelineSecondaryStart: "2025-04-01", timelineSecondaryEnd: "2026-03-31", timelineSecondaryLabel: "appointment", timelineSecondaryLabelJa: "所属期間" },
+    { text: "FoPM - Student - 2022-2026", textJa: "FoPM - 学生 - 2022-2026", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", linkText: "FoPM", linkTextJa: "FoPM", timelineTitle: "FoPM financial support", timelineDetail: "FoPM student period: April 2022 to March 2026.", timelineDetailJa: "FoPM学生としての期間: 2022年4月から2026年3月まで．", timelineStart: "2022-10-01", timelineEnd: "2024-03-31", timelineSecondaryStart: "2022-04-01", timelineSecondaryEnd: "2026-03-31", timelineSecondaryLabel: "student period", timelineSecondaryLabelJa: "学生期間" },
+    { text: "AFSA project member and NII/Kanda Lab research assistant, 2022-2025", textJa: "AFSAプロジェクトメンバー・国立情報学研究所神田ラボ Research Assistant - 2022-2025", href: "https://afsa.jp/member/", linkText: "AFSA project", linkTextJa: "AFSAプロジェクト", timelineTitle: "AFSA project and NII/Kanda Lab", timelineDetail: "AFSA project member and research assistant at NII/Kanda Lab from July 2022 to March 2025.", timelineDetailJa: "AFSAプロジェクトメンバーおよび国立情報学研究所神田ラボ Research Assistant: 2022年7月から2025年3月まで．", timelineStart: "2022-07-01", timelineEnd: "2025-03-31" }
   ],
   webApps: [
     {
@@ -238,7 +238,7 @@ const siteData = {
         authors: "with Yuhi Kamio",
         venue: "Journal of Pure and Applied Algebra 228(8), 107657",
         year: "2024",
-        preprintDate: "2023-10",
+        preprintDate: "2023-10-04",
         publicationDate: "2024-08",
         link: "https://doi.org/10.1016/j.jpaa.2024.107657",
         figure: "quotient-toposes",
@@ -256,8 +256,9 @@ const siteData = {
         title: "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor",
         venue: "Proceedings of the American Mathematical Society 154, 567-584",
         year: "2026",
-        preprintDate: "2025-03",
+        preprintDate: "2025-03-06",
         publicationDate: "2026-02",
+        onlinePublicationDate: "2025-11-25",
         link: "https://doi.org/10.1090/proc/17479",
         figure: "completely-connected",
         themes: ["topos", "category", "combinatorics"],
@@ -273,7 +274,7 @@ const siteData = {
         authors: "with Yuhi Kamio",
         venue: "Advances in Mathematics 487, 110751",
         year: "2026",
-        preprintDate: "2024-07",
+        preprintDate: "2024-07-24",
         publicationDate: "2026-03",
         link: "https://doi.org/10.1016/j.aim.2025.110751",
         figure: "lawvere-first",
@@ -374,13 +375,13 @@ const siteData = {
       items: [
         { title: "Topoi of automata", event: "CMUP SAL seminar", date: "2025-02-28", venue: "CMUP SAL seminar, Zoom, 28 February", href: "https://www.cmup.pt/events/topoi-automata" },
         { title: "Topoi of automata", event: "CSCAT 2025", date: "2025-03-12", venue: "CSCAT 2025, Room F203, Sojo University, Kumamoto, 12 March", href: "https://hisashi-aratake.gitlab.io/event/cscat2025.html" },
-        { title: "Topoi of automata", event: "Groupe de travail topossique", date: "2025-04-30", venue: "Groupe de travail topossique, Centre Lagrange, Paris, 30 April", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
-        { title: "Topoi of automata", event: "Categories for Automata and Language Theory", date: "2025-05-06", venue: "Categories for Automata and Language Theory, IRIF, Paris, 6 May", href: "https://autcat.github.io/" },
-        { title: "Local state classifier for algebraic language theory", event: "Groupe de travail topossique", date: "2025-05-16", venue: "Groupe de travail topossique, Centre Lagrange, Paris, 16 May", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/" },
-        { title: "Local state classifier for automata theory", event: "IRIF Sémantique seminar", date: "2025-05-27", venue: "Semantique seminar, Salle 3071, IRIF, Paris, 27 May", href: "https://www.irif.fr/en/seminaires/semantique/index" },
-        { title: "A topos for regular language theory", event: "Theoretical Cosynus Seminar", date: "2025-06-11", venue: "Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June", href: "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/" },
+        { title: "Topoi of automata", event: "Groupe de travail topossique", date: "2025-04-30", venue: "Groupe de travail topossique, Centre Lagrange, Paris, 30 April", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", visitId: "visit:2025-ctta-france-stay" },
+        { title: "Topoi of automata", event: "Categories for Automata and Language Theory", date: "2025-05-06", venue: "Categories for Automata and Language Theory, IRIF, Paris, 6 May", href: "https://autcat.github.io/", visitId: "visit:2025-ctta-france-stay" },
+        { title: "Local state classifier for algebraic language theory", event: "Groupe de travail topossique", date: "2025-05-16", venue: "Groupe de travail topossique, Centre Lagrange, Paris, 16 May", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", visitId: "visit:2025-ctta-france-stay" },
+        { title: "Local state classifier for automata theory", event: "IRIF Sémantique seminar", date: "2025-05-27", venue: "Semantique seminar, Salle 3071, IRIF, Paris, 27 May", href: "https://www.irif.fr/en/seminaires/semantique/index", visitId: "visit:2025-ctta-france-stay" },
+        { title: "A topos for regular language theory", event: "Theoretical Cosynus Seminar", date: "2025-06-11", venue: "Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June", href: "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/", visitId: "visit:2025-ctta-france-stay" },
         { title: "Topoi of automata", event: "CT 2025", date: "2025-07-17", venue: "CT 2025, Building B2, Faculty of Arts, Masaryk University, Brno, 17 July", href: "https://archive.math.muni.cz/conference/ct2025/index.php%3Fid%3Dprogramme-and-venue.html" },
-        { title: "Topoi of automata", event: "SLACS 2025", date: "2025-10-31", venue: "SLACS 2025, Shared Room 321, Akita University, 31 October", href: "https://sites.google.com/view/slacs2025akita/home" },
+        { title: "Topoi of automata", event: "SLACS 2025", date: "2025-10-31", venue: "SLACS 2025, Shared Room 321, Akita University, 31 October", href: "https://sites.google.com/view/slacs2025akita/home", visitId: "visit:2025-slacs-akita" },
         { title: "Connectedness and full subcategories of topoi", event: "UTokyo Logic seminar", date: "2025-11-28", venue: "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 28 November", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/past_e.html" },
         { title: "The axiom of choice and local state classifier", event: "UTokyo Logic seminar", date: "2025-12-05", venue: "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 5 December", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic/" }
       ]
@@ -394,7 +395,7 @@ const siteData = {
         { title: "Quotient toposes of discrete dynamical systems", event: "CT 2024", date: "2024-06-28", venue: "CT 2024, Facultade de Matemáticas, Universidade de Santiago de Compostela, 28 June", href: "https://www.usc.gal/regaca/ct2024/programme.html" },
         { title: "Topos theory as a tool of automata theory", event: "Young Automata Theorists Gathering in Japan", date: "2024-08-29", venue: "Young Automata Theorists Gathering in Japan, Room 305, Akita University, 29 August", href: "https://sites.google.com/view/ciaa-preworkshop/home" },
         { title: "The colimit of all monomorphisms classifies hyperconnected geometric morphisms", event: "Toposes in Mondovì", date: "2024-09-10", venue: "Toposes in Mondovì, Circolo di Lettura, Palazzo del Governatore, 10 September", href: "https://ctta.igrothendieck.org/" },
-        { title: "Quotient topoi and geometry of computation", event: "AFSA area meeting", date: "2024-11-30", venue: "AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November", href: "https://afsa.jp/afsa-2024_generalmeetingautumn/" }
+        { title: "Quotient topoi and geometry of computation", event: "AFSA area meeting", date: "2024-11-30", venue: "AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November", href: "https://afsa.jp/afsa-2024_generalmeetingautumn/", visitId: "visit:2024-afsa-area-meeting" }
       ]
     },
     {
@@ -402,7 +403,7 @@ const siteData = {
       items: [
         { title: "Internal parameterization of hyperconnected quotients", event: "CSCAT 2023", date: "2023-03-09", venue: "CSCAT 2023, Room 478, Research Building 2, Kyoto University, 9 March", href: "https://sites.google.com/view/cscat2023" },
         { title: "Internal parameterization of hyperconnected quotients", event: "Australian Category Seminar", date: "2023-04-19", venue: "Australian Category Seminar, online, 19 April", href: "https://centre-of-australian-category-theory.github.io/seminar/" },
-        { title: "Grundy Numbers and Categories", event: "Japan Combinatorial Game Theory Mini-Workshops", date: "2023-05-12", venue: "Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj" },
+        { title: "Grundy Numbers and Categories", event: "Japan Combinatorial Game Theory Mini-Workshops", date: "2023-05-12", venue: "Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj", visitId: "visit:2023-jcgt-mini-workshops" },
         { title: "Internal parameterization of hyperconnected quotients", event: "Category Theory 2023", date: "2023-07-06", venue: "Category Theory 2023, Auditoires des Sciences, UCLouvain, 6 July", href: "https://sites.uclouvain.be/ct2023/" },
         { title: "Category Theory and Combinatorial Game Theory", event: "7th Japan Combinatorial Game Theory Conference", date: "2023-08-21", venue: "7th Japan Combinatorial Game Theory Conference, NII, Tokyo, 21 August", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53" },
         { title: "Constructive mathematics and representation theory", aliases: ["構成的数学と表現論"], event: "数学基礎論若手の会2023", date: "2023-12-10", venue: "数学基礎論若手の会2023, Chiba, 10 December", href: "https://sites.google.com/view/mlwakatenokai2023" }
@@ -415,6 +416,7 @@ const siteData = {
       description: "An introduction to rieg theory",
       theme: "algebra",
       themes: ["algebra", "logic"],
+      date: "2023-12",
       language: "English",
       file: "counting-with-exponential-of-groups.pdf",
       ...notePdfAsset("1fYwhDbfaeWG107Rf68yocjyJpEvOu8Q8", "counting-with-exponential-of-groups"),
@@ -429,115 +431,149 @@ const siteData = {
     { title: "Local state classifier for algebraic language theory", description: "Centre Lagrange, 16 May", theme: "topos", date: "2025-05-16", language: "English", file: "Local state classifier for algebraic language theory.pdf", ...notePdfAsset("1jwA88f7axVA_VmGsUasrudicI1OXMIPE", "local-state-classifier-algebraic-language") },
     { title: "Topoi of automata (IRIF)", description: "IRIF, 6 May", theme: "automata", date: "2025-05-06", language: "English", file: "IRIFtoday.pdf", ...notePdfAsset("1WKRH2BAqodNHpgc09ZKkoJUInY9yasSU", "topoi-of-automata-irif") },
     { title: "Local state classifier for automata theory", description: "IRIF 26 May / LIPN 5 June", theme: "topos", date: "2025-05-26", language: "English", file: "IRIF20250527_ver1.pdf", ...notePdfAsset("1KpPPS74AUnuh9BAUe8zcDXlBsvHPZesF", "local-state-classifier-automata") },
+    { title: "Topoi of automata", description: "Category Theory 2025", theme: "automata", themes: ["topos", "automata"], kind: "slide", date: "2025-07-17", language: "English", file: "ct2025-hora.pdf", href: "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf", download: "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf" },
     { title: "A note on language measurability", description: "March 8, 2026", theme: "automata", date: "2026-03-08", language: "English", file: "An_ongoing_note_on_language_measurability_under_construction20260308.pdf", ...notePdfAsset("1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC", "language-measurability", "https://drive.google.com/thumbnail?id=1TaEK9RHHkAm0L4NwJ3d067D5aej3UedC&sz=w339-h282-p-k-nu") },
     { title: "Cloud: A Rota-Baxter equation for winning games", description: "April 5, 2026", theme: "games", themes: ["games", "algebra"], metaTags: ["speculative"], date: "2026-04-05", language: "English", file: "RYUYA,HORA.pdf", ...notePdfAsset("1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU", "rota-baxter-winning-games", "https://lh3.google.com/u/0/d/1dciU6YVwO0eBhCdAxF5ZLdyF4GX6BJiU=s2048?auditContext=thumbnail") },
     { title: "圏論に登場する矢印の意味は—特集 圏論の質問箱", description: "数学セミナー, 2025-11", theme: "category", metaTags: ["expository"], date: "2025-11", language: "Japanese", file: "数学セミナー", href: "https://cir.nii.ac.jp/crid/1520869150155438720?lang=ja" },
-    { title: "順序集合で遊ぶKan拡張入門", theme: "category", metaTags: ["expository"], language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
-    { title: "圏論のToy Exampleとしての集合演算", theme: "category", metaTags: ["expository"], language: "Japanese", file: "圏論のToy_Exampleとしての集合演算__Ver2_.pdf", ...notePdfAsset("1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP", "toy-example-set-operations") },
+    { title: "順序集合で遊ぶKan拡張入門", theme: "category", metaTags: ["expository"], date: "2021-11", language: "Japanese", file: "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf", ...notePdfAsset("1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt", "kan-extensions-posets-intro") },
+    { title: "圏論のToy Exampleとしての集合演算", theme: "category", metaTags: ["expository"], date: "2021-05", language: "Japanese", file: "圏論のToy_Exampleとしての集合演算__Ver2_.pdf", ...notePdfAsset("1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP", "toy-example-set-operations") },
     { title: "Cloud: 構成的数学と表現論", description: "数学基礎論若手の会 2023", theme: "logic", themes: ["logic", "algebra"], metaTags: ["speculative", "expository"], date: "2023-12-10", language: "Japanese", file: "若手の会2023-8.pdf", ...notePdfAsset("1xQtd6gEZIAHvMcdUHylzN3dp5zaT4KD-", "constructive-math-representation") },
     { title: "Turning lights out with the Snake Lemma", description: "CGP project, written with Kyosuke Higashida", theme: "games", date: "2026-02-22", language: "Japanese", file: "ライツアウトの代数的研究.pdf", ...notePdfAsset("1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp", "lights-out-snake-lemma", "https://lh3.google.com/u/0/d/1lzERCLPHh6Je6ObpugLAJ42MXaDUAdvp=s2048?auditContext=thumbnail") },
-    { title: "準完全情報ニム", description: "情報処理学会研究報告アルゴリズム（AL）, 2026-01", theme: "games", date: "2026-01", language: "Japanese", file: "情報処理学会研究報告アルゴリズム（AL）", href: "https://researchmap.jp/ryuyahora/misc/52084435" },
-    { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", theme: "number", metaTags: ["expository"], date: "2021", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
-    { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", theme: "category", metaTags: ["expository"], date: "2022", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
-    { title: "母関数の種", description: "数理空間トポス 2023年新歓", theme: "combinatorics", metaTags: ["expository"], date: "2023", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
+    { title: "準完全情報ニム", description: "情報処理学会研究報告アルゴリズム（AL）, 2026-01", theme: "games", date: "2026-01-06", language: "Japanese", file: "情報処理学会研究報告アルゴリズム（AL）", href: "https://researchmap.jp/ryuyahora/misc/52084435" },
+    { title: "ゼータ関数とメビウス反転", description: "数理空間トポス 2021年新歓", theme: "number", metaTags: ["expository"], kind: "slide", talkType: "expository", event: "Math Space Topos 2021 new welcome event", date: "2021-12-04", language: "Japanese", file: "2021topos_zeta_2-3.pdf", ...notePdfAsset("1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4", "zeta-mobius", "https://drive.google.com/thumbnail?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4&sz=w339-h287-p-k-nu") },
+    { title: "順序集合で遊ぶKan拡張", description: "数理空間トポス 2022年新歓", theme: "category", metaTags: ["expository"], kind: "slide", talkType: "expository", event: "Math Space Topos 2022 new welcome event", date: "2022-06-04", language: "Japanese", file: "2022topos_Kan_ext.pdf", ...notePdfAsset("11z191GZKbDVgskXKCBSVF7JXdFMMH81Q", "kan-extensions-posets") },
+    { title: "母関数の種", description: "数理空間トポス 2023年新歓", theme: "combinatorics", metaTags: ["expository"], kind: "slide", talkType: "expository", event: "Math Space Topos 2023 new welcome event", date: "2023-07-15", language: "Japanese", file: "2023topos_species-8.pdf", ...notePdfAsset("1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az", "species-generating-functions") },
     { title: "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers", themes: ["algebra"], metaTags: ["speculative"], language: "English", description: "Speculative cloud entry; no public PDF is attached." },
-    { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", theme: "number", metaTags: ["expository"], date: "2024-05", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
+    { title: "アイゼンシュタイン整数と組合せ論", description: "数理空間トポス 2024年新歓", theme: "number", metaTags: ["expository"], kind: "slide", talkType: "expository", event: "Math Space Topos 2024 new welcome event", date: "2024-05-18", language: "Japanese", file: "2024Topos新歓202405-6.pdf", ...notePdfAsset("1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9", "eisenstein-integers-combinatorics") },
     { title: "Cloud: Space-Time for Conway's Game of Life", description: "CSCAT 2026", theme: "topos", themes: ["topos", "geometry", "dynamical"], metaTags: ["speculative"], date: "2026-03-17", language: "Japanese", file: "Space⋊Time for Conway's Game of Life.pdf", ...notePdfAsset("1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje", "spacetime-game-of-life", "https://lh3.google.com/u/0/d/1p1uPTBQx8ntw1Jf6-MvNrO4lv4xeilje=s2048?auditContext=thumbnail") },
     { title: "Older notes", description: "Older documents are collected on Notion.", language: "Japanese", file: "Notion archive", href: "https://hora-algebra.notion.site/b6804a9f65af454a897db8351bc9da1b" }
   ],
   activities: [
     {
+      title: "2027",
+      items: [
+        { id: "cgtc-vi-2027", date: "2027-01-21 - 2027-01-23", role: "attend", event: "CGTC VI: Combinatorial Game Theory Colloquium VI", planStatus: "considering", href: "https://ludicum.org/cgtc-vi/", linkText: "CGTC VI", activityCategory: "attendance", locationId: "fabrica-science-centre-aveiro", mapKind: "attended", visibility: { visitMap: false } }
+      ]
+    },
+    {
       title: "2026",
       items: [
         { date: "2026-01", text: "Submitted Ph.D. thesis.", activityCategory: "milestone" },
+        { date: "2026-01-06", text: "Coauthored 準完全情報ニム in 情報処理学会研究報告アルゴリズム（AL）.", href: "https://researchmap.jp/ryuyahora/misc/52084435", linkText: "準完全情報ニム", activityCategory: "writing-media" },
         { date: "2026-01-23", text: "Gave a talk at Ph.D. thesis presentation.", href: "https://www.ms.u-tokyo.ac.jp/seminar/2026/sem26-042.html", linkText: "Ph.D. thesis presentation" },
-        { date: "2026-02-07 - 2026-02-08", text: "Organized Categories in Tokyo 2.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 2", locationId: "tokyo", mapKind: "organized" },
-        { date: "2026-02-22 - 2026-02-23", text: "Attended the 20th Combinatorial Games and Puzzle Project.", href: "http://www.alg.cei.uec.ac.jp/itohiro/Games/Game260222.html", linkText: "20th Combinatorial Games and Puzzle Project", locationId: "tokyo", mapKind: "attended" },
+        { date: "2026-02-07 - 2026-02-08", text: "Organized Categories in Tokyo 2.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC2%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 2", locationId: "nii-hitotsubashi", mapKind: "organized" },
+        { date: "2026-02-22 - 2026-02-23", text: "Attended the 20th Combinatorial Games and Puzzle Project.", href: "http://www.alg.cei.uec.ac.jp/itohiro/Games/Game260222.html", linkText: "20th Combinatorial Games and Puzzle Project", locationId: "uec-west-9", mapKind: "attended" },
         { date: "2026-03-11", text: "Presented a joint poster with Ryoma Sin'ya at PPL 2026.", href: "https://jssst-ppl.org/workshop/2026/accepted.html", linkText: "PPL 2026" },
         { date: "2026-03-16 - 2026-03-17", text: "Attended CSCAT 2026 and gave a talk.", href: "https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html", linkText: "CSCAT 2026" },
         { date: "2026-03-24", text: "Received Ph.D. and served as a graduation representative at the AY 2025 Diploma Presentation Ceremony.", href: "https://www.u-tokyo.ac.jp/en/current-students/diploma-presentation.html", linkText: "AY 2025 Diploma Presentation Ceremony", activityCategory: "milestone" },
-        { date: "2026-03-27", text: "Attended Workshop on Modal Logic.", href: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0", linkText: "Workshop on Modal Logic", activityCategory: "attendance", locationId: "tokyo", mapKind: "attended" },
-        { date: "2026-03-27", text: "Attended the Pacific Category Theory Seminar.", href: "https://pctseminar.github.io", linkText: "Pacific Category Theory Seminar", activityCategory: "attendance", locationId: "tokyo", mapKind: "attended" },
-        { date: "2026-04-05", text: "Attended the HUMAI Anthology final screening.", href: "https://zen.ac.jp/news/humai_anthology2025", linkText: "HUMAI Anthology final screening", activityCategory: "milestone", locationId: "tokyo", mapKind: "attended" },
+        { date: "2026-03-27", text: "Attended Workshop on Modal Logic.", href: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0", linkText: "Workshop on Modal Logic", activityCategory: "attendance", locationId: "science-tokyo-ookayama", mapKind: "attended" },
+        { date: "2026-03-27", text: "Attended the Pacific Category Theory Seminar.", href: "https://pctseminar.github.io", linkText: "Pacific Category Theory Seminar", activityCategory: "attendance" },
+        { date: "2026-04-05", text: "Attended the HUMAI Anthology final screening.", href: "https://zen.ac.jp/news/humai_anthology2025", linkText: "HUMAI Anthology final screening", activityCategory: "milestone", locationId: "genron-cafe", mapKind: "attended" },
         { date: "2026-04-06 - 2026-04-08", text: "Attended Differentiation in category theory and program semantics at Kyoto University and gave a talk.", href: "https://sites.google.com/view/differential-kyoto-2026/home", linkText: "Differentiation in category theory and program semantics" },
-        { date: "2026-06-03", text: "Organizing the Bimonthly Category Theory Seminar.", status: "planned" },
-        { date: "2026-07-06 - 2026-07-10", text: "Will attend ACT 2026 in Tallinn.", href: "https://actconf2026.github.io/", linkText: "ACT 2026", status: "planned", activityCategory: "attendance" },
-        { date: "2026-11-02 - 2026-11-04", text: "Organizing Categories in Tokyo 3.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 3", status: "planned" }
+        { id: "math-space-topos-2026-talk", date: "2026-05-23", role: "talk", event: "Math Space Topos", talkTitle: "TBA", planStatus: "confirmed", href: "https://sites.google.com/view/mspacetopos/home", linkText: "Math Space Topos" },
+        { id: "ccc-2026", date: "2026-05-27 - 2026-05-30", role: "attend", event: "CCC 2026: Continuity, Computability, Constructivity", locationLabel: "Kyoto", mode: "in_person", planStatus: "confirmed", href: "https://www.i.h.kyoto-u.ac.jp/ccc2026/", linkText: "CCC 2026", activityCategory: "attendance", locationId: "kyoto-university-yoshida", venue: "Graduate School of Human and Environmental Sciences, Kyoto University", city: "Kyoto", country: "Japan", locationPrecision: "venue" },
+        { id: "bimonthly-category-theory-seminar-2026-06", date: "2026-06-03", role: "organize", event: "the Bimonthly Category Theory Seminar", planStatus: "confirmed" },
+        { id: "saml-2026", date: "2026-06-23 - 2026-06-26", role: "attend", event: "SAML 2026: Symposium on Advances in Mathematical Logic", planStatus: "considering", href: "https://sites.google.com/view/saml2026/%E3%83%9B%E3%83%BC%E3%83%A0", linkText: "SAML 2026", activityCategory: "attendance", locationId: "kyoto-university-rims", mapKind: "attended", visibility: { visitMap: false } },
+        { id: "ultracategories-stone-duality-workshop-2026", date: "2026-06-29 - 2026-07-01", role: "attend", event: "the Ultracategories and Stone Duality Workshop", mode: "online", planStatus: "confirmed", href: "https://www.irif.fr/rencontres/pps2026/ultracategories-workshop", linkText: "Ultracategories and Stone Duality Workshop", activityCategory: "attendance" },
+        { id: "act-2026", date: "2026-07-06 - 2026-07-10", role: "attend", event: "ACT 2026", locationLabel: "Tallinn", mode: "in_person", planStatus: "confirmed", href: "https://actconf2026.github.io/", linkText: "ACT 2026", activityCategory: "attendance", locationId: "tallinn", city: "Tallinn", country: "Estonia", locationPrecision: "city" },
+        { id: "math-logic-summer-school-2026", date: "2026-08-18 - 2026-08-21", role: "attend", event: "数学基礎論サマースクール２０２６：巨大基数公理", planStatus: "considering", href: "https://wwp.shizuoka.ac.jp/yorioka/?page_id=1545", linkText: "数学基礎論サマースクール２０２６：巨大基数公理", activityCategory: "attendance", locationId: "shizuoka-university-shizuoka", mapKind: "attended", visibility: { visitMap: false } },
+        { id: "agm-2026", date: "2026-08-24 - 2026-08-26", role: "attend", event: "空間の代数的・幾何的モデルとその周辺 (2026)", planStatus: "considering", href: "https://shwaka.github.io/conference/agm2026/", linkText: "空間の代数的・幾何的モデルとその周辺 (2026)", activityCategory: "attendance", locationId: "shinshu-university-science", mapKind: "attended", visibility: { visitMap: false } },
+        { id: "cos-2026", date: "2026-09-08 - 2026-09-11", role: "attend", event: "COS 2026: COmbinatorics Summer School 2026", planStatus: "considering", href: "https://sites.google.com/view/cos2026/", linkText: "COS 2026", activityCategory: "attendance", locationId: "kinosaki-community-center", mapKind: "attended", visibility: { visitMap: false } },
+        { id: "itaca-fest-2026-talk", date: "2026-09-29", role: "talk", event: "ItaCa Fest 2026", talkTitle: "TBA", mode: "online", planStatus: "confirmed", href: "https://progetto-itaca.github.io/fests/fest26.html", linkText: "ItaCa Fest 2026", venue: "ItaCa Fest 2026, online", country: "Online" },
+        { id: "categories-in-tokyo-3", date: "2026-11-02 - 2026-11-04", role: "organize", event: "Categories in Tokyo 3", planStatus: "confirmed", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 3", locationId: "zen-university-ginza", venue: "ZEN University", city: "Tokyo", country: "Japan", locationPrecision: "venue", mapKind: "organized" }
       ]
     },
     {
       title: "2025",
       items: [
         { date: "2025-01 - 2025-02", text: "Completed a FoPM lab rotation on condensed mathematics.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/about/features.html", linkText: "FoPM", activityCategory: "milestone" },
-        { date: "2025-02", text: "Attended Logic Winter School III at RIKEN.", href: "https://sites.google.com/view/logic-winter-school-iii/", linkText: "Logic Winter School III", locationId: "saitama", mapKind: "attended", visibility: { yearly: false } },
-        { date: "2025-02-12", text: "Attended the Kyoto Category Theory Meeting.", href: "https://sites.google.com/view/kyoto-category-theory-meeting", linkText: "Kyoto Category Theory Meeting", activityCategory: "attendance", locationId: "kyoto", mapKind: "attended" },
+        { date: "2025-02-17 - 2025-02-21", text: "Attended Logic Winter School III at RIKEN.", href: "https://sites.google.com/view/logic-winter-school-iii/", linkText: "Logic Winter School III", locationId: "riken-wako", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2025-02-12", text: "Attended the Kyoto Category Theory Meeting.", href: "https://sites.google.com/view/kyoto-category-theory-meeting", linkText: "Kyoto Category Theory Meeting", activityCategory: "attendance", locationId: "kyoto-university-rims", mapKind: "attended" },
         { date: "2025-02-28", text: "Gave a talk at CMUP SAL seminar.", href: "https://www.cmup.pt/events/topoi-automata", linkText: "CMUP SAL seminar" },
         { date: "2025-03-12", text: "Gave a talk at CSCAT 2025.", href: "https://hisashi-aratake.gitlab.io/event/cscat2025.html", linkText: "CSCAT 2025" },
+        { date: "2025-04-01 - 2026-03-31", text: "Member of the NII collaborative research project 組合せゲーム理論の応用可能性の探求.", href: "https://researchmap.jp/ryuyahora/research_projects/51480789", linkText: "組合せゲーム理論の応用可能性の探求", activityCategory: "project" },
         { date: "2025-04-30", text: "Gave a talk on Topoi of automata at CTTA Groupe de travail topossique.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", linkText: "CTTA" },
-        { date: "2025-04", text: "Visited LIPN for discussion with Morgan Rogers.", href: "https://lipn.univ-paris13.fr/~rogers/", linkText: "Morgan Rogers", locationId: "paris", mapKind: "visit", visibility: { yearly: false } },
-        { date: "2025-04", text: "Attended a two-day seminar by Joshua Wrigley at Université Paris Cité.", href: "https://jlwrigley.github.io/", linkText: "Joshua Wrigley", locationId: "paris", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2025-04", text: "Visited LIPN for discussion with Morgan Rogers.", href: "https://lipn.univ-paris13.fr/~rogers/", linkText: "Morgan Rogers", locationId: "lipn-villetaneuse", mapKind: "visit", visitId: "visit:2025-ctta-france-stay", visibility: { yearly: false } },
+        { date: "2025-04", text: "Attended a two-day seminar by Joshua Wrigley at Université Paris Cité.", href: "https://jlwrigley.github.io/", linkText: "Joshua Wrigley", locationId: "universite-paris-cite-sophie-germain", mapKind: "attended", visitId: "visit:2025-ctta-france-stay", visibility: { yearly: false } },
         { date: "2025-05-06", text: "Gave a talk at Categories for Automata and Language Theory.", href: "https://autcat.github.io/", linkText: "Categories for Automata and Language Theory" },
-        { date: "2025-05", text: "Attended the first TopOx seminar at Oxford University.", href: "https://topos.institute/events/topox/", linkText: "TopOx seminar", locationId: "oxford", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2025-05-13", text: "Attended the first TopOx seminar at Oxford University.", href: "https://topos.institute/events/topox/", linkText: "TopOx seminar", locationId: "oxford-mathematical-institute", mapKind: "attended", visibility: { yearly: false } },
         { date: "2025-05-16", text: "Gave a talk on local state classifiers at CTTA Groupe de travail topossique.", href: "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/", linkText: "CTTA" },
         { date: "2025-05-27", text: "Gave a talk at IRIF Sémantique seminar.", href: "https://www.irif.fr/en/seminaires/semantique/index", linkText: "IRIF Sémantique seminar" },
         { date: "2025-06-05", text: "Gave a talk at Séminaires du LIPN.", href: "https://lipn.univ-paris13.fr/applications/seminaires/index.php?lang=en", linkText: "Séminaires du LIPN" },
         { date: "2025-06-11", text: "Gave a talk at Theoretical Cosynus Seminar.", href: "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/", linkText: "Theoretical Cosynus Seminar" },
         { date: "2025-07-17", text: "Gave a talk at CT 2025.", href: "https://archive.math.muni.cz/conference/ct2025/index.php%3Fid%3Dprogramme-and-venue.html", linkText: "CT 2025" },
         { date: "2025-10-10", text: "Wrote the article 圏論に登場する矢印の意味は for 数学セミナー 2025年11月号.", href: "https://www.nippyo.co.jp/shop/magazine/9611.html", linkText: "圏論に登場する矢印の意味は", activityCategory: "writing-media" },
-        { date: "2025-10-18 - 2025-10-19", text: "Attended the 25th Takagi Lectures.", href: "https://www.ms.u-tokyo.ac.jp/~toshi/jjm/JJM_HP/contents/takagi/25th/index.htm", linkText: "25th Takagi Lectures", activityCategory: "attendance", locationId: "kyoto", mapKind: "attended" },
-        { date: "2025-10-31", text: "Gave a talk at SLACS 2025 at Akita University.", href: "https://sites.google.com/view/slacs2025akita/home", linkText: "SLACS 2025", locationId: "akita", mapKind: "talk" },
-        { date: "2025-11-16", text: "Attended a combinatorial game theory research seminar retreat for the NII collaborative research project 組合せゲーム理論の応用可能性の探求 at the NII Karuizawa International Seminar House.", href: "https://www.nii.ac.jp/research/upload/2025_NII_koubo-kyoudou_list.pdf", linkText: "組合せゲーム理論の応用可能性の探求", locationId: "karuizawa", mapKind: "attended", visibility: { yearly: false } },
-        { date: "2025-11", text: "Attended a seminar by Ryoma Sin'ya at Hongo campus, The University of Tokyo.", href: "https://www.kanagawa-u.ac.jp/professor/details/details_102276.html", linkText: "Ryoma Sin'ya", locationId: "tokyo", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2025-10-18 - 2025-10-19", text: "Attended the 25th Takagi Lectures.", href: "https://www.ms.u-tokyo.ac.jp/~toshi/jjm/JJM_HP/contents/takagi/25th/index.htm", linkText: "25th Takagi Lectures", activityCategory: "attendance", locationId: "utokyo-komaba-gsm", mapKind: "attended" },
+        { date: "2025-10-31", text: "Gave a talk at SLACS 2025 at Akita University and received the SLACS 2025 presentation award.", href: "https://sites.google.com/view/slacs2025akita/home", linkText: "SLACS 2025", locationId: "akita-university-room-321", mapKind: "talk", visitId: "visit:2025-slacs-akita" },
+        { date: "2025-11-16", text: "Attended a combinatorial game theory research seminar retreat for the NII collaborative research project 組合せゲーム理論の応用可能性の探求 at the NII Karuizawa International Seminar House.", href: "https://www.nii.ac.jp/research/upload/2025_NII_koubo-kyoudou_list.pdf", linkText: "組合せゲーム理論の応用可能性の探求", locationId: "nii-karuizawa-inose-lodge", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2025-11", text: "Attended a seminar by Ryoma Sin'ya at Hongo campus, The University of Tokyo.", href: "https://www.kanagawa-u.ac.jp/professor/details/details_102276.html", linkText: "Ryoma Sin'ya", locationId: "utokyo-hongo", mapKind: "attended", visibility: { yearly: false } },
         { date: "2025-11-28", text: "Gave a talk at UTokyo Logic seminar.", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/past_e.html", linkText: "UTokyo Logic seminar" },
         { date: "2025-12-05", text: "Gave a talk at UTokyo Logic seminar.", href: "https://www.ms.u-tokyo.ac.jp/seminar/logic/", linkText: "UTokyo Logic seminar" },
-        { date: "2025-12", text: "Attended PCT seminar.", href: "https://pctseminar.github.io", linkText: "PCT seminar", locationId: "tokyo", mapKind: "attended", visibility: { yearly: false } },
-        { date: "2025-12", text: "Attended TMU geometry seminar.", href: "https://sites.google.com/site/tmugeometry/", linkText: "TMU geometry seminar", locationId: "tokyo", mapKind: "attended", visibility: { yearly: false } }
+        { date: "2025-12-12", text: "Attended PCT seminar.", href: "https://pctseminar.github.io", linkText: "PCT seminar", visibility: { yearly: false } },
+        { date: "2025-12-19", text: "Attended TMU geometry seminar.", href: "https://sites.google.com/site/tmugeometry/", linkText: "TMU geometry seminar", locationId: "tmu-minami-osawa", mapKind: "attended", visibility: { yearly: false } }
       ]
     },
     {
       title: "2024",
       items: [
+        { date: "2024-03-21", text: "Received the Dean's award and served as Graduation Representative for the master's course, Graduate School of Mathematical Sciences, The University of Tokyo.", href: "https://www.ms.u-tokyo.ac.jp/kyoumu/katyoushou.html", linkText: "Dean's award", activityCategory: "milestone" },
         { date: "2024-03-15", text: "Gave a talk at CSCAT 2024.", href: "https://sites.google.com/faculty.gs.chiba-u.jp/cscat2024/home", linkText: "CSCAT 2024" },
         { date: "2024-03-16", text: "Gave a talk at 代数トポロジー若手の会." },
         { date: "2024-04-24", text: "Gave a talk at the 18th AFSA Colloquium.", href: "https://afsa.jp/meeting/", linkText: "18th AFSA Colloquium" },
-        { date: "2024-05-15", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 0", locationId: "tokyo", mapKind: "organized" },
+        { date: "2024-05-15", text: "Organized Categories in Tokyo 0.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC0%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 0", locationId: "utokyo-komaba-gsm", mapKind: "organized" },
+        { date: "2024-05-18", text: "Talked at the Math Space Topos 2024 new welcome event on アイゼンシュタイン整数と組合せ論.", href: "https://researchmap.jp/ryuyahora/social_contribution/51734872", linkText: "アイゼンシュタイン整数と組合せ論" },
         { date: "2024-06-28", text: "Gave a talk at CT 2024.", href: "https://www.usc.gal/regaca/ct2024/programme.html", linkText: "CT 2024" },
-        { date: "2024-06", text: "Visited Queen Mary University of London.", href: "https://www.qmul.ac.uk/", linkText: "Queen Mary University of London", locationId: "london", mapKind: "visit", visibility: { yearly: false } },
-        { date: "2024-07-01 - 2024-07-05", text: "Attended TACL 2024.", href: "https://barcinologic.github.io/web/tacl_mirror/index.html", linkText: "TACL 2024", activityCategory: "attendance", locationId: "barcelona", mapKind: "attended" },
-        { date: "2024-08", text: "Visited RIMS, Kyoto University.", href: "https://www.kurims.kyoto-u.ac.jp/en/index.html", linkText: "RIMS, Kyoto University", locationId: "kyoto", mapKind: "visit", visibility: { yearly: false } },
+        { date: "2024-06", text: "Visited Queen Mary University of London.", href: "https://www.qmul.ac.uk/", linkText: "Queen Mary University of London", locationId: "queen-mary-mile-end", mapKind: "visit", visibility: { yearly: false } },
+        { date: "2024-07-01 - 2024-07-05", text: "Attended TACL 2024.", href: "https://barcinologic.github.io/web/tacl_mirror/index.html", linkText: "TACL 2024", activityCategory: "attendance", locationId: "ub-math-info", mapKind: "attended" },
+        { date: "2024-08", text: "Visited RIMS, Kyoto University.", href: "https://www.kurims.kyoto-u.ac.jp/en/index.html", linkText: "RIMS, Kyoto University", locationId: "kyoto-university-rims", mapKind: "visit", visibility: { yearly: false } },
         { date: "2024-08-29", text: "Gave a talk at Young Automata Theorists Gathering in Japan.", href: "https://sites.google.com/view/ciaa-preworkshop/home", linkText: "Young Automata Theorists Gathering in Japan" },
         { date: "2024-09-10", text: "Gave a talk at Toposes in Mondovì.", href: "https://ctta.igrothendieck.org/", linkText: "Toposes in Mondovì" },
-        { date: "2024-11-23 - 2024-11-24", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 1", locationId: "tokyo", mapKind: "organized" },
-        { date: "2024-11-30", text: "Gave a talk at AFSA area meeting.", href: "https://afsa.jp/afsa-2024_generalmeetingautumn/", linkText: "AFSA area meeting", locationId: "tokyo", mapKind: "poster", mapTitle: "Gave a poster session talk at AFSA area meeting" },
-        { date: "2024-12", text: "Attended courses on Automata and Class field theory by Takeo Uramoto at RIMS.", href: "https://ris.kuas.kagoshima-u.ac.jp/html/100007588_en.html", linkText: "Takeo Uramoto", locationId: "kyoto", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2024-11-23 - 2024-11-24", text: "Organized Categories in Tokyo 1.", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC1%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 1", locationId: "nii-hitotsubashi", mapKind: "organized" },
+        { date: "2024-11-30", text: "Gave a talk at AFSA area meeting.", href: "https://afsa.jp/afsa-2024_generalmeetingautumn/", linkText: "AFSA area meeting", locationId: "tkp-kanda-business-center", mapKind: "poster", mapTitle: "Gave a poster session talk at AFSA area meeting", visitId: "visit:2024-afsa-area-meeting" },
+        { date: "2024-12", text: "Attended courses on Automata and Class field theory by Takeo Uramoto at RIMS.", href: "https://ris.kuas.kagoshima-u.ac.jp/html/100007588_en.html", linkText: "Takeo Uramoto", locationId: "kyoto-university-rims", mapKind: "attended", visibility: { yearly: false } },
         { date: "2024-12-10", text: "Wrote What is the geometry behind Conway's game of life? for 圏論 Advent Calendar 2024.", href: "https://drive.google.com/file/d/1BYlYRACRzHTIlktPAfAfZ19qSOQWpNwl/view", linkText: "What is the geometry behind Conway's game of life?", activityCategory: "writing-media" }
       ]
     },
     {
       title: "2023",
       items: [
-        { date: "2023-02", text: "Attended FoPM International Symposium.", href: "https://indico.ipmu.jp/event/420/overview", linkText: "FoPM International Symposium", locationId: "tokyo", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2023-02-06 - 2023-02-08", text: "Attended FoPM International Symposium.", href: "https://indico.ipmu.jp/event/420/overview", linkText: "FoPM International Symposium", locationId: "utokyo-ito-hall", mapKind: "attended", visibility: { yearly: false } },
         { date: "2023-03-09", text: "Gave a talk at CSCAT 2023.", href: "https://sites.google.com/view/cscat2023", linkText: "CSCAT 2023" },
-        { date: "2023-03", text: "Talked about Applied Category Theory at a FoPM seminar on Hongo campus, The University of Tokyo.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", linkText: "FoPM", locationId: "tokyo", mapKind: "talk", visibility: { yearly: false } },
+        { date: "2023-03", text: "Talked about Applied Category Theory at a FoPM seminar on Hongo campus, The University of Tokyo.", href: "https://www.s.u-tokyo.ac.jp/en/FoPM/", linkText: "FoPM", locationId: "utokyo-hongo", mapKind: "talk", visibility: { yearly: false } },
         { date: "2023-04-19", text: "Gave an online talk at Australian Category Seminar.", href: "https://centre-of-australian-category-theory.github.io/seminar/", linkText: "Australian Category Seminar" },
-        { date: "2023-05-12", text: "Gave a talk at Japan Combinatorial Game Theory Mini-Workshops with Urban Larsson.", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj", linkText: "Japan Combinatorial Game Theory Mini-Workshops with Urban Larsson", locationId: "tokyo", mapKind: "talk" },
-        { date: "2023-05", text: "Talked at 数理空間トポス 5th anniversary public event at Shosen Grande.", href: "https://www.shosen.co.jp/event/9341/", linkText: "数理空間トポス 5th anniversary public event", locationId: "tokyo", mapKind: "talk", visibility: { yearly: false } },
+        { date: "2023-05-12", text: "Gave a talk at Japan Combinatorial Game Theory Mini-Workshops with Urban Larsson.", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj", linkText: "Japan Combinatorial Game Theory Mini-Workshops with Urban Larsson", locationId: "nii-hitotsubashi", mapKind: "talk", visitId: "visit:2023-jcgt-mini-workshops" },
+        { date: "2023-05-26", text: "Talked at 数理空間トポス 5th anniversary public event at Shosen Grande.", href: "https://www.shosen.co.jp/event/9341/", linkText: "数理空間トポス 5th anniversary public event", locationId: "shosen-grande", mapKind: "talk", visibility: { yearly: false } },
         { date: "2023-06", text: "Participated in Em-Cats.", href: "https://topos.institute/events/em-cats/", linkText: "Em-Cats", activityCategory: "attendance" },
         { date: "2023-07-06", text: "Gave a talk at Category Theory 2023.", href: "https://sites.uclouvain.be/ct2023/", linkText: "Category Theory 2023" },
+        { date: "2023-07-15", text: "Talked at the Math Space Topos 2023 new welcome event on 母関数の種.", href: "https://researchmap.jp/ryuyahora/social_contribution/51734862", linkText: "母関数の種" },
         { date: "2023-08-21", text: "Gave a talk at the 7th Japan Combinatorial Game Theory Conference.", href: "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53", linkText: "7th Japan Combinatorial Game Theory Conference" },
-        { date: "2023-08", text: "Staff and participant at ICIAM 2023.", href: "https://iciam2023.org/", linkText: "ICIAM 2023", locationId: "tokyo", mapKind: "attended", visibility: { yearly: false } },
-        { date: "2023-09", text: "Spoke about Joyal's theory of species in 数理物理ラジオ 母関数の種.", href: "https://www.youtube.com/live/gInu95RiCUo", linkText: "数理物理ラジオ 母関数の種", activityCategory: "writing-media" },
-        { date: "2023-09", text: "Attended the 3rd 数物セミナーAdvanced at Okayama.", href: "https://suubutsuseminar.com/camp/camp_ad3.html", linkText: "3rd 数物セミナーAdvanced", locationId: "okayama", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2023-08-20 - 2023-08-25", text: "Staff and participant at ICIAM 2023.", href: "https://iciam2023.org/", linkText: "ICIAM 2023", locationId: "waseda-university", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2023-09-22", text: "Spoke about Joyal's theory of species in 数理物理ラジオ 母関数の種.", href: "https://www.youtube.com/live/gInu95RiCUo", linkText: "数理物理ラジオ 母関数の種", activityCategory: "writing-media" },
+        { date: "2023-09-03 - 2023-09-05", text: "Attended the 3rd 数物セミナーAdvanced at Okayama.", href: "https://suubutsuseminar.com/camp/camp_ad3.html", linkText: "3rd 数物セミナーAdvanced", locationId: "kibi-youth-outdoor-learning-center", mapKind: "attended", visibility: { yearly: false } },
         { date: "2023-09", text: "Discussion with Ivan Tomašić at Kyoto.", href: "https://www.qmul.ac.uk/maths/profiles/tomasici.html", linkText: "Ivan Tomašić", locationId: "kyoto", mapKind: "visit", visibility: { yearly: false } },
         { date: "2023-09", text: "Discussion with Ivan Tomašić at Tokyo.", href: "https://www.qmul.ac.uk/maths/profiles/tomasici.html", linkText: "Ivan Tomašić", locationId: "tokyo", mapKind: "visit", visibility: { yearly: false } },
-        { date: "2023-09", text: "Attended the last seminar on abduction at NII Kanda Lab.", href: "https://research.nii.ac.jp/~uno/kandalab/index.html", linkText: "NII Kanda Lab", locationId: "tokyo", mapKind: "attended", visibility: { yearly: false } },
-        { date: "2023-10", text: "Visited Kyoto for RIMS and the AFSA Colloquium.", href: "https://afsa.jp/meeting/", linkText: "AFSA Colloquium", locationId: "kyoto", mapKind: "visit", visibility: { yearly: false } }
+        { date: "2023-09", text: "Attended the last seminar on abduction at NII Kanda Lab.", href: "https://research.nii.ac.jp/~uno/kandalab/index.html", linkText: "NII Kanda Lab", locationId: "nii-kanda-lab", mapKind: "attended", visibility: { yearly: false } },
+        { date: "2023-10", text: "Visited Kyoto for RIMS and the AFSA Colloquium.", href: "https://afsa.jp/meeting/", linkText: "AFSA Colloquium", locationId: "kyoto-university-rims", mapKind: "visit", visibility: { yearly: false } },
+        { date: "2023-12-10", text: "Gave a talk on constructive mathematics and representation theory at 数学基礎論若手の会2023.", href: "https://sites.google.com/view/mlwakatenokai2023", linkText: "数学基礎論若手の会2023", venue: "Sunset Breeze Hota, Multipurpose Room Nalu", city: "Kyonan, Chiba", country: "Japan" }
+      ]
+    },
+    {
+      title: "2022",
+      items: [
+        { date: "2022-03-25", text: "Received the Faculty of Science encouragement award, The University of Tokyo.", href: "https://www.s.u-tokyo.ac.jp/ja/info/encouragement.html", linkText: "Faculty of Science encouragement award", activityCategory: "milestone" },
+        { date: "2022-06-04", text: "Talked at the Math Space Topos 2022 new welcome event on 順序集合で遊ぶKan拡張.", href: "https://researchmap.jp/ryuyahora/social_contribution/51734836", linkText: "順序集合で遊ぶKan拡張" }
+      ]
+    },
+    {
+      title: "2021",
+      items: [
+        { date: "2021-12-04", text: "Talked at the Math Space Topos 2021 new welcome event on ゼータ関数とメビウス反転 (Zeta function and Mobius inversion).", href: "https://researchmap.jp/ryuyahora/social_contribution/51734818", linkText: "Zeta function and Mobius inversion" }
       ]
     },
     {
       title: "Other",
       items: [
-        { text: "Peer-review experience: 1 manuscript." }
+        { text: "Peer-reviewed one manuscript for Applied Categorical Structures.", href: "https://researchmap.jp/ryuyahora/academic_contribution/51734788", linkText: "Applied Categorical Structures", activityCategory: "peer-review" }
       ]
     }
   ],
@@ -1018,7 +1054,7 @@ const siteData = {
     {
       title: "Academic Photobomb",
       items: [
-        { date: "2016-04", label: "数学ガールの秘密ノート 場合の数", href: "https://note7.hyuki.net" },
+        { date: "2016-04-20", label: "数学ガールの秘密ノート 場合の数", href: "https://note7.hyuki.net" },
         { date: "2023-05-26", label: "数理空間トポス 5周年記念公開イベント", href: "https://www.shosen.co.jp/event/9341/" },
         { date: "2023-09-11", label: "Filtered colimit elimination from Birkhoff's variety theorem", href: "https://doi.org/10.1016/j.jpaa.2024.107794" },
         { date: "2023-09-22", label: "数理物理ラジオ第16回 ゲスト: ほらさん", href: "https://www.youtube.com/watch?v=gInu95RiCUo" },
@@ -1457,9 +1493,9 @@ const i18nText = {
     "Bibliography, preprints, in-preparation work, and metadata.": "文献，preprint，準備中の仕事，メタデータ．",
     "Lecture notes, expository notes, and related writing.": "講義ノート，解説ノート，関連文書．",
     "Talk records and slide materials.": "スライドと発表資料．",
-    "Activity timeline, upcoming plans, visits, yearly records, and Categories in Tokyo.": "活動タイムライン，訪問，発表，年次記録．",
+    "Activity timeline, upcoming plans, visits, and yearly records.": "活動タイムライン，訪問，発表，年次記録．",
     "Talk records and slide materials.": "学会発表，セミナー，アーカイブ，訪問地図．",
-    "Profile links, academic photobombs, and small web experiments.": "プロフィールリンク，academic photobombs，小さな Web 実験．",
+    "Profile links, academic photobombs, Categories in Tokyo, and small web experiments.": "プロフィールリンク，academic photobombs，Categories in Tokyo，小さな Web 実験．",
     "Profile Links": "プロフィールリンク",
     "Selected external links.": "外部リンク集．",
     "Positions, awards, education, and profile links.": "所属，受賞，学歴，プロフィールリンク．",
@@ -2246,8 +2282,13 @@ function translatedPhrase(text, element = null) {
   if (noteFilterCount) return `${noteFilterCount[1]} / ${noteFilterCount[2]} 件のノート`;
   const slideFilterCount = original.match(/^Showing (\d+) \/ (\d+) slides$/);
   if (slideFilterCount) return `${slideFilterCount[1]} / ${slideFilterCount[2]} 件のスライド`;
-  const talkMapCount = original.match(/^(\d+) (talks?|visits?) \/ (.+)$/);
-  if (talkMapCount) return `${talkMapCount[1]}件 / ${i18nText[activeLanguage]?.[talkMapCount[3]] || talkMapCount[3]}`;
+  const talkMapCount = original.match(/^(\d+) (talks?|visits?)(?: \/ (\d+) events?)? \/ (.+)$/);
+  if (talkMapCount) {
+    const primaryLabel = /^visits?$/.test(talkMapCount[2]) ? "訪問" : "発表";
+    const eventLabel = talkMapCount[3] ? ` / 活動${talkMapCount[3]}件` : "";
+    const place = talkMapCount[4];
+    return `${primaryLabel}${talkMapCount[1]}件${eventLabel} / ${i18nText[activeLanguage]?.[place] || place}`;
+  }
   const openRecord = original.match(/^Open (.+)$/);
   if (openRecord) return `開く: ${openRecord[1]}`;
   return original;
@@ -2728,6 +2769,7 @@ function attachTimelineTooltip(node, record, options = {}) {
   const kindLabel = homeTimelineKindLabel(record.kind);
   const themeLabel = homeTimelineRecordThemeLabel(record);
   const detail = activeLanguage === "ja" && record.detailJa ? record.detailJa : record.detail;
+  node.dataset.timelineKind = record.kind;
   node.dataset.timelineKicker = compactText([kindLabel, themeLabel, record.dateLabel]).join(" / ");
   node.dataset.timelineTitle = record.title;
   node.dataset.timelineMeta = compactText([record.meta, detail]).join(" / ");
@@ -2935,9 +2977,11 @@ const talkSlideMatches = [
   { title: "Combinatorial games as recursive coalgebras", event: "CSCAT2024", file: "Hora_CSCAT2024.pdf" },
   { title: "Local state classifier for algebraic language theory", event: "CTTA Groupe", file: "Local state classifier for algebraic language theory.pdf" },
   { title: "Local state classifier for automata theory", event: "IRIF Sémantique", file: "IRIF20250527_ver1.pdf" },
+  { title: "Local state classifier for automata theory", event: "LIPN", file: "IRIF20250527_ver1.pdf", materialNote: "Same slide deck as the IRIF Sémantique seminar." },
   { title: "Topoi of automata", event: "CSCAT2025", file: "CSCAT_2025-3.pdf" },
   { title: "Topoi of automata", event: "CTTA Groupe", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf" },
   { title: "Topoi of automata", event: "Categories for Automata", file: "IRIFtoday.pdf" },
+  { title: "Topoi of automata", event: "Category Theory 2025", file: "ct2025-hora.pdf" },
   { title: "Constructive mathematics and representation theory", event: "数学基礎論若手", file: "若手の会2023-8.pdf" }
 ];
 
@@ -2949,7 +2993,21 @@ function talkSlideRecordContext(record) {
     record?.dateRange,
     talkVenueDateLabel(record),
     record?.link,
-    record?.href
+    record?.href,
+    record?.sourceRecord?.event,
+    record?.sourceRecord?.venue,
+    record?.sourceRecord?.date,
+    record?.sourceRecord?.dateRange,
+    talkVenueDateLabel(record?.sourceRecord),
+    record?.sourceRecord?.link,
+    record?.sourceRecord?.href,
+    record?.manualRecord?.event,
+    record?.manualRecord?.venue,
+    record?.manualRecord?.date,
+    record?.manualRecord?.dateRange,
+    talkVenueDateLabel(record?.manualRecord),
+    record?.manualRecord?.link,
+    record?.manualRecord?.href
   ]).join(" ");
 }
 
@@ -3161,7 +3219,7 @@ const talkLocationByResearchmapId = {
     source: "https://www.cmup.pt/events/topoi-automata"
   },
   "51734994": {
-    id: "tkp-kanda",
+    id: "tkp-kanda-business-center",
     name: "TKP Kanda Business Center",
     venue: "Hall 401, TKP Kanda Business Center",
     city: "Tokyo",
@@ -3297,6 +3355,325 @@ const talkLocationByResearchmapId = {
 };
 
 const talkLocationCatalog = [
+  {
+    id: "utokyo-komaba-gsm",
+    name: "Graduate School of Mathematical Sciences, The University of Tokyo",
+    venue: "Graduate School of Mathematical Sciences, The University of Tokyo",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6607,
+    lon: 139.6848,
+    source: "https://www.ms.u-tokyo.ac.jp/access_e/index_e.html",
+    aliases: ["Graduate School of Mathematical Sciences", "UTokyo Komaba", "Takagi Lectures", "Categories in Tokyo 0"]
+  },
+  {
+    id: "utokyo-hongo",
+    name: "The University of Tokyo, Hongo Campus",
+    venue: "Hongo Campus, The University of Tokyo",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.7133,
+    lon: 139.7622,
+    source: "https://www.u-tokyo.ac.jp/en/about/access.html",
+    aliases: ["Hongo campus", "The University of Tokyo Hongo", "FoPM seminar"]
+  },
+  {
+    id: "utokyo-ito-hall",
+    name: "Ito Hall, The University of Tokyo",
+    venue: "Ito Hall, The University of Tokyo",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.7139,
+    lon: 139.7628,
+    source: "https://indico.ipmu.jp/event/420/overview",
+    aliases: ["Ito Hall", "FoPM International Symposium"]
+  },
+  {
+    id: "nii-hitotsubashi",
+    name: "National Institute of Informatics",
+    venue: "National Center of Sciences, 2-1-2 Hitotsubashi",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6924611,
+    lon: 139.7581028,
+    source: "https://www.nii.ac.jp/en/about/access/",
+    aliases: ["National Institute of Informatics", "National Center of Sciences", "Hitotsubashi", "Categories in Tokyo 1", "Categories in Tokyo 2", "Japan Combinatorial Game Theory Mini-Workshops"]
+  },
+  {
+    id: "nii-kanda-lab",
+    name: "NII Kanda Lab",
+    venue: "NII Kanda Lab",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6924,
+    lon: 139.7659,
+    source: "https://research.nii.ac.jp/~uno/kandalab/index.html",
+    aliases: ["NII Kanda Lab", "Kanda Lab", "abduction"]
+  },
+  {
+    id: "tkp-kanda-business-center",
+    name: "TKP Kanda Business Center",
+    venue: "TKP Kanda Business Center",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6929,
+    lon: 139.7636,
+    source: "https://afsa.jp/meeting/",
+    aliases: ["TKP Kanda", "AFSA area meeting"]
+  },
+  {
+    id: "uec-west-9",
+    name: "The University of Electro-Communications, West Building 9",
+    venue: "West Building 9, The University of Electro-Communications",
+    city: "Chofu",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6578,
+    lon: 139.5437,
+    source: "https://www.uec.ac.jp/about/profile/access/",
+    aliases: ["University of Electro-Communications", "West Building 9", "西9号館", "20th Combinatorial Games and Puzzle Project"]
+  },
+  {
+    id: "science-tokyo-ookayama",
+    name: "Institute of Science Tokyo, Ookayama Campus",
+    venue: "Ookayama Campus, Institute of Science Tokyo",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6056,
+    lon: 139.6832,
+    source: "https://sites.google.com/view/ookayamamodallogic/%E3%83%9B%E3%83%BC%E3%83%A0",
+    aliases: ["Institute of Science Tokyo", "Ookayama", "Workshop on Modal Logic"]
+  },
+  {
+    id: "genron-cafe",
+    name: "Genron Cafe",
+    venue: "Genron Cafe",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6237,
+    lon: 139.7238,
+    source: "https://genron-cafe.jp/event/20260405/",
+    aliases: ["Genron Cafe", "HUMAI Anthology"]
+  },
+  {
+    id: "riken-wako",
+    name: "RIKEN Wako Campus",
+    venue: "RIKEN Wako Campus",
+    city: "Wako",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.7748,
+    lon: 139.6075,
+    source: "https://sites.google.com/view/logic-winter-school-iii/",
+    aliases: ["RIKEN", "Wako", "Logic Winter School"]
+  },
+  {
+    id: "kyoto-university-rims",
+    name: "RIMS, Kyoto University",
+    venue: "Research Institute for Mathematical Sciences, Kyoto University",
+    city: "Kyoto",
+    country: "Japan",
+    region: "Kansai",
+    lat: 35.0268,
+    lon: 135.7807,
+    source: "https://www.kurims.kyoto-u.ac.jp/ja/access-01.html",
+    aliases: ["RIMS", "Research Institute for Mathematical Sciences", "Kyoto Category Theory Meeting", "Takeo Uramoto", "AFSA Colloquium"]
+  },
+  {
+    id: "kyoto-university-yoshida",
+    name: "Kyoto University, Yoshida Campus",
+    venue: "Graduate School of Human and Environmental Sciences, Kyoto University",
+    city: "Kyoto",
+    country: "Japan",
+    region: "Kansai",
+    lat: 35.0268,
+    lon: 135.7807,
+    source: "https://www.i.h.kyoto-u.ac.jp/ccc2026/",
+    aliases: ["Kyoto University Yoshida", "Graduate School of Human and Environmental Sciences", "CCC 2026"]
+  },
+  {
+    id: "akita-university-room-321",
+    name: "Akita University",
+    venue: "Shared Room 321, Faculty of Engineering Science, Tegata Campus, Akita University",
+    city: "Akita",
+    country: "Japan",
+    region: "Tohoku",
+    lat: 39.729237,
+    lon: 140.133308,
+    source: "https://sites.google.com/view/slacs2025akita/home",
+    aliases: ["Akita University", "SLACS 2025"]
+  },
+  {
+    id: "nii-karuizawa-inose-lodge",
+    name: "NII International Seminar House for Advanced Studies",
+    venue: "International Seminar House for Advanced Studies, Inose Lodge",
+    city: "Karuizawa",
+    country: "Japan",
+    region: "Chubu",
+    lat: 36.336887,
+    lon: 138.617377,
+    source: "https://www.nii.ac.jp/en/about/seminar-house/",
+    aliases: ["NII Karuizawa International Seminar House", "Inose Lodge", "Karuizawa seminar house", "Game theory seminar"]
+  },
+  {
+    id: "shinshu-university-science",
+    name: "Faculty of Science, Shinshu University",
+    venue: "Faculty of Science, Shinshu University",
+    city: "Matsumoto",
+    country: "Japan",
+    region: "Chubu",
+    lat: 36.247870,
+    lon: 137.973101,
+    source: "https://www.shinshu-u.ac.jp/faculty/science/en/others/access.html",
+    aliases: ["Shinshu University", "Faculty of Science, Shinshu University", "信州大学理学部", "空間の代数的・幾何的モデルとその周辺"]
+  },
+  {
+    id: "shizuoka-university-shizuoka",
+    name: "Shizuoka University",
+    venue: "Shizuoka Campus, Shizuoka University",
+    city: "Shizuoka",
+    country: "Japan",
+    region: "Chubu",
+    lat: 34.963610,
+    lon: 138.429053,
+    source: "https://www.shizuoka.ac.jp/access/",
+    aliases: ["Shizuoka University", "Shizuoka Campus", "静岡大学", "静岡大学理学部", "数学基礎論サマースクール"]
+  },
+  {
+    id: "kinosaki-community-center",
+    name: "Kinosaki District Community Center",
+    venue: "Kinosaki District Community Center, Kinosaki Branch Office 3F",
+    city: "Toyooka",
+    country: "Japan",
+    region: "Kansai",
+    lat: 35.628568,
+    lon: 134.813484,
+    source: "https://www.city.toyooka.lg.jp/kurashi/community/communitycenter/1001174.html",
+    aliases: ["Kinosaki Community Center", "Kinosaki Citizen Center", "城崎地区コミュニティセンター", "城崎市民センター", "COS 2026"]
+  },
+  {
+    id: "tmu-minami-osawa",
+    name: "Tokyo Metropolitan University",
+    venue: "Minami-Osawa Campus, Tokyo Metropolitan University",
+    city: "Hachioji",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6166,
+    lon: 139.3772,
+    source: "https://sites.google.com/site/tmugeometry/",
+    aliases: ["Tokyo Metropolitan University", "TMU geometry seminar", "Minami-Osawa"]
+  },
+  {
+    id: "shosen-grande",
+    name: "Shosen Grande",
+    venue: "Shosen Grande",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6959,
+    lon: 139.7596,
+    source: "https://www.shosen.co.jp/event/9341/",
+    aliases: ["Shosen Grande", "数理空間トポス 5th anniversary public event"]
+  },
+  {
+    id: "zen-university-ginza",
+    name: "ZEN University",
+    venue: "ZEN University",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.6695,
+    lon: 139.7671,
+    source: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A",
+    aliases: ["ZEN University", "Categories in Tokyo 3", "第3回 ZEN大学"]
+  },
+  {
+    id: "waseda-university",
+    name: "Waseda University",
+    venue: "Waseda University",
+    city: "Tokyo",
+    country: "Japan",
+    region: "Kanto",
+    lat: 35.7094,
+    lon: 139.7198,
+    source: "https://iciam2023.org/",
+    aliases: ["Waseda University", "ICIAM 2023"]
+  },
+  {
+    id: "kibi-youth-outdoor-learning-center",
+    name: "National Kibi Youth Outdoor Learning Center",
+    venue: "National Kibi Youth Outdoor Learning Center",
+    city: "Kibichuo",
+    country: "Japan",
+    region: "Chugoku",
+    lat: 34.823848,
+    lon: 133.765281,
+    source: "https://suubutsuseminar.com/camp/camp_ad3.html",
+    aliases: ["National Kibi Youth Outdoor Learning Center", "国立吉備青少年交流の家", "国立吉備青少年自然の家", "3rd 数物セミナーAdvanced", "数物セミナーAdvanced"]
+  },
+  {
+    id: "queen-mary-mile-end",
+    name: "Queen Mary University of London",
+    venue: "Mile End Campus, Queen Mary University of London",
+    city: "London",
+    country: "United Kingdom",
+    lat: 51.5247272,
+    lon: -0.0393103,
+    source: "https://www.qmul.ac.uk/",
+    aliases: ["Queen Mary University of London", "QMUL", "Mile End"]
+  },
+  {
+    id: "oxford-mathematical-institute",
+    name: "Oxford Mathematical Institute",
+    venue: "Andrew Wiles Building, Mathematical Institute, University of Oxford",
+    city: "Oxford",
+    country: "United Kingdom",
+    lat: 51.759,
+    lon: -1.258,
+    source: "https://topos.institute/events/topox/",
+    aliases: ["Oxford Mathematical Institute", "Andrew Wiles Building", "TopOx seminar"]
+  },
+  {
+    id: "lipn-villetaneuse",
+    name: "LIPN",
+    venue: "LIPN, Universite Sorbonne Paris Nord",
+    city: "Villetaneuse",
+    country: "France",
+    lat: 48.9565,
+    lon: 2.3411,
+    source: "https://lipn.univ-paris13.fr/applications/seminaires/index.php?lang=en",
+    aliases: ["LIPN", "Villetaneuse", "Morgan Rogers"]
+  },
+  {
+    id: "universite-paris-cite-sophie-germain",
+    name: "Universite Paris Cite",
+    venue: "Building Sophie Germain, Universite Paris Cite",
+    city: "Paris",
+    country: "France",
+    lat: 48.8276,
+    lon: 2.3814,
+    source: "https://www.irif.fr/en/seminaires/semantique/index",
+    aliases: ["Universite Paris Cite", "Universite de Paris", "Joshua Wrigley", "Sophie Germain"]
+  },
+  {
+    id: "ub-math-info",
+    name: "Faculty of Mathematics and Computer Science, University of Barcelona",
+    venue: "Gran Via de les Corts Catalanes, 585",
+    city: "Barcelona",
+    country: "Spain",
+    lat: 41.386872,
+    lon: 2.16464,
+    source: "https://iiia.csic.es/tacl2024/",
+    aliases: ["Faculty of Mathematics and Computer Science", "University of Barcelona", "TACL 2024"]
+  },
   {
     id: "fukui",
     name: "Fukui",
@@ -3459,6 +3836,14 @@ const talkLocationCatalog = [
     aliases: ["Brno", "Category Theory 2025", "CT2025"]
   },
   {
+    id: "tallinn",
+    name: "Tallinn",
+    country: "Estonia",
+    lat: 59.437,
+    lon: 24.7536,
+    aliases: ["Tallinn", "Estonia", "ACT 2026", "Applied Category Theory 2026"]
+  },
+  {
     id: "paris",
     name: "Paris area",
     country: "France",
@@ -3484,6 +3869,17 @@ const talkLocationCatalog = [
     lat: 41.15,
     lon: -8.61,
     aliases: ["Porto"]
+  },
+  {
+    id: "fabrica-science-centre-aveiro",
+    name: "Fabrica Science Centre of Aveiro",
+    venue: "Fabrica Science Centre of Aveiro",
+    city: "Aveiro",
+    country: "Portugal",
+    lat: 40.638476,
+    lon: -8.657425,
+    source: "https://ludicum.org/cgtc-vi/",
+    aliases: ["Fabrica Science Centre of Aveiro", "Fábrica Science Centre of Aveiro", "Fabrica Centro Ciencia Viva de Aveiro", "Fábrica Centro Ciência Viva de Aveiro", "CGTC VI"]
   },
   {
     id: "barcelona",
@@ -3706,8 +4102,10 @@ function mergePresentationRecord(sourceRecord, manualRecord) {
     year: manualRecord.year || sourceRecord.year,
     link: manualLink || sourceRecord.link,
     href: manualRecord.href || manualRecord.link || sourceRecord.href,
+    visitId: manualRecord.visitId || sourceRecord.visitId,
     links,
     source: sourceRecord.source || "researchmap",
+    sourceRecord,
     manualRecord
   };
 }
@@ -3928,7 +4326,7 @@ function siteSearchRecords() {
       href: localHref("profile/index.html#academic-background"),
       summary: "Background",
       keywords: compactText([record.text, record.textJa]),
-      icon: record.icon || "education"
+      icon: record.icon || "academic-cap"
     });
   });
 
@@ -3948,7 +4346,7 @@ function siteSearchRecords() {
       title: record.text,
       href: record.href || localHref("profile/index.html"),
       summary: "Education and outreach",
-      icon: "education"
+      icon: "academic-cap"
     });
   });
 
@@ -4055,15 +4453,18 @@ function siteSearchRecords() {
   });
 
   siteData.activities.forEach((group) => {
+    const total = Math.max(1, group.items.length);
     group.items.forEach((record, index) => {
-    pushSiteSearchRecord(records, {
-      type: "Activity",
-      title: cleanActivityTitle(record.text),
-      href: record.href || localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
-      summary: group.title,
-      icon: activityIconKey(group, record)
+      const entry = { group, record, index, total };
+      pushSiteSearchRecord(records, {
+        type: "Activity",
+        title: cleanActivityTitle(activityRecordDisplayText(entry)),
+        href: record.href || localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
+        summary: group.title,
+        keywords: compactText([activityRecordSearchText(entry), activityRecordDisplayTextJa(record)]),
+        icon: activityIconKey(group, record)
+      });
     });
-  });
   });
 
   siteData.webApps.forEach((app) => {
@@ -4534,41 +4935,153 @@ function talkMapRecordHref(record) {
 }
 
 function visitLocationById(id) {
-  return talkLocationCatalog.find((location) => location.id === id) || null;
+  return (
+    talkLocationCatalog.find((location) => location.id === id) ||
+    Object.values(talkLocationByResearchmapId).find((location) => location.id === id) ||
+    null
+  );
 }
 
 function canonicalVisitLocation(location) {
   if (!location || location.online) return null;
-  const text = simplified(compactText([location.id, location.name, location.venue, location.city, location.country]).join(" "));
-  const rules = [
-    ["paris", /france|paris|palaiseau|villetaneuse|irif|lipn|lagrange|polytechnique|paris saclay/],
-    ["london", /london|queen mary|qmul/],
-    ["oxford", /oxford|oxtop/],
-    ["barcelona", /barcelona|tacl2024|tacl 2024/],
-    ["brno", /brno|masaryk|ct2025|category theory 2025/],
-    ["mondovi", /mondovi|mondovì/],
-    ["santiago", /santiago de compostela|usc|ct2024|category theory 2024/],
-    ["belgium", /belgium|louvain/],
-    ["fukui", /fukui|aossa/],
-    ["kagawa", /kagawa|takamatsu|rexxam/],
-    ["kumamoto", /kumamoto|sojo/],
-    ["akita", /akita/],
-    ["chiba", /chiba|数学基礎論若手/],
-    ["nagoya", /nagoya|aichi|代数トポロジー若手/],
-    ["kyoto", /kyoto|rims|yoshida/],
-    ["saitama", /saitama|riken|wako/],
-    ["okayama", /okayama|数物セミナーadv/],
-    ["karuizawa", /karuizawa/],
-    ["tokyo", /tokyo|chofu|komaba|hongo|kanda|nii|national institute of informatics|electro communications|utokyo|university of tokyo|tmu|pct|genron/]
-  ];
-  const match = rules.find(([, pattern]) => pattern.test(text));
-  return match ? visitLocationById(match[0]) || location : location;
+  return location;
 }
 
 const visitMapExcludedPresentationIds = new Set([
   // Presented by Kyosuke Higashida; the owner's visit is represented by the CGP attendance record.
   "53075058"
 ]);
+
+const visitIdByResearchmapPresentationId = {
+  "51734936": "visit:2023-jcgt-mini-workshops",
+  "51734994": "visit:2024-afsa-area-meeting",
+  "51735006": "visit:2025-ctta-france-stay",
+  "51735007": "visit:2025-ctta-france-stay",
+  "51735010": "visit:2025-ctta-france-stay",
+  "51735017": "visit:2025-ctta-france-stay",
+  "51735020": "visit:2025-ctta-france-stay",
+  "51735022": "visit:2025-ctta-france-stay",
+  "51735028": "visit:2025-slacs-akita"
+};
+
+function presentationRecordVisitId(record) {
+  const researchmapId = researchmapPresentationId(record);
+  return record?.visitId || record?.manualRecord?.visitId || visitIdByResearchmapPresentationId[researchmapId] || "";
+}
+
+function visitRecordExplicitVisitId(record) {
+  return record?.visitId || record?.rawRecord?.visitId || "";
+}
+
+function visitRecordFallbackVisitId(record, index = 0) {
+  const rawRecord = record?.rawRecord || {};
+  const sourceId = researchmapPresentationId(rawRecord);
+  const seed = compactText([
+    record?.type,
+    record?.location?.id,
+    record?.date,
+    record?.dateRange,
+    sourceId,
+    rawRecord.href || rawRecord.link || record?.href,
+    record?.title,
+    index + 1
+  ]).join(" ");
+  return `record:${slugify(seed) || index + 1}`;
+}
+
+function visitRecordVisitId(record, index = 0) {
+  return visitRecordExplicitVisitId(record) || visitRecordFallbackVisitId(record, index);
+}
+
+function visitRecordGroups(records) {
+  const visits = new Map();
+  records.forEach((record, index) => {
+    const visitId = visitRecordVisitId(record, index);
+    if (!visits.has(visitId)) visits.set(visitId, { id: visitId, records: [], latestTime: 0 });
+    const visit = visits.get(visitId);
+    visit.records.push(record);
+    visit.latestTime = Math.max(visit.latestTime, visitRecordTime(record));
+  });
+  return [...visits.values()].sort((a, b) => b.latestTime - a.latestTime);
+}
+
+function visitGroupVisitGroups(group) {
+  return group?.visits || visitRecordGroups(group?.records || []);
+}
+
+function visitGroupVisitCount(group) {
+  return visitGroupVisitGroups(group).length;
+}
+
+function visitGroupEventCount(group) {
+  return group?.records?.length || 0;
+}
+
+function countLabel(count, singular, plural = `${singular}s`) {
+  return `${count} ${count === 1 ? singular : plural}`;
+}
+
+function placeCountLabel(count) {
+  return countLabel(count, "place");
+}
+
+function visitCountLabel(count) {
+  return countLabel(count, "visit");
+}
+
+function eventCountLabel(count) {
+  return countLabel(count, "event");
+}
+
+function visitMapMarkerCountLabel(group) {
+  const visitCount = visitGroupVisitCount(group);
+  const eventCount = visitGroupEventCount(group);
+  if (group?.isLocalRegionCluster) {
+    return `${placeCountLabel(group.members?.length || 0)}, ${visitCountLabel(visitCount)}, ${eventCountLabel(eventCount)}`;
+  }
+  return visitCount === eventCount
+    ? visitCountLabel(visitCount)
+    : `${visitCountLabel(visitCount)}, ${eventCountLabel(eventCount)}`;
+}
+
+function visitRecordDateLabel(record) {
+  return record?.date || record?.dateRange || "";
+}
+
+function visitRecordGroupLabel(visit) {
+  const dates = [...new Set(visit.records.map(visitRecordDateLabel).filter(Boolean))];
+  const dateLabel = dates.length <= 1 ? dates[0] || "" : compactText([dates[dates.length - 1], dates[0]]).join(" - ");
+  return compactText([dateLabel, eventCountLabel(visit.records.length)]).join(" / ");
+}
+
+function talkMapRecordTitleNode(record) {
+  if (record.href && record.linkText) return partialLinkedText(record.title, record.titleJa, record.href, record.linkText, record.linkTextJa);
+  return record.href ? link(record.title, record.href) : document.createTextNode(record.title);
+}
+
+function appendTalkMapRecordItem(list, record, className = "") {
+  const item = el("li", className);
+  item.append(
+    talkMapRecordTitleNode(record),
+    el("span", null, compactText([visitRecordDateLabel(record), record.kind, record.meta]).join(" / "))
+  );
+  list.append(item);
+}
+
+function appendTalkMapVisitGroups(list, visitGroups) {
+  visitGroups.forEach((visit) => {
+    if (visit.records.length === 1) {
+      appendTalkMapRecordItem(list, visit.records[0]);
+      return;
+    }
+    const item = el("li", "talk-map-visit-group");
+    item.append(el("span", "talk-map-visit-heading", visitRecordGroupLabel(visit)));
+    const visitRecordList = el("ol", "talk-map-visit-records");
+    visit.records.forEach((record) => appendTalkMapRecordItem(visitRecordList, record, "talk-map-record"));
+    item.append(visitRecordList);
+    list.append(item);
+  });
+}
 
 function presentationVisitRecords() {
   return sortedPresentations(allPresentationRecords())
@@ -4585,6 +5098,7 @@ function presentationVisitRecords() {
         date: formatTalkDate(record),
         meta: compactText([presentationPeopleText(record), record.event, talkLocationLabel(originalLocation)]).join(" / "),
         location,
+        visitId: presentationRecordVisitId(record),
         rawRecord: record
       };
     })
@@ -4593,8 +5107,9 @@ function presentationVisitRecords() {
 
 function activityVisitEntries() {
   return activityRecordEntries({ includeOther: false })
-    .map(({ record }) => {
-      if (!activityRecordVisibleInVisitMap(record)) return null;
+    .map((entry) => {
+      const { record } = entry;
+      if (!activityRecordVisibleInVisitMap(entry)) return null;
       const location = visitLocationById(record.locationId);
       if (!location) return null;
       return {
@@ -4608,6 +5123,7 @@ function activityVisitEntries() {
         dateRange: record.dateRange,
         meta: record.mapMeta || "",
         location,
+        visitId: record.visitId || "",
         rawRecord: record
       };
     })
@@ -4628,11 +5144,15 @@ function groupTalkMapRecords(entries, scope) {
   });
 
   return [...groups.values()]
-    .map((group) => ({
-      ...group,
-      records: [...group.records].sort((a, b) => visitRecordTime(b) - visitRecordTime(a))
-    }))
-    .sort((a, b) => b.records.length - a.records.length || talkMapGroupLatest(b) - talkMapGroupLatest(a));
+    .map((group) => {
+      const records = [...group.records].sort((a, b) => visitRecordTime(b) - visitRecordTime(a));
+      return {
+        ...group,
+        records,
+        visits: visitRecordGroups(records)
+      };
+    })
+    .sort(compareTalkMapGroups);
 }
 
 function talkMapGroupLatest(group) {
@@ -4667,23 +5187,198 @@ function talkMapViewBoxSize(scope) {
 }
 
 function talkMapPoint(location, scope) {
-  const offsetX = Number(location.markerDx) || 0;
-  const offsetY = Number(location.markerDy) || 0;
   const projection = talkMapData?.[scope]?.projection;
   if (projection) {
     return {
-      x: projection.offsetX + (location.lon - projection.minLon) * projection.scale + offsetX,
-      y: projection.offsetY + (projection.maxLat - location.lat) * projection.scale + offsetY
+      x: projection.offsetX + (location.lon - projection.minLon) * projection.scale,
+      y: projection.offsetY + (projection.maxLat - location.lat) * projection.scale
     };
   }
   if (scope === "japan") {
-    return { x: location.japanX + offsetX, y: location.japanY + offsetY };
+    return { x: location.japanX, y: location.japanY };
   }
   const size = talkMapViewBoxSize(scope);
   return {
-    x: ((location.lon + 180) / 360) * size.width + offsetX,
-    y: ((90 - location.lat) / 180) * size.height + offsetY
+    x: ((location.lon + 180) / 360) * size.width,
+    y: ((90 - location.lat) / 180) * size.height
   };
+}
+
+const talkMapLocalRegions = [
+  {
+    id: "paris",
+    scope: "europe",
+    label: "Paris area",
+    city: "Paris",
+    country: "France",
+    centerLat: 48.8566,
+    centerLon: 2.3522,
+    bounds: { minLat: 48.69, maxLat: 48.98, minLon: 2.12, maxLon: 2.43 },
+    viewBox: { width: 360, height: 260, margin: 28 },
+    locationIds: ["paris", "centre-lagrange-paris", "irif-room-3071", "lipn-villetaneuse", "universite-paris-cite-sophie-germain", "lix-ecole-polytechnique"]
+  },
+  {
+    id: "tokyo",
+    scope: "japan",
+    label: "Tokyo area",
+    city: "Tokyo",
+    country: "Japan",
+    centerLat: 35.6812,
+    centerLon: 139.7671,
+    bounds: { minLat: 35.54, maxLat: 35.80, minLon: 139.34, maxLon: 139.82 },
+    viewBox: { width: 360, height: 260, margin: 28 },
+    locationIds: ["tokyo", "utokyo-komaba-gsm", "utokyo-komaba-room-126", "utokyo-komaba-logic", "utokyo-hongo", "utokyo-ito-hall", "nii-hitotsubashi", "nii-kanda-lab", "tkp-kanda", "tkp-kanda-business-center", "uec-west-9", "uec-chofu", "science-tokyo-ookayama", "genron-cafe", "riken-wako", "tmu-minami-osawa", "shosen-grande", "zen-university-ginza", "waseda-university"]
+  },
+  {
+    id: "kyoto",
+    scope: "japan",
+    label: "Kyoto area",
+    city: "Kyoto",
+    country: "Japan",
+    centerLat: 35.0268,
+    centerLon: 135.7807,
+    bounds: { minLat: 34.95, maxLat: 35.08, minLon: 135.70, maxLon: 135.86 },
+    viewBox: { width: 340, height: 260, margin: 30 },
+    locationIds: ["kyoto", "kyoto-university-rims", "rims-room-420", "kyoto-university-yoshida", "kyoto-university-research-bldg-2"]
+  }
+];
+
+function talkMapLocalRegionLocation(region) {
+  return {
+    id: `local-region:${region.id}`,
+    name: region.label,
+    venue: `${region.label} local view`,
+    city: region.city,
+    country: region.country,
+    lat: region.centerLat,
+    lon: region.centerLon
+  };
+}
+
+function talkMapLocalRegionContainsLocation(region, location) {
+  if (!region || !location) return false;
+  if ((region.locationIds || []).includes(location.id)) return true;
+  const { bounds } = region;
+  return Boolean(
+    bounds &&
+      Number.isFinite(location.lat) &&
+      Number.isFinite(location.lon) &&
+      location.lat >= bounds.minLat &&
+      location.lat <= bounds.maxLat &&
+      location.lon >= bounds.minLon &&
+      location.lon <= bounds.maxLon
+  );
+}
+
+function talkMapLocalRegionForLocation(location, scope = "") {
+  return talkMapLocalRegions.find((region) =>
+    (!scope || region.scope === scope) && talkMapLocalRegionContainsLocation(region, location)
+  ) || null;
+}
+
+function talkMapGroupsForLocalRegion(groups, region) {
+  return groups
+    .filter((group) => talkMapLocalRegionContainsLocation(region, group.location))
+    .sort(compareTalkMapGroups);
+}
+
+function talkMapLocalRegionCluster(region, members) {
+  const records = members
+    .flatMap((member) => member.records)
+    .sort((a, b) => visitRecordTime(b) - visitRecordTime(a));
+  return {
+    isLocalRegionCluster: true,
+    localRegion: region,
+    location: talkMapLocalRegionLocation(region),
+    records,
+    visits: visitRecordGroups(records),
+    members
+  };
+}
+
+function compareTalkMapGroups(a, b) {
+  return (
+    visitGroupVisitCount(b) - visitGroupVisitCount(a) ||
+    visitGroupEventCount(b) - visitGroupEventCount(a) ||
+    (b.members?.length || 0) - (a.members?.length || 0) ||
+    talkMapGroupLatest(b) - talkMapGroupLatest(a)
+  );
+}
+
+function talkMapOverviewGroups(groups, scope) {
+  const hiddenLocationIds = new Set();
+  const clusters = talkMapLocalRegions
+    .filter((region) => region.scope === scope)
+    .map((region) => {
+      const members = talkMapGroupsForLocalRegion(groups, region);
+      if (members.length < 2) return null;
+      members.forEach((member) => hiddenLocationIds.add(member.location.id));
+      return talkMapLocalRegionCluster(region, members);
+    })
+    .filter(Boolean);
+  return [...clusters, ...groups.filter((group) => !hiddenLocationIds.has(group.location.id))].sort(compareTalkMapGroups);
+}
+
+function talkMapProjectionForLocalRegion(region) {
+  const { bounds, viewBox } = region;
+  const availableWidth = viewBox.width - viewBox.margin * 2;
+  const availableHeight = viewBox.height - viewBox.margin * 2;
+  const scale = Math.min(
+    availableWidth / (bounds.maxLon - bounds.minLon),
+    availableHeight / (bounds.maxLat - bounds.minLat)
+  );
+  const projectedWidth = (bounds.maxLon - bounds.minLon) * scale;
+  const projectedHeight = (bounds.maxLat - bounds.minLat) * scale;
+  return {
+    scale,
+    offsetX: viewBox.margin + (availableWidth - projectedWidth) / 2,
+    offsetY: viewBox.margin + (availableHeight - projectedHeight) / 2
+  };
+}
+
+function talkMapLocalPoint(location, region) {
+  const projection = talkMapProjectionForLocalRegion(region);
+  return {
+    x: projection.offsetX + (location.lon - region.bounds.minLon) * projection.scale,
+    y: projection.offsetY + (region.bounds.maxLat - location.lat) * projection.scale
+  };
+}
+
+function talkMapSpiderfiedLocalPoints(groups, region) {
+  const threshold = 15;
+  const projected = groups.map((group) => ({ group, base: talkMapLocalPoint(group.location, region) }));
+  const clusters = [];
+  projected.forEach((entry) => {
+    const cluster = clusters.find((candidate) => Math.hypot(entry.base.x - candidate.x, entry.base.y - candidate.y) <= threshold);
+    if (!cluster) {
+      clusters.push({ x: entry.base.x, y: entry.base.y, entries: [entry] });
+      return;
+    }
+    cluster.entries.push(entry);
+    cluster.x = cluster.entries.reduce((sum, item) => sum + item.base.x, 0) / cluster.entries.length;
+    cluster.y = cluster.entries.reduce((sum, item) => sum + item.base.y, 0) / cluster.entries.length;
+  });
+
+  const positions = new Map();
+  clusters.forEach((cluster) => {
+    if (cluster.entries.length === 1) {
+      const entry = cluster.entries[0];
+      positions.set(entry.group.location.id, { base: entry.base, point: entry.base, spiderfied: false });
+      return;
+    }
+    const radius = Math.min(28, Math.max(14, 8 + cluster.entries.length * 3));
+    cluster.entries.forEach((entry, index) => {
+      const angle = -Math.PI / 2 + (Math.PI * 2 * index) / cluster.entries.length;
+      const point = {
+        x: cluster.x + Math.cos(angle) * radius,
+        y: cluster.y + Math.sin(angle) * radius
+      };
+      point.x = Math.max(10, Math.min(region.viewBox.width - 10, point.x));
+      point.y = Math.max(10, Math.min(region.viewBox.height - 10, point.y));
+      positions.set(entry.group.location.id, { base: entry.base, point, spiderfied: true });
+    });
+  });
+  return positions;
 }
 
 function locationInProjection(location, projection) {
@@ -4714,12 +5409,23 @@ function selectTalkMapLocation(id) {
 
 const talkMapZoom = {
   min: 1,
-  max: 2.75,
-  step: 0.25
+  max: 5,
+  step: 0.5
 };
 
 function currentTalkMapZoom(scope) {
   return Number(state.talkMapZoom?.[scope]) || 1;
+}
+
+function talkMapMarkerVisualTransform(scope) {
+  return `scale(${Number((1 / currentTalkMapZoom(scope)).toFixed(4))})`;
+}
+
+function updateTalkMapMarkerScales(figure, scope) {
+  const transform = talkMapMarkerVisualTransform(scope);
+  figure.querySelectorAll(".talk-map-marker-visual").forEach((marker) => {
+    marker.setAttribute("transform", transform);
+  });
 }
 
 function clampTalkMapZoom(value) {
@@ -4833,6 +5539,7 @@ function enableTalkMapDragPan(canvas, scope) {
 function updateTalkMapZoomUi(figure, scope) {
   const zoom = currentTalkMapZoom(scope);
   figure.style.setProperty("--visit-map-zoom", String(zoom));
+  updateTalkMapMarkerScales(figure, scope);
   const readout = figure.querySelector("[data-talk-map-zoom-readout]");
   if (readout) readout.textContent = `${Math.round(zoom * 100)}%`;
   figure.querySelectorAll("[data-talk-map-zoom]").forEach((button) => {
@@ -4900,7 +5607,9 @@ function renderTalkMapZoomControls(scope, figure, groups) {
     button.addEventListener("click", () => setTalkMapZoom(scope, action, figure, groups));
     controls.append(button);
   });
-  controls.append(el("span", "talk-map-zoom-readout", "100%"));
+  const readout = el("span", "talk-map-zoom-readout", "100%");
+  readout.dataset.talkMapZoomReadout = "";
+  controls.append(readout);
   return controls;
 }
 
@@ -4911,22 +5620,43 @@ function visitMapTheme(record) {
   return "visit";
 }
 
+function talkMapGroupIsSelected(group) {
+  if (!group) return false;
+  if (state.talkMapLocationId === group.location.id) return true;
+  return Boolean(
+    group.isLocalRegionCluster &&
+      group.members?.some((member) => member.location.id === state.talkMapLocationId)
+  );
+}
+
 function talkMapMarker(group, scope) {
   const point = talkMapPoint(group.location, scope);
-  const theme = visitMapTheme(group.records[0]);
-  const selected = state.talkMapLocationId === group.location.id;
+  const theme = group.isLocalRegionCluster ? "visit" : visitMapTheme(group.records[0]);
+  const selected = talkMapGroupIsSelected(group);
+  const visitCount = visitGroupVisitCount(group);
+  const countLabel = visitMapMarkerCountLabel(group);
+  const markerNumber = group.isLocalRegionCluster ? group.members?.length || visitCount : visitCount;
+  const singleVisit = !group.isLocalRegionCluster && visitCount === 1;
   const marker = svgEl("g", {
-    class: `talk-map-marker theme-${theme}${selected ? " is-selected" : ""}`,
+    class: `talk-map-marker theme-${theme}${group.isLocalRegionCluster ? " is-region-cluster" : ""}${singleVisit ? " is-single" : ""}${selected ? " is-selected" : ""}`,
     transform: `translate(${point.x} ${point.y})`,
     role: "button",
     tabindex: "0",
-    "aria-label": `${group.location.name}: ${group.records.length} visits`
+    "aria-label": `${group.location.name}: ${countLabel}`
   });
   marker.dataset.talkMapLocation = group.location.id;
+  const markerVisual = svgEl("g", {
+    class: "talk-map-marker-visual",
+    transform: talkMapMarkerVisualTransform(scope)
+  });
+  const radius = group.isLocalRegionCluster
+    ? selected ? 15 : 12
+    : selected ? (singleVisit ? 7 : 13) : (singleVisit ? 4.5 : 10);
+  markerVisual.append(svgEl("circle", { r: radius }));
+  if (!singleVisit) markerVisual.append(svgEl("text", { y: 4 }, String(markerNumber)));
   marker.append(
-    svgEl("title", {}, `${group.location.name}: ${group.records.length} visits`),
-    svgEl("circle", { r: selected ? 13 : 10 }),
-    svgEl("text", { y: 4 }, String(group.records.length))
+    svgEl("title", {}, `${group.location.name}: ${countLabel}`),
+    markerVisual
   );
   marker.addEventListener("click", () => selectTalkMapLocation(group.location.id));
   marker.addEventListener("keydown", (event) => {
@@ -5007,45 +5737,168 @@ function renderTalkMapFigure(title, scope, groups) {
   return figure;
 }
 
-function renderTalkMapDetail(groups) {
+function talkMapLocationTitleNode(location) {
+  return location.source ? link(location.name, location.source) : document.createTextNode(location.name);
+}
+
+function talkMapFindGroup(groups, id) {
+  return groups.find((group) => group.location.id === id) || null;
+}
+
+function talkMapSelectedGroup(overviewGroups, locationGroups) {
+  const selectedId = state.talkMapLocationId;
+  return (
+    talkMapFindGroup(overviewGroups, selectedId) ||
+    talkMapFindGroup(locationGroups, selectedId) ||
+    overviewGroups[0] ||
+    locationGroups[0] ||
+    null
+  );
+}
+
+function renderTalkMapLocalMarker(group, position) {
+  const visitCount = visitGroupVisitCount(group);
+  const countLabel = visitMapMarkerCountLabel(group);
+  const singleVisit = visitCount === 1;
+  const selected = state.talkMapLocationId === group.location.id;
+  const marker = svgEl("g", {
+    class: `talk-map-marker talk-map-local-marker theme-${visitMapTheme(group.records[0])}${singleVisit ? " is-single" : ""}${selected ? " is-selected" : ""}`,
+    transform: `translate(${position.point.x} ${position.point.y})`,
+    role: "button",
+    tabindex: "0",
+    "aria-label": `${group.location.name}: ${countLabel}`
+  });
+  marker.dataset.talkMapLocation = group.location.id;
+  const markerVisual = svgEl("g", { class: "talk-map-marker-visual" });
+  markerVisual.append(svgEl("circle", { r: selected ? (singleVisit ? 6.8 : 10.2) : (singleVisit ? 3.8 : 8.2) }));
+  if (!singleVisit) markerVisual.append(svgEl("text", { y: 3.4 }, String(visitCount)));
+  marker.append(svgEl("title", {}, `${group.location.name}: ${countLabel}`), markerVisual);
+  marker.addEventListener("click", () => selectTalkMapLocation(group.location.id));
+  marker.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    selectTalkMapLocation(group.location.id);
+  });
+  return marker;
+}
+
+function renderTalkMapLocalInset(selected, locationGroups) {
+  const region = selected?.isLocalRegionCluster
+    ? selected.localRegion
+    : talkMapLocalRegionForLocation(selected?.location);
+  if (!region) return null;
+  const members = selected?.isLocalRegionCluster
+    ? [...(selected.members || [])].sort(compareTalkMapGroups)
+    : talkMapGroupsForLocalRegion(locationGroups, region);
+  if (members.length < 2) return null;
+
+  const positions = talkMapSpiderfiedLocalPoints(members, region);
+  const memberRecords = members.flatMap((member) => member.records);
+  const memberVisitCount = visitGroupVisitCount({ records: memberRecords });
+  const inset = el("div", "talk-map-local-inset");
+  const label = el("div", "talk-map-local-label");
+  label.append(
+    el("span", "talk-map-local-title", region.label),
+    el("span", "talk-map-local-meta", compactText([placeCountLabel(members.length), visitCountLabel(memberVisitCount)]).join(" / "))
+  );
+
+  const { width, height } = region.viewBox;
+  const svg = svgEl("svg", {
+    viewBox: `0 0 ${width} ${height}`,
+    role: "group",
+    "aria-label": `${region.label} local visit map`
+  });
+  svg.append(svgEl("rect", { class: "talk-map-local-bg", x: 0, y: 0, width, height, rx: 8 }));
+  const grid = svgEl("g", { class: "talk-map-local-grid", "aria-hidden": "true" });
+  [0.25, 0.5, 0.75].forEach((ratio) => {
+    grid.append(
+      svgEl("line", { x1: width * ratio, y1: 0, x2: width * ratio, y2: height }),
+      svgEl("line", { x1: 0, y1: height * ratio, x2: width, y2: height * ratio })
+    );
+  });
+  svg.append(grid, svgEl("text", { class: "talk-map-local-caption", x: 14, y: 24 }, region.city));
+
+  const spiderLines = svgEl("g", { class: "talk-map-spider-lines", "aria-hidden": "true" });
+  members.forEach((member) => {
+    const position = positions.get(member.location.id);
+    if (!position?.spiderfied) return;
+    spiderLines.append(svgEl("line", {
+      class: "talk-map-spider-line",
+      x1: position.base.x,
+      y1: position.base.y,
+      x2: position.point.x,
+      y2: position.point.y
+    }));
+  });
+  svg.append(spiderLines);
+  [...members]
+    .sort((a, b) => Number(a.location.id === state.talkMapLocationId) - Number(b.location.id === state.talkMapLocationId))
+    .forEach((member) => {
+      const position = positions.get(member.location.id);
+      if (position) svg.append(renderTalkMapLocalMarker(member, position));
+    });
+
+  const map = el("div", "talk-map-local-map");
+  map.append(svg);
+  inset.append(label, map);
+  return inset;
+}
+
+function appendTalkMapPlaceGroups(list, groups) {
+  groups.forEach((group) => {
+    const item = el("li", "talk-map-place-group");
+    const heading = el("div", "talk-map-place-heading");
+    heading.append(talkMapLocationTitleNode(group.location));
+    item.append(
+      heading,
+      el(
+        "span",
+        "talk-map-place-meta",
+        compactText([talkLocationLabel(group.location), visitMapMarkerCountLabel(group)]).join(" / ")
+      )
+    );
+    const placeRecords = el("ol", "talk-map-place-records");
+    appendTalkMapVisitGroups(placeRecords, visitGroupVisitGroups(group));
+    item.append(placeRecords);
+    list.append(item);
+  });
+}
+
+function renderTalkMapDetail(overviewGroups, locationGroups) {
   const detail = el("aside", "talk-map-detail");
-  const selected = groups.find((group) => group.location.id === state.talkMapLocationId) || groups[0];
+  const selected = talkMapSelectedGroup(overviewGroups, locationGroups);
   if (!selected) {
     detail.append(el("p", "empty-state", "No mapped visits yet."));
     return detail;
   }
 
-  const placeTitle = selected.location.source
-    ? link(selected.location.name, selected.location.source)
-    : document.createTextNode(selected.location.name);
+  const isLocalRegionCluster = Boolean(selected.isLocalRegionCluster);
+  const placeTitle = talkMapLocationTitleNode(selected.location);
   const heading = el("h3");
   heading.append(placeTitle);
-  const place = talkLocationLabel(selected.location);
+  const place = isLocalRegionCluster
+    ? compactText([selected.localRegion?.city, selected.localRegion?.country]).join(", ")
+    : talkLocationLabel(selected.location);
+  const visitGroups = visitGroupVisitGroups(selected);
+  const visitCount = visitGroups.length;
+  const eventCount = visitGroupEventCount(selected);
+  const countParts = isLocalRegionCluster
+    ? [placeCountLabel(selected.members?.length || 0), visitCountLabel(visitCount), eventCountLabel(eventCount), selected.localRegion?.country]
+    : [visitCountLabel(visitCount), eventCountLabel(eventCount), selected.location.country];
 
   detail.append(
     heading,
     place ? el("p", "talk-map-place", place) : "",
-    el(
-      "p",
-      "talk-map-count",
-      compactText([`${selected.records.length} visit${selected.records.length === 1 ? "" : "s"}`, selected.location.country]).join(" / ")
-    )
+    el("p", "talk-map-count", compactText(countParts).join(" / "))
   );
+  const localInset = renderTalkMapLocalInset(selected, locationGroups);
+  if (localInset) detail.append(localInset);
 
   const list = el("ol", "talk-map-records");
   list.tabIndex = 0;
   list.setAttribute("aria-label", `Mapped visits for ${selected.location.name}`);
-  selected.records.forEach((record) => {
-    const item = el("li");
-    const title = record.href && record.linkText
-      ? partialLinkedText(record.title, record.titleJa, record.href, record.linkText, record.linkTextJa)
-      : record.href ? link(record.title, record.href) : document.createTextNode(record.title);
-    item.append(
-      title,
-      el("span", null, compactText([record.date, record.kind, record.meta]).join(" / "))
-    );
-    list.append(item);
-  });
+  if (isLocalRegionCluster) appendTalkMapPlaceGroups(list, [...(selected.members || [])].sort(compareTalkMapGroups));
+  else appendTalkMapVisitGroups(list, visitGroups);
   detail.append(list);
   return detail;
 }
@@ -5073,10 +5926,14 @@ function renderTalkMap() {
     return;
   }
 
-  const europeGroups = groupTalkMapRecords(entries, "europe");
-  const japanGroups = groupTalkMapRecords(entries, "japan");
-  const allGroups = [...japanGroups, ...europeGroups];
-  if (!allGroups.some((group) => group.location.id === state.talkMapLocationId)) {
+  const europeLocationGroups = groupTalkMapRecords(entries, "europe");
+  const japanLocationGroups = groupTalkMapRecords(entries, "japan");
+  const europeGroups = talkMapOverviewGroups(europeLocationGroups, "europe");
+  const japanGroups = talkMapOverviewGroups(japanLocationGroups, "japan");
+  const overviewGroups = [...japanGroups, ...europeGroups];
+  const locationGroups = [...japanLocationGroups, ...europeLocationGroups];
+  const selectableGroups = [...overviewGroups, ...locationGroups];
+  if (!selectableGroups.some((group) => group.location.id === state.talkMapLocationId)) {
     state.talkMapLocationId = japanGroups[0]?.location.id || europeGroups[0]?.location.id || "";
   }
 
@@ -5092,7 +5949,7 @@ function renderTalkMap() {
     figures.push([figure, "japan", japanGroups]);
     maps.append(figure);
   }
-  root.append(maps, renderTalkMapDetail(allGroups));
+  root.append(maps, renderTalkMapDetail(overviewGroups, locationGroups));
   figures.forEach(([figure, scope, groups]) => initializeTalkMapViewport(figure, scope, groups));
   applyLanguage(root);
 }
@@ -5563,12 +6420,30 @@ function activityRecordDateLabel(record, groupTitle) {
   return record.date || explicitTimelineLabel(record.text) || groupTitle;
 }
 
+function activityRecordEntryParts(value) {
+  const entry = value?.record ? value : null;
+  return { entry, record: entry?.record || value };
+}
+
 function activityRecordStatus(record) {
   return String(record?.status || "").toLowerCase();
 }
 
+function activityRecordPlanStatus(record) {
+  return String(record?.planStatus || record?.status || "").toLowerCase();
+}
+
 function activityRecordIsPlanned(record) {
-  return activityRecordStatus(record) === "planned";
+  const status = activityRecordPlanStatus(record);
+  return status === "planned" || status === "confirmed";
+}
+
+function activityRecordIsConsidering(record) {
+  return activityRecordPlanStatus(record) === "considering";
+}
+
+function activityRecordIsPending(record) {
+  return activityRecordIsPlanned(record) || activityRecordIsConsidering(record);
 }
 
 function activityRecordEndTime(record, group, index, total) {
@@ -5582,7 +6457,102 @@ function activityRecordIsFuture(record, group, index, total) {
 }
 
 function activityRecordIsUpcoming(record, group, index, total) {
-  return activityRecordIsPlanned(record) || activityRecordIsFuture(record, group, index, total);
+  return activityRecordIsFuture(record, group, index, total);
+}
+
+function activityRecordHasOutcome(record) {
+  return Boolean(record?.outcome || record?.completed || record?.actualRole);
+}
+
+function activityRecordDisplayIsFuture(record, entry, context = "auto") {
+  if (context === "future" || context === "upcoming") return true;
+  if (context === "past" || context === "yearly") return false;
+  if (!entry) return activityRecordIsPending(record);
+  return activityRecordIsUpcoming(record, entry.group, entry.index, entry.total);
+}
+
+function punctuateSentence(text) {
+  const value = String(text || "").trim();
+  if (!value) return "";
+  return /[.!?。]$/u.test(value) ? value : `${value}.`;
+}
+
+function activityRecordEventLabel(record) {
+  return String(record?.event || record?.linkText || record?.venue || "").trim();
+}
+
+function activityRecordLocationPhrase(record, { includeConsidering = false } = {}) {
+  if (!includeConsidering && activityRecordIsConsidering(record)) return "";
+  if (record?.mode === "online" || record?.country === "Online") return " online";
+  const location = String(record?.locationLabel || "").trim();
+  return location ? ` in ${location}` : "";
+}
+
+function activityRecordTalkTitleText(record) {
+  const title = String(record?.talkTitle || "").trim();
+  if (!title) return "";
+  return title.toUpperCase() === "TBA" ? " Title TBA." : ` Title: ${title}.`;
+}
+
+function generatedActivityRecordText(record, isFuture) {
+  const role = String(record?.actualRole || record?.role || "").toLowerCase();
+  const event = activityRecordEventLabel(record);
+  if (!event) return String(record?.text || record?.displayText || "").trim();
+
+  if (role === "talk") {
+    const article = record?.mode === "online" || record?.country === "Online" ? "an online talk" : "a talk";
+    return `${punctuateSentence(`${isFuture ? "Will give" : "Gave"} ${article} at ${event}`)}${activityRecordTalkTitleText(record)}`;
+  }
+
+  if (role === "poster") {
+    return punctuateSentence(`${isFuture ? "Will present" : "Presented"} a poster at ${event}`);
+  }
+
+  if (role === "organize" || role === "organized") {
+    return punctuateSentence(`${isFuture ? "Organizing" : "Organized"} ${event}`);
+  }
+
+  if (role === "visit") {
+    return punctuateSentence(`${isFuture ? "Will visit" : "Visited"} ${event}${activityRecordLocationPhrase(record)}`);
+  }
+
+  if (activityRecordIsConsidering(record) && isFuture) {
+    return punctuateSentence(`Considering attending ${event}${activityRecordLocationPhrase(record)}`);
+  }
+
+  return punctuateSentence(`${isFuture ? "Will attend" : "Attended"} ${event}${activityRecordLocationPhrase(record)}`);
+}
+
+function activityRecordDisplayText(value, context = "auto") {
+  const { entry, record } = activityRecordEntryParts(value);
+  if (!record) return "";
+  if (record.displayText) return record.displayText;
+  if (!record.role && !record.event) return String(record.text || "").trim();
+  return generatedActivityRecordText(record, activityRecordDisplayIsFuture(record, entry, context));
+}
+
+function activityRecordDisplayTextJa(record) {
+  return record?.displayTextJa || record?.textJa || "";
+}
+
+function activityRecordSearchText(value) {
+  const { record } = activityRecordEntryParts(value);
+  return compactText([
+    activityRecordDisplayText(value),
+    activityRecordDisplayText(value, "past"),
+    record?.text,
+    record?.textJa,
+    record?.displayText,
+    record?.event,
+    record?.talkTitle,
+    record?.role,
+    record?.planStatus,
+    record?.status,
+    record?.locationLabel,
+    record?.venue,
+    record?.city,
+    record?.country
+  ]).join(" ");
 }
 
 function activityRecordVisibility(record, key, fallback = true) {
@@ -5590,16 +6560,40 @@ function activityRecordVisibility(record, key, fallback = true) {
   return Object.prototype.hasOwnProperty.call(visibility, key) ? visibility[key] !== false : fallback;
 }
 
-function activityRecordVisibleInYearly(record) {
-  return !activityRecordIsPlanned(record) && activityRecordVisibility(record, "yearly", true);
+function activityRecordVisibleInYearly(value) {
+  const { entry, record } = activityRecordEntryParts(value);
+  const visibility = record?.visibility || {};
+  if (visibility.yearly === false) return false;
+  if (entry && activityRecordIsUpcoming(record, entry.group, entry.index, entry.total)) return false;
+  if (activityRecordIsConsidering(record) && !activityRecordHasOutcome(record) && visibility.yearly !== true) return false;
+  return activityRecordVisibility(record, "yearly", true);
 }
 
-function activityRecordVisibleInHomeTimeline(record) {
+function activityRecordVisibleInHomeTimeline(value) {
+  const { entry, record } = activityRecordEntryParts(value);
+  const visibility = record?.visibility || {};
+  if (visibility.homeTimeline === false) return false;
+  if (
+    entry &&
+    activityRecordIsConsidering(record) &&
+    !activityRecordHasOutcome(record) &&
+    !activityRecordIsUpcoming(record, entry.group, entry.index, entry.total) &&
+    visibility.homeTimeline !== true
+  ) {
+    return false;
+  }
   return activityRecordVisibility(record, "homeTimeline", true);
 }
 
 function activityRecordVisibleInVisitMap(record) {
-  return Boolean(record?.locationId) && activityRecordVisibility(record, "visitMap", true);
+  const entry = record?.record ? record : null;
+  const activity = entry?.record || record;
+  if (!activity?.locationId) return false;
+  const visitMapVisibility = activity?.visibility?.visitMap;
+  if (visitMapVisibility === false) return false;
+  if (visitMapVisibility === true) return true;
+  if (!entry) return activityRecordVisibility(activity, "visitMap", true);
+  return !activityRecordIsUpcoming(activity, entry.group, entry.index, entry.total);
 }
 
 function activityRecordEntries({ includeOther = true } = {}) {
@@ -5750,12 +6744,17 @@ function cleanActivityTitle(text) {
 }
 
 function activityRecordMapTitle(record) {
-  return record.mapTitle || cleanActivityTitle(record.text).replace(/[.。]$/u, "");
+  return record.mapTitle || cleanActivityTitle(activityRecordDisplayText(record, "past")).replace(/[.。]$/u, "");
 }
 
 function activityRecordMapKind(record) {
   if (record.mapKind) return record.mapKind;
-  const text = simplified(record.text);
+  const role = String(record.role || record.actualRole || "").toLowerCase();
+  if (role === "organize" || role === "organized") return "organized";
+  if (role === "visit") return "visit";
+  if (role === "poster") return "poster";
+  if (role === "talk") return "talk";
+  const text = simplified(activityRecordSearchText(record));
   if (text.includes("organizing") || text.includes("organized")) return "organized";
   if (text.includes("visited") || text.includes("discussion")) return "visit";
   if (text.includes("poster")) return "poster";
@@ -5768,7 +6767,9 @@ function profileTimelineHref(hash) {
 }
 
 function homeTimelineIsMeetingActivity(record) {
-  const text = simplified(record.text);
+  const role = String(record.role || record.actualRole || "").toLowerCase();
+  if (["attend", "talk", "poster", "visit"].includes(role)) return true;
+  const text = simplified(activityRecordSearchText(record));
   return (
     /\b(attended|will attend|joined|participated)\b/u.test(text) ||
     /\bpresented a .*poster\b/u.test(text) ||
@@ -5786,16 +6787,30 @@ function activityCategoryLabel(category) {
   }[category] || "";
 }
 
+function activityStatusLabel(status) {
+  return {
+    planned: "Plan",
+    considering: "Considering"
+  }[status] || "";
+}
+
+function activityTimelineStatus(record, group, index, total) {
+  if (activityRecordIsConsidering(record)) return "considering";
+  if (activityRecordIsUpcoming(record, group, index, total)) return "planned";
+  return "";
+}
+
 function timelineActivityRecordFromEntry({ group, record, index, total, time, endTime }) {
   if (!Number.isFinite(time)) return null;
   const activityCategory = record.activityCategory || "";
-  const activityStatus = activityRecordIsUpcoming(record, group, index, total) ? "planned" : "";
+  const activityStatus = activityTimelineStatus(record, group, index, total);
+  const displayText = activityRecordDisplayText({ group, record, index, total });
   return {
     kind: "activity",
-    theme: contentTheme(record.text),
-    title: cleanActivityTitle(record.text),
+    theme: contentTheme(activityRecordSearchText({ group, record, index, total })),
+    title: cleanActivityTitle(displayText),
     dateLabel: activityRecordDateLabel(record, group.title),
-    meta: compactText([activityStatus === "planned" ? "Plan" : "Activity", activityCategoryLabel(activityCategory)]).join(" / "),
+    meta: compactText([activityStatusLabel(activityStatus) || "Activity", activityCategoryLabel(activityCategory)]).join(" / "),
     href: localHref(`activities/index.html#${activityAnchor(group, record, index)}`),
     time,
     endTime,
@@ -5807,7 +6822,7 @@ function timelineActivityRecordFromEntry({ group, record, index, total, time, en
 
 function homeTimelineActivityRecords() {
   return activityRecordEntries({ includeOther: false })
-    .filter(({ record }) => activityRecordVisibleInHomeTimeline(record))
+    .filter((entry) => activityRecordVisibleInHomeTimeline(entry))
     .map(timelineActivityRecordFromEntry)
     .filter(Boolean);
 }
@@ -5937,7 +6952,7 @@ function homeTimelineTeachingRecords() {
       theme: "",
       title: String(record.text || "").replace(/\.$/u, ""),
       dateLabel: endLabel ? `${startLabel} -> ${endLabel}` : startLabel,
-      meta: "Teaching and Outreach",
+      meta: "Teaching",
       href: profileTimelineHref("#teaching-outreach"),
       time: startTime,
       startTime,
@@ -6050,7 +7065,7 @@ function homeTimelineSelectedIndex(records) {
   const keyedIndex = records.findIndex((record) => homeTimelineRecordKey(record) === state.homeTimelineKey);
   if (keyedIndex >= 0) return keyedIndex;
   const latestActivityIndex = records.reduce((bestIndex, record, index) => {
-    if (record.kind !== "activity" || record.activityStatus === "planned") return bestIndex;
+    if (record.kind !== "activity" || record.activityStatus) return bestIndex;
     if (bestIndex < 0) return index;
     return record.time > records[bestIndex].time ? index : bestIndex;
   }, -1);
@@ -6081,7 +7096,7 @@ function homeTimelineKindLabel(kind) {
   if (kind === "paper") return "Paper";
   if (kind === "affiliation") return "Affiliation";
   if (kind === "academic") return "Background";
-  if (kind === "teaching") return "Teaching and Outreach";
+  if (kind === "teaching") return "Teaching";
   if (kind === "award") return "Award";
   if (kind === "note") return "Note";
   if (kind === "activity") return "Activity";
@@ -6714,34 +7729,71 @@ function bindHomeTimelineTalkPaperRelationHighlights(track) {
   });
 }
 
-function homeTimelineStatusText(node) {
-  const kicker = node.dataset.timelineKicker || "Timeline";
-  const title = node.dataset.timelineTitle || node.getAttribute("aria-label") || "";
-  const meta = node.dataset.timelineMeta || "";
-  return compactText([`${kicker}: ${title}`, meta]).join(" — ");
+function homeTimelineStatusPartsFromRecord(record) {
+  if (!record) {
+    return {
+      kind: "",
+      kicker: "Timeline",
+      title: activeLanguage === "ja"
+        ? "項目にカーソルを合わせると詳細がここに表示されます．"
+        : "Hover or focus a timeline item.",
+      meta: ""
+    };
+  }
+  const detail = activeLanguage === "ja" && record.detailJa ? record.detailJa : record.detail;
+  return {
+    kind: record.kind || "",
+    kicker: compactText([
+      homeTimelineKindLabel(record.kind),
+      homeTimelineRecordThemeLabel(record),
+      record.dateLabel
+    ]).join(" / "),
+    title: record.title || "",
+    meta: compactText([record.meta, detail]).join(" / ")
+  };
 }
 
-function bindHomeTimelineStatus(track, status) {
-  const defaultText = activeLanguage === "ja"
-    ? "Timeline項目にカーソルを合わせると詳細がここに表示されます．"
-    : "Hover or focus a timeline item.";
-  status.textContent = defaultText;
+function homeTimelineStatusPartsFromNode(node) {
+  if (!node) return homeTimelineStatusPartsFromRecord(null);
+  return {
+    kind: node.dataset.timelineKind || "",
+    kicker: node.dataset.timelineKicker || "Timeline",
+    title: node.dataset.timelineTitle || node.getAttribute("aria-label") || "",
+    meta: node.dataset.timelineMeta || ""
+  };
+}
+
+function renderHomeTimelineStatus(status, parts) {
+  const kindClass = parts.kind ? `kind-${parts.kind}` : "";
+  status.className = compactText(["home-timeline-status", kindClass]).join(" ");
+  status.replaceChildren(
+    el("span", "home-timeline-status-kicker", parts.kicker || "Timeline"),
+    el("strong", "home-timeline-status-title", parts.title || "")
+  );
+  if (parts.meta) status.append(el("span", "home-timeline-status-meta", parts.meta));
+}
+
+function bindHomeTimelineStatus(track, status, defaultRecord = null) {
+  const defaultParts = homeTimelineStatusPartsFromRecord(defaultRecord);
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
+  renderHomeTimelineStatus(status, defaultParts);
   const keyedNode = (target) => target?.closest?.("[data-home-timeline-key]");
   const show = (target) => {
     const node = keyedNode(target);
-    status.textContent = node ? homeTimelineStatusText(node) : defaultText;
+    renderHomeTimelineStatus(status, node ? homeTimelineStatusPartsFromNode(node) : defaultParts);
   };
   track.addEventListener("pointerover", (event) => show(event.target));
   track.addEventListener("pointerout", (event) => {
     const node = keyedNode(event.target);
     if (!node || node.contains(event.relatedTarget)) return;
-    status.textContent = defaultText;
+    renderHomeTimelineStatus(status, defaultParts);
   });
   track.addEventListener("focusin", (event) => show(event.target));
   track.addEventListener("focusout", (event) => {
     const node = keyedNode(event.target);
     if (!node || node.contains(event.relatedTarget)) return;
-    status.textContent = defaultText;
+    renderHomeTimelineStatus(status, defaultParts);
   });
 }
 
@@ -6817,7 +7869,7 @@ function renderHomeTimelineDetail(record, index, total) {
 
 function homeTimelineLatestPlanTime(records) {
   const planTimes = records
-    .filter((record) => record.kind === "activity" && record.activityStatus === "planned")
+    .filter((record) => record.kind === "activity" && record.activityStatus)
     .flatMap((record) => [record.endTime, record.time])
     .filter(Number.isFinite);
   return planTimes.length ? Math.max(...planTimes) : Number.NaN;
@@ -6833,6 +7885,7 @@ function renderHomeTimeline() {
     root.append(el("p", "empty-state", "No timeline entries yet."));
     return;
   }
+  const defaultRecord = records[homeTimelineSelectedIndex(records)] || records[records.length - 1];
 
   const times = records
     .flatMap((record) => [record.startTime, record.endTime, record.time, record.secondaryStartTime, record.secondaryEndTime])
@@ -6959,9 +8012,9 @@ function renderHomeTimeline() {
       track.append(renderHomeTimelineNode(record, pointLayout.get(record)));
   });
 
-  const status = el("p", "home-timeline-status");
+  const status = el("aside", "home-timeline-status");
   bindHomeTimelineTalkPaperRelationHighlights(track);
-  bindHomeTimelineStatus(track, status);
+  bindHomeTimelineStatus(track, status, defaultRecord);
   root.append(timelineScrollFrame(track, initialEndPosition, { align: "end" }), status);
   applyLanguage(root);
 }
@@ -8485,7 +9538,7 @@ function friendPageIconKey(label = "", context = "") {
   return {
     "Koki Sakamoto": "camera",
     "Mao Hoshino": "mountain",
-    "数理物理チャンネル": "sake",
+    "数理物理チャンネル": "beer",
     "Yuto Kawase": "music-note",
     "Keisuke Hoshino": "palm",
     "Hayato Nasu": "torii",
@@ -8497,10 +9550,12 @@ function friendPageIconKey(label = "", context = "") {
 }
 
 function iconKeyForAction(label = "", href = "") {
+  const commonIcon = globalThis.siteActionIconKey?.(label, href);
+  if (commonIcon) return commonIcon;
   const text = simplified(label);
   if (text.includes("copy")) return "link";
   if (text.includes("download")) return "download";
-  if (text.includes("slide")) return "talk";
+  if (text.includes("slide")) return "slides";
   if (text.includes("arxiv")) return "arxiv";
   if (text.includes("paper") || text.includes("pdf") || text.includes("preprint")) return "paper";
   if (text.includes("guide") || text.includes("tutorial") || text.includes("open") || text.includes("workbench") || text.includes("dev")) return "open";
@@ -8510,7 +9565,7 @@ function iconKeyForAction(label = "", href = "") {
 function iconKeyForSearchType(type = "") {
   const text = simplified(type);
   if (text.includes("profile")) return "profile";
-  if (text.includes("page")) return "cv";
+  if (text.includes("page")) return "page";
   if (text.includes("paper")) return "paper";
   if (text.includes("talk")) return "talk";
   if (text.includes("note")) return "note";
@@ -8518,10 +9573,10 @@ function iconKeyForSearchType(type = "") {
   if (text.includes("problem")) return "problem";
   if (text.includes("topos")) return "topos";
   if (text.includes("award")) return "award";
-  if (text.includes("education")) return "education";
+  if (text.includes("education")) return "academic-cap";
   if (text.includes("web app")) return "webapp";
   if (text.includes("link")) return "link";
-  return "cv";
+  return "page";
 }
 
 function tagIconKey(label = "") {
@@ -8529,7 +9584,9 @@ function tagIconKey(label = "") {
   if (!text || text === "all") return "tag";
   if (text.includes("award") || text.includes("grant") || text.includes("kakenhi")) return "award";
   if (text.includes("expository") || text.includes("introduction") || text.includes("intro") || text.includes("toy example") || text.includes("入門") || text.includes("新歓") || text.includes("解説")) return "pencil";
-  if (text.includes("education") || text.includes("book") || text.includes("teaching")) return "education";
+  if (text.includes("book")) return "book";
+  if (text.includes("teaching") || text.includes("outreach")) return "pencil";
+  if (text.includes("education")) return "academic-cap";
   if (text.includes("simulation") || text.includes("experiment") || text.includes("workbench") || text.includes("editor")) return "webapp";
   if (text.includes("cloud") || text.includes("speculative")) return "cloud";
   if (text.includes("draft") || text.includes("meta") || text.includes("research log")) return "note";
@@ -8575,26 +9632,31 @@ function tagLink(label, href, className = "") {
 }
 
 function navIconKey(label = "", href = "") {
+  const commonIcon = globalThis.siteNavIconKey?.(label, href);
+  if (commonIcon) return commonIcon;
   const text = simplified(label);
   const url = String(href || "").toLowerCase();
   if (text.includes("profile") || text.includes("プロフィール") || text.includes("概要")) return "profile";
+  if (text.includes("categories in tokyo")) return "kan-extension";
+  if (text.includes("web apps") || url.includes("/web-apps/") || url.includes("#web-apps")) return "webapp";
+  if (text === "links" || text.includes("リンク") || url.includes("/links/") || url.includes("#links")) return "link";
+  if (text === "browse" || text.includes("explore") || text.includes("pages") || text.includes("ページ") || url.includes("#work-pages") || url.includes("#explore")) return "collection";
+  if (text === "background" || text.includes("academic background") || url.includes("#academic-background")) return "academic-cap";
+  if (text.includes("teaching") || text.includes("outreach") || url.includes("#teaching-outreach")) return "pencil";
   if (text.includes("current position") || text.includes("past affiliation") || text.includes("affiliation")) return "building";
-  if (text === "background" || text.includes("academic background") || text.includes("teaching") || text.includes("outreach") || url.includes("#academic-background")) return "education";
+  if (text.includes("personal") || url.includes("#personal")) return "profile";
   if (text.includes("award")) return "award";
   if (text.includes("notes") || text.includes("ノート") || url.includes("/notes") || url.includes("notes-preparations")) return "note";
   if (text.includes("talks") || text.includes("slides") || text.includes("発表") || url.includes("/talks") || url.includes("talks-slides")) return "talk";
-  if (text.includes("web apps") || url.includes("/web-apps/") || url.includes("#web-apps")) return "webapp";
-  if (text.includes("search") || text.includes("explore") || text.includes("pages") || text.includes("検索") || text.includes("ページ") || url.includes("/search/") || url.includes("#work-search")) return "search";
+  if (text.includes("search") || text.includes("検索") || url.includes("/search/") || url.includes("#work-search")) return "search";
   if (text.includes("research timeline") || text.includes("yearly record") || text.includes("timeline") || text.includes("研究タイムライン") || text.includes("年次記録") || url.includes("#research-timeline") || url.includes("#timeline") || url.includes("#yearly-records")) return "timeline";
   if (text.includes("upcoming") || text.includes("preparation") || text.includes("予定") || url.includes("#in-preparation")) return "clock";
   if (text.includes("documents") || text.includes("資料")) return "paper";
   if (text.includes("papers") || text.includes("論文") || url.includes("/papers/")) return "paper";
   if (text.includes("visit") || text.includes("訪問") || url.includes("#visit")) return "globe";
-  if (text.includes("categories in tokyo")) return "kan-extension";
   if (text.includes("activities") || text.includes("活動") || url.includes("/activities/")) return "activity";
-  if (text.includes("work") || text.includes("interest") || text.includes("関心") || text.includes("成果") || url.includes("/works/") || url.includes("#works") || url.includes("#interests")) return "paper";
-  if (text.includes("others") || text.includes("その他") || url.includes("/others/")) return "link";
-  if (text.includes("links") || text.includes("リンク") || url.includes("/links/")) return "link";
+  if (text.includes("work") || text.includes("interest") || text.includes("関心") || text.includes("成果") || url.includes("/works/") || url.includes("#works") || url.includes("#interests")) return "stack";
+  if (text.includes("others") || text.includes("その他") || url.includes("/others/")) return "collection";
   if (text.includes("problems") || url.includes("/problems/")) return "problem";
   if (text.includes("search") || text.includes("検索") || url.includes("/search/")) return "search";
   if (text.includes("cv") || url.includes("/cv/")) return "cv";
@@ -8607,12 +9669,16 @@ function linkedListIconKey(selector = "", record = {}) {
   if (record.icon) return record.icon;
   if (key.includes("past-position")) return "building";
   if (key.includes("award")) return "award";
-  if (key.includes("education")) return "education";
+  if (key.includes("education")) return "academic-cap";
   return iconKeyForLink(record.text || "", record.href || "", key);
 }
 
 function activityIconKey(group = {}, record = {}) {
-  const text = simplified(`${group.title} ${record.text}`);
+  const role = String(record.role || record.actualRole || "").toLowerCase();
+  if (role === "visit") return "globe";
+  if (role === "organize" || role === "organized") return "network";
+  if (role === "talk" || role === "poster") return "talk";
+  const text = simplified(`${group.title} ${activityRecordSearchText(record)}`);
   if (text.includes("visit")) return "globe";
   if (text.includes("organ")) return "network";
   if (text.includes("talk") || text.includes("present") || text.includes("spoke") || text.includes("poster")) return "talk";
@@ -8622,11 +9688,13 @@ function activityIconKey(group = {}, record = {}) {
 }
 
 function sectionHeadingIconKey(label = "") {
+  const commonIcon = globalThis.siteSectionIconKey?.(label);
+  if (commonIcon) return commonIcon;
   const text = simplified(label);
   if (text === "profile" || text.includes("ryuya hora")) return "profile";
-  if (text === "works") return "paper";
+  if (text === "works") return "stack";
   if (text === "activities") return "activity";
-  if (text === "others") return "link";
+  if (text === "others") return "collection";
   if (text.includes("categories in tokyo")) return "kan-extension";
   if (text.includes("research timeline") || text.includes("timeline") || text.includes("タイムライン")) return "timeline";
   if (text.includes("upcoming") || text.includes("plan") || text.includes("予定")) return "clock";
@@ -8641,7 +9709,8 @@ function sectionHeadingIconKey(label = "") {
   if (text.includes("topic") || text.includes("トピック")) return "tag";
   if (text.includes("email") || text.includes("メール")) return "mail";
   if (text.includes("award") || text.includes("受賞")) return "award";
-  if (text.includes("education") || text.includes("outreach") || text.includes("教育") || text.includes("学歴")) return "education";
+  if (text.includes("teaching") || text.includes("outreach")) return "pencil";
+  if (text.includes("education") || text.includes("教育") || text.includes("学歴")) return "academic-cap";
   if (text.includes("interest") || text.includes("関心")) return "topos";
   if (text.includes("link") || text.includes("リンク")) return "link";
   return "";
@@ -14574,7 +15643,7 @@ function noteReviewRecord(note) {
 
 const paperFigureScriptCache = new Map();
 let paperFigureObserver = null;
-const paperFigureCacheKey = "cache-20260504a";
+const paperFigureCacheKey = "cache-20260504ac";
 let queuedPaperFigures = [];
 let paperFigureHydrationScheduled = false;
 
@@ -15578,7 +16647,7 @@ function profileAcademicAffiliationRecords() {
     href: profileEducationHref(record),
     linkText: profileEducationInstitution(record),
     linkTextJa: profileEducationInstitutionJa(record),
-    icon: "education",
+    icon: "academic-cap",
     time: timelineTimeFromValue(record.from || record.period)
   }));
   const pastAffiliations = siteData.pastPositions.map((record) => ({
@@ -15896,7 +16965,8 @@ function renderSlides() {
 }
 
 function activityAnchor(group, record, index) {
-  return `activity-${slugify(compactText([group.title, index + 1, record.text]).join(" "))}`;
+  if (record.id) return `activity-${slugify(record.id)}`;
+  return `activity-${slugify(compactText([group.title, index + 1, record.text || record.displayText || record.event]).join(" "))}`;
 }
 
 function renderActivities() {
@@ -15907,25 +16977,29 @@ function renderActivities() {
   const groups = limitGroups ? siteData.activities.slice(0, limitGroups) : siteData.activities;
 
   groups.forEach((group) => {
+    const total = Math.max(1, group.items.length);
     const records = group.items
-      .map((record, index) => ({ record, index }))
-      .filter(({ record }) => activityRecordVisibleInYearly(record));
+      .map((record, index) => ({ group, record, index, total }))
+      .filter((entry) => activityRecordVisibleInYearly(entry));
     if (!records.length) return;
     const column = el("article", "activity-column");
     column.append(el("h3", null, group.title));
     const list = el("ul");
-    records.forEach(({ record, index }) => {
+    records.forEach(({ group: entryGroup, record, index }) => {
+      const entry = { group: entryGroup, record, index, total };
+      const displayText = activityRecordDisplayText(entry, "yearly");
+      const displayTextJa = activityRecordDisplayTextJa(record);
       const item = el("li", "activity-list-item");
-      item.id = activityAnchor(group, record, index);
+      item.id = activityAnchor(entryGroup, record, index);
       item.append(uiIcon(activityIconKey(group, record), "activity-item-icon"));
       const body = el("div", "activity-item-body");
       if (record.date) body.append(el("span", "activity-date", record.date));
       if (record.href && record.linkText) {
-        body.append(partialLinkedText(record.text, record.textJa, record.href, record.linkText, record.linkTextJa));
+        body.append(partialLinkedText(displayText, displayTextJa, record.href, record.linkText, record.linkTextJa));
       } else if (record.href) {
-        body.append(link(record.text, record.href));
+        body.append(link(displayText, record.href));
       }
-      else body.append(record.text);
+      else body.append(displayText);
       item.append(body);
       list.append(item);
     });
@@ -15943,15 +17017,24 @@ function renderPlans() {
     .filter(({ group, record, index, total }) => activityRecordIsUpcoming(record, group, index, total))
     .map((entry) => ({ ...entry, type: "activity" }));
   const today = timelineToday();
+  const activityTalkPlanKeys = new Set(
+    activityPlans
+      .filter(({ record }) => String(record.role || "").toLowerCase() === "talk")
+      .map(({ record }) => slugify(compactText([record.date, record.event || record.linkText]).join(" ")))
+  );
   const talkPlans = allPresentationRecords()
     .map((record) => ({ type: "talk", record, time: presentationTime(record) }))
-    .filter(({ time }) => Number.isFinite(time) && time >= today);
+    .filter(({ record, time }) => {
+      if (!Number.isFinite(time) || time < today) return false;
+      const key = slugify(compactText([record.date, record.event || record.venue]).join(" "));
+      return !activityTalkPlanKeys.has(key);
+    });
   const plans = [...activityPlans, ...talkPlans]
     .sort((a, b) => {
       if (Number.isFinite(a.time) && Number.isFinite(b.time)) return a.time - b.time;
       if (Number.isFinite(a.time)) return -1;
       if (Number.isFinite(b.time)) return 1;
-      return String(a.record.text || a.record.title).localeCompare(String(b.record.text || b.record.title));
+      return String(activityRecordDisplayText(a) || a.record.title).localeCompare(String(activityRecordDisplayText(b) || b.record.title));
     });
 
   if (!plans.length) {
@@ -15959,7 +17042,7 @@ function renderPlans() {
     return;
   }
 
-  plans.forEach(({ type, group, record, index }) => {
+  plans.forEach(({ type, group, record, index, total }) => {
     const item = el("article", "plan-item");
     item.id = type === "talk" ? talkRecordAnchor(record) : activityAnchor(group, record, index);
     if (record.date) item.append(el("span", "activity-date", type === "talk" ? formatTalkDate(record) : record.date));
@@ -15970,9 +17053,14 @@ function renderPlans() {
       const text = `Talk: ${record.title} at ${event}.`;
       if (href) heading.append(partialLinkedText(text, "", href, event));
       else heading.textContent = text;
-    } else if (record.href && record.linkText) heading.append(partialLinkedText(record.text, record.textJa, record.href, record.linkText, record.linkTextJa));
-    else if (record.href) heading.append(link(record.text, record.href));
-    else heading.textContent = record.text;
+    } else {
+      const entry = { group, record, index, total: total || Math.max(1, group?.items?.length || 1) };
+      const displayText = activityRecordDisplayText(entry, "upcoming");
+      const displayTextJa = activityRecordDisplayTextJa(record);
+      if (record.href && record.linkText) heading.append(partialLinkedText(displayText, displayTextJa, record.href, record.linkText, record.linkTextJa));
+      else if (record.href) heading.append(link(displayText, record.href));
+      else heading.textContent = displayText;
+    }
     item.append(heading);
     root.append(item);
   });
@@ -16626,20 +17714,7 @@ function setupInteractions() {
     button.addEventListener("click", () => randomProblem(button.dataset.problemRandom));
   });
 
-  const menuButton = document.querySelector(".menu-button");
-  const nav = document.querySelector(".site-nav");
-  if (!menuButton || !nav) return;
-  menuButton.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
-    menuButton.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  nav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) {
-      nav.classList.remove("is-open");
-      menuButton.setAttribute("aria-expanded", "false");
-    }
-  });
+  if (typeof setupSiteNav === "function") setupSiteNav(document.body);
 }
 
 function renderProfileSections() {
@@ -16685,7 +17760,6 @@ function renderInitialPage() {
     renderPlans();
     renderTalkMap();
     renderActivities();
-    renderCategoriesTokyoMap();
   } else if (page === "upcoming") {
     renderPlans();
   } else if (page === "visit-map") {
@@ -16701,6 +17775,7 @@ function renderInitialPage() {
   } else if (page === "others") {
     renderWebApps();
     renderLinks();
+    renderCategoriesTokyoMap();
   } else if (page === "web-apps") {
     renderWebApps();
   } else if (page === "links") {

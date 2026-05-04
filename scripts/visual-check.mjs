@@ -324,6 +324,75 @@ const measureScript = String.raw`(() => {
   });
 
   const navItems = [...document.querySelectorAll(".nav-group-label, .nav-submenu a")].filter((node) => !node.classList.contains("nav-search"));
+  const nav = document.querySelector(".site-nav");
+  if (nav) {
+    const expectedCacheKey = window.siteNavCacheKey || "cache-20260504ac";
+    if (nav.dataset.siteNavRendered !== expectedCacheKey) {
+      issues.push({
+        type: "site-nav-not-common-rendered",
+        element: labelOf(nav),
+        detail: "expected rendered key " + expectedCacheKey + ", got " + (nav.dataset.siteNavRendered || "none")
+      });
+    }
+
+    const expectedNav = [
+      ["Profile", "profile/index.html"],
+      ["Timeline", "profile/index.html#timeline"],
+      ["Current Positions", "profile/index.html#current-positions"],
+      ["Awards", "profile/index.html#awards"],
+      ["Teaching", "profile/index.html#teaching-outreach"],
+      ["Background", "profile/index.html#academic-background"],
+      ["Personal", "profile/index.html#personal"],
+      ["Pages", "profile/index.html#explore"],
+      ["Works", "works/index.html"],
+      ["Browse", "works/index.html#work-pages"],
+      ["Search", "works/index.html#work-search"],
+      ["Papers", "works/papers/index.html"],
+      ["Notes and Preparations", "works/notes-preparations/index.html"],
+      ["Talks and Slides", "works/talks-slides/index.html"],
+      ["Activities", "activities/index.html"],
+      ["Upcoming", "activities/index.html#upcoming"],
+      ["Visit Map", "activities/index.html#visit-map"],
+      ["Yearly Records", "activities/index.html#yearly-records"],
+      ["Others", "others/index.html"],
+      ["Links", "others/index.html#links"],
+      ["Categories in Tokyo", "others/index.html#categories-in-tokyo"],
+      ["Web Apps", "others/index.html#web-apps"],
+      ["Search", "search/index.html"]
+    ];
+    const actualNav = [...nav.querySelectorAll(".nav-group-label, .nav-submenu a, .nav-search")].map((anchor) => {
+      const rawHref = anchor.getAttribute("href") || "";
+      const resolved = rawHref ? new URL(rawHref, location.href) : null;
+      const rootIndex = resolved ? resolved.pathname.indexOf("/HomePage20264/") : -1;
+      const path = resolved ? resolved.pathname.slice(rootIndex >= 0 ? rootIndex + "/HomePage20264/".length : 1) + resolved.hash : "";
+      return [(anchor.textContent || anchor.getAttribute("aria-label") || "").replace(/\s+/g, " ").trim(), path];
+    });
+    if (actualNav.length !== expectedNav.length) {
+      issues.push({ type: "site-nav-count-mismatch", detail: "expected " + expectedNav.length + ", got " + actualNav.length });
+    }
+    expectedNav.forEach(([label, path], index) => {
+      const actual = actualNav[index];
+      if (!actual) return;
+      if (actual[0] !== label || actual[1] !== path) {
+        issues.push({
+          type: "site-nav-item-mismatch",
+          detail: "index " + index + " expected " + label + " -> " + path + ", got " + actual[0] + " -> " + actual[1]
+        });
+      }
+    });
+
+    const managedAssetKeys = [...document.querySelectorAll("link[href*='styles.css?v=cache-'], script[src*='scripts/site-nav.js?v=cache-'], script[src*='scripts/nav-icons.js?v=cache-'], script[src*='scripts/site.js?v=cache-'], script[src*='scripts/works-lite.js?v=cache-']")]
+      .map((node) => (node.getAttribute("href") || node.getAttribute("src") || "").match(/v=(cache-[0-9a-z]+)/)?.[1])
+      .filter(Boolean);
+    const staleAsset = managedAssetKeys.find((key) => key !== expectedCacheKey);
+    if (staleAsset) {
+      issues.push({
+        type: "site-nav-asset-cache-mismatch",
+        detail: "expected " + expectedCacheKey + ", got " + managedAssetKeys.join(", ")
+      });
+    }
+  }
+
   if (navItems.length && typeof window.navIconKey !== "function") {
     issues.push({ type: "nav-icon-function-missing", detail: "window.navIconKey is not available" });
   }
@@ -357,6 +426,53 @@ const measureScript = String.raw`(() => {
       }
     });
   }
+
+  if (typeof window.siteSectionIconKey === "function") {
+    [...document.querySelectorAll(".page-hero h1, .section-head h2, .profile-grid h2, .categories-tokyo-copy h2")]
+      .filter(visible)
+      .forEach((node) => {
+        const expected = window.siteSectionIconKey(node.textContent);
+        const actual = node.querySelector(".section-title-icon")?.dataset?.iconKey || "";
+        if (expected && !actual) {
+          issues.push({
+            type: "section-icon-missing",
+            element: labelOf(node),
+            rect: rectOf(node),
+            detail: "expected " + expected
+          });
+        } else if (expected && actual !== expected) {
+          issues.push({
+            type: "section-icon-mismatch",
+            element: labelOf(node),
+            rect: rectOf(node),
+            detail: "expected " + expected + ", got " + actual
+          });
+        }
+      });
+  }
+
+  [...document.querySelectorAll(".action-link")]
+    .filter((node) => visible(node) && !node.classList.contains("section-link-hidden"))
+    .forEach((node) => {
+      const label = node.textContent || node.getAttribute("aria-label") || node.title || "";
+      const expected = typeof window.siteActionIconKey === "function" ? window.siteActionIconKey(label, node.getAttribute("href")) : "";
+      const actual = node.querySelector(".action-link-icon")?.dataset?.iconKey || "";
+      if (expected && !actual) {
+        issues.push({
+          type: "action-icon-missing",
+          element: labelOf(node),
+          rect: rectOf(node),
+          detail: "expected " + expected
+        });
+      } else if (expected && actual !== expected) {
+        issues.push({
+          type: "action-icon-mismatch",
+          element: labelOf(node),
+          rect: rectOf(node),
+          detail: "expected " + expected + ", got " + actual
+        });
+      }
+    });
 
   const overflowSelectors = [
     ".site-nav", ".language-toggle", ".tab-button", ".timeline-control", ".action-link",
@@ -481,6 +597,52 @@ const measureScript = String.raw`(() => {
   };
 })()`;
 
+const navMenuScript = String.raw`(() => {
+  const button = document.querySelector(".menu-button");
+  const nav = document.querySelector(".site-nav");
+  if (!button || !nav || getComputedStyle(button).display === "none") return null;
+  const anchor = nav.querySelector("a[href]:not(.nav-search)");
+  if (!anchor) return null;
+
+  nav.classList.remove("is-open");
+  button.setAttribute("aria-expanded", "false");
+  button.click();
+  const opened = nav.classList.contains("is-open") && button.getAttribute("aria-expanded") === "true";
+  if (!opened) {
+    return {
+      type: "nav-menu-open-failed",
+      element: ".menu-button",
+      detail: "menu button did not open the mobile navigation"
+    };
+  }
+
+  const closeWorks = [];
+  anchor.addEventListener("click", (event) => event.preventDefault(), { once: true });
+  anchor.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+  closeWorks.push(!nav.classList.contains("is-open") && button.getAttribute("aria-expanded") === "false");
+
+  button.click();
+  document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+  closeWorks.push(!nav.classList.contains("is-open") && button.getAttribute("aria-expanded") === "false");
+
+  button.click();
+  document.body.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+  closeWorks.push(!nav.classList.contains("is-open") && button.getAttribute("aria-expanded") === "false");
+
+  button.click();
+  window.dispatchEvent(new Event("resize"));
+  closeWorks.push(!nav.classList.contains("is-open") && button.getAttribute("aria-expanded") === "false");
+
+  if (!closeWorks.every(Boolean)) {
+    return {
+      type: "nav-menu-close-failed",
+      element: anchor.textContent.trim() || anchor.getAttribute("href") || ".site-nav a",
+      detail: "mobile navigation stayed open for close probes " + closeWorks.join(",")
+    };
+  }
+  return null;
+})()`;
+
 const results = [];
 let cdp;
 let chrome;
@@ -519,6 +681,11 @@ try {
           returnByValue: true
         });
         const data = evaluation.result.value;
+        const navEvaluation = await cdp.send("Runtime.evaluate", {
+          expression: navMenuScript,
+          returnByValue: true
+        });
+        if (navEvaluation.result.value) data.issues.push(navEvaluation.result.value);
         data.pageName = pageName;
         data.viewportName = viewportName;
         data.language = language;

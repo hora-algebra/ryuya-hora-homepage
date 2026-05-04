@@ -270,6 +270,7 @@ window.worksTalksData = {
         "algebra",
         "logic"
       ],
+      "date": "2023-12",
       "language": "English",
       "file": "counting-with-exponential-of-groups.pdf",
       "href": "assets/notes/counting-with-exponential-of-groups.pdf",
@@ -449,6 +450,7 @@ window.worksTalksData = {
       "metaTags": [
         "expository"
       ],
+      "date": "2021-11",
       "language": "Japanese",
       "file": "Introduction_to_Kan_extensions_with_posets_3__Copy_.pdf",
       "href": "https://drive.google.com/open?id=1nERWYzL7eS9sUC9I04zWvHBy1vL-RETt",
@@ -462,6 +464,7 @@ window.worksTalksData = {
       "metaTags": [
         "expository"
       ],
+      "date": "2021-05",
       "language": "Japanese",
       "file": "圏論のToy_Exampleとしての集合演算__Ver2_.pdf",
       "href": "https://drive.google.com/open?id=1GaGM9qARQH0jLo6CclkONt1nOj3-OSeP",
@@ -505,7 +508,7 @@ window.worksTalksData = {
       "title": "準完全情報ニム",
       "description": "情報処理学会研究報告アルゴリズム（AL）, 2026-01",
       "theme": "games",
-      "date": "2026-01",
+      "date": "2026-01-06",
       "language": "Japanese",
       "file": "情報処理学会研究報告アルゴリズム（AL）",
       "href": "https://researchmap.jp/ryuyahora/misc/52084435"
@@ -517,7 +520,10 @@ window.worksTalksData = {
       "metaTags": [
         "expository"
       ],
-      "date": "2021",
+      "kind": "slide",
+      "talkType": "expository",
+      "event": "Math Space Topos 2021 new welcome event",
+      "date": "2021-12-04",
       "language": "Japanese",
       "file": "2021topos_zeta_2-3.pdf",
       "href": "https://drive.google.com/open?id=1VmtxtEwZPZJb_rFBvGnV1MuEd3lBm-U4",
@@ -532,7 +538,10 @@ window.worksTalksData = {
       "metaTags": [
         "expository"
       ],
-      "date": "2022",
+      "kind": "slide",
+      "talkType": "expository",
+      "event": "Math Space Topos 2022 new welcome event",
+      "date": "2022-06-04",
       "language": "Japanese",
       "file": "2022topos_Kan_ext.pdf",
       "href": "https://drive.google.com/open?id=11z191GZKbDVgskXKCBSVF7JXdFMMH81Q",
@@ -547,7 +556,10 @@ window.worksTalksData = {
       "metaTags": [
         "expository"
       ],
-      "date": "2023",
+      "kind": "slide",
+      "talkType": "expository",
+      "event": "Math Space Topos 2023 new welcome event",
+      "date": "2023-07-15",
       "language": "Japanese",
       "file": "2023topos_species-8.pdf",
       "href": "https://drive.google.com/open?id=1FNnMrlx0oZNZqZGjAsKt272xQMuHx9az",
@@ -557,14 +569,14 @@ window.worksTalksData = {
     },
     {
       "title": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers",
-      "description": "Speculative cloud entry; no public PDF is attached.",
       "themes": [
         "algebra"
       ],
       "metaTags": [
         "speculative"
       ],
-      "language": "English"
+      "language": "English",
+      "description": "Speculative cloud entry; no public PDF is attached."
     },
     {
       "title": "アイゼンシュタイン整数と組合せ論",
@@ -573,7 +585,10 @@ window.worksTalksData = {
       "metaTags": [
         "expository"
       ],
-      "date": "2024-05",
+      "kind": "slide",
+      "talkType": "expository",
+      "event": "Math Space Topos 2024 new welcome event",
+      "date": "2024-05-18",
       "language": "Japanese",
       "file": "2024Topos新歓202405-6.pdf",
       "href": "https://drive.google.com/open?id=1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9",
@@ -687,35 +702,40 @@ window.worksTalksData = {
           "event": "Groupe de travail topossique",
           "date": "2025-04-30",
           "venue": "Groupe de travail topossique, Centre Lagrange, Paris, 30 April",
-          "href": "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/"
+          "href": "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/",
+          "visitId": "visit:2025-ctta-france-stay"
         },
         {
           "title": "Topoi of automata",
           "event": "Categories for Automata and Language Theory",
           "date": "2025-05-06",
           "venue": "Categories for Automata and Language Theory, IRIF, Paris, 6 May",
-          "href": "https://autcat.github.io/"
+          "href": "https://autcat.github.io/",
+          "visitId": "visit:2025-ctta-france-stay"
         },
         {
           "title": "Local state classifier for algebraic language theory",
           "event": "Groupe de travail topossique",
           "date": "2025-05-16",
           "venue": "Groupe de travail topossique, Centre Lagrange, Paris, 16 May",
-          "href": "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/"
+          "href": "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/",
+          "visitId": "visit:2025-ctta-france-stay"
         },
         {
           "title": "Local state classifier for automata theory",
           "event": "IRIF Sémantique seminar",
           "date": "2025-05-27",
           "venue": "Semantique seminar, Salle 3071, IRIF, Paris, 27 May",
-          "href": "https://www.irif.fr/en/seminaires/semantique/index"
+          "href": "https://www.irif.fr/en/seminaires/semantique/index",
+          "visitId": "visit:2025-ctta-france-stay"
         },
         {
           "title": "A topos for regular language theory",
           "event": "Theoretical Cosynus Seminar",
           "date": "2025-06-11",
           "venue": "Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June",
-          "href": "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/"
+          "href": "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/",
+          "visitId": "visit:2025-ctta-france-stay"
         },
         {
           "title": "Topoi of automata",
@@ -729,7 +749,8 @@ window.worksTalksData = {
           "event": "SLACS 2025",
           "date": "2025-10-31",
           "venue": "SLACS 2025, Shared Room 321, Akita University, 31 October",
-          "href": "https://sites.google.com/view/slacs2025akita/home"
+          "href": "https://sites.google.com/view/slacs2025akita/home",
+          "visitId": "visit:2025-slacs-akita"
         },
         {
           "title": "Connectedness and full subcategories of topoi",
@@ -796,7 +817,8 @@ window.worksTalksData = {
           "event": "AFSA area meeting",
           "date": "2024-11-30",
           "venue": "AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November",
-          "href": "https://afsa.jp/afsa-2024_generalmeetingautumn/"
+          "href": "https://afsa.jp/afsa-2024_generalmeetingautumn/",
+          "visitId": "visit:2024-afsa-area-meeting"
         }
       ]
     },
@@ -822,7 +844,8 @@ window.worksTalksData = {
           "event": "Japan Combinatorial Game Theory Mini-Workshops",
           "date": "2023-05-12",
           "venue": "Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May",
-          "href": "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj"
+          "href": "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj",
+          "visitId": "visit:2023-jcgt-mini-workshops"
         },
         {
           "title": "Internal parameterization of hyperconnected quotients",

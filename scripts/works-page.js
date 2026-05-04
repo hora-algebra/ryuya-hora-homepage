@@ -1,7 +1,7 @@
 (function () {
   const initialUrlParams = new URLSearchParams(globalThis.location?.search || "");
   const publicSiteUrl = "https://hora-algebra.github.io/ryuya-hora-homepage/";
-  const paperFigureCacheKey = "cache-20260504a";
+  const paperFigureCacheKey = "cache-20260504ac";
   const worksInitialPaperRecordLimit = 4;
   const katexCdnBase = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist";
 
@@ -13,6 +13,7 @@
     talkYear: "all",
     talkTheme: "all",
     talkSlides: "all",
+    talkType: "all",
     researchTheme: initialUrlParams.get("theme") || "",
     researchMetaTag: initialUrlParams.get("meta") || "",
     noteQuery: "",
@@ -233,7 +234,8 @@
     if (!text || text === "all") return "tag";
     if (text.includes("award") || text.includes("grant") || text.includes("kakenhi")) return "award";
     if (text.includes("expository") || text.includes("introduction") || text.includes("intro") || text.includes("toy example") || text.includes("入門") || text.includes("新歓") || text.includes("解説")) return "pencil";
-    if (text.includes("education") || text.includes("book") || text.includes("teaching")) return "education";
+    if (text.includes("book")) return "book";
+    if (text.includes("education") || text.includes("teaching")) return "academic-cap";
     if (text.includes("simulation") || text.includes("experiment") || text.includes("workbench") || text.includes("editor")) return "webapp";
     if (text.includes("cloud") || text.includes("speculative")) return "cloud";
     if (text.includes("draft") || text.includes("meta") || text.includes("research log")) return "note";
@@ -652,7 +654,7 @@
   }
 
   const actionLinkIconKeys = {
-    event: "building",
+    event: "event",
     slides: "slides",
     slide: "slides",
     download: "download",
@@ -673,12 +675,14 @@
     return simplified(label).replace(/\s+/g, "-");
   }
 
-  function actionLinkIconKey(label) {
+  function actionLinkIconKey(label, href = "") {
+    const commonIcon = globalThis.siteActionIconKey?.(label, href);
+    if (commonIcon) return commonIcon;
     const key = actionLabelKey(label);
     if (key.includes("researchmap")) return "researchmap";
     if (key.includes("download")) return "download";
     if (key.includes("slide")) return "slides";
-    if (key.includes("event")) return "building";
+    if (key.includes("event")) return "event";
     return actionLinkIconKeys[key] || "";
   }
 
@@ -691,8 +695,15 @@
   }
 
   function actionLinkElement(label, href, options = {}) {
-    if (!options.iconOnly) return link(symbolicCloudPenLabel(label), href, "action-link");
-    const iconKey = actionLinkIconKey(label);
+    const iconKey = actionLinkIconKey(label, href) || (!options.iconOnly && href ? "open" : "");
+    if (!options.iconOnly) {
+      const anchor = link(symbolicCloudPenLabel(label), href, "action-link");
+      if (iconKey) {
+        anchor.prepend(uiIcon(iconKey, "action-link-icon"));
+        anchor.classList.add("has-icon");
+      }
+      return anchor;
+    }
     if (!iconKey) return link(symbolicCloudPenLabel(label), href, "action-link");
     const anchor = link("", href, "action-link action-link-icon-only");
     const text = symbolicCloudPenLabel(label);
@@ -1714,6 +1725,7 @@
     { title: "Combinatorial games as recursive coalgebras", event: "CSCAT2024", file: "Hora_CSCAT2024.pdf" },
     { title: "Local state classifier for algebraic language theory", event: "CTTA Groupe", file: "Local state classifier for algebraic language theory.pdf" },
     { title: "Local state classifier for automata theory", event: "IRIF Sémantique", file: "IRIF20250527_ver1.pdf" },
+    { title: "Local state classifier for automata theory", event: "LIPN", file: "IRIF20250527_ver1.pdf", materialNote: "Same slide deck as the IRIF Sémantique seminar." },
     { title: "Topoi of automata", event: "CSCAT2025", file: "CSCAT_2025-3.pdf" },
     { title: "Topoi of automata", event: "CTTA Groupe", file: "_Talk__Topoi_of_Automata__CSCAT_2025__GISeminar-3.pdf" },
     { title: "Topoi of automata", event: "Categories for Automata", file: "IRIFtoday.pdf" },
@@ -2403,6 +2415,7 @@
       href: manualRecord.href || manualRecord.link || sourceRecord.href,
       links,
       source: sourceRecord.source || "researchmap",
+      sourceRecord,
       manualRecord
     };
   }
@@ -2531,7 +2544,26 @@
   }
 
   function talkSlideRecordContext(record) {
-    return compactText([record?.event, record?.venue, record?.date, record?.dateRange, record?.link, record?.href]).join(" ");
+    return compactText([
+      record?.event,
+      record?.venue,
+      record?.date,
+      record?.dateRange,
+      record?.link,
+      record?.href,
+      record?.sourceRecord?.event,
+      record?.sourceRecord?.venue,
+      record?.sourceRecord?.date,
+      record?.sourceRecord?.dateRange,
+      record?.sourceRecord?.link,
+      record?.sourceRecord?.href,
+      record?.manualRecord?.event,
+      record?.manualRecord?.venue,
+      record?.manualRecord?.date,
+      record?.manualRecord?.dateRange,
+      record?.manualRecord?.link,
+      record?.manualRecord?.href
+    ]).join(" ");
   }
 
   function talkSlideMatchApplies(match, record) {
@@ -2547,15 +2579,25 @@
     return matchedSlideRecordsForPresentation(record).map((slide) => ["Slides", noteHref(slide)]).filter(([, href]) => Boolean(href));
   }
 
+  function slideRecordForTalkMatch(match, record) {
+    const slide = rawSlideRecordByFile(match.file);
+    if (!slide) return null;
+    return mergeSlideWithPresentation({
+      ...slide,
+      materialNote: match.materialNote || slide.materialNote || ""
+    }, record);
+  }
+
   function matchedSlideRecordsForPresentation(record) {
     return uniqueBy(
       [
         ...talkSlideMatches
           .filter((match) => talkSlideMatchApplies(match, record))
-          .map((match) => rawSlideRecordByFile(match.file))
+          .map((match) => slideRecordForTalkMatch(match, record))
           .filter(Boolean),
         ...externalMaterialRecordsForPresentation(record)
-      ].map((slide) => mergeSlideWithPresentation(slide, record)),
+          .map((slide) => mergeSlideWithPresentation(slide, record))
+      ],
       (slide) => slide.file || slide.href || slide.title
     );
   }
@@ -2591,9 +2633,26 @@
       item.record ? presentationSearchText(item.record) : "",
       item.slide ? noteSearchText(item.slide) : "",
       ...item.slides.map(noteSearchText),
-      ...item.slides.map((slide) => slide.talkMeta)
+      ...item.slides.map((slide) => slide.talkMeta),
+      ...item.slides.map((slide) => slide.materialNote)
     ]).join(" ");
     return scoreThemeRecord(text, slideThemeHints).themes;
+  }
+
+  function talkTypeKey(record) {
+    const raw = String(record?.talkType || record?.presentationType || "").trim().toLowerCase();
+    if (raw === "expository") return "expository";
+    return "academic";
+  }
+
+  function talkSlideRecordType(item) {
+    if (item.kind === "slide-only") return talkTypeKey(item.slide);
+    if (item.slides.some((slide) => talkTypeKey(slide) === "expository")) return "expository";
+    return talkTypeKey(item.record);
+  }
+
+  function talkTypeLabel(type) {
+    return type === "expository" ? "Expository" : "Academic";
   }
 
   function talkSlideRecordSearchText(item) {
@@ -2604,8 +2663,11 @@
       item.record ? presentationMeta(item.record) : "",
       item.slide ? noteSearchText(item.slide) : "",
       ...item.slides.map(noteSearchText),
+      ...item.slides.map((slide) => slide.materialNote),
       ...themes,
       ...themes.map(noteThemeLabel),
+      talkSlideRecordType(item),
+      talkTypeLabel(talkSlideRecordType(item)),
       item.slides.length ? "slides materials" : "talk only"
     ]).join(" ");
   }
@@ -2621,6 +2683,7 @@
     if (state.talkSlides === "with-slides" && !item.slides.length) return false;
     if (state.talkSlides === "without-slides" && item.slides.length) return false;
     if (state.talkSlides === "slides-only" && item.kind !== "slide-only") return false;
+    if (state.talkType !== "all" && talkSlideRecordType(item) !== state.talkType) return false;
     return true;
   }
 
@@ -2665,6 +2728,11 @@
       ["without-slides", "Talk only"],
       ["slides-only", "Slides only"]
     ], state.talkSlides);
+    state.talkType = updateSelectOptions(document.querySelector("#talk-type-filter"), [
+      ["all", "All types"],
+      ["academic", "Academic"],
+      ["expository", "Expository"]
+    ], state.talkType);
     const count = document.querySelector("#talk-filter-count");
     if (count) count.textContent = `Showing ${shownCount} / ${allRecords.length} records`;
   }
@@ -2675,7 +2743,7 @@
 
   function materialIconKey(record) {
     const label = simplified(materialTypeLabel(record));
-    if (label.includes("flyer") || label.includes("event")) return "external";
+    if (label.includes("flyer") || label.includes("event")) return "event";
     return "slides";
   }
 
@@ -2695,6 +2763,7 @@
   function shouldRenderMaterialStrip(slides) {
     if (!slides.length) return false;
     if (slides.length > 1) return true;
+    if (slides[0].materialNote) return true;
     return materialTypeLabel(slides[0]) !== "Slides";
   }
 
@@ -2735,6 +2804,7 @@
       chip.append(uiIcon(materialIconKey(slide), "talk-material-chip-icon"));
       chip.append(el("span", "talk-material-chip-kind", typeLabel));
       chip.append(link(materialCompactLabel(slide), noteHref(slide), "talk-material-chip-link"));
+      if (slide.materialNote) chip.append(el("span", "talk-material-chip-note", slide.materialNote));
       const downloadHref = noteDownloadHref(slide);
       if (downloadHref && downloadHref !== noteHref(slide)) chip.append(link("Download", downloadHref, "talk-material-chip-action"));
       strip.append(chip);
@@ -2769,15 +2839,23 @@
     return list;
   }
 
-  function renderTalkItem(record, href, metaText, actions = []) {
+  function renderTalkTypeBadge(type) {
+    const badge = el("span", `talk-type-badge talk-type-badge-${type}`);
+    badge.textContent = talkTypeLabel(type);
+    return badge;
+  }
+
+  function renderTalkItem(record, href, metaText, actions = [], options = {}) {
     const item = el("li");
     const shell = el("div", "talk-item-shell");
     const body = el("div", "talk-item-body");
     const title = el("div", "talk-title");
+    const type = options.talkType || talkTypeKey(record);
     title.append(uiIcon("talk", "talk-title-icon"));
     if (href) title.append(link(record.title, href));
     else title.append(el("span", null, record.title));
-    title.append(titleCopyButton(talksPageHref(talkRecordAnchor(record)), record.title));
+    title.append(renderTalkTypeBadge(type));
+    title.append(titleCopyButton(options.copyHref || talksPageHref(talkRecordAnchor(record)), record.title));
     if (actions.length) appendActionLinks(title, actions, { iconOnly: true, order: "talk" });
     body.append(title, el("span", "talk-venue", metaText));
     shell.append(body);
@@ -2803,19 +2881,33 @@
     if (item.kind === "slide-only") {
       const slide = item.slide;
       const record = {
-        title: shortNoteTitle(slide),
+        title: slide.talkTitle || shortNoteTitle(slide),
         link: noteHref(slide),
-        event: "Unmatched slide material",
+        event: slide.event || slide.description || "Slide material",
         date: noteDateLabel(slide),
-        year: talkSlideRecordYear(item)
+        year: talkSlideRecordYear(item),
+        talkType: slide.talkType,
+        metaTags: slide.metaTags || []
       };
-      const rendered = renderTalkItem(record, noteHref(slide), compactText(["Slides only", noteDateLabel(slide), noteThemeLabel(noteTheme(slide)), noteLanguageKey(slide)]).join(" / "), materialActionLinks(slide));
+      const rendered = renderTalkItem(
+        record,
+        noteHref(slide),
+        compactText([slide.event || "Slides only", noteDateLabel(slide), noteThemeLabel(noteTheme(slide)), noteLanguageKey(slide)]).join(" / "),
+        materialActionLinks(slide),
+        { talkType: talkSlideRecordType(item), copyHref: talksPageHref(noteAnchor(slide)) }
+      );
       rendered.id = noteAnchor(slide);
       rendered.classList.add("talk-slide-item", "is-slide-only");
       return rendered;
     }
     const materialActions = shouldRenderMaterialStrip(item.slides) || item.slides.length !== 1 ? [] : materialActionLinks(item.slides[0]);
-    const rendered = renderTalkItem(item.record, item.record.link || item.record.href, presentationMeta(item.record), mergeActionLinks(presentationActionLinks(item.record), materialActions));
+    const rendered = renderTalkItem(
+      item.record,
+      item.record.link || item.record.href,
+      presentationMeta(item.record),
+      mergeActionLinks(presentationActionLinks(item.record), materialActions),
+      { talkType: talkSlideRecordType(item) }
+    );
     rendered.id = talkRecordAnchor(item.record);
     rendered.classList.add("talk-slide-item");
     const body = rendered.querySelector(".talk-item-body");
@@ -3701,9 +3793,9 @@
   }
 
   const quotientLightColorValues = {
-    green: "#2c6f63",
-    orange: "#b66737",
-    blue: "#2f5f91"
+    green: "#009b7a",
+    orange: "#e95f16",
+    blue: "#2563eb"
   };
 
   function quotientLightClasses(color = "green") {
@@ -7147,6 +7239,7 @@
       ["#talk-year-filter", "change", (event) => { state.talkYear = event.target.value; renderResearchmapPresentations(); }],
       ["#talk-theme-filter", "change", (event) => { state.talkTheme = event.target.value; renderResearchmapPresentations(); }],
       ["#talk-slides-filter", "change", (event) => { state.talkSlides = event.target.value; renderResearchmapPresentations(); }],
+      ["#talk-type-filter", "change", (event) => { state.talkType = event.target.value; renderResearchmapPresentations(); }],
       ["#slide-filter", "input", (event) => { state.slideQuery = event.target.value; renderSlides(); }],
       ["#slide-language-filter", "change", (event) => { state.slideLanguage = event.target.value; renderSlides(); }],
       ["#slide-year-filter", "change", (event) => { state.slideYear = event.target.value; renderSlides(); }],
@@ -7162,6 +7255,28 @@
   function applyFigureMarkerIds(container, figureId, prefix) {
     const svg = container.querySelector("svg");
     if (!svg) return;
+    const normalizationMarkerKeys = new Set(["d4", "ref0", "ref2", "ref1", "ref3"]);
+    const applyNormalizationLinkMarkers = (idMap = new Map()) => {
+      const markerIdFor = (key) => {
+        const markerKey = normalizationMarkerKeys.has(key) ? key : "d4";
+        const originalId = `normalization-link-arrow-${markerKey}`;
+        const markerId = idMap.get(originalId) || originalId;
+        return svg.querySelector(`marker[id="${markerId}"]`) ? markerId : "";
+      };
+      const setMarkerMid = (path, key) => {
+        const markerId = markerIdFor(key);
+        if (!markerId) return;
+        const markerUrl = `url(#${markerId})`;
+        path.setAttribute("marker-mid", markerUrl);
+        path.style.setProperty("marker-mid", markerUrl);
+      };
+      svg.querySelectorAll("[data-normalization-stabilizer-link]").forEach((path) => {
+        setMarkerMid(path, path.dataset.normalizationLinkSubgroup || "d4");
+      });
+      svg.querySelectorAll("[data-normalization-operator-link]").forEach((path) => {
+        setMarkerMid(path, path.dataset.normalizationOperatorSource || "d4");
+      });
+    };
 
     if (figureId === "completely-connected") {
       svg.querySelectorAll("marker[data-connected-marker]").forEach((marker) => {
@@ -7269,6 +7384,7 @@
         if (nextValue !== value) node.setAttribute(attribute, nextValue);
       });
     });
+    if (figureId === "normalization") applyNormalizationLinkMarkers(idMap);
   }
 
   globalThis.setupLanguage = setupLanguage;
