@@ -36,6 +36,7 @@
       education: "academic-cap",
       academic: "academic-cap",
       cap: "academic-cap",
+      physics: "flask",
       sake: "beer",
       journal: "external",
       doi: "external"
@@ -49,8 +50,9 @@
     if (text.includes("categories in tokyo")) return "kan-extension";
     if (text.includes("web apps") || url.includes("/web-apps/") || url.includes("#web-apps")) return "webapp";
     if (text === "links" || text.includes("リンク") || url.includes("/links/") || url.includes("#links")) return "link";
-    if (text === "browse" || text.includes("explore") || text.includes("pages") || text.includes("ページ") || url.includes("#work-pages") || url.includes("#explore")) return "collection";
-    if (text === "background" || text.includes("academic background") || url.includes("#academic-background")) return "academic-cap";
+    if (text === "browse" || text.includes("explore") || text.includes("pages") || text.includes("ページ") || url.includes("#work-pages") || url.includes("#explore") || url.includes("#pages")) return "collection";
+    if (text === "roles" || url.includes("#roles")) return "building";
+    if (text === "background" || text === "backgrounds" || text.includes("academic background") || url.includes("#academic-background") || url.includes("#backgrounds")) return "academic-cap";
     if (text.includes("teaching") || text.includes("outreach") || url.includes("#teaching-outreach")) return "pencil";
     if (text.includes("current position") || text.includes("past affiliation") || text.includes("affiliation")) return "building";
     if (text.includes("personal") || url.includes("#personal")) return "profile";
@@ -90,6 +92,7 @@
     if (text.includes("web app")) return "webapp";
     if (text.includes("question") || text.includes("trail") || text.includes("problem") || text.includes("entry") || text.includes("entries") || text.includes("全項目")) return "problem";
     if (text.includes("index") || text.includes("search") || text.includes("検索") || text.includes("一覧") || text.includes("索引")) return "search";
+    if (text === "roles") return "building";
     if (text.includes("current position") || text.includes("past position") || text.includes("affiliation") || text.includes("position") || text.includes("所属")) return "building";
     if (text.includes("topic") || text.includes("トピック")) return "tag";
     if (text.includes("email") || text.includes("メール")) return "mail";
@@ -127,7 +130,7 @@
     const commonKeys = new Set([
       "profile", "stack", "collection", "paper", "note", "slides", "talk", "activity",
       "timeline", "clock", "mail", "globe", "kan-extension", "webapp", "problem",
-      "search", "page", "cv", "award", "pencil", "academic-cap", "book", "building", "event",
+      "search", "page", "cv", "award", "pencil", "academic-cap", "book", "building", "flask", "event",
       "researchmap", "download", "open", "arxiv", "external", "link", "tag", "beer"
     ]);
     if (!commonKeys.has(normalizedKey)) return null;
@@ -397,6 +400,33 @@
         line({ d: "M8.2 15.4H10.1" }),
         line({ d: "M13.9 15.4H15.8" }),
         line({ d: "M11.4 20.4V16.8H12.6V20.4" })
+      );
+      return svg;
+    }
+
+    if (normalizedKey === "flask") {
+      svg.append(
+        line({ d: "M9.4 5.1H14.6" }),
+        shape("path", {
+          d: "M10.5 5.1V10.1L6.2 18.1C5.7 19.1 6.4 20.3 7.6 20.3H16.4C17.6 20.3 18.3 19.1 17.8 18.1L13.5 10.1V5.1",
+          fill: "none",
+          stroke: "currentColor",
+          "stroke-linecap": "round",
+          "stroke-linejoin": "round",
+          "stroke-width": "1.8"
+        }),
+        shape("path", {
+          d: "M8 16H16L17.1 18.2C17.4 18.8 16.9 19.5 16.2 19.5H7.8C7.1 19.5 6.6 18.8 6.9 18.2Z",
+          fill: "currentColor",
+          "fill-opacity": "0.16"
+        }),
+        shape("path", {
+          d: "M8.9 16C10.2 15.3 11.4 15.3 12.7 16C13.8 16.6 14.9 16.6 16 16",
+          fill: "none",
+          stroke: "currentColor",
+          "stroke-linecap": "round",
+          "stroke-width": "1.35"
+        })
       );
       return svg;
     }

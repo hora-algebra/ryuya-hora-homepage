@@ -1,5 +1,5 @@
 (function () {
-  const cacheKey = "cache-20260504ac";
+  const cacheKey = "cache-20260504aj";
   const loaded = new Map();
   let worksCorePromise = null;
   let searchDataPromise = null;

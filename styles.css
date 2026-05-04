@@ -1355,7 +1355,7 @@ h3 {
 
 .theme-result-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -1367,16 +1367,81 @@ h3 {
 }
 
 .theme-result-column h3 {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
+  margin: 0;
   font-size: 0.95rem;
   color: var(--accent-2);
 }
 
+.theme-result-heading-link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 9px;
+  border: 1px solid rgba(151, 82, 52, 0.3);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(151, 82, 52, 0.16), rgba(246, 230, 203, 0.54)),
+    rgba(255, 253, 248, 0.78);
+  color: #84472f;
+  text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255, 253, 248, 0.82), 0 1px 0 rgba(151, 82, 52, 0.08);
+  transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, color 0.16s ease, transform 0.16s ease;
+}
+
+.theme-result-heading-link:hover,
+.theme-result-heading-link:focus-visible {
+  border-color: rgba(151, 82, 52, 0.5);
+  background:
+    linear-gradient(135deg, rgba(151, 82, 52, 0.22), rgba(246, 230, 203, 0.68)),
+    rgba(255, 253, 248, 0.86);
+  color: #6f3b27;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  box-shadow: inset 0 1px 0 rgba(255, 253, 248, 0.92), 0 8px 20px rgba(151, 82, 52, 0.12);
+  transform: translateY(-1px);
+}
+
+.theme-result-heading-label {
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.theme-result-heading-section-icon,
+.theme-result-heading-open-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+}
+
+.theme-result-heading-section-icon .ui-icon-svg,
+.theme-result-heading-open-icon .ui-icon-svg {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-result-heading-open-icon {
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(151, 82, 52, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.72);
+  color: #84472f;
+}
+
+.theme-result-heading-link:hover .theme-result-heading-open-icon,
+.theme-result-heading-link:focus-visible .theme-result-heading-open-icon {
+  border-color: rgba(151, 82, 52, 0.5);
+  background: rgba(255, 253, 248, 0.9);
+  color: #6f3b27;
+}
+
 .theme-result-count {
-  color: var(--muted);
+  color: rgba(92, 67, 53, 0.78);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.78rem;
   font-weight: 800;
@@ -5882,6 +5947,7 @@ a.position-link:focus-visible,
 }
 
 .automata-input-start-link {
+  display: none;
   fill: none;
   stroke: rgba(var(--cantor-muted-rgb), 0.24);
   stroke-linecap: round;
@@ -6502,29 +6568,13 @@ a.position-link:focus-visible,
   stroke: rgba(var(--paper-purple-rgb, 119, 101, 166), 0.72);
 }
 
-.normalization-figure #normalization-link-arrow-d4 path {
-  fill: var(--paper-gray, #747872);
-  fill-opacity: 0.58;
-}
-
-.normalization-figure #normalization-link-arrow-ref0 path {
-  fill: var(--paper-blue, #3f7398);
-  fill-opacity: 0.82;
-}
-
-.normalization-figure #normalization-link-arrow-ref2 path {
-  fill: var(--paper-red, #bf4f43);
-  fill-opacity: 0.8;
-}
-
-.normalization-figure #normalization-link-arrow-ref1 path {
-  fill: var(--paper-green, #4b8062);
-  fill-opacity: 0.82;
-}
-
+.normalization-figure #normalization-link-arrow-d4 path,
+.normalization-figure #normalization-link-arrow-ref0 path,
+.normalization-figure #normalization-link-arrow-ref2 path,
+.normalization-figure #normalization-link-arrow-ref1 path,
 .normalization-figure #normalization-link-arrow-ref3 path {
-  fill: var(--paper-purple, #7765a6);
-  fill-opacity: 0.82;
+  fill: context-stroke;
+  fill-opacity: 1;
 }
 
 .normalization-stabilizer-links,
@@ -9696,12 +9746,6 @@ a.position-link:focus-visible,
   stroke-width: 2.1;
 }
 
-.talk-map-marker.is-region-cluster circle {
-  fill: #fff1da;
-  stroke: #a4522c;
-  stroke-width: 3;
-}
-
 .talk-map-marker text {
   fill: #1f2721;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -9709,11 +9753,6 @@ a.position-link:focus-visible,
   font-weight: 900;
   pointer-events: none;
   text-anchor: middle;
-}
-
-.talk-map-marker.is-region-cluster text {
-  fill: #5a321f;
-  font-size: 10.5px;
 }
 
 .talk-map-marker.theme-topos circle {
@@ -9751,11 +9790,6 @@ a.position-link:focus-visible,
   stroke: #c7783d;
 }
 
-.talk-map-marker.is-region-cluster circle {
-  fill: #fff1da;
-  stroke: #a4522c;
-}
-
 .talk-map-marker:hover circle,
 .talk-map-marker:focus-visible circle,
 .talk-map-marker.is-selected circle {
@@ -9769,10 +9803,8 @@ a.position-link:focus-visible,
   stroke-width: 3;
 }
 
-.talk-map-marker.is-region-cluster:hover circle,
-.talk-map-marker.is-region-cluster:focus-visible circle,
-.talk-map-marker.is-region-cluster.is-selected circle {
-  stroke-width: 4.4;
+.talk-map-marker.is-spiderfied circle {
+  stroke-width: 3;
 }
 
 .talk-map-detail {
@@ -9907,63 +9939,8 @@ a.position-link:focus-visible,
   font-weight: 780;
 }
 
-.talk-map-local-inset {
-  display: grid;
-  gap: 8px;
-  min-width: 0;
-}
-
-.talk-map-local-label {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 6px 12px;
-  color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.talk-map-local-title {
-  font-size: 0.84rem;
-  font-weight: 820;
-}
-
-.talk-map-local-meta {
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 740;
-}
-
-.talk-map-local-map {
-  overflow: hidden;
-  border: 1px solid rgba(43, 52, 43, 0.12);
-  border-radius: 8px;
-  background: rgba(247, 243, 236, 0.62);
-}
-
-.talk-map-local-map svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 230px;
-}
-
-.talk-map-local-bg {
-  fill: rgba(231, 239, 232, 0.64);
-  stroke: rgba(44, 111, 99, 0.16);
-}
-
-.talk-map-local-grid line {
-  stroke: rgba(49, 70, 61, 0.1);
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
-}
-
-.talk-map-local-caption {
-  fill: rgba(49, 70, 61, 0.42);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 14px;
-  font-weight: 850;
+.talk-map-spider-lines {
+  pointer-events: none;
 }
 
 .talk-map-spider-line {
@@ -9972,47 +9949,6 @@ a.position-link:focus-visible,
   stroke-linecap: round;
   stroke-width: 1.2;
   vector-effect: non-scaling-stroke;
-}
-
-.talk-map-local-marker text {
-  font-size: 9.4px;
-}
-
-.talk-map-place-group {
-  gap: 8px;
-}
-
-.talk-map-place-heading {
-  color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.84rem;
-  font-weight: 820;
-  line-height: 1.3;
-}
-
-.talk-map-place-meta {
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 720;
-}
-
-.talk-map-place-records {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  padding: 0 0 0 12px;
-  border-left: 1px solid rgba(199, 120, 61, 0.24);
-  list-style: none;
-}
-
-.talk-map-records .talk-map-place-records li {
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(215, 210, 199, 0.5);
-}
-
-.talk-map-records .talk-map-place-records li:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
 }
 
 .home-timeline {

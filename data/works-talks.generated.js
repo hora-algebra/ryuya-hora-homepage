@@ -399,7 +399,8 @@ window.worksTalksData = {
       "language": "English",
       "file": "ct2025-hora.pdf",
       "href": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf",
-      "download": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf"
+      "download": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf",
+      "localThumbnail": "assets/notes/topoi-of-automata-ct2025.png"
     },
     {
       "title": "A note on language measurability",
@@ -630,6 +631,7 @@ window.worksTalksData = {
       "items": [
         {
           "title": "Connectedness and full subcategories of topoi",
+          "timelineId": "talk:phd-thesis-presentation-2026-connectedness",
           "event": "Ph.D. thesis presentation",
           "date": "2026-01-23",
           "venue": "Ph.D. thesis presentation, Room 126, Graduate School of Mathematical Sciences, The University of Tokyo, 23 January",
@@ -637,6 +639,7 @@ window.worksTalksData = {
         },
         {
           "title": "Turning lights out with the Snake Lemma",
+          "timelineId": "talk:cgp-2026-snake-lemma",
           "presenters": [
             "Kyosuke Higashida"
           ],
@@ -647,6 +650,7 @@ window.worksTalksData = {
         },
         {
           "title": "Measure-theoretic closure operators on formal languages",
+          "timelineId": "talk:ppl-2026-measure-theoretic-closure",
           "presenters": [
             "Ryuya Hora",
             "Ryoma Sin'ya"
@@ -658,6 +662,7 @@ window.worksTalksData = {
         },
         {
           "title": "A space-time for Conway's game of life",
+          "timelineId": "talk:cscat-2026-game-of-life",
           "event": "CSCAT 2026",
           "date": "2026-03-17",
           "venue": "CSCAT 2026, AOSSA Room 601A, Fukui, 17 March",
@@ -665,6 +670,7 @@ window.worksTalksData = {
         },
         {
           "title": "A Rota-Baxter equation for winning games",
+          "timelineId": "talk:differentiation-kyoto-2026-rota-baxter",
           "event": "Differentiation in category theory and program semantics",
           "date": "2026-04-06",
           "venue": "Room 420, RIMS, Kyoto University, 6 April",
@@ -672,6 +678,7 @@ window.worksTalksData = {
         },
         {
           "title": "TBA",
+          "timelineId": "talk:itaca-fest-2026-tba",
           "event": "ItaCa Fest 2026",
           "date": "2026-09-29",
           "venue": "ItaCa Fest 2026, online, 29 September",
@@ -685,6 +692,7 @@ window.worksTalksData = {
       "items": [
         {
           "title": "Topoi of automata",
+          "timelineId": "talk:cmup-sal-2025-topoi-of-automata",
           "event": "CMUP SAL seminar",
           "date": "2025-02-28",
           "venue": "CMUP SAL seminar, Zoom, 28 February",
@@ -692,6 +700,7 @@ window.worksTalksData = {
         },
         {
           "title": "Topoi of automata",
+          "timelineId": "talk:cscat-2025-topoi-of-automata",
           "event": "CSCAT 2025",
           "date": "2025-03-12",
           "venue": "CSCAT 2025, Room F203, Sojo University, Kumamoto, 12 March",
@@ -699,6 +708,7 @@ window.worksTalksData = {
         },
         {
           "title": "Topoi of automata",
+          "timelineId": "talk:ctta-2025-04-30-topoi-of-automata",
           "event": "Groupe de travail topossique",
           "date": "2025-04-30",
           "venue": "Groupe de travail topossique, Centre Lagrange, Paris, 30 April",
@@ -707,6 +717,7 @@ window.worksTalksData = {
         },
         {
           "title": "Topoi of automata",
+          "timelineId": "talk:autcat-2025-topoi-of-automata",
           "event": "Categories for Automata and Language Theory",
           "date": "2025-05-06",
           "venue": "Categories for Automata and Language Theory, IRIF, Paris, 6 May",
@@ -715,6 +726,7 @@ window.worksTalksData = {
         },
         {
           "title": "Local state classifier for algebraic language theory",
+          "timelineId": "talk:ctta-2025-05-16-local-state-classifier",
           "event": "Groupe de travail topossique",
           "date": "2025-05-16",
           "venue": "Groupe de travail topossique, Centre Lagrange, Paris, 16 May",
@@ -723,6 +735,7 @@ window.worksTalksData = {
         },
         {
           "title": "Local state classifier for automata theory",
+          "timelineId": "talk:irif-2025-local-state-classifier",
           "event": "IRIF Sémantique seminar",
           "date": "2025-05-27",
           "venue": "Semantique seminar, Salle 3071, IRIF, Paris, 27 May",
@@ -731,6 +744,7 @@ window.worksTalksData = {
         },
         {
           "title": "A topos for regular language theory",
+          "timelineId": "talk:tcs-2025-regular-language-topos",
           "event": "Theoretical Cosynus Seminar",
           "date": "2025-06-11",
           "venue": "Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June",
@@ -739,6 +753,7 @@ window.worksTalksData = {
         },
         {
           "title": "Topoi of automata",
+          "timelineId": "talk:ct-2025-topoi-of-automata",
           "event": "CT 2025",
           "date": "2025-07-17",
           "venue": "CT 2025, Building B2, Faculty of Arts, Masaryk University, Brno, 17 July",
@@ -746,6 +761,7 @@ window.worksTalksData = {
         },
         {
           "title": "Topoi of automata",
+          "timelineId": "talk:slacs-2025-topoi-of-automata",
           "event": "SLACS 2025",
           "date": "2025-10-31",
           "venue": "SLACS 2025, Shared Room 321, Akita University, 31 October",
@@ -754,6 +770,7 @@ window.worksTalksData = {
         },
         {
           "title": "Connectedness and full subcategories of topoi",
+          "timelineId": "talk:utokyo-logic-2025-11-28-connectedness",
           "event": "UTokyo Logic seminar",
           "date": "2025-11-28",
           "venue": "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 28 November",
@@ -761,6 +778,7 @@ window.worksTalksData = {
         },
         {
           "title": "The axiom of choice and local state classifier",
+          "timelineId": "talk:utokyo-logic-2025-12-05-axiom-choice",
           "event": "UTokyo Logic seminar",
           "date": "2025-12-05",
           "venue": "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 5 December",
@@ -773,6 +791,7 @@ window.worksTalksData = {
       "items": [
         {
           "title": "Combinatorial games as recursive coalgebras",
+          "timelineId": "talk:cscat-2024-combinatorial-games",
           "event": "CSCAT 2024",
           "date": "2024-03-15",
           "venue": "CSCAT 2024, Multimedia Room 1, Science Building 4, Chiba University, 15 March",
@@ -780,12 +799,14 @@ window.worksTalksData = {
         },
         {
           "title": "Introduction to topos theory",
+          "timelineId": "talk:algebraic-topology-wakate-2024-topos-theory",
           "event": "代数トポロジー若手の会",
           "date": "2024-03-16",
           "venue": "代数トポロジー若手の会, Nagoya University, 16 March"
         },
         {
           "title": "圏論の利用と濫用",
+          "timelineId": "talk:afsa-colloquium-2024-category-theory",
           "event": "18th AFSA Colloquium",
           "date": "2024-04-24",
           "venue": "18th AFSA Colloquium, NII Kanda Lab, Tokyo, 24 April",
@@ -793,6 +814,7 @@ window.worksTalksData = {
         },
         {
           "title": "Quotient toposes of discrete dynamical systems",
+          "timelineId": "talk:ct-2024-quotient-toposes",
           "event": "CT 2024",
           "date": "2024-06-28",
           "venue": "CT 2024, Facultade de Matemáticas, Universidade de Santiago de Compostela, 28 June",
@@ -800,6 +822,7 @@ window.worksTalksData = {
         },
         {
           "title": "Topos theory as a tool of automata theory",
+          "timelineId": "talk:young-automata-2024-topos-tool",
           "event": "Young Automata Theorists Gathering in Japan",
           "date": "2024-08-29",
           "venue": "Young Automata Theorists Gathering in Japan, Room 305, Akita University, 29 August",
@@ -807,6 +830,7 @@ window.worksTalksData = {
         },
         {
           "title": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
+          "timelineId": "talk:toposes-mondovi-2024-colimit-monomorphisms",
           "event": "Toposes in Mondovì",
           "date": "2024-09-10",
           "venue": "Toposes in Mondovì, Circolo di Lettura, Palazzo del Governatore, 10 September",
@@ -814,6 +838,7 @@ window.worksTalksData = {
         },
         {
           "title": "Quotient topoi and geometry of computation",
+          "timelineId": "talk:afsa-area-meeting-2024-quotient-topoi",
           "event": "AFSA area meeting",
           "date": "2024-11-30",
           "venue": "AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November",
@@ -827,6 +852,7 @@ window.worksTalksData = {
       "items": [
         {
           "title": "Internal parameterization of hyperconnected quotients",
+          "timelineId": "talk:cscat-2023-hyperconnected-quotients",
           "event": "CSCAT 2023",
           "date": "2023-03-09",
           "venue": "CSCAT 2023, Room 478, Research Building 2, Kyoto University, 9 March",
@@ -834,6 +860,7 @@ window.worksTalksData = {
         },
         {
           "title": "Internal parameterization of hyperconnected quotients",
+          "timelineId": "talk:australian-category-seminar-2023-hyperconnected-quotients",
           "event": "Australian Category Seminar",
           "date": "2023-04-19",
           "venue": "Australian Category Seminar, online, 19 April",
@@ -841,6 +868,7 @@ window.worksTalksData = {
         },
         {
           "title": "Grundy Numbers and Categories",
+          "timelineId": "talk:jcgt-mini-workshops-2023-grundy-numbers",
           "event": "Japan Combinatorial Game Theory Mini-Workshops",
           "date": "2023-05-12",
           "venue": "Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May",
@@ -849,6 +877,7 @@ window.worksTalksData = {
         },
         {
           "title": "Internal parameterization of hyperconnected quotients",
+          "timelineId": "talk:ct-2023-hyperconnected-quotients",
           "event": "Category Theory 2023",
           "date": "2023-07-06",
           "venue": "Category Theory 2023, Auditoires des Sciences, UCLouvain, 6 July",
@@ -856,6 +885,7 @@ window.worksTalksData = {
         },
         {
           "title": "Category Theory and Combinatorial Game Theory",
+          "timelineId": "talk:jcgt-conference-2023-category-games",
           "event": "7th Japan Combinatorial Game Theory Conference",
           "date": "2023-08-21",
           "venue": "7th Japan Combinatorial Game Theory Conference, NII, Tokyo, 21 August",
@@ -863,6 +893,7 @@ window.worksTalksData = {
         },
         {
           "title": "Constructive mathematics and representation theory",
+          "timelineId": "talk:ml-wakate-2023-constructive-mathematics",
           "aliases": [
             "構成的数学と表現論"
           ],

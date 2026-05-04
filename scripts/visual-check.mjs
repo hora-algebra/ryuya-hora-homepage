@@ -326,7 +326,7 @@ const measureScript = String.raw`(() => {
   const navItems = [...document.querySelectorAll(".nav-group-label, .nav-submenu a")].filter((node) => !node.classList.contains("nav-search"));
   const nav = document.querySelector(".site-nav");
   if (nav) {
-    const expectedCacheKey = window.siteNavCacheKey || "cache-20260504ac";
+    const expectedCacheKey = window.siteNavCacheKey || "cache-20260504aj";
     if (nav.dataset.siteNavRendered !== expectedCacheKey) {
       issues.push({
         type: "site-nav-not-common-rendered",
@@ -338,14 +338,11 @@ const measureScript = String.raw`(() => {
     const expectedNav = [
       ["Profile", "profile/index.html"],
       ["Timeline", "profile/index.html#timeline"],
-      ["Current Positions", "profile/index.html#current-positions"],
+      ["Roles", "profile/index.html#roles"],
       ["Awards", "profile/index.html#awards"],
-      ["Teaching", "profile/index.html#teaching-outreach"],
-      ["Background", "profile/index.html#academic-background"],
-      ["Personal", "profile/index.html#personal"],
-      ["Pages", "profile/index.html#explore"],
+      ["Backgrounds", "profile/index.html#backgrounds"],
+      ["Pages", "profile/index.html#pages"],
       ["Works", "works/index.html"],
-      ["Browse", "works/index.html#work-pages"],
       ["Search", "works/index.html#work-search"],
       ["Papers", "works/papers/index.html"],
       ["Notes and Preparations", "works/notes-preparations/index.html"],
@@ -450,6 +447,34 @@ const measureScript = String.raw`(() => {
         }
       });
   }
+
+  [
+    { selector: "#current-position-list", itemSelector: ".position-item", iconSelector: ".position-icon", text: "KAKENHI", icon: "flask" },
+    { selector: "#academic-affiliation-list", itemSelector: ".icon-list-item", iconSelector: ".list-item-icon", text: "FoPM", icon: "flask" }
+  ].forEach(({ selector, itemSelector, iconSelector, text, icon }) => {
+    const root = document.querySelector(selector);
+    if (!root) return;
+    const item = [...root.querySelectorAll(itemSelector)]
+      .filter(visible)
+      .find((node) => (node.textContent || "").includes(text));
+    if (!item) return;
+    const actual = item.querySelector(iconSelector)?.dataset?.iconKey || "";
+    if (!actual) {
+      issues.push({
+        type: "list-icon-missing",
+        element: labelOf(item),
+        rect: rectOf(item),
+        detail: "expected " + icon
+      });
+    } else if (actual !== icon) {
+      issues.push({
+        type: "list-icon-mismatch",
+        element: labelOf(item),
+        rect: rectOf(item),
+        detail: "expected " + icon + ", got " + actual
+      });
+    }
+  });
 
   [...document.querySelectorAll(".action-link")]
     .filter((node) => visible(node) && !node.classList.contains("section-link-hidden"))

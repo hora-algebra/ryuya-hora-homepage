@@ -1,7 +1,7 @@
 (function () {
   const initialUrlParams = new URLSearchParams(globalThis.location?.search || "");
   const publicSiteUrl = "https://hora-algebra.github.io/ryuya-hora-homepage/";
-  const paperFigureCacheKey = "cache-20260504ac";
+  const paperFigureCacheKey = "cache-20260504aj";
   const worksInitialPaperRecordLimit = 4;
   const katexCdnBase = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist";
 
@@ -930,10 +930,9 @@
 
   function researchThemeGroups() {
     return [
-      ["papers", "Papers", (record) => record.kind === "Papers"],
-      ["preparation", "In preparation", (record) => record.kind === "In preparation"],
-      ["notes", "Notes", (record) => record.kind === "Notes"],
-      ["talks", "Talks", (record) => record.kind === "Talks"]
+      ["papers", "Papers", (record) => record.kind === "Papers", "works/papers/index.html"],
+      ["notes-preparations", "Notes and Preparations", (record) => record.kind === "In preparation" || record.kind === "Notes", "works/notes-preparations/index.html"],
+      ["talks-slides", "Talks and Slides", (record) => record.kind === "Talks" || record.kind === "Slides", "works/talks-slides/index.html"]
     ];
   }
 
@@ -1018,6 +1017,17 @@
     return `(${count})`;
   }
 
+  function researchGroupStatusLabel(counts = []) {
+    return `${counts[0] || 0} papers / ${counts[1] || 0} notes and preparations / ${counts[2] || 0} talks and slides`;
+  }
+
+  function researchGroupIconKey(kind = "") {
+    if (kind === "papers") return "paper";
+    if (kind === "notes-preparations") return "note";
+    if (kind === "talks-slides") return "talk";
+    return "open";
+  }
+
   function renderThemeResultIcons(themeIds = [], metaTagIds = []) {
     const strip = el("div", "theme-result-icons");
     normalizeThemeSelection(themeIds).forEach((themeId) => {
@@ -1080,7 +1090,7 @@
     if (status && updateStatus) {
       status.replaceChildren(
         el("span", "theme-status-label", researchSelectionLabel(themeIds, metaTagIds)),
-        el("span", "theme-status-count", `${counts[0]} papers / ${counts[1]} in preparation / ${counts[2]} notes / ${counts[3]} talks`)
+        el("span", "theme-status-count", researchGroupStatusLabel(counts))
       );
     }
     groups.forEach(([kind], index) => {
@@ -1229,12 +1239,20 @@
     mapColumn.append(overview);
     const panel = el("div", "theme-panel");
     const columns = el("div", "theme-result-grid");
-    researchThemeGroups().forEach(([kind, label]) => {
+    researchThemeGroups().forEach(([kind, label, , href]) => {
       const column = el("section", "theme-result-column");
       const heading = el("h3");
       const count = el("span", "theme-result-count", themeColumnCountLabel(0));
       count.dataset.themeHeadingCount = kind;
-      heading.append(el("span", null, label), count);
+      const headingLink = link("", href, "theme-result-heading-link");
+      headingLink.setAttribute("aria-label", `Open ${label}`);
+      headingLink.replaceChildren(
+        uiIcon(researchGroupIconKey(kind), "theme-result-heading-section-icon"),
+        el("span", "theme-result-heading-label", label),
+        count,
+        uiIcon("open", "theme-result-heading-open-icon")
+      );
+      heading.append(headingLink);
       const list = el("div", "theme-result-list");
       list.dataset.themeResults = kind;
       column.append(heading, list);
@@ -1747,7 +1765,40 @@
         language: "English",
         file: "semLP_2.pdf",
         href: "https://www.cmup.pt/sites/default/files/2025-02/semLP_2.pdf",
-        download: "https://www.cmup.pt/sites/default/files/2025-02/semLP_2.pdf"
+        download: "https://www.cmup.pt/sites/default/files/2025-02/semLP_2.pdf",
+        localThumbnail: "assets/notes/topoi-of-automata-cmup-flyer.png"
+      }
+    },
+    {
+      title: "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
+      event: "Toposes in Mondovì",
+      material: {
+        title: "Toposes in Mondovì video",
+        description: "Conference video; no public slide deck found",
+        materialType: "Video",
+        theme: "topos",
+        themes: ["topos"],
+        date: "2024-09-10",
+        language: "English",
+        file: "Toposes in Mondovì video",
+        href: "https://www.youtube.com/watch?v=T1U1-Q6esuY",
+        thumbnail: "https://img.youtube.com/vi/T1U1-Q6esuY/hqdefault.jpg"
+      }
+    },
+    {
+      title: "Internal parameterization of hyperconnected quotients",
+      event: "Category Theory 2023",
+      material: {
+        title: "CT2023 video",
+        description: "Conference recording by the Archive Trust for Research",
+        materialType: "Video",
+        theme: "topos",
+        themes: ["topos"],
+        date: "2023-07-06",
+        language: "English",
+        file: "CT2023 video",
+        href: "https://www.youtube.com/watch?v=lVvTIe-lHXw",
+        thumbnail: "https://img.youtube.com/vi/lVvTIe-lHXw/hqdefault.jpg"
       }
     }
   ];
@@ -2744,6 +2795,7 @@
   function materialIconKey(record) {
     const label = simplified(materialTypeLabel(record));
     if (label.includes("flyer") || label.includes("event")) return "event";
+    if (label.includes("video") || label.includes("youtube")) return "talk";
     return "slides";
   }
 
@@ -2859,7 +2911,7 @@
     if (actions.length) appendActionLinks(title, actions, { iconOnly: true, order: "talk" });
     body.append(title, el("span", "talk-venue", metaText));
     shell.append(body);
-    const preview = talkThumbnail(record);
+    const preview = options.thumbnail || talkThumbnail(record);
     if (preview) {
       const thumb = link("", preview.href, "talk-thumb");
       thumb.setAttribute("aria-label", `Open slides for ${record.title}`);
@@ -2889,12 +2941,17 @@
         talkType: slide.talkType,
         metaTags: slide.metaTags || []
       };
+      const thumbnailSrc = noteThumbnailSrc(slide);
       const rendered = renderTalkItem(
         record,
         noteHref(slide),
         compactText([slide.event || "Slides only", noteDateLabel(slide), noteThemeLabel(noteTheme(slide)), noteLanguageKey(slide)]).join(" / "),
         materialActionLinks(slide),
-        { talkType: talkSlideRecordType(item), copyHref: talksPageHref(noteAnchor(slide)) }
+        {
+          talkType: talkSlideRecordType(item),
+          copyHref: talksPageHref(noteAnchor(slide)),
+          thumbnail: thumbnailSrc ? { src: thumbnailSrc, href: noteHref(slide) } : null
+        }
       );
       rendered.id = noteAnchor(slide);
       rendered.classList.add("talk-slide-item", "is-slide-only");
@@ -3509,11 +3566,11 @@
         <desc id="fig-normalization-desc">A D4-action on a square on the left, an old subgroup lattice in the middle, and a new subgroup lattice on the right. Dotted links connect each square point to its stabilizer in the old lattice. Green dotted links connect each old subgroup to its normalized subgroup in the new lattice.</desc>
         <defs>
           <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
-          <marker id="normalization-link-arrow-d4" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#5d615c" fill-opacity="0.58"></path></marker>
-          <marker id="normalization-link-arrow-ref0" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#1f6fb2" fill-opacity="0.9"></path></marker>
-          <marker id="normalization-link-arrow-ref2" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#d65a3a" fill-opacity="0.9"></path></marker>
-          <marker id="normalization-link-arrow-ref1" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#51912f" fill-opacity="0.92"></path></marker>
-          <marker id="normalization-link-arrow-ref3" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="#7c57c2" fill-opacity="0.92"></path></marker>
+          <marker id="normalization-link-arrow-d4" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
+          <marker id="normalization-link-arrow-ref0" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
+          <marker id="normalization-link-arrow-ref2" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
+          <marker id="normalization-link-arrow-ref1" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
+          <marker id="normalization-link-arrow-ref3" viewBox="0 0 10 10" refX="6.8" refY="5" markerWidth="4.8" markerHeight="4.8" orient="auto" markerUnits="strokeWidth"><path d="M 0 1.2 L 8 5 L 0 8.8 z" fill="context-stroke"></path></marker>
         </defs>
 
         ${normalizationLatticeTemplate("old", 315, 54, 0.88)}
@@ -6033,12 +6090,60 @@
     pulseNormalizationElementControl(root, selectedElement);
   }
 
+  function syncNormalizationLinkArrowheadColors(root) {
+    const svg = root?.matches?.("svg") ? root : root?.querySelector?.("svg");
+    if (!svg) return;
+    const defs = svg.querySelector("defs");
+    if (!defs) return;
+    defs.querySelectorAll("marker[data-normalization-link-arrowhead-clone]").forEach((marker) => marker.remove());
+
+    const markerKeys = new Set(["d4", "ref0", "ref2", "ref1", "ref3"]);
+    const originalMarkerFor = (key) => {
+      const markerKey = markerKeys.has(key) ? key : "d4";
+      const suffix = `normalization-link-arrow-${markerKey}`;
+      return Array.from(svg.querySelectorAll("marker")).find((marker) =>
+        !marker.dataset.normalizationLinkArrowheadClone && marker.id.endsWith(suffix)
+      );
+    };
+    const markerPath = (marker) => marker?.querySelector("path");
+    const setMarkerMid = (path, markerId) => {
+      const markerUrl = `url(#${markerId})`;
+      path.setAttribute("marker-mid", markerUrl);
+      path.style.setProperty("marker-mid", markerUrl);
+    };
+    const links = [
+      ...svg.querySelectorAll("[data-normalization-stabilizer-link]"),
+      ...svg.querySelectorAll("[data-normalization-operator-link]")
+    ];
+    links.forEach((path, index) => {
+      const key = path.dataset.normalizationLinkSubgroup || path.dataset.normalizationOperatorSource || "d4";
+      const sourceMarker = originalMarkerFor(key);
+      if (!sourceMarker) return;
+      const style = getComputedStyle(path);
+      const stroke = style.stroke && style.stroke !== "none" ? style.stroke : path.getAttribute("stroke");
+      if (!stroke || stroke === "none") return;
+      const clone = sourceMarker.cloneNode(true);
+      clone.id = `${sourceMarker.id}-stroke-${index}`;
+      clone.dataset.normalizationLinkArrowheadClone = "true";
+      clone.removeAttribute("data-normalization-marker-source");
+      const arrow = markerPath(clone);
+      if (arrow) {
+        arrow.setAttribute("fill", stroke);
+        arrow.style.setProperty("fill", stroke);
+        arrow.setAttribute("fill-opacity", style.strokeOpacity || "1");
+      }
+      defs.append(clone);
+      setMarkerMid(path, clone.id);
+    });
+  }
+
   function initializeNormalizationFigure(root, options = {}) {
     root.classList.toggle("is-interactive", Boolean(options.controls));
     setNormalizationSelection(root, root.dataset.normalizationSelected || "d4");
     updateNormalizationHasseEdges(root);
     updateNormalizationStabilizerLinks(root);
     updateNormalizationOperatorLinks(root);
+    syncNormalizationLinkArrowheadColors(root);
     typesetMath(root);
     if (!options.controls || root.dataset.normalizationInitialized) return;
     root.dataset.normalizationInitialized = "true";

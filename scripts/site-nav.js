@@ -1,5 +1,5 @@
 (function () {
-  const NAV_CACHE_KEY = "cache-20260504ac";
+  const NAV_CACHE_KEY = "cache-20260504ak";
 
   const navGroups = [
     {
@@ -8,12 +8,10 @@
       path: "profile/index.html",
       children: [
         ["timeline", "Timeline", "profile/index.html#timeline"],
-        ["current-positions", "Current Positions", "profile/index.html#current-positions"],
+        ["roles", "Roles", "profile/index.html#roles"],
         ["awards", "Awards", "profile/index.html#awards"],
-        ["teaching-outreach", "Teaching", "profile/index.html#teaching-outreach"],
-        ["academic-background", "Background", "profile/index.html#academic-background"],
-        ["personal", "Personal", "profile/index.html#personal"],
-        ["explore", "Pages", "profile/index.html#explore"]
+        ["backgrounds", "Backgrounds", "profile/index.html#backgrounds"],
+        ["pages", "Pages", "profile/index.html#pages"]
       ]
     },
     {
@@ -21,7 +19,6 @@
       label: "Works",
       path: "works/index.html",
       children: [
-        ["work-pages", "Browse", "works/index.html#work-pages"],
         ["work-search", "Search", "works/index.html#work-search"],
         ["papers", "Papers", "works/papers/index.html"],
         ["notes-preparations", "Notes and Preparations", "works/notes-preparations/index.html"],
@@ -74,11 +71,13 @@
     const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
     if (page === "works") {
       if (worksPage && worksPage !== "index") return worksPage;
-      if (hash === "work-pages") return "work-pages";
       if (hash === "work-search") return "work-search";
-      if (!hash) return "work-pages";
+      if (!hash) return "work-search";
       return "";
     }
+    if (hash === "current-positions" || hash === "teaching-outreach") return "roles";
+    if (hash === "academic-background" || hash === "past-affiliations") return "backgrounds";
+    if (hash === "explore") return "pages";
     if (hash) return hash;
     return "";
   }
