@@ -821,19 +821,15 @@ window.worksSearchData = {
     {
       "kind": "Notes",
       "title": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers",
-      "href": "https://drive.google.com/open?id=1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9",
       "year": "",
-      "summary": "",
+      "summary": "Speculative cloud entry; no public PDF is attached.",
       "themes": [
-        "topos",
-        "geometry",
-        "combinatorics"
+        "algebra"
       ],
       "metaTags": [
-        "speculative",
-        "expository"
+        "speculative"
       ],
-      "text": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers 2024Topos新歓202405-6.pdf Japanese"
+      "text": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers Speculative cloud entry; no public PDF is attached. English"
     },
     {
       "kind": "Notes",

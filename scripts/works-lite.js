@@ -1,7 +1,11 @@
 (function () {
-  const cacheKey = "cache-20260503aq";
+  const cacheKey = "cache-20260504k";
   const loaded = new Map();
-  let richCorePromise = null;
+  let worksCorePromise = null;
+  let searchDataPromise = null;
+  let papersDataPromise = null;
+  let talksDataPromise = null;
+  let researchmapDataPromise = null;
   let richSetupDone = false;
   let userScrolled = false;
   const sectionLoaders = {
@@ -10,6 +14,16 @@
     "in-preparation": loadTalks,
     "talks-slides": loadTalks
   };
+  const worksPage = document.body?.dataset.worksPage || "index";
+
+  function pathPrefix() {
+    const depth = Number.parseInt(document.body?.dataset.depth || "0", 10);
+    return Number.isFinite(depth) && depth > 0 ? "../".repeat(depth) : "";
+  }
+
+  function assetPath(path) {
+    return `${pathPrefix()}${path}`;
+  }
 
   function script(src, attrs = {}) {
     if (loaded.has(src)) return loaded.get(src);
@@ -29,12 +43,34 @@
     return promise;
   }
 
-  function loadRichCore() {
-    if (richCorePromise) return richCorePromise;
-    richCorePromise = script(`../data/researchmap.generated.js?v=${cacheKey}`)
-      .then(() => script(`../data/overleaf.generated.js?v=${cacheKey}`))
-      .then(() => script(`../scripts/site.js?v=${cacheKey}`, { "data-manual-init": "true" }));
-    return richCorePromise;
+  function loadWorksCore() {
+    if (worksCorePromise) return worksCorePromise;
+    worksCorePromise = script(`${assetPath("scripts/works-page.js")}?v=${cacheKey}`);
+    return worksCorePromise;
+  }
+
+  function loadSearchData() {
+    if (searchDataPromise) return searchDataPromise;
+    searchDataPromise = script(`${assetPath("data/works-search.generated.js")}?v=${cacheKey}`);
+    return searchDataPromise;
+  }
+
+  function loadPapersData() {
+    if (papersDataPromise) return papersDataPromise;
+    papersDataPromise = script(`${assetPath("data/works-papers.generated.js")}?v=${cacheKey}`);
+    return papersDataPromise;
+  }
+
+  function loadTalksData() {
+    if (talksDataPromise) return talksDataPromise;
+    talksDataPromise = script(`${assetPath("data/works-talks.generated.js")}?v=${cacheKey}`);
+    return talksDataPromise;
+  }
+
+  function loadResearchmapData() {
+    if (researchmapDataPromise) return researchmapDataPromise;
+    researchmapDataPromise = script(`${assetPath("data/researchmap.generated.js")}?v=${cacheKey}`);
+    return researchmapDataPromise;
   }
 
   function setupRichOnce() {
@@ -50,7 +86,7 @@
   }
 
   function loadSearch() {
-    return loadRichCore().then(() => {
+    return Promise.all([loadWorksCore(), loadSearchData(), loadTalksData()]).then(() => {
       setupRichOnce();
       if (typeof renderResearchMap === "function") renderResearchMap();
       finishRichRender();
@@ -58,7 +94,7 @@
   }
 
   function loadPapers() {
-    return loadRichCore().then(() => {
+    return Promise.all([loadWorksCore(), loadPapersData(), loadTalksData()]).then(() => {
       setupRichOnce();
       document.body.dataset.worksPapersFull = "true";
       if (typeof renderPapers === "function") renderPapers();
@@ -68,7 +104,7 @@
   }
 
   function loadTalks() {
-    return loadRichCore().then(() => {
+    return Promise.all([loadWorksCore(), loadTalksData(), loadPapersData(), loadResearchmapData()]).then(() => {
       setupRichOnce();
       if (typeof renderPreparationPapers === "function") renderPreparationPapers();
       if (typeof renderNotes === "function") renderNotes();
@@ -104,7 +140,7 @@
 
   function hashElementId(hash = hashTarget()) {
     if (hash === "notes") return "notes-list";
-    if (hash === "slides") return "slides-list";
+    if (hash === "slides" || hash === "slides-list") return "talks-slides";
     if (hash === "talks") return "talks-slides";
     if (hash === "preparations") return "in-preparation";
     return hash;
@@ -124,6 +160,21 @@
     if (hash === "notes-preparations" || hash === "notes" || hash === "notes-list" || hash === "in-preparation" || hash === "preparations" || hash.startsWith("note-")) return loadTalks;
     if (hash === "talks-slides" || hash === "talks" || hash === "slides" || hash === "slides-list" || hash.startsWith("talk-") || hash.startsWith("slide-")) return loadTalks;
     return null;
+  }
+
+  function pageForHash(hash = hashTarget()) {
+    if (hash === "papers" || hash.startsWith("paper-")) return "papers";
+    if (hash === "notes-preparations" || hash === "notes" || hash === "notes-list" || hash === "in-preparation" || hash === "preparations" || hash.startsWith("note-")) return "notes-preparations";
+    if (hash === "talks-slides" || hash === "talks" || hash === "slides" || hash === "slides-list" || hash.startsWith("talk-") || hash.startsWith("slide-")) return "talks-slides";
+    return "";
+  }
+
+  function redirectLegacyHash() {
+    if (worksPage !== "index") return false;
+    const targetPage = pageForHash();
+    if (!targetPage) return false;
+    location.replace(`${targetPage}/index.html${location.search || ""}${location.hash || ""}`);
+    return true;
   }
 
   function setupLazySections() {
@@ -164,7 +215,7 @@
       node.addEventListener("click", loadPapers, { once: true });
     });
 
-    document.querySelectorAll("#note-filter, #slide-filter, #talk-filter, #note-language-filter, #note-year-filter, #note-theme-filter, #slide-language-filter, #slide-year-filter, #slide-theme-filter").forEach((node) => {
+    document.querySelectorAll("#note-filter, #slide-filter, #talk-filter, #note-language-filter, #note-year-filter, #note-theme-filter, #slide-language-filter, #slide-year-filter, #slide-theme-filter, #talk-year-filter, #talk-theme-filter, #talk-slides-filter").forEach((node) => {
       node.addEventListener("focus", loadTalks, { once: true });
       node.addEventListener("click", loadTalks, { once: true });
     });
@@ -184,9 +235,18 @@
   }
 
   setupMenu();
+  if (redirectLegacyHash()) return;
   setupLazySections();
   afterPageLoad(() => {
-    loadSearch();
+    if (document.querySelector("#research-map")) loadSearch();
+    if (worksPage === "papers") {
+      loadPapers();
+      return;
+    }
+    if (worksPage === "notes-preparations" || worksPage === "talks-slides") {
+      loadTalks();
+      return;
+    }
     const loader = loaderForHash();
     if (loader) loader();
   });
