@@ -615,16 +615,20 @@ window.worksTalksData = {
       "items": [
         {
           "title": "Connectedness and full subcategories of topoi",
+          "event": "Ph.D. thesis presentation",
+          "date": "2026-01-23",
           "venue": "Ph.D. thesis presentation, Room 126, Graduate School of Mathematical Sciences, The University of Tokyo, 23 January",
-          "href": "https://www.ms.u-tokyo.ac.jp/seminar/thesispres/past.html"
+          "href": "https://www.ms.u-tokyo.ac.jp/seminar/2026/sem26-042.html"
         },
         {
           "title": "Turning lights out with the Snake Lemma",
           "presenters": [
             "Kyosuke Higashida"
           ],
+          "event": "20th CGP project",
+          "date": "2026-02-22",
           "venue": "20th CGP project, The University of Electro-Communications, Chofu, 22 February",
-          "href": "http://www.alg.cei.uec.ac.jp/itohiro/Games/"
+          "href": "http://www.alg.cei.uec.ac.jp/itohiro/Games/Game260222.html"
         },
         {
           "title": "Measure-theoretic closure operators on formal languages",
@@ -632,18 +636,32 @@ window.worksTalksData = {
             "Ryuya Hora",
             "Ryoma Sin'ya"
           ],
+          "event": "PPL 2026",
+          "date": "2026-03-11",
           "venue": "PPL 2026, Rexxam Hall, Takamatsu, 11 March",
-          "href": "https://jssst-ppl.org/workshop/2026/"
+          "href": "https://jssst-ppl.org/workshop/2026/accepted.html"
         },
         {
           "title": "A space-time for Conway's game of life",
+          "event": "CSCAT 2026",
+          "date": "2026-03-17",
           "venue": "CSCAT 2026, AOSSA Room 601A, Fukui, 17 March",
           "href": "https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html"
         },
         {
           "title": "A Rota-Baxter equation for winning games",
+          "event": "Differentiation in category theory and program semantics",
+          "date": "2026-04-06",
           "venue": "Room 420, RIMS, Kyoto University, 6 April",
           "href": "https://sites.google.com/view/differential-kyoto-2026/home"
+        },
+        {
+          "title": "TBA",
+          "event": "ItaCa Fest 2026",
+          "date": "2026-09-29",
+          "venue": "ItaCa Fest 2026, online, 29 September",
+          "href": "https://progetto-itaca.github.io/fests/fest26.html",
+          "status": "planned"
         }
       ]
     },
@@ -652,56 +670,78 @@ window.worksTalksData = {
       "items": [
         {
           "title": "Topoi of automata",
+          "event": "CMUP SAL seminar",
+          "date": "2025-02-28",
           "venue": "CMUP SAL seminar, Zoom, 28 February",
-          "href": "https://www.cmup.pt/index.php/events/topoi-automata"
+          "href": "https://www.cmup.pt/events/topoi-automata"
         },
         {
           "title": "Topoi of automata",
+          "event": "CSCAT 2025",
+          "date": "2025-03-12",
           "venue": "CSCAT 2025, Room F203, Sojo University, Kumamoto, 12 March",
           "href": "https://hisashi-aratake.gitlab.io/event/cscat2025.html"
         },
         {
           "title": "Topoi of automata",
+          "event": "Groupe de travail topossique",
+          "date": "2025-04-30",
           "venue": "Groupe de travail topossique, Centre Lagrange, Paris, 30 April",
           "href": "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/"
         },
         {
           "title": "Topoi of automata",
+          "event": "Categories for Automata and Language Theory",
+          "date": "2025-05-06",
           "venue": "Categories for Automata and Language Theory, IRIF, Paris, 6 May",
           "href": "https://autcat.github.io/"
         },
         {
           "title": "Local state classifier for algebraic language theory",
+          "event": "Groupe de travail topossique",
+          "date": "2025-05-16",
           "venue": "Groupe de travail topossique, Centre Lagrange, Paris, 16 May",
           "href": "https://igrothendieck.org/en/centre-for-topos-theory-and-its-applications/"
         },
         {
           "title": "Local state classifier for automata theory",
+          "event": "IRIF Sémantique seminar",
+          "date": "2025-05-27",
           "venue": "Semantique seminar, Salle 3071, IRIF, Paris, 27 May",
-          "href": "https://www.irif.fr/seminaires/semantique/index"
+          "href": "https://www.irif.fr/en/seminaires/semantique/index"
         },
         {
           "title": "A topos for regular language theory",
+          "event": "Theoretical Cosynus Seminar",
+          "date": "2025-06-11",
           "venue": "Theoretical Cosynus Seminar, LIX, Ecole polytechnique, Palaiseau, 11 June",
           "href": "https://www.lix.polytechnique.fr/proofs-algorithms/tcs/"
         },
         {
           "title": "Topoi of automata",
+          "event": "CT 2025",
+          "date": "2025-07-17",
           "venue": "CT 2025, Building B2, Faculty of Arts, Masaryk University, Brno, 17 July",
-          "href": "https://conference.math.muni.cz/ct2025/"
+          "href": "https://archive.math.muni.cz/conference/ct2025/index.php%3Fid%3Dprogramme-and-venue.html"
         },
         {
           "title": "Topoi of automata",
+          "event": "SLACS 2025",
+          "date": "2025-10-31",
           "venue": "SLACS 2025, Shared Room 321, Akita University, 31 October",
           "href": "https://sites.google.com/view/slacs2025akita/home"
         },
         {
           "title": "Connectedness and full subcategories of topoi",
+          "event": "UTokyo Logic seminar",
+          "date": "2025-11-28",
           "venue": "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 28 November",
-          "href": "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/index_e.html"
+          "href": "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/past_e.html"
         },
         {
           "title": "The axiom of choice and local state classifier",
+          "event": "UTokyo Logic seminar",
+          "date": "2025-12-05",
           "venue": "UTokyo Logic seminar, Graduate School of Mathematical Sciences, The University of Tokyo, 5 December",
           "href": "https://www.ms.u-tokyo.ac.jp/seminar/logic/"
         }
@@ -712,35 +752,49 @@ window.worksTalksData = {
       "items": [
         {
           "title": "Combinatorial games as recursive coalgebras",
+          "event": "CSCAT 2024",
+          "date": "2024-03-15",
           "venue": "CSCAT 2024, Multimedia Room 1, Science Building 4, Chiba University, 15 March",
           "href": "https://sites.google.com/faculty.gs.chiba-u.jp/cscat2024/home"
         },
         {
           "title": "Introduction to topos theory",
+          "event": "代数トポロジー若手の会",
+          "date": "2024-03-16",
           "venue": "代数トポロジー若手の会, Nagoya University, 16 March"
         },
         {
           "title": "圏論の利用と濫用",
-          "venue": "18th AFSA Colloquium, NII Kanda Lab, Tokyo, 25 April",
-          "href": "https://afsa.jp/g-en/"
+          "event": "18th AFSA Colloquium",
+          "date": "2024-04-24",
+          "venue": "18th AFSA Colloquium, NII Kanda Lab, Tokyo, 24 April",
+          "href": "https://afsa.jp/meeting/"
         },
         {
           "title": "Quotient toposes of discrete dynamical systems",
+          "event": "CT 2024",
+          "date": "2024-06-28",
           "venue": "CT 2024, Facultade de Matemáticas, Universidade de Santiago de Compostela, 28 June",
-          "href": "https://www.usc.gal/regaca/ct2024/"
+          "href": "https://www.usc.gal/regaca/ct2024/programme.html"
         },
         {
           "title": "Topos theory as a tool of automata theory",
+          "event": "Young Automata Theorists Gathering in Japan",
+          "date": "2024-08-29",
           "venue": "Young Automata Theorists Gathering in Japan, Room 305, Akita University, 29 August",
           "href": "https://sites.google.com/view/ciaa-preworkshop/home"
         },
         {
           "title": "The colimit of all monomorphisms classifies hyperconnected geometric morphisms",
-          "venue": "Toposes in Mondovi, Circolo di Lettura, Palazzo del Governatore, 10 September",
+          "event": "Toposes in Mondovì",
+          "date": "2024-09-10",
+          "venue": "Toposes in Mondovì, Circolo di Lettura, Palazzo del Governatore, 10 September",
           "href": "https://ctta.igrothendieck.org/"
         },
         {
           "title": "Quotient topoi and geometry of computation",
+          "event": "AFSA area meeting",
+          "date": "2024-11-30",
           "venue": "AFSA area meeting, TKP Kanda Business Center, Tokyo, 30 November",
           "href": "https://afsa.jp/afsa-2024_generalmeetingautumn/"
         }
@@ -751,26 +805,36 @@ window.worksTalksData = {
       "items": [
         {
           "title": "Internal parameterization of hyperconnected quotients",
+          "event": "CSCAT 2023",
+          "date": "2023-03-09",
           "venue": "CSCAT 2023, Room 478, Research Building 2, Kyoto University, 9 March",
           "href": "https://sites.google.com/view/cscat2023"
         },
         {
           "title": "Internal parameterization of hyperconnected quotients",
-          "venue": "Australia Category Seminar, online, 19 April",
-          "href": "http://web.science.mq.edu.au/groups/coact/seminar/"
+          "event": "Australian Category Seminar",
+          "date": "2023-04-19",
+          "venue": "Australian Category Seminar, online, 19 April",
+          "href": "https://centre-of-australian-category-theory.github.io/seminar/"
         },
         {
           "title": "Grundy Numbers and Categories",
+          "event": "Japan Combinatorial Game Theory Mini-Workshops",
+          "date": "2023-05-12",
           "venue": "Japan Combinatorial Game Theory Mini-Workshops, NII, Tokyo, 12 May",
           "href": "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.avbqzhxax0hj"
         },
         {
           "title": "Internal parameterization of hyperconnected quotients",
+          "event": "Category Theory 2023",
+          "date": "2023-07-06",
           "venue": "Category Theory 2023, Auditoires des Sciences, UCLouvain, 6 July",
           "href": "https://sites.uclouvain.be/ct2023/"
         },
         {
           "title": "Category Theory and Combinatorial Game Theory",
+          "event": "7th Japan Combinatorial Game Theory Conference",
+          "date": "2023-08-21",
           "venue": "7th Japan Combinatorial Game Theory Conference, NII, Tokyo, 21 August",
           "href": "https://sites.google.com/view/jcgtw/%E7%A0%94%E7%A9%B6%E9%9B%86%E4%BC%9A#h.57ljjdhlpx53"
         },
@@ -779,6 +843,8 @@ window.worksTalksData = {
           "aliases": [
             "構成的数学と表現論"
           ],
+          "event": "数学基礎論若手の会2023",
+          "date": "2023-12-10",
           "venue": "数学基礎論若手の会2023, Chiba, 10 December",
           "href": "https://sites.google.com/view/mlwakatenokai2023"
         }

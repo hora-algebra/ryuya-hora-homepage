@@ -10005,20 +10005,12 @@ a.position-link:focus-visible,
   min-height: clamp(218px, 21vw, 260px);
 }
 
-.activities-timeline-track {
-  min-height: clamp(190px, 18vw, 230px);
-}
-
 .paper-timeline-track .home-year-tick::before {
   height: 94px;
 }
 
 .document-timeline-track .home-year-tick::before {
   height: 154px;
-}
-
-.activities-timeline-track .home-year-tick::before {
-  height: 128px;
 }
 
 .home-timeline-year-row {
@@ -11992,10 +11984,6 @@ a.position-link:focus-visible,
     min-height: 430px;
   }
 
-  .activities-timeline-track {
-    min-height: 205px;
-  }
-
   .home-timeline-lane-label {
     left: 12px;
     font-size: 0.68rem;
@@ -12213,9 +12201,6 @@ a.position-link:focus-visible,
     min-height: 210px;
   }
 
-  .activities-timeline-track {
-    min-height: 195px;
-  }
 }
 
 @media (max-height: 520px) and (min-width: 700px) and (max-width: 980px) {
@@ -12261,9 +12246,6 @@ a.position-link:focus-visible,
     min-height: 420px;
   }
 
-  .activities-timeline-track {
-    min-height: 185px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

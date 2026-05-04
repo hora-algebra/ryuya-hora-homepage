@@ -1,5 +1,5 @@
 (function () {
-  const cacheKey = "cache-20260504q";
+  const cacheKey = "cache-20260504s";
   const loaded = new Map();
   let worksCorePromise = null;
   let searchDataPromise = null;
@@ -77,12 +77,14 @@
     if (richSetupDone) return;
     if (typeof setupLanguage === "function") setupLanguage();
     if (typeof setupInteractions === "function") setupInteractions();
+    if (typeof window.decorateNavIcons === "function") window.decorateNavIcons();
     richSetupDone = true;
   }
 
   function finishRichRender() {
     setupRichOnce();
     if (typeof applyLanguage === "function") applyLanguage();
+    if (typeof window.decorateNavIcons === "function") window.decorateNavIcons();
   }
 
   function loadSearch() {
@@ -235,6 +237,7 @@
   }
 
   setupMenu();
+  if (typeof window.decorateNavIcons === "function") window.decorateNavIcons();
   if (redirectLegacyHash()) return;
   setupLazySections();
   afterPageLoad(() => {

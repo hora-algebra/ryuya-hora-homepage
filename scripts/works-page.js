@@ -259,6 +259,9 @@
   }
 
   function uiIconSvg(key) {
+    const commonIcon = globalThis.siteCommonIconSvg?.(key);
+    if (commonIcon) return commonIcon;
+
     const svg = svgEl("svg", {
       viewBox: "0 0 24 24",
       "aria-hidden": "true",
@@ -2316,7 +2319,16 @@
   }
 
   function fallbackPresentationRecords() {
-    return (dataSet().talks?.talks || []).flatMap((group) => (group.items || []).map((talk) => ({ ...talk, year: group.year, link: talk.href, event: talk.venue })));
+    return (dataSet().talks?.talks || []).flatMap((group) =>
+      (group.items || []).map((talk) => ({
+        ...talk,
+        year: talk.year || group.year,
+        link: talk.link || talk.href,
+        href: talk.href || talk.link,
+        event: talk.event || talk.venue,
+        date: talk.date || ""
+      }))
+    );
   }
 
   function presentationComparableDate(record) {
@@ -2367,12 +2379,41 @@
     return sameYear && presentationTitlesReferToSameTalk(a?.title, b?.title) && simplified(talkSlideRecordContext(a)).includes(simplified(b?.event || b?.venue || ""));
   }
 
+  function mergePresentationRecord(sourceRecord, manualRecord) {
+    if (!manualRecord) return sourceRecord;
+    const sourceLink = sourceRecord.link || "";
+    const manualLink = manualRecord.link || manualRecord.href || "";
+    const links = mergeActionLinks(
+      manualRecord.links || [],
+      manualLink ? [["event", manualLink]] : [],
+      sourceRecord.links || [],
+      sourceLink && sourceLink !== manualLink ? [["researchmap", sourceLink]] : []
+    );
+    return {
+      ...sourceRecord,
+      title: manualRecord.title || sourceRecord.title,
+      aliases: [...new Set([...(sourceRecord.aliases || []), ...(manualRecord.aliases || [])])],
+      presenters: manualRecord.presenters || sourceRecord.presenters,
+      event: manualRecord.event || sourceRecord.event,
+      venue: manualRecord.venue || sourceRecord.venue,
+      date: manualRecord.date || sourceRecord.date,
+      dateRange: manualRecord.dateRange || sourceRecord.dateRange,
+      year: manualRecord.year || sourceRecord.year,
+      link: manualLink || sourceRecord.link,
+      href: manualRecord.href || manualRecord.link || sourceRecord.href,
+      links,
+      source: sourceRecord.source || "researchmap",
+      manualRecord
+    };
+  }
+
   function allPresentationRecords() {
     const records = researchmapPresentationRecords();
     const fallbackRecords = fallbackPresentationRecords().map(presentationDisplayRecord);
     if (!records.length) return fallbackRecords;
+    const mergedRecords = records.map((record) => mergePresentationRecord(record, fallbackRecords.find((fallbackRecord) => presentationRecordsReferToSameTalk(record, fallbackRecord))));
     const fallbackOnlyRecords = fallbackRecords.filter((record) => !records.some((sourceRecord) => presentationRecordsReferToSameTalk(sourceRecord, record)));
-    return [...records, ...fallbackOnlyRecords.map((record) => ({ ...record, source: "manual" }))];
+    return [...mergedRecords, ...fallbackOnlyRecords.map((record) => ({ ...record, source: "manual" }))];
   }
 
   function presentationFallbackRecordsFor(record) {

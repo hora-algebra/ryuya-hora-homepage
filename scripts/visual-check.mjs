@@ -323,6 +323,41 @@ const measureScript = String.raw`(() => {
     }
   });
 
+  const navItems = [...document.querySelectorAll(".nav-group-label, .nav-submenu a")].filter((node) => !node.classList.contains("nav-search"));
+  if (navItems.length && typeof window.navIconKey !== "function") {
+    issues.push({ type: "nav-icon-function-missing", detail: "window.navIconKey is not available" });
+  }
+  if (typeof window.navIconKey === "function") {
+    navItems.forEach((node) => {
+      const expected = window.navIconKey(node.textContent, node.getAttribute("href"));
+      const actual = node.querySelector(".nav-item-icon")?.dataset?.iconKey || "";
+      if (expected && actual !== expected) {
+        issues.push({
+          type: "nav-icon-mismatch",
+          element: labelOf(node),
+          rect: rectOf(node),
+          detail: "expected " + expected + ", got " + (actual || "none")
+        });
+      }
+    });
+
+    [...document.querySelectorAll(".explore-card")].filter(visible).forEach((card) => {
+      const title = card.querySelector(".explore-title[href]");
+      const icon = card.querySelector(".explore-card-icon");
+      if (!title || !icon) return;
+      const expected = window.navIconKey(title.textContent, title.getAttribute("href"));
+      const actual = icon.dataset.iconKey || "";
+      if (expected && actual !== expected) {
+        issues.push({
+          type: "page-icon-mismatch",
+          element: labelOf(title),
+          rect: rectOf(icon),
+          detail: "expected " + expected + ", got " + (actual || "none")
+        });
+      }
+    });
+  }
+
   const overflowSelectors = [
     ".site-nav", ".language-toggle", ".tab-button", ".timeline-control", ".action-link",
     ".publication-figure", ".publication-title", ".publication-meta span", ".note-thumbnail",

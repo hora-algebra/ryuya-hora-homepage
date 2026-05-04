@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-03T23:40:24.920Z",
+  "generatedAt": "2026-05-04T06:00:56.248Z",
   "source": {
     "homepage": "scripts/site.js",
     "researchmap": "https://researchmap.jp/ryuyahora"
@@ -236,7 +236,7 @@
         "title": "Connectedness and full subcategories of topoi",
         "canonicalTitle": "Connectedness and full subcategories of topoi",
         "source": "siteData",
-        "provenance": "https://www.ms.u-tokyo.ac.jp/seminar/thesispres/past.html",
+        "provenance": "https://www.ms.u-tokyo.ac.jp/seminar/2026/sem26-042.html",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -245,7 +245,7 @@
         "title": "Turning lights out with the Snake Lemma",
         "canonicalTitle": "Turning lights out with the Snake Lemma",
         "source": "siteData",
-        "provenance": "http://www.alg.cei.uec.ac.jp/itohiro/Games/",
+        "provenance": "http://www.alg.cei.uec.ac.jp/itohiro/Games/Game260222.html",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -254,7 +254,7 @@
         "title": "Measure-theoretic closure operators on formal languages",
         "canonicalTitle": "Measure-theoretic closure operators on formal languages",
         "source": "siteData",
-        "provenance": "https://jssst-ppl.org/workshop/2026/",
+        "provenance": "https://jssst-ppl.org/workshop/2026/accepted.html",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -277,11 +277,20 @@
         "needsVerification": false
       },
       {
+        "year": "2026",
+        "title": "TBA",
+        "canonicalTitle": "TBA",
+        "source": "siteData",
+        "provenance": "https://progetto-itaca.github.io/fests/fest26.html",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
+      {
         "year": "2025",
         "title": "Topoi of automata",
         "canonicalTitle": "Topoi of automata",
         "source": "siteData",
-        "provenance": "https://www.cmup.pt/index.php/events/topoi-automata",
+        "provenance": "https://www.cmup.pt/events/topoi-automata",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -326,7 +335,7 @@
         "title": "Local state classifier for automata theory",
         "canonicalTitle": "Local state classifier for automata theory",
         "source": "siteData",
-        "provenance": "https://www.irif.fr/seminaires/semantique/index",
+        "provenance": "https://www.irif.fr/en/seminaires/semantique/index",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -344,7 +353,7 @@
         "title": "Topoi of automata",
         "canonicalTitle": "Topoi of automata",
         "source": "siteData",
-        "provenance": "https://conference.math.muni.cz/ct2025/",
+        "provenance": "https://archive.math.muni.cz/conference/ct2025/index.php%3Fid%3Dprogramme-and-venue.html",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -362,7 +371,7 @@
         "title": "Connectedness and full subcategories of topoi",
         "canonicalTitle": "Connectedness and full subcategories of topoi",
         "source": "siteData",
-        "provenance": "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/index_e.html",
+        "provenance": "https://www.ms.u-tokyo.ac.jp/seminar/logic_e/past_e.html",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -398,7 +407,7 @@
         "title": "圏論の利用と濫用",
         "canonicalTitle": "圏論の利用と濫用",
         "source": "siteData",
-        "provenance": "https://afsa.jp/g-en/",
+        "provenance": "https://afsa.jp/meeting/",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -407,7 +416,7 @@
         "title": "Quotient toposes of discrete dynamical systems",
         "canonicalTitle": "Quotient toposes of discrete dynamical systems",
         "source": "siteData",
-        "provenance": "https://www.usc.gal/regaca/ct2024/",
+        "provenance": "https://www.usc.gal/regaca/ct2024/programme.html",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -452,7 +461,7 @@
         "title": "Internal parameterization of hyperconnected quotients",
         "canonicalTitle": "Internal parameterization of hyperconnected quotients",
         "source": "siteData",
-        "provenance": "http://web.science.mq.edu.au/groups/coact/seminar/",
+        "provenance": "https://centre-of-australian-category-theory.github.io/seminar/",
         "rights": "event metadata and owner-maintained talk listing",
         "needsVerification": false
       },
@@ -788,6 +797,15 @@
     "missingFromManualAfterAliases": [],
     "missingFromResearchmapAfterAliases": [],
     "ownerMaintainedManualOnly": [
+      {
+        "year": "2026",
+        "title": "TBA",
+        "canonicalTitle": "TBA",
+        "source": "siteData",
+        "provenance": "https://progetto-itaca.github.io/fests/fest26.html",
+        "rights": "event metadata and owner-maintained talk listing",
+        "needsVerification": false
+      },
       {
         "year": "2023",
         "title": "Constructive mathematics and representation theory",

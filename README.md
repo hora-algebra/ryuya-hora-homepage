@@ -14,6 +14,7 @@ This is a static first draft for an independent homepage.
 - `links/index.html`: external links
 - `styles.css`: visual design and responsive layout
 - `scripts/site.js`: structured content and rendering logic
+- `scripts/sync-works-generated.mjs`: syncs generated Works talk/search data from `scripts/site.js`
 - `scripts/sync-researchmap.mjs`: researchmap API sync script
 - `scripts/sync-overleaf-artifacts.mjs`: Overleaf-backed GitHub artifact sync script
 - `data/researchmap.json`: normalized generated researchmap metadata
@@ -39,6 +40,14 @@ node scripts/sync-researchmap.mjs
 ```
 
 This updates `data/researchmap.json` and `data/researchmap.generated.js`. The Papers, Talks, and CV/Awards pages load the generated JavaScript file directly, so they still work from `file://` without a local server.
+
+After editing curated talks in `scripts/site.js`, run:
+
+```sh
+node scripts/sync-works-generated.mjs
+```
+
+This updates the generated Works talk and search data so the standalone Works pages stay aligned with the curated source.
 
 The GitHub Actions workflow `.github/workflows/sync-researchmap.yml` runs the same sync manually or once per day. It commits only when the generated data changes. If this is later moved to an approved institutional WebAPI integration, set `RESEARCHMAP_ACCESS_TOKEN` as a GitHub secret.
 
