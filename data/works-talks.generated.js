@@ -386,6 +386,21 @@ window.worksTalksData = {
       "localThumbnail": "assets/notes/local-state-classifier-automata.png"
     },
     {
+      "title": "Topoi of automata",
+      "description": "Category Theory 2025",
+      "theme": "automata",
+      "themes": [
+        "topos",
+        "automata"
+      ],
+      "kind": "slide",
+      "date": "2025-07-17",
+      "language": "English",
+      "file": "ct2025-hora.pdf",
+      "href": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf",
+      "download": "https://archive.math.muni.cz/conference/ct2025/data/uploads/slides/hora.pdf"
+    },
+    {
       "title": "A note on language measurability",
       "description": "March 8, 2026",
       "theme": "automata",
@@ -542,18 +557,14 @@ window.worksTalksData = {
     },
     {
       "title": "Cloud: Twisted Regular Tetrahedra and Eisenstein Integers",
+      "description": "Speculative cloud entry; no public PDF is attached.",
       "themes": [
         "algebra"
       ],
       "metaTags": [
         "speculative"
       ],
-      "language": "Japanese",
-      "file": "2024Topos新歓202405-6.pdf",
-      "href": "https://drive.google.com/open?id=1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9",
-      "thumbnail": "https://lh3.google.com/u/0/d/1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9=s2048",
-      "download": "https://drive.google.com/uc?id=1jusP3e40IgxFYzwHf7z3oHhjszOdjPC9&export=download",
-      "localThumbnail": "assets/notes/eisenstein-integers-combinatorics.png"
+      "language": "English"
     },
     {
       "title": "アイゼンシュタイン整数と組合せ論",
