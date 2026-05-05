@@ -1,5 +1,5 @@
 (function () {
-  const NAV_CACHE_KEY = "cache-20260504ak";
+  const NAV_CACHE_KEY = "cache-20260505a";
 
   const navGroups = [
     {

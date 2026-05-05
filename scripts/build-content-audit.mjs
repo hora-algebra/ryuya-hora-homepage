@@ -169,16 +169,30 @@ const researchmapPapers = (researchmap.papers || []).map((paper) => ({
 const manualPaperKeys = new Set(manualPapers.map((paper) => simplified(paper.canonicalTitle)));
 const researchmapPaperKeys = new Set(researchmapPapers.map((paper) => simplified(paper.canonicalTitle)));
 
+function talkAuditMeta(talk) {
+  const meta = {
+    titleStatus: talk.status || "",
+    sourceAffiliation: talk.sourceAffiliation || "",
+    homepageAffiliation: talk.homepageAffiliation || "",
+    auditNote: talk.auditNote || ""
+  };
+  return Object.fromEntries(Object.entries(meta).filter(([, value]) => value));
+}
+
 const manualTalks = siteData.talks.flatMap((group) =>
-  group.items.map((talk) => ({
-    year: group.year,
-    title: talk.title,
-    canonicalTitle: canonicalTitle(talk.title, talkAliases),
-    source: "siteData",
-    provenance: talk.href || "",
-    rights: "event metadata and owner-maintained talk listing",
-    needsVerification: false
-  }))
+  group.items.map((talk) => {
+    const meta = talkAuditMeta(talk);
+    return {
+      year: group.year,
+      title: talk.title,
+      canonicalTitle: canonicalTitle(talk.title, talkAliases),
+      source: "siteData",
+      provenance: talk.href || "",
+      rights: "event metadata and owner-maintained talk listing",
+      needsVerification: false,
+      ...(Object.keys(meta).length ? { auditMeta: meta } : {})
+    };
+  })
 );
 
 const researchmapTalks = (researchmap.presentations || []).map((talk) => ({

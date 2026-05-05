@@ -677,13 +677,16 @@ window.worksTalksData = {
           "href": "https://sites.google.com/view/differential-kyoto-2026/home"
         },
         {
-          "title": "TBA",
-          "timelineId": "talk:itaca-fest-2026-tba",
+          "title": "Title pending",
+          "timelineId": "talk:itaca-fest-2026-title-pending",
           "event": "ItaCa Fest 2026",
           "date": "2026-09-29",
           "venue": "ItaCa Fest 2026, online, 29 September",
           "href": "https://progetto-itaca.github.io/fests/fest26.html",
-          "status": "planned"
+          "status": "title-pending",
+          "sourceAffiliation": "University of Tokyo",
+          "homepageAffiliation": "ZEN University",
+          "auditNote": "The ItaCa Fest 2026 public page lists R. Hora with University of Tokyo and no talk title; the homepage current affiliation is ZEN University."
         }
       ]
     },

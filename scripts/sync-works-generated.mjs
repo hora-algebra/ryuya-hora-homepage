@@ -215,6 +215,24 @@ function preparationSearchRecords(siteData, searchData) {
   });
 }
 
+function paperSearchRecords(siteData, searchData) {
+  const themes = searchData.researchThemes || [];
+  const metaTags = searchData.researchMetaTags || [];
+  return [...siteData.papers.published, ...siteData.papers.preprints].map((paper) => {
+    const text = [paper.title, paper.authors, paper.venue, paper.year, paper.summary, ...(paper.themes || []), ...(paper.metaTags || [])].filter(Boolean).join(" ");
+    return {
+      kind: "Papers",
+      title: paper.title,
+      href: paper.link || "",
+      year: paper.year || "",
+      summary: paper.summary || "",
+      themes: themeIdsForText(text, themes, paper.themes || []),
+      metaTags: metaTagIdsForText(text, metaTags, paper.metaTags || []),
+      text: [paper.title, paper.authors, paper.venue, paper.year, paper.summary].filter(Boolean).join(" ")
+    };
+  });
+}
+
 function replaceTalkSearchRecords(searchData, talkRecords) {
   const records = searchData.records || [];
   const firstTalkIndex = records.findIndex((record) => record.kind === "Talks");
@@ -256,6 +274,7 @@ await writeBrowserData(papersDataPath, "worksPapersData", papersData);
 
 const searchDataPath = "data/works-search.generated.js";
 const searchData = await readBrowserData(searchDataPath, "worksSearchData");
+searchData.records = replaceSearchRecordsByKind(searchData, ["Papers"], paperSearchRecords(siteData, searchData));
 searchData.records = replaceTalkSearchRecords(searchData, talkSearchRecords(siteData, searchData));
 searchData.records = replaceSearchRecordsByKind(searchData, ["In preparation"], preparationSearchRecords(siteData, searchData));
 searchData.records = replaceSearchRecordsByKind(searchData, ["Notes", "Slides"], documentSearchRecords(siteData, searchData));

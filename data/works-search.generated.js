@@ -246,7 +246,7 @@ window.worksSearchData = {
   "records": [
     {
       "kind": "Papers",
-      "title": "Internal Parameterizations of Hyperconnected Quotients",
+      "title": "Internal parameterization of hyperconnected quotients",
       "href": "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html",
       "year": "2024",
       "summary": "Introduces local state classifiers and uses them to establish an internal parameterization of hyperconnected quotients.",
@@ -254,10 +254,8 @@ window.worksSearchData = {
         "topos",
         "category"
       ],
-      "metaTags": [
-        "expository"
-      ],
-      "text": "Internal Parameterizations of Hyperconnected Quotients Theory and Applications of Categories 42(11), 263-313 2024 Introduces local state classifiers and uses them to establish an internal parameterization of hyperconnected quotients."
+      "metaTags": [],
+      "text": "Internal parameterization of hyperconnected quotients Theory and Applications of Categories 42(11), 263-313 2024 Introduces local state classifiers and uses them to establish an internal parameterization of hyperconnected quotients."
     },
     {
       "kind": "Papers",
@@ -268,7 +266,8 @@ window.worksSearchData = {
       "themes": [
         "topos",
         "algebra",
-        "dynamical"
+        "dynamical",
+        "combinatorics"
       ],
       "metaTags": [],
       "text": "Quotient toposes of discrete dynamical systems with Yuhi Kamio Journal of Pure and Applied Algebra 228(8), 107657 2024 Classifies classes of discrete dynamical systems closed under finite limits and small colimits."
@@ -280,7 +279,9 @@ window.worksSearchData = {
       "year": "2026",
       "summary": "Studies completely connected topoi and gives a site characterization with examples.",
       "themes": [
-        "topos"
+        "topos",
+        "category",
+        "combinatorics"
       ],
       "metaTags": [],
       "text": "Grothendieck topoi with a left adjoint to a left adjoint to a left adjoint to the global sections functor Proceedings of the American Mathematical Society 154, 567-584 2026 Studies completely connected topoi and gives a site characterization with examples."
@@ -292,7 +293,9 @@ window.worksSearchData = {
       "year": "2026",
       "summary": "Gives a solution to Lawvere's first open problem.",
       "themes": [
-        "topos"
+        "topos",
+        "logic",
+        "combinatorics"
       ],
       "metaTags": [],
       "text": "Solution to Lawvere's first problem: a Grothendieck topos that has proper class many quotient topoi with Yuhi Kamio Advances in Mathematics 487, 110751 2026 Gives a solution to Lawvere's first open problem."
@@ -304,7 +307,8 @@ window.worksSearchData = {
       "year": "2025",
       "summary": "Gives a preprint solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets.",
       "themes": [
-        "topos"
+        "topos",
+        "combinatorics"
       ],
       "metaTags": [],
       "text": "Lawvere's fourth open problem: Levels in the topos of symmetric simplicial sets with Yuki Maehara and Yuhi Kamio arXiv:2503.03439 2025 Gives a preprint solution to one of Lawvere's seven open problems through levels in the topos of symmetric simplicial sets."
@@ -317,11 +321,10 @@ window.worksSearchData = {
       "summary": "Introduces a topos-theoretic point of view on formal language theory.",
       "themes": [
         "topos",
-        "automata"
+        "automata",
+        "geometry"
       ],
-      "metaTags": [
-        "expository"
-      ],
+      "metaTags": [],
       "text": "Topoi of automata I: Four topoi of automata and regular languages arXiv:2411.06358 2024 Introduces a topos-theoretic point of view on formal language theory."
     },
     {
@@ -348,7 +351,8 @@ window.worksSearchData = {
       "themes": [
         "topos",
         "automata",
-        "algebra"
+        "algebra",
+        "combinatorics"
       ],
       "metaTags": [],
       "text": "Normalization of a subgroup, in a topos, and of a word-congruence arXiv:2511.05012 2025 Defines a generalized normalization operator motivated by topos theory and algebraic language theory."
@@ -960,13 +964,13 @@ window.worksSearchData = {
     },
     {
       "kind": "Talks",
-      "title": "TBA",
+      "title": "Title pending",
       "href": "https://progetto-itaca.github.io/fests/fest26.html",
       "year": "2026",
       "summary": "ItaCa Fest 2026, online, 29 September",
       "themes": [],
       "metaTags": [],
-      "text": "TBA ItaCa Fest 2026 ItaCa Fest 2026, online, 29 September 2026-09-29 2026 https://progetto-itaca.github.io/fests/fest26.html"
+      "text": "Title pending ItaCa Fest 2026 ItaCa Fest 2026, online, 29 September 2026-09-29 2026 https://progetto-itaca.github.io/fests/fest26.html"
     },
     {
       "kind": "Talks",

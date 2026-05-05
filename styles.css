@@ -2548,7 +2548,7 @@ a.position-link:focus-visible,
 }
 
 .site-search-count {
-  margin: 0;
+  margin: 4px 0 6px;
   color: var(--muted);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.9rem;
@@ -6324,6 +6324,30 @@ a.position-link:focus-visible,
   font-size: 16px;
   min-width: 56px;
   padding: 10px 15px;
+}
+
+@media (max-width: 430px) {
+  .automata-interactive-controls {
+    gap: 5px;
+  }
+
+  .automata-interactive-controls-input {
+    left: 41%;
+  }
+
+  .automata-interactive-controls-input .automata-button {
+    font-size: 14px;
+    min-width: 46px;
+    padding: 8px 11px;
+  }
+}
+
+@media (max-width: 340px) {
+  .automata-interactive-controls-input {
+    left: 42%;
+    transform: translateX(-50%) scale(0.9);
+    transform-origin: top center;
+  }
 }
 
 .automata-button-a {
@@ -11384,10 +11408,10 @@ a.position-link:focus-visible,
 }
 
 .talk-title .action-link-icon-only {
-  width: 22px;
-  min-width: 22px;
-  min-height: 22px;
-  padding: 2px;
+  width: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
   border: 0;
   border-radius: 5px;
   background: transparent;
@@ -12768,6 +12792,12 @@ a.position-link:focus-visible,
 
   .timeline-group {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  .section-copy-link {
+    display: none;
   }
 }
 

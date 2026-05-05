@@ -1,7 +1,7 @@
 (function () {
   const initialUrlParams = new URLSearchParams(globalThis.location?.search || "");
   const publicSiteUrl = "https://hora-algebra.github.io/ryuya-hora-homepage/";
-  const paperFigureCacheKey = "cache-20260504aj";
+  const paperFigureCacheKey = "cache-20260505a";
   const worksInitialPaperRecordLimit = 4;
   const katexCdnBase = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist";
 
@@ -868,7 +868,7 @@
   }
 
   function paperAnchor(paper) {
-    return `paper-${slugify(paper.title)}`;
+    return `paper-${slugify(paper.anchor || paper.title)}`;
   }
 
   function noteAnchor(note) {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T11:52:13.679Z",
+  "generatedAt": "2026-05-04T23:56:10.061Z",
   "source": {
     "homepage": "scripts/site.js",
     "researchmap": "https://researchmap.jp/ryuyahora"
@@ -80,8 +80,8 @@
   "papers": {
     "manual": [
       {
-        "title": "Internal Parameterizations of Hyperconnected Quotients",
-        "canonicalTitle": "Internal Parameterizations of Hyperconnected Quotients",
+        "title": "Internal parameterization of hyperconnected quotients",
+        "canonicalTitle": "Internal parameterization of hyperconnected quotients",
         "status": "published",
         "source": "DOI or journal page / manual homepage data",
         "provenance": "siteData",
@@ -209,7 +209,7 @@
       },
       {
         "title": "Internal parameterization of hyperconnected quotients",
-        "canonicalTitle": "Internal Parameterizations of Hyperconnected Quotients",
+        "canonicalTitle": "Internal parameterization of hyperconnected quotients",
         "status": "published",
         "source": "researchmap",
         "provenance": "https://doi.org/10.70930/tac/a8ppg8i1",
@@ -278,12 +278,18 @@
       },
       {
         "year": "2026",
-        "title": "TBA",
-        "canonicalTitle": "TBA",
+        "title": "Title pending",
+        "canonicalTitle": "Title pending",
         "source": "siteData",
         "provenance": "https://progetto-itaca.github.io/fests/fest26.html",
         "rights": "event metadata and owner-maintained talk listing",
-        "needsVerification": false
+        "needsVerification": false,
+        "auditMeta": {
+          "titleStatus": "title-pending",
+          "sourceAffiliation": "University of Tokyo",
+          "homepageAffiliation": "ZEN University",
+          "auditNote": "The ItaCa Fest 2026 public page lists R. Hora with University of Tokyo and no talk title; the homepage current affiliation is ZEN University."
+        }
       },
       {
         "year": "2025",
@@ -799,12 +805,18 @@
     "ownerMaintainedManualOnly": [
       {
         "year": "2026",
-        "title": "TBA",
-        "canonicalTitle": "TBA",
+        "title": "Title pending",
+        "canonicalTitle": "Title pending",
         "source": "siteData",
         "provenance": "https://progetto-itaca.github.io/fests/fest26.html",
         "rights": "event metadata and owner-maintained talk listing",
-        "needsVerification": false
+        "needsVerification": false,
+        "auditMeta": {
+          "titleStatus": "title-pending",
+          "sourceAffiliation": "University of Tokyo",
+          "homepageAffiliation": "ZEN University",
+          "auditNote": "The ItaCa Fest 2026 public page lists R. Hora with University of Tokyo and no talk title; the homepage current affiliation is ZEN University."
+        }
       },
       {
         "year": "2023",
@@ -1482,11 +1494,11 @@
   "titleEquivalences": [
     {
       "kind": "paper",
-      "canonical": "Internal Parameterizations of Hyperconnected Quotients",
+      "canonical": "Internal parameterization of hyperconnected quotients",
       "aliases": [
-        "Internal parameterization of hyperconnected quotients"
+        "Internal Parameterizations of Hyperconnected Quotients"
       ],
-      "reason": "researchmap title casing/singular-plural variance"
+      "reason": "Use the singular title found in public arXiv/TAC/researchmap-style records; keep the former homepage plural title as an alias."
     },
     {
       "kind": "talk",

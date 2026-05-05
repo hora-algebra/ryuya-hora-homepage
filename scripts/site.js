@@ -217,7 +217,8 @@ const siteData = {
   papers: {
     published: [
       {
-        title: "Internal Parameterizations of Hyperconnected Quotients",
+        title: "Internal parameterization of hyperconnected quotients",
+        anchor: "Internal Parameterizations of Hyperconnected Quotients",
         timelineId: "paper:internal-parameterizations",
         venue: "Theory and Applications of Categories 42(11), 263-313",
         year: "2024",
@@ -372,7 +373,18 @@ const siteData = {
         { title: "Measure-theoretic closure operators on formal languages", timelineId: "talk:ppl-2026-measure-theoretic-closure", presenters: ["Ryuya Hora", "Ryoma Sin'ya"], event: "PPL 2026", date: "2026-03-11", venue: "PPL 2026, Rexxam Hall, Takamatsu, 11 March", href: "https://jssst-ppl.org/workshop/2026/accepted.html" },
         { title: "A space-time for Conway's game of life", timelineId: "talk:cscat-2026-game-of-life", event: "CSCAT 2026", date: "2026-03-17", venue: "CSCAT 2026, AOSSA Room 601A, Fukui, 17 March", href: "https://www.kurims.kyoto-u.ac.jp/~tsanada/event/cscat2026.html" },
         { title: "A Rota-Baxter equation for winning games", timelineId: "talk:differentiation-kyoto-2026-rota-baxter", event: "Differentiation in category theory and program semantics", date: "2026-04-06", venue: "Room 420, RIMS, Kyoto University, 6 April", href: "https://sites.google.com/view/differential-kyoto-2026/home" },
-        { title: "TBA", timelineId: "talk:itaca-fest-2026-tba", event: "ItaCa Fest 2026", date: "2026-09-29", venue: "ItaCa Fest 2026, online, 29 September", href: "https://progetto-itaca.github.io/fests/fest26.html", status: "planned" }
+        {
+          title: "Title pending",
+          timelineId: "talk:itaca-fest-2026-title-pending",
+          event: "ItaCa Fest 2026",
+          date: "2026-09-29",
+          venue: "ItaCa Fest 2026, online, 29 September",
+          href: "https://progetto-itaca.github.io/fests/fest26.html",
+          status: "title-pending",
+          sourceAffiliation: "University of Tokyo",
+          homepageAffiliation: "ZEN University",
+          auditNote: "The ItaCa Fest 2026 public page lists R. Hora with University of Tokyo and no talk title; the homepage current affiliation is ZEN University."
+        }
       ]
     },
     {
@@ -484,7 +496,7 @@ const siteData = {
         { id: "math-logic-summer-school-2026", date: "2026-08-18 - 2026-08-21", role: "attend", event: "数学基礎論サマースクール２０２６：巨大基数公理", planStatus: "considering", href: "https://wwp.shizuoka.ac.jp/yorioka/?page_id=1545", linkText: "数学基礎論サマースクール２０２６：巨大基数公理", activityCategory: "attendance", locationId: "shizuoka-university-shizuoka", mapKind: "attended", visibility: { visitMap: false } },
         { id: "agm-2026", date: "2026-08-24 - 2026-08-26", role: "attend", event: "空間の代数的・幾何的モデルとその周辺 (2026)", planStatus: "considering", href: "https://shwaka.github.io/conference/agm2026/", linkText: "空間の代数的・幾何的モデルとその周辺 (2026)", activityCategory: "attendance", locationId: "shinshu-university-science", mapKind: "attended", visibility: { visitMap: false } },
         { id: "cos-2026", date: "2026-09-08 - 2026-09-11", role: "attend", event: "COS 2026: COmbinatorics Summer School 2026", planStatus: "considering", href: "https://sites.google.com/view/cos2026/", linkText: "COS 2026", activityCategory: "attendance", locationId: "kinosaki-community-center", mapKind: "attended", visibility: { visitMap: false } },
-        { id: "itaca-fest-2026-talk", timelineId: "activity:itaca-fest-2026-talk-plan", date: "2026-09-29", role: "talk", event: "ItaCa Fest 2026", talkTitle: "TBA", mode: "online", planStatus: "confirmed", href: "https://progetto-itaca.github.io/fests/fest26.html", linkText: "ItaCa Fest 2026", venue: "ItaCa Fest 2026, online", country: "Online" },
+        { id: "itaca-fest-2026-talk", timelineId: "activity:itaca-fest-2026-talk-plan", date: "2026-09-29", role: "talk", event: "ItaCa Fest 2026", talkTitle: "Title pending", mode: "online", planStatus: "confirmed", href: "https://progetto-itaca.github.io/fests/fest26.html", linkText: "ItaCa Fest 2026", venue: "ItaCa Fest 2026, online", country: "Online", sourceAffiliation: "University of Tokyo", homepageAffiliation: "ZEN University", auditNote: "The ItaCa Fest 2026 public page lists R. Hora with University of Tokyo and no talk title; the homepage current affiliation is ZEN University." },
         { id: "categories-in-tokyo-3", date: "2026-11-02 - 2026-11-04", role: "organize", event: "Categories in Tokyo 3", planStatus: "confirmed", href: "https://sites.google.com/view/categoriesintokyo/%E7%AC%AC3%E5%9B%9E%E9%9B%86%E4%BC%9A", linkText: "Categories in Tokyo 3", locationId: "zen-university-ginza", venue: "ZEN University", city: "Tokyo", country: "Japan", locationPrecision: "venue", mapKind: "organized" }
       ]
     },
@@ -1038,7 +1050,7 @@ const siteData = {
         ],
         ["researchmap", "https://researchmap.jp/ryuyahora?lang=en"],
         ["nLab", "https://ncatlab.org/nlab/show/Ryuya+Hora"],
-        ["Old homepage", "https://sites.google.com/view/ryuya-hora"]
+        ["Old homepage (stale)", "https://sites.google.com/view/ryuya-hora"]
       ]
     },
     {
@@ -1189,17 +1201,17 @@ const siteReviewData = {
       reason: "Owner confirmed this English title and the Japanese title refer to the same talk; keep as owner-maintained homepage record even if researchmap omits it."
     },
     {
-      canonical: "TBA",
-      aliases: ["ItaCa Fest 2026"],
-      reason: "Owner asked to keep the untitled ItaCa Fest 2026 talk as a manual Talk record until the title is fixed."
+      canonical: "Title pending",
+      aliases: ["TBA", "ItaCa Fest 2026"],
+      reason: "Keep the untitled ItaCa Fest 2026 talk as a manual Talk record; the public event page currently has no talk title and lists R. Hora with University of Tokyo while the homepage current affiliation is ZEN University."
     }
   ],
   titleEquivalences: [
     {
       kind: "paper",
-      canonical: "Internal Parameterizations of Hyperconnected Quotients",
-      aliases: ["Internal parameterization of hyperconnected quotients"],
-      reason: "researchmap title casing/singular-plural variance"
+      canonical: "Internal parameterization of hyperconnected quotients",
+      aliases: ["Internal Parameterizations of Hyperconnected Quotients"],
+      reason: "Use the singular title found in public arXiv/TAC/researchmap-style records; keep the former homepage plural title as an alias."
     },
     {
       kind: "talk",
@@ -1442,7 +1454,7 @@ const i18nText = {
     "Type to search the site.": "検索語を入力してください．",
     "No public site results match this search.": "この検索に合う公開ページはありません．",
     "No linked items yet.": "関連項目はまだありません．",
-    "Site search. Last updated: 4 May 2026.": "サイト内検索．最終更新: 2026年5月4日",
+    "Site search. Last updated: 5 May 2026.": "サイト内検索．最終更新: 2026年5月5日",
     "Search notes": "ノート内検索",
     "Search slides": "スライド内検索",
     "Note filters": "ノートの絞り込み",
@@ -1534,7 +1546,7 @@ const i18nText = {
       "東京周辺の category theory workshop series / local research community です．私は founder かつ organizer の一人です．",
     "Open Categories in Tokyo": "Categories in Tokyo を開く",
     "Related activities": "関連する活動",
-    "Last updated: 4 May 2026.": "最終更新: 2026年5月4日",
+    "Last updated: 5 May 2026.": "最終更新: 2026年5月5日",
     "Back to top": "上に戻る",
     "Home": "ホーム",
     "More": "さらに見る",
@@ -1579,8 +1591,8 @@ const i18nText = {
     "Powered by researchmap": "researchmap に基づく",
     "Misc": "その他",
     "Other Writing": "その他の文章",
-    "Research papers, preprints, and related writing. Last updated: 4 May 2026.":
-      "Research papers, preprints, related writing. 最終更新: 2026年5月4日",
+    "Research papers, preprints, and related writing. Last updated: 5 May 2026.":
+      "Research papers, preprints, related writing. 最終更新: 2026年5月5日",
     "Conference talks, seminars, workshop presentations, and available slides.":
       "Conference talks, seminars, workshop presentations とスライドをまとめています．",
     "Talks and slides.": "Talks and slides.",
@@ -1619,22 +1631,22 @@ const i18nText = {
     "Archive": "アーカイブ",
     "Talk List": "発表一覧",
     "Filter talks": "発表を絞り込む",
-    "Talks, seminars, and presentation material. Last updated: 4 May 2026.":
-      "Talks, seminars, presentation material. 最終更新: 2026年5月4日",
+    "Talks, seminars, and presentation material. Last updated: 5 May 2026.":
+      "Talks, seminars, presentation material. 最終更新: 2026年5月5日",
     "Notes and Slides": "ノートとスライド",
     "Lecture notes, speculative notes, and teaching material. ☁︎ marked notes are speculative; 🖊️ marked notes are under construction.":
       "Lecture notes, speculative notes, teaching material をまとめています．☁︎ は speculative，🖊️ は under construction を表します．",
     "Notes and teaching material.": "Notes and teaching material.",
     "Slides connected with talks.": "発表と対応するスライド．",
     "Slides, with matching talk information when available.": "対応する発表情報つきのスライド．",
-    "Notes. Last updated: 4 May 2026.": "Notes. 最終更新: 2026年5月4日",
-    "Slides. Last updated: 4 May 2026.": "Slides. 最終更新: 2026年5月4日",
+    "Notes. Last updated: 5 May 2026.": "Notes. 最終更新: 2026年5月5日",
+    "Slides. Last updated: 5 May 2026.": "Slides. 最終更新: 2026年5月5日",
     "Academic Activity": "研究活動",
     "Research visits, organizing work, seminars, public writing, and academic events.":
       "Research visits, organizing work, seminars, public writing, academic events をまとめています．",
     "Activities and plans.": "活動と予定．",
-    "Academic activities, visits, and organizing work. Last updated: 4 May 2026.":
-      "Academic activities, visits, organizing work. 最終更新: 2026年5月4日",
+    "Academic activities, visits, and organizing work. Last updated: 5 May 2026.":
+      "Academic activities, visits, organizing work. 最終更新: 2026年5月5日",
     "Profile Details": "プロフィール詳細",
     "CV": "CV",
     "CV and awards.": "CV と受賞．",
@@ -1654,8 +1666,8 @@ const i18nText = {
     "Activity / Award / Talk": "活動・受賞・講演",
     "Source": "出典",
     "Credit": "謝辞",
-    "CV, awards, positions, and education. Last updated: 4 May 2026.":
-      "CV, awards, positions, education. 最終更新: 2026年5月4日",
+    "CV, awards, positions, and education. Last updated: 5 May 2026.":
+      "CV, awards, positions, education. 最終更新: 2026年5月5日",
     "Open Problems and Questions": "Open Problems and Questions",
     "Problem Index": "Problem Index",
     "Open problems and trails.": "Open problems and trails.",
@@ -1692,15 +1704,15 @@ const i18nText = {
     "Filter problems": "問題を絞り込む",
     "Index": "索引",
     "All Entries": "全項目",
-    "Open problems, questions, and reference trails. Last updated: 4 May 2026.":
-      "Open problems, questions, reference trails. 最終更新: 2026年5月4日",
+    "Open problems, questions, and reference trails. Last updated: 5 May 2026.":
+      "Open problems, questions, reference trails. 最終更新: 2026年5月5日",
     "Academic Photobomb": "Academic Photobomb",
     "People, Friends' Papers, Books, Events": "人物・友人の論文・本・イベント",
     "Profiles and references.": "プロフィールと資料．",
     "External references, profile pages, friends' papers, books, and events.":
       "外部資料，プロフィールページ，友人の論文，本，イベントへのリンクです．",
-    "External links and reference pages. Last updated: 4 May 2026.":
-      "External links and reference pages. 最終更新: 2026年5月4日",
+    "External links and reference pages. Last updated: 5 May 2026.":
+      "External links and reference pages. 最終更新: 2026年5月5日",
     "☁︎ Log": "☁︎ Log",
     "思弁的なノート": "思弁的なノート",
     "Short draft fragments, questions, and half-formed mathematical pictures before they become papers, talks, or polished notes.":
@@ -2551,7 +2563,7 @@ const mathAnnotationRules = [
     test: (tex) => /\\Psi/.test(tex),
     title: "Local state classifier",
     body: "The symbol packages locally determined states and compares their values across inclusions.",
-    linkLabel: "Internal parameterizations",
+    linkLabel: "Internal parameterization",
     href: "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"
   },
   {
@@ -2572,7 +2584,7 @@ const mathAnnotationRules = [
     test: (tex) => /^i$/.test(tex),
     title: "Inclusion",
     body: "The map i records the inclusion of a local part into the ambient object.",
-    linkLabel: "Internal parameterizations",
+    linkLabel: "Internal parameterization",
     href: "http://www.tac.mta.ca/tac/volumes/42/11/42-11abs.html"
   },
   {
@@ -4288,7 +4300,7 @@ function talkRecordAnchor(record) {
 }
 
 function paperAnchor(paper) {
-  return `paper-${slugify(paper.title)}`;
+  return `paper-${slugify(paper.anchor || paper.title)}`;
 }
 
 function webAppAnchor(app) {
@@ -6543,7 +6555,8 @@ function activityRecordLocationPhrase(record, { includeConsidering = false } = {
 function activityRecordTalkTitleText(record) {
   const title = String(record?.talkTitle || "").trim();
   if (!title) return "";
-  return title.toUpperCase() === "TBA" ? " Title TBA." : ` Title: ${title}.`;
+  if (/^(tba|title pending)$/i.test(title)) return " Title pending.";
+  return ` Title: ${title}.`;
 }
 
 function generatedActivityRecordText(record, isFuture) {
@@ -15791,7 +15804,7 @@ function noteReviewRecord(note) {
 
 const paperFigureScriptCache = new Map();
 let paperFigureObserver = null;
-const paperFigureCacheKey = "cache-20260504aj";
+const paperFigureCacheKey = "cache-20260505a";
 let queuedPaperFigures = [];
 let paperFigureHydrationScheduled = false;
 

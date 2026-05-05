@@ -246,7 +246,8 @@ window.worksPapersData = {
   "papers": {
     "published": [
       {
-        "title": "Internal Parameterizations of Hyperconnected Quotients",
+        "title": "Internal parameterization of hyperconnected quotients",
+        "anchor": "Internal Parameterizations of Hyperconnected Quotients",
         "timelineId": "paper:internal-parameterizations",
         "venue": "Theory and Applications of Categories 42(11), 263-313",
         "year": "2024",

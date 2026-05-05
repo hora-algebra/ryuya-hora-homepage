@@ -326,7 +326,7 @@ const measureScript = String.raw`(() => {
   const navItems = [...document.querySelectorAll(".nav-group-label, .nav-submenu a")].filter((node) => !node.classList.contains("nav-search"));
   const nav = document.querySelector(".site-nav");
   if (nav) {
-    const expectedCacheKey = window.siteNavCacheKey || "cache-20260504aj";
+    const expectedCacheKey = window.siteNavCacheKey || "cache-20260505a";
     if (nav.dataset.siteNavRendered !== expectedCacheKey) {
       issues.push({
         type: "site-nav-not-common-rendered",
